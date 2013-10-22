@@ -1,0 +1,189 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      -->
+      <title>Introduction to Signal Decomposition</title>
+      <meta name="generator" content="MATLAB 7.7">
+      <meta name="date" content="2010-01-14">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>Introduction to Signal Decomposition</h1>
+         <introduction>
+            <p>This numerical tour introduces the notion of orthogonal transform.</p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#8">Fourier Representation</a></li>
+               <li><a href="#11">Wavelet Representation</a></li>
+            </ul>
+         </div>
+         <h2>Installing toolboxes and setting up the path.<a name="1"></a></h2>
+         <p>You need to download the <a href="../toolbox_general.zip">general purpose toolbox</a> and the <a href="../toolbox_signal.zip">signal toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_general/</tt> and <tt>toolbox_signal/</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab commands you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(path,p); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add these toolboxes to the path.</p><pre class="codeinput"><span class="comment">% Add some directories to the path</span>
+getd(<span class="string">'../toolbox_signal/'</span>);
+getd(<span class="string">'../toolbox_general/'</span>);
+</pre><h2>Fourier Representation<a name="8"></a></h2>
+         <p>The Fourier coefficients are the decomposition of the signal in the orthogonal basis of Fourier sinusoids.</p>
+         <p>Display 1D sinusoids of various frequencies.</p><pre class="codeinput">n = 1024;
+freq = round( [ .01 .05 .1 ]*n );
+t = 0:n-1;
+clf;
+<span class="keyword">for</span> i=1:length(freq)
+    subplot(length(freq), 1, i);
+    h = plot( cos(2*pi/n*freq(i)*t ) ); axis(<span class="string">'tight'</span>);
+    set(h, <span class="string">'LineWidth'</span>, 2);
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p><i>Exercice 1:</i> (the solution is <a href="../missing-exo.html">exo1.m</a>) Display 2D sinusoids of various frequencies.
+         </p><pre class="codeinput">exo1;
+</pre><img vspace="5" hspace="5" src="index_02.png"> <h2>Wavelet Representation<a name="11"></a></h2>
+         <p>The wavelet atoms are indexed by both a translation and a scale parameter.</p>
+         <p>We display 1D wavelets at various scales.</p><pre class="codeinput">options.ti = 1;
+n = 1024;
+Jmin = 4;
+y = perform_wavelet_transf(zeros(n,1), Jmin, +1, options);
+nJ = 3;
+nT = 3;
+sel = linspace(0,n-1,nT+1); sel = sel(1:nT); sel = sel+round(sel(2)/2);
+clf;
+<span class="keyword">for</span> j=1:nJ
+    subplot(nJ,1,j);
+    x = [];
+    <span class="keyword">for</span> i=1:nT
+        y = y*0;
+        y(sel(i),:,j+1) = 1;
+        x(:,i) = perform_wavelet_transf(y, Jmin, -1, options);
+    <span class="keyword">end</span>
+    hold <span class="string">on</span>;
+    h = plot(x); axis(<span class="string">'tight'</span>);
+    set(h, <span class="string">'LineWidth'</span>, 2);
+    h = plot(1:n, zeros(n,1), <span class="string">'k'</span>);
+    set(h, <span class="string">'LineWidth'</span>, 2);
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="index_03.png"> <p><i>Exercice 2:</i> (the solution is <a href="../missing-exo.html">exo2.m</a>) Display 2D wavelets at various scales.
+         </p><pre class="codeinput">exo2;
+</pre><img vspace="5" hspace="5" src="index_04.png"> <p class="footer"><br>
+            Copyright  &reg; 2008 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Introduction to Signal Decomposition
+% This numerical tour introduces the notion of orthogonal transform.
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the 
+% <../toolbox_general.zip general purpose toolbox>
+% and the <../toolbox_signal.zip signal toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have |toolbox_general/| and |toolbox_signal/| in your
+% directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance
+% |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write
+% all the Scilab/Matlab commands you want to execute. Then, simply run
+% |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab)
+% to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(path,p); % scilab users must *not* execute this
+
+%%
+% Then you can add these toolboxes to the path.
+
+% Add some directories to the path
+getd('../toolbox_signal/');
+getd('../toolbox_general/');
+
+%% Fourier Representation
+% The Fourier coefficients are the decomposition of the signal in the
+% orthogonal basis of Fourier sinusoids.
+
+%%
+% Display 1D sinusoids of various frequencies.
+
+n = 1024;
+freq = round( [ .01 .05 .1 ]*n );
+t = 0:n-1;
+clf;
+for i=1:length(freq)
+    subplot(length(freq), 1, i);
+    h = plot( cos(2*pi/n*freq(i)*t ) ); axis('tight');
+    set(h, 'LineWidth', 2);
+end
+
+%%
+% _Exercice 1:_ (the solution is <../missing-exo.html exo1.m>)
+% Display 2D sinusoids of various frequencies.
+
+exo1;
+
+%% Wavelet Representation
+% The wavelet atoms are indexed by both a translation and a scale
+% parameter.
+
+%%
+% We display 1D wavelets at various scales.
+
+options.ti = 1;
+n = 1024;
+Jmin = 4;
+y = perform_wavelet_transf(zeros(n,1), Jmin, +1, options);
+nJ = 3;
+nT = 3;
+sel = linspace(0,n-1,nT+1); sel = sel(1:nT); sel = sel+round(sel(2)/2);
+clf;
+for j=1:nJ
+    subplot(nJ,1,j);
+    x = [];
+    for i=1:nT
+        y = y*0;
+        y(sel(i),:,j+1) = 1;
+        x(:,i) = perform_wavelet_transf(y, Jmin, -1, options);
+    end
+    hold on;
+    h = plot(x); axis('tight');
+    set(h, 'LineWidth', 2);
+    h = plot(1:n, zeros(n,1), 'k');
+    set(h, 'LineWidth', 2);
+end
+
+%%
+% _Exercice 2:_ (the solution is <../missing-exo.html exo2.m>)
+% Display 2D wavelets at various scales.
+
+exo2;
+
+##### SOURCE END #####
+-->
+   </body>
+</html>

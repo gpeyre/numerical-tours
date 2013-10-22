@@ -1,0 +1,109 @@
+function M = compute_triang_interp(face,vertex,v,n, options)
+
+// compute_triang_interp - perform interpolation of a triangulation on a regular grid
+//
+//   M = compute_triang_interp(face,vertex,v,n);
+//
+//   n is the size of the image
+//   vertex is a (2,n) list of points, they
+//       are assumed to lie in [1,n]^2.
+//   face is a (3,p) list of triangular faces.
+//
+//   If options.remove_nan==1, remove NaN non interpolated values using a
+//   heat diffusion.
+//   
+//   Copyright (c) 2004 Gabriel Peyrée
+
+options.null = 0;
+verb = getoptions(options, 'verb', 0);
+remove_nan = getoptions(options, 'remove_nan', 1);
+
+if argn(2)<4
+    error('4 arguments required.');
+end
+if size(face,2)==3 & size(face,1)~=3
+    face = face';
+end
+if size(face,1)~=3
+    error('Works only with triangulations.');
+end
+if size(vertex,2)==2 & size(vertex,1)~=2
+    vertex = vertex';
+end
+if size(vertex,1)~=2
+    error('Works only with 2D triangulations.');
+end
+
+if min(vertex(:))>=0 & max(vertex(:))<=1
+    // date in [0,1], makes conversion
+    vertex = vertex*(n-1)+1;
+end
+
+nface = size(face,2);
+face_sampling = 0;
+if length(v)==nface
+    face_sampling = 1;
+end
+
+epsi = 1e-9;
+
+M = zeros(n,n);
+Mnb = zeros(n,n);
+for i=1:nface
+    T = face(:,i);          // current triangles
+    P = vertex(:,T);        // current points
+    V = v(T);               // current values
+    // range
+    selx = min(floor(P(1,:))):max(ceil(P(1,:)));
+    sely = min(floor(P(2,:))):max(ceil(P(2,:)));
+    // grid locations
+    [Y,X] = meshgrid(sely,selx);
+    pos = [X(:)'; Y(:)'];
+    p = size(pos,2);    // number of poitns
+    // solve barycentric coords
+//    warning off;
+    c = [1 1 1; P]\[ones(1,p);pos];
+//    warning on;
+    // find points inside the triangle
+    I = find( c(1,:)>=-10*epsi & c(2,:)>=-10*epsi & c(3,:)>=-10*epsi );
+    pos = pos(:,I);
+    c = c(:,I);
+    // restrict to point inside the image
+    I = find( pos(1,:)<=n & pos(1,:)>0 & pos(2,:)<=n & pos(2,:)>0 );
+    pos = pos(:,I);
+    c = c(:,I);
+    // convert sampling location to index in the array
+    J = sub2ind(size(M), pos(1,:),pos(2,:) );
+    // assign values
+    if ~isempty(J)
+        if face_sampling
+            M(J) = v(i);
+        else
+//           disp(size(M(J)));
+//            disp(size(J));
+//            disp(size(c(2,:)));
+            M(J) = M(J) + V(1)*c(1,:)' + V(2)*c(2,:)' + V(3)*c(3,:)';
+        end
+        Mnb(J) = Mnb(J)+1;
+    end
+end
+I = find(Mnb>0);
+M(I) = M(I)./Mnb(I);
+I = find(Mnb==0);
+M(I) = -1e9;
+
+return;
+
+if remove_nan
+    Mask = (M<=-1e8);
+    M(Mask==1) = mean(M(Mask==0));
+    M0 = M;
+    h = ones(3)/9;
+    niter = 20;
+    for i=1:niter
+        M = perform_convolution(M,h);
+        M(Mask==0) = M0(Mask==0);
+    end
+end
+
+endfunction

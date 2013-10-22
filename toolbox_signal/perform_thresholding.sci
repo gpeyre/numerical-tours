@@ -1,0 +1,230 @@
+function y = perform_thresholding(x, t, thresh, options)
+
+// perform_thresholding - perform hard or soft thresholding
+//
+//   y = perform_thresholding(x, t, thresh, options);
+//
+//   t is the threshold
+//   thresh is either 'hard' or 'soft' or 'semisoft' or 'strict' or 'largest' or 'block'.
+//
+//   works also for complex data, and for cell arrays.
+//
+//   if thresh is 'strict' then it keeps the t largest entry in each
+//   column of x.
+//
+//   for block thresholding, you can set options.block_size to determing the
+//   block size.
+//
+//   Copyright (c) 2006 Gabriel Peyre
+
+options.null = 0;
+if argn(2)==3 & isstruct(thresh)
+    options = thresh; 
+    thresh = getoptions(options, 'thresh', 'hard');
+end
+if argn(2)<3
+    thresh = 'hard';
+end
+
+if 0 // iscell(x)
+    // for cell arrays
+    for i=1:size(x,1)
+        for j=1:size(x,2)
+            y(i,j) = perform_thresholding(x(i,j),t, thresh);
+        end
+    end
+    return;
+end
+
+thresh = lower(thresh);
+if isempty(thresh)
+    thresh = 'hard';
+end
+
+if strcmp(thresh,'hard')
+        y = perform_hard_thresh(x,t);
+elseif strcmp(thresh,'soft')
+        y = perform_soft_thresh(x,t);
+elseif strcmp(thresh,'semisoft')
+        y = perform_semisoft_thresh(x,t);
+elseif strcmp(thresh,'strict')
+        y = perform_strict_thresh(x,t);
+elseif strcmp(thresh,'largest')
+        y = perform_largest_thresh(x,t);
+elseif ( strcmp(thresh,'block') | strcmp(thresh,'block-hard') | strcmp(thresh,'block-soft') )
+        if strcmp(thresh, 'block')
+            thresh = 'block-soft';
+        end
+        bs = getoptions(options, 'block_size', 4);
+        y = perform_block_thresh(x,t,bs, thresh);
+elseif ( strcmp(thresh,'stein') | strcmp(thresh,'soft-quad') )
+        y = perform_stein_thresh(x,t);
+elseif strcmp(thresh,'quantize')
+        y = perform_quant_thresh(x,t);
+elseif strcmp('soft-multichannel')
+        y = perform_softm_thresh(x,t);
+else
+        error('Unkwnown thresholding thresh.');
+end
+
+
+endfunction
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function X = perform_largest_thresh(X,s)
+//// keep only the s largest coefficients
+
+v = sort(abs(X(:))); // v = v($:-1:1,:);
+v = v(round(s));
+X = X .* (abs(X)>=v);
+
+endfunction
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function y = perform_stein_thresh(x,t)
+
+t = t(1);
+y = x .* max( 1-(t^2) ./ (abs(x).^2), 0 );
+
+endfunction
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function X = perform_strict_thresh(X,s)
+//// keep only the s largest coefficients in each column of X
+
+v = sort(abs(X)); v = v($:-1:1,:);
+v = v(round(s),:);
+v = repmat(v, [size(X,1) 1]);
+X = X .* (abs(X)>=v);
+
+
+endfunction
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function y = perform_softm_thresh(x,t)
+
+// dimension of thresholding
+dm = nb_dims(x);
+
+// soft multichannel
+d = sqrt( sum( abs(x).^2, dm) );
+d = repmat(d, [ones(dm-1,1); size(x,dm)]);
+y = max( 1-t./d, 0 ) .* x;
+
+endfunction
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function y = perform_hard_thresh(x,t)
+
+t = t(1);
+y = x .* (abs(x) > t);
+
+endfunction
+
+////
+function y = perform_quant_thresh(x,t)
+
+t = t(1);
+y = floor(abs(x/t)).*sign(x);
+y = sign(y) .* (abs(y)+.5) * t;
+
+endfunction
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function y = perform_soft_thresh(x,t)
+
+if not(isreal(x))
+    // complex threshold
+    d = abs(x);
+    d(d<1e-10) = 1;
+    y = x./d .* perform_soft_thresh(d,t);
+    return;
+end
+
+if size(t)~=size(x)
+    t = t(1);
+end
+s = abs(x) - t;
+s = (s + abs(s))/2;
+y = sign(x).*s;
+
+
+endfunction
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function y = perform_semisoft_thresh(x,t)
+
+if length(t)==1
+    t = [t 2*t];
+end
+t = sort(t);
+
+y = x;
+y(abs(x)<t(1)) = 0;
+I = find(abs(x)>=t(1) & abs(x)<t(2));
+y( I ) = sign(x(I)) .* t(2)/(t(2)-t(1)) .* (abs(x(I))-t(1));
+
+
+endfunction
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function y = perform_block_thresh(x,t,bs, thresh)
+
+n = size(x,1);
+if nb_dims(x)==2
+    p = size(x,2);
+    if length(bs)==1
+        bs = [bs bs];
+    end
+    [dX,dY,X,Y] = ndgrid(0:bs(1)-1,0:bs(2)-1,1:bs(1):n-bs(1)+1,1:bs(2):p-bs(2)+1);
+    I = X+dX + (Y+dY-1)*n;
+    H = reshape(x(I(:)),size(I));
+    v = mean(mean(abs(H).^2,1),2); 
+    u = max(v(:),1e-15); 
+    if strcmp(thresh, 'block-soft')
+        u = max(1-t^2 * u.^(-1),0);
+    else
+        u = (u>t^2);
+    end
+    u = reshape(u,size(v));
+    H = repmat(u,[bs(1) bs(2) 1 1]) .* H;
+elseif nb_dims(x)==1
+    [dX,X] = meshgrid(0:bs-1,1:bs:n-bs+1);
+    I = X+dX;
+    // reshape as block
+    H = x(I);
+    // threshold
+    v = mean(H.^2,1); 
+    v = max(v,1e-15);
+    if strcmp(thresh, 'block-soft')
+        H = repmat(max(1-t^2./v,0),[bs 1]) .* H;
+    else
+        H = double( repmat(v>t^2,[bs 1]) ) .* H;
+    end
+elseif nb_dims(x)==3
+    y = x;
+    for i=1:size(x,3)
+        y(:,:,i) = perform_block_thresh(x(:,:,i),t,bs, thresh);
+    end
+    return;
+else
+    error('Wrong size');
+end
+// reconstruct
+y = x; 
+y(I(:)) = H(:); y = reshape(y,size(x));
+
+endfunction

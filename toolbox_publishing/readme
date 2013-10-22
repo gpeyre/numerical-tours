@@ -1,0 +1,19 @@
+Numerical Tour of Signal Processing
+Copyright (c) 2009 Gabriel Peyre
+
+This toolbox includes the Matlab function to generate a HTML file of a Numerical Tour.
+It includes the following files
+* perform_publishing.m: the main function, that generate the HTML file.
+* signal_intro.m: a sample tour.
+* readme: this file.
+* perform_toolbox_zipping.m: a helper to zip all toolboxes (not needed).
+* perform_scilab_conversion.m: a help function to convert a Matlab file in a Scilab file.
+
+Each tour should be written as a separate Matlab .m file.
+The file 'signal_intro' is an example of such a file.
+To generat the HTML file, simply use 
+
+perform_publishing('signal_intro');
+
+The HTML file is generated in the directory html/signal_intro/.
+The solution to the exercises are generate in the directory private-svg/signal_intro/.
