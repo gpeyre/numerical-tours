@@ -32,13 +32,14 @@ def upsampling(x,d):
 def reverse(x): 
 	return x[::-1];
 
-def circshift(x,k):   
-    # return concatenate((x[k::], x[0:k:]));
-    return np.roll(x,-k, axis=0);
-
+def circshift1d(x,k): 
+	return np.roll(x,-k, axis=0);
+		
 def cconv(x,h,d):
-    # circular convolution along dimension d. 
-    # h should be small and with odd size  
+    """
+		Circular convolution along dimension d. 
+    	h should be small and with odd size 
+ 	"""
     if d==2:
         # apply to transposed matrix
         return np.transpose(cconv(np.transpose(x),h,1));
@@ -46,7 +47,7 @@ def cconv(x,h,d):
     p = len(h);
     pc = (p-1)/2;
     for i in range(0,p):
-        y = y + h[i]*circshift(x,i-pc);  
+        y = y + h[i]*circshift1d(x,i-pc);  
     return y;
 
 def rescale(f):
@@ -214,3 +215,14 @@ def clamp(x,a=[],b=[]):
 		if b==[]:
 		    b = 1.0;
 		return np.minimum(np.maximum(x,a),b);
+		
+def circshift(x,p):
+	"""
+		Circular shift of an array.
+	"""
+	y = x.copy();
+	y = np.concatenate( (y[p[0]::,:],y[:p[0]:,:]), axis=0 );
+	if x.shape[1]>0 and len(p)>1:
+		y = np.concatenate( (y[:,p[0]::],y[:,:p[0]:]), axis=1 );	
+	return y;
+	
