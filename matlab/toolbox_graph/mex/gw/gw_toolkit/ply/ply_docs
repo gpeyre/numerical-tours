@@ -1,0 +1,232 @@
+/*************/
+/*  Writing  */
+/*************/
+
+
+/******************************************************************************
+Open a polygon file for writing.
+
+Entry:
+  filename   - name of file to read from
+  nelems     - number of elements in object
+  elem_names - list of element names
+  file_type  - file type, either ascii or binary
+
+Exit:
+  version - version number of PLY file
+  returns a file identifier, used to refer to this file, or NULL if error
+******************************************************************************/
+
+PlyFile *ply_open_for_writing(
+  char *filename,
+  int nelems,
+  char **elem_names,
+  int file_type,
+  float *version
+)
+
+/******************************************************************************
+Describe an element, including its properties and how many will be written
+to the file.
+
+Entry:
+  plyfile   - file identifier
+  elem_name - name of element that information is being specified about
+  nelems    - number of elements of this type to be written
+  nprops    - number of properties contained in the element
+  prop_list - list of properties
+******************************************************************************/
+
+void ply_describe_element(
+  PlyFile *plyfile,
+  char *elem_name,
+  int nelems,
+  int nprops,
+  PlyProperty *prop_list
+)
+
+/******************************************************************************
+Signal that we've described everything a PLY file's header and that the
+header should be written to the file.
+
+Entry:
+  plyfile - file identifier
+******************************************************************************/
+
+void ply_header_complete(PlyFile *plyfile)
+
+/******************************************************************************
+Specify which elements are going to be written.  This should be called
+before a call to the routine ply_put_elements().
+
+Entry:
+  plyfile   - file identifier
+  elem_name - name of element we're talking about
+******************************************************************************/
+
+void ply_put_elements_setup(PlyFile *plyfile, char *elem_name)
+
+/******************************************************************************
+Write an element to the file.  This routine assumes that we're
+writing the type of element specified in the last call to the routine
+ply_put_element_setup().
+
+Entry:
+  plyfile  - file identifier
+  elem_ptr - pointer to the element
+******************************************************************************/
+
+void ply_put_element(PlyFile *plyfile, void *elem_ptr)
+
+/******************************************************************************
+Specify a comment that will be written in the header.
+
+Entry:
+  plyfile - file identifier
+  comment - the comment to be written
+******************************************************************************/
+
+void ply_put_comment(PlyFile *plyfile, char *comment)
+
+/******************************************************************************
+Specify a piece of object information (arbitrary text) that will be written
+in the header.
+
+Entry:
+  plyfile  - file identifier
+  obj_info - the text information to be written
+******************************************************************************/
+
+void ply_put_obj_info(PlyFile *plyfile, char *obj_info)
+
+
+
+
+/*************/
+/*  Reading  */
+/*************/
+
+
+
+/******************************************************************************
+Open a polygon file for reading.
+
+Entry:
+  filename - name of file to read from
+
+Exit:
+  nelems     - number of elements in object
+  elem_names - list of element names
+  file_type  - file type, either ascii or binary
+  version    - version number of PLY file
+  returns a file identifier, used to refer to this file, or NULL if error
+******************************************************************************/
+
+PlyFile *ply_open_for_reading(
+  char *filename,
+  int *nelems,
+  char ***elem_names,
+  int *file_type,
+  float *version
+)
+
+/******************************************************************************
+Get information about a particular element.
+
+Entry:
+  plyfile   - file identifier
+  elem_name - name of element to get information about
+
+Exit:
+  nelems   - number of elements of this type in the file
+  nprops   - number of properties
+  returns a list of properties
+******************************************************************************/
+
+PlyProperty **ply_get_element_description(
+  PlyFile *plyfile,
+  char *elem_name,
+  int *nelems,
+  int *nprops
+)
+
+/******************************************************************************
+Specify which properties of an element are to be returned.  This should be
+called before a call to the routine ply_get_elements().
+
+Entry:
+  plyfile   - file identifier
+  elem_name - which element we're talking about
+  nprops    - number of properties
+  prop_list - list of properties
+******************************************************************************/
+
+void ply_get_element_setup(
+  PlyFile *plyfile,
+  char *elem_name,
+  int nprops,
+  PlyProperty *prop_list
+)
+
+/******************************************************************************
+Read one element from the file.  This routine assumes that we're reading
+the type of element specified in the last call to the routine
+ply_get_element_setup().
+
+Entry:
+  plyfile  - file identifier
+  elem_ptr - pointer to location where the element information should be put
+******************************************************************************/
+
+ply_get_element(PlyFile *plyfile, void *elem_ptr)
+
+/******************************************************************************
+Extract the comments from the header information of a PLY file.
+
+Entry:
+  plyfile - file identifier
+
+Exit:
+  num_comments - number of comments returned
+  returns a pointer to a list of comments
+******************************************************************************/
+
+char **ply_get_comments(PlyFile *plyfile, int *num_comments)
+
+/******************************************************************************
+Extract the object information (arbitrary text) from the header information
+of a PLY file.
+
+Entry:
+  plyfile - file identifier
+
+Exit:
+  num_obj_info - number of lines of text information returned
+  returns a pointer to a list of object info lines
+******************************************************************************/
+
+char **ply_get_obj_info(PlyFile *plyfile, int *num_obj_info)
+
+
+
+/*******************/
+/*  Miscellaneous  */
+/*******************/
+
+
+
+/******************************************************************************
+Close a PLY file.
+
+Entry:
+  plyfile - identifier of file to close
+******************************************************************************/
+
+void ply_close(PlyFile *plyfile)
+
+/******************************************************************************
+Compare two strings.  Returns 1 if they are the same, 0 if not.
+******************************************************************************/
+
+int equal_strings(char *s1, char *s2)
+
