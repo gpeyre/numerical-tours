@@ -1,9 +1,9 @@
 This package contains the Matlab/Scilab and Python materials for the numerical tours. 
 
-The iPython notbooks are directly viewable from http://nbviewer.ipython.org/github/gpeyre/numerical-tours/tree/master/python/
+These tours are accessible from [the Numerical Tour web site](www.numerical-tours.com)
 
-These tours are accessible from www.numerical-tours.com
+The iPython notebooks are [directly viewable from here](http://nbviewer.ipython.org/github/gpeyre/numerical-tours/tree/master/python/)
 
 ================================
 
-Copyright (c) 2013 Gabriel Peyre
+Copyright (c) 2014 Gabriel Peyre
