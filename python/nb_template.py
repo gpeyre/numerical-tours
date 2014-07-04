@@ -23,6 +23,7 @@ $\newcommand{\dotp}[2]{\langle #1, #2 \rangle}
 \newcommand{\qandq}{\quad\text{and}\quad}
 \newcommand{\qwhereq}{\quad\text{where}\quad}
 \newcommand{\qifq}{ \quad \text{if} \quad }
+\newcommand{\qarrq}{ \quad \Longrightarrow \quad }
 \newcommand{\ZZ}{\mathbb{Z}}
 \newcommand{\RR}{\mathbb{R}}
 \newcommand{\Nn}{\mathcal{N}}
@@ -95,7 +96,7 @@ class Notebook(dict):
                     outputs=outputs)
         self['worksheets'][0]['cells'].append(code)
 
-    def add_excercise(self, source):
+    def add_exercise(self, source):
         self.add_heading('Exercise %s' % self._excercise_num, level=3)
         self._excercise_num += 1
         self.add_markdown(source)

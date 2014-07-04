@@ -2,7 +2,7 @@ import os
 import re
 import sys
 
-from template import Notebook
+from nb_template import Notebook
 
 SECTION_HEADING = re.compile('\A%% \w')
 
@@ -24,7 +24,7 @@ def convert(fname):
 
     Takes most of the grunt work out of translating a numerical-tours
     matlab file into an ipython notebook.  It will auto-populate the
-    notebook with headings, markdown, code, and excercises as apppropriate.
+    notebook with headings, markdown, code, and exercises as appropriate.
     Ideally, all one then has to do is translate the code itself.
 
     Some code transformations are in place (see CODE_REPLS and _parse_code 
@@ -59,12 +59,12 @@ def parse_line(line, state):
     new_line = line.decode('utf-8', 'ignore')
     new_state = state
     if state == 'excercise':
-        if new_line.startswith('%'):
-            new_state = 'excercise'
-            new_line = _parse_markdown(new_line)
-        elif new_line.startswith('%EXO'):
+        if new_line.startswith('%EXO'):
             new_state = 'markdown'
             new_line = ''
+        elif new_line.startswith('%'):
+            new_state = 'excercise'
+            new_line = _parse_markdown(new_line)  
         else:
             new_state = 'excercise'
             new_line = ''
