@@ -111,6 +111,22 @@ def _parse_code(line):
         line = 'for %s in %s:' % (var, rng.rstrip())
         if comment:
             line += '  # %s' % comment
+    # remove right side spacing
+    for op in ['\\(', '\[', '{']:
+        line = re.sub('%s\s+' % op, op[-1], line)
+    # remove left side spacing
+    for op in ['\\)', '\]', ':', '}']:
+        line = re.sub('\s+%s' % op, op[-1], line)
+    # add a space on the left
+    for op in [r'\+', '<', '>']:
+        line = re.sub(r'(\S)%s' % op,
+                      lambda m: '%s %s' % (m.groups()[0], op[-1]),
+                      line)
+    # add a space on the right
+    for op in ['/', r'\+', '=', ':', ',', ';']:
+        line = re.sub(r'%s(\S)' % op,
+                      lambda m: '%s %s' % (op[-1], m.groups()[0]),
+                      line)
     return line
 
 

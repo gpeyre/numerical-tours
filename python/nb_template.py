@@ -16,21 +16,40 @@ $\newcommand{\dotp}[2]{\langle #1, #2 \rangle}
 \newcommand{\enscond}[2]{\lbrace #1, #2 \rbrace}
 \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
 \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+\newcommand{\umax}[1]{\underset{#1}{\max}\;}
+\newcommand{\umin}[1]{\underset{#1}{\min}\;}
+\newcommand{\uargmin}[1]{\underset{#1}{argmin}\;}
 \newcommand{\norm}[1]{\|#1\|}
 \newcommand{\abs}[1]{\left|#1\right|}
 \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
 \newcommand{\pa}[1]{\left(#1\right)}
+\newcommand{\diag}[1]{{diag}\left( #1 \right)}
 \newcommand{\qandq}{\quad\text{and}\quad}
 \newcommand{\qwhereq}{\quad\text{where}\quad}
 \newcommand{\qifq}{ \quad \text{if} \quad }
 \newcommand{\qarrq}{ \quad \Longrightarrow \quad }
 \newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\CC}{\mathbb{C}}
 \newcommand{\RR}{\mathbb{R}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\Zz}{\mathcal{Z}}
+\newcommand{\Ww}{\mathcal{W}}
 \newcommand{\Nn}{\mathcal{N}}
+\newcommand{\NN}{\mathcal{N}}
 \newcommand{\Hh}{\mathcal{H}}
 \newcommand{\Bb}{\mathcal{B}}
-\newcommand{\EE}{\mathbb{E}}
-\newcommand{\CC}{\mathbb{C}}
+\newcommand{\Ee}{\mathcal{E}}
+\newcommand{\Cc}{\mathcal{C}}
+\newcommand{\Gg}{\mathcal{G}}
+\newcommand{\Ss}{\mathcal{S}}
+\newcommand{\Pp}{\mathcal{P}}
+\newcommand{\Ff}{\mathcal{F}}
+\newcommand{\Xx}{\mathcal{X}}
+\newcommand{\Mm}{\mathcal{M}}
+\newcommand{\Ii}{\mathcal{I}}
+\newcommand{\Dd}{\mathcal{D}}
+\newcommand{\Ll}{\mathcal{L}}
+\newcommand{\Tt}{\mathcal{T}}
 \newcommand{\si}{\sigma}
 \newcommand{\al}{\alpha}
 \newcommand{\la}{\lambda}
@@ -76,7 +95,8 @@ class Notebook(dict):
         md = dict(cell_type="markdown",
                   metadata={},
                   source=source)
-        self['worksheets'][0]['cells'].append(md)
+        if source:
+            self['worksheets'][0]['cells'].append(md)
         # after the first markdown include our markdown intro
         if self._first_markdown:
             self._first_markdown = False
@@ -121,6 +141,14 @@ class Notebook(dict):
                 new_items.append(item)
             new_items.append(items[-1])
             items = new_items
+        # remove leading or trailing empty lines
+        if items:
+            while items and not items[0].strip():
+                items = items[1:]
+            while items and not items[-1].strip():
+                items = items[:-1]
+        if items:
+            items[-1] = items[-1].rstrip()
         return items
 
 
