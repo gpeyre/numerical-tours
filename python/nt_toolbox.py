@@ -61,12 +61,12 @@ def cconv(x, h, d):
     return y
 
 
-def rescale(f):
+def rescale(f,a=0,b=1):
     v = f.max() - f.min()
     g = (f - f.min()).copy()
     if v > 0:
         g = g / v
-    return g
+    return a + g*(b-a)
 
 
 def imageplot(f, str='', sbpt=[]):
@@ -248,3 +248,35 @@ def circshift(x, p):
     if x.shape[1] > 0 and len(p) > 1:
         y = np.concatenate((y[:, p[0]::], y[:, :p[0]:]), axis=1)
     return y
+
+def gaussian_blur(f, sigma):
+
+	""" gaussian_blur - gaussian blurs an image
+	%
+	%   M = perform_blurring(M, sigma, options);
+	%
+	%   M is the original data
+	%   sigma is the std of the Gaussian blur (in pixels)
+	%
+	%   Copyright (c) 2007 Gabriel Peyre
+	"""
+	if sigma<=0:
+	    return;
+	n = max(f.shape);
+	t = np.concatenate( (np.arange(0,n/2+1), np.arange(-n/2,-1)) )
+	[Y,X] = np.meshgrid(t,t)
+	h = np.exp( -(X**2+Y**2)/(2.0*float(sigma)**2) )
+	h = h/np.sum(h)
+	return np.real( pylab.ifft2(pylab.fft2(f) * pylab.fft2(h)) )
+	
+def grad(f):
+	"""
+		Compute a finite difference approximation of the gradient of an image.
+	"""
+	S = f.shape;
+#	g = np.zeros([n[0], n[1], 2]);
+	s0 = np.concatenate( (np.arange(1,S[0]),[0]) );
+	s1 = np.concatenate( (np.arange(1,S[1]),[0]) );
+	g = np.dstack( (f[s0,:] - f, f[:,s1] - f));
+	
+	return g;
