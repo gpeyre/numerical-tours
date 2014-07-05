@@ -120,7 +120,7 @@ def _parse_code(line):
     for op in ['\\)', '\]', ':', '}']:
         line = re.sub('\s+%s' % op, op[-1], line)
     # add a space on the left
-    for op in [r'\+', '<', '>']:
+    for op in [r'\+', '<', '>', '=']:
         line = re.sub(r'(\S)%s' % op,
                       lambda m: '%s %s' % (m.groups()[0], op[-1]),
                       line)
@@ -129,6 +129,8 @@ def _parse_code(line):
         line = re.sub(r'%s(\S)' % op,
                       lambda m: '%s %s' % (op[-1], m.groups()[0]),
                       line)
+    line = re.sub('< =', '<=', line)
+    line = re.sub('> =', '>=', line)
     return line
 
 
