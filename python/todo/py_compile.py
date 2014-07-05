@@ -1,19 +1,3 @@
-
-
-# preprocess: 
-# add a function header and footer
-
-# run smop
-
-# postprocess:
-# pep8 formatting
-# remove top 8 lines
-# dedent each line
-
-# add from __future__ import division as part of header
-
-# then we can manually copy-pasta into the file
-
 import os
 import re
 import sys
@@ -24,6 +8,8 @@ except ImportError:
 
 
 def compile(fname):
+    """Compile an M-file to a Python file using smop
+    """
     with open(fname) as fid:
         data = fid.read()
     temp_mfile = fname.replace('.m', '_temp.m')

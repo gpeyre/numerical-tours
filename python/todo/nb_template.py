@@ -2,6 +2,7 @@ import json
 
 
 CODE_INTRO = r"""
+from __future__ import division
 from nt_toolbox import *
 %matplotlib inline
 %load_ext autoreload
