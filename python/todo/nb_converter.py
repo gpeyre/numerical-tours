@@ -46,6 +46,8 @@ def convert(fname):
             state = new_state
         else:
             out_lines.append(new_line)
+    # handle the last section
+    get_section(nb, state, out_lines)
 
     fname = fname.replace('.m', '.ipynb')
     fname = os.path.basename(fname)
@@ -64,7 +66,7 @@ def parse_line(line, state):
             new_line = ''
         elif new_line.startswith('%'):
             new_state = 'excercise'
-            new_line = _parse_markdown(new_line)  
+            new_line = _parse_markdown(new_line)
         else:
             new_state = 'excercise'
             new_line = ''

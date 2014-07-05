@@ -134,21 +134,15 @@ class Notebook(dict):
             items = [str(items)]
         elif items:
             new_items = []
-            for item in items[:-1]:
+            for item in items:
                 item = str(item)
                 if not item.endswith('\n'):
                     item += '\n'
                 new_items.append(item)
-            new_items.append(items[-1])
             items = new_items
-        # remove leading or trailing empty lines
+        # remove leading or trailing empty whitespace
         if items:
-            while items and not items[0].strip():
-                items = items[1:]
-            while items and not items[-1].strip():
-                items = items[:-1]
-        if items:
-            items[-1] = items[-1].rstrip()
+            items = ''.join(items).strip().splitlines()
         return items
 
 
