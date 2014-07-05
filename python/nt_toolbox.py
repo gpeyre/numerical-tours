@@ -2,6 +2,7 @@ import numpy as np
 import pylab
 import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
+from scipy import ndimage
 # try to not make use of transform.resize
 from skimage import transform
 
@@ -268,6 +269,12 @@ def gaussian_blur(f, sigma):
 	h = np.exp( -(X**2+Y**2)/(2.0*float(sigma)**2) )
 	h = h/np.sum(h)
 	return np.real( pylab.ifft2(pylab.fft2(f) * pylab.fft2(h)) )
+	
+def interp2(x,y,f,xi,yi, k=1):
+	"""
+		interp2(1:n,1:n, G, imag(gamma), real(gamma));
+	"""
+	return ndimage.map_coordinates(f, [x, y], order=k);
 	
 def grad(f):
 	"""
