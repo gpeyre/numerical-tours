@@ -35,6 +35,7 @@ $\newcommand{\dotp}[2]{\langle #1, #2 \rangle}
 \newcommand{\EE}{\mathbb{E}}
 \newcommand{\Zz}{\mathcal{Z}}
 \newcommand{\Ww}{\mathcal{W}}
+\newcommand{\Vv}{\mathcal{V}}
 \newcommand{\Nn}{\mathcal{N}}
 \newcommand{\NN}{\mathcal{N}}
 \newcommand{\Hh}{\mathcal{H}}
