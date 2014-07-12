@@ -1,0 +1,10 @@
+extend_stack_size(4);
+Jmin = 4;
+options.ti = 1;
+fW = perform_wavelet_transf(y, Jmin, +1, options);
+fWT = perform_thresholding(fW, 2.9*sigma, 'hard');
+fWav = perform_wavelet_transf(fWT, Jmin, -1, options);
+ewav = snr(f0,fWav); 
+clf;
+imageplot(clamp(y), strcat(['Noisy ' num2str(enoisy,3) 'dB']), 1,2,1);
+imageplot(clamp(fWav), strcat(['Wavelets TI ' num2str(ewav,3) 'dB']), 1,2,2);

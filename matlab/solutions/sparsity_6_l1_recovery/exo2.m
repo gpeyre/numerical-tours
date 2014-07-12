@@ -1,0 +1,11 @@
+N = 2000;
+P = N-10;
+Phi = PhiRand(N,P);
+s = zeros(N,1); s(1:6)=1;
+I = supp(s);
+k = length(I);
+fprintf('N=%d, P=%d, |I|=%d\n',N,P,k );
+fprintf('F(s)    =%.2f\n', F(Phi,s));
+fprintf('ERC(I)  =%.2f\n', erc(Phi,I));
+fprintf('w-ERC(s)=%.2f\n', werc(Phi,I));
+fprintf('Coh(|s|)=%.2f\n', Coh(Phi,k));
