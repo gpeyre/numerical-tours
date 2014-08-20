@@ -6,7 +6,7 @@ This directory stores the iPython notebook (.ipynb) of the "Numerical Tours" (ww
 Usage
 ======
 
-By clicking on a .ipynb file, you will access a static, compiled, version of the tour. You can download the file in order to run dynamically the notebook, and modify its content. For this to work, you will also need to download the nt_toolbox.py file. 
+By clicking on a .ipynb file, you will access a static, compiled, version of the tour. You can download the file in order to run dynamically the notebook (using "ipython notebook --pylab inline" to start ipython notebooks), and modify its content. For this to work, you will also need to download the nt_toolbox.py file. 
 
 How to contribute
 ======

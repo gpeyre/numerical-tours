@@ -56,7 +56,7 @@ def cconv(x, h, d):
         return np.transpose(cconv(np.transpose(x), h, 1))
     y = np.zeros(x.shape)
     p = len(h)
-    pc = (p - 1) / 2
+    pc = round( (p - 1) / 2 )
     for i in range(0, p):
         y = y + h[i] * circshift1d(x, i - pc)
     return y
