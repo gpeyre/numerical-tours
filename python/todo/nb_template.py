@@ -1,9 +1,10 @@
 import json
+import re
 
-
-CODE_INTRO = r"""
+PYTHON_INTRO = r"""
 from __future__ import division
-from nt_toolbox import *
+import numerical_tours as nt
+from numerical_tours.solutions import %s as exercises
 %matplotlib inline
 %load_ext autoreload
 %autoreload 2
@@ -11,8 +12,6 @@ from nt_toolbox import *
 
 
 MARKDOWN_INTRO = r"""
-*Important:* You need to download the file `nt_toolbox.py` from the 
-root of the github repository.
 $\newcommand{\dotp}[2]{\langle #1, #2 \rangle}
 \newcommand{\enscond}[2]{\lbrace #1, #2 \rbrace}
 \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
@@ -74,8 +73,10 @@ $
 class Notebook(dict):
     """An IPython Notebook builder tailored for numerical-tours.
     """
-    def __init__(self):
+    def __init__(self, name, ntype='python'):
         super(Notebook, self).__init__()
+        self._name = name
+        self._ntype = ntype
         self.update(dict(metadata=dict(name=""),
                          nbformat=3,
                          nbformat_minor=0,
@@ -107,10 +108,16 @@ class Notebook(dict):
     def add_code(self, source, outputs=None):
         outputs = self._handle_items(outputs)
         source = self._handle_items(source)
+        if source and self.ntype != 'python':
+            source.insert(0, '%%{0}'.format(self.ntype))
         # overwrite the first code prompt
         if self._first_code:
             self._first_code = False
-            source = CODE_INTRO
+            if self._ntype == 'python':
+                source = PYTHON_INTRO % self._name
+            else:
+                source = self.get_intro(source[0])
+            source = self._code_intro
         code = dict(cell_type="code",
                     collapsed=False,
                     input=source,
@@ -122,11 +129,22 @@ class Notebook(dict):
         self.add_heading('Exercise %s' % self._excercise_num, level=3)
         self._excercise_num += 1
         self.add_markdown(source)
+        if self.ntype == 'python':
+            self.add_code('excercises.ex%s()' % self._excercise_num)
+        else:
+            self.add_code('ex%s()' % self._excercise_num)
         self.add_code("## Insert your code here.")
 
     def save(self, path):
         with open(path, 'wb') as fid:
             json.dump(self, fid, indent=2, sort_keys=True)
+
+    def get_intro(self, install_line):
+        intro = []
+        for toolbox in re.findall("'(\w*?)'", install_line):
+            intro += "addpath('../toolbox_%s')" % toolbox
+        intro += ["addpath('../solutions/%s')" % self._name]
+        return intro
 
     @staticmethod
     def _handle_items(items):
