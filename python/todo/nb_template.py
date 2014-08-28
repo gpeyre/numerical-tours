@@ -144,6 +144,8 @@ class Notebook(dict):
         for toolbox in re.findall("'(\w*?)'", install_line):
             intro += "addpath('../toolbox_%s')" % toolbox
         intro += ["addpath('../solutions/%s')" % self._name]
+        if self.ntype == 'scilab':
+            intro = [i.replace('addpath', 'getd') for i in intro]
         return intro
 
     @staticmethod
