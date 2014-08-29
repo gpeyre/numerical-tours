@@ -1,17 +1,7 @@
 import json
 import re
 
-PYTHON_INTRO = r"""
-from __future__ import division
-import numerical_tours as nt
-from numerical_tours.solutions import %s as exercises
-%matplotlib inline
-%load_ext autoreload
-%autoreload 2
-""".strip().splitlines()
-
-
-MARKDOWN_INTRO = r"""
+LATEX_COMMANDS = r"""
 $\newcommand{\dotp}[2]{\langle #1, #2 \rangle}
 \newcommand{\enscond}[2]{\lbrace #1, #2 \rbrace}
 \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
@@ -69,21 +59,24 @@ $\newcommand{\dotp}[2]{\langle #1, #2 \rangle}
 $
 """.strip().splitlines()
 
+MATH_REPLS = [(re.compile(r'\\\['), '$$'),  # replace latex delimiters
+              (re.compile(r'\\\]'), '$$'),
+              (re.compile(r'\\\('), '$'),
+              (re.compile(r'\\\)'), '$'),
+              ]
+
 
 class Notebook(dict):
     """An IPython Notebook builder tailored for numerical-tours.
     """
-    def __init__(self, name, ntype='python'):
+    def __init__(self, name):
         super(Notebook, self).__init__()
         self._name = name
-        self._ntype = ntype
         self.update(dict(metadata=dict(name=""),
                          nbformat=3,
                          nbformat_minor=0,
                          worksheets=[dict(cells=[])]))
-        self._first_code = True
-        self._excercise_num = 1
-        self._first_markdown = True
+        self.add_markdown(LATEX_COMMANDS)
 
     def add_heading(self, source, level=1):
         source = self._handle_items(source)
@@ -95,29 +88,25 @@ class Notebook(dict):
 
     def add_markdown(self, source):
         source = self._handle_items(source)
+        output = []
+        for line in source:
+                while line.startswith('%'):
+                    line = line[1:]
+                if line.startswith(' '):
+                    line = line[1:]
+                if '\\' in line:
+                    for (pattern, repl) in MATH_REPLS:
+                        line = re.sub(pattern, repl, line)
+                output.append(line.rstrip())
         md = dict(cell_type="markdown",
                   metadata={},
-                  source=source)
-        if source:
+                  source=output)
+        if output:
             self['worksheets'][0]['cells'].append(md)
-        # after the first markdown include our markdown intro
-        if self._first_markdown:
-            self._first_markdown = False
-            self.add_markdown(MARKDOWN_INTRO)
 
     def add_code(self, source, outputs=None):
         outputs = self._handle_items(outputs)
         source = self._handle_items(source)
-        if source and self.ntype != 'python':
-            source.insert(0, '%%{0}'.format(self.ntype))
-        # overwrite the first code prompt
-        if self._first_code:
-            self._first_code = False
-            if self._ntype == 'python':
-                source = PYTHON_INTRO % self._name
-            else:
-                source = self.get_intro(source[0])
-            source = self._code_intro
         code = dict(cell_type="code",
                     collapsed=False,
                     input=source,
@@ -125,28 +114,9 @@ class Notebook(dict):
                     outputs=outputs)
         self['worksheets'][0]['cells'].append(code)
 
-    def add_exercise(self, source):
-        self.add_heading('Exercise %s' % self._excercise_num, level=3)
-        self._excercise_num += 1
-        self.add_markdown(source)
-        if self.ntype == 'python':
-            self.add_code('excercises.ex%s()' % self._excercise_num)
-        else:
-            self.add_code('ex%s()' % self._excercise_num)
-        self.add_code("## Insert your code here.")
-
     def save(self, path):
         with open(path, 'wb') as fid:
             json.dump(self, fid, indent=2, sort_keys=True)
-
-    def get_intro(self, install_line):
-        intro = []
-        for toolbox in re.findall("'(\w*?)'", install_line):
-            intro += "addpath('../toolbox_%s')" % toolbox
-        intro += ["addpath('../solutions/%s')" % self._name]
-        if self.ntype == 'scilab':
-            intro = [i.replace('addpath', 'getd') for i in intro]
-        return intro
 
     @staticmethod
     def _handle_items(items):
