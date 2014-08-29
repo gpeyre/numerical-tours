@@ -15,6 +15,9 @@ PY_REPLS = [(re.compile('@\((.*?)\)'),  # replace anon funcs with lambdas
 TOOLBOX_LINK = 'https://www.ceremade.dauphine.fr/~peyre/numerical-tour/tours/toolbox_%s.zip'
 
 
+# TODO: where to put scilab notebooks
+# for python, add the parser output as a final code block
+
 class Converter(object):
 
     """Convert an m file into an IPython notebook
@@ -230,10 +233,12 @@ class Converter(object):
         pip install pymatbridge
         ```
         """ % (' and'.join(links), ' and'.join(toolboxes))
+        self.nb.add_heading('Installing toolboxes and setting up the path',
+                            level=3)
         self.nb.add_markdown(notice)
 
     def get_scilab_intro(self, *toolboxes):
-        setup = ['%load_ext scilab2']
+        setup = ['%load_ext scilab2py.ipython']
         for toolbox in toolboxes:
             setup += "getd('../toolbox_%s')" % toolbox
         setup += ["getd('../solutions/%s')" % self._name]
@@ -249,6 +254,8 @@ class Converter(object):
         pip install scilab2py
         ```
         """ % (' and'.join(links), ' and'.join(toolboxes))
+        self.nb.add_heading('Installing toolboxes and setting up the path',
+                            level=3)
         self.nb.add_markdown(notice)
 
 if __name__ == '__main__':
