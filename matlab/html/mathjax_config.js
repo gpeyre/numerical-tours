@@ -1133,4 +1133,4 @@ MathJax.Hub.Config({
 });
 
 // MathJax.Ajax.loadComplete("[MathJax]/config/default.js");
-MathJax.Ajax.loadComplete("../mathjax_config.js");
+MathJax.Ajax.loadComplete("https://raw.githubusercontent.com/gpeyre/numerical-tours/master/matlab/html/mathjax_config.js");
