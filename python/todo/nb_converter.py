@@ -58,7 +58,7 @@ def convert(fname):
 
 
 def parse_line(line, state):
-    new_line = line.decode('utf-8', 'ignore')
+    new_line = line.decode('utf-8', 'ignore') # problem in python 3
     new_state = state
     if state == 'excercise':
         if new_line.startswith('%EXO'):
