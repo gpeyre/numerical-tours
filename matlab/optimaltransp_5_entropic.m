@@ -42,7 +42,7 @@ perform_toolbox_installation('signal', 'general');
 
 %%
 % Given a convex set \(\Cc \subset \RR^N\), the projection according to the Kullback-Leiber divergence is defined as
-% \[ \KLproj_\Cc(\bar f) = \uargmin{ f \in \CC } \KLdiv{f}{\bar f}. \]
+% \[ \KLproj_\Cc(\bar f) = \uargmin{ f \in \Cc } \KLdiv{f}{\bar f}. \]
 
 %% Iterative Bregman Projection Algorithm
 % Given affine constraint sets \( (\Cc_1,\ldots,\Cc_K) \), we aim at computing 
