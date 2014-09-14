@@ -42,7 +42,7 @@ class Converter(object):
         self.fname = fname
         self._excercise_num = 1
 
-    def convertt(self):
+    def convert(self):
         with open(self.fname) as fid:
             lines = fid.readlines()
 
