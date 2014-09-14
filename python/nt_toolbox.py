@@ -3,15 +3,8 @@ import pylab
 import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
 from scipy import ndimage
-# try to not make use of transform.resize
+# TODO: try to not make use of transform.resize
 from skimage import transform
-
-
-# coucou
-
-
-def temp():
-    return 2
 
 
 def subsampling(x, d):
@@ -27,7 +20,9 @@ def subsampling(x, d):
 
 
 def upsampling(x, d):
-    # up-sampling along dimension d by factor p=2
+    """ 
+        up-sampling along dimension d by factor p=2
+    """
     p = 2
     s = x.shape
     if d == 1:
@@ -42,10 +37,16 @@ def upsampling(x, d):
 
 
 def reverse(x):
+    """
+        Reverse a vector. 
+    """
     return x[::-1]
 
 
 def circshift1d(x, k):
+    """ 
+        Circularly shift a 1D vector
+    """
     return np.roll(x, -k, axis=0)
 
 
@@ -66,6 +67,9 @@ def cconv(x, h, d):
 
 
 def rescale(f,a=0,b=1):
+    """
+        Rescale linearly the dynamic of a vector to fit within a range [a,b]
+    """
     v = f.max() - f.min()
     g = (f - f.min()).copy()
     if v > 0:
@@ -74,7 +78,9 @@ def rescale(f,a=0,b=1):
 
 
 def imageplot(f, str='', sbpt=[]):
-    # use nearest neighbor interpolation
+    """
+        Use nearest neighbor interpolation for the display.
+    """
     if sbpt != []:
         plt.subplot(sbpt[0], sbpt[1], sbpt[2])
     imgplot = plt.imshow(f, interpolation='nearest')
@@ -85,6 +91,10 @@ def imageplot(f, str='', sbpt=[]):
 
 
 def load_image(name, n=-1):
+    """
+        Load an image from a file, rescale its dynamic to [0,1], turn it into a grayscale image
+        and resize it to size n x n.
+    """
     f = plt.imread(name)
     # turn into normalized grayscale image
     f = rescale(np.sum(f, axis=2))

@@ -1,28 +1,27 @@
-options.order = 2;
-G = grad(W, options);
-G = G(:,:,1) + 1i*G(:,:,2);
-EvalG = @(gamma)interp2(1:n,1:n, G, imag(gamma), real(gamma));
-EvalW = @(gamma)interp2(1:n,1:n, W, imag(gamma), real(gamma));
-%
+G = grad(W);
+G = G[:,:,0] + 1j*G[:,:,1]
+EvalG = lambda gamma: bilinear_interpolate(G, imag(gamma), real(gamma))
+EvalW = lambda gamma: bilinear_interpolate(W, imag(gamma), real(gamma))
+#
 gamma = gamma0;
-displist = round(linspace(1,niter,10));
-k = 1;
-clf; hold on;
-imageplot(f);
-for i=1:niter
-    N = normal(gamma);
-    g = EvalW(gamma).*normalC(gamma) - dotp(EvalG(gamma), N) .* N;
-    gamma = resample( gamma + dt*g );    
-    % impose start/end point
-    gamma(1) = x0; gamma(end) = x1;
-    if i==displist(k)   
-        h = plot(imag(gamma([1:end])),real(gamma([1:end])), 'r');
-        if i==1 || i==niter
-            set(h, 'LineWidth', 2);
-        end
-        h = plot(imag(gamma([1 end])),real(gamma([1 end])), 'b.'); set(h, 'MarkerSize', 30);
-        axis('ij'); axis('off');
+displist = around(linspace(0,niter,10))
+k = 0;
+clf
+imageplot(transpose(f))
+for i in arange(0,niter+1):
+    N = normal(gamma)
+    g = EvalW(gamma) * normalC(gamma) - dotp(EvalG(gamma), N) * N
+    gamma = gamma + dt*g
+    gamma = resample( gamma )
+    # impose start/end point
+    gamma[0] = x0
+    gamma[-1] = x1
+    if i==displist[k]:   
+        lw = 1;    
+        if i==0 or i==niter:
+            lw = 4;
+        cplot(gamma, 'r', lw);
         k = k+1;
-        drawnow;
-    end
-end
+        axis('equal'); axis('off');
+        plot(real(gamma[0]), imag(gamma[0]), 'b.', markersize=20)
+        plot(real(gamma[-1]), imag(gamma[-1]), 'b.', markersize=20);
