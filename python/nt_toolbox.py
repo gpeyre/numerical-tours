@@ -97,7 +97,7 @@ def load_image(name, n=-1, flatten=1, resc=1):
     """
     f = plt.imread(name)
     # turn into normalized grayscale image
-    if flatten==1:
+    if (flatten==1) and np.ndim(f)>2:
         f = np.sum(f, axis=2)
     if resc==1:
         f = rescale(f)
