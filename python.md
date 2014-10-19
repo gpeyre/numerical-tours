@@ -2,7 +2,7 @@
 layout: page
 title: "Python's tours"
 description: "Numerical Tours in Python"
-header-img: "/img/python-bg.jpg"
+header-img: "/img/hokusai-2.jpg"
 ---
 
 

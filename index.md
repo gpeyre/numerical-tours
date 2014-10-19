@@ -2,7 +2,7 @@
 layout: page
 title: "Wellcome"
 description: "The Numerical Tours of Signal Processing"
-header-img: "img/home-bg.jpg"
+header-img: "img/hokusai-0.jpg"
 ---
 
 

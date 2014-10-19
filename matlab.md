@@ -2,7 +2,7 @@
 layout: page
 title: "Matlab's tours"
 description: "Numerical Tours in Matlab"
-header-img: "/img/matlab-bg.jpg"
+header-img: "/img/hokusai-6.jpg"
 ---
 
 What's new

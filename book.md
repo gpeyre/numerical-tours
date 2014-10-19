@@ -2,7 +2,7 @@
 layout: page
 title: "Book"
 description: "Advanced Signal and Image Processing"
-header-img: "/img/book-bg.jpg"
+header-img: "/img/hokusai-1.jpg"
 ---
 
 You can retrieve the draft of a book:

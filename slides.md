@@ -2,7 +2,7 @@
 layout: page
 title: "Slides"
 description: "For courses"
-header-img: "/img/slides-bg.jpg"
+header-img: "/img/hokusai-7.jpg"
 ---
 
 
