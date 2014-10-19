@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="The Numerical Tours of Signal Processing, by Gabriel Peyré, gather Matlab (and so some extend Scilab) experiments to explore modern signal and image processing. These tours are also progressively being ported to Python. The tours are complemented by slides of courses that concentrate on the theory of signal and image processing.
+">
+
+    <title>Matlab's tours - A Numerical Tour of Signal Processing</title>
+
+    <link rel="canonical" href="http://gpeyre.github.io/numerical-tours//numerical-tours/matlab/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/numerical-tours/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/numerical-tours/css/clean-blog.css">
+
+    <!-- Custom Fonts -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/numerical-tours/">Home</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                <li>
+                    <a href="/numerical-tours/about/">About</a>
+                </li>
+                
+                <li>
+                    <a href="/numerical-tours/book/">Book</a>
+                </li>
+                
+                <li>
+                    <a href="/numerical-tours/contact/">Contact</a>
+                </li>
+                
+                <li>
+                    <a href="/numerical-tours/">Wellcome</a>
+                </li>
+                
+                <li>
+                    <a href="/numerical-tours/links/">Links</a>
+                </li>
+                
+                <li>
+                    <a href="/numerical-tours/matlab/">Matlab's tours</a>
+                </li>
+                
+                <li>
+                    <a href="/numerical-tours/python/">Python's tours</a>
+                </li>
+                
+                <li>
+                    <a href="/numerical-tours/slides/">Slides</a>
+                </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+    <!-- Page Header -->
+<header class="intro-header" style="background-image: url('/numerical-tours//img/matlab-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h1>Matlab's tours</h1>
+                    <hr class="small">
+                    <span class="subheading">Numerical Tours in Matlab</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+			<h2 id="whats-new">What’s new</h2>
+
+<ul>
+  <li>(2014/08/26) New tour: <a href="optimaltransp_5_entropic">Entropic Regularization of Optimal Transport</a></li>
+  <li>(2014/01/26) New tour: <a href="sparsity_9b_music">Sparse Spikes Deconvolution with MUSIC Algorithm</a></li>
+  <li>(2014/01/12) New tour: <a href="sparsity_9_sparsespikes_cbp">Sparse Spikes Deconvolution with Continuous Basis-Pursuit</a></li>
+  <li>(2013/10/12) New tour: <a href="sparsity_8_sparsespikes_measures">Sparse Spikes Deconvolution over the Space of Measures</a></li>
+</ul>
+
+<h2 id="table-of-contents">Table of contents</h2>
+
+<ul>
+  <li><a href="#introduction">Introduction</a></li>
+  <li><a href="#wavelet">Wavelet Processing</a></li>
+  <li><a href="#coding">Approximation, Coding and Compression</a></li>
+  <li><a href="#denoisingsimp">Simple Denoising Methods</a></li>
+  <li><a href="#denoisingwav">Wavelet Denoising</a></li>
+  <li>(#denoisingadv)[Advanced Denoising Methods]</li>
+  <li>(#pde)[PDEs and Numerical Analysis]</li>
+  <li>(#audio)[Audio Processing]</li>
+  <li>(#multidim)[Higher Dimensional Signal Processing]</li>
+  <li>(#graphics)[Computer Graphics]</li>
+  <li>(#optimaltransp)[Optimal Transport]</li>
+  <li>(#optim)[Optimization]</li>
+  <li>(#segmentation)[Segmentation]</li>
+  <li>(#sparsity)[Sparsity]</li>
+  <li>(#inverse)[Inverse Problems]</li>
+  <li>(#fastmarching)[Geodesic Processing]</li>
+  <li>(#shapes)[Shapes]</li>
+  <li>(#meshproc)[Mesh Processing]</li>
+  <li>(#meshdeform)[Mesh Parameterization and Deformation]</li>
+  <li>(#meshwav)[Multiscale Mesh Processing]&lt;/font&gt;</li>
+</ul>
+
+<h2 id="introduction--introduction">Introduction  #introduction</h2>
+
+<ul>
+  <li><a href="introduction_1_basics/">Basic Matlab/Scilab Instructions</a></li>
+  <li><a href="introduction_2_signal/">Introduction to Signal Processing</a></li>
+  <li><a href="introduction_3_image/">Introduction to Image Processing</a></li>
+  <li><a href="introduction_4_fourier_wavelets/">Image Approximation with Fourier and Wavelets</a></li>
+  <li><a href="introduction_5_wavelets_2d/">Image Processing with Wavelets</a></li>
+  <li><a href="introduction_6_elementary_fr/">Le traitement numérique des images</a></li>
+</ul>
+
+<h2 id="wavelet-processing-wavelet">Wavelet Processing #wavelet</h2>
+
+<ul>
+  <li>(wavelet_1_haar1d/)[1-D Haar Wavelets]</li>
+  <li>(wavelet_2_haar2d/)[2-D Haar Wavelets]</li>
+  <li>(wavelet_3_daubechies1d/)[1-D Daubechies Wavelets]</li>
+  <li>(wavelet_4_daubechies2d/)[2-D Daubechies Wavelets]</li>
+</ul>
+
+<h2 id="approximation-coding-and-compression-coding">Approximation, Coding and Compression #coding</h2>
+
+<ul>
+  <li>(coding_1_approximation/)[Image Approximation with Orthogonal Bases]</li>
+  <li>(coding_2_entropic/)[Entropic Coding and Compression]</li>
+  <li>(coding_3_natural_images/)[Natural Images Statistics]</li>
+  <li>(coding_4_wavelet_compression/)[Image Compression with Wavelets]</li>
+  <li>(coding_5_watermarking/)[Wavelet Domain Image Watermarking]</li>
+</ul>
+
+<h2 id="simple-denoising-methods-denoisingsimp">Simple Denoising Methods #denoisingsimp</h2>
+
+<ul>
+  <li>(denoisingsimp_1_noise_models/)[Signal and Image Noise Models]</li>
+  <li>(denoisingsimp_2_linear/)[Linear Signal Denoising]</li>
+  <li>(denoisingsimp_2b_linear_image/)[Linear Image Denoising]</li>
+  <li>(denoisingsimp_4_denoiseregul/)[Denoising by Sobolev and Total Variation Regularization]</li>
+</ul>
+
+<h2 id="wavelet-denoising-denoisingwav">Wavelet Denoising #denoisingwav</h2>
+
+<ul>
+  <li>(denoisingwav_1_wavelet_1d/)[Signal Denoising with Wavelets]</li>
+  <li>(denoisingwav_2_wavelet_2d/)[Image Denoising with Wavelets]</li>
+  <li>(denoisingwav_3_advanced/)[Advanced Wavelet Thresholdings]</li>
+  <li>(denoisingwav_4_block/)[Wavelet Block Thresholding]</li>
+  <li>(denoisingwav_5_data_dependent/)[Data Dependent Noise Models]</li>
+  <li>(denoisingwav_6_curvelets/)[Curvelet Denoising]</li>
+</ul>
+
+<h2 id="advanced-denoising-methods-denoisingadv">Advanced Denoising Methods #denoisingadv</h2>
+
+<ul>
+  <li>(denoisingadv_5_mathmorph/)[Mathematical Morphology]</li>
+  <li>(denoisingadv_6_nl_means/)[Non Local Means]</li>
+  <li>(denoisingadv_7_rankfilters/)[Rank Filters for Image Processing]</li>
+  <li>(denoisingadv_8_bilateral/)[Bilateral Filtering]</li>
+  <li>(denoisingadv_9_sure/)[Stein Unbiased Risk Estimator]</li>
+</ul>
+
+<h2 id="pdes-and-numerical-analysis-pde">PDEs and Numerical Analysis #pde</h2>
+
+<ul>
+  <li>(pde_1_diffusion_linear/)[Linear Diffusion Flows]</li>
+  <li>(pde_2_diffusion_nonlinear/)[Non-Linear Diffusion Flows]</li>
+  <li>(pde_3_diffusion_tensor/)[Tensor-driven Diffusion Flows]</li>
+  <li>(pde_4_wavelet_compression/)[Wavelet Compression of Integral Operators]</li>
+</ul>
+
+<h2 id="audio-processing-audio">Audio Processing #audio</h2>
+
+<ul>
+  <li>(audio_1_processing/)[Sound Processing with Short Time Fourier Transform]</li>
+  <li>(audio_2_separation/)[Source Separation with Sparsity]</li>
+  <li>(audio_3_gabor/)[Sparse Representation in a Gabor Dictionary]</li>
+</ul>
+
+<h2 id="higher-dimensional-signal-processing-multidim">Higher Dimensional Signal Processing #multidim</h2>
+
+<ul>
+  <li>(multidim_1_color/)[Color Image Processing]</li>
+  <li>(multidim_2_volumetric/)[Volumetric wavelet Data Processing]</li>
+  <li>(multidim_3_multispectral/)[Multi-spectral Imaging]</li>
+  <li>(multidim_5_opticalflow/)[Optical Flow Computation]</li>
+  <li>(multidim_6_tomography/)[Volumetric Radon Inversion]</li>
+  <li>(multidim_7_median/)[Color Image Denoising with Median Filtering]</li>
+</ul>
+
+<h2 id="computer-graphics-graphics">Computer Graphics #graphics</h2>
+
+<ul>
+  <li>(graphics_1_synthesis_gaussian/)[Gaussian Models for Texture Synthesis]</li>
+  <li>(graphics_2_synthesis_wavelets/)[Texture Synthesis Using Wavelets]</li>
+  <li>(graphics_3_synthesis_diffusion/)[Texture Synthesis with PDEs]</li>
+  <li>(graphics_4_multiplicative_cascade/)[Multiplicative Cascade Synthesis of Signals and Textures]</li>
+  <li>(graphics_5_fluids/)[Fluid Dynamics]</li>
+  <li>(graphics_6_patches/)[Texture Synthesis and Inpainting using Patch Projections]</li>
+  <li>(graphics_7_shape_shading/)[Shape From Shading]</li>
+  <li>(graphics_8_dyntextures/)[Stationary Dynamic Texture Synthesis]</li>
+</ul>
+
+<p>Optimal Transport #optimaltransp
+ —————-</p>
+
+<ul>
+  <li>(optimaltransp_1_linprog/)[Optimal Transport with Linear Programming]</li>
+  <li>(optimaltransp_2_benamou_brenier/)[Optimal Transport with Benamou-Brenier Algorithm]</li>
+  <li>(optimaltransp_3_matching_1d/)[Optimal Transport in 1-D]</li>
+  <li>(optimaltransp_4_matching_sliced/)[Sliced Optimal Transport]</li>
+  <li>(optimaltransp_5_entropic/)[Entropic Regularization of Optimal Transport]</li>
+</ul>
+
+<h2 id="optimization-optim">Optimization #optim</h2>
+
+<ul>
+  <li>(optim_1_gradient_descent/)[Gradient Descent Methods]</li>
+  <li>(optim_2_newton/)[Newton Method]</li>
+  <li>(optim_3_cgs/)[Conjugate Gradient]</li>
+  <li>(optim_4_fb/)[Forward-Backward Proximal Splitting]</li>
+  <li>(optim_4b_dr/)[Douglas Rachford Proximal Splitting]</li>
+  <li>(optim_5_primal_dual/)[Primal-Dual Proximal Splitting]</li>
+  <li>(optim_6_gfb/)[Generalized Forward-Backward Proximal Splitting]</li>
+  <li>(optim_7_duality/)[Fenchel-Rockafellar Duality]</li>
+  <li>(optim_8_homotopy/)[Homotopy Continuation]</li>
+  <li>(optim_9_matching_pursuit/)[Matching Pursuits]</li>
+</ul>
+
+<h2 id="segmentation-segmentation">Segmentation #segmentation</h2>
+
+<ul>
+  <li>(segmentation_1_edge_detection/)[Edge Detection]</li>
+  <li>(segmentation_2_snakes_param/)[Active Contours usingParameteric Curves]</li>
+  <li>(segmentation_3_snakes_levelset/)[Active Contours using Level Sets]</li>
+  <li>(segmentation_4_convex_segmentation/)[Convex Region-Based Image Segmentation]</li>
+</ul>
+
+<h2 id="sparsity-sparsity">Sparsity #sparsity</h2>
+
+<ul>
+  <li>(sparsity_2_cs_images/)[Compressed Sensing of Images]</li>
+  <li>(sparsity_3_matrix_completion/)[Matrix Completion with Nuclear Norm Minimization]</li>
+  <li>(sparsity_4_dictionary_learning/)[Dictionary Learning]</li>
+  <li>(sparsity_5_dictionary_learning_denoising/)[Dictionary Learning for Denoising]</li>
+  <li>(sparsity_6_l1_recovery/)[Performance of Sparse Recovery Using L1 Minimization]</li>
+  <li>(sparsity_7_sudoku/)[Sudoku using POCS and Sparsity]</li>
+  <li>(sparsity_8_sparsespikes_measures/)[Sparse Spikes Deconvolution over the Space of Measures]</li>
+  <li>(sparsity_9_sparsespikes_cbp/)[Sparse Spikes Deconvolution with Continuous Basis-Pursuit]</li>
+  <li>(sparsity_9b_music/)[Sparse Spikes Deconvolution with MUSIC Algorithm]</li>
+</ul>
+
+<h2 id="inverse-problems-inverse">Inverse Problems #inverse</h2>
+
+<ul>
+  <li>(inverse_2_deconvolution_variational/)[Image Deconvolution using Variational Method]</li>
+  <li>(inverse_3_deconvolution_sparsity/)[Image Deconvolution using Sparse Regularization]</li>
+  <li>(inverse_4_inpainting_variational/)[Inpainting using Variational Regularization]</li>
+  <li>(inverse_5_inpainting_sparsity/)[Inpainting using Sparse Regularization]</li>
+  <li>(inverse_6_image_separation/)[Cartoon+Texture Variational Image Decomposition]</li>
+  <li>(inverse_8_tomography/)[Reconstruction from Partial Tomography Measurements]</li>
+  <li>(inverse_9_tomography_sobsparse/)[Tomography Inversion using Tikhonov and Sparse Regularization]</li>
+</ul>
+
+<h2 id="geodesic-processing-fastmarching">Geodesic Processing #fastmarching</h2>
+
+<ul>
+  <li>(fastmarching_0_implementing/)[Dijkstra and Fast Marching Algorithms]</li>
+  <li>(fastmarching_1_2d/)[Fast Marching in 2D]</li>
+  <li>(fastmarching_2_3d/)[Fast Marching in 3D]</li>
+  <li>(fastmarching_3_anisotropy/)[Anisotropic Fast Marching]</li>
+  <li>(fastmarching_4_mesh/)[Geodesic Mesh Processing]</li>
+  <li>(fastmarching_4bis_geodesic_mesh/)[Geodesic Distance Computation on 3-D Meshes]</li>
+  <li>(fastmarching_5_sampling_2d/)[Geodesic Farthest Point Sampling]</li>
+  <li>(fastmarching_6_sampling_surf/)[Geodesic Surface Remeshing]</li>
+  <li>(fastmarching_7_sampling_compr/)[Geodesic Triangulation for Image Compression]</li>
+  <li>(fastmarching_8_segmentation/)[Geodesic Segmentation]</li>
+  <li>(fastmarching_9_heuristics/)[Heuristically Driven Front Propagation]</li>
+</ul>
+
+<h2 id="shapes-shapes">Shapes #shapes</h2>
+
+<ul>
+  <li>(shapes_1_bendinginv_2d/)[Geodesic Bending Invariants for Shapes]</li>
+  <li>(shapes_2_bendinginv_3d/)[Geodesic Bending Invariants for Surfaces]</li>
+  <li>(shapes_3_bendinginv_landmarks/)[Geodesic Bending Invariants with Landmarks]</li>
+  <li>(shapes_4_shape_matching/)[Shape Correspondence with Fast Marching]</li>
+  <li>(shapes_5_geodesic_descriptors/)[Shape Retrieval with Geodesic Descriptors]</li>
+  <li>(shapes_6_medialaxis/)[Geodesic Medial Axsis]</li>
+  <li>(shapes_7_isomap/)[Manifold Learning with Isomap]</li>
+</ul>
+
+<h2 id="mesh-processing-meshproc">Mesh Processing #meshproc</h2>
+
+<ul>
+  <li>(meshproc_1_basics_2d/)[Basics About 2D Triangulation]</li>
+  <li>(meshproc_2_basics_3d/)[Basics About 3D Meshes]</li>
+  <li>(meshproc_3_denoising/)[Mesh Denoising]</li>
+  <li>(meshproc_4_fourier/)[Fourier on Meshes]</li>
+  <li>(meshproc_5_pde/)[PDEs on Meshes]</li>
+  <li>(meshproc_6_volumetric/)[Volumetric Meshes]</li>
+</ul>
+
+<h2 id="mesh-parameterization-and-deformation-meshdeform">Mesh Parameterization and Deformation #meshdeform</h2>
+
+<ul>
+  <li>(meshdeform_1_parameterization/)[Mesh Parameterization]</li>
+  <li>(meshdeform_2_parameterization_sphere/)[Spherical Mesh Parameterization]</li>
+  <li>(meshdeform_3_flattening/)[Spectral Mesh Flattening]</li>
+  <li>(meshdeform_4_barycentric/)[Generalized Barycentric Coordinates for Warpping]</li>
+  <li>(meshdeform_5_deformation/)[Mesh Deformation]</li>
+</ul>
+
+<h2 id="multiscale-mesh-processing-meshwav">Multiscale Mesh Processing #meshwav</h2>
+
+<ul>
+  <li>(meshwav_1_subdivision_curves/)[Subdivision Curves]</li>
+  <li>(meshwav_2_subdivision_surfaces/)[Subdivision Surfaces]</li>
+  <li>(meshwav_3_simplification/)[Mesh Simplification]</li>
+  <li>(meshwav_4_haar_sphere/)[Spherical Haar Wavelets]</li>
+  <li>(meshwav_5_wavelets/)[Wavelet Transform on 3D Meshes]</li>
+</ul>
+
+		</div>
+	</div>
+</div>
+
+<hr>
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    <!-- 
+                    <li>
+                        <a href="/numerical-tours/feed.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    -->
+                    
+                    
+                    
+                    <li>
+                        <a href="https://github.com/gpeyre">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <p class="copyright text-muted">Copyright &copy; A Numerical Tour of Signal Processing 2014</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/numerical-tours/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/numerical-tours/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/numerical-tours/js/clean-blog.min.js "></script>
+
+
+</body>
+
+</html>

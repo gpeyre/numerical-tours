@@ -1,11 +1,8 @@
 ---
 layout: page
-title: About
-permalink: /about/
+title: "About"
+description: "The Numerical Tours"
+header-img: "/img/about-bg.jpg"
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
-
-You can find the source code for the Jekyll new theme at: [github.com/jglovier/jekyll-new](https://github.com/jglovier/jekyll-new)
-
-You can find the source code for Jekyll at [github.com/jekyll/jekyll](https://github.com/jekyll/jekyll)
+The *Numerical Tours of Signal Processing*, by [Gabriel Peyré](contact/), gather Matlab (and so some extend Scilab) experiments to explore modern signal and image processing.  These tours are also progressively being ported to Python. The tours are complemented by slides of courses that concentrate on the theory of  signal and image processing.

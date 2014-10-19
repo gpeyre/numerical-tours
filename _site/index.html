@@ -1,150 +1,199 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
-  <head>
+<head>
+
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <title>Your awesome title</title>
-    <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="The Numerical Tours of Signal Processing, by Gabriel Peyré, gather Matlab (and so some extend Scilab) experiments to explore modern signal and image processing. These tours are also progressively being ported to Python. The tours are complemented by slides of courses that concentrate on the theory of signal and image processing.
 ">
 
-    <link rel="stylesheet" type="text/css" href="default.css"/>
-	<link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
+    <title>Wellcome - A Numerical Tour of Signal Processing</title>
 
-    <link rel="canonical" href="http://yourdomain.com/">
+    <link rel="canonical" href="http://gpeyre.github.io/numerical-tours//numerical-tours/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/numerical-tours/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/numerical-tours/css/clean-blog.css">
+
+    <!-- Custom Fonts -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
 
+<body>
 
-  <body>
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/numerical-tours/">Home</a>
+        </div>
 
-    <div id="outer">
-
-  <div id="upbg"></div>
-
-  <div id="inner">
-
-    <div id="header">
-      <h1>A Numerical Tour of Signal Processing</h1><br/>     
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                <li>
+                    <a href="/numerical-tours/about/">About</a>
+                </li>
+                
+                <li>
+                    <a href="/numerical-tours/book/">Book</a>
+                </li>
+                
+                <li>
+                    <a href="/numerical-tours/contact/">Contact</a>
+                </li>
+                
+                <li>
+                    <a href="/numerical-tours/">Wellcome</a>
+                </li>
+                
+                <li>
+                    <a href="/numerical-tours/links/">Links</a>
+                </li>
+                
+                <li>
+                    <a href="/numerical-tours/matlab/">Matlab's tours</a>
+                </li>
+                
+                <li>
+                    <a href="/numerical-tours/python/">Python's tours</a>
+                </li>
+                
+                <li>
+                    <a href="/numerical-tours/slides/">Slides</a>
+                </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
     </div>
-  
-    <div id="splash"></div>
-  
-    <div id="menu">
-      <ul>
-        <li class="first"><a href="/">Home</a></li>
-        <li><a href="tours/">Matlab Tours</a></li>
-        <li><a href="http://nbviewer.ipython.org/github/gpeyre/numerical-tours/tree/master/python/">Python Tours</a></li>
-        <li><a href="book/">Book</a></li>
-        <li><a href="slides/">Slides</a></li>
-        <li><a href="links/">Links</a></li>
-        <li><a href="contact/">Contact</a></li>
-      </ul> 
+    <!-- /.container -->
+</nav>
+
+
+    <!-- Page Header -->
+<header class="intro-header" style="background-image: url('/numerical-tours/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h1>Wellcome</h1>
+                    <hr class="small">
+                    <span class="subheading">The Numerical Tours of Signal Processing</span>
+                </div>
+            </div>
+        </div>
     </div>
+</header>
 
-    
+<!-- Main Content -->
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+			<h1 id="welcome-to-the-numerical-tours">Welcome to the <em>Numerical Tours</em></h1>
 
-
-    <div id="primarycontent">
-        <div class="post">
-<div class="header">
-    <h3>Welcome to the <i>Numerical Tours</i></h3>
-</div>
-<div class="content">
-
-<p>
-The <i>Numerical Tours of Signal Processing</i>, by <a href="contact/">Gabriel Peyr&eacute;</a>, gather Matlab (and so some extend Scilab) experiments to explore modern signal and image processing. 
+<p>The <em>Numerical Tours of Signal Processing</em>, by <a href="contact/">Gabriel Peyré</a>, gather Matlab (and so some extend Scilab) experiments to explore modern signal and image processing. 
 These tours are also progressively being ported to Python.
-The tours are complemented by slides of courses that concentrate on the theory of  signal and image processing.
-</p>
-</div></div>
+The tours are complemented by slides of courses that concentrate on the theory of  signal and image processing.</p>
 
-<div class="post">
-<div class="header">
-    <h3>How to use these tours?</h3>
-</div>
-<div class="content">
-<p>
-Each tour is a set of experiments that can be performed using 
+<h2 id="how-to-use-these-tours">How to use these tours?</h2>
+
+<p>Each tour is a set of experiments that can be performed using 
 either Matlab or Scilab. At the beginning of each tour, 
-you are asked to download and install the required toolboxes  ...
+you are asked to download and install the required toolboxes  …
 (there exists three toolboxes: general/signal/graph), that contain many useful 
 helper functions. Each tour alternates between code you can copy/paste in 
-Matlab or Scilab, and exercises you need to solve on your own.
-</p>
-</div></div>
+Matlab or Scilab, and exercises you need to solve on your own.</p>
 
-<div class="post">
-<div class="header">
-    <h3>How to cite the Numerical Tours</h3>
+<h2 id="how-to-cite-the-numerical-tours">How to cite the Numerical Tours</h2>
+
+<p>If you are using codes from these Numerical Tours for your own research, you should cite the Numerical Tours as:</p>
+
+<blockquote>
+  <p>G. Peyré, <em>The Numerical Tours of Signal Processing - Advanced Computational Signal and Image Processing</em>
+IEEE Computing in Science and Engineering, vol. 13(4), pp. 94-97, 2011.</p>
+</blockquote>
+
+<h2 id="how-to-make-your-own-tours">How to make your own tours?</h2>
+
+<p>Each Numerical Tour is a HTML web page automatically generated using a Matlab script, that both executes the intructions of the tour, and generates the web page.</p>
+
+<p>You can download the <a href="tours/toolbox_publishing.zip">Numerical Tour Publishing Toolbox</a>, and use the same tools to create your own Numerical Tours. This can be very useful to generate numerical exercises for your students, or to present your research in a more atracting way.</p>
+
+
+		</div>
+	</div>
 </div>
-<div class="content">
-<p>
-  If you are using codes from these Numerical Tours for your own research, you should cite the Numerical Tours as:
-</p>
-<p>
-  G. Peyr&eacute;, <i>The Numerical Tours of Signal Processing - Advanced Computational Signal and Image Processing</i>, 
-  IEEE Computing in Science and Engineering, vol. 13(4), pp. 94-97, 2011.
-</p>
-</div></div>
 
+<hr>
 
-<div class="post">
-<div class="header">
-    <h3>How to make your own tours?</h3>
-</div>
-<div class="content">
-<p>
-Each Numerical Tour is a HTML web page automatically generated using a Matlab script, that both executes the intructions of the tour, and generates the web page.
-</p>
-<p>
-You can download the <a href="tours/toolbox_publishing.zip">Numerical Tour Toolbox</a>, and use the same tools to create your own Numerical Tours.
-This can be very useful to generate numerical exercises for your students, or to present your research in a more atracting way.
-</p>
-</div></div>
-
-<div class="post">
-  <div class="header">
-    <h3>Solutions of the numerical tours</h3>
-  </div>
-  <div class="content">
-<p>
-If you are a teacher and would like to have access 
-to the Matlab files that contain the solution 
-of the numerical exercises, please send me an <a href="contact/">e-mail</a>. 
-</p>
-</div></div>
-
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    <!-- 
+                    <li>
+                        <a href="/numerical-tours/feed.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    -->
+                    
+                    
+                    
+                    <li>
+                        <a href="https://github.com/gpeyre">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <p class="copyright text-muted">Copyright &copy; A Numerical Tour of Signal Processing 2014</p>
+            </div>
+        </div>
     </div>
+</footer>
 
-    
-  <!-- primary content end -->
-</div>
+<!-- jQuery -->
+<script src="/numerical-tours/js/jquery.min.js "></script>
 
-<!-- 
-<div id="secondarycontent">
-</div>
--->
+<!-- Bootstrap Core JavaScript -->
+<script src="/numerical-tours/js/bootstrap.min.js "></script>
 
-<div id="footer">
-  Design by <a href="http://www.ceremade.dauphine.fr/~peyre/">Gabriel Peyr&eacute;</a>.   
-</div>
-</div>
-
-</div>
-
-<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-try {
-var pageTracker = _gat._getTracker("UA-781488-9");
-pageTracker._trackPageview();
-} catch(err) {}</script>
+<!-- Custom Theme JavaScript -->
+<script src="/numerical-tours/js/clean-blog.min.js "></script>
 
 
-  </body>
+</body>
 
 </html>
