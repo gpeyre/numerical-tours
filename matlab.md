@@ -29,7 +29,6 @@ Table of contents
 * [Mesh Parameterization and Deformation](#meshdeform)
 * [Multiscale Mesh Processing](#meshwav)
 
-
 Introduction  {#introduction}
 ----------------
 
@@ -40,7 +39,6 @@ Introduction  {#introduction}
 * [Image Processing with Wavelets](introduction_5_wavelets_2d/)
 * [Le traitement num&eacute;rique des images](introduction_6_elementary_fr/)
 
-
 Wavelet Processing {#wavelet}
 ----------------
 
@@ -48,7 +46,6 @@ Wavelet Processing {#wavelet}
 * [2-D Haar Wavelets](wavelet_2_haar2d/)
 * [1-D Daubechies Wavelets](wavelet_3_daubechies1d/)
 * [2-D Daubechies Wavelets](wavelet_4_daubechies2d/)
-
 
 Approximation, Coding and Compression {#coding}
 ----------------
@@ -121,7 +118,7 @@ Computer Graphics {#graphics}
 * [Fluid Dynamics](graphics_5_fluids/)
 * [Texture Synthesis and Inpainting using Patch Projections](graphics_6_patches/)
 * [Shape From Shading](graphics_7_shape_shading/)
-* [Stationary Dynamic Texture Synthesis](graphics_8_dyntextures/)
+<!-- * [Stationary Dynamic Texture Synthesis](graphics_8_dyntextures/) -->
 
 Optimal Transport {#optimaltransp}
  ----------------
@@ -215,7 +212,7 @@ Mesh Processing {#meshproc}
 * [Volumetric Meshes](meshproc_6_volumetric/)
 
 
-Mesh Parameterization and Deformation #meshdeform
+Mesh Parameterization and Deformation {#meshdeform}
 ----------------
 
 * [Mesh Parameterization](meshdeform_1_parameterization/)
@@ -225,7 +222,7 @@ Mesh Parameterization and Deformation #meshdeform
 * [Mesh Deformation](meshdeform_5_deformation/)
 
 
-Multiscale Mesh Processing #meshwav
+Multiscale Mesh Processing {#meshwavø
 ----------------
 
 * [Subdivision Curves](meshwav_1_subdivision_curves/)
