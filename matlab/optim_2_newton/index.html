@@ -1,0 +1,730 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>Newton Method</title>
+      <NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
+               	requires JavaScript to process the mathematics on this page.<BR> 
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 8.2">
+      <meta name="date" content="2014-10-20">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>Newton Method</h1>
+         <introduction>
+            <p>This tour explores the use of the Newton method for the unconstrained optimization of a smooth function</p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#8">Newton Method for Unconstrained Problems</a></li>
+               <li><a href="#20">Gradient and Divergence of Images</a></li>
+               <li><a href="#35">Newton Method in Image Processing</a></li>
+            </ul>
+         </div>
+         <h2>Installing toolboxes and setting up the path.<a name="1"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_signal.zip">signal toolbox</a> and <a href="../toolbox_general.zip">general toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_signal</tt> and <tt>toolbox_general</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
+getd(<span class="string">'toolbox_general/'</span>);
+</pre><h2>Newton Method for Unconstrained Problems<a name="8"></a></h2>
+         <p>We test here Newton method for the minimization of a 2-D function.</p>
+         <p>We define a highly anisotropic function, the Rosenbrock function</p><pre class="codeinput"><span class="comment">% \[ g(x) = (1-x_1)^2 + 100 (x_2-x_1^2)^2 \]</span>
+
+f = @(x1,x2)(1-x1).^2 + 100*(x2-x1.^2).^2;
+</pre><p>The minimum of the function is reached at \(x^\star=(1,1)\) and \(f(x^\star)=0\).</p>
+         <p>Evaluate the function on a regular grid.</p><pre class="codeinput">x1 = linspace(-2,2,150);
+x2 = linspace(-.5,3,150);
+[X2,X1] = meshgrid(x2,x1);
+F = f(X1,X2);
+</pre><p>3-D display.</p><pre class="codeinput">clf; surf(x2,x1, F, perform_hist_eq(F, <span class="string">'linear'</span>) );
+shading <span class="string">interp</span>;
+camlight;
+axis <span class="string">tight</span>;
+colormap <span class="string">jet</span>;
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p>2-D display (histogram equalization helps to better visualize the iso-contours).</p><pre class="codeinput">clf;
+imageplot( perform_hist_eq(F, <span class="string">'linear'</span>) );
+colormap <span class="string">jet(256)</span>;
+</pre><img vspace="5" hspace="5" src="index_02.png"> <p>Gradient descent methods, that only use first order (gradient) information about \(f\) are not able to efficiently minimize
+            this function because of its high anisotropy.
+         </p>
+         <p>Define the gradient of \(f\) \[ \nabla g(x) = \pa{ \pd{g(x)}{x_1}, \pd{g(x)}{x_2} } =       \pa{ 2 (x_1-1) + 400 x_1 (x_1^2-x_2),
+                  200 (x_2-x_1^2) } \in \RR^2. \]
+         </p><pre class="codeinput">gradf = @(x1,x2)[2*(x1-1) + 400*x1.*(x1.^2-x2); 200*(x2-x1.^2)];
+Gradf = @(x)gradf(x(1),x(2));
+</pre><p>Compute its Hessian \[       Hf(x) =       \begin{pmatrix}           \frac{\partial^2 g(x)}{\partial x_1^2} &amp;           \frac{\partial^2
+            g(x)}{\partial x_1 \partial x_2} \\           \frac{\partial^2 g(x)}{\partial x_1 \partial x_2} &amp;           \frac{\partial^2
+            g(x)}{\partial x_2^2}       \end{pmatrix}       =       \begin{pmatrix}           2 + 400 (x_1^2-x_2) + 800 x_1^2 &amp; -400 x_1
+            \\           -400 x_1 &amp; 200       \end{pmatrix} \in \RR^{2 \times 2} \]
+         </p><pre class="codeinput">hessf = @(x1,x2)[2 + 400*(x1.^2-x2) + 800*x1.^2, -400*x1; <span class="keyword">...</span>
+                -400*x1,  200];
+Hessf = @(x)hessf(x(1),x(2));
+</pre><p>The Newton descent method starting from some \(x^{(0)} \in \RR^2\), \[ x^{(\ell+1)} = x^{(\ell)} - Hf( x^{(\ell)} )^{-1} \nabla
+            f(x^{(\ell)}). \]
+         </p>
+         <p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Implement the Newton algorithm. Display the evolution of \(f(x^{(\ell)})\) and \(\norm{x^{(\ell)}-x^{(+\infty)}}\) during
+            the iterations.
+         </p><pre class="codeinput">exo1;
+</pre><img vspace="5" hspace="5" src="index_03.png"> <p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Display the evolution of \(x^{(\ell)}\), from several starting points.
+         </p><pre class="codeinput">exo2;
+</pre><img vspace="5" hspace="5" src="index_04.png"> <h2>Gradient and Divergence of Images<a name="20"></a></h2>
+         <p>Local differential operators like gradient, divergence and laplacian are the building blocks for variational image processing.</p>
+         <p>Load an image \(g \in \RR^N\) of \(N=n \times n\) pixels.</p><pre class="codeinput">n = 256;
+g = rescale( load_image(<span class="string">'lena'</span>,n) );
+</pre><p>Display it.</p><pre class="codeinput">clf;
+imageplot(g);
+</pre><img vspace="5" hspace="5" src="index_05.png"> <p>For continuous functions, the gradient reads \[ \nabla g(x) = \pa{ \pd{g(x)}{x_1}, \pd{g(x)}{x_2} } \in \RR^2. \] (note that
+            here, the variable \(x\) denotes the 2-D spacial position).
+         </p>
+         <p>We discretize this differential operator using first order finite differences. \[ (\nabla g)_i = ( g_{i_1,i_2}-g_{i_1-1,i_2},
+            g_{i_1,i_2}-g_{i_1,i_2-1} ) \in \RR^2. \] Note that for simplity we use periodic boundary conditions.
+         </p>
+         <p>Compute its gradient, using finite differences.</p><pre class="codeinput">s = [n 1:n-1];
+grad = @(f)cat(3, f-f(s,:), f-f(:,s));
+</pre><p>One thus has \( \nabla : \RR^N \mapsto \RR^{N \times 2}. \)</p><pre class="codeinput">v = grad(g);
+</pre><p>One can display each of its components.</p><pre class="codeinput">clf;
+imageplot(v(:,:,1), <span class="string">'d/dx'</span>, 1,2,1);
+imageplot(v(:,:,2), <span class="string">'d/dy'</span>, 1,2,2);
+</pre><img vspace="5" hspace="5" src="index_06.png"> <p>One can also display it using a color image.</p><pre class="codeinput">clf;
+imageplot(v);
+</pre><img vspace="5" hspace="5" src="index_07.png"> <p>One can display its magnitude \(\norm{\nabla g(x)}\), which is large near edges.</p><pre class="codeinput">clf;
+imageplot( sqrt( sum3(v.^2,3) ) );
+</pre><img vspace="5" hspace="5" src="index_08.png"> <p>The divergence operator maps vector field to images. For continuous vector fields \(v(x) \in \RR^2\), it is defined as \[
+            \text{div}(v)(x) = \pd{v_1(x)}{x_1} +  \pd{v_2(x)}{x_2} \in \RR. \] (note that here, the variable \(x\) denotes the 2-D spacial
+            position). It is minus the adjoint of the gadient, i.e. \(\text{div} = - \nabla^*\).
+         </p>
+         <p>It is discretized, for \(v=(v^1,v^2)\) as \[ \text{div}(v)_i = v^1_{i_1+1,i_2} - v^1_{i_1,i_2} + v^2_{i_1,i_2+1} - v^2_{i_1,i_2}
+            . \]
+         </p><pre class="codeinput">t = [2:n 1];
+div = @(v)v(t,:,1)-v(:,:,1) + v(:,t,2)-v(:,:,2);
+</pre><p>The Laplacian operatore is defined as \(\Delta=\text{div} \circ  \nabla = -\nabla^* \circ \nabla\). It is thus a negative
+            symmetric operator.
+         </p><pre class="codeinput">delta = @(f)div(grad(f));
+</pre><p>Display \(\Delta f_0\).</p><pre class="codeinput">clf;
+imageplot(delta(g));
+</pre><img vspace="5" hspace="5" src="index_09.png"> <p>Check that the relation \( \norm{\nabla f} = - \dotp{\Delta f}{f}.  \)</p><pre class="codeinput">dotp = @(a,b)sum(a(:).*b(:));
+fprintf(<span class="string">'Should be 0: %.3i\n'</span>, dotp(grad(g), grad(g)) + dotp(delta(g),g) );
+</pre><pre class="codeoutput">Should be 0: 000
+</pre><h2>Newton Method in Image Processing<a name="35"></a></h2>
+         <p>We consider now the problem of denoising an image \(y \in \RR^N\) where \(N = n \times n\) is the number of pixels (\(n\)
+            being the number of rows/columns in the image).
+         </p>
+         <p>Add noise to the clean image, to simulate a noisy image \(y\).</p><pre class="codeinput">sigma = .1;
+y = g + randn(n)*sigma;
+</pre><p>Display the noisy image \(y\).</p><pre class="codeinput">clf;
+imageplot(clamp(y));
+</pre><img vspace="5" hspace="5" src="index_10.png"> <p>Denoising is obtained by minimizing the following functional \[ \umin{x \in \RR^d} g(x) = \frac{1}{2} \norm{ y-x}^2 + \la
+            J(x) \] where \(J(x)\) is a smoothed total variation of the image. \[ J(x) = \sum_i \norm{ (G x)_i }_{\epsilon} \] where \(
+            (Gx)_i \in \RR^2 \) is an approximation of the gradient of \(x\) at pixel \(i\) and for \(u \in \RR^2\), we use the following
+            smoothing of the \(L^2\) norm in \(\RR^2\) \[ \norm{u}_\epsilon = \sqrt{ \epsilon^2 + \norm{u}^2 }, \] for a small value of
+            \(\epsilon&gt;0\).
+         </p>
+         <p>Value for \(\lambda\).</p><pre class="codeinput">lambda = .3/5;
+</pre><p>Value for \(\epsilon\).</p><pre class="codeinput">epsilon = 1e-3;
+</pre><p>TV norm.</p><pre class="codeinput">Amplitude = @(u)sqrt(epsilon^2 + sum(u.^2,3));
+J = @(x)sum(sum(Amplitude(grad(x))));
+</pre><p>Function to minimize.</p><pre class="codeinput">f = @(x)1/2*norm(x-y,<span class="string">'fro'</span>)^2 + lambda*J(x);
+</pre><p>The gradient of the functional read \[ \nabla g(x) = x-y + \lambda \nabla J(x) \] where the gradient of the smoothed TV norm
+            is \[ \nabla J(x)_i = G^*( u ) \qwhereq    u_i = \frac{ (G x)_i }{\norm{ (G x)_i }_\epsilon} \] where \(G^*\) is the adjoint
+            operator of \(G\) which corresponds to minus a discretized divergence.
+         </p>
+         <p>Define the gradient of TV norm. Note that <tt>div</tt> implement \(-G^*\).
+         </p><pre class="codeinput">Normalize = @(u)u./repmat(Amplitude(u), [1 1 2]);
+GradJ = @(x)-div( Normalize(grad(x)) );
+</pre><p>Gradient of the functional.</p><pre class="codeinput">Gradf = @(x)x-y+lambda*GradJ(x);
+</pre><p>The gradient of the functional can be written as \[ \nabla g(x) = x - y + G^* \circ \delta_{A(x)} \circ G (x) \] where \(A(x)
+            \in \RR^N\) is the norm of the gradient \[ A(x)_i = \norm{(G u)_i} \] and where, for \(x \in \RR^N\) and \( a \in \RR^{N}
+            \), \[ \de_{a}(u)_i = \frac{u_i}{ \sqrt{\epsilon^2+a_i^2} }. \]
+         </p><pre class="codeinput">A = @(x)sqrt(sum(grad(x).^2, 3));
+delta = @(a,u)u./sqrt( epsilon^2 + repmat(a.^2,[1 1 2]) );
+</pre><p>This shows that the Hessian of \(f\) is \[ Hf(x) = \text{Id} + G^* \circ \delta_{d(x)} \circ G + G^* \circ \Delta_{x} (G(x))
+            \] where \(\Delta_{x}(u) \) is the derivative of the mapping \( x \mapsto \delta_{d(x)}(u) \).
+         </p>
+         <p>Note that since \(f\) is strictly convex, \(Hf(x)\) is a positive definite matrix.</p>
+         <p>We use a quasi-Newton scheme \[ x^{(\ell+1)} = x^{(\ell)} - H_\ell^{-1} \nabla f(x^{(\ell)}), \] where \( H_\ell \) is an
+            approximation of the Hessian \(H f(x^{(\ell)})\).
+         </p>
+         <p>We define this approximation as \[ H_\ell = \tilde H f(x^{(\ell)})       \qwhereq       \tilde Hf(x) = \text{Id} + G^* \circ
+            \delta_{x} \circ G \]
+         </p>
+         <p>\(H_\ell\) is a symmetric positive definite matrix, that is bounded by bellow by the identity, which ensures the convergence
+            of the method.
+         </p>
+         <p>Implement \(\tilde H f(x)\). Note that is parameterized by \(a=A(x)\).</p><pre class="codeinput">H = @(z,a)z - lambda*div( delta(a, grad(z)) );
+</pre><p>Implement \(\tilde H f(x)^{-1}\) using a conjugate gradient. Note that it takes as argument a previous solution <tt>u_prev</tt>.
+         </p><pre class="codeinput">flat = @(x)x(:); flatI = @(x)reshape(x,[n,n]);
+tol = eps; maxit = 40;
+Hinv = @(u,a,u_prev)cgs(@(z)flat(H(flatI(z),a)), flat(u),tol,maxit,[],[],flat(u_prev));
+</pre><p>Initialize the algorithm \(x^{(0)} = y\).</p><pre class="codeinput">x = y;
+</pre><p>Compute the vector \(d = H_\ell^{-1} \nabla f(x^{(\ell)})\).</p>
+         <p><i>Important:</i> to get read of the warning message, you should use the code as this:
+         </p><pre class="codeinput">d = zeros(n); <span class="comment">% replace thie line by the previous iterate d value</span>
+[d,~] = Hinv(Gradf(x), A(x), d);
+d = flatI(d);
+</pre><p>Compute \(x^{(\ell+1)} = x^{(\ell)} - d\).</p><pre class="codeinput">x = x - d;
+</pre><p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) Implement the Newton descent algorithm.
+         </p><pre class="codeinput">exo3;
+</pre><img vspace="5" hspace="5" src="index_11.png"> <p>Display the result.</p><pre class="codeinput">clf;
+imageplot(clamp(x));
+</pre><img vspace="5" hspace="5" src="index_12.png"> <p><i>Exercice 4:</i> (<a href="../missing-exo/">check the solution</a>) Compare the Newton descent with the gradient descent with a fixed step size, in term of decay of the energy.
+         </p><pre class="codeinput">exo4;
+</pre><img vspace="5" hspace="5" src="index_13.png"> <p><i>Exercice 5:</i> (<a href="../missing-exo/">check the solution</a>) The direct comparison between gradient method and Newton is not fair in term of iteration count. Indeed, and iteration of
+            Newton requires several steps of conjugate gradient, which takes some time. Try to set-up a fair comparison benchmark that
+            takes into account the runing time of the methods. Pay a particular attention to the number of steps (or the tolerance criterion)
+            that parameterize <tt>cgs</tt>.
+         </p><pre class="codeinput">exo5;
+</pre><p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Newton Method
+% This tour explores the use of the Newton method for the unconstrained
+% optimization of a smooth function
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_signal.zip signal toolbox> and 
+% <../toolbox_general.zip general toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_signal| and 
+% |toolbox_general|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_signal/');
+getd('toolbox_general/');
+
+
+%% Newton Method for Unconstrained Problems
+% We test here Newton method for the minimization of a 2-D function.
+
+%%
+% We define a highly anisotropic function, 
+% the Rosenbrock function
+
+% \[ g(x) = (1-x_1)^2 + 100 (x_2-x_1^2)^2 \]
+
+f = @(x1,x2)(1-x1).^2 + 100*(x2-x1.^2).^2;
+
+%%
+% The minimum of the function is reached at \(x^\star=(1,1)\) and
+% \(f(x^\star)=0\).
+
+%%
+% Evaluate the function on a regular grid.
+
+x1 = linspace(-2,2,150);
+x2 = linspace(-.5,3,150);
+[X2,X1] = meshgrid(x2,x1);
+F = f(X1,X2);
+
+%%
+% 3-D display. 
+
+clf; surf(x2,x1, F, perform_hist_eq(F, 'linear') ); 
+shading interp;
+camlight;
+axis tight;
+colormap jet;
+
+%%
+% 2-D display (histogram equalization helps to better visualize
+% the iso-contours).
+
+clf;
+imageplot( perform_hist_eq(F, 'linear') );
+colormap jet(256);
+
+%%
+% Gradient descent methods, that only use first order (gradient)
+% information about \(f\) are not able to efficiently minimize this
+% function because of its high anisotropy.
+
+%%
+% Define the gradient of \(f\)
+% \[ \nabla g(x) = \pa{ \pd{g(x)}{x_1}, \pd{g(x)}{x_2} } = 
+%       \pa{ 2 (x_1-1) + 400 x_1 (x_1^2-x_2), 
+%       200 (x_2-x_1^2) } \in \RR^2. \]
+
+gradf = @(x1,x2)[2*(x1-1) + 400*x1.*(x1.^2-x2); 200*(x2-x1.^2)];
+Gradf = @(x)gradf(x(1),x(2));
+
+%%
+% Compute its Hessian
+% \[
+%       Hf(x) = 
+%       \begin{pmatrix}
+%           \frac{\partial^2 g(x)}{\partial x_1^2} &
+%           \frac{\partial^2 g(x)}{\partial x_1 \partial x_2} \\
+%           \frac{\partial^2 g(x)}{\partial x_1 \partial x_2} &
+%           \frac{\partial^2 g(x)}{\partial x_2^2}
+%       \end{pmatrix} 
+%       =
+%       \begin{pmatrix}
+%           2 + 400 (x_1^2-x_2) + 800 x_1^2 & -400 x_1 \\
+%           -400 x_1 & 200
+%       \end{pmatrix} \in \RR^{2 \times 2}       
+% \]
+
+hessf = @(x1,x2)[2 + 400*(x1.^2-x2) + 800*x1.^2, -400*x1; ...
+                -400*x1,  200];
+Hessf = @(x)hessf(x(1),x(2));
+
+%%
+% The Newton descent method starting from some \(x^{(0)} \in \RR^2\), 
+% \[ x^{(\ell+1)} = x^{(\ell)} - Hf( x^{(\ell)} )^{-1} \nabla f(x^{(\ell)}). \]
+
+%%
+% _Exercice 1:_ (<../missing-exo/ check the solution>)
+% Implement the Newton algorithm.
+% Display the evolution of \(f(x^{(\ell)})\) and \(\norm{x^{(\ell)}-x^{(+\infty)}}\)
+% during the iterations.
+
+exo1;
+
+%%
+% _Exercice 2:_ (<../missing-exo/ check the solution>)
+% Display the evolution of \(x^{(\ell)}\), from several starting points.
+
+exo2;
+
+%% Gradient and Divergence of Images
+% Local differential operators like gradient, divergence and laplacian are
+% the building blocks for variational image processing.
+
+%%
+% Load an image \(g \in \RR^N\) of \(N=n \times n\) pixels.
+
+n = 256;
+g = rescale( load_image('lena',n) );
+
+%%
+% Display it.
+
+clf;
+imageplot(g);
+
+%%
+% For continuous functions, the gradient reads
+% \[ \nabla g(x) = \pa{ \pd{g(x)}{x_1}, \pd{g(x)}{x_2} } \in \RR^2. \]
+% (note that here, the variable \(x\) denotes the 2-D spacial position).
+
+%%
+% We discretize this differential operator using first order finite
+% differences. 
+% \[ (\nabla g)_i = ( g_{i_1,i_2}-g_{i_1-1,i_2}, g_{i_1,i_2}-g_{i_1,i_2-1} ) \in \RR^2. \]
+% Note that for simplity we use periodic boundary conditions.
+
+%%
+% Compute its gradient, using finite differences.
+
+s = [n 1:n-1];
+grad = @(f)cat(3, f-f(s,:), f-f(:,s));
+
+%%
+% One thus has \( \nabla : \RR^N \mapsto \RR^{N \times 2}. \)
+
+v = grad(g);
+
+%%
+% One can display each of its components.
+
+clf;
+imageplot(v(:,:,1), 'd/dx', 1,2,1);
+imageplot(v(:,:,2), 'd/dy', 1,2,2);
+
+%%
+% One can also display it using a color image.
+
+clf; 
+imageplot(v);
+
+%%
+% One can display its magnitude \(\norm{\nabla g(x)}\), which is large near edges.
+
+clf; 
+imageplot( sqrt( sum3(v.^2,3) ) );
+
+%%
+% The divergence operator maps vector field to images. 
+% For continuous vector fields \(v(x) \in \RR^2\), it is defined as
+% \[ \text{div}(v)(x) = \pd{v_1(x)}{x_1} +  \pd{v_2(x)}{x_2} \in \RR. \]
+% (note that here, the variable \(x\) denotes the 2-D spacial position).
+% It is minus the adjoint of the gadient, i.e. \(\text{div} = - \nabla^*\).
+
+%% 
+% It is discretized, for \(v=(v^1,v^2)\) as
+% \[ \text{div}(v)_i = v^1_{i_1+1,i_2} - v^1_{i_1,i_2} + v^2_{i_1,i_2+1} - v^2_{i_1,i_2} . \]
+
+
+t = [2:n 1];
+div = @(v)v(t,:,1)-v(:,:,1) + v(:,t,2)-v(:,:,2);
+
+
+%%
+% The Laplacian operatore is defined as \(\Delta=\text{div} \circ  \nabla =
+% -\nabla^* \circ \nabla\). It is thus a negative symmetric operator.
+
+delta = @(f)div(grad(f));
+
+%% 
+% Display \(\Delta f_0\).
+
+clf; 
+imageplot(delta(g));
+
+
+%%
+% Check that the relation \( \norm{\nabla f} = - \dotp{\Delta f}{f}.  \)
+
+dotp = @(a,b)sum(a(:).*b(:));
+fprintf('Should be 0: %.3i\n', dotp(grad(g), grad(g)) + dotp(delta(g),g) );
+
+
+%% Newton Method in Image Processing
+% We consider now the problem of denoising an image \(y \in \RR^N\) where
+% \(N = n \times n\) is the number of pixels (\(n\) being the number of rows/columns in the image).
+
+%%
+% Add noise to the clean image, to simulate a noisy image \(y\).
+
+sigma = .1;
+y = g + randn(n)*sigma;
+
+%%
+% Display the noisy image \(y\).
+
+clf;
+imageplot(clamp(y));
+
+%%
+% Denoising is obtained by minimizing the following functional
+% \[ \umin{x \in \RR^d} g(x) = \frac{1}{2} \norm{ y-x}^2 + \la J(x) \]
+% where \(J(x)\) is a smoothed total variation of the image.
+% \[ J(x) = \sum_i \norm{ (G x)_i }_{\epsilon} \]
+% where \( (Gx)_i \in \RR^2 \) is an approximation of the gradient of \(x\) at pixel
+% \(i\) and for \(u \in \RR^2\), we use the following smoothing of the
+% \(L^2\) norm in \(\RR^2\)
+% \[ \norm{u}_\epsilon = \sqrt{ \epsilon^2 + \norm{u}^2 }, \]
+% for a small value of \(\epsilon>0\).
+
+%%
+% Value for \(\lambda\).
+
+lambda = .3/5;
+
+%%
+% Value for \(\epsilon\).
+
+epsilon = 1e-3;
+
+%%
+% TV norm.
+
+Amplitude = @(u)sqrt(epsilon^2 + sum(u.^2,3));
+J = @(x)sum(sum(Amplitude(grad(x))));
+
+%%
+% Function to minimize.
+
+f = @(x)1/2*norm(x-y,'fro')^2 + lambda*J(x);
+
+%%
+% The gradient of the functional read
+% \[ \nabla g(x) = x-y + \lambda \nabla J(x) \]
+% where the gradient of the smoothed TV norm is
+% \[ \nabla J(x)_i = G^*( u ) \qwhereq 
+%    u_i = \frac{ (G x)_i }{\norm{ (G x)_i }_\epsilon} \]
+% where \(G^*\) is the adjoint operator of \(G\) which corresponds to minus
+% a discretized divergence.
+
+%%
+% Define the gradient of TV norm. Note that |div| implement \(-G^*\).
+
+Normalize = @(u)u./repmat(Amplitude(u), [1 1 2]);
+GradJ = @(x)-div( Normalize(grad(x)) );
+
+%%
+% Gradient of the functional.
+
+Gradf = @(x)x-y+lambda*GradJ(x);
+
+%%
+% The gradient of the functional can be written as
+% \[ \nabla g(x) = x - y + G^* \circ \delta_{A(x)} \circ G (x) \]
+% where \(A(x) \in \RR^N\) is the norm of the gradient
+% \[ A(x)_i = \norm{(G u)_i} \]
+% and where, for \(x \in \RR^N\) and \( a \in \RR^{N} \), 
+% \[ \de_{a}(u)_i = \frac{u_i}{ \sqrt{\epsilon^2+a_i^2} }. \]
+
+A = @(x)sqrt(sum(grad(x).^2, 3));
+delta = @(a,u)u./sqrt( epsilon^2 + repmat(a.^2,[1 1 2]) );
+
+%%
+% This shows that the Hessian of \(f\) is
+% \[ Hf(x) = \text{Id} + G^* \circ \delta_{d(x)} \circ G + G^* \circ \Delta_{x} (G(x)) \]
+% where \(\Delta_{x}(u) \) is the derivative of the mapping \( x \mapsto
+% \delta_{d(x)}(u) \).
+
+%%
+% Note that since \(f\) is strictly convex, \(Hf(x)\) is a positive
+% definite matrix.
+
+%%
+% We use a quasi-Newton scheme
+% \[ x^{(\ell+1)} = x^{(\ell)} - H_\ell^{-1} \nabla f(x^{(\ell)}), \]
+% where \( H_\ell \) is an approximation of the Hessian \(H f(x^{(\ell)})\).
+
+%%
+% We define this approximation as
+% \[ H_\ell = \tilde H f(x^{(\ell)})
+%       \qwhereq
+%       \tilde Hf(x) = \text{Id} + G^* \circ \delta_{x} \circ G 
+% \]
+
+%%
+% \(H_\ell\) is a symmetric positive
+% definite matrix, that is bounded by bellow by the identity, 
+% which ensures the convergence of the method.
+
+
+%%
+% Implement \(\tilde H f(x)\). Note that is parameterized by \(a=A(x)\).
+
+H = @(z,a)z - lambda*div( delta(a, grad(z)) );
+
+
+%%
+% Implement \(\tilde H f(x)^{-1}\) using a conjugate gradient.
+% Note that it takes as argument a previous solution |u_prev|.
+
+flat = @(x)x(:); flatI = @(x)reshape(x,[n,n]);
+tol = eps; maxit = 40;
+Hinv = @(u,a,u_prev)cgs(@(z)flat(H(flatI(z),a)), flat(u),tol,maxit,[],[],flat(u_prev));
+
+%%
+% Initialize the algorithm \(x^{(0)} = y\).
+
+x = y;
+
+%%
+% Compute the vector \(d = H_\ell^{-1} \nabla f(x^{(\ell)})\).
+
+%%
+% _Important:_ to get read of the warning message, you should use the code
+% as this:
+
+d = zeros(n); % replace thie line by the previous iterate d value
+[d,~] = Hinv(Gradf(x), A(x), d);
+d = flatI(d);
+
+%%
+% Compute \(x^{(\ell+1)} = x^{(\ell)} - d\).
+
+x = x - d;
+
+%%
+% _Exercice 3:_ (<../missing-exo/ check the solution>)
+% Implement the Newton descent algorithm.
+
+exo3;
+
+%%
+% Display the result.
+
+clf;
+imageplot(clamp(x));
+
+%%
+% _Exercice 4:_ (<../missing-exo/ check the solution>)
+% Compare the Newton descent with the gradient descent with a fixed step
+% size, in term of decay of the energy.
+
+exo4;
+
+%%
+% _Exercice 5:_ (<../missing-exo/ check the solution>)
+% The direct comparison between gradient method and Newton is not fair in
+% term of iteration count. Indeed, and iteration of Newton requires
+% several steps of conjugate gradient, which takes some time.
+% Try to set-up a fair comparison benchmark that takes into account the
+% runing time of the methods. Pay a particular attention to the number of
+% steps (or the tolerance criterion) that parameterize |cgs|.
+
+exo5;
+
+##### SOURCE END #####
+-->
+   </body>
+</html>

@@ -1,0 +1,709 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>Gradient Descent Methods</title>
+      <NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
+               	requires JavaScript to process the mathematics on this page.<BR> 
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 8.2">
+      <meta name="date" content="2014-10-20">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>Gradient Descent Methods</h1>
+         <introduction>
+            <p>This tour explores the use of gradient descent method for unconstrained and constrained optimization of a smooth function</p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#8">Gradient Descent for Unconstrained Problems</a></li>
+               <li><a href="#12">Gradient Descent in 2-D</a></li>
+               <li><a href="#22">Gradient and Divergence of Images</a></li>
+               <li><a href="#37">Gradient Descent in Image Processing</a></li>
+               <li><a href="#51">Constrained Optimization Using Projected Gradient Descent</a></li>
+            </ul>
+         </div>
+         <h2>Installing toolboxes and setting up the path.<a name="1"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_signal.zip">signal toolbox</a> and <a href="../toolbox_general.zip">general toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_signal</tt> and <tt>toolbox_general</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
+getd(<span class="string">'toolbox_general/'</span>);
+</pre><h2>Gradient Descent for Unconstrained Problems<a name="8"></a></h2>
+         <p>We consider the problem of finding a minimum of a function \(f\), hence solving \[ \umin{x \in \RR^d} f(x) \] where \(f :
+            \RR^d \rightarrow \RR\) is a smooth function.
+         </p>
+         <p>Note that the minimum is not necessarily unique. In the general case, \(f\) might exhibit local minima, in which case the
+            proposed algorithms is not expected to find a global minimizer of the problem. In this tour, we restrict our attention to
+            convex function, so that the methods will converge to a global minimizer.
+         </p>
+         <p>The simplest method is the gradient descent, that computes \[ x^{(k+1)} = x^{(k)} - \tau_k \nabla f(x^{(k)}), \] where \(\tau_k&gt;0\)
+            is a step size, and \(\nabla f(x) \in \RR^d\) is the gradient of \(f\) at the point \(x\), and \(x^{(0)} \in \RR^d\) is any
+            initial point.
+         </p>
+         <p>In the convex case, if \(f\) is of class \(C^2\), in order to ensure convergence, the step size should satisfy \[ 0 &lt; \tau_k
+            &lt; \frac{2}{ \sup_x \norm{Hf(x)} } \] where \(Hf(x) \in \RR^{d \times d}\) is the Hessian of \(f\) at \(x\) and \( \norm{\cdot}
+            \) is the spectral operator norm (largest eigenvalue).
+         </p>
+         <h2>Gradient Descent in 2-D<a name="12"></a></h2>
+         <p>We consider a simple problem, corresponding to the minimization of a 2-D quadratic form \[ f(x) = \frac{1}{2} \pa{ x_1^2 +
+            \eta x_2^2, } \] where \( \eta&gt;0 \) controls the anisotropy, and hence the difficulty, of the problem.
+         </p>
+         <p>Anisotropy parameter \(\eta\).</p><pre class="codeinput">eta = 10;
+</pre><p>Function \(f\).</p><pre class="codeinput">f = @(x)( x(1)^2 + eta*x(2)^2 ) /2;
+</pre><p>Background image of the function.</p><pre class="codeinput">t = linspace(-.7,.7,101);
+[u,v] = meshgrid(t,t);
+F = ( u.^2 + eta*v.^2 )/2 ;
+</pre><p>Display the function as a 2-D image.</p><pre class="codeinput">clf; hold <span class="string">on</span>;
+imagesc(t,t,F); colormap <span class="string">jet(256)</span>;
+contour(t,t,F, 20, <span class="string">'k'</span>);
+axis <span class="string">off</span>; axis <span class="string">equal</span>;
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p>Gradient.</p><pre class="codeinput">Gradf = @(x)[x(1); eta*x(2)];
+</pre><p>The step size should satisfy \(\tau_k &lt; 2/\eta\). We use here a constrant step size.</p><pre class="codeinput">tau = 1.8/eta;
+</pre><p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Perform the gradient descent using a fixed step size \(\tau_k=\tau\). Display the decay of the energy \(f(x^{(k)})\) through
+            the iteration. Save the iterates so that <tt>X(:,k)</tt> corresponds to \(x^{(k)}\).
+         </p><pre class="codeinput">exo1;
+</pre><img vspace="5" hspace="5" src="index_02.png"> <p>Display the iterations.</p><pre class="codeinput">clf; hold <span class="string">on</span>;
+imagesc(t,t,F); colormap <span class="string">jet(256)</span>;
+contour(t,t,F, 20, <span class="string">'k'</span>);
+h = plot(X(1,:), X(2,:), <span class="string">'k.-'</span>);
+set(h, <span class="string">'LineWidth'</span>, 2);
+set(h, <span class="string">'MarkerSize'</span>, 15);
+axis <span class="string">off</span>; axis <span class="string">equal</span>;
+</pre><img vspace="5" hspace="5" src="index_03.png"> <p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Display the iteration for several different step sizes.
+         </p><pre class="codeinput">exo2;
+</pre><img vspace="5" hspace="5" src="index_04.png"> <h2>Gradient and Divergence of Images<a name="22"></a></h2>
+         <p>Local differential operators like gradient, divergence and laplacian are the building blocks for variational image processing.</p>
+         <p>Load an image \(x_0 \in \RR^N\) of \(N=n \times n\) pixels.</p><pre class="codeinput">n = 256;
+x0 = rescale( load_image(<span class="string">'lena'</span>,n) );
+</pre><p>Display it.</p><pre class="codeinput">clf;
+imageplot(x0);
+</pre><img vspace="5" hspace="5" src="index_05.png"> <p>For a continuous function \(g\), the gradient reads \[ \nabla g(s) = \pa{ \pd{g(s)}{s_1}, \pd{g(s)}{s_2} } \in \RR^2. \] (note
+            that here, the variable \(s\) denotes the 2-D spacial position).
+         </p>
+         <p>We discretize this differential operator on a discrete image \(x \in \RR^N\) using first order finite differences. \[ (\nabla
+            x)_i = ( x_{i_1,i_2}-x_{i_1-1,i_2}, x_{i_1,i_2}-x_{i_1,i_2-1} ) \in \RR^2. \] Note that for simplity we use periodic boundary
+            conditions.
+         </p>
+         <p>Compute its gradient, using finite differences.</p><pre class="codeinput">grad = @(x)cat(3, x-x([end 1:end-1],:), x-x(:,[end 1:end-1]));
+</pre><p>One thus has \( \nabla : \RR^N \mapsto \RR^{N \times 2}. \)</p><pre class="codeinput">v = grad(x0);
+</pre><p>One can display each of its components.</p><pre class="codeinput">clf;
+imageplot(v(:,:,1), <span class="string">'d/dx'</span>, 1,2,1);
+imageplot(v(:,:,2), <span class="string">'d/dy'</span>, 1,2,2);
+</pre><img vspace="5" hspace="5" src="index_06.png"> <p>One can also display it using a color image.</p><pre class="codeinput">clf;
+imageplot(v);
+</pre><img vspace="5" hspace="5" src="index_07.png"> <p>One can display its magnitude \(\norm{(\nabla x)_i}\), which is large near edges.</p><pre class="codeinput">clf;
+imageplot( sqrt( sum3(v.^2,3) ) );
+</pre><img vspace="5" hspace="5" src="index_08.png"> <p>The divergence operator maps vector field to images. For continuous vector fields \(v(s) \in \RR^2\), it is defined as \[
+            \text{div}(v)(s) = \pd{v_1(s)}{s_1} +  \pd{v_2(s)}{s_2} \in \RR. \] (note that here, the variable \(s\) denotes the 2-D spacial
+            position). It is minus the adjoint of the gadient, i.e. \(\text{div} = - \nabla^*\).
+         </p>
+         <p>It is discretized, for \(v=(v^1,v^2)\) as \[ \text{div}(v)_i = v^1_{i_1+1,i_2} - v^1_{i_1,i_2} + v^2_{i_1,i_2+1} - v^2_{i_1,i_2}
+            . \]
+         </p><pre class="codeinput">div = @(v)v([2:end 1],:,1)-v(:,:,1) + v(:,[2:end 1],2)-v(:,:,2);
+</pre><p>The Laplacian operatore is defined as \(\Delta=\text{div} \circ  \nabla = -\nabla^* \circ \nabla\). It is thus a negative
+            symmetric operator.
+         </p><pre class="codeinput">delta = @(x)div(grad(x));
+</pre><p>Display \(\Delta x_0\).</p><pre class="codeinput">clf;
+imageplot(delta(x0));
+</pre><img vspace="5" hspace="5" src="index_09.png"> <p>Check that the relation \( \norm{\nabla x} = - \dotp{\Delta x}{x}.  \)</p><pre class="codeinput">dotp = @(a,b)sum(a(:).*b(:));
+fprintf(<span class="string">'Should be 0: %.3i\n'</span>, dotp(grad(x0), grad(x0)) + dotp(delta(x0),x0) );
+</pre><pre class="codeoutput">Should be 0: 000
+</pre><h2>Gradient Descent in Image Processing<a name="37"></a></h2>
+         <p>We consider now the problem of denoising an image \(y \in \RR^d\) where \(d = n \times n\) is the number of pixels (\(n\)
+            being the number of rows/columns in the image).
+         </p>
+         <p>Add noise to the original image, to simulate a noisy image.</p><pre class="codeinput">sigma = .1;
+y = x0 + randn(n)*sigma;
+</pre><p>Display the noisy image \(y\).</p><pre class="codeinput">clf;
+imageplot(clamp(y));
+</pre><img vspace="5" hspace="5" src="index_10.png"> <p>Denoising is obtained by minimizing the following functional \[ \umin{x \in \RR^d} f(x) = \frac{1}{2} \norm{y-x}^2 + \la J_\epsilon(x)
+            \] where \(J_\epsilon(x)\) is a smoothed total variation of the image. \[ J_\epsilon(x) = \sum_i \norm{ (G x)_i }_{\epsilon}
+            \] where \( (Gx)_i \in \RR^2 \) is an approximation of the gradient of \(x\) at pixel \(i\) and for \(u \in \RR^2\), we use
+            the following smoothing of the \(L^2\) norm in \(\RR^2\) \[ \norm{u}_\epsilon = \sqrt{ \epsilon^2 + \norm{u}^2 }, \] for a
+            small value of \(\epsilon&gt;0\).
+         </p>
+         <p>The gradient of the functional read \[ \nabla f(x) = x-y + \lambda \nabla J_\epsilon(x) \] where the gradient of the smoothed
+            TV norm is \[ \nabla J_\epsilon(x)_i = G^*( u ) \qwhereq    u_i = \frac{ (G x)_i }{\norm{ (G x)_i }_\epsilon} \] where \(G^*\)
+            is the adjoint operator of \(G\) which corresponds to minus a discretized divergence.
+         </p>
+         <p>Value for \(\lambda\).</p><pre class="codeinput">lambda = .3/5;
+</pre><p>Value for \(\epsilon\).</p><pre class="codeinput">epsilon = 1e-3;
+</pre><p>TV norm.</p><pre class="codeinput">NormEps = @(u,epsilon)sqrt(epsilon^2 + sum(u.^2,3));
+J = @(x,epsilon)sum(sum(NormEps(grad(x),epsilon)));
+</pre><p>Function \(f\) to minimize.</p><pre class="codeinput">f = @(y,x,epsilon)1/2*norm(x-y,<span class="string">'fro'</span>)^2 + lambda*J(x,epsilon);
+</pre><p>Gradient of \(J_\epsilon\). Note that <tt>div</tt> implement \(-G^*\).
+         </p><pre class="codeinput">Normalize = @(u,epsilon)u./repmat(NormEps(u,epsilon), [1 1 2]);
+GradJ = @(x,epsilon)-div( Normalize(grad(x),epsilon) );
+</pre><p>Gradient of the functional.</p><pre class="codeinput">Gradf = @(y,x,epsilon)x-y+lambda*GradJ(x,epsilon);
+</pre><p>The step size should satisfy \[ 0 &lt; \tau_k &lt; \frac{2}{ 1 + 4 \lambda / \epsilon }. \] Here we use a slightly larger step size,
+            which still work in practice.
+         </p><pre class="codeinput">tau = 1.8/( 1 + lambda*8/epsilon );
+tau = tau*4;
+</pre><p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) Implement the gradient descent. Monitor the decay of \(f\) through the iterations.
+         </p><pre class="codeinput">exo3;
+</pre><img vspace="5" hspace="5" src="index_11.png"> <p>Display the resulting denoised image.</p><pre class="codeinput">clf;
+imageplot(clamp(x));
+</pre><img vspace="5" hspace="5" src="index_12.png"> <h2>Constrained Optimization Using Projected Gradient Descent<a name="51"></a></h2>
+         <p>We consider a linear imaging operator \(\Phi : x \mapsto \Phi(x)\) that maps high resolution images to low dimensional observations.
+            Here we consider a pixel masking operator, that is diagonal over the spacial domain.
+         </p>
+         <p>To emphasis the effect of the TV functional, we use a simple geometric image.</p><pre class="codeinput">n = 64;
+name = <span class="string">'square'</span>;
+x0 = load_image(name,n);
+</pre><p>We consider here the inpainting problem. This simply corresponds to a masking operator. Here we remove the central part of
+            the image.
+         </p><pre class="codeinput">a = 4;
+Lambda = ones(n);
+Lambda(end/2-a:end/2+a,:) = 0;
+</pre><p>Masking operator \( \Phi \). Note that it is symmetric, i.e. \(\Phi^*=\Phi\)</p><pre class="codeinput">Phi  = @(x)x.*Lambda;
+PhiS = @(x)Phi(x);
+</pre><p>Noiseless observations \(y=\Phi x_0\).</p><pre class="codeinput">y = Phi(x0);
+</pre><p>Display.</p><pre class="codeinput">clf;
+imageplot(x0, <span class="string">'Original'</span>, 1,2,1);
+imageplot(y, <span class="string">'Damaged'</span>, 1,2,2);
+</pre><img vspace="5" hspace="5" src="index_13.png"> <p>We want to solve the noiseless inverse problem \(y=\Phi f\) using a total variation regularization: \[ \umin{ y=\Phi x } J_\epsilon(x).
+            \] We use the following projected gradient descent \[ x^{(k+1)} = \text{Proj}_{\Hh}( x^{(k)} - \tau_k \nabla J_{\epsilon}(x^{(k)})
+            ) \] where \(\text{Proj}_{\Hh}\) is the orthogonal projection on the set of linear constraint \(\Phi x = y\), and is easy
+            to compute for inpainting
+         </p><pre class="codeinput">ProjH = @(x,y) x + PhiS( y - Phi(x) );
+</pre><p><i>Exercice 4:</i> (<a href="../missing-exo/">check the solution</a>) Display the evolution of the inpainting process.
+         </p><pre class="codeinput">exo4;
+</pre><img vspace="5" hspace="5" src="index_14.png"> <p><i>Exercice 5:</i> (<a href="../missing-exo/">check the solution</a>) Try with several values of \(\epsilon\).
+         </p><pre class="codeinput">exo5;
+</pre><img vspace="5" hspace="5" src="index_15.png"> <p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Gradient Descent Methods
+% This tour explores the use of gradient descent method for unconstrained
+% and constrained optimization of a smooth function
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_signal.zip signal toolbox> and 
+% <../toolbox_general.zip general toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_signal| and 
+% |toolbox_general|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_signal/');
+getd('toolbox_general/');
+
+%% Gradient Descent for Unconstrained Problems
+% We consider the problem of finding a minimum of a function \(f\), hence
+% solving
+% \[ \umin{x \in \RR^d} f(x) \]
+% where \(f : \RR^d \rightarrow \RR\) is a smooth function.
+
+%%
+% Note that the minimum is not necessarily unique. In the general case, 
+% \(f\) might exhibit local minima, in which case the proposed algorithms 
+% is not expected to find a global minimizer of the problem.
+% In this tour, we restrict our attention to convex function, so that 
+% the methods will converge to a global minimizer.
+
+%%
+% The simplest method is the gradient descent, that computes
+% \[ x^{(k+1)} = x^{(k)} - \tau_k \nabla f(x^{(k)}), \]
+% where \(\tau_k>0\) is a step size, and \(\nabla f(x) \in \RR^d\) is the
+% gradient of \(f\) at the point \(x\), and \(x^{(0)} \in \RR^d\) is any initial point.
+
+%%
+% In the convex case, if \(f\) is of class \(C^2\), 
+% in order to ensure convergence, the step size should satisfy
+% \[ 0 < \tau_k < \frac{2}{ \sup_x \norm{Hf(x)} } \]
+% where \(Hf(x) \in \RR^{d \times d}\) is the Hessian of \(f\) at \(x\)
+% and \( \norm{\cdot} \) is the spectral operator norm (largest eigenvalue). 
+
+%% Gradient Descent in 2-D
+% We consider a simple problem, corresponding to the minimization of a 2-D
+% quadratic form
+% \[ f(x) = \frac{1}{2} \pa{ x_1^2 + \eta x_2^2, } \]
+% where \( \eta>0 \) controls the anisotropy, and hence the difficulty, of
+% the problem.
+
+%%
+% Anisotropy parameter \(\eta\).
+
+eta = 10;
+
+%%
+% Function \(f\).
+
+f = @(x)( x(1)^2 + eta*x(2)^2 ) /2;
+
+%%
+% Background image of the function.
+
+t = linspace(-.7,.7,101);
+[u,v] = meshgrid(t,t);
+F = ( u.^2 + eta*v.^2 )/2 ;
+
+%%
+% Display the function as a 2-D image.
+
+clf; hold on;
+imagesc(t,t,F); colormap jet(256);
+contour(t,t,F, 20, 'k');
+axis off; axis equal;
+
+%%
+% Gradient.
+
+Gradf = @(x)[x(1); eta*x(2)];
+
+%%
+% The step size should satisfy \(\tau_k < 2/\eta\). We use here a constrant
+% step size.
+
+tau = 1.8/eta;
+
+%%
+% _Exercice 1:_ (<../missing-exo/ check the solution>)
+% Perform the gradient descent using a fixed step size \(\tau_k=\tau\).
+% Display the decay of the energy \(f(x^{(k)})\) through the iteration.
+% Save the iterates so that |X(:,k)| corresponds to \(x^{(k)}\).
+
+exo1;
+
+%%
+% Display the iterations.
+
+clf; hold on;
+imagesc(t,t,F); colormap jet(256);
+contour(t,t,F, 20, 'k');
+h = plot(X(1,:), X(2,:), 'k.-');
+set(h, 'LineWidth', 2);
+set(h, 'MarkerSize', 15);
+axis off; axis equal;
+
+%%
+% _Exercice 2:_ (<../missing-exo/ check the solution>)
+% Display the iteration for several different step sizes.
+
+exo2;
+
+
+%% Gradient and Divergence of Images
+% Local differential operators like gradient, divergence and laplacian are
+% the building blocks for variational image processing.
+
+%%
+% Load an image \(x_0 \in \RR^N\) of \(N=n \times n\) pixels.
+
+n = 256;
+x0 = rescale( load_image('lena',n) );
+
+%%
+% Display it.
+
+clf;
+imageplot(x0);
+
+%%
+% For a continuous function \(g\), the gradient reads
+% \[ \nabla g(s) = \pa{ \pd{g(s)}{s_1}, \pd{g(s)}{s_2} } \in \RR^2. \]
+% (note that here, the variable \(s\) denotes the 2-D spacial position).
+
+%%
+% We discretize this differential operator on a discrete image \(x \in \RR^N\) using first order finite
+% differences. 
+% \[ (\nabla x)_i = ( x_{i_1,i_2}-x_{i_1-1,i_2}, x_{i_1,i_2}-x_{i_1,i_2-1} ) \in \RR^2. \]
+% Note that for simplity we use periodic boundary conditions.
+
+%%
+% Compute its gradient, using finite differences.
+
+grad = @(x)cat(3, x-x([end 1:end-1],:), x-x(:,[end 1:end-1]));
+
+%%
+% One thus has \( \nabla : \RR^N \mapsto \RR^{N \times 2}. \)
+
+v = grad(x0);
+
+%%
+% One can display each of its components.
+
+clf;
+imageplot(v(:,:,1), 'd/dx', 1,2,1);
+imageplot(v(:,:,2), 'd/dy', 1,2,2);
+
+%%
+% One can also display it using a color image.
+
+clf; 
+imageplot(v);
+
+%%
+% One can display its magnitude \(\norm{(\nabla x)_i}\), which is large near edges.
+
+clf; 
+imageplot( sqrt( sum3(v.^2,3) ) );
+
+%%
+% The divergence operator maps vector field to images. 
+% For continuous vector fields \(v(s) \in \RR^2\), it is defined as
+% \[ \text{div}(v)(s) = \pd{v_1(s)}{s_1} +  \pd{v_2(s)}{s_2} \in \RR. \]
+% (note that here, the variable \(s\) denotes the 2-D spacial position).
+% It is minus the adjoint of the gadient, i.e. \(\text{div} = - \nabla^*\).
+
+%% 
+% It is discretized, for \(v=(v^1,v^2)\) as
+% \[ \text{div}(v)_i = v^1_{i_1+1,i_2} - v^1_{i_1,i_2} + v^2_{i_1,i_2+1} - v^2_{i_1,i_2} . \]
+
+div = @(v)v([2:end 1],:,1)-v(:,:,1) + v(:,[2:end 1],2)-v(:,:,2);
+
+
+%%
+% The Laplacian operatore is defined as \(\Delta=\text{div} \circ  \nabla =
+% -\nabla^* \circ \nabla\). It is thus a negative symmetric operator.
+
+delta = @(x)div(grad(x));
+
+%% 
+% Display \(\Delta x_0\).
+
+clf; 
+imageplot(delta(x0));
+
+
+%%
+% Check that the relation \( \norm{\nabla x} = - \dotp{\Delta x}{x}.  \)
+
+dotp = @(a,b)sum(a(:).*b(:));
+fprintf('Should be 0: %.3i\n', dotp(grad(x0), grad(x0)) + dotp(delta(x0),x0) );
+
+
+%% Gradient Descent in Image Processing
+% We consider now the problem of denoising an image \(y \in \RR^d\) where
+% \(d = n \times n\) is the number of pixels (\(n\) being the number of rows/columns in the image).
+
+%%
+% Add noise to the original image, to simulate a noisy image.
+
+sigma = .1;
+y = x0 + randn(n)*sigma;
+
+%%
+% Display the noisy image \(y\).
+
+clf;
+imageplot(clamp(y));
+
+%%
+% Denoising is obtained by minimizing the following functional
+% \[ \umin{x \in \RR^d} f(x) = \frac{1}{2} \norm{y-x}^2 + \la J_\epsilon(x) \]
+% where \(J_\epsilon(x)\) is a smoothed total variation of the image.
+% \[ J_\epsilon(x) = \sum_i \norm{ (G x)_i }_{\epsilon} \]
+% where \( (Gx)_i \in \RR^2 \) is an approximation of the gradient of \(x\) at pixel
+% \(i\) and for \(u \in \RR^2\), we use the following smoothing of the
+% \(L^2\) norm in \(\RR^2\)
+% \[ \norm{u}_\epsilon = \sqrt{ \epsilon^2 + \norm{u}^2 }, \]
+% for a small value of \(\epsilon>0\).
+
+%%
+% The gradient of the functional read
+% \[ \nabla f(x) = x-y + \lambda \nabla J_\epsilon(x) \]
+% where the gradient of the smoothed TV norm is
+% \[ \nabla J_\epsilon(x)_i = G^*( u ) \qwhereq 
+%    u_i = \frac{ (G x)_i }{\norm{ (G x)_i }_\epsilon} \]
+% where \(G^*\) is the adjoint operator of \(G\) which corresponds to minus
+% a discretized divergence.
+
+%%
+% Value for \(\lambda\).
+
+lambda = .3/5;
+
+%%
+% Value for \(\epsilon\).
+
+epsilon = 1e-3;
+
+%%
+% TV norm.
+
+NormEps = @(u,epsilon)sqrt(epsilon^2 + sum(u.^2,3));
+J = @(x,epsilon)sum(sum(NormEps(grad(x),epsilon)));
+
+%%
+% Function \(f\) to minimize.
+
+f = @(y,x,epsilon)1/2*norm(x-y,'fro')^2 + lambda*J(x,epsilon);
+
+%%
+% Gradient of \(J_\epsilon\). Note that |div| implement \(-G^*\).
+
+Normalize = @(u,epsilon)u./repmat(NormEps(u,epsilon), [1 1 2]);
+GradJ = @(x,epsilon)-div( Normalize(grad(x),epsilon) );
+
+%%
+% Gradient of the functional.
+
+Gradf = @(y,x,epsilon)x-y+lambda*GradJ(x,epsilon);
+
+%%
+% The step size should satisfy
+% \[ 0 < \tau_k < \frac{2}{ 1 + 4 \lambda / \epsilon }. \]
+% Here we use a slightly larger step size, which still work in practice.
+
+tau = 1.8/( 1 + lambda*8/epsilon );
+tau = tau*4;
+
+%%
+% _Exercice 3:_ (<../missing-exo/ check the solution>)
+% Implement the gradient descent. Monitor the decay of \(f\) through the
+% iterations.
+
+exo3;
+
+%%
+% Display the resulting denoised image.
+
+clf;
+imageplot(clamp(x));
+
+
+%% Constrained Optimization Using Projected Gradient Descent
+% We consider a linear imaging operator \(\Phi : x \mapsto \Phi(x)\)
+% that maps high resolution images to low dimensional observations.
+% Here we consider a pixel masking operator, that is diagonal over the
+% spacial domain.
+
+%%
+% To emphasis the effect of the TV functional, we use a simple geometric
+% image.
+
+n = 64;
+name = 'square';
+x0 = load_image(name,n);
+
+%%
+% We consider here the inpainting problem. This simply corresponds to a
+% masking operator.
+% Here we remove the central part of the image.
+
+a = 4;
+Lambda = ones(n);
+Lambda(end/2-a:end/2+a,:) = 0;
+
+%%
+% Masking operator \( \Phi \). Note that it is symmetric, i.e. \(\Phi^*=\Phi\)
+
+Phi  = @(x)x.*Lambda;
+PhiS = @(x)Phi(x);
+
+%%
+% Noiseless observations \(y=\Phi x_0\).
+
+y = Phi(x0);
+
+%%
+% Display.
+
+clf;
+imageplot(x0, 'Original', 1,2,1);
+imageplot(y, 'Damaged', 1,2,2);
+
+%%
+% We want to solve the noiseless inverse problem \(y=\Phi f\) using a total
+% variation regularization:
+% \[ \umin{ y=\Phi x } J_\epsilon(x). \]
+% We use the following projected gradient descent
+% \[ x^{(k+1)} = \text{Proj}_{\Hh}( x^{(k)} - \tau_k \nabla J_{\epsilon}(x^{(k)}) ) \]
+% where \(\text{Proj}_{\Hh}\) is the orthogonal projection on the set of
+% linear constraint \(\Phi x = y\), and is easy to compute for inpainting
+
+ProjH = @(x,y) x + PhiS( y - Phi(x) );
+
+%%
+% _Exercice 4:_ (<../missing-exo/ check the solution>)
+% Display the evolution of the inpainting process.
+
+exo4;
+
+%%
+% _Exercice 5:_ (<../missing-exo/ check the solution>)
+% Try with several values of \(\epsilon\).
+
+exo5;
+
+
+##### SOURCE END #####
+-->
+   </body>
+</html>

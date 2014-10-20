@@ -1,0 +1,754 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>Volumetric wavelet Data Processing</title>
+      <NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
+               	requires JavaScript to process the mathematics on this page.<BR> 
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 8.2">
+      <meta name="date" content="2014-10-20">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>Volumetric wavelet Data Processing</h1>
+         <introduction>
+            <p>This numerical tour explores volumetric (3D) data processing.</p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#9">3D Volumetric Datasets</a></li>
+               <li><a href="#13">3D Haar Transform</a></li>
+               <li><a href="#17">Volumetric Data Haar Approximation</a></li>
+               <li><a href="#22">Linear Volumetric Denoising</a></li>
+               <li><a href="#32">Non-Linear Wavelet Volumetric Denoising</a></li>
+               <li><a href="#39">Higher Order Daubechies Wavelets</a></li>
+               <li><a href="#50">Denoising Daubechies Wavelets</a></li>
+            </ul>
+         </div>
+         <h2>Installing toolboxes and setting up the path.<a name="1"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_signal.zip">signal toolbox</a> and <a href="../toolbox_general.zip">general toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_signal</tt> and <tt>toolbox_general</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
+getd(<span class="string">'toolbox_general/'</span>);
+</pre><p>For Scilab user (otherwise there is not enough memory). WARNING: you should extend the stack size only ONCE.</p><pre class="codeinput">extend_stack_size(10);
+</pre><h2>3D Volumetric Datasets<a name="9"></a></h2>
+         <p>We load a volumetric data.</p><pre class="codeinput">name = <span class="string">'vessels'</span>;
+options.nbdims = 3;
+M = read_bin(name, options);
+M = rescale(M);
+<span class="comment">% size of the image (here it is a cube).</span>
+n = size(M,1);
+</pre><p>We can display some horizontal slices.</p><pre class="codeinput">slices = round(linspace(10,n-10,4));
+clf;
+<span class="keyword">for</span> i=1:length(slices)
+    s = slices(i);
+    imageplot( M(:,:,s), strcat([<span class="string">'Z='</span> num2str(s)]), 2,2,i );
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p>We can display an isosurface of the dataset (here we sub-sample to speed up the computation).</p><pre class="codeinput">sel = 1:2:n;
+clf;
+isosurface( M(sel,sel,sel), .5);
+axis(<span class="string">'off'</span>);
+</pre><img vspace="5" hspace="5" src="index_02.png"> <h2>3D Haar Transform<a name="13"></a></h2>
+         <p>An isotropic 3D Haar transform recursively extract details wavelet coefficients by performing local averages/differences along
+            the X/Y/Z axis.
+         </p>
+         <p>We apply a step of Haar transform in the X/Y/Z direction</p><pre class="codeinput"><span class="comment">% initialize the transform</span>
+MW = M;
+<span class="comment">% average/difference along X</span>
+MW = cat3(1, (MW(1:2:n,:,:)+MW(2:2:n,:,:))/sqrt(2), (MW(1:2:n,:,:)-MW(2:2:n,:,:))/sqrt(2) );
+<span class="comment">% average/difference along Y</span>
+MW = cat3(2, (MW(:,1:2:n,:)+MW(:,2:2:n,:))/sqrt(2), (MW(:,1:2:n,:)-MW(:,2:2:n,:))/sqrt(2) );
+<span class="comment">% average/difference along Z</span>
+MW = cat3(3, (MW(:,:,1:2:n)+MW(:,:,2:2:n))/sqrt(2), (MW(:,:,1:2:n)-MW(:,:,2:2:n))/sqrt(2) );
+</pre><p>Display a horizontal and vertical slice to see the structure of the coefficients.</p><pre class="codeinput">clf;
+imageplot(MW(:,:,30), <span class="string">'Horizontal slice'</span>, 1,2,1);
+imageplot(squeeze(MW(:,30,:)), <span class="string">'Vertical slice'</span>, 1,2,2);
+</pre><img vspace="5" hspace="5" src="index_03.png"> <p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Implement the forward wavelet transform by iteratively applying these transform steps to the low pass residual.
+         </p><pre class="codeinput">exo1;
+</pre><h2>Volumetric Data Haar Approximation<a name="17"></a></h2>
+         <p>An approximation is obtained by keeping only the largest coefficients.</p>
+         <p>We threshold the coefficients to perform <tt>m</tt>-term approximation.
+         </p><pre class="codeinput"><span class="comment">% number of kept coefficients</span>
+m = round(.01*n^3);
+MWT = perform_thresholding(MW, m, <span class="string">'largest'</span>);
+</pre><p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Implement the backward transform to compute an approximation <tt>M1</tt> from the coefficients <tt>MWT</tt>.
+         </p><pre class="codeinput">exo2;
+</pre><p>Display the approximation as slices.</p><pre class="codeinput">s = 30;
+clf;
+imageplot( M(:,:,s), <span class="string">'Original'</span>, 1,2,1 );
+imageplot( clamp(M1(:,:,s)), <span class="string">'Approximation'</span>, 1,2,2 );
+</pre><img vspace="5" hspace="5" src="index_04.png"> <p>Display the approximated isosurface.</p><pre class="codeinput">sel = 1:2:n;
+clf;
+isosurface( M1(sel,sel,sel), .5);
+axis(<span class="string">'off'</span>);
+</pre><img vspace="5" hspace="5" src="index_05.png"> <h2>Linear Volumetric Denoising<a name="22"></a></h2>
+         <p>Linear denoising is obtained by low pass filtering.</p>
+         <p>We add a Gaussian noise to the image.</p><pre class="codeinput"><span class="comment">% noise level.</span>
+sigma = .06;
+Mnoisy = M + sigma*randn(n,n,n);
+</pre><p>Display slices of the noisy data.</p><pre class="codeinput">clf;
+imageplot(Mnoisy(:,:,n/2),<span class="string">'X slice'</span>, 1,2,1);
+imageplot(squeeze(Mnoisy(:,n/2,:)),<span class="string">'Y slice'</span>, 1,2,2);
+</pre><img vspace="5" hspace="5" src="index_06.png"> <p>A simple denoising method performs a linear filtering of the data.</p>
+         <p>We build a Gaussian filter of width <tt>sigma</tt>.
+         </p><pre class="codeinput"><span class="comment">% construct a 3D grid</span>
+x = -n/2:n/2-1;
+[X,Y,Z] = ndgrid(x,x,x);
+<span class="comment">% gaussian filter</span>
+s = 2; <span class="comment">% width</span>
+h = exp( -(X.^2 + Y.^2 + Z.^2)/(2*s^2) );
+h = h/sum(h(:));
+</pre><p>The filtering is computed over the Fourier domain.</p><pre class="codeinput">Mh = real( ifftn( fftn(Mnoisy) .* fftn(fftshift(h)) ) );
+</pre><p>Display denoised slices.</p><pre class="codeinput">i = 40;
+clf;
+imageplot( Mnoisy(:,:,i), <span class="string">'Noisy'</span>, 1,2,1 );
+imageplot( Mh(:,:,i), <span class="string">'Denoised'</span>, 1,2,2 );
+</pre><img vspace="5" hspace="5" src="index_07.png"> <p>Display denoised iso-surface.</p><pre class="codeinput">sel = 1:2:n;
+clf;
+isosurface( Mh(sel,sel,sel), .5);
+axis(<span class="string">'off'</span>);
+</pre><img vspace="5" hspace="5" src="index_08.png"> <p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) Select the optimal blurring width <tt>s</tt> to reach the smallest possible SNR. Keep the optimal denoising <tt>Mblur</tt></p><pre class="codeinput">exo3;
+</pre><img vspace="5" hspace="5" src="index_09.png"> <p>Display optimally denoised iso-surface.</p><pre class="codeinput">sel = 1:2:n;
+clf;
+isosurface( Mblur(sel,sel,sel), .5);
+axis(<span class="string">'off'</span>);
+title([<span class="string">'Filtering, SNR='</span> num2str(snr(M,Mblur),3) <span class="string">'dB'</span>]);
+</pre><img vspace="5" hspace="5" src="index_10.png"> <h2>Non-Linear Wavelet Volumetric Denoising<a name="32"></a></h2>
+         <p>Denoising is obtained by removing small amplitude coefficients that corresponds to noise.</p>
+         <p><i>Exercice 4:</i> (<a href="../missing-exo/">check the solution</a>) Perforn Wavelet denoising by thresholding the wavelet coefficients of Mnoisy. Test both hard thresholding and soft thresholding
+            to determine the optimal threshold and the corresponding SNR. Record the optimal result <tt>Mwav</tt>.
+         </p><pre class="codeinput">exo4;
+</pre><img vspace="5" hspace="5" src="index_11.png"> <p>Display denoised iso-surface with optimal soft thresholding.</p><pre class="codeinput">sel = 1:2:n;
+clf;
+isosurface( Mwav(sel,sel,sel), .5);
+title([<span class="string">'Soft thresholding, SNR='</span> num2str(snr(M,Mwav),3) <span class="string">'dB'</span>]);
+axis(<span class="string">'off'</span>);
+</pre><img vspace="5" hspace="5" src="index_12.png"> <p>Orthogonal wavelet thresholdings suffers from blocking artifacts. This can be aleviated by performing a cycle spinning denoising,
+            which average the denosing result of translated version of the signal.
+         </p>
+         <p>A typical cycle spinning process is like this.</p><pre class="codeinput"><span class="comment">% maximum translation</span>
+w = 4;
+<span class="comment">% list of translations</span>
+[dX,dY,dZ] = ndgrid(0:w-1,0:w-1,0:w-1);
+<span class="comment">% initialize spinning process</span>
+Mspin = zeros(n,n,n);
+<span class="comment">% spin</span>
+<span class="keyword">for</span> i=1:w^3
+    <span class="comment">% shift the image</span>
+    MnoisyC = circshift(Mnoisy, [dX(i) dY(i) dZ(i)]);
+    <span class="comment">% denoise the image to get a result M1</span>
+    M1 = MnoisyC; <span class="comment">% replace this line by some denoising</span>
+    <span class="comment">% shift inverse</span>
+    M1 = circshift(M1, -[dX(i) dY(i) dZ(i)]);
+    <span class="comment">% average the result</span>
+    Mspin = Mspin*(i-1)/i + M1/i;
+<span class="keyword">end</span>
+</pre><p><i>Exercice 5:</i> (<a href="../missing-exo/">check the solution</a>) Implement cycle spinning hard thresholding with <tt>T=3*sigma</tt>.
+         </p><pre class="codeinput">exo5;
+</pre><p>Display denoised iso-surface.</p><pre class="codeinput">sel = 1:2:n;
+clf;
+isosurface( Mspin(sel,sel,sel), .5);
+title([<span class="string">'Cycle spinning, SNR='</span> num2str(snr(M,Mspin),3) <span class="string">'dB'</span>]);
+axis(<span class="string">'off'</span>);
+</pre><img vspace="5" hspace="5" src="index_13.png"> <h2>Higher Order Daubechies Wavelets<a name="39"></a></h2>
+         <p>Similarely to the Haar transform, wavelets with more vanishing moments are obtained with filtering and subsampling (pyramidal
+            algorihtm).
+         </p>
+         <p>First we create the filters for 4 vanishing moments.</p><pre class="codeinput">[h,g] = compute_wavelet_filter(<span class="string">'Daubechies'</span>,2*4);
+</pre><p>Then we initialize the wavelet transform with the 3D image itself, and set the current scale.</p><pre class="codeinput">MW = M;
+j = log2(n)-1;
+</pre><p>We transform by filtering + sub-sampling the low pass residual along the three directions.</p><pre class="codeinput">A = MW(1:2^(j+1),1:2^(j+1),1:2^(j+1));
+<span class="keyword">for</span> d=1:3
+    a = cat(d, subsampling(cconv(A,h,d),d), subsampling(cconv(A,g,d),d) );
+<span class="keyword">end</span>
+MW(1:2^(j+1),1:2^(j+1),1:2^(j+1)) = A;
+</pre><pre class="codeoutput">Error using @(a,b)real(ifft2(fft2(a).*fft2(b)))
+Too many input arguments.
+
+Error in index (line 290)
+    a = cat(d, subsampling(cconv(A,h,d),d), subsampling(cconv(A,g,d),d) );
+</pre><p><i>Exercice 6:</i> (<a href="../missing-exo/">check the solution</a>) Implement the full 3D forward wavelet transform by applying these steps for decaying scales <tt>j</tt> toward 0.
+         </p><pre class="codeinput">exo6;
+</pre><p>Threshold the coefficients.</p><pre class="codeinput">MWT = perform_thresholding(MW,m,<span class="string">'largest'</span>);
+</pre><p>Display the coefficients and thresholded coefficients for one slice.</p><pre class="codeinput">clf;
+subplot(1,2,1);
+plot_wavelet(MW(:,:,n/8));
+subplot(1,2,2);
+plot_wavelet(MWT(:,:,n/8));
+</pre><p>Initialize the backward transform.</p><pre class="codeinput">M1 = MWT;
+j = 0;
+</pre><p>Undo one step of the wavelet transform. <i>Note:</i> <tt>subselectdim(A,sel,1)</tt> is equivalent to <tt>A(sel,:,:)</tt> while <tt>subselectdim(A,sel,2)</tt> is equivalent to <tt>A(:,sel,:)</tt>.
+         </p><pre class="codeinput">A = M1(1:2^(j+1),1:2^(j+1),1:2^(j+1));
+<span class="keyword">for</span> d=1:3
+    W = subselectdim(A,2^j+1:2^(j+1),d);
+    A = subselectdim(A,1:2^j,d);
+    A = cconv(upsampling(A,d),reverse(h),d) + cconv(upsampling(W,d),reverse(g),d);
+<span class="keyword">end</span>
+M1(1:2^(j+1),1:2^(j+1),1:2^(j+1)) = A;
+</pre><p><i>Exercice 7:</i> (<a href="../missing-exo/">check the solution</a>) Implement the full 3D backward wavelet transform by applying these steps for increasing scales <tt>j</tt>.
+         </p><pre class="codeinput">exo7;
+</pre><p>Display approximated iso-surface.</p><pre class="codeinput">sel = 1:2:n;
+clf;
+isosurface( M1(sel,sel,sel), .5);
+title([<span class="string">'Soft thresholding, SNR='</span> num2str(snr(M,M1),3) <span class="string">'dB'</span>]);
+axis(<span class="string">'off'</span>);
+</pre><h2>Denoising Daubechies Wavelets<a name="50"></a></h2>
+         <p>Better denoising results are obtined by thresholding orthogonal wavelet coefficients.</p>
+         <p><i>Exercice 8:</i> (<a href="../missing-exo/">check the solution</a>) Implement denoising by soft and hard thresholding Daubechies wavelet coefficients.
+         </p><pre class="codeinput">exo8;
+</pre><p>Display denoised iso-surface with optimal soft thresholding.</p><pre class="codeinput">sel = 1:2:n;
+clf;
+isosurface( Mwav(sel,sel,sel), .5);
+title([<span class="string">'Soft thresholding, SNR='</span> num2str(snr(M,Mwav),3) <span class="string">'dB'</span>]);
+axis(<span class="string">'off'</span>);
+</pre><p><i>Exercice 9:</i> (<a href="../missing-exo/">check the solution</a>) Implement cycle spinning hard thresholding with Daubechies wavelets with <tt>T=3*sigma</tt>.
+         </p><pre class="codeinput">exo9;
+</pre><p>Display denoised iso-surface.</p><pre class="codeinput">sel = 1:2:n;
+clf;
+isosurface( Mspin(sel,sel,sel), .5);
+title([<span class="string">'Cycle spinning, SNR='</span> num2str(snr(M,Mspin),3) <span class="string">'dB'</span>]);
+axis(<span class="string">'off'</span>);
+</pre><p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Volumetric wavelet Data Processing
+% This numerical tour explores volumetric (3D) data processing.
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_signal.zip signal toolbox> and 
+% <../toolbox_general.zip general toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_signal| and 
+% |toolbox_general|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_signal/');
+getd('toolbox_general/');
+
+%%
+% For Scilab user (otherwise there is not enough memory). 
+% WARNING: you should extend the stack size only ONCE.
+
+extend_stack_size(10);
+
+%% 3D Volumetric Datasets
+
+%%
+% We load a volumetric data.
+
+name = 'vessels';
+options.nbdims = 3;
+M = read_bin(name, options);
+M = rescale(M);
+% size of the image (here it is a cube).
+n = size(M,1);
+
+%%
+% We can display some horizontal slices.
+
+slices = round(linspace(10,n-10,4));
+clf;
+for i=1:length(slices)
+    s = slices(i);
+    imageplot( M(:,:,s), strcat(['Z=' num2str(s)]), 2,2,i );
+end
+
+%%
+% We can display an isosurface of the dataset (here we sub-sample to speed
+% up the computation).
+
+sel = 1:2:n;
+clf;
+isosurface( M(sel,sel,sel), .5);
+axis('off');
+
+%% 3D Haar Transform
+% An isotropic 3D Haar transform recursively extract details wavelet
+% coefficients by performing local averages/differences along the X/Y/Z axis.
+
+%%
+% We apply a step of Haar transform in the X/Y/Z direction
+
+% initialize the transform
+MW = M;
+% average/difference along X
+MW = cat3(1, (MW(1:2:n,:,:)+MW(2:2:n,:,:))/sqrt(2), (MW(1:2:n,:,:)-MW(2:2:n,:,:))/sqrt(2) );
+% average/difference along Y
+MW = cat3(2, (MW(:,1:2:n,:)+MW(:,2:2:n,:))/sqrt(2), (MW(:,1:2:n,:)-MW(:,2:2:n,:))/sqrt(2) );
+% average/difference along Z
+MW = cat3(3, (MW(:,:,1:2:n)+MW(:,:,2:2:n))/sqrt(2), (MW(:,:,1:2:n)-MW(:,:,2:2:n))/sqrt(2) );
+
+%%
+% Display a horizontal and vertical slice to see the structure of the coefficients.
+
+clf;
+imageplot(MW(:,:,30), 'Horizontal slice', 1,2,1);
+imageplot(squeeze(MW(:,30,:)), 'Vertical slice', 1,2,2);
+
+%%
+% _Exercice 1:_ (<../missing-exo/ check the solution>)
+% Implement the forward wavelet transform by iteratively applying these
+% transform steps to the low pass residual.
+
+exo1;
+
+%% Volumetric Data Haar Approximation
+% An approximation is obtained by keeping only the largest coefficients.
+
+%% 
+% We threshold the coefficients to perform |m|-term approximation.
+
+% number of kept coefficients
+m = round(.01*n^3);
+MWT = perform_thresholding(MW, m, 'largest');
+
+%%
+% _Exercice 2:_ (<../missing-exo/ check the solution>)
+% Implement the backward transform to compute an approximation |M1| from
+% the coefficients |MWT|.
+
+exo2;
+
+%%
+% Display the approximation as slices.
+
+s = 30;
+clf;
+imageplot( M(:,:,s), 'Original', 1,2,1 );
+imageplot( clamp(M1(:,:,s)), 'Approximation', 1,2,2 );
+
+%%
+% Display the approximated isosurface.
+
+sel = 1:2:n;
+clf;
+isosurface( M1(sel,sel,sel), .5);
+axis('off');
+
+%% Linear Volumetric Denoising 
+% Linear denoising is obtained by low pass filtering.
+
+%%
+% We add a Gaussian noise to the image.
+
+% noise level.
+sigma = .06;
+Mnoisy = M + sigma*randn(n,n,n);
+
+%%
+% Display slices of the noisy data.
+
+clf;
+imageplot(Mnoisy(:,:,n/2),'X slice', 1,2,1);
+imageplot(squeeze(Mnoisy(:,n/2,:)),'Y slice', 1,2,2);
+
+%%
+% A simple denoising method performs a linear filtering of the data.
+
+%% 
+% We build a Gaussian filter of width |sigma|.
+
+% construct a 3D grid
+x = -n/2:n/2-1;
+[X,Y,Z] = ndgrid(x,x,x);
+% gaussian filter
+s = 2; % width
+h = exp( -(X.^2 + Y.^2 + Z.^2)/(2*s^2) );
+h = h/sum(h(:));
+
+%%
+% The filtering is computed over the Fourier domain.
+
+Mh = real( ifftn( fftn(Mnoisy) .* fftn(fftshift(h)) ) );
+
+%% 
+% Display denoised slices.
+
+i = 40;
+clf;
+imageplot( Mnoisy(:,:,i), 'Noisy', 1,2,1 );
+imageplot( Mh(:,:,i), 'Denoised', 1,2,2 );
+
+%%
+% Display denoised iso-surface.
+
+sel = 1:2:n;
+clf;
+isosurface( Mh(sel,sel,sel), .5);
+axis('off');
+
+%%
+% _Exercice 3:_ (<../missing-exo/ check the solution>)
+% Select the optimal blurring width |s| to reach the smallest possible
+% SNR. Keep the optimal denoising |Mblur|
+
+exo3;
+
+
+%%
+% Display optimally denoised iso-surface.
+
+sel = 1:2:n;
+clf;
+isosurface( Mblur(sel,sel,sel), .5);
+axis('off');
+title(['Filtering, SNR=' num2str(snr(M,Mblur),3) 'dB']);
+
+
+%% Non-Linear Wavelet Volumetric Denoising 
+% Denoising is obtained by removing small amplitude coefficients that
+% corresponds to noise.
+
+%%
+% _Exercice 4:_ (<../missing-exo/ check the solution>)
+% Perforn Wavelet denoising by thresholding the wavelet coefficients of
+% Mnoisy. Test both hard thresholding and soft thresholding to determine
+% the optimal threshold and the corresponding SNR.
+% Record the optimal result |Mwav|.
+
+exo4;
+
+%%
+% Display denoised iso-surface with optimal soft thresholding.
+
+sel = 1:2:n;
+clf;
+isosurface( Mwav(sel,sel,sel), .5);
+title(['Soft thresholding, SNR=' num2str(snr(M,Mwav),3) 'dB']);
+axis('off');
+
+%%
+% Orthogonal wavelet thresholdings suffers from blocking artifacts.
+% This can be aleviated by performing a cycle spinning denoising, which
+% average the denosing result of translated version of the signal.
+
+%%
+% A typical cycle spinning process is like this.
+
+% maximum translation
+w = 4;
+% list of translations
+[dX,dY,dZ] = ndgrid(0:w-1,0:w-1,0:w-1);
+% initialize spinning process
+Mspin = zeros(n,n,n);
+% spin
+for i=1:w^3
+    % shift the image
+    MnoisyC = circshift(Mnoisy, [dX(i) dY(i) dZ(i)]);
+    % denoise the image to get a result M1
+    M1 = MnoisyC; % replace this line by some denoising
+    % shift inverse
+    M1 = circshift(M1, -[dX(i) dY(i) dZ(i)]);
+    % average the result
+    Mspin = Mspin*(i-1)/i + M1/i;
+end
+
+%%
+% _Exercice 5:_ (<../missing-exo/ check the solution>)
+% Implement cycle spinning hard thresholding with |T=3*sigma|.
+
+exo5;
+
+%%
+% Display denoised iso-surface.
+
+sel = 1:2:n;
+clf;
+isosurface( Mspin(sel,sel,sel), .5);
+title(['Cycle spinning, SNR=' num2str(snr(M,Mspin),3) 'dB']);
+axis('off');
+
+%% Higher Order Daubechies Wavelets
+% Similarely to the Haar transform, wavelets with more vanishing moments
+% are obtained with filtering and subsampling (pyramidal algorihtm).
+
+%%
+% First we create the filters for 4 vanishing moments.
+
+[h,g] = compute_wavelet_filter('Daubechies',2*4);
+
+%%
+% Then we initialize the wavelet transform with the 3D image itself, and set the current scale.
+
+MW = M;
+j = log2(n)-1;
+
+%%
+% We transform by filtering + sub-sampling the low pass residual along the three directions.
+
+A = MW(1:2^(j+1),1:2^(j+1),1:2^(j+1));
+for d=1:3
+    a = cat(d, subsampling(cconv(A,h,d),d), subsampling(cconv(A,g,d),d) );
+end
+MW(1:2^(j+1),1:2^(j+1),1:2^(j+1)) = A;
+
+%%
+% _Exercice 6:_ (<../missing-exo/ check the solution>)
+% Implement the full 3D forward wavelet transform by applying these steps
+% for decaying scales |j| toward 0.
+
+exo6;
+
+%%
+% Threshold the coefficients.
+
+MWT = perform_thresholding(MW,m,'largest');
+
+%%
+% Display the coefficients and thresholded coefficients for one slice.
+
+clf;
+subplot(1,2,1);
+plot_wavelet(MW(:,:,n/8));
+subplot(1,2,2);
+plot_wavelet(MWT(:,:,n/8));
+
+%%
+% Initialize the backward transform.
+
+M1 = MWT;
+j = 0;
+
+%%
+% Undo one step of the wavelet transform.
+% _Note:_ |subselectdim(A,sel,1)| is equivalent to |A(sel,:,:)|
+% while |subselectdim(A,sel,2)| is equivalent to |A(:,sel,:)|.
+
+A = M1(1:2^(j+1),1:2^(j+1),1:2^(j+1));
+for d=1:3
+    W = subselectdim(A,2^j+1:2^(j+1),d);
+    A = subselectdim(A,1:2^j,d);
+    A = cconv(upsampling(A,d),reverse(h),d) + cconv(upsampling(W,d),reverse(g),d);
+end
+M1(1:2^(j+1),1:2^(j+1),1:2^(j+1)) = A;
+
+
+%%
+% _Exercice 7:_ (<../missing-exo/ check the solution>)
+% Implement the full 3D backward wavelet transform by applying these steps
+% for increasing scales |j|.
+
+exo7;
+
+%%
+% Display approximated iso-surface.
+
+sel = 1:2:n;
+clf;
+isosurface( M1(sel,sel,sel), .5);
+title(['Soft thresholding, SNR=' num2str(snr(M,M1),3) 'dB']);
+axis('off');
+
+%% Denoising Daubechies Wavelets
+% Better denoising results are obtined by thresholding orthogonal wavelet
+% coefficients.
+
+%%
+% _Exercice 8:_ (<../missing-exo/ check the solution>)
+% Implement denoising by soft and hard thresholding Daubechies wavelet
+% coefficients.
+
+exo8;
+
+%%
+% Display denoised iso-surface with optimal soft thresholding.
+
+sel = 1:2:n;
+clf;
+isosurface( Mwav(sel,sel,sel), .5);
+title(['Soft thresholding, SNR=' num2str(snr(M,Mwav),3) 'dB']);
+axis('off');
+
+%%
+% _Exercice 9:_ (<../missing-exo/ check the solution>)
+% Implement cycle spinning hard thresholding with Daubechies wavelets with |T=3*sigma|.
+
+exo9;
+
+%%
+% Display denoised iso-surface.
+
+sel = 1:2:n;
+clf;
+isosurface( Mspin(sel,sel,sel), .5);
+title(['Cycle spinning, SNR=' num2str(snr(M,Mspin),3) 'dB']);
+axis('off');
+##### SOURCE END #####
+-->
+   </body>
+</html>

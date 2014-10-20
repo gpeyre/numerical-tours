@@ -195,16 +195,18 @@ f = [];
     [X(:,:,1,i),map] = rgb2ind(g(:,:,:,i),map);
 <span class="keyword">end</span>
 imwrite(X+1, map, [<span class="string">'../html/graphics_9_dyntextures/video1.gif'</span>], <span class="string">'DelayTime'</span>,1/10, <span class="string">'loopcount'</span>, Inf);
+</pre><pre class="codeoutput">Error using imwrite (line 454)
+Unable to open file "../html/graphics_9_dyntextures/video1.gif" for writing.  You may not have write permission.
+
+Error in index (line 67)
+imwrite(X+1, map, ['../html/graphics_9_dyntextures/video1.gif'], 'DelayTime',1/10, 'loopcount', Inf);
 </pre><p>
             <div align="center">
             <img src="video1.gif" width="256"/>
             </div>
             
-         </p><pre class="codeoutput">Undefined function or variable 'exo1'.
-
-Error in index (line 149)
-
-</pre><p class="footer"><br>
+         </p>
+         <p class="footer"><br>
             Copyright  (c) 2010 Gabriel Peyre<br></p>
       </div>
       <!--

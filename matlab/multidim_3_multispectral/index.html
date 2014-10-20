@@ -1,0 +1,457 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>Multi-spectral Imaging</title>
+      <NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
+               	requires JavaScript to process the mathematics on this page.<BR> 
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 8.2">
+      <meta name="date" content="2014-10-20">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>Multi-spectral Imaging</h1>
+         <introduction>
+            <p>This numerical tour explores multi-spectral image processing.</p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#10">Multi-spectral Images</a></li>
+               <li><a href="#15">Multi-Spectral Image Compression</a></li>
+               <li><a href="#25">Multi-Spectral Image Denoising</a></li>
+            </ul>
+         </div>
+         <h2>Installing toolboxes and setting up the path.<a name="1"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_signal.zip">signal toolbox</a> and <a href="../toolbox_general.zip">general toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_signal</tt> and <tt>toolbox_general</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
+getd(<span class="string">'toolbox_general/'</span>);
+</pre><p>The multispectral image used in this tour is taken from the database of <a href="http://www2.cmp.uea.ac.uk/Research/compvis/MultiSpectralDB.htm">Hordley, Finlayson, Morovic</a> You can test the methods developped in this tour on other images.
+         </p>
+         <p>Scilab user should increase memory. WARNING: This should be done only once.</p><pre class="codeinput">extend_stack_size(10);
+</pre><h2>Multi-spectral Images<a name="10"></a></h2>
+         <p>A multi-spectral image is a <tt>(n,p,q)</tt> cube of data, where <tt>(n,p)</tt> is the size of the image, and <tt>q</tt> is the number of spectral samples, ranging from infra-red to ultra-violet. The RGB channels are located approximately at
+            samples locations <tt>[10 15 20]</tt></p>
+         <p>We load a multispectral image.</p><pre class="codeinput">name = <span class="string">'unclebens'</span>;
+options.nbdims = 3;
+M = read_bin(name, options);
+n = 256;
+M = rescale( crop(M,[n n size(M,3)]) );
+<span class="comment">% width of the image</span>
+n = size(M,1);
+<span class="comment">% number of spectral components</span>
+p = size(M,3);
+</pre><p>Display a few channels of the image.</p><pre class="codeinput">clf;
+imageplot(M(:,:,10), <span class="string">'R'</span>, 1,3,1);
+imageplot(M(:,:,15), <span class="string">'G'</span>, 1,3,2);
+imageplot(M(:,:,20), <span class="string">'B'</span>, 1,3,3);
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p>Display an approximate RGB image.</p><pre class="codeinput">rgbsel = [10 15 20];
+clf;
+imageplot(M(:,:,rgbsel), <span class="string">'RGB'</span>);
+</pre><img vspace="5" hspace="5" src="index_02.png"> <p>Display the spectral content of a given pixel. As you can see, spectral curves are quite smooth.</p><pre class="codeinput"><span class="comment">% pixel location</span>
+pos = [30 50];
+<span class="comment">% spectral content</span>
+v = M(pos(1),pos(2),:); v = v(:);
+clf;
+plot( v, <span class="string">'.-'</span>);
+axis(<span class="string">'tight'</span>);
+</pre><img vspace="5" hspace="5" src="index_03.png"> <h2>Multi-Spectral Image Compression<a name="15"></a></h2>
+         <p>To perform the compression / approximation of the full cube of data, one needs to use a 3D transformation of the cube. One
+            can use a truely 3D wavelet transform, or the combination (tensor product) of a 2D wavelet transform and a cosine transform.
+         </p>
+         <p>A 1D DCT is first applied to each spectral content.</p><pre class="codeinput">U = reshape( M, [n*n p] )';
+U = dct(U);
+U = reshape(U', [n n p]);
+</pre><p>We plot the spectral content of a pixel and its DCT transform. You can note that the DCT coefficients are quikcly decaying.</p><pre class="codeinput">clf;
+subplot(2,1,1);
+v = M(pos(1),pos(2),:); v = v(:);
+plot(v); axis(<span class="string">'tight'</span>);
+title(<span class="string">'Spetral content'</span>);
+subplot(2,1,2);
+v = U(pos(1),pos(2),:); v = v(:);
+plot(v); axis(<span class="string">'tight'</span>);
+title(<span class="string">'DCT tranform'</span>);
+</pre><img vspace="5" hspace="5" src="index_04.png"> <p>As the frequenc index <tt>i</tt> increase, the DCT component <tt>U(:,:,i)</tt> becomes small and noisy. Note that <tt>U(:,:,1)</tt> is the average of the spectral components.
+         </p><pre class="codeinput">ilist = [1 4 8 16];
+clf;
+<span class="keyword">for</span> i=1:length(ilist);
+    imageplot(U(:,:,ilist(i)), [<span class="string">'DCT freq '</span> num2str(ilist(i))], 2,2,i);
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="index_05.png"> <p>The tensor product transform is obtained by applying a 2D transform.</p><pre class="codeinput">Jmin = 3;
+UW = U;
+<span class="keyword">for</span> i=1:p
+    UW(:,:,i) = perform_wavelet_transf(U(:,:,i), Jmin, +1);
+<span class="keyword">end</span>
+</pre><p>Display two differents sets of wavelets coefficients</p><pre class="codeinput">clf;
+subplot(1,2,1);
+plot_wavelet(UW(:,:,1), Jmin);
+subplot(1,2,2);
+plot_wavelet(UW(:,:,10), Jmin);
+</pre><img vspace="5" hspace="5" src="index_06.png"> <p>Approximation is obtained by thresholding the coefficients.</p><pre class="codeinput"><span class="comment">% number of kept coefficients</span>
+m = round(.01*n*n*p);
+<span class="comment">% threshold to keep only m coefficients</span>
+UWT = perform_thresholding(UW, m, <span class="string">'largest'</span>);
+</pre><p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Implement the inverse transform to recover an approximation <tt>M1</tt> from the coefficients <tt>UWT</tt>.
+         </p><pre class="codeinput">exo1;
+</pre><img vspace="5" hspace="5" src="index_07.png"> <p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Compare the approximation error (both in term of SNR and visually) of a multispectral image with a 3D Haar basis and with
+            a tensor product of a 2D Haar and a DCT.
+         </p><pre class="codeinput">exo2;
+</pre><h2>Multi-Spectral Image Denoising<a name="25"></a></h2>
+         <p>A redundant representation of the multi-spectral image is obtained by using a DCT along the spectral dimension (3rd dimension)
+            and a 2D translation invariant wavelet transform of the spacial dimension.
+         </p>
+         <p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) Compare the denoising (both in term of SNR and visually) of a multispectral image with an independant thresholding of each
+            channel within a translation invariant 2D wavelet basis, and with a thresholding of the DCT/invariant wavelet representation.
+            For each method, compute the optimal threshold value.
+         </p><pre class="codeinput">exo3;
+</pre><p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Multi-spectral Imaging
+% This numerical tour explores multi-spectral image processing.
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_signal.zip signal toolbox> and 
+% <../toolbox_general.zip general toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_signal| and 
+% |toolbox_general|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_signal/');
+getd('toolbox_general/');
+
+%% 
+% The multispectral image used in this tour is taken from the database of 
+% <http://www2.cmp.uea.ac.uk/Research/compvis/MultiSpectralDB.htm Hordley, Finlayson, Morovic>
+% You can test the methods developped in this tour on other images.
+
+%%
+% Scilab user should increase memory.
+% WARNING: This should be done only once.
+
+extend_stack_size(10);
+
+%% Multi-spectral Images
+% A multi-spectral image is a |(n,p,q)| cube of data, where |(n,p)| is the size of the
+% image, and |q| is the number of spectral samples, ranging from infra-red
+% to ultra-violet. The RGB channels are located approximately at samples
+% locations |[10 15 20]|
+
+%%
+% We load a multispectral image.
+
+name = 'unclebens';
+options.nbdims = 3;
+M = read_bin(name, options);
+n = 256;
+M = rescale( crop(M,[n n size(M,3)]) );
+% width of the image
+n = size(M,1);
+% number of spectral components
+p = size(M,3);
+
+%%
+% Display a few channels of the image.
+
+clf;
+imageplot(M(:,:,10), 'R', 1,3,1);
+imageplot(M(:,:,15), 'G', 1,3,2);
+imageplot(M(:,:,20), 'B', 1,3,3);
+
+%%
+% Display an approximate RGB image.
+
+rgbsel = [10 15 20];
+clf;
+imageplot(M(:,:,rgbsel), 'RGB');
+
+%%
+% Display the spectral content of a given pixel.
+% As you can see, spectral curves are quite smooth.
+
+% pixel location
+pos = [30 50];
+% spectral content
+v = M(pos(1),pos(2),:); v = v(:);
+clf;
+plot( v, '.-');
+axis('tight');
+
+%% Multi-Spectral Image Compression
+
+%%
+% To perform the compression / approximation of the full cube of data, one
+% needs to use a 3D transformation of the cube. One can use a truely 3D
+% wavelet transform, or the combination (tensor product) of a 2D wavelet
+% transform and a cosine transform.
+
+%%
+% A 1D DCT is first applied to each spectral content.
+
+U = reshape( M, [n*n p] )';
+U = dct(U);
+U = reshape(U', [n n p]);
+
+%%
+% We plot the spectral content of a pixel and its DCT transform.
+% You can note that the DCT coefficients are quikcly decaying.
+
+clf;
+subplot(2,1,1);
+v = M(pos(1),pos(2),:); v = v(:);
+plot(v); axis('tight');
+title('Spetral content');
+subplot(2,1,2);
+v = U(pos(1),pos(2),:); v = v(:);
+plot(v); axis('tight');
+title('DCT tranform');
+
+%%
+% As the frequenc index |i| increase, the DCT component |U(:,:,i)| becomes
+% small and noisy. Note that |U(:,:,1)| is the average of the spectral components.
+
+ilist = [1 4 8 16];
+clf;
+for i=1:length(ilist);
+    imageplot(U(:,:,ilist(i)), ['DCT freq ' num2str(ilist(i))], 2,2,i);
+end
+
+
+%%
+% The tensor product transform is obtained by applying a 2D transform.
+
+Jmin = 3;
+UW = U;
+for i=1:p
+    UW(:,:,i) = perform_wavelet_transf(U(:,:,i), Jmin, +1);
+end
+
+%%
+% Display two differents sets of wavelets coefficients
+
+clf;
+subplot(1,2,1);
+plot_wavelet(UW(:,:,1), Jmin);
+subplot(1,2,2);
+plot_wavelet(UW(:,:,10), Jmin);
+
+%%
+% Approximation is obtained by thresholding the coefficients.
+
+% number of kept coefficients
+m = round(.01*n*n*p);
+% threshold to keep only m coefficients
+UWT = perform_thresholding(UW, m, 'largest');
+
+%%
+% _Exercice 1:_ (<../missing-exo/ check the solution>)
+% Implement the inverse transform to recover an approximation |M1| from
+% the coefficients |UWT|.
+
+exo1;
+
+%%
+% _Exercice 2:_ (<../missing-exo/ check the solution>)
+% Compare the approximation error (both in term of SNR and visually)
+% of a multispectral image with a 3D Haar basis and with a tensor product
+% of a 2D Haar and a DCT.
+
+exo2;
+
+%% Multi-Spectral Image Denoising
+
+%%
+% A redundant representation of the multi-spectral image is obtained by
+% using a DCT along the spectral dimension (3rd dimension) and a 2D
+% translation invariant wavelet transform of the spacial dimension.
+
+%%
+% _Exercice 3:_ (<../missing-exo/ check the solution>)
+% Compare the denoising (both in term of SNR and visually) of a multispectral image with an independant
+% thresholding of each channel within a translation invariant 2D wavelet basis, 
+% and with a thresholding of the DCT/invariant wavelet representation. For
+% each method, compute the optimal threshold value.
+
+exo3;
+
+
+##### SOURCE END #####
+-->
+   </body>
+</html>

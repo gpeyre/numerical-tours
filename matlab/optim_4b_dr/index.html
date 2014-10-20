@@ -1,0 +1,632 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>Douglas Rachford Proximal Splitting</title>
+      <NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
+               	requires JavaScript to process the mathematics on this page.<BR> 
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 8.2">
+      <meta name="date" content="2014-10-20">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>Douglas Rachford Proximal Splitting</h1>
+         <introduction>
+            <p>This numerical tour presents the Douglas-Rachford (DR) algorithm to minimize the sum of two simple functions. It shows an
+               application to reconstruction of exactly sparse signal from noiseless measurement using \(\ell^1\) minimization.
+            </p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#8">Douglas-Rachford Algorithm</a></li>
+               <li><a href="#19">Compressed Sensing Acquisition</a></li>
+               <li><a href="#27">Compressed Sensing Recovery using DR</a></li>
+               <li><a href="#45">Evaluation of the CS Recovery Probability</a></li>
+            </ul>
+         </div>
+         <h2>Installing toolboxes and setting up the path.<a name="1"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_signal.zip">signal toolbox</a> and <a href="../toolbox_general.zip">general toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_signal</tt> and <tt>toolbox_general</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
+getd(<span class="string">'toolbox_general/'</span>);
+</pre><h2>Douglas-Rachford Algorithm<a name="8"></a></h2>
+         <p>The Douglas-Rachford (DR) algorithm is an iterative scheme to minimize functionals of the form \[ \umin{x} F(x) + G(x) \]
+            where \(F\) and \(G\) are convex functions for which one is able to comptue the proximal mappings \( \text{prox}_{\gamma F}
+            \) and \( \text{prox}_{\gamma G} \) which are defined as \[ \text{prox}_{\gamma F}(x) = \text{argmin}_{y} \frac{1}{2}\norm{x-y}^2
+            + \ga F(y) \] (the same definition applies also for \(G\)).
+         </p>
+         <p>The important point is that \(F\) and \(G\) do not need to be smooth. One only needs them to be "proximable".</p>
+         <p>This algorithm was introduced in:</p>
+         <p>P. L. Lions and B. Mercier <i>Splitting Algorithms for the Sum of Two Nonlinear Operators</i> SIAM Journal on Numerical Analysis Vol. 16, No. 6 (Dec., 1979), pp. 964-979
+         </p>
+         <p>as a generalization of an algorithm introduced by Douglas and Rachford in the case of quadratic minimization (which corresponds
+            to the solution of a linear system).
+         </p>
+         <p>To learn more about this algorithm, you can read:</p>
+         <p>Patrick L. Combettes and Jean-Christophe Pesquet, <i>Proximal Splitting Methods in Signal Processing</i>, in: Fixed-Point Algorithms for Inverse Problems in Science and Engineering, New York: Springer-Verlag, 2010.
+         </p>
+         <p>A DR iteration reads \[ \tilde x_{k+1} = \pa{1-\frac{\mu}{2}} \tilde x_k +   \frac{\mu}{2} \text{rprox}_{\gamma G}( \text{rprox}_{\gamma
+            F}(\tilde x_k)  )   \qandq x_{k+1} = \text{prox}_{\gamma F}(\tilde x_{k+1},) \]
+         </p>
+         <p>We have used the following shortcuts: \[   \text{rprox}_{\gamma F}(x) = 2\text{prox}_{\gamma F}(x)-x \]</p>
+         <p>It is of course possible to inter-change the roles of \(F\) and \(G\), which defines another set of iterations.</p>
+         <p>One can show that for any value of \(\gamma&gt;0\), any \( 0 &lt; \mu &lt; 2 \), and any \(\tilde x_0\), \(x_k \rightarrow x^\star\)
+            which is a minimizer of the minimization of \(F+G\).
+         </p>
+         <h2>Compressed Sensing Acquisition<a name="19"></a></h2>
+         <p>Compressed sensing acquisition corresponds to a random projection \(y=Ax_0\) of a signal \(x_0\) on a few linear vectors (the
+            lines of \(A\)). For the recovery of \(x_0\) to be possible, it is assumed to be sparsely represented in an orthogonal basis.
+            Up to a change of basis, we suppose that the vector \(x\) itself is sparse.
+         </p>
+         <p>Initialize the random number generator to have always the same signals.</p><pre class="codeinput">set_rand_seeds(123456,123456);
+</pre><p>Dimension of the problem.</p><pre class="codeinput">n = 400;
+</pre><p>Number of measurements.</p><pre class="codeinput">p = round(n/4);
+</pre><p>Create a random Gaussian measurement matrix \(A\).</p><pre class="codeinput">A = randn(p,n) / sqrt(p);
+</pre><p>Sparsity of the signal.</p><pre class="codeinput">s = 17;
+</pre><p>We begin by generating a \(s\)-sparse signal \(x_0\) with \(s\) randomized values. Since the measurement matrix is random,
+            one does not care about the sign of the Diracs, so we use +1 values.
+         </p><pre class="codeinput">sel = randperm(n);
+x0 = zeros(n,1); x0(sel(1:s))=1;
+</pre><p>We perform random measurements \(y=Ax_0\) without noise.</p><pre class="codeinput">y = A*x0;
+</pre><h2>Compressed Sensing Recovery using DR<a name="27"></a></h2>
+         <p>Compressed sensing recovery corresponds to solving the inverse problem \(y=A x_0\), which is ill posed because \(x_0\) is
+            higher dimensional than \(y\).
+         </p>
+         <p>The reconstruction can be perform with \(\ell^1\) minimization, which regularizes the problems by using the sparsity of the
+            solution. \[ x^\star \in \uargmin{ A x = y } \norm{x}_1 \] where the \(\ell^1\) norm is defined as \[ \norm{x}_1 = \sum_i
+            \abs{x_i}. \]
+         </p>
+         <p>This is the minimization of a non-smooth function under affine constraints. This can be shown to be equivalent to a linear
+            programming problem, for wich various algorithms can be used (simplex, interior points). We propose here to use the DR iterative
+            algorithm.
+         </p>
+         <p>It is possible to recast this problem as the minimization of \(F+G\) where \(G(x) = \norm{x}_1\) and \(F(x)=\iota_{H}\) where
+            \(H = \enscond{x}{Ax=y}\) is an affine space, and \(\iota_H\) is the indicator function \[ \iota_H(x) = \choice{ 0 \qifq x
+            \in H, \\ +\infty \qifq x \notin H. } \]
+         </p>
+         <p>The proximal operator of the \(\ell^1\) norm is the soft thresholding: \[ \text{prox}_{\gamma \norm{\cdot}_1}(x)_i = \max\pa{
+            0, 1-\frac{\ga}{\abs{x_i}} } x_i. \]
+         </p><pre class="codeinput">proxG = @(x,gamma)max(0,1-gamma./max(1e-15,abs(x))).*x;
+</pre><p>Display the 1-D curve of the thresholding.</p><pre class="codeinput">t = linspace(-1,1);
+plot(t, proxG(t,.3));
+axis(<span class="string">'equal'</span>);
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p>The proximal operator of the indicator function of \(H\) is the projector, and does not depends on \(\gamma\). \[ \text{prox}_{\gamma
+            \iota_H}(x)_i = \text{prox}_F(x) = x + A^* (A A^*)^{-1} (y-Ax). \]
+         </p><pre class="codeinput">pA = A'*(A*A')^(-1);
+proxF = @(x,y)x + pA*(y-A*x);
+</pre><p>There are two kinds of Douglas-Rachford iterations, depending on wether you first apply the projection or the thresholding.</p>
+         <p>The first algorithm, (DR1), reads: \[ \tilde x_{k+1} = \pa{1-\frac{\mu}{2}} \tilde x_k + \frac{\mu}{2} \text{rprox}_F( \text{rprox}_\gamma(\tilde
+            x_k)  ) \qandq x_k = \text{prox}_\gamma(\tilde x_k) \]
+         </p>
+         <p>The first algorithm, (DR2), reads: \[ \tilde x_{k+1} = \pa{1-\frac{\mu}{2}} \tilde x_k + \frac{\mu}{2} \text{rprox}_{\gamma
+            G}( \text{rprox}_F(\tilde x_k)  ) \qandq x_k = \text{Prox}_F(\tilde x_k) \]
+         </p>
+         <p>The advantage of (DR2) is the the iterates \(x_k\) always satisfy \(Ax_k=y\), so that one can only keep track of the evolution
+            of the \(\ell^1\) norm during the iterations. We will use only (DR2) in the following.
+         </p>
+         <p>Set the value of \(\mu\) and \(\gamma\). You might consider using your own value to speed up the convergence.</p><pre class="codeinput">mu = 1;
+gamma = 1;
+</pre><p>Define the rprox operators.</p><pre class="codeinput">rproxG = @(x,tau)2*proxG(x,tau)-x;
+rproxF = @(x,y)2*proxF(x,y)-x;
+</pre><p>Number of iterations.</p><pre class="codeinput">niter = 500;
+</pre><p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Implement the DR iterative algorithm on <tt>niter</tt> iterations. Keep track of the evolution of the \(\ell^1\) norm.
+         </p><pre class="codeinput">exo1;
+</pre><img vspace="5" hspace="5" src="index_02.png"> <p>We display the convergence speed of the \(\ell^1\) norm on the first half iterations, in log scales.</p><pre class="codeinput">plot(log10(lun(1:end/2)-lun(end)));
+axis(<span class="string">'tight'</span>);
+</pre><img vspace="5" hspace="5" src="index_03.png"> <p>Display the original and the recovered signals. Since the original signal is highly sparse, it is perfectly recovered.</p><pre class="codeinput">clf;
+subplot(2,1,1);
+plot_sparse_diracs(x0);
+set_graphic_sizes([], 15);
+title(<span class="string">'Original Signal'</span>);
+subplot(2,1,2);
+plot_sparse_diracs(x);
+set_graphic_sizes([], 15);
+title(<span class="string">'Recovered by L1 minimization'</span>);
+</pre><img vspace="5" hspace="5" src="index_04.png"> <p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Test the recovery of a less sparse signal. What do you observe ?
+         </p><pre class="codeinput">exo2;
+</pre><img vspace="5" hspace="5" src="index_05.png"> <h2>Evaluation of the CS Recovery Probability<a name="45"></a></h2>
+         <p>In order to bench in a randomized manner the efficiency of compressed sensing, we compute the probability \(p_s\) for a \(s\)-sparse
+            signal with random non-zero coefficient locations to be recovered by \(\ell^1\) minimization.
+         </p>
+         <p>Put formally, if we call \( x^\star(y) \) the resolution of the \(\ell^1\) problem using measurements \(y\), then we want
+            to compute with Monte-Carlo sampling \[ p_s = \mathbb{P}( x^\star(Ax)=x \:\backslash\: \norm{x}_0=s ) \]
+         </p>
+         <p>An important feature of the DR algorithm is that it can be run on many signal at once.</p>
+         <p>Number of signals.</p><pre class="codeinput">q = 1000;
+</pre><p>List of benched sparsity.</p><pre class="codeinput">slist = 14:2:42;
+</pre><p>List of sparsity of each signal</p><pre class="codeinput">Slist = slist(mod(0:q-1,length(slist))+1);
+
+<span class="comment">%%per</span>
+<span class="comment">% Genetate signals so that |x0(:,j)| has sparsity |Slist(i)|.</span>
+
+U = rand(n,q);
+v = sort(U);
+v = v( (0:q-1)*n + Slist );
+x0 = U&lt;=repmat( v, [n 1] );
+</pre><p>Measurements.</p><pre class="codeinput">y = A*x0;
+</pre><p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) Perform DR on the set of signals <tt>x0</tt>. Note that the proximal mappings operate in parallel on all the signals in <tt>x0</tt>. Each <tt>i</tt>, count the average number <tt>proba(i)</tt> of recovered vectors of sparsity <tt>slist(i)</tt> (up to a given, small, precision).
+         </p><pre class="codeinput">exo3;
+</pre><img vspace="5" hspace="5" src="index_06.png"> <p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Douglas Rachford Proximal Splitting
+% This numerical tour presents the Douglas-Rachford (DR) algorithm to
+% minimize the sum of two simple functions. It shows an
+% application to 
+% reconstruction of exactly sparse signal from noiseless measurement using
+% \(\ell^1\) minimization.
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_signal.zip signal toolbox> and 
+% <../toolbox_general.zip general toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_signal| and 
+% |toolbox_general|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_signal/');
+getd('toolbox_general/');
+
+
+%% Douglas-Rachford Algorithm
+% The Douglas-Rachford (DR) algorithm is an iterative scheme to minimize
+% functionals of the form
+% \[ \umin{x} F(x) + G(x) \]
+% where \(F\) and \(G\) are convex functions for which one is able to
+% comptue the proximal mappings \( \text{prox}_{\gamma F} \) and 
+% \( \text{prox}_{\gamma G} \) which are defined as
+% \[ \text{prox}_{\gamma F}(x) = \text{argmin}_{y} \frac{1}{2}\norm{x-y}^2 + \ga F(y) \]
+% (the same definition applies also for \(G\)).
+
+%%
+% The important point is that \(F\) and \(G\) do not need to be smooth.
+% One only needs them to be "proximable".
+
+%%
+% This algorithm was introduced in:
+
+%%
+% P. L. Lions and B. Mercier
+% _Splitting Algorithms for the Sum of Two Nonlinear Operators_
+% SIAM Journal on Numerical Analysis
+% Vol. 16, No. 6 (Dec., 1979), pp. 964-979
+
+%%
+% as a generalization of an algorithm introduced by Douglas and Rachford in
+% the case of quadratic minimization (which corresponds to the solution of
+% a linear system).
+
+%%
+% To learn more about this algorithm, you can read:
+
+%% 
+% Patrick L. Combettes and Jean-Christophe Pesquet, 
+% _Proximal Splitting Methods in Signal Processing_,
+% in: Fixed-Point Algorithms for Inverse
+% Problems in Science and Engineering, New York: Springer-Verlag, 2010.
+
+
+%%
+% A DR iteration reads
+% \[ \tilde x_{k+1} = \pa{1-\frac{\mu}{2}} \tilde x_k + 
+%   \frac{\mu}{2} \text{rprox}_{\gamma G}( \text{rprox}_{\gamma F}(\tilde x_k)  ) 
+%   \qandq x_{k+1} = \text{prox}_{\gamma F}(\tilde x_{k+1},) \]
+
+
+%%
+% We have used the following shortcuts:
+% \[   \text{rprox}_{\gamma F}(x) = 2\text{prox}_{\gamma F}(x)-x \]
+
+%%
+% It is of course possible to inter-change the roles of \(F\) and \(G\),
+% which defines another set of iterations.
+
+%%
+% One can show that for any value of \(\gamma>0\), any \( 0 < \mu < 2 \), 
+% and any \(\tilde x_0\), \(x_k \rightarrow x^\star\)
+% which is a minimizer of the minimization of \(F+G\).
+
+%% Compressed Sensing Acquisition
+% Compressed sensing acquisition corresponds to a random projection
+% \(y=Ax_0\) of a signal \(x_0\) on a
+% few linear vectors (the lines of \(A\)). For the recovery of \(x_0\) to be possible, it is assumed
+% to be sparsely represented in an orthogonal basis. Up to a change of
+% basis, we suppose that the vector \(x\) itself is sparse. 
+
+%%
+% Initialize the random number generator to have always the same signals.
+
+set_rand_seeds(123456,123456);
+
+
+%% 
+% Dimension of the problem.
+
+n = 400;
+
+%%
+% Number of measurements.
+
+p = round(n/4);
+
+
+%%
+% Create a random Gaussian measurement matrix \(A\).
+
+A = randn(p,n) / sqrt(p);
+
+%%
+% Sparsity of the signal.
+
+s = 17;
+
+%%
+% We begin by generating a \(s\)-sparse signal \(x_0\) with \(s\) randomized values.
+% Since the measurement matrix is random, one does not care about the sign
+% of the Diracs, so we use +1 values.
+
+sel = randperm(n);
+x0 = zeros(n,1); x0(sel(1:s))=1;
+
+%%
+% We perform random measurements \(y=Ax_0\) without noise.
+
+y = A*x0;
+
+%% Compressed Sensing Recovery using DR
+% Compressed sensing recovery corresponds 
+% to solving the inverse problem \(y=A x_0\), which is ill posed because
+% \(x_0\) is
+% higher dimensional than \(y\). 
+
+%%
+% The reconstruction can be perform with \(\ell^1\) minimization, 
+% which regularizes the problems by using the sparsity of the solution.
+% \[ x^\star \in \uargmin{ A x = y } \norm{x}_1 \]
+% where the \(\ell^1\) norm is defined as
+% \[ \norm{x}_1 = \sum_i \abs{x_i}. \]
+
+%%
+% This is the minimization of a non-smooth function under affine
+% constraints. This can be shown to be equivalent to a linear programming
+% problem, for wich various algorithms can be used (simplex, interior
+% points). We propose here to use the DR iterative algorithm.
+
+%%
+% It is possible to recast this problem as the minimization of \(F+G\)
+% where \(G(x) = \norm{x}_1\) and \(F(x)=\iota_{H}\) where \(H =
+% \enscond{x}{Ax=y}\) is an affine space, and \(\iota_H\) is the indicator
+% function 
+% \[ \iota_H(x) = \choice{ 0 \qifq x \in H, \\ +\infty \qifq x \notin H. } \]
+
+%%
+% The proximal operator of the \(\ell^1\) norm is the soft thresholding:
+% \[ \text{prox}_{\gamma \norm{\cdot}_1}(x)_i = \max\pa{ 0, 1-\frac{\ga}{\abs{x_i}} } x_i. \]
+
+proxG = @(x,gamma)max(0,1-gamma./max(1e-15,abs(x))).*x;
+
+%%
+% Display the 1-D curve of the thresholding.
+
+t = linspace(-1,1);
+plot(t, proxG(t,.3));
+axis('equal');
+
+%%
+% The proximal operator of the indicator function of \(H\) is the
+% projector, and does not depends on \(\gamma\).
+% \[ \text{prox}_{\gamma \iota_H}(x)_i = \text{prox}_F(x) = x + A^* (A A^*)^{-1} (y-Ax). \]
+
+pA = A'*(A*A')^(-1);
+proxF = @(x,y)x + pA*(y-A*x);
+
+%%
+% There are two kinds of Douglas-Rachford iterations, depending on wether
+% you first apply the projection or the thresholding.
+
+%% 
+% The first algorithm, (DR1), reads:
+% \[ \tilde x_{k+1} = \pa{1-\frac{\mu}{2}} \tilde x_k + \frac{\mu}{2} \text{rprox}_F( \text{rprox}_\gamma(\tilde x_k)  ) 
+% \qandq x_k = \text{prox}_\gamma(\tilde x_k) \]
+
+%% 
+% The first algorithm, (DR2), reads:
+% \[ \tilde x_{k+1} = \pa{1-\frac{\mu}{2}} \tilde x_k + \frac{\mu}{2} \text{rprox}_{\gamma G}( \text{rprox}_F(\tilde x_k)  ) 
+% \qandq x_k = \text{Prox}_F(\tilde x_k) \]
+
+%%
+% The advantage of (DR2) is the the iterates \(x_k\) always satisfy
+% \(Ax_k=y\), so that one can only keep track of the evolution of the
+% \(\ell^1\) norm during the iterations. We will use only (DR2) in the
+% following.
+
+%%
+% Set the value of \(\mu\) and \(\gamma\).
+% You might consider using your own value to speed up the convergence.
+
+mu = 1;
+gamma = 1;
+
+
+%%
+% Define the rprox operators.
+
+rproxG = @(x,tau)2*proxG(x,tau)-x;
+rproxF = @(x,y)2*proxF(x,y)-x;
+
+%%
+% Number of iterations.
+
+niter = 500;
+
+%%
+% _Exercice 1:_ (<../missing-exo/ check the solution>)
+% Implement the DR iterative algorithm on |niter| iterations.
+% Keep track of the evolution of the \(\ell^1\) norm.
+
+exo1;
+
+%%
+% We display the convergence speed of the \(\ell^1\) norm on the first half iterations, in log
+% scales.
+
+plot(log10(lun(1:end/2)-lun(end)));
+axis('tight');
+
+
+%%
+% Display the original and the recovered signals.
+% Since the original signal is highly sparse, it is perfectly recovered.
+
+clf;
+subplot(2,1,1);
+plot_sparse_diracs(x0);
+set_graphic_sizes([], 15);
+title('Original Signal');
+subplot(2,1,2);
+plot_sparse_diracs(x);
+set_graphic_sizes([], 15);
+title('Recovered by L1 minimization');
+
+
+
+
+%%
+% _Exercice 2:_ (<../missing-exo/ check the solution>)
+% Test the recovery of a less sparse signal.
+% What do you observe ?
+
+exo2;
+
+%% Evaluation of the CS Recovery Probability
+% In order to bench in a randomized manner the efficiency of compressed
+% sensing, we compute the probability \(p_s\) for a \(s\)-sparse signal
+% with random non-zero coefficient locations to be recovered by \(\ell^1\)
+% minimization.
+
+%%
+% Put formally, if we call \( x^\star(y) \) the resolution of the \(\ell^1\)
+% problem using measurements \(y\), then we want to compute with
+% Monte-Carlo sampling
+% \[ p_s = \mathbb{P}( x^\star(Ax)=x \:\backslash\: \norm{x}_0=s ) \]
+
+%%
+% An important feature of the DR algorithm is that it can be run on many
+% signal at once.
+
+%%
+% Number of signals.
+
+q = 1000;
+
+%%
+% List of benched sparsity.
+
+slist = 14:2:42;
+
+%%
+% List of sparsity of each signal
+
+Slist = slist(mod(0:q-1,length(slist))+1);
+
+%%per
+% Genetate signals so that |x0(:,j)| has sparsity |Slist(i)|.
+
+U = rand(n,q);
+v = sort(U);
+v = v( (0:q-1)*n + Slist );
+x0 = U<=repmat( v, [n 1] );
+
+%%
+% Measurements.
+
+y = A*x0;
+
+%%
+% _Exercice 3:_ (<../missing-exo/ check the solution>)
+% Perform DR on the set of signals |x0|. Note that the proximal mappings
+% operate in parallel on all the signals in |x0|.
+% Each |i|, count the average number |proba(i)|
+% of recovered vectors of sparsity |slist(i)| (up to a given, small, precision).
+
+exo3;
+
+##### SOURCE END #####
+-->
+   </body>
+</html>

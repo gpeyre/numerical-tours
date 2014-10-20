@@ -1,0 +1,787 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>Color Image Processing</title>
+      <NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
+               	requires JavaScript to process the mathematics on this page.<BR> 
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 8.2">
+      <meta name="date" content="2014-10-20">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>Color Image Processing</h1>
+         <introduction>
+            <p>This numerical tour explores color image processing.</p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#8">RGB Color Space</a></li>
+               <li><a href="#14">CMY Color Space</a></li>
+               <li><a href="#17">YUV Color Space</a></li>
+               <li><a href="#24">HSV Color Space</a></li>
+               <li><a href="#34">PCA Color Space</a></li>
+               <li><a href="#43">Color Histograms</a></li>
+               <li><a href="#57">Color Image Denoising and Compression</a></li>
+            </ul>
+         </div>
+         <h2>Installing toolboxes and setting up the path.<a name="1"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_signal.zip">signal toolbox</a> and <a href="../toolbox_general.zip">general toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_signal</tt> and <tt>toolbox_general</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
+getd(<span class="string">'toolbox_general/'</span>);
+</pre><h2>RGB Color Space<a name="8"></a></h2>
+         <p>A color image \(f \in \RR^{N \times 3}\) is made of three independent images, one for each channel red, green and blue (RGB
+            color space).
+         </p>
+         <p>Size \(N= n \times n\) of the image.</p><pre class="codeinput">n = 256;
+N = n*n;
+</pre><p>Loading an image \(f \in \RR^{N \times 3}\).</p><pre class="codeinput">name = <span class="string">'hibiscus'</span>;
+f = rescale( load_image(name,n) );
+</pre><p>One can display on screen a color image in RGB space using the rule of additive color mixing.</p>
+         <p>Display the image \(f\) and the three channels that compose the colors.</p><pre class="codeinput">R = cat(3, f(:,:,1), zeros(n), zeros(n));
+G = cat(3, zeros(n), f(:,:,2), zeros(n));
+B = cat(3, zeros(n), zeros(n), f(:,:,3));
+clf;
+imageplot({f R G B}, <span class="keyword">...</span>
+        { <span class="string">'f'</span> <span class="string">'R (Red)'</span> <span class="string">'G (green)'</span> <span class="string">'B (blue)'</span>}, 2, 2);
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p>It is possible to obtain a grayscale image from a color image by linear averaging of the channels, to obtain the luminance
+            channel \[ L = \frac{R+G+B}{3} \]
+         </p><pre class="codeinput">clf;
+imageplot({f mean(f,3)}, {<span class="string">'f'</span> <span class="string">'L'</span>});
+</pre><img vspace="5" hspace="5" src="index_02.png"> <h2>CMY Color Space<a name="14"></a></h2>
+         <p>Another popular representation for color images uses as basis colors the cyan, magenta and yellow (CMY color space). They
+            are computed as \[ C=1-R, \quad f=1-G, \quad Y=1-B. \]
+         </p>
+         <p>One can display on screen a color image in CMY space using the rule of substractive color mixing.</p>
+         <p>Show the C, f, Y channels.</p><pre class="codeinput">f1 = cat(3, f(:,:,1),     f(:,:,2)*0+1, f(:,:,3)*0+1);
+f2 = cat(3, f(:,:,1)*0+1, f(:,:,2)    , f(:,:,3)*0+1);
+f3 = cat(3, f(:,:,1)*0+1, f(:,:,2)*0+1, f(:,:,3));
+clf;
+imageplot({f f1 f2 f3}, <span class="keyword">...</span>
+        { <span class="string">'f'</span> <span class="string">'C'</span> <span class="string">'f'</span> <span class="string">'Y'</span>}, 2, 2);
+</pre><img vspace="5" hspace="5" src="index_03.png"> <h2>YUV Color Space<a name="17"></a></h2>
+         <p>A linear color space is defined by applying a transformation matrix \(T \in \RR^3\) to the RGB  color channels of the image.</p>
+         <p>It means that each pixel values \(f(x) \in \RR^3\) is replaced by \(\tilde f(x) = T f(x)\), which store the three channels
+            in the novel color space.
+         </p>
+         <p>An example of transformation is the YUV color space, where Y is the luminance and UV are the chrominance. It is defined by
+            \[ T = \begin{pmatrix}      0.299 &amp; 0.587 &amp; 0.114 \\    -0.147 &amp; -0.289 &amp; 0.436 \\    0.615 &amp; -0.515 &amp; -0.100   \end{pmatrix}.
+            \]
+         </p><pre class="codeinput">T = [.299 .587 .114; <span class="keyword">...</span>
+    -.14713 -.28886 .436; <span class="keyword">...</span>
+    .615 -.51499 -.10001]';
+</pre><p>The RGB to YUV conversion is obtained by applying the matrix.</p><pre class="codeinput">applymat = @(f,T)reshape( reshape(f, [n*n 3])*T, [n n 3] );
+rgb2yuv  = @(f)applymat(f,T);
+</pre><p>Display the YUV channels.</p><pre class="codeinput">U = rgb2yuv(f);
+clf;
+imageplot(U(:,:,1), <span class="string">'Y'</span>, 1,3,1);
+imageplot(U(:,:,2), <span class="string">'U'</span>, 1,3,2);
+imageplot(U(:,:,3), <span class="string">'V'</span>, 1,3,3);
+</pre><img vspace="5" hspace="5" src="index_04.png"> <p>The image can be modified by modifying the YUV representation \(U\) to obtain \(U_1\). Here we lower the chrominance of the
+            image.
+         </p><pre class="codeinput">U1 = U;
+U1(:,:,2:3) = U1(:,:,2:3)/2;
+</pre><p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Recover an image from the transformed YUV representation \(U_1\).
+         </p><pre class="codeinput">exo1;
+</pre><img vspace="5" hspace="5" src="index_05.png"> <h2>HSV Color Space<a name="24"></a></h2>
+         <p>A non-linear color space is obtained by a polar or conical parameterization of a linear color space. The angular coordinate
+            in the plane orthogonal to the first linear axis (which is usually the luminance) is called the Hue, and the radial coordinates
+            is called the saturation.
+         </p>
+         <p>Using a luminance which is the sum of the 3 coordinates, one obtain a color system that is quite close to the HSV color system
+            (which has a more complicated definition, but leads to similar results).
+         </p>
+         <p>First we compute the value (luminance) coordinate, which is the orthogonal projection on \([1, 1, 1]\).</p><pre class="codeinput">Value = @(f)sum(f, 3) / sqrt(3);
+</pre><p>The we compute the projection on the plane orthogonal to \([1, 1, 1]\), for instance using the projections \(A\) and \(B\)
+            on the two orthognoal unit vectors \[&nbsp;[0, 1, -1]/\sqrt{2} \qandq  [2, -1, -1]/\sqrt{6}. \]
+         </p><pre class="codeinput">A = @(f)( f(:,:,2)-f(:,:,3) )/sqrt(2);
+B = @(f)( 2*f(:,:,1) - f(:,:,2) - f(:,:,3) )/sqrt(6);
+</pre><p>The \((V,A,B)\) components are obtained from RGB using a transformation with an orthogonal matrix \(T\).</p><pre class="codeinput">T = [   1/sqrt(3) 1/sqrt(3) 1/sqrt(3); <span class="keyword">...</span>
+        0 1/sqrt(2) -1/sqrt(2); <span class="keyword">...</span>
+        2/sqrt(6) -1/sqrt(6) -1/sqrt(6)];
+</pre><p>The Hue/Saturation are the polor coordinates within this plane.</p><pre class="codeinput">Saturation = @(f)sqrt( A(f).^2 + B(f).^2 );
+Hue = @(f)atan2(B(f),A(f));
+</pre><p>Shortcut for HSV color transformation. We name it <tt>rgb2hsv1</tt> because it is not exactly a mapping to the classical HSV space.
+         </p><pre class="codeinput">rgb2hsv1 = @(f)cat(3, Hue(f), Saturation(f), Value(f));
+</pre><p>Compute the transformation.</p><pre class="codeinput">g = rgb2hsv1(f);
+</pre><p>Display.</p><pre class="codeinput">clf;
+imageplot({g(:,:,1) g(:,:,2) g(:,:,3)}, {<span class="string">'H'</span> <span class="string">'S'</span> <span class="string">'V'</span>}, 1,3);
+</pre><img vspace="5" hspace="5" src="index_06.png"> <p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Show the reconstructed image obtained by progressively rotating the hue component, i.e. replacing \(H\) by \(H + \theta\).
+         </p><pre class="codeinput">exo2;
+</pre><img vspace="5" hspace="5" src="index_07.png"> <h2>PCA Color Space<a name="34"></a></h2>
+         <p>Instead of using a fixed color space, one can computed a color space adapted to an image to process.</p>
+         <p>Store appart the mean.</p><pre class="codeinput">m = mean(mean(f,1), 2);
+</pre><p>Shortcut to compute the point cloud \(X = (f(x)-m)_x \subset \RR^3 \) where the empirical mean is \[ m = \frac{1}{N} \sum_x
+            f(x) \in \RR^3 \]
+         </p><pre class="codeinput">X = reshape( f - repmat(m, [n n 1]), [n*n 3] );
+</pre><p>One compute the empirical  3-D covariance matrix of the point cloud formed by the pixels of the image \[ C = \frac{1}{N} \sum_i
+            X_i X_i^* \in \RR^{3 \times 3} \]
+         </p><pre class="codeinput">C = (X'*X)/N;
+</pre><p>The orthogonal principal directions of the cloud are the eigenvector \(U \in \RR^{3 \times 3}\) of \(C\), that defines the
+            eigen-decomposition of the symetric matrix \[ C = V D V \qwhereq D = \text{diag}(d_1,d_2,d_3) \qwithq d_1 \geq d_2 \geq d_3.
+            \]
+         </p><pre class="codeinput">[V,D] = eig(C); D = diag(D);
+[D,I] = sort(D, <span class="string">'descend'</span>); V = V(:,I);
+</pre><p>The PCA color space is image-dependant, and is defined by \((V,m)\). The transformed image \(g\) in PCA space is defined as
+            \[ g(x) = V^*(f(x)-m) \]
+         </p><pre class="codeinput">rgb2pca = @(f,V,m)applymat(f - repmat(m, [n n 1]),V);
+g = rgb2pca(f,V,m);
+</pre><p>Display the transformed image.</p><pre class="codeinput">clf;
+imageplot({g(:,:,1) g(:,:,2) g(:,:,3)}, {<span class="string">'PCA_1'</span> <span class="string">'PCA_2'</span> <span class="string">'PCA_3'</span>}, 1,3);
+</pre><img vspace="5" hspace="5" src="index_08.png"> <p>The image, withing this new color space, can be manipulated. Here we lower the chrominance of the image. The result is slighly
+            less visible than with YUV modification because the color space is more adapted to the image.
+         </p><pre class="codeinput">g1 = g;
+g1(:,:,2:3) = g1(:,:,2:3)/2;
+</pre><p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) Inverse the PCA transformation in order to retrive an image the modified PCA representation <tt>U1</tt>.
+         </p><pre class="codeinput">exo3;
+</pre><img vspace="5" hspace="5" src="index_09.png"> <h2>Color Histograms<a name="43"></a></h2>
+         <p>To better understand the colors structure of an image, it is useful to visualize histogram of the color repartition.</p>
+         <p>We can display the 1-D histogram of each RGB color channel.</p><pre class="codeinput">channel = @(f,i)reshape(f(:,:,i), [N 1]);
+</pre><p>Number of bins in the histogram.</p><pre class="codeinput">Q = 60;
+</pre><p>Display the histograms.</p><pre class="codeinput">clf; c = {<span class="string">'r'</span> <span class="string">'g'</span> <span class="string">'b'</span>}; lgd = {<span class="string">'R'</span> <span class="string">'G'</span> <span class="string">'B'</span>};
+<span class="keyword">for</span> i=1:3
+    subplot(3,1,i);
+    [h,t] = hist(channel(f,i), Q);
+    bar(t,h*Q/N, c{i}); axis(<span class="string">'tight'</span>);
+    legend(lgd{i});
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="index_10.png"> <p>Same thing but for HSV color space.</p><pre class="codeinput">g = rgb2hsv1(f);
+clf; c = {<span class="string">'k'</span> <span class="string">'k'</span> <span class="string">'k'</span>}; lgd = {<span class="string">'H'</span> <span class="string">'S'</span> <span class="string">'V'</span>};
+<span class="keyword">for</span> i=1:3
+    subplot(3,1,i);
+    [h,t] = hist(channel(g,i), Q);
+    bar(t,h*Q/N, c{i}); axis(<span class="string">'tight'</span>);
+    legend(lgd{i});
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="index_11.png"> <p>Display this normalized histogram. To make this curve an approximation of a continuous distribution, we normalize \(h\) by
+            \(Q/N\).
+         </p>
+         <p>Each pixel \(f(x) \in \RR^3\) defines a 3-D point. The color image thus corresponds to a 3-D point clouds whose structure
+            reflects the colors within the image.
+         </p>
+         <p>Number \(P\) of displayed points.</p><pre class="codeinput">P = 5000;
+</pre><p>Select \(P\) random points.</p><pre class="codeinput">H = reshape(f, [n*n 3]);
+sel = randperm(n*n); sel = sel(1:P);
+H = H(sel,:);
+</pre><p>Display the point cloud.</p><pre class="codeinput">plotp = @(x,col)plot3(x(1,:)', x(2,:)', x(3,:)', <span class="string">'o'</span>, <span class="string">'MarkerSize'</span>, 10, <span class="string">'MarkerEdgeColor'</span>, <span class="string">'k'</span>, <span class="string">'MarkerFaceColor'</span>, col, <span class="string">'LineWidth'</span>, 2);
+clf; hold <span class="string">on</span>;
+<span class="keyword">for</span> i=1:P
+    plotp(H(i,:)', H(i,:));
+<span class="keyword">end</span>
+view(3);
+</pre><img vspace="5" hspace="5" src="index_12.png"> <p>Since the image is mainly composed of red and green, it is easier to simply vizualize the 2-D histogram of the image along
+            these two channels.
+         </p>
+         <p>Shortcut to compute 2-D histograms.</p><pre class="codeinput">quantize = @(A,Q)1+round((Q-1)*A);
+J = @(I,Q)I(1,:)' + Q*(I(2,:)'-1);
+hist2d = @(f,Q)reshape( accumarray(J(quantize(f,Q),Q), ones(1,N), [Q*Q 1], @sum), [Q Q]);
+</pre><p>Number of bins for the display of histograms.</p><pre class="codeinput">Q = 60;
+</pre><p>Display the 2-D histograms of the red/green channels of both images (use log to boost contrast).</p><pre class="codeinput">func = @(a)log(a+3);
+X = reshape(f(:,:,1:2), [n*n 2])';
+clf;
+imageplot( func(hist2d(X,Q)) );
+</pre><img vspace="5" hspace="5" src="index_13.png"> <h2>Color Image Denoising and Compression<a name="57"></a></h2>
+         <p>Color image denoising is more difficult than grayscale denoising because independant denoising of RGB channels introduces
+            color artifact. For image with homogenous colors, it can be avoided by using an appropriate color space.
+         </p>
+         <p>Noise level.</p><pre class="codeinput">sigma = .13;
+</pre><p>A noisy image color image \(f_1\) is corrupted by a color Gaussian noise.</p><pre class="codeinput">f1 = f + randn(n,n,3)*sigma;
+</pre><p>Display.</p><pre class="codeinput">clf;
+imageplot(f, <span class="string">'f'</span>, 1,2,1);
+imageplot(clamp(f1), <span class="string">'f_1'</span>, 1,2,2);
+</pre><img vspace="5" hspace="5" src="index_14.png"> <p><i>Exercice 4:</i> (<a href="../missing-exo/">check the solution</a>) Compare (translation invariant) wavelet denoising of color image in the RGB and PCA color space (the PCA space should be
+            estimated from the noisy image).
+         </p><pre class="codeinput">exo4;
+</pre><p><i>Exercice 5:</i> (<a href="../missing-exo/">check the solution</a>) For a complicated, non-homogenous color image, compute a local color space for each pixel, by performing a PCA over group
+            of pixels. Use this adaptive color model to perform wavelet denoising.
+         </p><pre class="codeinput">exo5;
+</pre><p>Similarely to color image denoising, color image compression is difficult because of color artifacts.</p>
+         <p><i>Exercice 6:</i> (<a href="../missing-exo/">check the solution</a>) Compare wavelet domain image compression (quantization+coding) over the original RGB space and a more adapted global or
+            local color space.
+         </p><pre class="codeinput">exo6;
+</pre><p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Color Image Processing
+% This numerical tour explores color image processing.
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_signal.zip signal toolbox> and 
+% <../toolbox_general.zip general toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_signal| and 
+% |toolbox_general|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_signal/');
+getd('toolbox_general/');
+
+%% RGB Color Space
+% A color image \(f \in \RR^{N \times 3}\) is made of three independent
+% images, one for each channel red, green and blue
+% (RGB color space).
+
+%%
+% Size \(N= n \times n\) of the image.
+
+n = 256;
+N = n*n;
+
+%%
+% Loading an image \(f \in \RR^{N \times 3}\).
+
+name = 'hibiscus';
+f = rescale( load_image(name,n) );
+
+%%
+% One can display on screen a color image in RGB space using the rule of additive color
+% mixing. 
+
+%%
+% Display the image \(f\) and the three channels that compose the colors.
+   
+R = cat(3, f(:,:,1), zeros(n), zeros(n));
+G = cat(3, zeros(n), f(:,:,2), zeros(n));
+B = cat(3, zeros(n), zeros(n), f(:,:,3));
+clf;
+imageplot({f R G B}, ...
+        { 'f' 'R (Red)' 'G (green)' 'B (blue)'}, 2, 2);
+
+    
+%%
+% It is possible to obtain a grayscale image from a color image by linear
+% averaging of the channels, to obtain the luminance channel
+% \[ L = \frac{R+G+B}{3} \]
+
+clf;
+imageplot({f mean(f,3)}, {'f' 'L'});
+
+
+
+
+%% CMY Color Space
+% Another popular representation for color images uses as basis colors the
+% cyan, magenta and yellow (CMY color space). They are computed as
+% \[ C=1-R, \quad f=1-G, \quad Y=1-B. \]
+
+%%
+% One can display on screen a color image in CMY space using the rule of substractive color
+% mixing. 
+
+%%
+% Show the C, f, Y channels.
+
+f1 = cat(3, f(:,:,1),     f(:,:,2)*0+1, f(:,:,3)*0+1);
+f2 = cat(3, f(:,:,1)*0+1, f(:,:,2)    , f(:,:,3)*0+1);
+f3 = cat(3, f(:,:,1)*0+1, f(:,:,2)*0+1, f(:,:,3));
+clf;
+imageplot({f f1 f2 f3}, ...
+        { 'f' 'C' 'f' 'Y'}, 2, 2);
+
+%% YUV Color Space
+% A linear color space is defined by applying a transformation
+% matrix \(T \in \RR^3\) to the RGB  color channels of the image.
+
+%%
+% It means that each pixel values \(f(x) \in \RR^3\) is replaced by
+% \(\tilde f(x) = T f(x)\), which store the three channels in the novel color space.
+
+%% 
+% An example of transformation is the YUV color space, where Y is the
+% luminance and UV are the chrominance. It is defined by 
+% \[ T = \begin{pmatrix}
+%      0.299 & 0.587 & 0.114 \\
+%    -0.147 & -0.289 & 0.436 \\
+%    0.615 & -0.515 & -0.100
+%   \end{pmatrix}.   
+% \]
+
+T = [.299 .587 .114; ...
+    -.14713 -.28886 .436; ...
+    .615 -.51499 -.10001]';
+
+%% 
+% The RGB to YUV conversion is obtained by applying the matrix.
+
+applymat = @(f,T)reshape( reshape(f, [n*n 3])*T, [n n 3] );
+rgb2yuv  = @(f)applymat(f,T);
+
+%%
+% Display the YUV channels.
+
+U = rgb2yuv(f);
+clf;
+imageplot(U(:,:,1), 'Y', 1,3,1);
+imageplot(U(:,:,2), 'U', 1,3,2);
+imageplot(U(:,:,3), 'V', 1,3,3);
+
+%%
+% The image can be modified by modifying the YUV representation \(U\) to obtain \(U_1\).
+% Here we lower the chrominance of the image.
+
+U1 = U;
+U1(:,:,2:3) = U1(:,:,2:3)/2;
+
+%%
+% _Exercice 1:_ (<../missing-exo/ check the solution>)
+% Recover an image from the transformed YUV representation \(U_1\).
+
+exo1;
+
+%% HSV Color Space
+% A non-linear color space is obtained by a polar or conical
+% parameterization of a linear color space. The angular coordinate in the
+% plane orthogonal to the first linear axis (which is usually the
+% luminance) is called the Hue, and the radial coordinates is called the
+% saturation.
+
+%% 
+% Using a luminance which is the sum of the 3 coordinates, one obtain a
+% color system that is quite close to the HSV color system (which has a
+% more complicated definition, but leads to similar results).
+
+%%
+% First we compute the value (luminance) coordinate, which is the orthogonal
+% projection on \([1, 1, 1]\).
+
+Value = @(f)sum(f, 3) / sqrt(3);
+
+%% 
+% The we compute the projection on the plane orthogonal to \([1, 1, 1]\), for
+% instance using the projections \(A\) and \(B\) on the two orthognoal unit vectors 
+% \[ [0, 1, -1]/\sqrt{2} \qandq  [2, -1, -1]/\sqrt{6}. \]
+
+A = @(f)( f(:,:,2)-f(:,:,3) )/sqrt(2);
+B = @(f)( 2*f(:,:,1) - f(:,:,2) - f(:,:,3) )/sqrt(6);
+
+%%
+% The \((V,A,B)\) components are obtained from RGB using 
+% a transformation with an orthogonal matrix \(T\).
+
+T = [   1/sqrt(3) 1/sqrt(3) 1/sqrt(3); ...
+        0 1/sqrt(2) -1/sqrt(2); ...
+        2/sqrt(6) -1/sqrt(6) -1/sqrt(6)];
+
+%%
+% The Hue/Saturation are the polor coordinates within this plane.
+
+Saturation = @(f)sqrt( A(f).^2 + B(f).^2 );
+Hue = @(f)atan2(B(f),A(f));
+
+%%
+% Shortcut for HSV color transformation.
+% We name it |rgb2hsv1| because it is not exactly a mapping to the
+% classical HSV space.
+
+rgb2hsv1 = @(f)cat(3, Hue(f), Saturation(f), Value(f));
+
+%%
+% Compute the transformation.
+
+g = rgb2hsv1(f);
+
+%%
+% Display.
+
+clf;
+imageplot({g(:,:,1) g(:,:,2) g(:,:,3)}, {'H' 'S' 'V'}, 1,3);
+
+%%
+% _Exercice 2:_ (<../missing-exo/ check the solution>)
+% Show the reconstructed image obtained by progressively rotating the hue component, 
+% i.e. replacing \(H\) by \(H + \theta\). 
+
+exo2;
+
+
+%% PCA Color Space
+% Instead of using a fixed color space, one can computed a color space
+% adapted to an image to process.
+
+%%
+% Store appart the mean.
+
+m = mean(mean(f,1), 2);
+
+%%
+% Shortcut to compute the point cloud \(X = (f(x)-m)_x \subset \RR^3 \)
+% where the empirical mean is
+% \[ m = \frac{1}{N} \sum_x f(x) \in \RR^3 \]
+
+X = reshape( f - repmat(m, [n n 1]), [n*n 3] );
+
+%%
+% One compute the empirical  3-D covariance matrix of the point cloud formed by
+% the pixels of the image
+% \[ C = \frac{1}{N} \sum_i X_i X_i^* \in \RR^{3 \times 3} \]
+
+C = (X'*X)/N;
+
+%%
+% The orthogonal principal directions of the cloud are the eigenvector \(U \in \RR^{3 \times 3}\)
+% of \(C\), that defines the eigen-decomposition of the symetric matrix
+% \[ C = V D V \qwhereq D = \text{diag}(d_1,d_2,d_3)
+% \qwithq d_1 \geq d_2 \geq d_3. \]
+
+[V,D] = eig(C); D = diag(D);
+[D,I] = sort(D, 'descend'); V = V(:,I);
+
+
+%%
+% The PCA color space is image-dependant, and is defined by \((V,m)\).
+% The transformed image \(g\) in PCA space is defined as
+% \[ g(x) = V^*(f(x)-m) \]
+
+rgb2pca = @(f,V,m)applymat(f - repmat(m, [n n 1]),V);
+g = rgb2pca(f,V,m);
+
+%%
+% Display the transformed image.
+
+clf;
+imageplot({g(:,:,1) g(:,:,2) g(:,:,3)}, {'PCA_1' 'PCA_2' 'PCA_3'}, 1,3);
+
+%%
+% The image, withing this new color space, can be manipulated.
+% Here we lower the chrominance of the image. The result is slighly less
+% visible than with YUV modification because the color space is more
+% adapted to the image.
+
+g1 = g;
+g1(:,:,2:3) = g1(:,:,2:3)/2;
+
+
+%%
+% _Exercice 3:_ (<../missing-exo/ check the solution>)
+% Inverse the PCA transformation in order to retrive an image 
+% the modified PCA representation |U1|.
+
+exo3;
+
+
+%% Color Histograms
+% To better understand the colors structure of an image, it is useful to
+% visualize histogram of the color repartition.
+
+%%
+% We can display the 1-D histogram of each RGB color channel.
+
+channel = @(f,i)reshape(f(:,:,i), [N 1]);
+
+%%
+% Number of bins in the histogram.
+
+Q = 60;
+
+%%
+% Display the histograms. 
+
+clf; c = {'r' 'g' 'b'}; lgd = {'R' 'G' 'B'};
+for i=1:3
+    subplot(3,1,i); 
+    [h,t] = hist(channel(f,i), Q);
+    bar(t,h*Q/N, c{i}); axis('tight');
+    legend(lgd{i});
+end
+
+%%
+% Same thing but for HSV color space.
+
+g = rgb2hsv1(f);
+clf; c = {'k' 'k' 'k'}; lgd = {'H' 'S' 'V'};
+for i=1:3
+    subplot(3,1,i); 
+    [h,t] = hist(channel(g,i), Q);
+    bar(t,h*Q/N, c{i}); axis('tight');
+    legend(lgd{i});
+end
+
+%%
+% Display this normalized histogram.
+% To make this curve an approximation of a continuous distribution, we 
+% normalize \(h\) by \(Q/N\).
+
+
+%%
+% Each pixel \(f(x) \in \RR^3\) defines a 3-D point. The color image thus
+% corresponds to a 3-D point clouds whose structure reflects the colors
+% within the image.
+
+%%
+% Number \(P\) of displayed points.
+
+P = 5000; 
+
+%%
+% Select \(P\) random points.
+
+H = reshape(f, [n*n 3]);
+sel = randperm(n*n); sel = sel(1:P);
+H = H(sel,:);
+
+%%
+% Display the point cloud. 
+
+plotp = @(x,col)plot3(x(1,:)', x(2,:)', x(3,:)', 'o', 'MarkerSize', 10, 'MarkerEdgeColor', 'k', 'MarkerFaceColor', col, 'LineWidth', 2);
+clf; hold on;
+for i=1:P
+    plotp(H(i,:)', H(i,:));
+end
+view(3);
+
+
+%%
+% Since the image is mainly composed of red and green, it is easier to
+% simply vizualize the 2-D histogram of the image along these two channels.
+
+
+%%
+% Shortcut to compute 2-D histograms.
+
+quantize = @(A,Q)1+round((Q-1)*A);
+J = @(I,Q)I(1,:)' + Q*(I(2,:)'-1);
+hist2d = @(f,Q)reshape( accumarray(J(quantize(f,Q),Q), ones(1,N), [Q*Q 1], @sum), [Q Q]);
+
+%%
+% Number of bins for the display of histograms.
+
+Q = 60;
+
+%%
+% Display the 2-D histograms of the red/green channels of both images
+% (use log to boost contrast).
+
+func = @(a)log(a+3);
+X = reshape(f(:,:,1:2), [n*n 2])';
+clf;
+imageplot( func(hist2d(X,Q)) );
+
+%% Color Image Denoising and Compression
+% Color image denoising is more difficult than grayscale denoising because
+% independant denoising of RGB channels introduces color artifact.
+% For image with homogenous colors, it can be avoided by using an
+% appropriate color space.
+
+%%
+% Noise level.
+
+sigma = .13;
+
+%%
+% A noisy image color image \(f_1\) is corrupted by a color Gaussian noise.
+
+f1 = f + randn(n,n,3)*sigma;
+
+%% 
+% Display.
+
+clf;
+imageplot(f, 'f', 1,2,1);
+imageplot(clamp(f1), 'f_1', 1,2,2);
+
+%%
+% _Exercice 4:_ (<../missing-exo/ check the solution>)
+% Compare (translation invariant) wavelet denoising of color image in the
+% RGB and PCA color space (the PCA space should be estimated from the noisy image).
+
+exo4;
+
+%%
+% _Exercice 5:_ (<../missing-exo/ check the solution>)
+% For a complicated, non-homogenous color image, compute a local color
+% space for each pixel, by performing a PCA over group of pixels. Use this
+% adaptive color model to perform wavelet denoising.
+
+exo5;
+
+%% 
+% Similarely to color image denoising, color image compression is difficult
+% because of color artifacts.
+
+%%
+% _Exercice 6:_ (<../missing-exo/ check the solution>)
+% Compare wavelet domain image compression (quantization+coding) over the
+% original RGB space and a more adapted global or local color space.
+
+exo6;
+
+##### SOURCE END #####
+-->
+   </body>
+</html>
