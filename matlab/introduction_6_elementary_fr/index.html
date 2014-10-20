@@ -1,0 +1,1519 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>Le traitement num&eacute;rique des images</title>
+      <NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
+               	requires JavaScript to process the mathematics on this page.<BR> 
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 8.2">
+      <meta name="date" content="2014-10-20">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>Le traitement num&eacute;rique des images</h1>
+         <introduction>
+            <p>Cette page reprend <a href="http://images.math.cnrs.fr/Le-traitement-numerique-des-images.html">l'article publi&eacute; sur le site web Images des math&eacute;matiques</a>.
+            </p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#4">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#11">Les pixels d'une image</a></li>
+               <li><a href="#17">Stocker une image</a></li>
+               <li><a href="#23">La r&eacute;solution d'une image</a></li>
+               <li><a href="#28">Quantifier une image</a></li>
+               <li><a href="#37">Enlever le bruit par moyennes locales</a></li>
+               <li><a href="#44">Enlever le bruit par m&eacute;diane</a></li>
+               <li><a href="#51">D&eacute;tecter les bords des objets</a></li>
+               <li><a href="#58">Les images couleurs</a></li>
+               <li><a href="#67">Changer le contraste d'une image</a></li>
+               <li><a href="#75">Transformations g&eacute;om&eacute;triques</a></li>
+               <li><a href="#82">Fondu entres deux images</a></li>
+               <li><a href="#89">Conclusion</a></li>
+               <li><a href="#91">Glossaire</a></li>
+            </ul>
+         </div>
+         <p>Les appareils num&eacute;riques photographient de mani&egrave;re tr&egrave;s pr&eacute;cise le monde qui nous entoure. L'utilisateur souhaite pouvoir
+            stocker avec un encombrement minimal ses photos sur son disque dur. Il souhaite &eacute;galement pouvoir les retoucher afin d'am&eacute;liorer
+            leur qualit&eacute;. Cet article pr&eacute;sente les outils math&eacute;matiques et informatiques qui permettent d'effectuer ces diff&eacute;rentes t&acirc;ches.
+         </p>
+         <p>Cet article pr&eacute;sente quelques concepts du <a href="http://fr.wikipedia.org/wiki/Traitement_d'images">traitement</a> math&eacute;matique des images num&eacute;riques. Ces traitements permettent de stocker plus facilement les images et d'am&eacute;liorer leur
+            qualit&eacute;. Les math&eacute;matiques utilis&eacute;es dans cet article correspondent au niveau de la classe de troisi&egrave;me. Les mots cl&eacute;s en
+            rouge pointent vers les pages <a href="http://fr.wikipedia.org/">Wikip&eacute;dia</a> correspondantes. Ils sont repris &agrave; la fin de l'article dans un glossaire.
+         </p>
+         <p><i>Mot clefs :</i> image, bits, carr&eacute;, racine carr&eacute;e, inverse, logarithme, moyenne, m&eacute;diane.
+         </p>
+         <h2>Installing toolboxes and setting up the path.<a name="4"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_signal.zip">signal toolbox</a> and <a href="../toolbox_general.zip">general toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_signal</tt> and <tt>toolbox_general</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
+getd(<span class="string">'toolbox_general/'</span>);
+</pre><h2>Les pixels d'une image<a name="11"></a></h2>
+         <p>Une <a href="http://fr.wikipedia.org/wiki/Image_num%C3%A9rique">image num&eacute;rique</a> en niveaux de gris est un tableau de valeurs. Chaque case de ce tableau, qui stocke une valeur, se nomme un <a href="http://fr.wikipedia.org/wiki/Pixel">pixel</a>. En notant \(n\) le nombre de lignes et \(p\) le nombre de colonnes de l'image, on manipule ainsi un tableau de \(n \times
+            p\) pixels.
+         </p>
+         <p>La figure ci-dessous montre une visualisation d'un tableau carr&eacute; avec \(n=p=240\), ce qui repr&eacute;sente  \(240\times 240\)=57600
+            pixels. Les <a href="http://fr.wikipedia.org/wiki/Appareil_photographique_num%C3%A9rique">appareils photos num&eacute;riques</a> peuvent enregistrer des images beaucoup plus grandes, avec plusieurs <a href="http://en.wikipedia.org/wiki/Gigapixel_image">millions de pixels</a>.
+         </p><pre class="codeinput">n = 256;
+name = <span class="string">'hibiscus'</span>;
+f = load_image(name, n);
+f = rescale(sum(f,3));
+clf;
+imageplot(f);
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p>Les valeurs des pixels sont enregistr&eacute;es dans <a href="http://fr.wikipedia.org/wiki/Ordinateur">l'ordinateur</a> ou <a href="http://fr.wikipedia.org/wiki/Appareil_photographique_num%C3%A9rique">l'appareil photo num&eacute;rique</a> sous forme de <a href="http://fr.wikipedia.org/wiki/Entier_relatif">nombres entiers</a> entre 0 et 255, ce qui fait 256 valeurs possibles pour chaque pixel.
+         </p>
+         <p>La valeur 0 correspond au noir, et la valeur 255 correspond au blanc. Les valeurs interm&eacute;diaires correspondent &agrave; des <a href="http://fr.wikipedia.org/wiki/Niveau_de_gris">niveaux de gris</a> allant du noir au blanc.
+         </p>
+         <p>La figure ci-dessous montre un sous-tableau de \(6 \times 6\) pixels extrait de l'image pr&eacute;c&eacute;dente. On peut voir &agrave; la fois
+            les valeurs qui composent le tableau et les niveaux de gris qui permettent d'afficher l'image &agrave; l'&eacute;cran.
+         </p><pre class="codeinput">selx = 19:24;
+sely = 62:67;
+clf;
+image(f(selx,sely)*255); axis <span class="string">image</span>; axis <span class="string">off</span>;
+disp(floor(255*f(selx,sely)));
+</pre><pre class="codeoutput">    43    43    43    41    40    39
+    48    49    46    42    44    43
+   110    79    54    47    48    45
+   190   192   190   153    99    54
+   150   166   189   203   183   170
+   131   140   145   161   165   178
+
+</pre><img vspace="5" hspace="5" src="index_02.png"> <p>Les valeurs de l'images extraite sont: \[ \left[ \begin{array}{ccc}   43    &amp;43   &amp; 43  &amp;  41  &amp;  40 &amp;   39 \\   48    &amp;49
+              &amp; 46  &amp;  42 &amp;   44  &amp;  43\\   110   &amp; 79  &amp;  54 &amp;   47  &amp;  48 &amp;   45\\   190   &amp;192  &amp; 190  &amp; 153  &amp;  99 &amp;   54\\   150
+              &amp;166  &amp; 189 &amp;  203  &amp; 183 &amp;  170\\   131   &amp;140  &amp; 145 &amp;  161  &amp; 165 &amp;  178\\ \end{array} \right] \]
+         </p>
+         <h2>Stocker une image<a name="17"></a></h2>
+         <p>Stocker de grandes images sur le <a href="http://fr.wikipedia.org/wiki/Disque_dur">disque dur</a> d'un ordinateur prend beaucoup de place. Les nombres entiers sont stock&eacute;s en <a href="http://fr.wikipedia.org/wiki/Syst%C3%A8me_binaire">&eacute;criture binaire</a>, c'est-&agrave;-dire sous la forme d'une succession de 0 et de 1. Chaque 0 et chaque 1 se stocke sur une unit&eacute; &eacute;l&eacute;mentaire de stockage,
+            appel&eacute;e <a href="http://fr.wikipedia.org/wiki/Bit">bit</a>.
+         </p>
+         <p>Pour obtenir l'&eacute;criture binaire d'un pixel ayant comme valeur 179, il faut d&eacute;composer cette valeur comme somme de puissances
+            de deux. On obtient ainsi \[ 179=2^7+2^5+2^4+2+1, \] o&ugrave; l'on a pris soin d'ordonner les puissances de deux par ordre d&eacute;croissant.
+            Afin de faire mieux appara&icirc;tre l'&eacute;criture binaire, on ajoute "\(1 \times\)" devant chaque puissance qui appara&icirc;t dans l'&eacute;criture,
+            et "\(0\times\)" devant les puissances qui n'apparaissent pas \[ 179=1 \times 2^7 + 0 \times 26 + 1 \times 2^5 + 1 \times
+            24 +   0 \times 2^3 + 0 \times 22 + 1 \times 2^1 + 1 \times 2^0. \]
+         </p>
+         <p>Avec une telle &eacute;criture, la valeur de chaque pixel, qui est un nombre entre 0 et 255, n&eacute;cessite \[ \log_2(256) = 8 \text{
+            bits}. \] La fonction \(\log_2\) est le logarithme en base 2, et ce calcul exprime le fait que \[ 256=2^8 = 2 \times 2 \times
+            2 \times 2 \times 2 \times 2 \times 2 \times 2.  \] L'&eacute;criture binaire de la valeur 179 du pixel est ainsi \((1,0,1,1,0,0,1,1)\),
+            o&ugrave; chaque 1 et chaque 0 correspond au facteur multiplicatif qui appara&icirc;t devant chaque puissance.
+         </p>
+         <p>On peut &eacute;crire toute valeur entre 0 et 255 de cet mani&egrave;re, ce qui n&eacute;cessite d'utilisation de 8 bits. Il y a en effet 256 valeurs
+            possibles, et \(256=2^8\). Pour stocker l'image compl&egrave;te, on a donc besoin de \[ n \times p \times 8 \text{ bits}. \]
+         </p>
+         <p>Pour stocker l'image compl&egrave;te, on a donc besoin de \[ n \times p \times 8  \text{ bits}. \] Pour l'image montr&eacute;e aux figure
+            pr&eacute;c&eacute;dentes, on a ainsi besoin de \[ 256 \times 256 \times 8 = 524288 \text{ bits}. \]
+         </p>
+         <p>Pour l'image montr&eacute;e &agrave; la premi&egrave;re figure, on a ainsi besoin de \[ 240 \times 240 \times 8 = 460800 \text{ bits.} \] On utilise
+            le plus souvent <a href="http://fr.wikipedia.org/wiki/Octet">l'octet</a> (8 bits) comme unit&eacute;, de sorte que cette image n&eacute;cessite 57,6ko (kilo octets).
+         </p>
+         <h2>La r&eacute;solution d'une image<a name="23"></a></h2>
+         <p>Afin de r&eacute;duire la place de stockage d'une image, on peut r&eacute;duire sa <a href="http://fr.wikipedia.org/wiki/R%C3%A9solution_(imagerie_num%C3%A9rique)">r&eacute;solution</a>, c'est-&agrave;-dire diminuer le nombre de pixels.
+         </p>
+         <p>La fa&ccedil;on la plus simple d'effectuer cette r&eacute;duction consiste &agrave; supprimer des lignes et des colonnes dans l'image de d&eacute;part.</p>
+         <p>La figure suivante montre ce que l'on obtient si l'on retient une ligne sur 4 et une colonne sur 4.</p><pre class="codeinput">sub = @(f,k)f(1:k:end,1:k:end);
+
+clf;
+imageplot(sub(f,4));
+</pre><img vspace="5" hspace="5" src="index_03.png"> <p>On a ainsi divis&eacute; par \(4 \times 4 = 16\) le nombre de pixels de l'image, et donc &eacute;galement r&eacute;duit par 16 le nombre de bit
+            n&eacute;cessaire pour stocker l'image sur un disque dur.
+         </p>
+         <p>La figure suivante montre les r&eacute;sultats obtenus en enlevant de plus en plus de lignes et de colonnes. Bien entendu, la qualit&eacute;
+            de l'image se d&eacute;grade vite.
+         </p><pre class="codeinput">klist = [2 4 8 16];
+clf;
+<span class="keyword">for</span> i=1:length(klist)
+    k = klist(i);
+    imageplot(clamp(sub(f,k)), [<span class="string">'1 ligne/colonne sur '</span> num2str(k)], 2, 2, i);
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="index_04.png"> <h2>Quantifier une image<a name="28"></a></h2>
+         <p>Une autre fa&ccedil;on de r&eacute;duire la place m&eacute;moire n&eacute;cessaire pour le stockage consiste &agrave; utiliser moins de nombres entirers pour
+            chaque valeur.
+         </p>
+         <p>On peut par exemple utiliser uniquement des nombres entier entre 0 et 3, ce qui donnera une image avec uniquement 4 niveau
+            de gris.
+         </p>
+         <p>On peut effectuer une conversion de l'image d'origine vers une image avec 3 niveau de valeurs en effectuant les remplacements:</p>
+         <p>- les valeurs dans \(0,1,\ldots,63\) sont remplac&eacute;es par la valeur 0,</p>
+         <p>- les valeurs dans \(64,1,\ldots,127\) sont remplac&eacute;es par la valeur 1,</p>
+         <p>- les valeurs dans \(128,1,\ldots,191\) sont remplac&eacute;es par la valeur 2,</p>
+         <p>- les valeurs dans \(192,\ldots,255\) sont remplac&eacute;es par la valeur 3.</p>
+         <p>Une telle op&eacute;ration se nomme <a href="http://fr.wikipedia.org/wiki/Quantification_(signal)">quantification</a>.
+         </p>
+         <p>La figure suivante montre l'image r&eacute;sultante avec 4 niveaux de couleurs. Les 4 valeurs sont affich&eacute;es en utilisant 4 niveaux
+            de gris allant du noir au blanc.
+         </p><pre class="codeinput">quant = @(f,q)(round(q*rescale(f,1e-3,1-1e-3)-1/2)+1/2)/q;
+clf;
+imageplot(quant(f,4), <span class="string">'4 niveaux de gris'</span>);
+</pre><img vspace="5" hspace="5" src="index_05.png"> <p>Nous avons d&eacute;j&agrave; vu que l'on pouvait repr&eacute;senter toute valeur entre 0 et 255 &agrave; l'aide de 8 bits en utilisant l'&eacute;criture binaire.
+            De fa&ccedil;on similaire, on v&eacute;rifie que toute valeur entre 0 et 3 peut se repr&eacute;senter &agrave; l'aide de 2 bits. On obtient ainsi une
+            r&eacute;duction d'un facteur 8/2=4 de la place <a href="http://fr.wikipedia.org/wiki/M%C3%A9moire_(informatique)">m&eacute;moire</a> n&eacute;cessaire pour le stockage de l'image sur un disque dur.
+         </p>
+         <p>La figure suivante montre les r&eacute;sultats obtenus en utilisant de moins en moins de niveaux de gris.</p><pre class="codeinput">qlist = [16, 4, 3, 2];
+clf;
+<span class="keyword">for</span> i=1:length(qlist)
+    q = qlist(i);
+    f1 = quant(f,q); f1(1)=0; f1(2)=1;
+    imageplot(f1, [num2str(q) <span class="string">' niveaux de gris'</span> ], 2, 2, i);
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="index_06.png"> <p>Tout comme pour la r&eacute;duction du nombre de pixels, la r&eacute;duction du nombre de niveaux de gris influe beaucoup sur la qualit&eacute;
+            de l'image. Afin de r&eacute;duire au maximum la taille d'une image sans modifier sa qualit&eacute;, on utilise des m&eacute;thodes plus complexes
+            de <a href="http://fr.wikipedia.org/wiki/Compression_d%27image">compression d'image</a>. La m&eacute;thode la plus efficace s'appelle <a href="http://fr.wikipedia.org/wiki/Jpeg_2000">JPEG-2000</a>. Elle utilise la th&eacute;orie des <a href="http://fr.wikipedia.org/wiki/Ondelettes">ondelettes</a>. Pour en savoir plus &agrave; ce sujet, vous pouvez consuler cet <a href="http://images.math.cnrs.fr/Compression-d-image.html">article d'Erwan Le Pennec</a>.
+         </p>
+         <h2>Enlever le bruit par moyennes locales<a name="37"></a></h2>
+         <p>Les images sont parfois de mauvaise qualit&eacute;. Un exemple typique de d&eacute;faut est le <a href="http://fr.wikipedia.org/wiki/Bruit_num%C3%A9rique">bruit</a> qui apparait quand une photo est <a href="http://fr.wikipedia.org/wiki/Exposition_(photographie)">sous-expos&eacute;e</a>, c'est-&agrave;-dire qu'il n'y a pas assez de luminosit&eacute;. Ce bruit se manifeste par de petites flucturation <a href="http://fr.wikipedia.org/wiki/Suite_al%C3%A9atoire">al&eacute;atoires</a> des niveaux de gris. La figure ci-dessous montre une image bruit&eacute;e.
+         </p><pre class="codeinput">name = <span class="string">'boat'</span>;
+f = rescale(load_image(name, n));
+sigma = .08;
+f = f + randn(n)*sigma;
+clf;
+imageplot(f);
+</pre><img vspace="5" hspace="5" src="index_07.png"> <p>Afin d'enlever le bruit dans les images, il convient de faire subir une modification aux valeurs de pixels. L'op&eacute;ration la
+            plus simple consiste &agrave; remplacer la valeur \(a\) de chaque pixel par la <a href="http://fr.wikipedia.org/wiki/Moyenne">moyenne</a> de \(a\) et des 8 valeurs \(b,c,d,e,f,g,h,i\) des 8 pixels voisins de a.
+         </p>
+         <p>Les valeurs des pixels sont positionn&eacute;es comme suit : \[ \left[ \begin{array}{ccc}       g &amp; c &amp; h \\       b &amp; a &amp; d \\ 
+                 f &amp; e &amp; i \end{array} \right]   = \left[ \begin{array}{ccc}       79 &amp; 54 &amp; 47 \\       192 &amp; 190 &amp; 153 \\       166
+            &amp; 189 &amp; 203 \end{array} \right] \]
+         </p>
+         <p>On obtient ainsi une image modifi&eacute;e en rempla&ccedil;ant a par \[ \frac{a+b+c+d+e+f+g+h+i}{9} \] puisque l'on fait la moyenne de
+            9 valeurs. Dans notre exemple, cette moyenne vaut \[ \frac{190+192+79+54+47+153+203+189+166}{9} \approx 141,4. \] En effectuant
+            cette op&eacute;ration pour chaque pixel, on supprime une partie du bruit, car ce bruit est constitu&eacute; de fluctuations al&eacute;atoires,
+            qui sont diminu&eacute;es par un calcul de moyennes. La figure ci-dessous montre l'effet d'un tel calcul.
+         </p>
+         <p>La figure ci-dessous montre l'effet d'un tel moyennage.</p><pre class="codeinput">filt_moy = @(f,k)perform_convolution(f,ones(2*k+1)/(2*k+1)^2,<span class="string">'sym'</span>);
+clf;
+imageplot(clamp(f), <span class="string">'Image bruit&eacute;e'</span>, 1, 2, 1);
+imageplot(clamp(filt_moy(f,1)), <span class="string">'Image moyenn&eacute;e'</span>, 1, 2, 2);
+</pre><img vspace="5" hspace="5" src="index_08.png"> <p>Tout le bruit n'a pas &eacute;t&eacute; enlev&eacute; par cette op&eacute;ration. Afin d'enlever plus de bruit, on peut moyenner plus de valeurs autour
+            de chaque pixel. La figure suivante montre le r&eacute;sultat obtenu en moyennant de plus en plus de valeurs.
+         </p><pre class="codeinput">klist = [1 2 3 4];
+clf;
+<span class="keyword">for</span> i=1:length(klist)
+    k = klist(i);
+    f1 = filt_moy(f,k);
+    imageplot(clamp(f1), [<span class="string">'Moyenne de '</span> num2str((2*k+1)^2) <span class="string">' pixels'</span>], 2, 2, i);
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="index_09.png"> <p>Le moyennage des pixels est tr&egrave;s efficace pour enlever le bruit dans les images, malheureusement il d&eacute;truit &eacute;galement une
+            grande partie de l'information de l'image. on peut en effet s'appercevoir que les images obtenues par moyennage sont <a href="http://fr.wikipedia.org/wiki/Flou,_nettet%C3%A9_et_contraste">floues</a>. Ceci est en particulier visible pr&egrave;s des contours, qui ne sont pas nets.
+         </p>
+         <h2>Enlever le bruit par m&eacute;diane<a name="44"></a></h2>
+         <p>Afin de r&eacute;duire ce flou, il faut remplacer le moyennage par une op&eacute;ration un peu plus complexe, que l'on nomme <a href="http://fr.wikipedia.org/wiki/M%C3%A9diane">mediane</a>.
+         </p>
+         <p>Etant donn&eacute; la valeur \(a\) d'un pixel, et les valeurs \(b,c,d,e,f,g,h,i\), on commence par les classer par <a href="http://fr.wikipedia.org/wiki/Ordre_croissant">ordre croissant</a>.
+         </p>
+         <p>Dans l'exemple du voisinage de 9 pixels utilis&eacute; &agrave; la section pr&eacute;c&eacute;dente, on obtient les 9 valeurs class&eacute;es \[ 47,54,79,153,166,189,190,192,203.
+            \] La m&eacute;diane des neuf valeurs \(a,b,c,d,e,f,g,h,i\) est la \(5^\text{e}\) valeur de ce classement (c'est-&agrave;-dire la valeur
+            centrale de ce classement).
+         </p>
+         <p>Dans notre cas, la m&eacute;diane est donc 166. Notez que ce nombre est en g&eacute;n&eacute;ral diff&eacute;rent de la moyenne, qui vaut, pour notre
+            exemple 141,4.
+         </p>
+         <p>La figure ci-dessous compare le d&eacute;bruitage obtenu en effectuant la moyenne et la m&eacute;diane de 9 pixels voisins.</p><pre class="codeinput">filt_med = @(f,k)perform_median_filtering(f,k);
+clf;
+imageplot(clamp(filt_moy(f,1)), <span class="string">'Moyenne de 9 nombres'</span>, 1, 2, 1);
+imageplot(clamp(filt_med(f,1)), <span class="string">'M&eacute;diane de 9 nombres'</span>, 1, 2, 2);
+</pre><img vspace="5" hspace="5" src="index_10.png"> <p>Afin d'enlever plus de bruit, il suffit de calculer la m&eacute;diane sur un nombre plus grand de pixels voisins, comme montr&eacute; &agrave;
+            la figure suivante.
+         </p><pre class="codeinput">klist = [1 2 3 4];
+clf;
+<span class="keyword">for</span> i=1:length(klist)
+    k = klist(i);
+    f1 = filt_med(f,k);
+    imageplot(clamp(f1), [<span class="string">'M&eacute;diane de '</span> num2str((2*k+1)^2) <span class="string">' pixels'</span>], 2, 2, i);
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="index_11.png"> <p>On constate que cette m&eacute;thode est plus performante que le calcul de moyennes, car les images r&eacute;sultantes sont moins floues.
+            Cependant, tout comme avec le calcul de moyennes, si l'on prend des voisinages trop grands, on perd aussi de l'information
+            de l'image, en particulier les bords des objets sont d&eacute;grad&eacute;s.
+         </p>
+         <h2>D&eacute;tecter les bords des objets<a name="51"></a></h2>
+         <p>Affin de localiser des objets dans les images, il est n&eacute;cessaire de d&eacute;tecter les <a href="http://fr.wikipedia.org/wiki/D%C3%A9tection_de_contours">bords</a> de ces objets. Ces bords correspondent &agrave; des zones de l'image o&ugrave; les valeurs des pixels changent rapidement. C'est le cas
+            par exemple lorsque l'on passe de la coque du bateau (qui est sombre, donc avec des valeurs petites) &agrave; la mer (qui est claire,
+            donc avec des valeurs grandes).
+         </p>
+         <p>Afin de quantifier combien un pixel avec une valeur \(a\) est un bord, on prend en compte les valeurs \(b,c,d,e\) de ses quatre
+            voisins (deux horizontallement et deux verticalements). Dans le cas consid&eacute;r&eacute; pr&eacute;c&eacute;demment, on obtient : \[ \left[ \begin{array}{ccc}
+                   &amp; c &amp;  \\       b &amp; a &amp; d \\        &amp; e &amp; \end{array} \right]   = \left[ \begin{array}{ccc}        &amp; 54 &amp;  \\     
+             192 &amp; 190 &amp; 153 \\        &amp; 189 &amp; \end{array} \right] \]
+         </p>
+         <p>Notons que l'on utilise ici seulement 4 voisins, ce qui est diff&eacute;rent du calcul de moyennes et de m&eacute;dianes o&ugrave; l'on utilisait
+            8 voisins. Ceci est important afin de d&eacute;tecter aussi pr&eacute;cis&eacute;ment que possible les bords des objets.
+         </p>
+         <p>On calcule une valeur \(\ell\) suivant la formule \[ \ell = \sqrt{ (b-d)^2 + (c-e)^2 }.  \] Dans notre exemple, on obtient
+            donc \[ \ell= \sqrt{&nbsp;(192 - 153)^2 + (189 - 54)^2 } = \sqrt{19746} \approx 140,5. \]
+         </p>
+         <p>On peut remarquer que si \(\ell=0\), alors on a \(b=c\) et \(d=e\). Au contraire, si \(\ell\) est grand, ceci signifie que
+            les pixels voisins ont des valeurs tr&egrave;s diff&eacute;rentes, le pixel consid&eacute;r&eacute; est donc probablement sur le bord d'un objet.
+         </p>
+         <p>La figure suivante montre l'image obtenue en calculant la valeur \(\ell\) associ&eacute;e &agrave; chaque pixel. On a affich&eacute; ces valeurs
+            avec du noir quand \(\ell=0\),  du blanc quand \(\ell\) est grand, et on a utilis&eacute; des niveaux de gris interm&eacute;diaire pour
+            les valeurs entre 0 et 1.
+         </p><pre class="codeinput">n = 256;
+name = <span class="string">'hibiscus'</span>;
+f = load_image(name, n);
+f = rescale(sum(f,3));
+
+s1 = [1 1:n-1]; s2 = [2:n n];
+edge = @(f)sqrt( ( f(s1,:) - f(s2,:) ).^2 + ( f(:,s1) - f(:,s2) ).^2 );
+
+clf;
+imageplot(f, <span class="string">'Image'</span>, 1,2,1);
+imageplot(edge(f), <span class="string">'Carte de l'</span>, 1,2,2);
+</pre><img vspace="5" hspace="5" src="index_12.png"> <p>On peut voir que dans l'image de droite, les contours des objets ressortent en blanc, car ils correspondent aux grandes valeurs
+            de \(\ell\).
+         </p>
+         <h2>Les images couleurs<a name="58"></a></h2>
+         <p>Une <a href="http://fr.wikipedia.org/wiki/Couleur">image couleur</a> est en r&eacute;alit&eacute; compos&eacute;e de trois images ind&eacute;pendantes, afin de repr&eacute;senter le <a href="http://fr.wikipedia.org/wiki/Rouge_vert_bleu">rouge, le vert, et le bleu</a>. Chacune de ces trois image s'appelle un <a href="http://fr.wikipedia.org/wiki/Codage_informatique_des_couleurs">canal</a>. Cette repr&eacute;sentation en rouge, vert et bleu mime le fonctionnement du syst&egrave;me visuel humain.
+         </p>
+         <p>La figure suivante montre une image couleur, qui est d&eacute;compos&eacute;e en ses trois canaux constitutifs.</p><pre class="codeinput">name = <span class="string">'hibiscus'</span>;
+f = rescale( load_image(name,n) );
+
+
+f1 = cat(3, f(:,:,1), zeros(n), zeros(n));
+f2 = cat(3, zeros(n), f(:,:,2), zeros(n));
+f3 = cat(3, zeros(n), zeros(n), f(:,:,3));
+
+clf;
+imageplot({f f1 f2 f3}, <span class="keyword">...</span>
+        { <span class="string">'Image couleur'</span> <span class="string">'Canal rouge'</span> <span class="string">'Canal vert'</span> <span class="string">'Canal bleu'</span>}, 2, 2);
+</pre><img vspace="5" hspace="5" src="index_13.png"> <p>Chaque pixel de l'image couleur contient ainsi trois nombres \( (r,v,b) \), chacun &eacute;tant un nombre entier entre 0 et 255.
+            Si le pixel est &eacute;gal &agrave; \((r,v,b)=(255,0,0)\), il ne contient que de l'information rouge, et est affich&eacute; comme du rouge. De
+            fa&ccedil;on similaire, les pixels valant \((0,255,0)\) et \((0,0,255)\) sont respectivement affich&eacute;s vert et bleu.
+         </p>
+         <p>On peut afficher &agrave; l'&eacute;cran une image couleur &agrave; partir de ses trois canaux \((r,v,b)\) en utilisant les r&egrave;gles de la <a href="http://fr.wikipedia.org/wiki/Synth%C3%A8se_additive">synth&egrave;se additive des couleurs</a>. La figure suivante montre les r&egrave;gles de composition cette synth&egrave;se additive des couleurs. Par exemple un pixel avec les
+            valeurs \((r,v,b)=(255,0,255)\) est un m&eacute;lange de rouge et de vert, il est donc affich&eacute; comme du jaune.
+         </p>
+         <p>On peut calculer une image en niveau de gris &agrave; partir d'une image couleur en moyennant les trois cannaux. On calcule donc
+            une valeur \[ a = \frac{r+v+b}{3} \] qui s'appelle la <a href="http://fr.wikipedia.org/wiki/Luminance">luminance</a> de la couleur.
+         </p>
+         <p>La figure suivante montre le passage d'une image couleur &agrave; une image de luminance en niveau de gris.</p><pre class="codeinput">clf;
+imageplot({f sum(f,3)}, {<span class="string">'Couleur'</span> <span class="string">'Luminance'</span>});
+</pre><img vspace="5" hspace="5" src="index_14.png"> <p>Une autre repr&eacute;sentation courante pour les images couleurs utilise comme couleurs de base le cyan, le magenta et le jaune.
+            On calcule les trois nombres \((c,m,j)\) correspondant &agrave; chacun de ces trois canaux &agrave; partir des canaux rouge, vert et bleu
+            \((r,v,b)\) comme suit \[ c=255-r, \quad m=255-v, \quad j=255-b. \] Par exemple, un pixel de bleu pur \((r,v,b)=(0,0,255)\)
+            va devenir \( (c,m,j)=(255,255,0) \). La figure suivante montre les trois canaux \((c,m,j)\) d'une image couleur.
+         </p><pre class="codeinput">g = 1-f;
+f1 = cat(3, f(:,:,1),     f(:,:,2)*0+1, f(:,:,3)*0+1);
+f2 = cat(3, f(:,:,1)*0+1, f(:,:,2)    , f(:,:,3)*0+1);
+f3 = cat(3, f(:,:,1)*0+1, f(:,:,2)*0+1, f(:,:,3));
+
+
+clf;
+imageplot({f f1 f2 f3}, <span class="keyword">...</span>
+        { <span class="string">'Image couleur'</span> <span class="string">'Canal cyan'</span> <span class="string">'Canal magenta'</span> <span class="string">'Canal jaune'</span>}, 2, 2);
+</pre><img vspace="5" hspace="5" src="index_15.png"> <p>Afin d'afficher une image couleur &agrave; l'&eacute;cran &agrave; partir des trois canaux \((c,m,j)\), on doit utiliser la synth&egrave;se soustractive
+            des couleurs. La figure suivante montre les r&egrave;gles de composition cette synth&egrave;se soustractive. Notons que ces r&egrave;gles sont
+            celles que l'on utilise en peinture, lorsque l'on m&eacute;lange des pigments color&eacute;s. Le cyan, le magenta et le jaune sont appel&eacute;s
+            couleurs primaires.
+         </p>
+         <p>On peut donc stocker sur un disque dur une image couleur en stockant les trois canaux, correspondant aux valeurs \((r,g,b)\)
+            ou \((c,m,j)\). On peut modifier les images couleur tout comme les images en niveaux de gris. La fa&ccedil;on la plus simple de proc&eacute;der
+            consiste &agrave; appliquer la modification &agrave; chacun des canaux.
+         </p>
+         <h2>Changer le contraste d'une image<a name="67"></a></h2>
+         <p>Il est possible de faire subir diff&eacute;rentes modifications &agrave; l'image afin de changer son <a href="http://fr.wikipedia.org/wiki/Contraste">contraste</a>.
+         </p><pre class="codeinput">name = <span class="string">'hibiscus'</span>;
+f = rescale( load_image(name,n) );
+f = rescale(sum(f,3));
+</pre><p>Un exemple simple consiste &agrave; remplacer chaque valeur \(a\) d'un pixel d'une image par \(255-a\) ce qui correspond &agrave; la couleur
+            oppos&eacute;e. Le blanc devient noir et vice-et-versa, ce qui donne un effet similaire &agrave; celui des <a href="http://fr.wikipedia.org/wiki/Film_n%C3%A9gatif">n&eacute;gatifs</a> <a href="http://fr.wikipedia.org/wiki/Argentique">d'appareils photos argentiques</a>.
+         </p><pre class="codeinput">clf;
+imageplot(-f);
+</pre><img vspace="5" hspace="5" src="index_16.png"> <p>Sans aller jusqu'&agrave; des modifications aussi extr&ecirc;mes, on peut assombrir une image en rempl&ccedil;ant la valeur \(a\) de chaque pixel
+            par son <a href="http://fr.wikipedia.org/wiki/Carr%C3%A9_(alg%C3%A8bre)">carr&eacute;</a> \(a^2 = a \times a\).
+         </p>
+         <p>Ce faisant, les valeurs r&eacute;sultantes ne sont plus dans \(0,\ldots,255\) mais dans \(0,\ldots,255^2=65025\). Afin d'afficher
+            l'image &agrave; l'&eacute;cran on va donc utiliser des niveaux de gris allant du noir pour 0 au blanc pour 65025.
+         </p><pre class="codeinput">clf;
+imageplot(f.^2, <span class="string">'Carr&eacute;'</span>);
+</pre><img vspace="5" hspace="5" src="index_17.png"> <p>Afin d'&eacute;claircir l'image, on peut remplacer chaque valeur \(a\) par sa <i>racine carr&eacute;e</i> \(b = \sqrt{a}\). Cette valeur \(b\) est un nombre, qui n'est plus n&eacute;cessairement entier, qui satisfait \(b \times b = a\).
+         </p>
+         <p>La figure suivante montre l'&eacute;claircissement obtenu. Les valeurs de l'image &eacute;claircie sont dant \(0,\ldots,\sqrt{255} \approx
+            16\), et on utilise donc des niveaux de gris allant du noir (pour 0) au blanc (pour 16).
+         </p><pre class="codeinput">clf;
+imageplot(sqrt(f), <span class="string">'Remplacement de a par sqrt(a)'</span>);
+</pre><img vspace="5" hspace="5" src="index_18.png"> <p>On pourra noter que l'on a \[ \sqrt{a} \times \sqrt{a} = a \quad\text{et}\quad \sqrt{a \times a}=a \] de sorte que si l'on
+            r&eacute;alise un &eacute;clairsissement suivit d'un assombrissement (ou dans le sens inverse) on retrouve l'image d'origine. Ces deux op&eacute;rations
+            sont <a href="http://fr.wikipedia.org/wiki/Inverse">inverses</a> l'une de l'autre.
+         </p>
+         <p>On peut &eacute;galement changer le contraste d'une image couleur en changeant sa composante de luminance.</p><pre class="codeinput">name = <span class="string">'hibiscus'</span>;
+f = rescale( load_image(name,n) );
+
+m = @(f)repmat(mean(f,3), [1 1 3]);
+contrast = @(f,gamma)clamp(m(f).^gamma + f-m(f));
+
+gamma_list = [.5 .75 1 1.5 2 3];
+clf;
+<span class="keyword">for</span> i=1:length(gamma_list)
+    subplot(2,3,i);
+    image(contrast(f,gamma_list(i))); axis <span class="string">image</span>; axis <span class="string">off</span>;
+    title([<span class="string">'\gamma='</span> num2str(gamma_list(i))]);
+    colormap <span class="string">jet(256)</span>;
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="index_19.png"> <h2>Transformations g&eacute;om&eacute;triques<a name="75"></a></h2>
+         <p>Une image est un tableau de nombres, avec \(n\) lignes et \(p\) colonnes. Il est donc facile d'effectuer certaines <a href="http://fr.wikipedia.org/wiki/Transformation_g%C3%A9om%C3%A9trique">transformations g&eacute;om&eacute;triques</a> sur l'image.
+         </p>
+         <p>Les valeurs des pixels qui composent ce tableau (not&eacute; \(A\)) peuvent &ecirc;tre repr&eacute;sent&eacute;es sous la forme \( A = ( a_{i,j} )_{i,j}
+            \) ou l'index \(i\) d&eacute;crit l'ensemble des nombres \( \{1,\ldots,n\} \) (les entiers entre 1 et n) et l'index \(j\) les nombres
+            \( \{1,\ldots,p\} \). One dit que \(a_{i,j}\) est la valeur du pixel &agrave; la position \((i,j)\).
+         </p>
+         <p>Le tableau de pixels ainsi index&eacute; peut se repr&eacute;senter sous la fa&ccedil;on suivante \[ A = \begin{pmatrix} a_{1,1} &amp;           &amp;
+                      &amp;   &amp; a_{1,p}\\        &amp;           &amp;  \vdots   &amp;   &amp;  \\ 	   &amp;           &amp; a_{i-1,j} &amp;   &amp; \\ \ldots &amp; a_{i,j-1}
+            &amp; a_{i,j}   &amp; a_{i,j+1} &amp; \ldots\\ 	   &amp;           &amp; a_{i+1,j} &amp;   &amp; \\        &amp;           &amp;  \vdots   &amp;   &amp;  \\ a_{n,1} &amp;
+                      &amp;           &amp;   &amp; a_{n,p}\\ \end{pmatrix} \] ce qui montre que le pixel en haut &agrave; gauche de l'image correspond &agrave;
+            la valeur \(a_{1,1}\). Ceci correspond &agrave; la repr&eacute;sentation de l'image sous forme d'une <a href="http://fr.wikipedia.org/wiki/Matrice_(math%C3%A9matiques)">matrice</a>.
+         </p>
+         <p>Si l'on &eacute;change le r&ocirc;le des lignes et des colonnes, on d&eacute;finit un autre tableau \(B\) avec \(p\) lignes et \(n\) colonnes.
+            La formule qui d&eacute;finit le tableau \(B = ( b_{j,i} )_{i,j}\) est \[ b_{j,i} = a_{i,j}. \] Ceci correspond &agrave; la <a href="http://fr.wikipedia.org/wiki/Matrice_transpos%C3%A9e">transposition</a> de la matrice correspondant &agrave; l'image.
+         </p>
+         <p>Pour une image couleur, on effectue cette modification sur chacune de ses trois composantes couleur R, V et B.</p>
+         <p>La figure suivante montre l'image correspondant au tableau \(A\) et l'image correspondant au tableau \(B\). On peut constater
+            que la modification correspond &agrave; faire sur l'image une <a href="http://fr.wikipedia.org/wiki/Sym%C3%A9trie_(transformation_g%C3%A9om%C3%A9trique)">sym&eacute;trie</a> par rapport &agrave; la <a href="http://fr.wikipedia.org/wiki/Diagonale">diagonale</a> qui joint le coin haut/gauche au coin bas/droite.
+         </p><pre class="codeinput">A = rescale( load_image(<span class="string">'flowers'</span>,512) );
+B = permute(A, [2 1 3]);
+clf;
+imageplot({A B}, {<span class="string">'Image A'</span> <span class="string">'Image B'</span>}, 1,2,1);
+</pre><img vspace="5" hspace="5" src="index_20.png"> <p>On peut &eacute;galement effectuer une <a href="http://fr.wikipedia.org/wiki/Rotation">rotation</a> d'un quart de tour dans le sens d'une montre &agrave; l'image. Ceci est effectu&eacute; en d&eacute;finissant une image \(C = (c_{i,j})_{j,i}\)
+            de \(p\) lignes et \(n\) colonnes dont le tableau de nombre est calcul&eacute; par \[ c_{j,i} =  a_{n-i+1,j}.\]
+         </p><pre class="codeinput">C = A;
+C = C(end:-1:1,:,:); C = permute(C, [2 1 3]);
+clf;
+imageplot({A C}, {<span class="string">'Image A'</span> <span class="string">'Image C'</span>}, 1,2,1);
+</pre><img vspace="5" hspace="5" src="index_21.png"> <h2>Fondu entres deux images<a name="82"></a></h2>
+         <p>On souhaite effectuer une <a href="http://fr.wikipedia.org/wiki/Fondu">transition entre deux images</a> \(A\) et \(B\) de m&ecirc;me taille. On suppose donc que chaque image a le m&ecirc;me nombre \(n\) de lignes et le m&ecirc;me nombre \(p\)
+            de colonnes.
+         </p>
+         <p>La figure ci-dessous montre les deux images entre lesquelles on souhaite calculer une transition.</p><pre class="codeinput">A = rescale( load_image(<span class="string">'flowers'</span>,512) );
+B = rescale( load_image(<span class="string">'hibiscus'</span>,512) );
+clf;
+imageplot({A B}, {<span class="string">'Image A'</span>, <span class="string">'Image B'</span>});
+</pre><img vspace="5" hspace="5" src="index_22.png"> <p>One note \(A = (a_{i,j})_{i,j}\) les pixels de l'image \(A\) et \(B = (b_{i,j})_{i,j}\) les pixels de l'image \(B\).</p>
+         <p>Pour une valeur \(t\) fix&eacute;e entre \(0\) et \(1\), on d&eacute;finit l'image \(C = (c_{i,j})_{i,j}\) comme \[ c_{i,j}  = (1-t) a_{i,j}
+            + t b_{i,j}.\] Il s'agit de la formule d'une <a href="http://fr.wikipedia.org/wiki/Interpolation_lin%C3%A9aire">interpolation lin&eacute;aire</a> entre les deux images.
+         </p>
+         <p>Si l'image est une image couleur, on applique cette formule &agrave; chacun des canaux R, V et B.</p>
+         <p>On peut constater que pour \(t=0\), l'image \(C\) est &eacute;gale &agrave; l'image \(A\). Pour \(t=1\), l'image \(c\) est &eacute;gale &agrave; l'image
+            \(B\). Lorsque la valeur \(t\) progresse de 0 &agrave; 1, on obtient ainsi un effet de fondu, puisque l'image, qui au d&eacute;part est
+            proche de l'image \(A\) ressemble de plus en plus &agrave; l'image \(B\).
+         </p>
+         <p>La figure suivante montre 5 valeurs de \(t\) r&eacute;parties entre 0 et 1.</p><pre class="codeinput">p = 6;
+t = linspace(0,1,p);
+clf;
+<span class="keyword">for</span> i=1:p
+    imageplot(t(i)*A+(1-t(i))*B, [<span class="string">'t='</span> num2str(t(i), 2)], 2,p/2,i);
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="index_23.png"> <h2>Conclusion<a name="89"></a></h2>
+         <p>Cet article n'a fait qu'effleurer l'immense liste des traitements que l'on peut faire subir &agrave; une image. Le traitement math&eacute;matique
+            des images est un domaine tr&egrave;s actif, o&ugrave; les avanc&eacute;es th&eacute;oriques se concr&eacute;tisent sous la forme d'algorithmes rapides de calcul
+            qui ont des applications importantes pour la manipulation des contenus num&eacute;riques.
+         </p>
+         <p>Les personnes int&eacute;ress&eacute;es pourront consulter le site web <a href="http://www.numerical-tours.com/">A Numerical Tour of Signal Processing</a> pour de nombreux exemples de traitements d'images. On y trouve &eacute;galement des liens vers d'autres ressources disponibles en
+            ligne.
+         </p>
+         <h2>Glossaire<a name="91"></a></h2>
+         <p>- <b>Al&eacute;atoire</b> : valeur impr&eacute;visible souvent due au hazard, comme par exemple le bruit qui perturbe les images de mauvaises qualit&eacute;s.
+         </p>
+         <p>- <b>Bit</b> : unit&eacute; &eacute;lementaire de stockage de l'information sous forme de 0 et de 1 dans un ordinateur.
+         </p>
+         <p>- <b>Canal</b> : une des trois images &eacute;l&eacute;mentaires qui composent une image couleur.
+         </p>
+         <p>- <b>Bords</b> : zone d'une image o&ugrave; les valeurs des pixels varient beaucoup, qui correspond aux contours des objets qui forment l'image.
+         </p>
+         <p>- <b>Bruit</b> : petites perturbations qui d&eacute;gradent la qualit&eacute; d'une image.
+         </p>
+         <p>- <b>Carr&eacute;</b> : le carr&eacute; \(b\) d'une valeur \(a\) est \(a \times a\). Il est not&eacute; \(a^2\).
+         </p>
+         <p>- <b>Contraste</b> : quantit&eacute; informelle qui indique la diff&eacute;rence entre les zones claires et les zones sombres d'une image.
+         </p>
+         <p>- <b>Compression d'image</b> : m&eacute;thode permettant de r&eacute;duire la place m&eacute;moire n&eacute;cessaire au stockage sur le disque dur d'une image.
+         </p>
+         <p>- <b>Ecriture binaire</b> : &eacute;criture de valeurs num&eacute;riques &agrave; l'aide uniquement de 0 et de 1.
+         </p>
+         <p>- <b>Flou</b> : d&eacute;gradation d'une image qui rend les contours des objets peu net, et donc difficile &agrave; localiser pr&eacute;cis&eacute;ment.
+         </p>
+         <p>- <b>Fondu</b> : interpolation lin&eacute;aire entre deux images.
+         </p>
+         <p>- <b>Image couleur</b> : ensemble de trois images en niveau de gris, qui peut &ecirc;tre affich&eacute; &agrave; l'&eacute;cran en couleur.
+         </p>
+         <p>- <b>Image num&eacute;rique</b> : tableau de valeurs que l'on peut afficher &agrave; l'&eacute;cran en assignant un niveau de gris &agrave; chaque valeur.
+         </p>
+         <p>- <b>Inverse</b> : op&eacute;ration ramenant une image dans son &eacute;tat d'origine.
+         </p>
+         <p>- <b>JPEG-2000</b> : m&eacute;thode r&eacute;cente de compression d'images qui utilise une transformation en ondelettes.
+         </p>
+         <p>- <b>Luminance</b> : moyenne des diff&eacute;rents canaux d'une image, qui indique la puissance lumineuse du pixel.
+         </p>
+         <p>- <b>Matrice</b> : tableau de valeurs, repr&eacute;sent&eacute; sous la forme \((a_{i,j})_{i,j}\).
+         </p>
+         <p>- <b>M&eacute;diane</b> : valeur centrale lorsque l'on classe par ordre croissant un ensemble de valeurs.
+         </p>
+         <p>- <b>Moyenne</b> : la moyenne d'un ensemble de valeurs est leur somme divis&eacute;e par leur nombre.
+         </p>
+         <p>- <b>Niveaux de gris</b> : nuances de gris utilis&eacute;es pour afficher &agrave; l'&eacute;cran une image num&eacute;rique.
+         </p>
+         <p>- <b>Nombres entiers</b> : nombres 0, 1, 2, 3, 4 ...
+         </p>
+         <p>- <b>Octet</b> : ensemble de huit bits cons&eacute;cutifs.
+         </p>
+         <p>- <b>Ondelettes</b> : transformation de l'image qui est utilis&eacute;e par la m&eacute;thode JPEG-2000 de compression d'images.
+         </p>
+         <p>- <b>Ordre croissant</b> : classement d'un ensemble de valeurs de la plus petite &agrave; la plus grande.
+         </p>
+         <p>- <b>Pixel</b> : une case dans un tableau de valeurs correspondant &agrave; une image num&eacute;rique.
+         </p>
+         <p>- <b>Quantification</b> : proc&eacute;d&eacute; consistant &agrave; r&eacute;duire l'ensemble des valeurs possibles d'une image num&eacute;rique.
+         </p>
+         <p>- <b>Racine carr&eacute;e</b> : la racine carr&eacute;e \(b\) d'une valeur positive \(a\) est la valeur positive \(b\) v&eacute;rifiant \(a=b \times b\). On la note
+            \(\sqrt{a}\).
+         </p>
+         <p>- <b>R&eacute;solution</b> : taille d'une image (nombre de pixels).
+         </p>
+         <p>- <b>Sous-expos&eacute;e</b> : photographie d'une sc&egrave;ne trop sombre pour laquelle l'objectif photographique n'est pas rest&eacute; assez longtemps ouvert.
+         </p>
+         <p>- <b>Synth&egrave;se additive</b> : r&egrave;gle permettant de construire une couleur quelconque &agrave; partir des trois couleurs rouge, vert et bleu. C'est la r&egrave;gle qui
+            r&eacute;git le m&eacute;lange des couleurs de faisceaux lumineux utilis&eacute;s pour l'&eacute;clairage d'un mur blanc.
+         </p>
+         <p>- <b>Synth&egrave;se soustractive</b> : r&egrave;gle permettant de construire une couleur quelconque &agrave; partir des trois couleurs cyan, magenta et jaune. C'est la r&egrave;gle
+            qui r&eacute;git le m&eacute;lange des couleurs en peinture.
+         </p>
+         <p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Le traitement numérique des images
+% Cette page reprend
+% <http://images.math.cnrs.fr/Le-traitement-numerique-des-images.html
+% l'article publié sur le site web Images des mathématiques>.
+
+%%
+% Les appareils numériques photographient de manière très précise le monde
+% qui nous entoure. L'utilisateur souhaite pouvoir stocker avec un encombrement
+% minimal ses photos sur son disque dur. Il souhaite également pouvoir les retoucher
+% afin d'améliorer leur qualité. Cet article présente les outils mathématiques et 
+% informatiques qui permettent d'effectuer ces différentes tâches.
+
+%%
+% Cet article présente quelques concepts du <http://fr.wikipedia.org/wiki/Traitement_d'images traitement> 
+% mathématique des
+% images numériques. Ces traitements permettent de stocker plus facilement 
+% les images et d'améliorer leur qualité. Les mathématiques utilisées dans 
+% cet article correspondent au niveau de la classe de troisième. Les mots 
+% clés en rouge pointent vers les pages <http://fr.wikipedia.org/ Wikipédia> 
+% correspondantes. Ils sont 
+% repris à la fin de l'article dans un glossaire.
+
+%%
+% _Mot clefs :_ image, bits, carré, racine carrée, inverse, logarithme, moyenne, médiane.
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_signal.zip signal toolbox> and 
+% <../toolbox_general.zip general toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_signal| and 
+% |toolbox_general|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_signal/');
+getd('toolbox_general/');
+
+
+
+
+%% Les pixels d'une image
+% Une <http://fr.wikipedia.org/wiki/Image_num%C3%A9rique image numérique>
+% en niveaux de gris est un tableau de valeurs. Chaque
+% case de ce tableau, qui stocke une valeur, se nomme un <http://fr.wikipedia.org/wiki/Pixel pixel>. 
+% En notant \(n\) le nombre de lignes et \(p\) le nombre de colonnes de l'image, 
+% on manipule ainsi un tableau de \(n \times p\) pixels.
+
+
+%% 
+% La figure ci-dessous montre une visualisation d'un tableau carré avec 
+% \(n=p=240\), ce qui représente  \(240\times 240\)=57600 pixels. Les
+% <http://fr.wikipedia.org/wiki/Appareil_photographique_num%C3%A9rique appareils photos numériques> 
+% peuvent enregistrer des images beaucoup plus grandes,
+% avec plusieurs <http://en.wikipedia.org/wiki/Gigapixel_image millions de pixels>.
+
+n = 256;
+name = 'hibiscus';
+f = load_image(name, n);
+f = rescale(sum(f,3));
+clf;
+imageplot(f);
+
+
+%%
+% Les valeurs des pixels sont enregistrées dans <http://fr.wikipedia.org/wiki/Ordinateur l'ordinateur> ou
+% <http://fr.wikipedia.org/wiki/Appareil_photographique_num%C3%A9rique l'appareil photo numérique> 
+% sous forme 
+% de <http://fr.wikipedia.org/wiki/Entier_relatif nombres entiers> entre 0 et 255, 
+% ce qui fait 256 valeurs possibles pour chaque pixel.
+
+%%
+% La valeur 0 correspond au noir, et la valeur 255 correspond au blanc. Les
+% valeurs intermédiaires correspondent à des <http://fr.wikipedia.org/wiki/Niveau_de_gris niveaux de gris>
+% allant du noir au blanc.
+
+%%
+% La figure ci-dessous montre un sous-tableau de \(6 \times 6\) pixels extrait de
+% l'image précédente. On peut voir à la fois les valeurs qui composent le tableau et les niveaux de gris qui permettent d'afficher l'image à l'écran.
+
+selx = 19:24;
+sely = 62:67;
+clf;
+image(f(selx,sely)*255); axis image; axis off;
+disp(floor(255*f(selx,sely)));
+
+
+
+%%
+% Les valeurs de l'images extraite sont:
+% \[
+% \left[
+% \begin{array}{ccc}
+%   43    &43   & 43  &  41  &  40 &   39 \\
+%   48    &49   & 46  &  42 &   44  &  43\\
+%   110   & 79  &  54 &   47  &  48 &   45\\
+%   190   &192  & 190  & 153  &  99 &   54\\
+%   150   &166  & 189 &  203  & 183 &  170\\
+%   131   &140  & 145 &  161  & 165 &  178\\
+% \end{array}
+% \right]
+% \]
+
+%% Stocker une image
+% Stocker de grandes images sur le <http://fr.wikipedia.org/wiki/Disque_dur disque dur>
+% d'un ordinateur prend
+% beaucoup de place. Les nombres entiers sont stockés 
+% en <http://fr.wikipedia.org/wiki/Syst%C3%A8me_binaire écriture binaire>, 
+% c'est-à-dire sous la forme d'une succession
+% de 0 et de 1. Chaque 0 et chaque 1 se stocke sur une unité élémentaire
+% de stockage, appelée <http://fr.wikipedia.org/wiki/Bit bit>.
+
+%%
+% Pour obtenir l'écriture binaire d'un pixel ayant comme valeur 179, 
+% il faut décomposer cette valeur comme somme de puissances de deux. 
+% On obtient ainsi
+% \[ 179=2^7+2^5+2^4+2+1, \]
+% où l'on a pris soin d'ordonner les puissances de deux par ordre
+% décroissant. Afin de faire mieux apparaître l'écriture binaire, 
+% on ajoute "\(1 \times\)" devant chaque puissance qui apparaît dans l'écriture, 
+% et "\(0\times\)" devant les puissances qui n'apparaissent pas
+% \[ 179=1 \times 2^7 + 0 \times 26 + 1 \times 2^5 + 1 \times 24 + 
+%   0 \times 2^3 + 0 \times 22 + 1 \times 2^1 + 1 \times 2^0. \]
+
+%%
+% Avec une telle écriture, 
+% la valeur de chaque pixel, qui est un nombre entre 0 et 255, nécessite 
+% \[ \log_2(256) = 8 \text{ bits}. \]
+% La fonction \(\log_2\) est le logarithme en base 2, et ce calcul exprime
+% le fait que 
+% \[ 256=2^8 = 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2.  \]
+% L'écriture binaire de la valeur 179 du pixel est ainsi \((1,0,1,1,0,0,1,1)\),
+% où chaque 1 et chaque 0 correspond au facteur multiplicatif qui apparaît devant chaque puissance.
+
+%%
+% On peut écrire toute valeur entre 0 et 255 de cet manière,
+% ce qui nécessite d'utilisation de 8 bits. Il y a en effet 
+% 256 valeurs possibles, et \(256=2^8\). Pour stocker l'image complète, on a donc besoin de
+% \[ n \times p \times 8 \text{ bits}. \]
+
+%%
+% Pour stocker l'image complète, on a donc besoin de 
+% \[ n \times p \times 8  \text{ bits}. \]
+% Pour l'image montrée aux figure précédentes, on a ainsi besoin de 
+% \[ 256 \times 256 \times 8 = 524288 \text{ bits}. \]
+
+%%
+% Pour l'image montrée à la première figure, on a ainsi besoin de
+% \[ 240 \times 240 \times 8 = 460800 \text{ bits.} \]
+% On utilise le plus souvent <http://fr.wikipedia.org/wiki/Octet l'octet> (8 bits) comme unité,
+% de sorte que cette image nécessite 57,6ko (kilo octets).
+
+%% La résolution d'une image
+% Afin de réduire la place de stockage d'une image, on peut réduire sa
+% <http://fr.wikipedia.org/wiki/R%C3%A9solution_(imagerie_num%C3%A9rique) résolution>, 
+% c'est-à-dire diminuer le nombre de pixels.
+
+%%
+% La façon la plus simple d'effectuer cette réduction consiste à supprimer des lignes et des colonnes dans l'image de départ.
+
+%%
+% La figure suivante montre ce que l'on obtient si l'on retient une ligne sur 4 et une colonne sur 4.
+
+sub = @(f,k)f(1:k:end,1:k:end);
+
+clf;
+imageplot(sub(f,4));
+
+
+
+%%
+% On a ainsi divisé par \(4 \times 4 = 16\) le nombre de pixels de l'image,
+% et donc également réduit par 16 le nombre de bit nécessaire pour stocker l'image sur 
+% un disque dur.
+
+%%
+% La figure suivante montre les résultats obtenus en enlevant de plus en
+% plus de lignes et de colonnes. Bien entendu, la qualité de l'image se
+% dégrade vite.
+
+
+klist = [2 4 8 16];
+clf;
+for i=1:length(klist)
+    k = klist(i);
+    imageplot(clamp(sub(f,k)), ['1 ligne/colonne sur ' num2str(k)], 2, 2, i);
+end
+
+
+
+
+
+%% Quantifier une image
+% Une autre façon de réduire la place mémoire nécessaire pour le stockage
+% consiste à utiliser moins de nombres entirers pour chaque valeur.
+
+%%
+% On peut par exemple utiliser uniquement des nombres entier entre 0 et 3,
+% ce qui donnera une image avec uniquement 4 niveau de gris. 
+
+%%
+% On peut effectuer une conversion de l'image d'origine vers une image avec
+% 3 niveau de valeurs en effectuant les remplacements:
+
+%%
+% - les valeurs dans \(0,1,\ldots,63\) sont remplacées par la valeur 0, 
+%
+% - les valeurs dans \(64,1,\ldots,127\) sont remplacées par la valeur 1, 
+%
+% - les valeurs dans \(128,1,\ldots,191\) sont remplacées par la valeur 2, 
+%
+% - les valeurs dans \(192,\ldots,255\) sont remplacées par la valeur 3.
+
+%%
+% Une telle opération se nomme <http://fr.wikipedia.org/wiki/Quantification_(signal) quantification>.
+
+%%
+% La figure suivante montre l'image résultante avec 4 niveaux de couleurs.
+% Les 4 valeurs sont affichées en utilisant 4 niveaux de gris allant du noir
+% au blanc.
+
+
+quant = @(f,q)(round(q*rescale(f,1e-3,1-1e-3)-1/2)+1/2)/q;
+clf;
+imageplot(quant(f,4), '4 niveaux de gris');
+
+
+%%
+% Nous avons déjà vu que l'on pouvait représenter toute valeur entre 0 et
+% 255 à l'aide de 8 bits en utilisant l'écriture binaire. De façon similaire, 
+% on vérifie que toute valeur entre 0 et 3 peut se représenter à l'aide de 2 bits. 
+% On obtient ainsi une réduction d'un facteur 8/2=4 de la place 
+% <http://fr.wikipedia.org/wiki/M%C3%A9moire_(informatique) mémoire> nécessaire 
+% pour le stockage de l'image sur un disque dur.
+
+%%
+% La figure suivante montre les résultats obtenus en utilisant de moins en
+% moins de niveaux de gris.
+
+qlist = [16, 4, 3, 2];
+clf;
+for i=1:length(qlist)
+    q = qlist(i);
+    f1 = quant(f,q); f1(1)=0; f1(2)=1;
+    imageplot(f1, [num2str(q) ' niveaux de gris' ], 2, 2, i);
+end
+
+
+
+
+%% 
+% Tout comme pour la réduction du nombre de pixels, la réduction du nombre
+% de niveaux de gris influe beaucoup sur la qualité de l'image. 
+% Afin de réduire au maximum la taille d'une image sans modifier sa qualité,
+% on utilise des méthodes plus complexes de 
+% <http://fr.wikipedia.org/wiki/Compression_d%27image compression d'image>. La méthode 
+% la plus efficace s'appelle
+% <http://fr.wikipedia.org/wiki/Jpeg_2000 JPEG-2000>. 
+% Elle utilise la théorie des <http://fr.wikipedia.org/wiki/Ondelettes ondelettes>.
+% Pour en savoir plus à ce sujet, vous pouvez consuler cet 
+% <http://images.math.cnrs.fr/Compression-d-image.html article d'Erwan Le
+% Pennec>.
+
+%% Enlever le bruit par moyennes locales
+% Les images sont parfois de mauvaise qualité. Un exemple typique de défaut
+% est le <http://fr.wikipedia.org/wiki/Bruit_num%C3%A9rique bruit> 
+% qui apparait quand une photo est 
+% <http://fr.wikipedia.org/wiki/Exposition_(photographie) sous-exposée>, c'est-à-dire
+% qu'il n'y a pas assez de luminosité. Ce bruit se manifeste par de petites
+% flucturation <http://fr.wikipedia.org/wiki/Suite_al%C3%A9atoire aléatoires>
+% des niveaux de gris. La figure ci-dessous montre
+% une image bruitée. 
+
+name = 'boat';
+f = rescale(load_image(name, n));
+sigma = .08;
+f = f + randn(n)*sigma;
+clf;
+imageplot(f);
+
+
+
+%%
+% Afin d'enlever le bruit dans les images, il convient de faire subir une
+% modification aux valeurs de pixels. 
+% L'opération la plus simple consiste à remplacer la valeur 
+% \(a\) de chaque pixel par la <http://fr.wikipedia.org/wiki/Moyenne moyenne> de 
+% \(a\) et des 8 valeurs \(b,c,d,e,f,g,h,i\) des 8 pixels voisins de a.
+
+%%
+% Les valeurs des pixels sont positionnées comme suit :
+% \[
+% \left[
+% \begin{array}{ccc}
+%       g & c & h \\
+%       b & a & d \\
+%       f & e & i
+% \end{array}
+% \right]
+%   =
+% \left[
+% \begin{array}{ccc}
+%       79 & 54 & 47 \\
+%       192 & 190 & 153 \\
+%       166 & 189 & 203
+% \end{array}
+% \right]
+% \]
+
+%%
+% On obtient ainsi une image modifiée en remplaçant a par
+% \[ \frac{a+b+c+d+e+f+g+h+i}{9} \]
+% puisque l'on fait la moyenne de 9 valeurs.
+% Dans notre exemple, cette moyenne vaut
+% \[ \frac{190+192+79+54+47+153+203+189+166}{9} \approx 141,4. \]
+% En effectuant cette opération pour chaque pixel, on supprime une partie 
+% du bruit, car ce bruit est constitué de fluctuations aléatoires, qui sont
+% diminuées par un calcul de moyennes. La figure ci-dessous montre l'effet d'un tel calcul.
+
+%% 
+% La figure ci-dessous montre l'effet d'un tel moyennage. 
+
+filt_moy = @(f,k)perform_convolution(f,ones(2*k+1)/(2*k+1)^2,'sym');
+clf;
+imageplot(clamp(f), 'Image bruitée', 1, 2, 1);
+imageplot(clamp(filt_moy(f,1)), 'Image moyennée', 1, 2, 2);
+
+
+
+
+%%
+% Tout le bruit n'a pas été enlevé par cette opération. Afin d'enlever plus
+% de bruit, on peut moyenner plus de valeurs autour de chaque pixel.
+% La figure suivante montre le résultat obtenu en moyennant de plus en plus
+% de valeurs. 
+
+klist = [1 2 3 4];
+clf;
+for i=1:length(klist)
+    k = klist(i);
+    f1 = filt_moy(f,k);
+    imageplot(clamp(f1), ['Moyenne de ' num2str((2*k+1)^2) ' pixels'], 2, 2, i);
+end
+
+
+
+%%
+% Le moyennage des pixels est très efficace pour enlever le bruit dans les
+% images, malheureusement il détruit également une grande partie de
+% l'information de l'image. on peut en effet s'appercevoir que les images
+% obtenues par moyennage sont <http://fr.wikipedia.org/wiki/Flou,_nettet%C3%A9_et_contraste floues>. Ceci est en particulier visible près
+% des contours, qui ne sont pas nets.
+
+
+%% Enlever le bruit par médiane
+% Afin de réduire ce flou, il faut remplacer le moyennage par une opération
+% un peu plus complexe, que l'on nomme <http://fr.wikipedia.org/wiki/M%C3%A9diane mediane>. 
+
+%%
+% Etant donné la valeur \(a\) d'un pixel, et les valeurs
+% \(b,c,d,e,f,g,h,i\), on commence par les classer 
+% par <http://fr.wikipedia.org/wiki/Ordre_croissant ordre croissant>.
+
+%%
+% Dans l'exemple du voisinage de 9 pixels utilisé à la section précédente, 
+% on obtient les 9 valeurs classées
+% \[ 47,54,79,153,166,189,190,192,203. \]
+% La médiane des neuf valeurs \(a,b,c,d,e,f,g,h,i\)
+% est la \(5^\text{e}\) valeur de ce classement (c'est-à-dire la 
+% valeur centrale de ce classement).
+
+%%
+% Dans notre cas, la médiane est donc 166. Notez que ce nombre est en général 
+% différent de la moyenne, qui vaut, pour notre exemple 141,4.
+
+%%
+% La figure ci-dessous compare le débruitage obtenu en effectuant la
+% moyenne et la médiane de 9 pixels voisins.
+
+
+filt_med = @(f,k)perform_median_filtering(f,k);
+clf;
+imageplot(clamp(filt_moy(f,1)), 'Moyenne de 9 nombres', 1, 2, 1);
+imageplot(clamp(filt_med(f,1)), 'Médiane de 9 nombres', 1, 2, 2);
+
+
+
+%%
+% Afin d'enlever plus de bruit, il suffit de calculer la médiane sur un
+% nombre plus grand de pixels voisins, comme montré à la figure suivante.
+
+klist = [1 2 3 4];
+clf;
+for i=1:length(klist)
+    k = klist(i);
+    f1 = filt_med(f,k);
+    imageplot(clamp(f1), ['Médiane de ' num2str((2*k+1)^2) ' pixels'], 2, 2, i);
+end
+
+
+
+
+%%
+% On constate que cette méthode est plus performante que le calcul de
+% moyennes, car les images résultantes sont moins floues. Cependant, tout comme 
+% avec le calcul de moyennes, si l'on prend des voisinages trop grands, on perd
+% aussi de l'information de l'image, en particulier les bords des objets sont dégradés.
+
+
+%% Détecter les bords des objets
+% Affin de localiser des objets dans les images, il est nécessaire de
+% détecter les <http://fr.wikipedia.org/wiki/D%C3%A9tection_de_contours bords>
+% de ces objets. Ces bords correspondent à des 
+% zones de l'image où les valeurs des pixels changent rapidement. C'est le
+% cas par exemple lorsque l'on passe de la coque du bateau (qui est sombre,
+% donc avec des valeurs petites) à la mer (qui est claire, donc avec des
+% valeurs grandes).
+
+%%
+% Afin de quantifier combien un pixel avec une valeur \(a\) est un bord,
+% on prend en compte les valeurs \(b,c,d,e\) de ses quatre voisins (deux
+% horizontallement et deux verticalements). Dans le cas considéré
+% précédemment, on obtient :
+% \[
+% \left[
+% \begin{array}{ccc}
+%        & c &  \\
+%       b & a & d \\
+%        & e & 
+% \end{array}
+% \right]
+%   =
+% \left[
+% \begin{array}{ccc}
+%        & 54 &  \\
+%       192 & 190 & 153 \\
+%        & 189 & 
+% \end{array}
+% \right]
+% \]
+
+%%
+% Notons que l'on utilise ici seulement 4 voisins, ce qui est différent du
+% calcul de moyennes et de médianes où l'on utilisait 8 voisins. 
+% Ceci est important afin de détecter aussi précisément que possible les bords des objets.
+
+%%
+% On calcule une valeur \(\ell\) suivant la formule
+% \[ \ell = \sqrt{ (b-d)^2 + (c-e)^2 }.  \]
+% Dans notre exemple, on obtient donc
+% \[ \ell= \sqrt{ (192 - 153)^2 + (189 - 54)^2 } = \sqrt{19746} \approx 140,5. \]
+
+%%
+% On peut remarquer que si \(\ell=0\), alors on a \(b=c\)
+% et \(d=e\). Au contraire, si 
+% \(\ell\) est grand, ceci signifie que les pixels voisins ont des valeurs très
+% différentes, le pixel considéré est donc probablement sur le bord d'un objet. 
+
+%%
+% La figure suivante montre l'image obtenue en calculant la valeur \(\ell\)
+% associée à chaque pixel. On a affiché ces valeurs avec du noir quand
+% \(\ell=0\),  du blanc quand \(\ell\) est grand, 
+% et on a utilisé des niveaux de gris intermédiaire pour les valeurs entre 0 et 1.
+
+n = 256;
+name = 'hibiscus';
+f = load_image(name, n);
+f = rescale(sum(f,3));
+
+s1 = [1 1:n-1]; s2 = [2:n n];
+edge = @(f)sqrt( ( f(s1,:) - f(s2,:) ).^2 + ( f(:,s1) - f(:,s2) ).^2 );
+
+clf;
+imageplot(f, 'Image', 1,2,1);
+imageplot(edge(f), 'Carte de l', 1,2,2);
+
+
+%%
+% On peut voir que dans l'image de droite, les contours des objets
+% ressortent en blanc, car ils correspondent aux grandes valeurs de \(\ell\).
+
+%% Les images couleurs
+% Une <http://fr.wikipedia.org/wiki/Couleur image couleur>
+% est en réalité composée de trois images indépendantes,
+% afin de représenter le
+% <http://fr.wikipedia.org/wiki/Rouge_vert_bleu rouge, le vert, et le bleu>. 
+% Chacune de ces trois
+% image s'appelle un <http://fr.wikipedia.org/wiki/Codage_informatique_des_couleurs canal>.
+% Cette représentation en rouge, vert et bleu mime le fonctionnement du
+% système visuel humain.
+
+%%
+% La figure suivante montre une image couleur, qui est décomposée en ses
+% trois canaux constitutifs.
+
+name = 'hibiscus';
+f = rescale( load_image(name,n) );
+    
+    
+f1 = cat(3, f(:,:,1), zeros(n), zeros(n));
+f2 = cat(3, zeros(n), f(:,:,2), zeros(n));
+f3 = cat(3, zeros(n), zeros(n), f(:,:,3));
+
+clf;
+imageplot({f f1 f2 f3}, ...
+        { 'Image couleur' 'Canal rouge' 'Canal vert' 'Canal bleu'}, 2, 2);
+
+
+
+%%
+% Chaque pixel de l'image couleur contient ainsi trois nombres \( (r,v,b) \),
+% chacun étant un nombre entier entre 0 et 255.
+% Si le pixel est égal à \((r,v,b)=(255,0,0)\), il ne contient que de l'information
+% rouge, et est affiché comme du rouge. 
+% De façon similaire, les pixels valant \((0,255,0)\) et \((0,0,255)\) sont
+% respectivement affichés vert et bleu.
+
+%%
+% On peut afficher à l'écran une image couleur à
+% partir de ses trois canaux \((r,v,b)\) en utilisant les règles de la 
+% <http://fr.wikipedia.org/wiki/Synth%C3%A8se_additive synthèse additive des couleurs>. 
+% La figure suivante montre les règles de composition
+% cette synthèse additive des couleurs. 
+% Par exemple un pixel avec les valeurs
+% \((r,v,b)=(255,0,255)\) est un mélange de rouge et de vert, il est donc
+% affiché comme du jaune.
+
+%%
+% On peut calculer une image en niveau de gris à partir d'une image couleur
+% en moyennant les trois cannaux. On calcule donc une valeur 
+% \[ a = \frac{r+v+b}{3} \]
+% qui s'appelle la <http://fr.wikipedia.org/wiki/Luminance luminance> de la couleur.
+
+%%
+% La figure suivante montre le passage d'une image couleur à une image de luminance en
+% niveau de gris.
+
+clf;
+imageplot({f sum(f,3)}, {'Couleur' 'Luminance'});
+
+%%
+% Une autre représentation courante pour les images couleurs utilise
+% comme couleurs de base le cyan, le magenta et le jaune. On calcule 
+% les trois nombres \((c,m,j)\) correspondant à chacun de ces trois canaux à 
+% partir des canaux rouge, vert et bleu \((r,v,b)\) comme suit
+% \[ c=255-r, \quad m=255-v, \quad j=255-b. \]
+% Par exemple, un pixel de bleu pur 
+% \((r,v,b)=(0,0,255)\) va devenir 
+% \( (c,m,j)=(255,255,0) \). La figure suivante montre les trois canaux
+% \((c,m,j)\) d'une image couleur.
+
+g = 1-f;
+f1 = cat(3, f(:,:,1),     f(:,:,2)*0+1, f(:,:,3)*0+1);
+f2 = cat(3, f(:,:,1)*0+1, f(:,:,2)    , f(:,:,3)*0+1);
+f3 = cat(3, f(:,:,1)*0+1, f(:,:,2)*0+1, f(:,:,3));
+
+
+clf;
+imageplot({f f1 f2 f3}, ...
+        { 'Image couleur' 'Canal cyan' 'Canal magenta' 'Canal jaune'}, 2, 2);
+
+
+%%
+% Afin d'afficher une image couleur à l'écran à partir des trois canaux
+% \((c,m,j)\), on doit utiliser la synthèse soustractive des 
+% couleurs. La figure suivante montre les règles de composition 
+% cette synthèse soustractive. Notons que ces règles sont celles que
+% l'on utilise en peinture, lorsque l'on mélange des pigments colorés. Le cyan,
+% le magenta et le jaune sont appelés couleurs primaires.
+
+
+%%
+% On peut donc stocker sur un disque dur une image couleur en stockant les
+% trois canaux, correspondant aux valeurs \((r,g,b)\) ou \((c,m,j)\). 
+% On peut modifier les images couleur tout comme les images en niveaux de
+% gris. La façon la plus simple de procéder consiste à appliquer la modification
+% à chacun des canaux.
+
+
+%% Changer le contraste d'une image
+% Il est possible de faire subir différentes modifications à l'image afin de
+% changer son <http://fr.wikipedia.org/wiki/Contraste contraste>.
+
+name = 'hibiscus';
+f = rescale( load_image(name,n) );
+f = rescale(sum(f,3));
+
+%%
+% Un exemple simple consiste à remplacer chaque valeur \(a\) d'un pixel
+% d'une image par \(255-a\) ce qui correspond à la couleur opposée. Le blanc
+% devient noir et vice-et-versa, ce qui donne un effet similaire à celui
+% des <http://fr.wikipedia.org/wiki/Film_n%C3%A9gatif négatifs>
+% <http://fr.wikipedia.org/wiki/Argentique d'appareils photos argentiques>.
+
+clf;
+imageplot(-f);
+
+
+%%
+% Sans aller jusqu'à des modifications aussi extrêmes, on peut assombrir une image 
+% en remplçant la valeur \(a\) de chaque pixel par son 
+% <http://fr.wikipedia.org/wiki/Carr%C3%A9_(alg%C3%A8bre) carré> \(a^2 = a \times a\). 
+
+%% 
+% Ce faisant, les valeurs résultantes ne sont 
+% plus dans \(0,\ldots,255\) mais dans \(0,\ldots,255^2=65025\). Afin
+% d'afficher l'image à l'écran on va donc utiliser des niveaux de gris
+% allant du noir pour 0 au blanc pour 65025.
+
+clf;
+imageplot(f.^2, 'Carré');
+
+
+
+%%
+% Afin d'éclaircir l'image, on peut remplacer chaque valeur \(a\) par
+% sa _racine carrée_ \(b = \sqrt{a}\). Cette valeur \(b\) est un nombre, qui n'est plus
+% nécessairement entier, qui satisfait \(b \times b = a\).
+
+%%
+% La figure suivante montre l'éclaircissement obtenu. 
+% Les valeurs de l'image éclaircie sont dant 
+% \(0,\ldots,\sqrt{255} \approx 16\), et on utilise donc des niveaux
+% de gris allant du noir (pour 0) au blanc (pour 16).
+
+clf;
+imageplot(sqrt(f), 'Remplacement de a par sqrt(a)');
+
+
+%%
+% On pourra noter que l'on a 
+% \[ \sqrt{a} \times \sqrt{a} = a
+% \quad\text{et}\quad \sqrt{a \times a}=a \]
+% de sorte que si l'on réalise un éclairsissement suivit d'un
+% assombrissement (ou dans le sens inverse) on retrouve l'image d'origine.
+% Ces deux opérations sont 
+% <http://fr.wikipedia.org/wiki/Inverse inverses> l'une de l'autre. 
+
+%%
+% On peut également changer le contraste d'une image couleur en changeant sa
+% composante de luminance. 
+
+name = 'hibiscus';
+f = rescale( load_image(name,n) );
+
+m = @(f)repmat(mean(f,3), [1 1 3]);
+contrast = @(f,gamma)clamp(m(f).^gamma + f-m(f));
+
+gamma_list = [.5 .75 1 1.5 2 3];
+clf;
+for i=1:length(gamma_list)
+    subplot(2,3,i);
+    image(contrast(f,gamma_list(i))); axis image; axis off;
+    title(['\gamma=' num2str(gamma_list(i))]);
+    colormap jet(256);
+end
+
+
+
+
+%% Transformations géométriques
+% Une image est un tableau de nombres, avec \(n\) lignes et \(p\) 
+% colonnes. Il est donc facile d'effectuer
+% certaines <http://fr.wikipedia.org/wiki/Transformation_g%C3%A9om%C3%A9trique transformations géométriques>
+% sur l'image.
+
+%%
+% Les valeurs des pixels qui composent ce tableau (noté \(A\)) peuvent être 
+% représentées sous la forme \( A = ( a_{i,j} )_{i,j} \)
+% ou l'index \(i\) décrit l'ensemble des nombres \( \{1,\ldots,n\} \)
+% (les entiers entre 1 et n) et l'index 
+% \(j\) les nombres \( \{1,\ldots,p\} \).
+% One dit que \(a_{i,j}\) est la valeur du pixel à la position \((i,j)\).
+
+%%
+% Le tableau de pixels ainsi indexé peut se représenter sous la façon
+% suivante
+% \[
+% A = 
+% \begin{pmatrix}
+% a_{1,1} &           &           &   & a_{1,p}\\
+%        &           &  \vdots   &   &  \\
+% 	   &           & a_{i-1,j} &   & \\
+% \ldots & a_{i,j-1} & a_{i,j}   & a_{i,j+1} & \ldots\\
+% 	   &           & a_{i+1,j} &   & \\
+%        &           &  \vdots   &   &  \\
+% a_{n,1} &           &           &   & a_{n,p}\\
+% \end{pmatrix}
+% \]
+% ce qui montre que le pixel en haut à gauche de l'image correspond à la
+% valeur \(a_{1,1}\). Ceci correspond à la représentation de l'image sous
+% forme d'une <http://fr.wikipedia.org/wiki/Matrice_(math%C3%A9matiques) matrice>.
+
+%%
+% Si l'on échange le rôle des lignes et des colonnes, on définit un autre
+% tableau \(B\) avec \(p\) lignes et \(n\) colonnes. La formule qui définit
+% le tableau \(B = ( b_{j,i} )_{i,j}\) est 
+% \[ b_{j,i} = a_{i,j}. \]
+% Ceci correspond à la <http://fr.wikipedia.org/wiki/Matrice_transpos%C3%A9e transposition> de la matrice correspondant à l'image.
+
+%%
+% Pour une image couleur, on effectue cette modification sur chacune de ses
+% trois composantes couleur R, V et B.
+
+%%
+% La figure suivante montre l'image correspondant au tableau \(A\) et
+% l'image correspondant au tableau \(B\). On peut constater que la
+% modification correspond à faire sur l'image une 
+% <http://fr.wikipedia.org/wiki/Sym%C3%A9trie_(transformation_g%C3%A9om%C3%A9trique) symétrie> par rapport à
+% la <http://fr.wikipedia.org/wiki/Diagonale diagonale>
+% qui joint le coin haut/gauche au coin bas/droite.
+
+A = rescale( load_image('flowers',512) );
+B = permute(A, [2 1 3]);
+clf;
+imageplot({A B}, {'Image A' 'Image B'}, 1,2,1);
+
+
+
+
+%%
+% On peut également effectuer une <http://fr.wikipedia.org/wiki/Rotation rotation> 
+% d'un quart de tour dans le sens d'une montre à
+% l'image. Ceci est effectué en définissant une image \(C = (c_{i,j})_{j,i}\) de 
+% \(p\) lignes et \(n\)
+% colonnes dont le tableau
+% de nombre est calculé par
+% \[ c_{j,i} =  a_{n-i+1,j}.\]
+
+C = A;
+C = C(end:-1:1,:,:); C = permute(C, [2 1 3]); 
+clf;
+imageplot({A C}, {'Image A' 'Image C'}, 1,2,1);
+
+
+
+%% Fondu entres deux images
+% On souhaite effectuer une <http://fr.wikipedia.org/wiki/Fondu transition entre deux images>
+% \(A\) et \(B\) de même
+% taille. On suppose donc que chaque image a le même nombre \(n\) de lignes
+% et le même nombre \(p\) de colonnes.
+
+%%
+% La figure ci-dessous montre les deux images entre lesquelles on souhaite
+% calculer une transition.
+
+A = rescale( load_image('flowers',512) );
+B = rescale( load_image('hibiscus',512) );
+clf;
+imageplot({A B}, {'Image A', 'Image B'});
+
+%%
+% One note \(A = (a_{i,j})_{i,j}\) les pixels de l'image \(A\) et 
+% \(B = (b_{i,j})_{i,j}\) les pixels de l'image \(B\).
+
+%%
+% Pour une valeur \(t\) fixée entre \(0\) et \(1\), on définit l'image
+% \(C = (c_{i,j})_{i,j}\) comme 
+% \[ c_{i,j}  = (1-t) a_{i,j} + t b_{i,j}.\]
+% Il s'agit de la formule d'une 
+% <http://fr.wikipedia.org/wiki/Interpolation_lin%C3%A9aire interpolation linéaire>
+% entre les deux images.
+
+%%
+% Si l'image est une image couleur, on applique cette formule à chacun des
+% canaux R, V et B.
+
+%%
+% On peut constater que pour \(t=0\), l'image \(C\) est égale à l'image
+% \(A\). Pour \(t=1\), l'image \(c\) est égale à l'image
+% \(B\). Lorsque la valeur \(t\) progresse de 0 à 1, on obtient ainsi un
+% effet de fondu, puisque l'image, qui au départ est proche de l'image \(A\)
+% ressemble de plus en plus à l'image \(B\).
+
+%%
+% La figure suivante montre 5 valeurs de \(t\) réparties entre 0 et 1.
+
+p = 6;
+t = linspace(0,1,p);
+clf;
+for i=1:p
+    imageplot(t(i)*A+(1-t(i))*B, ['t=' num2str(t(i), 2)], 2,p/2,i);
+end
+
+
+%% Conclusion
+% Cet article n'a fait qu'effleurer l'immense liste des traitements que l'on 
+% peut faire subir à une image. Le traitement mathématique des images est un domaine
+% très actif, où les avancées théoriques se concrétisent sous la forme d'algorithmes 
+% rapides de calcul qui ont des applications importantes pour la manipulation des contenus
+% numériques.
+
+%%
+% Les personnes intéressées pourront consulter le site web 
+% <http://www.numerical-tours.com/ A Numerical Tour of Signal Processing> 
+% pour de nombreux exemples de traitements d'images. On y 
+% trouve également des liens vers d'autres ressources disponibles en ligne.
+
+%% Glossaire
+
+%%
+% - *Aléatoire* : valeur imprévisible souvent due au hazard, comme par exemple le bruit qui perturbe les images de mauvaises qualités.
+%
+% - *Bit* : unité élementaire de stockage de l'information sous forme de 0 et de 1 dans un ordinateur.
+%
+% - *Canal* : une des trois images élémentaires qui composent une image couleur.
+%
+% - *Bords* : zone d'une image où les valeurs des pixels varient beaucoup, qui correspond aux contours des objets qui forment l'image.
+%
+% - *Bruit* : petites perturbations qui dégradent la qualité d'une image.
+%
+% - *Carré* : le carré \(b\) d'une valeur \(a\) est \(a \times a\). Il est noté \(a^2\).
+%
+% - *Contraste* : quantité informelle qui indique la différence entre les zones claires et les zones sombres d'une image.
+%
+% - *Compression d'image* : méthode permettant de réduire la place mémoire nécessaire au stockage sur le disque dur d'une image.
+%
+% - *Ecriture binaire* : écriture de valeurs numériques à l'aide uniquement de 0 et de 1.
+%
+% - *Flou* : dégradation d'une image qui rend les contours des objets peu net, et donc difficile à localiser précisément.
+%
+% - *Fondu* : interpolation linéaire entre deux images.
+%
+% - *Image couleur* : ensemble de trois images en niveau de gris, qui peut être affiché à l'écran en couleur.
+%
+% - *Image numérique* : tableau de valeurs que l'on peut afficher à l'écran en assignant un niveau de gris à chaque valeur.
+%
+% - *Inverse* : opération ramenant une image dans son état d'origine.
+%
+% - *JPEG-2000* : méthode récente de compression d'images qui utilise une transformation en ondelettes.
+%
+% - *Luminance* : moyenne des différents canaux d'une image, qui indique la puissance lumineuse du pixel.
+%
+% - *Matrice* : tableau de valeurs, représenté sous la forme \((a_{i,j})_{i,j}\).
+%
+% - *Médiane* : valeur centrale lorsque l'on classe par ordre croissant un ensemble de valeurs.
+%
+% - *Moyenne* : la moyenne d'un ensemble de valeurs est leur somme divisée par leur nombre.
+%
+% - *Niveaux de gris* : nuances de gris utilisées pour afficher à l'écran une image numérique.
+%
+% - *Nombres entiers* : nombres 0, 1, 2, 3, 4 ...
+%
+% - *Octet* : ensemble de huit bits consécutifs.
+%
+% - *Ondelettes* : transformation de l'image qui est utilisée par la méthode JPEG-2000 de compression d'images.
+%
+% - *Ordre croissant* : classement d'un ensemble de valeurs de la plus petite à la plus grande.
+%
+% - *Pixel* : une case dans un tableau de valeurs correspondant à une image numérique.
+%
+% - *Quantification* : procédé consistant à réduire l'ensemble des valeurs possibles d'une image numérique.
+%
+% - *Racine carrée* : la racine carrée \(b\) d'une valeur positive \(a\) est la valeur positive \(b\) vérifiant \(a=b \times b\). On la note \(\sqrt{a}\).
+%
+% - *Résolution* : taille d'une image (nombre de pixels).
+%
+% - *Sous-exposée* : photographie d'une scène trop sombre pour laquelle l'objectif photographique n'est pas resté assez longtemps ouvert.
+%
+% - *Synthèse additive* : règle permettant de construire une couleur quelconque à partir des trois couleurs rouge, vert et bleu. C'est la règle qui régit le mélange des couleurs de faisceaux lumineux utilisés pour l'éclairage d'un mur blanc.
+%
+% - *Synthèse soustractive* : règle permettant de construire une couleur quelconque à partir des trois couleurs cyan, magenta et jaune. C'est la règle qui régit le mélange des couleurs en peinture.
+
+
+##### SOURCE END #####
+-->
+   </body>
+</html>

@@ -8,8 +8,138 @@
       <!--
 This HTML is auto-generated from an M-file.
 To make changes, update the M-file and republish this document.
-      -->
-      <title>2-D Daubechies Wavelets</title><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><NOSCRIPT>
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>2-D Daubechies Wavelets</title>
+      <NOSCRIPT>
          <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
                	requires JavaScript to process the mathematics on this page.<BR> 
                	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
@@ -109,7 +239,7 @@ d = subsampling( cconv(f,g) );
          </p>
          <p>Up-sampling followed by filtering.</p><pre class="codeinput">f1 =  cconv(upsampling(a),reverse(h)) + cconv(upsampling(d),reverse(g));
 </pre><p>Check that we really recover the same signal.</p><pre class="codeinput">disp(strcat(([<span class="string">'Error |f-f1|/|f| = '</span> num2str(norm(f-f1)/norm(f))])));
-</pre><pre class="codeoutput">Error |f-f1|/|f| = 5.452e-13
+</pre><pre class="codeoutput">Error |f-f1|/|f| = 5.447e-13
 </pre><h2>Forward 2-D Wavelet transform<a name="27"></a></h2>
          <p>The set of wavelet coefficients are computed with a fast algorithm that exploit the embedding of the approximation spaces
             \(V_j\) spanned by the scaling function \( \{ \phi_{j,n} \}_n \) defined as \[ \phi_{j,n}(x) = \frac{1}{2^j}\phi^0\pa{\frac{x-2^j
@@ -154,7 +284,7 @@ Detail = subsampling(cconv(A,g,2),2);
 imageplot(f,<span class="string">'Original image'</span>,1,2,1);
 subplot(1,2,2);
 plot_wavelet(fW,log2(n)-1); title(<span class="string">'Transformed'</span>)
-</pre><img vspace="5" hspace="5" src="index_02.png"> <p><i>Exercice 1:</i> (<a href="../missing-exo./">check the solution</a>) Implement a full wavelet transform that extract iteratively wavelet coefficients, by repeating these steps. Take care of
+</pre><img vspace="5" hspace="5" src="index_02.png"> <p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Implement a full wavelet transform that extract iteratively wavelet coefficients, by repeating these steps. Take care of
             choosing the correct number of steps.
          </p><pre class="codeinput">exo1;
 </pre><img vspace="5" hspace="5" src="index_03.png"> <p>Check for orthogonality of the transform (conservation of energy).</p><pre class="codeinput">disp(strcat([<span class="string">'Energy of the signal       = '</span> num2str(norm(f(:)).^2)]));
@@ -184,7 +314,7 @@ Detail = A(:,2^j+1:2^(j+1));
 Detail = cconv(upsampling(Detail,2),reverse(g),2);
 </pre><p>Recover the coefficient by summing.</p><pre class="codeinput">A = Coarse + Detail;
 </pre><p>Assign the result.</p><pre class="codeinput">f1(1:2^(j+1),1:2^(j+1)) = A;
-</pre><p><i>Exercice 2:</i> (<a href="../missing-exo./">check the solution</a>) Write the inverse wavelet transform that computes <tt>f1</tt> from the coefficients <tt>fW</tt>. Compare <tt>f1</tt> with <tt>f</tt>.
+</pre><p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Write the inverse wavelet transform that computes <tt>f1</tt> from the coefficients <tt>fW</tt>. Compare <tt>f1</tt> with <tt>f</tt>.
          </p><pre class="codeinput">exo2;
 </pre><img vspace="5" hspace="5" src="index_05.png"> <p>Check that we recover exactly the original image.</p><pre class="codeinput">disp(strcat(([<span class="string">'Error |f-f1|/|f| = '</span> num2str(norm(f(:)-f1(:))/norm(f(:)))])));
 </pre><pre class="codeoutput">Error |f-f1|/|f| = 8.6602e-12
@@ -196,7 +326,7 @@ Detail = cconv(upsampling(Detail,2),reverse(g),2);
          </p><pre class="codeinput">eta = 4;
 fWLin = zeros(n,n);
 fWLin(1:n/eta,1:n/eta) = fW(1:n/eta,1:n/eta);
-</pre><p><i>Exercice 3:</i> (<a href="../missing-exo./">check the solution</a>) Compute and display the linear approximation <tt>fLin</tt> obtained from the coefficients <tt>fWLin</tt> by inverse wavelet transform.
+</pre><p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) Compute and display the linear approximation <tt>fLin</tt> obtained from the coefficients <tt>fWLin</tt> by inverse wavelet transform.
          </p><pre class="codeinput">exo3;
 </pre><img vspace="5" hspace="5" src="index_06.png"> <h2>Non-Linear 2-D Wavelet Approximation<a name="65"></a></h2>
          <p>A non-linear <tt>m</tt>-term approximation is obtained by keeping only the <tt>m</tt> largest coefficients, which creates the smallest possible error.
@@ -210,13 +340,13 @@ subplot(1,2,1);
 plot_wavelet(fW); axis(<span class="string">'tight'</span>); title(<span class="string">'Original coefficients'</span>);
 subplot(1,2,2);
 plot_wavelet(fWT); axis(<span class="string">'tight'</span>); title(<span class="string">'Thresholded coefficients'</span>);
-</pre><img vspace="5" hspace="5" src="index_07.png"> <p><i>Exercice 4:</i> (<a href="../missing-exo./">check the solution</a>) Find the thresholds <tt>T</tt> so that the number <tt>m</tt> of remaining coefficients in <tt>fWT</tt> are <tt>m=n^2/16</tt>. Use this threshold to compute <tt>fWT</tt> and then display the corresponding approximation <tt>Mnlin</tt> of <tt>f</tt>. Compare this result with the linear approximation.
+</pre><img vspace="5" hspace="5" src="index_07.png"> <p><i>Exercice 4:</i> (<a href="../missing-exo/">check the solution</a>) Find the thresholds <tt>T</tt> so that the number <tt>m</tt> of remaining coefficients in <tt>fWT</tt> are <tt>m=n^2/16</tt>. Use this threshold to compute <tt>fWT</tt> and then display the corresponding approximation <tt>Mnlin</tt> of <tt>f</tt>. Compare this result with the linear approximation.
          </p><pre class="codeinput">exo4;
-</pre><img vspace="5" hspace="5" src="index_08.png"> <p><i>Exercice 5:</i> (<a href="../missing-exo./">check the solution</a>) Try with Different kind of wavelets, with an increasing number of vanishing moments.
+</pre><img vspace="5" hspace="5" src="index_08.png"> <p><i>Exercice 5:</i> (<a href="../missing-exo/">check the solution</a>) Try with Different kind of wavelets, with an increasing number of vanishing moments.
          </p><pre class="codeinput">exo5;
 </pre><img vspace="5" hspace="5" src="index_09.png"> <h2>Separable 2-D Wavelet Transform<a name="72"></a></h2>
          <p>A forward wavelet transform is obtained by applying the 1D wavelet transform to</p>
-         <p><i>Exercice 6:</i> (<a href="../missing-exo./">check the solution</a>) Implement the foward separable transform. Wavelet transformm in 1D each column <tt>f(:,i)</tt> to obtain coefficients <tt>fWSep(:,i)</tt>. Then re-transform each row <tt>fWSep(i,:)'</tt>, and store the result in <tt>fW(i,:)'</tt>.
+         <p><i>Exercice 6:</i> (<a href="../missing-exo/">check the solution</a>) Implement the foward separable transform. Wavelet transformm in 1D each column <tt>f(:,i)</tt> to obtain coefficients <tt>fWSep(:,i)</tt>. Then re-transform each row <tt>fWSep(i,:)'</tt>, and store the result in <tt>fW(i,:)'</tt>.
          </p><pre class="codeinput">exo6;
 </pre><p>Display the result.</p><pre class="codeinput">clf;
 subplot(1,2,1);
@@ -227,20 +357,20 @@ subplot(1,2,2);
 opt.separable = 1;
 plot_wavelet(fWSep,1,opt);
 title(<span class="string">'Separable wavelets'</span>);
-</pre><img vspace="5" hspace="5" src="index_10.png"> <p><i>Exercice 7:</i> (<a href="../missing-exo./">check the solution</a>) Implement the backward separable transform to recover an image <tt>f1</tt> from the coefficients <tt>fWSep</tt>, which backward transform each row and then each columns.
+</pre><img vspace="5" hspace="5" src="index_10.png"> <p><i>Exercice 7:</i> (<a href="../missing-exo/">check the solution</a>) Implement the backward separable transform to recover an image <tt>f1</tt> from the coefficients <tt>fWSep</tt>, which backward transform each row and then each columns.
          </p><pre class="codeinput">exo7;
 </pre><p>Check that we recover exactly the original image.</p><pre class="codeinput">disp(strcat(([<span class="string">'Error |f-f1|/|f| = '</span> num2str(norm(f(:)-f1(:))/norm(f(:)))])));
 </pre><pre class="codeoutput">Error |f-f1|/|f| = 7.6115e-12
-</pre><p><i>Exercice 8:</i> (<a href="../missing-exo./">check the solution</a>) Perform <tt>m=n^2/16</tt>-terms best approximation with separable wavelet transform. Compare the result with isotropic wavelet approximation.
+</pre><p><i>Exercice 8:</i> (<a href="../missing-exo/">check the solution</a>) Perform <tt>m=n^2/16</tt>-terms best approximation with separable wavelet transform. Compare the result with isotropic wavelet approximation.
          </p><pre class="codeinput">exo8;
 </pre><img vspace="5" hspace="5" src="index_11.png"> <h2>The Shape of a Wavelet<a name="78"></a></h2>
          <p>An isotropic wavelet coefficient <tt>fW[k]</tt> corresponds to an inner product <tt><a href="f,psi_{j,p}^s">f,psi_{j,p}^s</a></tt> where <tt>k</tt> depends on the scale <tt>j</tt> and the position <tt>p</tt> and the orientation <tt>s</tt> (horizontal, vertical or diagonal).
          </p>
          <p>The wavelet image  <tt>f1 = psi_{j,p}</tt> is computed by applying the inverse wavelet transform to <tt>fW</tt> where <tt>fW[k]=1</tt> and <tt>fW[l]=0</tt> for <tt>l \neq k</tt>.
          </p>
-         <p><i>Exercice 9:</i> (<a href="../missing-exo./">check the solution</a>) Compute wavelets at several scales and orientation. Here we show only horizontal wavelets, in 2-D.
+         <p><i>Exercice 9:</i> (<a href="../missing-exo/">check the solution</a>) Compute wavelets at several scales and orientation. Here we show only horizontal wavelets, in 2-D.
          </p><pre class="codeinput">exo9;
-</pre><img vspace="5" hspace="5" src="index_12.png"> <p><i>Exercice 10:</i> (<a href="../missing-exo./">check the solution</a>) Display Daubechies wavelets with different orientation, for different number of VM.
+</pre><img vspace="5" hspace="5" src="index_12.png"> <p><i>Exercice 10:</i> (<a href="../missing-exo/">check the solution</a>) Display Daubechies wavelets with different orientation, for different number of VM.
          </p><pre class="codeinput">exo10;
 </pre><img vspace="5" hspace="5" src="index_13.png"> <p class="footer"><br>
             Copyright  (c) 2010 Gabriel Peyre<br></p>
@@ -519,7 +649,7 @@ subplot(1,2,2);
 plot_wavelet(fW,log2(n)-1); title('Transformed')
 
 %%
-% _Exercice 1:_ (<../missing-exo./ check the solution>)
+% _Exercice 1:_ (<../missing-exo/ check the solution>)
 % Implement a full wavelet transform that extract iteratively wavelet
 % coefficients, by repeating these steps. Take care of choosing the
 % correct number of steps.
@@ -601,7 +731,7 @@ A = Coarse + Detail;
 f1(1:2^(j+1),1:2^(j+1)) = A;
 
 %%
-% _Exercice 2:_ (<../missing-exo./ check the solution>)
+% _Exercice 2:_ (<../missing-exo/ check the solution>)
 % Write the inverse wavelet transform that computes |f1| from the
 % coefficients |fW|. Compare |f1| with |f|.
 
@@ -625,7 +755,7 @@ fWLin = zeros(n,n);
 fWLin(1:n/eta,1:n/eta) = fW(1:n/eta,1:n/eta);
 
 %%
-% _Exercice 3:_ (<../missing-exo./ check the solution>)
+% _Exercice 3:_ (<../missing-exo/ check the solution>)
 % Compute and display the linear approximation |fLin| obtained from the
 % coefficients |fWLin| by inverse wavelet transform.
 
@@ -661,7 +791,7 @@ subplot(1,2,2);
 plot_wavelet(fWT); axis('tight'); title('Thresholded coefficients');
 
 %%
-% _Exercice 4:_ (<../missing-exo./ check the solution>)
+% _Exercice 4:_ (<../missing-exo/ check the solution>)
 % Find the thresholds |T| so that the number |m| of remaining coefficients in
 % |fWT| are |m=n^2/16|. Use this threshold to compute |fWT| and then display
 % the corresponding approximation |Mnlin| of |f|. Compare this result with
@@ -670,7 +800,7 @@ plot_wavelet(fWT); axis('tight'); title('Thresholded coefficients');
 exo4;
 
 %%
-% _Exercice 5:_ (<../missing-exo./ check the solution>)
+% _Exercice 5:_ (<../missing-exo/ check the solution>)
 % Try with 
 % Different kind of wavelets, with an increasing number of vanishing
 % moments.
@@ -682,7 +812,7 @@ exo5;
 % transform to 
 
 %%
-% _Exercice 6:_ (<../missing-exo./ check the solution>)
+% _Exercice 6:_ (<../missing-exo/ check the solution>)
 % Implement the foward separable transform.
 % Wavelet transformm in 1D each column |f(:,i)| to obtain coefficients |fWSep(:,i)|.
 % Then re-transform each row |fWSep(i,:)'|, and store the result in |fW(i,:)'|.
@@ -703,7 +833,7 @@ plot_wavelet(fWSep,1,opt);
 title('Separable wavelets');
 
 %%
-% _Exercice 7:_ (<../missing-exo./ check the solution>)
+% _Exercice 7:_ (<../missing-exo/ check the solution>)
 % Implement the backward separable transform to recover an image |f1|
 % from the coefficients |fWSep|, which backward transform each row and then each columns.
 
@@ -715,7 +845,7 @@ exo7;
 disp(strcat((['Error |f-f1|/|f| = ' num2str(norm(f(:)-f1(:))/norm(f(:)))])));
 
 %%
-% _Exercice 8:_ (<../missing-exo./ check the solution>)
+% _Exercice 8:_ (<../missing-exo/ check the solution>)
 % Perform |m=n^2/16|-terms best approximation with separable wavelet transform.
 % Compare the result with isotropic wavelet approximation.
 
@@ -731,14 +861,14 @@ exo8;
 % transform to |fW| where |fW[k]=1| and |fW[l]=0| for |l \neq k|.
 
 %%
-% _Exercice 9:_ (<../missing-exo./ check the solution>)
+% _Exercice 9:_ (<../missing-exo/ check the solution>)
 % Compute wavelets at several scales and orientation.
 % Here we show only horizontal wavelets, in 2-D.
 
 exo9;
 
 %%
-% _Exercice 10:_ (<../missing-exo./ check the solution>)
+% _Exercice 10:_ (<../missing-exo/ check the solution>)
 % Display Daubechies wavelets with different orientation, for different number of VM.
 
 exo10;

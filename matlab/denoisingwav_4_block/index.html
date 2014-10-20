@@ -1,0 +1,624 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>Wavelet Block Thresholding</title>
+      <NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
+               	requires JavaScript to process the mathematics on this page.<BR> 
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 8.2">
+      <meta name="date" content="2014-10-20">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>Wavelet Block Thresholding</h1>
+         <introduction>
+            <p>This numerical tour presents block thresholding methods, that makes use of the structure of wavelet coefficients of natural
+               images to perform denoising. Theoretical properties of block thresholding were investigated in <a href="#biblio">[CaiSilv]</a> <a href="#biblio">[Cai99]</a> <a href="#biblio">[HallKerkPic99]</a></p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#8">Generating a Noisy Image</a></li>
+               <li><a href="#15">Orthogonal Wavelet Thresholding</a></li>
+               <li><a href="#26">Block Thresholding Operator</a></li>
+               <li><a href="#36">Orthogonal Wavelet Block Thresholding</a></li>
+               <li><a href="#42">Translation invariant Block Thresholding</a></li>
+               <li><a href="#53">Bibliography</a></li>
+            </ul>
+         </div>
+         <h2>Installing toolboxes and setting up the path.<a name="1"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_signal.zip">signal toolbox</a> and <a href="../toolbox_general.zip">general toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_signal</tt> and <tt>toolbox_general</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
+getd(<span class="string">'toolbox_general/'</span>);
+</pre><h2>Generating a Noisy Image<a name="8"></a></h2>
+         <p>Here we use an additive Gaussian noise.</p>
+         <p>Size of the image of \(N=n \times n\) pixels.</p><pre class="codeinput">n = 256;
+</pre><p>First we load an image \(f_0 \in \RR^N\).</p><pre class="codeinput">name = <span class="string">'boat'</span>;
+f0 = rescale( load_image(name,n) );
+</pre><p>Display it.</p><pre class="codeinput">clf; imageplot(f0);
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p>Noise level.</p><pre class="codeinput">sigma = .08;
+</pre><p>Generate a noisy image \(f=f_0+\epsilon\) where \(\epsilon \sim \Nn(0,\si^2\text{Id}_N)\).</p><pre class="codeinput">f = f0 + sigma*randn(size(f0));
+</pre><p>Display it.</p><pre class="codeinput">clf; imageplot(clamp(f));
+</pre><img vspace="5" hspace="5" src="index_02.png"> <h2>Orthogonal Wavelet Thresholding<a name="15"></a></h2>
+         <p>We first consider the traditional wavelet thresholding method.</p>
+         <p>Parameters for the orthogonal wavelet transform.</p><pre class="codeinput">Jmin = 4;
+options.ti = 0;
+</pre><p>Shortcuts for the foward and backward wavelet transforms.</p><pre class="codeinput">wav  = @(f)perform_wavelet_transf(f,Jmin,+1,options);
+iwav = @(fw)perform_wavelet_transf(fw,Jmin,-1,options);
+</pre><p>Display the original set of noisy coefficients.</p><pre class="codeinput">clf;
+plot_wavelet(wav(f),Jmin);
+</pre><img vspace="5" hspace="5" src="index_03.png"> <p>Denoting \(\Ww\) and \(\Ww^*\) the forward and backward wavelet transform, wavelet thresholding \(\tilde f\) is defined as
+            \[ \tilde f = \Ww^* \circ \theta_T \circ \Ww(f) \] where \(T&gt;0\) is the threshold, that should be adapted to the noise level.
+         </p>
+         <p>The thresholding operator is applied component-wise \[ \th_T(x)_i = \psi_T(x_i) x_i \] where \(\psi_T\) is an atenuation fonction.
+            In this tour, we use the James Stein (JS) attenuation: \[ \psi_T(s) = \max\pa{ 0, 1-\frac{T^2}{s^2} } \]
+         </p><pre class="codeinput">psi= @(s,T)max3(1-T^2 ./ max(abs(s).^2,1e-9),0);
+</pre><p>Display the thresholding function \(\th_T\).</p><pre class="codeinput">t = linspace(-3,3,1024);
+clf; hold <span class="string">on</span>;
+plot(t,t.*psi(t,1));
+plot(t,t, <span class="string">'r--'</span>); axis <span class="string">equal</span>;
+</pre><img vspace="5" hspace="5" src="index_04.png"> <p>Thresholding operator.</p><pre class="codeinput">theta = @(x,T)psi(x,T).*x;
+ThreshWav = @(f,T)iwav(theta(wav(f),T));
+</pre><p>Test the thresholding.</p><pre class="codeinput">T = 1.5*sigma;
+clf;
+imageplot(clamp( ThreshWav(f,T) ));
+</pre><img vspace="5" hspace="5" src="index_05.png"> <p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Display the evolution of the denoising SNR when \(T\) varies. Store in <tt>fThresh</tt> the optimal denoising result.
+         </p><pre class="codeinput">exo1;
+</pre><img vspace="5" hspace="5" src="index_06.png"> <p>Display the optimal thresolding.</p><pre class="codeinput">clf;
+imageplot(clamp(fThresh), strcat([<span class="string">'SNR='</span> num2str(snr(f0,fThresh),3)]));
+</pre><img vspace="5" hspace="5" src="index_07.png"> <h2>Block Thresholding Operator<a name="26"></a></h2>
+         <p>A block thresholding operator of coefficients \(x=(x_i)_{i=1}^P \in \RR^P\) is defined using a dijoint partition into a set
+            of blocks \(B\) \[ \{1,\ldots,P\} = \bigcup_{b \in B} b. \] Its definition reads \[ \forall i \in b, \quad       \theta_T(x)_i
+            = \psi_T( \norm{x_b}_2 ) x_i \] where \( x_b = (x_j)_{j \in B} \in \RR^{\abs{b}} \). One thus thresholds the \(\ell^2\) norm
+            (the energy) of each block rather than each coefficient independently.
+         </p>
+         <p>For image-based thresholding, we use a partition in square blocks of equal size \(w \times w\).</p>
+         <p>The block size \(w\).</p><pre class="codeinput">w = 4;
+</pre><p>Compute indexing of the blocks.</p><pre class="codeinput">[dX,dY,X,Y] = ndgrid(0:w-1,0:w-1,1:w:n-w+1,1:w:n-w+1);
+I = X+dX + (Y+dY-1)*n;
+</pre><p>Block extraction operator. It returns the set of \( \{x_b\}_{b \in B} \) of block-partitioned coefficients.</p><pre class="codeinput">block = @(x)reshape(x(I(:)),size(I));
+</pre><p>Block reconstruction operator.</p><pre class="codeinput">iblock = @(H)assign(zeros(n), I, H);
+</pre><p>Check that block extraction / reconstruction gives perfect reconstruction.</p><pre class="codeinput">mynorm = @(x)norm(x(:));
+fprintf(<span class="string">'Should be 0: %.3f\n'</span>, mynorm(f - iblock(block(f))) );
+</pre><pre class="codeoutput">Should be 0: 0.000
+</pre><p>Compute the average energy of each block, and duplicate.</p><pre class="codeinput">repm = @(v)repmat( max3(v,1e-15), [w w]);
+energy = @(H)repm( sqrt( mean(mean(abs(H).^2,1),2) ) );
+</pre><p>Block thresholding operator.</p><pre class="codeinput">Thresh = @(H,T)psi(energy(H),T).*H;
+ThreshBlock = @(x,T)iblock( Thresh(block(x),T) );
+</pre><p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Test the effect of block thresholding on the image \(f_0\) itself, for increasing value of \(T\). (of course thresholding
+            directly the image has no interest, this is just to vizualize the effect).
+         </p><pre class="codeinput">exo2;
+</pre><img vspace="5" hspace="5" src="index_08.png"> <h2>Orthogonal Wavelet Block Thresholding<a name="36"></a></h2>
+         <p>Wavelet coefficients of natural images are not independant one from each other. One can thus improve the denoising results
+            by thresholding block of coefficients togethers. Block thresholding is only efficient when used as a soft thresholder. Here
+            we use a Stein soft thresholder.
+         </p>
+         <p>Display the thresholded coefficients for a threshold value \(T\) proportional to the noise level \(\si\).</p><pre class="codeinput">T = 1.25*sigma;
+clf;
+plot_wavelet( ThreshBlock(wav(f),T), Jmin);
+</pre><img vspace="5" hspace="5" src="index_09.png"> <p>Define the wavelet block thresholding operator.</p><pre class="codeinput">ThreshWav = @(f,T)iwav(ThreshBlock(wav(f),T));
+</pre><p>Test the thresholding.</p><pre class="codeinput">clf;
+imageplot(clamp( ThreshWav(f,T) ));
+</pre><img vspace="5" hspace="5" src="index_10.png"> <p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) Display the evolution of the denoising SNR when \(T\) varies. Store in <tt>fBlock</tt> the optimal denoising result.
+         </p><pre class="codeinput">exo3;
+</pre><img vspace="5" hspace="5" src="index_11.png"> <p>Display the result.</p><pre class="codeinput">clf;
+imageplot(clamp(fBlock), strcat([<span class="string">'SNR='</span> num2str(snr(f0,fBlock),3)]));
+</pre><img vspace="5" hspace="5" src="index_12.png"> <h2>Translation invariant Block Thresholding<a name="42"></a></h2>
+         <p>Block thresholding can also be applied to a translation invariant wavelet transform. It gives state of the art denoising results.</p>
+         <p>Shortcuts for the foward and backward translation invariant wavelet transforms.</p><pre class="codeinput">options.ti = 1;
+wav  = @(f)perform_wavelet_transf(f,Jmin,+1,options);
+iwav = @(fw)perform_wavelet_transf(fw,Jmin,-1,options);
+</pre><p>Foward wavelet transform.</p><pre class="codeinput">fw = wav(f);
+</pre><p>Compute indexing of the blocks.</p><pre class="codeinput">[dX,dY,X,Y,J] = ndgrid(0:w-1,0:w-1,1:w:n-w+1,1:w:n-w+1, 1:size(fw,3));
+I = X+dX + (Y+dY-1)*n + (J-1)*n^2;
+</pre><p>Forward and backward extraction operators.</p><pre class="codeinput">block = @(x)reshape(x(I(:)),size(I));
+iblock = @(H)assign(zeros(size(fw)), I, H);
+</pre><p>Compute the average energy of each block, and duplicate.</p><pre class="codeinput">repm = @(v)repmat( max3(v,1e-15), [w w]);
+energy = @(H)repm( sqrt( mean(mean(abs(H).^2,1),2) ) );
+</pre><p>Block thresholding operator.</p><pre class="codeinput">Thresh = @(H,T)psi(energy(H),T).*H;
+ThreshBlock = @(x,T)iblock( Thresh(block(x),T) );
+</pre><p>Define the wavelet block thresholding operator.</p><pre class="codeinput">ThreshWav = @(f,T)iwav(ThreshBlock(wav(f),T));
+</pre><p>Test the thresholding.</p><pre class="codeinput">clf;
+T = 1.25*sigma;
+imageplot(clamp( ThreshWav(f,T) ));
+</pre><img vspace="5" hspace="5" src="index_13.png"> <p><i>Exercice 4:</i> (<a href="../missing-exo/">check the solution</a>) Display the evolution of the denoising SNR when \(T\) varies. Store in <tt>fTI</tt> the optimal denoising result.
+         </p><pre class="codeinput">exo4;
+</pre><img vspace="5" hspace="5" src="index_14.png"> <p>Display the result.</p><pre class="codeinput">clf;
+imageplot(clamp(fTI), strcat([<span class="string">'SNR='</span> num2str(snr(f0,fTI),3)]));
+</pre><img vspace="5" hspace="5" src="index_15.png"> <h2>Bibliography<a name="53"></a></h2>
+         <p><a name="biblio"></a></p>
+         <div>
+            <ul>
+               <li>[CaiSil01] T. Cai and B.W. Silverman, <a href="http://sankhya.isical.ac.in/search/63b2/caifnl.html"><i>Incorporating information on neighboring coefficients into wavelet estimation</i></a>, Sankhya 63, 127-148, 2001.
+               </li>
+               <li>[Cai99] T. Cai, <a href="http://dx.doi.org/10.1214/aos/1018031262"><i>Adaptive wavelet estimation: a block thresholding and oracle inequality approach</i></a>, The Annals of Statistics 27, 898-924, 1999.
+               </li>
+               <li>[HallKerkPic99] P. Hall, G. Kerkyacharian and D. Picard, <i>On the minimax optimality of block thresholded wavelet estimator</i>, Statistica Sinica 9(1999), 33-49
+               </li>
+            </ul>
+         </div>
+         <p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Wavelet Block Thresholding
+% This numerical tour presents block thresholding methods, 
+% that makes use of the structure of wavelet coefficients of natural images to perform denoising.
+% Theoretical properties of block thresholding were investigated
+% in <#biblio [CaiSilv]> <#biblio [Cai99]> <#biblio [HallKerkPic99]> 
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_signal.zip signal toolbox> and 
+% <../toolbox_general.zip general toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_signal| and 
+% |toolbox_general|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_signal/');
+getd('toolbox_general/');
+
+%% Generating a Noisy Image
+% Here we use an additive Gaussian noise.
+
+%%
+% Size of the image of \(N=n \times n\) pixels.
+
+n = 256;
+
+%%
+% First we load an image \(f_0 \in \RR^N\).
+
+name = 'boat';
+f0 = rescale( load_image(name,n) );
+
+%%
+% Display it.
+
+clf; imageplot(f0);
+
+%%
+% Noise level.
+
+sigma = .08;
+
+%%
+% Generate a noisy image \(f=f_0+\epsilon\) where \(\epsilon \sim
+% \Nn(0,\si^2\text{Id}_N)\).
+
+
+f = f0 + sigma*randn(size(f0));
+
+%%
+% Display it.
+
+clf; imageplot(clamp(f));
+
+
+%% Orthogonal Wavelet Thresholding
+% We first consider the traditional
+% wavelet thresholding method.
+
+%% 
+% Parameters for the orthogonal wavelet transform.
+
+Jmin = 4;
+options.ti = 0;
+
+%%
+% Shortcuts for the foward and backward wavelet transforms.
+
+wav  = @(f)perform_wavelet_transf(f,Jmin,+1,options);
+iwav = @(fw)perform_wavelet_transf(fw,Jmin,-1,options);
+
+%%
+% Display the original set of noisy coefficients.
+
+clf;
+plot_wavelet(wav(f),Jmin);
+
+%%
+% Denoting \(\Ww\) and \(\Ww^*\) the forward and backward wavelet
+% transform, wavelet thresholding \(\tilde f\) is defined as
+% \[ \tilde f = \Ww^* \circ \theta_T \circ \Ww(f) \]
+% where \(T>0\) is the threshold, that should be adapted to the noise
+% level.
+
+%% 
+% The thresholding operator is applied component-wise
+% \[ \th_T(x)_i = \psi_T(x_i) x_i \]
+% where \(\psi_T\) is an atenuation fonction. In this tour, we use the James
+% Stein (JS) attenuation:
+% \[ \psi_T(s) = \max\pa{ 0, 1-\frac{T^2}{s^2} } \]
+
+psi= @(s,T)max3(1-T^2 ./ max(abs(s).^2,1e-9),0);
+
+%%
+% Display the thresholding function \(\th_T\).
+
+t = linspace(-3,3,1024);
+clf; hold on;
+plot(t,t.*psi(t,1)); 
+plot(t,t, 'rREPLACE_WITH_DASH_DASH'); axis equal;
+
+%%
+% Thresholding operator.
+
+theta = @(x,T)psi(x,T).*x;
+ThreshWav = @(f,T)iwav(theta(wav(f),T));
+
+%%
+% Test the thresholding.
+
+T = 1.5*sigma;
+clf;
+imageplot(clamp( ThreshWav(f,T) ));
+
+%%
+% _Exercice 1:_ (<../missing-exo/ check the solution>)
+% Display the evolution of the denoising SNR when \(T\) varies.
+% Store in |fThresh| the optimal denoising result.
+
+exo1;
+
+%%
+% Display the optimal thresolding.
+
+clf;
+imageplot(clamp(fThresh), strcat(['SNR=' num2str(snr(f0,fThresh),3)]));
+
+%% Block Thresholding Operator
+% A block thresholding operator of coefficients \(x=(x_i)_{i=1}^P \in \RR^P\) is defined 
+% using a dijoint partition into a set of blocks \(B\)
+% \[ \{1,\ldots,P\} = \bigcup_{b \in B} b. \]
+% Its definition reads
+% \[ \forall i \in b, \quad
+%       \theta_T(x)_i = \psi_T( \norm{x_b}_2 ) x_i \]
+% where \( x_b = (x_j)_{j \in B} \in \RR^{\abs{b}} \).
+% One thus thresholds the \(\ell^2\) norm (the energy) of each block rather
+% than each coefficient independently. 
+
+%%
+% For image-based thresholding, we use a partition in square blocks of
+% equal size \(w \times w\). 
+
+%%
+% The block size \(w\). 
+
+w = 4;
+
+%%
+% Compute indexing of the blocks.
+
+[dX,dY,X,Y] = ndgrid(0:w-1,0:w-1,1:w:n-w+1,1:w:n-w+1);
+I = X+dX + (Y+dY-1)*n;
+
+%%
+% Block extraction operator. It returns the set of \( \{x_b\}_{b \in B} \)
+% of block-partitioned coefficients. 
+
+block = @(x)reshape(x(I(:)),size(I));
+
+%%
+% Block reconstruction operator.
+
+iblock = @(H)assign(zeros(n), I, H);
+
+%%
+% Check that block extraction / reconstruction gives perfect
+% reconstruction.
+
+mynorm = @(x)norm(x(:));
+fprintf('Should be 0: %.3f\n', mynorm(f - iblock(block(f))) );
+
+%%
+% Compute the average energy of each block, and duplicate.
+
+repm = @(v)repmat( max3(v,1e-15), [w w]);
+energy = @(H)repm( sqrt( mean(mean(abs(H).^2,1),2) ) );
+
+%%
+% Block thresholding operator.
+
+Thresh = @(H,T)psi(energy(H),T).*H;
+ThreshBlock = @(x,T)iblock( Thresh(block(x),T) );
+
+%%
+% _Exercice 2:_ (<../missing-exo/ check the solution>)
+% Test the effect of block thresholding on the image \(f_0\) itself, for increasing value of \(T\).
+% (of course thresholding directly the image has no interest, this is just 
+% to vizualize the effect).
+
+exo2;
+
+
+%% Orthogonal Wavelet Block Thresholding
+% Wavelet coefficients of natural images are not independant one from each
+% other. One can thus improve the denoising results by thresholding block
+% of coefficients togethers. Block thresholding is only efficient when
+% used as a soft thresholder. Here we use a Stein soft thresholder.
+
+%%
+% Display the thresholded coefficients for a threshold value \(T\) proportional to the noise level \(\si\).
+
+T = 1.25*sigma;
+clf;
+plot_wavelet( ThreshBlock(wav(f),T), Jmin);
+
+%% 
+% Define the wavelet block thresholding operator.
+
+ThreshWav = @(f,T)iwav(ThreshBlock(wav(f),T));
+
+%%
+% Test the thresholding.
+
+clf;
+imageplot(clamp( ThreshWav(f,T) ));
+
+%%
+% _Exercice 3:_ (<../missing-exo/ check the solution>)
+% Display the evolution of the denoising SNR when \(T\) varies.
+% Store in |fBlock| the optimal denoising result.
+
+exo3;
+
+%%
+% Display the result.
+
+clf;
+imageplot(clamp(fBlock), strcat(['SNR=' num2str(snr(f0,fBlock),3)]));
+
+%% Translation invariant Block Thresholding
+% Block thresholding can also be applied to a translation invariant wavelet
+% transform. It gives state of the art denoising results.
+
+
+%%
+% Shortcuts for the foward and backward translation invariant wavelet transforms.
+
+options.ti = 1;
+wav  = @(f)perform_wavelet_transf(f,Jmin,+1,options);
+iwav = @(fw)perform_wavelet_transf(fw,Jmin,-1,options);
+
+%%
+% Foward wavelet transform.
+
+fw = wav(f);
+
+%%
+% Compute indexing of the blocks.
+
+[dX,dY,X,Y,J] = ndgrid(0:w-1,0:w-1,1:w:n-w+1,1:w:n-w+1, 1:size(fw,3));
+I = X+dX + (Y+dY-1)*n + (J-1)*n^2;
+
+
+%%
+% Forward and backward extraction operators.
+
+block = @(x)reshape(x(I(:)),size(I));
+iblock = @(H)assign(zeros(size(fw)), I, H);
+
+%%
+% Compute the average energy of each block, and duplicate.
+
+repm = @(v)repmat( max3(v,1e-15), [w w]);
+energy = @(H)repm( sqrt( mean(mean(abs(H).^2,1),2) ) );
+
+%%
+% Block thresholding operator.
+
+Thresh = @(H,T)psi(energy(H),T).*H;
+ThreshBlock = @(x,T)iblock( Thresh(block(x),T) );
+
+%% 
+% Define the wavelet block thresholding operator.
+
+ThreshWav = @(f,T)iwav(ThreshBlock(wav(f),T));
+
+%%
+% Test the thresholding.
+
+clf;
+T = 1.25*sigma;
+imageplot(clamp( ThreshWav(f,T) ));
+
+%%
+% _Exercice 4:_ (<../missing-exo/ check the solution>)
+% Display the evolution of the denoising SNR when \(T\) varies.
+% Store in |fTI| the optimal denoising result.
+
+exo4;
+
+%%
+% Display the result.
+
+clf;
+imageplot(clamp(fTI), strcat(['SNR=' num2str(snr(f0,fTI),3)]));
+
+
+%% Bibliography
+% <html><a name="biblio"></a></html>
+
+%%
+% * [CaiSil01] T. Cai and B.W. Silverman, <http://sankhya.isical.ac.in/search/63b2/caifnl.html _Incorporating information on neighboring coefficients into wavelet estimation_>, Sankhya 63, 127-148, 2001.
+% * [Cai99] T. Cai, <http://dx.doi.org/10.1214/aos/1018031262 _Adaptive wavelet estimation: a block thresholding and oracle inequality approach_>, The Annals of Statistics 27, 898-924, 1999.
+% * [HallKerkPic99] P. Hall, G. Kerkyacharian and D. Picard, _On the minimax optimality of block thresholded wavelet estimator_, Statistica Sinica 9(1999), 33-49
+##### SOURCE END #####
+-->
+   </body>
+</html>

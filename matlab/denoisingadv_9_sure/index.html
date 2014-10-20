@@ -1,0 +1,751 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>Stein Unbiased Risk Estimator</title>
+      <NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
+               	requires JavaScript to process the mathematics on this page.<BR> 
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 8.2">
+      <meta name="date" content="2014-10-20">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>Stein Unbiased Risk Estimator</h1>
+         <introduction>
+            <p>This tour uses the Stein Unbiased Risk Estimator (SURE) to optimize the value of parameters in denoising algorithms.</p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#8">Denoising and SURE</a></li>
+               <li><a href="#26">Linear Denoising SURE</a></li>
+               <li><a href="#37">Soft Thresholding SURE</a></li>
+               <li><a href="#51">Block-soft Thresholding SURE</a></li>
+            </ul>
+         </div>
+         <h2>Installing toolboxes and setting up the path.<a name="1"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_signal.zip">signal toolbox</a> and <a href="../toolbox_general.zip">general toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_signal</tt> and <tt>toolbox_general</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
+getd(<span class="string">'toolbox_general/'</span>);
+</pre><h2>Denoising and SURE<a name="8"></a></h2>
+         <p>We consider a simple generative model of noisy images \(F = f_0+W\) where \(f_0 \in \RR^N\) is a deterministic image of \(N\)
+            pixels, and \(W\) is a Gaussian white noise distributed according to \(\Nn(0,\si^2 \text{Id}_N)\), where \(\si^2\) is the
+            variance of noise.
+         </p>
+         <p>The goal of denoising is to define an estimator \(h(F)\) of \(f_0\) that depends only on \(F\), where \(h : \RR^N \rightarrow
+            \RR^N\) is a potentially non-linear mapping.
+         </p>
+         <p>Note that while \(f_0\) is a deterministic image, both \(F\) and \(h(F)\) are random variables (hence the capital letters).</p>
+         <p>The goal of denoising is to reduce as much as possible the denoising error given some prior knowledge on the (unknown) image
+            \(f_0\). A mathematical way to measure this error is to bound the quadratic risk \(\EE_W(\norm{h(F) - f_0}^2)\), where the
+            expectation is computed with respect to the distribution of the noise \(W\)
+         </p>
+         <p>For real life applications, one does not have access to the underlying image \(f_0\). In this tour, we however assume that
+            \(f_0\) is known, and \(f = f_0 + w\in \RR^N\) is generated using a single realization of the noise \(w\) that is drawn from
+            \(W\). We define the estimated deterministic image as \(h(f)\) which is a realization of the random vector \(h(F)\).
+         </p>
+         <p>Number \(N = n \times n\) of pixels.</p><pre class="codeinput">n = 128*2;
+N = n^2;
+</pre><p>First we load an image \(f \in \RR^N\) where \(N=n \times n\) is the number of pixels.</p><pre class="codeinput">name = <span class="string">'hibiscus'</span>;
+f0 = rescale( sum(load_image(name,n),3) );
+</pre><p>Display it.</p><pre class="codeinput">clf;
+imageplot(f0);
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p>Standard deviation \(\si\) of the noise.</p><pre class="codeinput">sigma = .08;
+</pre><p>Then we add Gaussian noise \(w\) to obtain \(f=f_0+w\).</p><pre class="codeinput">f = f0 + sigma*randn(n);
+</pre><p>Display the noisy image. Note the use of the <tt>clamp</tt> function to saturate the result to \([0,1]\) to avoid a loss of contrast of the display.
+         </p><pre class="codeinput">clf;
+imageplot(clamp(f), strcat([<span class="string">'Noisy, SNR='</span> num2str(snr(f0,f),3) <span class="string">'dB'</span>]));
+</pre><img vspace="5" hspace="5" src="index_02.png"> <p>The Stein Unbiased Risk Estimator (SURE) associated to the mapping \(h\) is defined as \[ \text{SURE}(f) = -N\si^2 + \norm{h(f)-f}^2
+            + 2\si^2 \text{df}(f) \] where df stands for <i>degree of freedom,</i> and is defined as \[ \text{df}(f) = \text{div} h(f) = \sum_i \pd{h}{f_i}(f). \]
+         </p>
+         <p>It has been introduced in:</p>
+         <p>Stein, Charles M. (November 1981). "Estimation of the Mean of a Multivariate Normal Distribution". The Annals of Statistics
+            9 (6): 1135-1151.
+         </p>
+         <p>And it has been applied to wavelet-based non-linear denoising in:</p>
+         <p>Donoho, David L.; Iain M. Johnstone (December 1995). "Adapting to Unknown Smoothness via Wavelet Shrinkage". Journal of the
+            American Statistical Association (Journal of the American Statistical Association, Vol. 90, No. 432) 90 (432): 1200-1244.
+         </p>
+         <p>If the mapping \(f \mapsto h(f)\) is differentiable outside a set of zero measure (or more generally weakly differentiable),
+            then SURE defines an unbiased estimate of the quadratic risk \[ \EE_W(\text{SURE}(F)) = \EE_W( \norm{f_0-h(F)}^2 ). \] This
+            is especially useful, since the evaluation of SURE does not necessitate the knowledge of the clean signal \(f_0\) (but note
+            however that it requires the knowledge of the noise level \(\si\)).
+         </p>
+         <p>In practice, one replaces \(\text{SURE}(F)\) from its empirical evaluation \(\text{SURE}(f)\) on a single realization \(f\).
+            One can then minimize \(\text{SURE}(f)\) with respect to a parameter \(\la\) that parameterizes the denoiser \(h=h_\la\).
+         </p>
+         <h2>Linear Denoising SURE<a name="26"></a></h2>
+         <p>We consider a translation-invariant linear denoising operator, which is thus a convolution \[ h(f) = g \star h \] where \(g
+            \in \RR^N\) is a low pass kernel, and \(\star\) denotes the periodic 2-D convolution.
+         </p>
+         <p>Since we use periodic boundary condition, we compute the convolution as a multiplication over the Fourier domain. \[ \forall
+            \om, \quad \hat h(f)(\om) = \hat f(\om) \hat g(\om) \] where \(\hat g(\om)\) is the frequency \(\om\) of the discrete 2-D
+            Fourier transform of \(g\) (computed using the function <tt>fft2</tt>).
+         </p><pre class="codeinput">convol = @(f,g)real(ifft2(fft2(f) .* repmat(fft2(g), [1 1 size(f,3)]) ));
+</pre><p>We define a parameteric kernel \(g_\la\) parameterized by its bandwidth \(\la&gt;0\). We use here a Gaussian kernel \[ g_\la(a)
+            = \frac{1}{Z_\la} e^{ -\frac{\norm{a}}{2 \la^2} } \] where \(Z_\la\) ensures that \(\sum_a g_\la(a) = 1\).
+         </p><pre class="codeinput">normalize = @(f)f/sum(f(:));
+x = [0:n/2 -n/2+1:-1];
+[Y,X] = meshgrid(x,x);
+g = @(lambda)normalize( exp( -(X.^2+Y.^2)/(2*lambda^2) ) );
+</pre><p>Define our denoising operator \(h=h_\la\) (we make explicit the dependency on \(\la\)): \[ h_\la(f) = g_\la \star f. \]</p><pre class="codeinput">h = @(f,lambda)convol(f, g(lambda));
+</pre><p>Example of denoising result.</p><pre class="codeinput">lambda = 1.5;
+clf;
+imageplot(clamp(h(f,lambda)));
+</pre><img vspace="5" hspace="5" src="index_03.png"> <p>For linear operator, the dregree of freedom is equal to the trace of the operator, and thus in our case it is equal to the
+            sum of the Fourier transform \[ \text{df}_\la(f) = \text{tr}(h_\la) = \sum_{\om} \hat g_\la(\om) \] Note that we have made
+            explicit the dependency of df with respect \(\la\). Note also that df$(f)$ actually does not depends on \(f\).
+         </p><pre class="codeinput">df = @(lambda)real(sum(sum(fft2(g(lambda)))));
+</pre><p>We can now define the SURE=SURE\(_\la\) operator, as a function of \(f, h(f), \lambda\).</p><pre class="codeinput">SURE = @(f,hf,lambda)-N*sigma^2 + norm(hf-f, <span class="string">'fro'</span>)^2 + 2 * sigma^2 * df(lambda);
+</pre><p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) For a given \(\lambda\), display the histogram of the repartition of the quadratic error \(\norm{y-h(y)}^2\) and of \(\text{SURE}(y)\).
+            Compute these repartition using Monte-Carlo simulation (you need to generate lots of different realization of the noise \(W\).
+            Display in particular the location of the mean of these quantities.
+         </p><pre class="codeinput">exo1;
+</pre><img vspace="5" hspace="5" src="index_04.png"> <p>In practice, the SURE is used to set up the value of \(\la\) from a single realization \(f=f_0+w\), by minimizing \(\text{SURE}_\la(f)\).</p>
+         <p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Compute, for a single realization \(f=f_0+w\), the evolution of \[ E(\la) = \text{SURE}_\la(f) \qandq E_0(\lambda) = \norm{f-h_\la(f)}^2
+            \] as a function of \(\lambda\).
+         </p><pre class="codeinput">exo2;
+</pre><img vspace="5" hspace="5" src="index_05.png"> <p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) Display the best denoising result \(h_{\la^*}(f)\) where \[\la^* = \uargmin{\la} \text{SURE}_\la(f) \]
+         </p><pre class="codeinput">exo3;
+</pre><img vspace="5" hspace="5" src="index_06.png"> <h2>Soft Thresholding SURE<a name="37"></a></h2>
+         <p>In order to enhance the denoising results for piecewise regular signal and image, it is possible to use non-linear thresholding
+            in an orthogonal wavelet basis \( \Bb = \{ \psi_m \}_{m} \) where \(\psi_m \in \RR^N\) is a wavelet element.
+         </p>
+         <p>Re-generate a noisy image.</p><pre class="codeinput">f = f0 + sigma*randn(n);
+</pre><p>The soft-thresholding estimator thus reads \[ h_\la(f) = \sum_m s_\la( \dotp{f}{\psi_m} ) \psi_m       \qwhereq s_\la(\al)
+            = \max\pa{0, 1-\frac{\la}{\abs{\al}}} \al. \] It can be conveniently written as \[ h_\la = \Ww^* \circ S_\la \circ \Ww \]
+            where \(\Ww\) and \(\Ww^*\) are forward and inverse wavelet transform \[ \Ww(f) = ( \dotp{f}{\psi_m} )_m \qandq       \Ww^*(x)
+            = \sum_m x_m \psi_m, \] and \( S_\la \) is the diagonal soft thresholding operator \[ S_\la(x) = ( s_\la(x_m) )_m. \]
+         </p>
+         <p>Define the wavelet transform and its inverse.</p><pre class="codeinput">W  = @(f)perform_wavortho_transf(f,0,+1);
+Ws = @(x)perform_wavortho_transf(x,0,-1);
+</pre><p>Display the wavelet transform \(\Ww(f_0)\) of the original image.</p><pre class="codeinput">clf;
+plot_wavelet(W(f0),1);
+</pre><img vspace="5" hspace="5" src="index_07.png"> <p>Define the soft thresholding operator.</p><pre class="codeinput">S = @(x,lambda)max(0, 1-lambda ./ max(1e-9,abs(x)) ) .* x;
+</pre><p>Define the denoising operator.</p><pre class="codeinput">h = @(f,lambda)Ws(S(W(f),lambda));
+</pre><p>Example of denoising result.</p><pre class="codeinput">lambda = 3*sigma/2;
+clf;
+imageplot(clamp(h(f,lambda)));
+</pre><img vspace="5" hspace="5" src="index_08.png"> <p>Since \(Ww\) is an orthogonal transform, one has \[ \text{df}(f) = \text{div}( S_\la )( \Ww(f) )       = \sum_m s_\la'( \dotp{f}{\psi_m}
+            ) = \norm{\Ww(h(f))}_0  \] where \( s_\la' \) is the derivative of the 1-D function \(s_\la\), and \(\norm{\cdot}_0\) is the
+            \(\ell^0\) pseudo-norm \[ \norm{x}_0 = \abs{ \enscond{m}{x_m \neq 0} }. \]
+         </p>
+         <p>To summerize, the degree of freedom is equal to the number of non-zero coefficients in the wavelet coefficients of \(h(f)\).</p><pre class="codeinput">df = @(hf,lambda)sum(sum( abs(W(hf))&gt;1e-8 ));
+</pre><p>We can now define the SURE operator, as a function of \(f, h(f), \lambda\).</p><pre class="codeinput">SURE = @(f,hf,lambda)-N*sigma^2 + norm(hf-f, <span class="string">'fro'</span>)^2 + 2 * sigma^2 * df(hf,lambda);
+</pre><p><i>Exercice 4:</i> (<a href="../missing-exo/">check the solution</a>) For a given \(\lambda\), display the histogram of the repartition of the quadratic error \(\norm{y-h(y)}^2\) and of \(\text{SURE}(y)\).
+            Compute these repartition using Monte-Carlo simulation (you need to generate lots of different realization of the noise \(W\).
+            Display in particular the location of the mean of these quantities. <i>Hint:</i> you can do the computation directly over the wavelet domain, i.e. consider that the noise is added to the wavelet transform.
+         </p><pre class="codeinput">exo4;
+</pre><img vspace="5" hspace="5" src="index_09.png"> <p><i>Exercice 5:</i> (<a href="../missing-exo/">check the solution</a>) Compute, for a single realization \(f=f_0+w\), the evolution of \[ E(\la) = \text{SURE}_\la(f) \qandq E_0(\lambda) = \norm{f-h_\la(f)}^2
+            \] as a function of \(\lambda\).
+         </p><pre class="codeinput">exo5;
+</pre><img vspace="5" hspace="5" src="index_10.png"> <p><i>Exercice 6:</i> (<a href="../missing-exo/">check the solution</a>) Display the best denoising result \(h_{\la^*}(f)\) where \[\la^* = \uargmin{\la} \text{SURE}_\la(f) \]
+         </p><pre class="codeinput">exo6;
+</pre><img vspace="5" hspace="5" src="index_11.png"> <h2>Block-soft Thresholding SURE<a name="51"></a></h2>
+         <p>To improve the result of soft thresholding, it is possible to threshold blocks of coefficients.</p>
+         <p>We define a partition \( \{1,\ldots,N\} = \cup_k b_k \) of the set of wavelet coefficient indexes. The block thresholding
+            is defined as \[ h_\la(f) = \sum_k \sum_{m \in b_k} a_\la( e_k ) \dotp{f}{\psi_m} \psi_m       \qwhereq       e_k = \sum_{m
+            \in b_k} \abs{\dotp{f}{\psi_m}}^2, \] where we use the James-Stein attenuation threshold \[       a_\la(e) = \max\pa{ 0, 1
+            - \frac{\la^2}{e^2} }. \]
+         </p>
+         <p>The block size \(q\).</p><pre class="codeinput">q = 4;
+</pre><p>A function to extract blocks.</p><pre class="codeinput">[dX,dY,X,Y] = ndgrid(0:q-1,0:q-1,1:q:n-q+1,1:q:n-q+1);
+I = X+dX + (Y+dY-1)*n;
+blocks = @(fw)reshape(fw(I(:)),size(I));
+</pre><p>A function to reconstruct an image from blocks.</p><pre class="codeinput">linearize = @(x)x(:);
+unblock = @(H)reshape( accumarray( I(:), linearize(H), [n*n 1], @min), [n n]);
+</pre><p>Compute the average energy of each block, and duplicate.</p><pre class="codeinput">energy = @(H)mean(mean(abs(H).^2,1),2);
+energy = @(H)repmat( max3(energy(H),1e-15), [q q]);
+</pre><p>Threshold the blocks. We use here a Stein block thresholding. All values within a block are atenuated by the same factor.</p><pre class="codeinput">S = @(H,lambda)max(1-lambda^2 ./ energy(H),0) .* H;
+</pre><p>Block thresholding estimator \(h_\lambda(f)\).</p><pre class="codeinput">h = @(f,lambda)Ws(unblock(S(blocks(W(f)),lambda) ) );
+</pre><p>Example of block denoising.</p><pre class="codeinput">lambda = 1.1*sigma;
+clf;
+imageplot(clamp(h(f,lambda)));
+</pre><img vspace="5" hspace="5" src="index_12.png"> <p>Since the block-thresholding operates in a block diagonal manner over the wavelet coefficients, it degree of freedom is a
+            sum of the divergence of each block James-Stein operator \[   \text{df}(f) = \sum_{ e_k &gt; \la^2 } \text{tr}( \partial \phi
+            (a_k) ) \] where \( a_k = (\dotp{f}{\psi_m})_{m \in b_k} \) is the set of coefficients inside a block, that satisfies \(\norm{a_k}=e_k\),
+            and where \[ \phi(a) = \pa{&nbsp;1 - \frac{\la^2}{\norm{a}^2} } a. \] One can compute explicitely the derivative of \(\phi\) \[
+            \partial \phi(a) = \pa{ 1 - \frac{\la^2}{\norm{a}^2} }&nbsp;\text{Id} + 2 \frac{\la^2}{\norm{a}^2} \Pi_a \] where \(\Pi_a\) is
+            the orthogonal projector on \(a\).
+         </p>
+         <p>This gives the folowing formula for the degree of freedom \[   \text{df}(f) = \norm{\Ww(h_\la(f))}_0 + \sum_{ e_k &gt; \la^2
+            }   \frac{\la^2}{e_k} (2-\abs{b_k}). \] One can note that the degree of freedom differs from the one of the soft thresholding
+            (it is not in general an integer).
+         </p>
+         <p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Stein Unbiased Risk Estimator
+% This tour uses the Stein Unbiased Risk Estimator (SURE) to optimize the
+% value of parameters in denoising algorithms. 
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_signal.zip signal toolbox> and 
+% <../toolbox_general.zip general toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_signal| and 
+% |toolbox_general|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_signal/');
+getd('toolbox_general/');
+
+%% Denoising and SURE
+% We consider a simple generative model of noisy images \(F = f_0+W\)
+% where \(f_0 \in \RR^N\) is a deterministic image of \(N\) pixels, and
+% \(W\) is a Gaussian white noise distributed according to \(\Nn(0,\si^2
+% \text{Id}_N)\), where \(\si^2\) is the variance of noise.
+
+%%
+% The goal of denoising is to define an estimator \(h(F)\) of
+% \(f_0\) that depends only on \(F\),
+% where \(h : \RR^N \rightarrow \RR^N\) is a potentially non-linear
+% mapping. 
+
+%%
+% Note that while \(f_0\) is a deterministic image, both \(F\) and \(h(F)\)
+% are random variables (hence the capital letters). 
+
+%%
+% The goal of denoising is to reduce as much as possible the denoising
+% error given some prior knowledge on the (unknown) image \(f_0\).
+% A mathematical way to measure this error is to bound the 
+% quadratic risk \(\EE_W(\norm{h(F) - f_0}^2)\), where the expectation is computed
+% with respect to the distribution of the noise \(W\)
+
+%%
+% For real life applications, one does not have access to the underlying
+% image \(f_0\). In this tour, we however assume that \(f_0\) is known, and
+% \(f = f_0 + w\in \RR^N\) is generated using a single realization of the noise \(w\)
+% that is drawn from \(W\). We define the estimated deterministic image as 
+% \(h(f)\) which is a realization of the random vector
+% \(h(F)\).
+
+%%
+% Number \(N = n \times n\) of pixels.
+
+n = 128*2;
+N = n^2;
+
+%%
+% First we load an image \(f \in \RR^N\) where \(N=n \times n\) is the number of pixels.
+
+name = 'hibiscus';
+f0 = rescale( sum(load_image(name,n),3) );
+
+%%
+% Display it.
+
+clf;
+imageplot(f0);
+
+%%
+% Standard deviation \(\si\) of the noise.
+
+sigma = .08;
+
+%%
+% Then we add Gaussian noise \(w\) to obtain \(f=f_0+w\).
+
+f = f0 + sigma*randn(n);
+
+%%
+% Display the noisy image. Note the use of the |clamp| function to saturate
+% the result to \([0,1]\) to avoid a loss of contrast of the display.
+
+clf;
+imageplot(clamp(f), strcat(['Noisy, SNR=' num2str(snr(f0,f),3) 'dB']));
+
+
+%%
+% The Stein Unbiased Risk Estimator (SURE) associated to the mapping \(h\)
+% is defined as
+% \[ \text{SURE}(f) = -N\si^2 + \norm{h(f)-f}^2 + 2\si^2 \text{df}(f) \]
+% where df stands for _degree of freedom,_ and is defined as
+% \[ \text{df}(f) = \text{div} h(f) = \sum_i \pd{h}{f_i}(f). \]
+
+%%
+% It has been introduced in:
+
+%% 
+% Stein, Charles M. (November 1981). 
+% "Estimation of the Mean of a Multivariate Normal Distribution". 
+% The Annals of Statistics 9 (6): 1135-1151.
+
+%%
+% And it has been applied to wavelet-based non-linear denoising in:
+
+%%
+% Donoho, David L.; Iain M. Johnstone (December 1995). 
+% "Adapting to Unknown Smoothness via Wavelet Shrinkage". 
+% Journal of the American Statistical Association (Journal of the American Statistical Association, 
+% Vol. 90, No. 432) 90 (432): 1200-1244.
+
+%%
+% If the mapping \(f \mapsto h(f)\) is differentiable outside a set of
+% zero measure (or more generally weakly differentiable), 
+% then SURE defines an unbiased estimate of the quadratic risk
+% \[ \EE_W(\text{SURE}(F)) = \EE_W( \norm{f_0-h(F)}^2 ). \]
+% This is especially useful, since the evaluation of SURE does not
+% necessitate the knowledge of the clean signal \(f_0\) (but note however
+% that it requires the knowledge of the noise level \(\si\)).
+
+%%
+% In practice, one replaces \(\text{SURE}(F)\) from its empirical
+% evaluation \(\text{SURE}(f)\) on a single realization \(f\).
+% One can then minimize \(\text{SURE}(f)\) with respect to a parameter
+% \(\la\) that parameterizes the denoiser \(h=h_\la\).
+
+
+%% Linear Denoising SURE
+% We consider a translation-invariant linear denoising operator, which is
+% thus a convolution
+% \[ h(f) = g \star h \]
+% where \(g \in \RR^N\) is a low pass kernel, and \(\star\) denotes the
+% periodic 2-D convolution.
+
+%%
+% Since we use periodic boundary condition, we compute the
+% convolution as a multiplication over the Fourier domain.
+% \[ \forall \om, \quad \hat h(f)(\om) = \hat f(\om) \hat g(\om) \]
+% where \(\hat g(\om)\) is the frequency \(\om\) of the discrete 2-D
+% Fourier transform of \(g\) (computed using the function |fft2|).
+
+convol = @(f,g)real(ifft2(fft2(f) .* repmat(fft2(g), [1 1 size(f,3)]) ));
+
+%%
+% We define a parameteric kernel \(g_\la\) parameterized by its bandwidth
+% \(\la>0\). We use here a Gaussian kernel
+% \[ g_\la(a) = \frac{1}{Z_\la} e^{ -\frac{\norm{a}}{2 \la^2} } \]
+% where \(Z_\la\) ensures that \(\sum_a g_\la(a) = 1\).
+
+normalize = @(f)f/sum(f(:));
+x = [0:n/2 -n/2+1:-1];
+[Y,X] = meshgrid(x,x);
+g = @(lambda)normalize( exp( -(X.^2+Y.^2)/(2*lambda^2) ) );
+
+%%
+% Define our denoising operator \(h=h_\la\) (we make explicit the
+% dependency on \(\la\)):
+% \[ h_\la(f) = g_\la \star f. \]
+
+h = @(f,lambda)convol(f, g(lambda));
+
+%%
+% Example of denoising result.
+
+lambda = 1.5;
+clf;
+imageplot(clamp(h(f,lambda)));
+
+%%
+% For linear operator, the dregree of freedom is equal to the trace of the operator, and
+% thus in our case it is equal to the sum of the Fourier transform
+% \[ \text{df}_\la(f) = \text{tr}(h_\la) = \sum_{\om} \hat g_\la(\om) \]
+% Note that we have made explicit the dependency of df with respect
+% \(\la\). Note also that df$(f)$ actually does not depends on \(f\).
+
+df = @(lambda)real(sum(sum(fft2(g(lambda)))));
+
+%%
+% We can now define the SURE=SURE\(_\la\) operator, as a function of \(f, h(f),
+% \lambda\).
+
+SURE = @(f,hf,lambda)-N*sigma^2 + norm(hf-f, 'fro')^2 + 2 * sigma^2 * df(lambda);
+
+%%
+% _Exercice 1:_ (<../missing-exo/ check the solution>)
+% For a given \(\lambda\), display the histogram of the repartition of 
+% the quadratic error \(\norm{y-h(y)}^2\) and of \(\text{SURE}(y)\).
+% Compute these repartition using Monte-Carlo simulation (you need to
+% generate lots of different realization of the noise \(W\).
+% Display in particular the location of the mean of these quantities.
+
+exo1;
+
+%%
+% In practice, the SURE is used to set up the value of \(\la\) from a
+% single realization \(f=f_0+w\), by minimizing \(\text{SURE}_\la(f)\).
+
+%%
+% _Exercice 2:_ (<../missing-exo/ check the solution>)
+% Compute, for a single realization \(f=f_0+w\), the evolution
+% of 
+% \[ E(\la) = \text{SURE}_\la(f) \qandq E_0(\lambda) = \norm{f-h_\la(f)}^2 \] 
+% as a function of \(\lambda\). 
+
+exo2;
+
+%%
+% _Exercice 3:_ (<../missing-exo/ check the solution>)
+% Display the best denoising result \(h_{\la^*}(f)\)
+% where 
+% \[\la^* = \uargmin{\la} \text{SURE}_\la(f) \]
+
+exo3;
+
+
+%% Soft Thresholding SURE
+% In order to enhance the denoising results for piecewise regular signal
+% and image, it is possible to use non-linear thresholding in an orthogonal wavelet
+% basis \( \Bb = \{ \psi_m \}_{m} \) where \(\psi_m \in \RR^N\) is a wavelet element.
+
+%%
+% Re-generate a noisy image.
+
+f = f0 + sigma*randn(n);
+
+%%
+% The soft-thresholding estimator thus reads
+% \[ h_\la(f) = \sum_m s_\la( \dotp{f}{\psi_m} ) \psi_m
+%       \qwhereq s_\la(\al) = \max\pa{0, 1-\frac{\la}{\abs{\al}}} \al. \]
+% It can be conveniently written as
+% \[ h_\la = \Ww^* \circ S_\la \circ \Ww \]
+% where \(\Ww\) and \(\Ww^*\) are forward and inverse wavelet transform
+% \[ \Ww(f) = ( \dotp{f}{\psi_m} )_m \qandq
+%       \Ww^*(x) = \sum_m x_m \psi_m, \]
+% and \( S_\la \) is the diagonal soft thresholding operator
+% \[ S_\la(x) = ( s_\la(x_m) )_m. \]
+
+%%
+% Define the wavelet transform and its inverse.
+
+W  = @(f)perform_wavortho_transf(f,0,+1);
+Ws = @(x)perform_wavortho_transf(x,0,-1);
+
+%%
+% Display the wavelet transform \(\Ww(f_0)\) of the original image.
+
+clf;
+plot_wavelet(W(f0),1);
+
+%%
+% Define the soft thresholding operator.
+
+S = @(x,lambda)max(0, 1-lambda ./ max(1e-9,abs(x)) ) .* x;
+
+%%
+% Define the denoising operator.
+
+h = @(f,lambda)Ws(S(W(f),lambda));
+
+%%
+% Example of denoising result.
+
+lambda = 3*sigma/2;
+clf;
+imageplot(clamp(h(f,lambda)));
+
+%%
+% Since \(Ww\) is an orthogonal transform, one has
+% \[ \text{df}(f) = \text{div}( S_\la )( \Ww(f) )
+%       = \sum_m s_\la'( \dotp{f}{\psi_m} ) = \norm{\Ww(h(f))}_0  \]
+% where \( s_\la' \) is the derivative of the 1-D function \(s_\la\), and 
+% \(\norm{\cdot}_0\) is the \(\ell^0\) pseudo-norm
+% \[ \norm{x}_0 = \abs{ \enscond{m}{x_m \neq 0} }. \]
+
+%%
+% To summerize, the degree of freedom is equal to the number of non-zero
+% coefficients in the wavelet coefficients of \(h(f)\).
+
+df = @(hf,lambda)sum(sum( abs(W(hf))>1e-8 ));
+
+%%
+% We can now define the SURE operator, as a function of \(f, h(f),
+% \lambda\).
+
+SURE = @(f,hf,lambda)-N*sigma^2 + norm(hf-f, 'fro')^2 + 2 * sigma^2 * df(hf,lambda);
+
+%%
+% _Exercice 4:_ (<../missing-exo/ check the solution>)
+% For a given \(\lambda\), display the histogram of the repartition of 
+% the quadratic error \(\norm{y-h(y)}^2\) and of \(\text{SURE}(y)\).
+% Compute these repartition using Monte-Carlo simulation (you need to
+% generate lots of different realization of the noise \(W\).
+% Display in particular the location of the mean of these quantities.
+% _Hint:_ you can do the computation directly over the wavelet domain, 
+% i.e. consider that the noise is added to the wavelet transform.
+
+exo4;
+
+
+
+%%
+% _Exercice 5:_ (<../missing-exo/ check the solution>)
+% Compute, for a single realization \(f=f_0+w\), the evolution
+% of 
+% \[ E(\la) = \text{SURE}_\la(f) \qandq E_0(\lambda) = \norm{f-h_\la(f)}^2 \] 
+% as a function of \(\lambda\). 
+
+exo5;
+
+
+%%
+% _Exercice 6:_ (<../missing-exo/ check the solution>)
+% Display the best denoising result \(h_{\la^*}(f)\)
+% where 
+% \[\la^* = \uargmin{\la} \text{SURE}_\la(f) \]
+
+exo6;
+
+%% Block-soft Thresholding SURE
+% To improve the result of soft thresholding, it is possible to threshold
+% blocks of coefficients. 
+
+%%
+% We define a partition \( \{1,\ldots,N\} = \cup_k b_k \) of the set of wavelet
+% coefficient indexes. The block thresholding is defined as
+% \[ h_\la(f) = \sum_k \sum_{m \in b_k} a_\la( e_k ) \dotp{f}{\psi_m} \psi_m
+%       \qwhereq 
+%       e_k = \sum_{m \in b_k} \abs{\dotp{f}{\psi_m}}^2,
+% \]
+% where we use the James-Stein attenuation threshold
+% \[
+%       a_\la(e) = \max\pa{ 0, 1 - \frac{\la^2}{e^2} }.
+% \]
+
+%%
+% The block size \(q\).
+
+q = 4;
+
+%% 
+% A function to extract blocks.
+
+[dX,dY,X,Y] = ndgrid(0:q-1,0:q-1,1:q:n-q+1,1:q:n-q+1);
+I = X+dX + (Y+dY-1)*n;
+blocks = @(fw)reshape(fw(I(:)),size(I));
+
+%%
+% A function to reconstruct an image from blocks.
+
+linearize = @(x)x(:);
+unblock = @(H)reshape( accumarray( I(:), linearize(H), [n*n 1], @min), [n n]);
+
+%%
+% Compute the average energy of each block, and duplicate.
+
+energy = @(H)mean(mean(abs(H).^2,1),2);
+energy = @(H)repmat( max3(energy(H),1e-15), [q q]);
+
+%% 
+% Threshold the blocks. We use here a Stein block thresholding.
+% All values within a block are atenuated by the same factor.
+
+S = @(H,lambda)max(1-lambda^2 ./ energy(H),0) .* H;
+
+%%
+% Block thresholding estimator \(h_\lambda(f)\).
+
+h = @(f,lambda)Ws(unblock(S(blocks(W(f)),lambda) ) );
+
+%%
+% Example of block denoising.
+
+lambda = 1.1*sigma;
+clf;
+imageplot(clamp(h(f,lambda)));
+
+%%
+% Since the block-thresholding operates in a block diagonal manner over the
+% wavelet coefficients, it degree of freedom is a sum of the divergence of
+% each block James-Stein operator
+% \[
+%   \text{df}(f) = \sum_{ e_k > \la^2 } \text{tr}( \partial \phi (a_k) )
+% \]
+% where \( a_k = (\dotp{f}{\psi_m})_{m \in b_k} \) is the set of coefficients
+% inside a block, that satisfies \(\norm{a_k}=e_k\), and 
+% where 
+% \[ \phi(a) = \pa{ 1 - \frac{\la^2}{\norm{a}^2} } a. \]
+% One can compute explicitely the derivative of \(\phi\)
+% \[ \partial \phi(a) = \pa{ 1 - \frac{\la^2}{\norm{a}^2} } \text{Id} + 2 \frac{\la^2}{\norm{a}^2} \Pi_a \]
+% where \(\Pi_a\) is the orthogonal projector on \(a\).
+
+%%
+% This gives the folowing formula for the degree of freedom 
+% \[
+%   \text{df}(f) = \norm{\Ww(h_\la(f))}_0 
+% + \sum_{ e_k > \la^2 } 
+%   \frac{\la^2}{e_k} (2-\abs{b_k}).
+% \]
+% One can note that the degree of freedom differs from the one of the soft thresholding 
+% (it is not in general an integer).
+##### SOURCE END #####
+-->
+   </body>
+</html>

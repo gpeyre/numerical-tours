@@ -1,0 +1,581 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>Source Separation with Sparsity</title>
+      <NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
+               	requires JavaScript to process the mathematics on this page.<BR> 
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 8.2">
+      <meta name="date" content="2014-10-20">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>Source Separation with Sparsity</h1>
+         <introduction>
+            <p>This numerical tour explore local Fourier analysis of sounds, and its application to source separation from stereo measurements.</p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#8">Sound Mixing</a></li>
+               <li><a href="#14">Local Fourier analysis of sound.</a></li>
+               <li><a href="#18">Estimation of Mixing Direction by Clustering</a></li>
+               <li><a href="#26">Separation of the Sources using Clustering</a></li>
+            </ul>
+         </div>
+         <h2>Installing toolboxes and setting up the path.<a name="1"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_signal.zip">signal toolbox</a> and <a href="../toolbox_general.zip">general toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_signal</tt> and <tt>toolbox_general</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
+getd(<span class="string">'toolbox_general/'</span>);
+</pre><h2>Sound Mixing<a name="8"></a></h2>
+         <p>We load 3 sounds and simulate a stero recording by performing a linear blending of the sounds.</p>
+         <p>For Scilab users, it is safer to extend the stack size. For Matlab users this does nothing.</p><pre class="codeinput">extend_stack_size(4);
+</pre><p>Sound loading.</p><pre class="codeinput">n = 1024*16;
+s = 3; <span class="comment">% number of sound</span>
+p = 2; <span class="comment">% number of micros</span>
+options.subsampling = 1;
+x = zeros(n,3);
+[x(:,1),fs] = load_sound(<span class="string">'bird'</span>, n, options);
+[x(:,2),fs] = load_sound(<span class="string">'female'</span>, n, options);
+[x(:,3),fs] = load_sound(<span class="string">'male'</span>, n, options);
+<span class="comment">% normalize the energy of the signals</span>
+x = x./repmat(std(x,1), [n 1]);
+</pre><p>We mix the sound using a <tt>2x3</tt> transformation matrix. Here the direction are well-spaced, but you can try with more complicated mixing matrices.
+         </p><pre class="codeinput"><span class="comment">% compute the mixing matrix</span>
+theta = linspace(0,pi(),s+1); theta(s+1) = [];
+theta(1) = .2;
+M = [cos(theta); sin(theta)];
+<span class="comment">% compute the mixed sources</span>
+y = x*M';
+</pre><p>Display of the sounds and their mix.</p><pre class="codeinput">clf;
+<span class="keyword">for</span> i=1:s
+    subplot(s,1,i);
+    plot(x(:,i)); axis(<span class="string">'tight'</span>);
+    set_graphic_sizes([], 20);
+    title(strcat(<span class="string">'Source #'</span>,num2str(i)));
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p>Display of the micro output.</p><pre class="codeinput">clf;
+<span class="keyword">for</span> i=1:p
+    subplot(p,1,i);
+    plot(y(:,i)); axis(<span class="string">'tight'</span>);
+    set_graphic_sizes([], 20);
+    title(strcat(<span class="string">'Micro #'</span>,num2str(i)));
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="index_02.png"> <h2>Local Fourier analysis of sound.<a name="14"></a></h2>
+         <p>In order to perform the separation, one performs a local Fourier analysis of the sound. The hope is that the sources will
+            be well-separated over the Fourier domain because the sources are sparse after a STFT.
+         </p>
+         <p>First set up parameters for the STFT.</p><pre class="codeinput">options.n = n;
+w = 128;   <span class="comment">% size of the window</span>
+q = w/4;    <span class="comment">% overlap of the window</span>
+</pre><p>Compute the STFT of the sources.</p><pre class="codeinput">clf; X = []; Y = [];
+<span class="keyword">for</span> i=1:s
+    X(:,:,i) = perform_stft(x(:,i),w,q, options);
+    subplot(s,1,i);
+    plot_spectrogram(X(:,:,i));
+    set_graphic_sizes([], 20);
+    title(strcat(<span class="string">'Source #'</span>,num2str(i)));
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="index_03.png"> <p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Compute the STFT of the micros, and store them into a matrix <tt>Y</tt>.
+         </p><pre class="codeinput">exo1;
+</pre><img vspace="5" hspace="5" src="index_04.png"> <h2>Estimation of Mixing Direction by Clustering<a name="18"></a></h2>
+         <p>Since the sources are quite sparse over the Fourier plane, the directions are well estimated by looking as the direction emerging
+            from a point clouds of the transformed coefficients.
+         </p>
+         <p>First we compute the position of the point cloud.</p><pre class="codeinput">mf = size(Y,1);
+mt = size(Y,2);
+P = reshape(Y, [mt*mf p]);
+P = [real(P);imag(P)];
+</pre><p>Then we keep only the 5% of points with largest energy.</p>
+         <p>Display some points in the original (spacial) domain.</p><pre class="codeinput"><span class="comment">% number of displayed points</span>
+npts = 6000;
+<span class="comment">% display original points</span>
+sel = randperm(n); sel = sel(1:npts);
+clf;
+plot(y(sel,1), y(sel,2), <span class="string">'.'</span>);
+axis([-1 1 -1 1]*5);
+set_graphic_sizes([], 20);
+title(<span class="string">'Time domain'</span>);
+</pre><img vspace="5" hspace="5" src="index_05.png"> <p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Display some points of <tt>P</tt> in the transformed (time/frequency) domain.
+         </p><pre class="codeinput">exo2;
+</pre><img vspace="5" hspace="5" src="index_06.png"> <p>We compute the angle associated to each point over the transformed domain. The histograms shows the main direction of mixing.</p><pre class="codeinput">Theta = mod(atan2(P(:,2),P(:,1)), pi());
+<span class="comment">% display histograms</span>
+nbins = 100;
+[h,t] = hist(Theta, nbins);
+h = h/sum(h);
+clf;
+bar(t,h); axis(<span class="string">'tight'</span>);
+</pre><img vspace="5" hspace="5" src="index_07.png"> <p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) The histogram computed from the whole set of points are not peacked enough. To stabilize the detection of mixing direction,
+            compute an histogram from a reduced set of point that have the largest amplitude.
+         </p><pre class="codeinput">exo3;
+</pre><img vspace="5" hspace="5" src="index_08.png"> <p><i>Exercice 4:</i> (<a href="../missing-exo/">check the solution</a>) Detect the direction <tt>M1</tt> approximating the true direction <tt>M</tt> by looking at the local maxima of the histogram. First detect the set of local maxima, and then keep only the three largest.
+         </p><pre class="codeinput">exo4;
+</pre><pre class="codeoutput">
+M =
+
+    0.9801    0.5000   -0.5000
+    0.1987    0.8660    0.8660
+
+
+M1 =
+
+    0.9803    0.5010   -0.5028
+    0.1973    0.8655    0.8644
+
+</pre><h2>Separation of the Sources using Clustering<a name="26"></a></h2>
+         <p>Once the mixing direction are known, one can project the sources on the direction.</p>
+         <p>We compute the projection of the coefficients Y on each estimated direction.</p><pre class="codeinput">A = reshape(Y, [mt*mf p]);
+<span class="comment">% compute the projection of the coefficients on the directions</span>
+C = abs( M1'*A' );
+</pre><p>At each point <tt>x</tt>, the index <tt>I(x)</tt> is the direction which creates the largest projection.
+         </p><pre class="codeinput"><span class="comment">% I is the index of the closest source</span>
+[tmp,I] = compute_max(C, 1);
+I = reshape(I, [mf mt]);
+</pre><p>An additional denoising is achieved by removing small coefficients.</p><pre class="codeinput"><span class="comment">% do not take into account too small coefficients</span>
+T = .05;
+D = sqrt(sum( abs(Y).^2, 3));
+I = I .* (D&gt;T);
+</pre><p>We can display the segmentation of the time frequency plane.</p><pre class="codeinput">clf;
+imageplot(I(1:mf/2,:));
+axis(<span class="string">'normal'</span>);
+set_colormap(<span class="string">'jet'</span>);
+</pre><img vspace="5" hspace="5" src="index_09.png"> <p>The recovered coefficients are obtained by projection.</p><pre class="codeinput">Proj = M1'*A';
+Xr = [];
+<span class="keyword">for</span> i=1:s
+    Xr(:,:,i) = reshape(Proj(i,:), [mf mt]) .* (I==i);
+<span class="keyword">end</span>
+</pre><p>The estimated signals are obtained by inverting the STFT.</p><pre class="codeinput"><span class="keyword">for</span> i=1:s
+    xr(:,i) = perform_stft(Xr(:,:,i),w,q, options);
+<span class="keyword">end</span>
+</pre><p>One can display the recovered signals.</p><pre class="codeinput">clf;
+<span class="keyword">for</span> i=1:s
+    subplot(s,1,i);
+    plot(xr(:,i)); axis(<span class="string">'tight'</span>);
+    set_graphic_sizes([], 20);
+    title(strcat(<span class="string">'Estimated source #'</span>,num2str(i)));
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="index_10.png"> <p>One can listen to the recovered sources.</p><pre class="codeinput">i = 1;
+sound(x(:,i),fs);
+sound(xr(:,i),fs);
+</pre><p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Source Separation with Sparsity
+% This numerical tour explore local Fourier analysis of sounds, and its
+% application to source separation from stereo measurements.
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_signal.zip signal toolbox> and 
+% <../toolbox_general.zip general toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_signal| and 
+% |toolbox_general|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_signal/');
+getd('toolbox_general/');
+
+%% Sound Mixing
+% We load 3 sounds and simulate a stero recording by performing a linear
+% blending of the sounds.
+
+%%
+% For Scilab users, it is safer to extend the stack size.
+% For Matlab users this does nothing.
+
+extend_stack_size(4);
+
+%%
+% Sound loading.
+
+n = 1024*16;
+s = 3; % number of sound
+p = 2; % number of micros
+options.subsampling = 1;
+x = zeros(n,3);
+[x(:,1),fs] = load_sound('bird', n, options);
+[x(:,2),fs] = load_sound('female', n, options);
+[x(:,3),fs] = load_sound('male', n, options);
+% normalize the energy of the signals
+x = x./repmat(std(x,1), [n 1]);
+
+%%
+% We mix the sound using a |2x3| transformation matrix.
+% Here the direction are well-spaced, but you can try with more complicated
+% mixing matrices.
+
+% compute the mixing matrix
+theta = linspace(0,pi(),s+1); theta(s+1) = [];
+theta(1) = .2;
+M = [cos(theta); sin(theta)];
+% compute the mixed sources
+y = x*M';
+
+%%
+% Display of the sounds and their mix.
+
+clf;
+for i=1:s
+    subplot(s,1,i);
+    plot(x(:,i)); axis('tight');
+    set_graphic_sizes([], 20);
+    title(strcat('Source #',num2str(i)));
+end
+
+%%
+% Display of the micro output.
+
+clf;
+for i=1:p
+    subplot(p,1,i);
+    plot(y(:,i)); axis('tight');
+    set_graphic_sizes([], 20);
+    title(strcat('Micro #',num2str(i)));
+end
+
+
+%% Local Fourier analysis of sound.
+% In order to perform the separation, one performs a local Fourier analysis
+% of the sound. The hope is that the sources will be well-separated over
+% the Fourier domain because the sources are sparse after a STFT.
+
+
+
+%%
+% First set up parameters for the STFT.
+
+options.n = n;
+w = 128;   % size of the window
+q = w/4;    % overlap of the window
+
+
+%%
+% Compute the STFT of the sources.
+
+clf; X = []; Y = [];
+for i=1:s
+    X(:,:,i) = perform_stft(x(:,i),w,q, options);
+    subplot(s,1,i);
+    plot_spectrogram(X(:,:,i));
+    set_graphic_sizes([], 20);
+    title(strcat('Source #',num2str(i)));
+end
+
+%%
+% _Exercice 1:_ (<../missing-exo/ check the solution>)
+% Compute the STFT of the micros, and store them into a matrix |Y|.
+
+exo1;
+
+%% Estimation of Mixing Direction by Clustering
+% Since the sources are quite sparse over the Fourier plane, the directions
+% are well estimated by looking as the direction emerging from a point
+% clouds of the transformed coefficients.
+
+%%
+% First we compute the position of the point cloud.
+
+mf = size(Y,1);
+mt = size(Y,2);
+P = reshape(Y, [mt*mf p]);
+P = [real(P);imag(P)];
+
+%% 
+% Then we keep only the 5% of points with largest energy.
+
+%%
+% Display some points in the original (spacial) domain.
+
+% number of displayed points
+npts = 6000; 
+% display original points
+sel = randperm(n); sel = sel(1:npts);
+clf;
+plot(y(sel,1), y(sel,2), '.');
+axis([-1 1 -1 1]*5);
+set_graphic_sizes([], 20);
+title('Time domain');
+
+%%
+% _Exercice 2:_ (<../missing-exo/ check the solution>)
+% Display some points of |P| in the transformed (time/frequency) domain.
+
+exo2;
+
+
+%%
+% We compute the angle associated to each point over the transformed
+% domain. The histograms shows the main direction of mixing.
+
+Theta = mod(atan2(P(:,2),P(:,1)), pi());
+% display histograms
+nbins = 100;
+[h,t] = hist(Theta, nbins);
+h = h/sum(h);
+clf;
+bar(t,h); axis('tight');
+
+%%
+% _Exercice 3:_ (<../missing-exo/ check the solution>)
+% The histogram computed from the whole set of points are not peacked
+% enough. To stabilize the detection of mixing direction, compute an
+% histogram from a reduced set of point that have the largest amplitude.
+
+exo3;
+
+%%
+% _Exercice 4:_ (<../missing-exo/ check the solution>)
+% Detect the direction |M1| approximating the true direction |M| by
+% looking at the local maxima of the histogram. First detect the set of
+% local maxima, and then keep only the three largest.
+
+exo4;
+
+%% Separation of the Sources using Clustering
+% Once the mixing direction are known, one can project the sources on the
+% direction.
+
+%%
+% We compute the projection of the coefficients Y on each estimated
+% direction.
+
+A = reshape(Y, [mt*mf p]);
+% compute the projection of the coefficients on the directions
+C = abs( M1'*A' );
+
+%%
+% At each point |x|, the index |I(x)| is the direction which creates the
+% largest projection.
+
+% I is the index of the closest source
+[tmp,I] = compute_max(C, 1);
+I = reshape(I, [mf mt]);
+
+%%
+% An additional denoising is achieved by removing small coefficients.
+
+% do not take into account too small coefficients
+T = .05;
+D = sqrt(sum( abs(Y).^2, 3));
+I = I .* (D>T); 
+
+%%
+% We can display the segmentation of the time frequency plane.
+
+clf;
+imageplot(I(1:mf/2,:));
+axis('normal');
+set_colormap('jet');
+
+%% 
+% The recovered coefficients are obtained by projection.
+
+Proj = M1'*A';
+Xr = [];
+for i=1:s
+    Xr(:,:,i) = reshape(Proj(i,:), [mf mt]) .* (I==i);
+end
+
+%%
+% The estimated signals are obtained by inverting the STFT.
+
+for i=1:s
+    xr(:,i) = perform_stft(Xr(:,:,i),w,q, options);
+end
+
+%%
+% One can display the recovered signals.
+
+clf;
+for i=1:s
+    subplot(s,1,i);
+    plot(xr(:,i)); axis('tight');
+    set_graphic_sizes([], 20);
+    title(strcat('Estimated source #',num2str(i)));
+end
+
+%% 
+% One can listen to the recovered sources.
+
+i = 1;
+sound(x(:,i),fs);
+sound(xr(:,i),fs);
+##### SOURCE END #####
+-->
+   </body>
+</html>

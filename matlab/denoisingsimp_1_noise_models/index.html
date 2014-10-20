@@ -1,0 +1,644 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>Signal and Image Noise Models</title>
+      <NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
+               	requires JavaScript to process the mathematics on this page.<BR> 
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 8.2">
+      <meta name="date" content="2014-10-20">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>Signal and Image Noise Models</h1>
+         <introduction>
+            <p>This numerical tour show several models for signal and image noise. It shows how to estimate the noise level for a Gaussian
+               additive noise on a natural image. It also shows the relevance of thresholding to remove Gaussian noise contaminating sparse
+               data.
+            </p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#8">Additive Gaussian Noise Model</a></li>
+               <li><a href="#15">Additive Uniform Noise</a></li>
+               <li><a href="#20">Impulse Noise</a></li>
+               <li><a href="#26">Thresholding Estimator and Sparsity</a></li>
+               <li><a href="#33">Estimating the noise level</a></li>
+            </ul>
+         </div>
+         <h2>Installing toolboxes and setting up the path.<a name="1"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_signal.zip">signal toolbox</a> and <a href="../toolbox_general.zip">general toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_signal</tt> and <tt>toolbox_general</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
+getd(<span class="string">'toolbox_general/'</span>);
+</pre><h2>Additive Gaussian Noise Model<a name="8"></a></h2>
+         <p>The simplest noise model consist in adding a realization of a zero mean random vector to a clean signal or image.</p>
+         <p>Load a clean image.</p><pre class="codeinput">N = 128;
+name = <span class="string">'boat'</span>;
+M0 = load_image(name,256);
+M0 = rescale(crop(M0,N));
+</pre><p>Load a clean signal.</p><pre class="codeinput">n = 1024;
+name = <span class="string">'piece-regular'</span>;
+f0 = rescale( load_signal(name,n) );
+</pre><p>The simplest noise model is Gaussian white noise. Here we generate a noisy signal or image.</p><pre class="codeinput">sigma = .1;
+M = M0 + randn(N,N)*sigma;
+f = f0 + randn(n,1)*sigma;
+</pre><p>Display the signals.</p><pre class="codeinput">clf;
+subplot(3,1,1);
+plot(f0); axis([1 n 0 1]);
+title(<span class="string">'Clean signal'</span>);
+subplot(3,1,2);
+plot(f-f0); axis([1 n -3*sigma 3*sigma]);
+title(<span class="string">'Noise'</span>);
+subplot(3,1,3);
+plot(f); axis([1 n 0 1]);
+title(<span class="string">'Noisy signal'</span>);
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p>Display the images.</p><pre class="codeinput">clf;
+imageplot(M0, <span class="string">'Clean image'</span>, 1,3,1);
+imageplot(M-M0, <span class="string">'Noise'</span>, 1,3,2);
+imageplot(clamp(M), <span class="string">'Noisy image'</span>, 1,3,3);
+</pre><img vspace="5" hspace="5" src="index_02.png"> <p>Display the statistics of the noise</p><pre class="codeinput">nbins = 51;
+[h,t] = hist( M(:)-M0(:), nbins ); h = h/sum(h);
+subplot(3,1,2);
+bar(t,h);
+axis([-sigma*5 sigma*5 0 max(h)*1.01]);
+</pre><img vspace="5" hspace="5" src="index_03.png"> <h2>Additive Uniform Noise<a name="15"></a></h2>
+         <p>A slightly different kind of noise is uniform in a given interval.</p>
+         <p>Generate noisy data with uniform noise distribution in <tt>[-a,a]</tt>, with <tt>a</tt> chosen so that the variance is sigma.
+         </p><pre class="codeinput">a = sqrt(3)*sigma;
+M = M0 + 2*(rand(N,N)-.5)*a;
+f = f0 + 2*(rand(n,1)-.5)*a;
+</pre><p>Display the signals.</p><pre class="codeinput">clf;
+subplot(3,1,1);
+plot(f0); axis([1 n 0 1]);
+title(<span class="string">'Clean signal'</span>);
+subplot(3,1,2);
+plot(f-f0); axis([1 n -3*sigma 3*sigma]);
+title(<span class="string">'Noise'</span>);
+subplot(3,1,3);
+plot(f); axis([1 n 0 1]);
+title(<span class="string">'Noisy signal'</span>);
+</pre><img vspace="5" hspace="5" src="index_04.png"> <p>Display the images.</p><pre class="codeinput">clf;
+imageplot(M0, <span class="string">'Clean image'</span>, 1,3,1);
+imageplot(M-M0, <span class="string">'Noise'</span>, 1,3,2);
+imageplot(clamp(M), <span class="string">'Noisy image'</span>, 1,3,3);
+</pre><img vspace="5" hspace="5" src="index_05.png"> <p>Display the statistics of the noise</p><pre class="codeinput">nbins = 51;
+[h,t] = hist( M(:)-M0(:), nbins ); h = h/sum(h);
+subplot(3,1,2);
+bar(t,h);
+axis([-sigma*5 sigma*5 0 max(h)*1.01]);
+</pre><img vspace="5" hspace="5" src="index_06.png"> <h2>Impulse Noise<a name="20"></a></h2>
+         <p>A very different noise model consist in sparse impulsions, generate by a random distribution with slowly decaying probability.</p>
+         <p>Generate noisy image with exponential distribution, with variance <tt>sigma</tt>.
+         </p><pre class="codeinput">W = log(rand(N,N)).*sign(randn(N,N));
+W = W/std(W(:))*sigma;
+M = M0 + W;
+</pre><p>Generate noisy signal with exponential distribution, with variance <tt>sigma</tt>.
+         </p><pre class="codeinput">W = log(rand(n,1)).*sign(randn(n,1));
+W = W/std(W(:))*sigma;
+f = f0 + W;
+</pre><p>Display the signals.</p><pre class="codeinput">clf;
+subplot(3,1,1);
+plot(f0); axis([1 n 0 1]);
+title(<span class="string">'Clean signal'</span>);
+subplot(3,1,2);
+plot(f-f0); axis([1 n -3*sigma 3*sigma]);
+title(<span class="string">'Noise'</span>);
+subplot(3,1,3);
+plot(f); axis([1 n 0 1]);
+title(<span class="string">'Noisy signal'</span>);
+</pre><img vspace="5" hspace="5" src="index_07.png"> <p>Display the images.</p><pre class="codeinput">clf;
+imageplot(M0, <span class="string">'Clean image'</span>, 1,3,1);
+imageplot(M-M0, <span class="string">'Noise'</span>, 1,3,2);
+imageplot(clamp(M), <span class="string">'Noisy image'</span>, 1,3,3);
+</pre><img vspace="5" hspace="5" src="index_08.png"> <p>Display the statistics of the noise</p><pre class="codeinput">nbins = 51;
+[h,t] = hist( M(:)-M0(:), nbins ); h = h/sum(h);
+subplot(3,1,2);
+bar(t,h);
+axis([-sigma*5 sigma*5 0 max(h)*1.01]);
+</pre><img vspace="5" hspace="5" src="index_09.png"> <h2>Thresholding Estimator and Sparsity<a name="26"></a></h2>
+         <p>The idea of non-linear denoising is to use an orthogonal basis in which the coefficients <tt>x</tt> of the signal or image <tt>M0</tt> is sparse (a few large coefficients). In this case, the noisy coefficients <tt>x</tt> of the noisy data <tt>M</tt> (perturbated with Gaussian noise) are <tt>x0+noise</tt> where <tt>noise</tt> is Gaussian. A thresholding set to 0 the noise coefficients that are below <tt>T</tt>. The threshold level <tt>T</tt> should be chosen judiciously to be just above the noise level.
+         </p>
+         <p>First we generate a spiky signal.</p><pre class="codeinput"><span class="comment">% dimension</span>
+n = 4096;
+<span class="comment">% probability of spiking</span>
+rho = .05;
+<span class="comment">% location of the spike</span>
+x0 = rand(n,1)&lt;rho;
+<span class="comment">% random amplitude in [-1 1]</span>
+x0 = 2 * x0 .* ( rand(n,1)-.5 );
+</pre><p>We add some gaussian noise</p><pre class="codeinput">sigma = .1;
+x = x0 + randn(size(x0))*sigma;
+</pre><p>Display.</p><pre class="codeinput">clf;
+subplot(2,1,1);
+plot(x0); axis([1 n -1 1]);
+set_graphic_sizes([], 20);
+title(<span class="string">'Original signal'</span>);
+subplot(2,1,2);
+plot(x); axis([1 n -1 1]);
+set_graphic_sizes([], 20);
+title(<span class="string">'Noisy signal'</span>);
+</pre><img vspace="5" hspace="5" src="index_10.png"> <p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) What is the optimal threshold <tt>T</tt> to remove as much as possible of noise ? Try several values of <tt>T</tt>.
+         </p><pre class="codeinput">exo1;
+</pre><img vspace="5" hspace="5" src="index_11.png"> <p>In order to be optimal without knowing in advance the amplitude of the coefficients of <tt>x0</tt>, one needs to set <tt>T</tt> just above the noise level. This means that <tt>T</tt> should be roughly equal to the maximum value of a Gaussian white noise of size <tt>n</tt>.
+         </p>
+         <p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) The theory predicts that the maximum of <tt>n</tt> Gaussian variable of variance <tt>sigma^2</tt> is smaller than <tt>sqrt(2*log(n))</tt> with large probability (that tends to 1 when <tt>n</tt> increases). This is also a sharp result. Check this numerically by computing with Monte Carlo sampling the maximum with <tt>n</tt> increasing (in power of 2). Check also the deviation of the maximum when you perform several trial with <tt>n</tt> fixed.
+         </p><pre class="codeinput">exo2;
+</pre><img vspace="5" hspace="5" src="index_12.png"> <h2>Estimating the noise level<a name="33"></a></h2>
+         <p>In practice, the noise level <tt>sigma</tt> is unknown. For additive Gaussian noise, a good estimator is given by the median of the wavelet coefficients at the finer
+            scale. An even simple estimator is given by the normalized derivate along X or Y direction
+         </p>
+         <p>Load a clean image.</p><pre class="codeinput">n = 256;
+M0 = rescale(load_image(<span class="string">'boat'</span>, n));
+</pre><p>Generate a noisy image.</p><pre class="codeinput">sigma = 0.06;
+M = M0 + randn(n,n)*sigma;
+</pre><p>First we extract the high frequency residual.</p><pre class="codeinput">H = M;
+H = (H(1:n-1,:) - H(2:n,:))'/sqrt(2);
+H = (H(1:n-1,:) - H(2:n,:))'/sqrt(2);
+</pre><p>Display.</p><pre class="codeinput">clf;
+imageplot(clamp(M), <span class="string">'Noisy image'</span>, 1,2,1);
+imageplot(H, <span class="string">'Derivative image'</span>, 1,2,2);
+</pre><img vspace="5" hspace="5" src="index_13.png"> <p>Histograms.</p><pre class="codeinput">[h,t] = hist(H(:), 100);
+h = h/sum(h);
+</pre><p>Display histogram.</p><pre class="codeinput">clf;
+bar(t, h);
+axis([-.5 .5 0 max(h)]);
+</pre><img vspace="5" hspace="5" src="index_14.png"> <p>The mad estimator (median of median) must be rescaled so that it gives the correct variance for gaussian noise.</p><pre class="codeinput">sigma_est = mad(H(:),1)/0.6745;
+disp( strcat([<span class="string">'Estimated noise level='</span> num2str(sigma_est), <span class="string">', true='</span> num2str(sigma)]) );
+</pre><pre class="codeoutput">Estimated noise level=0.066235, true=0.06
+</pre><p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Signal and Image Noise Models
+% This numerical tour show several models for signal and image noise.
+% It shows how to estimate the noise level for a Gaussian additive noise on a natural image.
+% It also shows the relevance of thresholding to remove Gaussian noise
+% contaminating sparse data.
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_signal.zip signal toolbox> and 
+% <../toolbox_general.zip general toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_signal| and 
+% |toolbox_general|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_signal/');
+getd('toolbox_general/');
+
+%% Additive Gaussian Noise Model 
+% The simplest noise model consist in adding a realization of a zero mean
+% random vector to a clean signal or image.
+
+%%
+% Load a clean image.
+
+N = 128;
+name = 'boat';
+M0 = load_image(name,256);
+M0 = rescale(crop(M0,N));
+
+%%
+% Load a clean signal.
+
+n = 1024;
+name = 'piece-regular';
+f0 = rescale( load_signal(name,n) );
+
+%% 
+% The simplest noise model is Gaussian white noise.
+% Here we generate a noisy signal or image.
+
+sigma = .1;
+M = M0 + randn(N,N)*sigma;
+f = f0 + randn(n,1)*sigma;
+
+%%
+% Display the signals.
+
+clf;
+subplot(3,1,1);
+plot(f0); axis([1 n 0 1]);
+title('Clean signal');
+subplot(3,1,2);
+plot(f-f0); axis([1 n -3*sigma 3*sigma]);
+title('Noise');
+subplot(3,1,3);
+plot(f); axis([1 n 0 1]);
+title('Noisy signal');
+
+%%
+% Display the images.
+
+clf;
+imageplot(M0, 'Clean image', 1,3,1);
+imageplot(M-M0, 'Noise', 1,3,2);
+imageplot(clamp(M), 'Noisy image', 1,3,3);
+
+%% 
+% Display the statistics of the noise
+
+nbins = 51;
+[h,t] = hist( M(:)-M0(:), nbins ); h = h/sum(h);
+subplot(3,1,2);
+bar(t,h);
+axis([-sigma*5 sigma*5 0 max(h)*1.01]);
+
+%% Additive Uniform Noise
+% A slightly different kind of noise is uniform in a given interval.
+
+%% 
+% Generate noisy data with uniform 
+% noise distribution in |[-a,a]|, with |a| chosen
+% so that the variance is sigma.
+
+a = sqrt(3)*sigma;
+M = M0 + 2*(rand(N,N)-.5)*a;
+f = f0 + 2*(rand(n,1)-.5)*a;
+
+%%
+% Display the signals.
+
+clf;
+subplot(3,1,1);
+plot(f0); axis([1 n 0 1]);
+title('Clean signal');
+subplot(3,1,2);
+plot(f-f0); axis([1 n -3*sigma 3*sigma]);
+title('Noise');
+subplot(3,1,3);
+plot(f); axis([1 n 0 1]);
+title('Noisy signal');
+
+%%
+% Display the images.
+
+clf;
+imageplot(M0, 'Clean image', 1,3,1);
+imageplot(M-M0, 'Noise', 1,3,2);
+imageplot(clamp(M), 'Noisy image', 1,3,3);
+
+%% 
+% Display the statistics of the noise
+
+nbins = 51;
+[h,t] = hist( M(:)-M0(:), nbins ); h = h/sum(h);
+subplot(3,1,2);
+bar(t,h);
+axis([-sigma*5 sigma*5 0 max(h)*1.01]);
+
+
+
+%% Impulse Noise
+% A very different noise model consist in sparse impulsions, generate by a
+% random distribution with slowly decaying probability.
+
+%% 
+% Generate noisy image with exponential distribution, 
+% with variance |sigma|.
+
+
+W = log(rand(N,N)).*sign(randn(N,N)); 
+W = W/std(W(:))*sigma;
+M = M0 + W;
+
+%% 
+% Generate noisy signal with exponential distribution, 
+% with variance |sigma|.
+
+W = log(rand(n,1)).*sign(randn(n,1)); 
+W = W/std(W(:))*sigma;
+f = f0 + W;
+
+%%
+% Display the signals.
+
+clf;
+subplot(3,1,1);
+plot(f0); axis([1 n 0 1]);
+title('Clean signal');
+subplot(3,1,2);
+plot(f-f0); axis([1 n -3*sigma 3*sigma]);
+title('Noise');
+subplot(3,1,3);
+plot(f); axis([1 n 0 1]);
+title('Noisy signal');
+
+%%
+% Display the images.
+
+clf;
+imageplot(M0, 'Clean image', 1,3,1);
+imageplot(M-M0, 'Noise', 1,3,2);
+imageplot(clamp(M), 'Noisy image', 1,3,3);
+
+%% 
+% Display the statistics of the noise
+
+nbins = 51;
+[h,t] = hist( M(:)-M0(:), nbins ); h = h/sum(h);
+subplot(3,1,2);
+bar(t,h);
+axis([-sigma*5 sigma*5 0 max(h)*1.01]);
+
+
+
+%% Thresholding Estimator and Sparsity
+% The idea of non-linear denoising is to use an orthogonal basis in which
+% the coefficients |x| of the signal or image |M0| is sparse (a few large
+% coefficients). In this case, the noisy coefficients |x| of the noisy
+% data |M| (perturbated with Gaussian noise) are |x0+noise| where |noise|
+% is Gaussian. A thresholding set to 0 the noise coefficients that are
+% below |T|. The threshold level |T| should be chosen judiciously to be
+% just above the noise level.
+
+%%
+% First we generate a spiky signal.
+
+% dimension
+n = 4096;
+% probability of spiking
+rho = .05;
+% location of the spike
+x0 = rand(n,1)<rho;
+% random amplitude in [-1 1]
+x0 = 2 * x0 .* ( rand(n,1)-.5 );
+
+%%
+% We add some gaussian noise
+
+sigma = .1;
+x = x0 + randn(size(x0))*sigma;
+
+
+%% 
+% Display.
+
+clf;
+subplot(2,1,1);
+plot(x0); axis([1 n -1 1]);
+set_graphic_sizes([], 20);
+title('Original signal');
+subplot(2,1,2);
+plot(x); axis([1 n -1 1]);
+set_graphic_sizes([], 20);
+title('Noisy signal');
+
+%%
+% _Exercice 1:_ (<../missing-exo/ check the solution>)
+% What is the optimal threshold |T| to remove as much as possible of noise
+% ? Try several values of |T|.
+
+exo1;
+
+%%
+% In order to be optimal without knowing in advance the amplitude of the
+% coefficients of |x0|, one needs to set |T| just above the noise level.
+% This means that |T| should be roughly equal to the maximum value of a
+% Gaussian white noise of size |n|.
+
+%%
+% _Exercice 2:_ (<../missing-exo/ check the solution>)
+% The theory predicts that the maximum of |n| Gaussian variable of variance |sigma^2|
+% is smaller than |sqrt(2*log(n))| with large probability (that tends to 1
+% when |n| increases). This is also a sharp result. Check this numerically
+% by computing with Monte Carlo sampling the maximum with |n| increasing
+% (in power of 2). Check also the deviation of the maximum when you
+% perform several trial with |n| fixed.
+
+exo2;
+
+
+%% Estimating the noise level
+% In practice, the noise level |sigma| is unknown. 
+% For additive Gaussian noise, 
+% a good estimator is given by the median of the wavelet coefficients at
+% the finer scale. An even simple estimator is given by the normalized
+% derivate along X or Y direction
+
+%%
+% Load a clean image.
+
+n = 256;
+M0 = rescale(load_image('boat', n));
+
+%%
+% Generate a noisy image.
+
+sigma = 0.06;
+M = M0 + randn(n,n)*sigma;
+
+%% 
+% First we extract the high frequency residual.
+
+H = M;
+H = (H(1:n-1,:) - H(2:n,:))'/sqrt(2);
+H = (H(1:n-1,:) - H(2:n,:))'/sqrt(2);
+
+%%
+% Display.
+
+clf;
+imageplot(clamp(M), 'Noisy image', 1,2,1);
+imageplot(H, 'Derivative image', 1,2,2);
+
+
+%% 
+% Histograms.
+
+[h,t] = hist(H(:), 100);
+h = h/sum(h);
+
+%% 
+% Display histogram.
+
+clf;
+bar(t, h);
+axis([-.5 .5 0 max(h)]);
+
+%%
+% The mad estimator (median of median) must be rescaled so that 
+% it gives the correct variance for gaussian noise.
+
+sigma_est = mad(H(:),1)/0.6745;
+disp( strcat(['Estimated noise level=' num2str(sigma_est), ', true=' num2str(sigma)]) );
+
+##### SOURCE END #####
+-->
+   </body>
+</html>

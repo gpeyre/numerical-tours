@@ -1,0 +1,641 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>Multiplicative Cascade Synthesis of Signals and Textures</title>
+      <NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
+               	requires JavaScript to process the mathematics on this page.<BR> 
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 8.2">
+      <meta name="date" content="2014-10-20">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>Multiplicative Cascade Synthesis of Signals and Textures</h1>
+         <introduction>
+            <p>This numerical tour explores multifractal signal and texture synthesis.</p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#8">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#15">1D Multiplicative Cascades</a></li>
+               <li><a href="#35">2D Multiplicative Cascades</a></li>
+            </ul>
+         </div>
+         <p>This tour is written by Pierre Chainais and Gabriel Peyr&eacute;.</p>
+         <p>The processes we deal with belong to the family of <i>Infinitely Divisible Cascades</i> (IDC). Only the simulation of the subfamily of <i>Compound Poisson Cascades</i> (CPC) is really simple to implement in 1D, 2D or even ND. Indeed, the synthesis of CPC can be understood as the product of
+            a random number of indicator function of balls (of a 1D segment or a 2D ball) with randomized radius and randomized amplitude.
+         </p>
+         <p>If the distribution of the amplitudes and radii is well chosen, this leads to the synthesis of a function that is the density
+            of a positive <b>scale invariant</b> measure. More precisely, this measure is <b>multifractal</b>.
+         </p>
+         <p>To obtain the final measure signal/image, the simulated measure density is integrated or pseudo-integrated thanks to some
+            scale invariant low-pass filtering in the Fourier domain.
+         </p>
+         <p>The application of cascade for texture synthesis is detailed in</p>
+         <p><i>Infinitely divisible cascades to model the statistics of natural images</i>, P. Chainais,   IEEE Trans. on Pattern Analysis and Machine Intelligence, Vol. 29 no 12, Dec. 2007.
+         </p>
+         <p>Visit the homepage of <a href="http://www.isima.fr/~pchainai/PUB/software.html">Pierre Chainais</a> for additional information and softwares.
+         </p>
+         <h2>Installing toolboxes and setting up the path.<a name="8"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_signal.zip">signal toolbox</a>, <a href="../toolbox_general.zip">general toolbox</a> and <a href="../toolbox_graph.zip">graph toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_signal</tt>, <tt>toolbox_general</tt> and <tt>toolbox_graph</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
+getd(<span class="string">'toolbox_general/'</span>);
+getd(<span class="string">'toolbox_graph/'</span>);
+</pre><h2>1D Multiplicative Cascades<a name="15"></a></h2>
+         <p>We consider here the synthesis of 1D signals using multiplicative compound Poisson cascades (CPC).</p>
+         <p>Duration of the simulation : [0, T]</p><pre class="codeinput">T = 10;
+</pre><p>Resolution of the cascade (the smallest scale at which details will be added).</p><pre class="codeinput">rmin = 0.02;
+</pre><p>Sampling period of the simulation. Number of points.</p><pre class="codeinput">Delta_t = rmin/2;
+n = T/Delta_t+1;
+</pre><p>Number of multipliers Wi.</p><pre class="codeinput">lambda = (1/rmin-1)*(T+1); <span class="comment">% to ensure scale invariance, scales are distributed as 1/r^2.</span>
+N = round(lambda);
+<span class="comment">% N = poissrnd(N,1,1); % rigorously, N is a Poisson r.v. of expectation lambda</span>
+</pre><p>Time positions of the Poisson point process in the time/scale plane are uniformly distributed to ensure stationarity. Side
+            effects are avoided by extending the cascade to [-1/2, 0] and [T T+1/2].
+         </p><pre class="codeinput">ti = -1/2+rand(1,N) * (T+1);
+ti_1 = -1/2+rand(1,round(T+1))*(T+1);
+ti = [ti_1 ti];   <span class="comment">% for exact scale invariance</span>
+</pre><p>Scales ri of the points. Should be distributed according to dr/r^2, to have scale invariance.</p><pre class="codeinput">umax = 1/rmin-1;
+ui = [zeros(1,length(ti_1)) rand(1,N) * umax ]; <span class="comment">% ui = 1/ri-1</span>
+ri = (1+ui).^(-1);
+</pre><p>Display the Poisson point process in the scale-space plane.</p><pre class="codeinput">figure(1)
+clf
+plot(ti, ri, <span class="string">'.'</span>)
+axis([-1/2,T+1/2,0,1]);
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p>Parameters for the law of multipliers Wi (Wi&gt;0). Here we choose a log-normal law. Another simple possible choice is to set
+            Wi=2/3 for all the Wi.
+         </p><pre class="codeinput">sigma2 = 0.2;
+mu = -sigma2/2;
+</pre><p>Condition of non-degeneracy:</p><pre class="codeinput"><span class="keyword">if</span> -(exp(2*(sigma2+mu))-1)&lt;-1
+   disp(<span class="string">'Be careful ! This cascade will degenerate as rmin -&gt; 0 !'</span>)
+<span class="keyword">end</span>
+</pre><p>Random log-normal multipliers.</p><pre class="codeinput">N = length(ti);   <span class="comment">% the number of multipliers = number of time-scale points.</span>
+Wi = exp( randn(N,1)*sqrt(sigma2)+mu );
+</pre><p>Positions along time axis.</p><pre class="codeinput">t = linspace(0,T,n);
+</pre><p>Initialize the signal and normalize the measure.</p><pre class="codeinput">H1 = 1 - exp(mu+sigma2/2);
+f = ones(n,1) * exp(H1) / rmin^H1;
+</pre><p>We show here the first step of the multiplicative cascade: iterations are on the multipliers (ti,ri,Wi).</p>
+         <p>Select the points in the cone of influence of <tt>(ti(1),ri(1))</tt>.
+         </p><pre class="codeinput">i = 1;
+I = find(abs(t-ti(i))&lt;=ri(i)/2); <span class="comment">% t belongs to a disk centered on ti(i)</span>
+</pre><p>Perform the multiplication with the random multiplier.</p><pre class="codeinput">f(I) = f(I) * Wi(i);
+
+clf
+plot(t,f)
+axis([0 T 0 1.1*max(f)])
+</pre><img vspace="5" hspace="5" src="index_02.png"> <p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Perform the cascade. Display intermediate steps.
+         </p><pre class="codeinput">exo1;
+</pre><img vspace="5" hspace="5" src="index_03.png"> <p>Display the random measure.</p><pre class="codeinput">figure(1)
+clf
+plot(t,f)
+axis([0 T 0 1.1*max(f)])
+</pre><img vspace="5" hspace="5" src="index_04.png"> <p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Compute several realization for the same log-normal parameters.
+         </p><pre class="codeinput">exo2;
+</pre><img vspace="5" hspace="5" src="index_05.png"> <p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) Compute realizations for different log-normal parameters <tt>mu</tt> and <tt>sigma2</tt>. Use the same distribution of points.
+         </p><pre class="codeinput">exo3;
+</pre><img vspace="5" hspace="5" src="index_06.png"> <h2>2D Multiplicative Cascades<a name="35"></a></h2>
+         <p>To generate 2D cascade, one needs to throw points on a 3D scale space domain.</p>
+         <p>Size of the image.</p><pre class="codeinput">n = 128;
+</pre><p>Minimum scale, should be roughly <tt>1/n</tt>.
+         </p><pre class="codeinput">rmin = 1/n;
+</pre><p>Maximum scale.</p><pre class="codeinput">Xmax = 1;
+Ymax = 1;
+</pre><p>Number of points in the cascade.</p><pre class="codeinput">lambda = 2/pi*(1/rmin^2-1)*(Xmax+1)*(Ymax+1); <span class="comment">% density g(r)dr=4/pi/r^3 dr</span>
+N = round(lambda); <span class="comment">% should be a Poisson r.v. with expectation lambda.</span>
+</pre><p>Scale of the points. Should be distributed according to 1/height^3, to have scaling invariance.</p><pre class="codeinput">umax = (1/rmin^2-1);          <span class="comment">% u will be a uniform variable in [0 1/rmin^2-1]</span>
+ui = rand(1,N) * umax;
+ri = (1/rmin^2-ui).^(-1/2);
+</pre><p>Position of the points.</p><pre class="codeinput">xi = -1/2 + rand(1,N) * (Xmax+1);
+yi = -1/2 + rand(1,N) * (Ymax+1);
+</pre><p>Display the points in the scale-space plane.</p><pre class="codeinput">clf
+h = plot3(xi, yi, ri, <span class="string">'.'</span>);
+axis([-1/2,Xmax+1/2,-1/2,Ymax+1/2,0,1]);
+</pre><img vspace="5" hspace="5" src="index_07.png"> <p>Parameters for the log-normal law.</p><pre class="codeinput">sigma2 = 0.08;
+mu = -sigma2/2;
+</pre><p>Random log-normal multipliers.</p><pre class="codeinput">Wi = exp( randn(N,1)*sqrt(sigma2)+mu );
+</pre><p>Position in the X/Y plane. We enlarge the square in order to be able to use periodic boundary conditons.</p><pre class="codeinput">x = linspace(0,Xmax,n);
+y = linspace(0,Ymax,n);
+[X,Y]= meshgrid(x,y);
+</pre><p>Initialization and normalization of the image.</p><pre class="codeinput">H1 = 1 - exp(mu+sigma2/2);
+f = ones(n)/rmin^H1;
+</pre><p>We give here the example of the first mutiplication.</p>
+         <p>Localization of the signal locations that are influenced by the scale/space point indexed by <tt>(xi(1),yi(1),ri(1))</tt>. This corresponds to the intersection of the image plane and a cone of influence.
+         </p><pre class="codeinput">i = 1;
+I = find( (X-xi(i)).^2+(Y-yi(i)).^2 &lt;=ri(i)^2/4 );
+</pre><p>Multiplication of the image with the random multiplier.</p><pre class="codeinput">f(I) = f(I) * Wi(i);
+</pre><p><i>Exercice 4:</i> (<a href="../missing-exo/">check the solution</a>) Perform the full cascade, display intermediate steps.
+         </p><pre class="codeinput">exo4;
+</pre><img vspace="5" hspace="5" src="index_08.png"> <p>Display the image. It corresponds to a 2D multi-fractal measure.</p><pre class="codeinput">clf
+imageplot(f)
+</pre><img vspace="5" hspace="5" src="index_09.png"> <p>To compute the final texture, we perform a <b>spectral integration</b>, which corresponds to a low pass filtering.
+         </p>
+         <p>Fourier frequency localizations.</p><pre class="codeinput">x = [0:n/2 -n/2+1:-1];
+[U,V] = meshgrid(x,x);
+S = sqrt(U.^2+V.^2);
+S(1,1) = 1;
+</pre><p>Exponent of integration.</p><pre class="codeinput">alpha = .5;
+</pre><p>Fourier domain integration.</p><pre class="codeinput">F = real( ifft2( fft2(f)./S.^alpha ) );
+</pre><p><i>Exercice 5:</i> (<a href="../missing-exo/">check the solution</a>) Compute the fractional integration for several values of alpha.
+         </p><pre class="codeinput">exo5;
+</pre><img vspace="5" hspace="5" src="index_10.png"> <p><i>Exercice 6:</i> (<a href="../missing-exo/">check the solution</a>) Perform the  cascade for several log-normal parameters <tt>mu</tt> and <tt>sigma2</tt>.
+         </p><pre class="codeinput">exo6;
+</pre><img vspace="5" hspace="5" src="index_11.png"> <p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Multiplicative Cascade Synthesis of Signals and Textures
+% This numerical tour explores multifractal signal and texture synthesis.
+
+%%
+% This tour is written by Pierre Chainais and Gabriel Peyré.
+
+%%
+% The processes we deal with belong to the family of _Infinitely Divisible Cascades_ (IDC).
+% Only the simulation of the subfamily of _Compound Poisson Cascades_ (CPC) is really simple
+% to implement in 1D, 2D or even ND. Indeed, the synthesis of CPC can be understood as the 
+% product of a random number of indicator function of balls (of a 1D segment or a 2D ball) 
+% with randomized radius and randomized amplitude. 
+
+%% 
+% If the distribution of the amplitudes and radii is well chosen, this
+% leads to the synthesis of a function that is the density of a
+% positive *scale invariant* measure. More precisely, this measure is *multifractal*. 
+
+%%
+% To obtain the final measure signal/image, the simulated measure density is integrated
+% or pseudo-integrated thanks to some scale invariant low-pass filtering in the Fourier domain.
+
+%%
+% The application of cascade for texture synthesis is detailed in 
+
+%%
+% _Infinitely divisible cascades to model the statistics of natural images_,
+% P. Chainais,   IEEE Trans. on Pattern Analysis and Machine Intelligence,
+% Vol. 29 no 12, Dec. 2007.
+
+%%
+% Visit the homepage of <http://www.isima.fr/~pchainai/PUB/software.html
+% Pierre Chainais> for additional information and softwares.
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_signal.zip signal toolbox>, 
+% <../toolbox_general.zip general toolbox> and 
+% <../toolbox_graph.zip graph toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_signal|, 
+% |toolbox_general| and 
+% |toolbox_graph|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_signal/');
+getd('toolbox_general/');
+getd('toolbox_graph/');
+
+
+%% 1D Multiplicative Cascades
+% We consider here the synthesis of 1D signals using multiplicative
+% compound Poisson cascades (CPC).
+
+%%
+% Duration of the simulation : [0, T]
+
+T = 10;
+
+%%
+% Resolution of the cascade (the smallest scale at which details will be added).
+
+rmin = 0.02;
+
+%%
+% Sampling period of the simulation. Number of points.
+
+Delta_t = rmin/2;
+n = T/Delta_t+1;
+
+%%
+% Number of multipliers Wi.
+
+lambda = (1/rmin-1)*(T+1); % to ensure scale invariance, scales are distributed as 1/r^2.
+N = round(lambda);
+% N = poissrnd(N,1,1); % rigorously, N is a Poisson r.v. of expectation lambda
+
+%%
+% Time positions of the Poisson point process in the time/scale plane
+% are uniformly distributed to ensure stationarity. Side effects are avoided by extending
+% the cascade to [-1/2, 0] and [T T+1/2].
+
+ti = -1/2+rand(1,N) * (T+1);
+ti_1 = -1/2+rand(1,round(T+1))*(T+1);
+ti = [ti_1 ti];   % for exact scale invariance
+
+%%
+% Scales ri of the points.
+% Should be distributed according to dr/r^2, to have scale invariance.
+
+umax = 1/rmin-1;
+ui = [zeros(1,length(ti_1)) rand(1,N) * umax ]; % ui = 1/ri-1
+ri = (1+ui).^(-1);
+
+
+%%
+% Display the Poisson point process in the scale-space plane.
+
+figure(1)
+clf
+plot(ti, ri, '.')
+axis([-1/2,T+1/2,0,1]);
+
+%%
+% Parameters for the law of multipliers Wi (Wi>0). 
+% Here we choose a log-normal law. Another simple possible choice
+% is to set Wi=2/3 for all the Wi.
+
+sigma2 = 0.2;
+mu = -sigma2/2;
+
+%% 
+% Condition of non-degeneracy:
+
+if -(exp(2*(sigma2+mu))-1)<-1
+   disp('Be careful ! This cascade will degenerate as rmin -> 0 !')
+end
+
+%%
+% Random log-normal multipliers.
+N = length(ti);   % the number of multipliers = number of time-scale points.
+Wi = exp( randn(N,1)*sqrt(sigma2)+mu );
+
+%%
+% Positions along time axis.
+
+t = linspace(0,T,n);
+
+%% 
+% Initialize the signal and normalize the measure.
+H1 = 1 - exp(mu+sigma2/2);
+f = ones(n,1) * exp(H1) / rmin^H1;
+
+%%
+% We show here the first step of the multiplicative cascade: 
+% iterations are on the multipliers (ti,ri,Wi). 
+
+%%
+% Select the points in the cone of influence of |(ti(1),ri(1))|.
+
+i = 1;
+I = find(abs(t-ti(i))<=ri(i)/2); % t belongs to a disk centered on ti(i)
+
+%%
+% Perform the multiplication with the random multiplier.
+
+f(I) = f(I) * Wi(i);
+
+clf
+plot(t,f)
+axis([0 T 0 1.1*max(f)])
+
+
+
+%%
+% _Exercice 1:_ (<../missing-exo/ check the solution>)
+% Perform the cascade. Display intermediate steps.
+
+exo1;
+
+%% 
+% Display the random measure.
+figure(1)
+clf
+plot(t,f)
+axis([0 T 0 1.1*max(f)])
+
+
+
+%%
+% _Exercice 2:_ (<../missing-exo/ check the solution>)
+% Compute several realization for the same log-normal parameters.
+
+exo2;
+
+%%
+% _Exercice 3:_ (<../missing-exo/ check the solution>)
+% Compute realizations for different log-normal parameters |mu| and |sigma2|.
+% Use the same distribution of points.
+
+exo3;
+
+%% 2D Multiplicative Cascades
+% To generate 2D cascade, one needs to throw points on a 3D scale space
+% domain.
+
+%% 
+% Size of the image.
+
+n = 128;
+
+%%
+% Minimum scale, should be roughly |1/n|.
+
+rmin = 1/n;
+
+%%
+% Maximum scale.
+Xmax = 1;
+Ymax = 1;
+
+%%
+% Number of points in the cascade.
+
+lambda = 2/pi*(1/rmin^2-1)*(Xmax+1)*(Ymax+1); % density g(r)dr=4/pi/r^3 dr
+N = round(lambda); % should be a Poisson r.v. with expectation lambda.
+
+%%
+% Scale of the points.
+% Should be distributed according to 1/height^3, to have scaling
+% invariance.
+
+umax = (1/rmin^2-1);          % u will be a uniform variable in [0 1/rmin^2-1]
+ui = rand(1,N) * umax;
+ri = (1/rmin^2-ui).^(-1/2);
+
+%%
+% Position of the points.
+
+xi = -1/2 + rand(1,N) * (Xmax+1);
+yi = -1/2 + rand(1,N) * (Ymax+1);
+
+%%
+% Display the points in the scale-space plane.
+
+clf
+h = plot3(xi, yi, ri, '.');
+axis([-1/2,Xmax+1/2,-1/2,Ymax+1/2,0,1]);
+
+
+%%
+% Parameters for the log-normal law.
+
+sigma2 = 0.08;
+mu = -sigma2/2;
+
+%%
+% Random log-normal multipliers.
+
+Wi = exp( randn(N,1)*sqrt(sigma2)+mu );
+
+%%
+% Position in the X/Y plane.
+% We enlarge the square in order to be able to use periodic boundary
+% conditons.
+
+x = linspace(0,Xmax,n);
+y = linspace(0,Ymax,n);
+[X,Y]= meshgrid(x,y);
+
+%% 
+% Initialization and normalization of the image.
+H1 = 1 - exp(mu+sigma2/2);
+f = ones(n)/rmin^H1;
+
+%%
+% We give here the example of the first mutiplication.
+
+%%
+% Localization of the signal locations that are influenced by the 
+% scale/space point indexed by |(xi(1),yi(1),ri(1))|.
+% This corresponds to the intersection of the image plane and a cone of influence.
+
+i = 1;
+I = find( (X-xi(i)).^2+(Y-yi(i)).^2 <=ri(i)^2/4 );
+
+%%
+% Multiplication of the image with the random multiplier.
+
+f(I) = f(I) * Wi(i); 
+
+
+
+%%
+% _Exercice 4:_ (<../missing-exo/ check the solution>)
+% Perform the full cascade, display intermediate steps.
+
+exo4;
+
+%%
+% Display the image. It corresponds to a 2D multi-fractal measure.
+clf
+imageplot(f)
+
+
+%%
+% To compute the final texture, we perform a *spectral integration*, which
+% corresponds to a low pass filtering.
+
+%%
+% Fourier frequency localizations.
+
+x = [0:n/2 -n/2+1:-1];
+[U,V] = meshgrid(x,x); 
+S = sqrt(U.^2+V.^2); 
+S(1,1) = 1;
+
+%%
+% Exponent of integration.
+alpha = .5;
+
+%%
+% Fourier domain integration.
+
+F = real( ifft2( fft2(f)./S.^alpha ) );
+
+
+%%
+% _Exercice 5:_ (<../missing-exo/ check the solution>)
+% Compute the fractional integration for several values of alpha.
+
+exo5;
+
+%%
+% _Exercice 6:_ (<../missing-exo/ check the solution>)
+% Perform the  cascade for several log-normal parameters |mu| and |sigma2|.
+
+exo6;
+
+##### SOURCE END #####
+-->
+   </body>
+</html>

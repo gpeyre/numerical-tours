@@ -1,0 +1,765 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>Gaussian Models for Texture Synthesis</title>
+      <NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
+               	requires JavaScript to process the mathematics on this page.<BR> 
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 8.2">
+      <meta name="date" content="2014-10-20">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>Gaussian Models for Texture Synthesis</h1>
+         <introduction>
+            <p>This numerical tour explores texture synthesis using Gaussian random fields. Image synthesis is obtained by drawing an image
+               at random from a random distribution that is learned from an input texture exemplar.
+            </p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#4">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#11">Gaussian Modeling of Textures</a></li>
+               <li><a href="#17">Periodic + Smooth Image Decomposition</a></li>
+               <li><a href="#28">Spot Noise Texture Synthesis</a></li>
+               <li><a href="#40">Color Spot Noise Texture Synthesis</a></li>
+               <li><a href="#51">Spot Noise Extension</a></li>
+            </ul>
+         </div>
+         <p>We use here the spot noise model developped in</p>
+         <p>B. Galerne, Y. Gousseau and J.-M. Morel, <i>Random Phase Textures: Theory and Synthesis</i>, IEEE Transactions on Image Processing, 20(1), pp. 257-267, 2011.
+         </p>
+         <p>We derive this model as being a Maximamu Likelihood Estimate (MLE) of a stationary Gaussian vector parameters from a single
+            input texture. Although this is not the original derivation of the model, it is stricly equivalent to the method of Galerne
+            et al.
+         </p>
+         <h2>Installing toolboxes and setting up the path.<a name="4"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_signal.zip">signal toolbox</a> and <a href="../toolbox_general.zip">general toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_signal</tt> and <tt>toolbox_general</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
+getd(<span class="string">'toolbox_general/'</span>);
+</pre><h2>Gaussian Modeling of Textures<a name="11"></a></h2>
+         <p>We consider the modeling of textures \(f \in \RR^N\) of \(N\) pixels using a Gaussian random vector \( X \sim \Nn(\mu,\Si)
+            \). Here \(\mu \in \RR^N\) is the mean of the distribution and \(\Si \in \RR^{N \times N}\) is a symmetric semi-definite positive
+            covariance matrix.
+         </p>
+         <p>We recall that formally a random vector is a mapping \(X : \Om \rightarrow \RR^N\) where \(\Om\) is a probalized space.</p>
+         <p><i>Texture analysis</i> corresponds to learning both \(\mu\) and \(\Si\) from a single exemplar texture \(f_0 \in \RR^N\). For this learning to be
+            feasible, since the number of free parameters is enormous, additional assumptions on the distribution are required. We suppose
+            here that the texture model is stationary, i.e. all translates \(X(\cdot+\tau)\) have the same distribition for all \(\tau
+            \in \ZZ^2\) (we assume here periodic boundary conditions for simplicity).
+         </p>
+         <p><i>Texture synthesis</i> corresponds to computing a realization \(f = X(\xi) \in \RR^N\) where \(\xi \in \Om\), from the random vector \(X\). Since
+            \(X\) is Gaussian distributed, this can be achieved by computing \( f = U w+\mu \) where \(U \in \RR^{N \times N}\) is any
+            matrix that factorize the covariance as \(\Si = UU^*\) and \(w\) is a realisation of a random vector of distribution \(\Nn(0,\text{Id}_N)\),
+            which is a Gaussian white noise. In the following, this computation is caried over very easily because the factorization of
+            the covariance is explicitely given during the estimation step.
+         </p>
+         <p>Load a color textured image \(f\).</p><pre class="codeinput">n = 512;
+name = <span class="string">'wood'</span>;
+f = rescale( load_image(name, n) );
+</pre><p>Display it.</p><pre class="codeinput">clf;
+imageplot(f);
+</pre><img vspace="5" hspace="5" src="index_01.png"> <h2>Periodic + Smooth Image Decomposition<a name="17"></a></h2>
+         <p>To avoid boundary artifact, we replace the original image \(f\) by its periodic component \(p\), which is computed as detailed
+            in:
+         </p>
+         <p>L. Moisan, <i>Periodic plus Smooth Image Decomposition</i>,Journal of Mathematical Imaging and Vision, vol 39:2, pp. 161-179, 2011.
+         </p>
+         <p>The periodic component \(p\) is the solution of the folowing linear system \[ \choice{       \Delta p = \Delta_i f \\    
+              \sum_k p(k) = \sum_k f(k)   } \] where \(\Delta\) is a finite difference Laplacian with periodic boundary conditions, and
+            \(\Delta_i\) is the same Laplacian but with reflecting boundary conditions.
+         </p>
+         <p>We first extend the original input image by symmetry to obtain \(f_e \in \RR^{(n+2) \times (n+2)} \). Note that the extension
+            of a color image is obtained by extending each channel.
+         </p><pre class="codeinput">z = zeros(1,1,size(f,3));
+fe = [z, f(1,:,:), z; f(:,1,:), f, f(:,end,:); z, f(end,:,:), z];
+</pre><p>Compute the inner-Laplacian \(d = \Delta_i f\) as the usual Laplacian of the extended image \(\Delta f_e\).</p><pre class="codeinput">laplacian = @(x)4*x - ( circshift(x,[0 1]) + circshift(x,[1 0]) + circshift(x,[-1 0]) + circshift(x,[0 -1]) );
+d = laplacian(fe);
+d = d(2:end-1, 2:end-1, :);
+</pre><p>We solve the linear system \( \Delta p = d \) (assuming now periodic boundary conditions for the Laplacian) using the Fourier
+            transform \[ \forall \om \neq 0, \quad \hat p(\om) = \frac{\hat d(\om)}{     \hat U(\om) } \qwhereq       \hat U(\om) = 4
+            - 2\cos\pa{\frac{2 \om_1 \pi}{n}} - 2\cos\pa{\frac{2 \om_2 \pi}{n}},  \] together with the conservation of the mean constraint
+            \[ \hat p(0) = \sum_k f(k). \]
+         </p>
+         <p>Here, the discrete Fourier transform of an image \(f \in \RR^{n \times n}\) is defined as \[ \forall (\om_1,\om_2) \in \{0,\ldots,n\}^2,
+            \quad       \hat p(\om) = \sum_{k_1=0}^{n-1} \sum_{k_2=0}^{n-1}       p(k) e^{\frac{2 i \pi}{n} (k_1 \om_1 + k_2 \om_2) }.
+            \] Note that for a color image, this coefficient is a vector in \(\RR^3\) obtained by transforming each channel. The Fourier
+            transform is computed in \(O(N\log(N))\) operations with the FFT algorithm (for 2-D image, use the <tt>fft2</tt> command).
+         </p>
+         <p>Compute the Laplacian transform map \(\hat U(\om)\).</p><pre class="codeinput">[X Y] = meshgrid(0:n-1, 0:n-1);
+U = 4 - 2*cos(2.*X*pi/n) - 2*cos(2.*Y*pi/n);
+</pre><p>Inverse the Laplacian.</p><pre class="codeinput">P = fft2(d)./repmat(U, [1 1 size(f,3)]);
+P(1,1,:) = sum(sum(f,1),2);
+p = real(ifft2(P));
+</pre><p>Compare the periodic tilings of \(f_0\) and \(f\).</p><pre class="codeinput">mydisp = @(x)[x x; x x];
+clf;
+imageplot(mydisp(f), <span class="string">'Original, periodized'</span>,1,2,1);
+imageplot(mydisp(p), <span class="string">'Periodic layer, periodized'</span>,1,2,2);
+</pre><img vspace="5" hspace="5" src="index_02.png"> <p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Compare the log of the modulus of the Fourier transforms of the input image \(f\) and its periodic component \(p\). What
+            do you observe ?
+         </p><pre class="codeinput">exo1;
+</pre><img vspace="5" hspace="5" src="index_03.png"> <h2>Spot Noise Texture Synthesis<a name="28"></a></h2>
+         <p>In the spot noise Gaussian texture model, the covariance \(\Si\) is learned as the empirical covariance of the texture input
+            \(f_0\).
+         </p>
+         <p>Assign \(f_0\) to the be the intensity of the periodic component of the input exemplar.</p><pre class="codeinput">f0 = mean(p,3);
+</pre><p>Display it.</p><pre class="codeinput">u = f0; u(1,1,:)=0; u(2,1,:)=1;
+clf;
+imageplot(clamp(u));
+</pre><img vspace="5" hspace="5" src="index_04.png"> <p>Exploiting the stationarity of the model, the empirical covariance is computed as \[ \forall i,j, \quad \Si_{i,j} = \frac{1}{N}
+            \sum_k f_0(i+k) f_0(j+k), \] Using such an empirical covariance can be understood as using a maximum likelihood estimator
+            (MLE) of the covariance.
+         </p>
+         <p>This defines a cyclic covariance matrix. It means that \(\Si\) is a convolution operator \[ \forall h \in \RR^N, \quad \Si
+            h = s \star h \] where \(\star\) denotes the periodic convolution \[ \forall a, b \in \RR^N, \quad a \star b(k) = \sum_{\ell}
+            a(\ell) b(k-\ell) \] (remember that the indexes \(k,\ell\) are actually 2-D indexes) where the filter \(s \in \RR^N\) is the
+            auto-correlation of the input exemplar \[ s = \frac{1}{N} f_0 \star \tilde f_0   \qwhereq \tilde a(k)=a(-k).  \]
+         </p>
+         <p>Since the model is stationary, the mean \(\mu \in \RR^N\) is a constant image \[ \mu = \frac{1}{N} \sum_k f_0(k). \]</p>
+         <p>This model can be expressed using the Fourier transform, using the power spectrum which is the Fourier transform of the covariance
+            filter \[ \hat s(\om) = \frac{1}{N} \abs{\hat f_0(\om)}^2~. \]
+         </p>
+         <p>Since the covariance \(\Si\) is defined in a factored form \(s = f_0 \star \tilde f_0\), sampling a realization from this
+            Gaussian distribution is straightforward, since it only requires computing \[ f = f_0 \star w \] where \( w \) is a realization
+            of a Gaussian white noise of distribution \(\Nn(N^{-1},N^{-1/2}\text{Id}_N)\).
+         </p>
+         <p>Generate a realization \(w\) of this white noise.</p><pre class="codeinput">w = randn(n)/n;
+w = w-mean(w(:))+1/n^2;
+</pre><p>Compute the convolution \(f_0 \star w\), which defines the synthesized result.</p><pre class="codeinput">f = real(ifft2(fft2(f0).*fft2(w)));
+</pre><p>Display the result.</p><pre class="codeinput">clf;
+u = f0; u(1,1,:)=0; u(2,1,:)=1;
+imageplot(clamp(u), <span class="string">'Input'</span>, 1,2,1);
+u = f; u(1,1,:)=0; u(2,1,:)=1;
+imageplot(clamp(u), <span class="string">'Synthesized'</span>, 1,2,2);
+</pre><img vspace="5" hspace="5" src="index_05.png"> <p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Compare the histograms of the input and synthesized textures pixel empirical distributions.
+         </p><pre class="codeinput">exo2;
+</pre><img vspace="5" hspace="5" src="index_06.png"> <h2>Color Spot Noise Texture Synthesis<a name="40"></a></h2>
+         <p>Synthesis of color textures is obtained by extending the previous Gaussian model to vector valued images.</p>
+         <p>Assign \(f_0\) to the be the periodic component of the color input exemplar.</p><pre class="codeinput">f0 = p;
+</pre><p>A color image is a vector valued image \(f_0 \in \RR^{N \times d}\), where here \(d=3\).</p>
+         <p>A Gaussian field \(\Nn(\mu,\Si)\) to model color textures makes use of a covariance \(\Si \in \RR^{ (Nd)&nbsp;\times (Nd) }\).
+            Equivalently, it can be thought as a collection \( (\Si_{i,j})_{i,j=0}^{N-1} \) of small covariances matrices \( \Si_{i,j}
+            \in \RR^{d \times d} \) that encode the cross-correlations between the \(d\) channels of pixels \(i\) and \(j\).
+         </p>
+         <p>The maximum likelihood estimation (MLE) of \(\Si\) from a single exemplar \(f_0 \in \RR^{N \times d}\) is \[ \Si_{i,j} = \frac{1}{N}
+            \sum_k f(i+k) f(j+k)^* \in \RR^{d \times d} \] where \(f(j+k)^*\) denotes the transposed-conjugated vector. Note that each
+            entry of the matrix field \( (\Si_{i,j})_{i,j} \) is a convolution mapping.
+         </p>
+         <p>Since the model is assumed to be stationary, this covariance operates in a block-diagonal way over the Fourier transform,
+            which means that for any vector-valued image \(f \in \RR^{N \times d} \) \[ y = \Si f \quad\text{ is computed as }\quad  
+            \hat y(\om) = \hat \Si(\om) \hat f(\om) \] where \(\hat f(\om) \in \CC^d\) is the 2-D Fourier transform of each channel, and
+            \( \hat \Si(\om) \in \RR^{d \times d} \) encodes the cross-correlation of the different channels at some frequency \(\om\).
+         </p>
+         <p>In the special case where \(\Si\) is defined as the MLE from an input exemplar \(f_0\), each of these matrices is actually
+            a rank-1 matrix \[ \hat \Si(\om) = \hat f_0(\om)\hat f_0(\om)^*. \]
+         </p>
+         <p>This property is crucial, because it defines the covariance in a factored form. Using the fact that \( \hat f_0(\om) \in \CC^d
+            \) is the leading eigenvector of \(\hat \Si(\om) \) and that there is only a single non zero eigenvalue, this allows one to
+            draw a realization \(f \in \RR^{N \times d}\) from a random vector distributed according to \(\Nn(\mu,\Si)\) as \[ \hat f(\om)
+            = \hat w(\om) \hat f_0(\om), \] where \(\hat w(\om) \in \CC\), \(\hat f_0(\om) \in \CC^d\), with \( w \in \RR^N \) being a
+            realization of a Gaussian white noise \(\Nn(N^{-1},N^{-1/2}\text{Id}_N)\).
+         </p>
+         <p>Equivalently, if one denotes \(f_0 = (f_0^{[j]})_{j=0}^{d-1}\) the different channels \( f_0^{[j]} \in \RR^N \), this corresponds
+            to convolving each channel with the same white noise realization \[ \forall j=0,\ldots,d-1, \quad       f^{[j]} = f_0^{[j]}
+            \star w. \]
+         </p>
+         <p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) Perform the color texture synthesis.
+         </p><pre class="codeinput">exo3;
+</pre><img vspace="5" hspace="5" src="index_07.png"> <p><i>Exercice 4:</i> (<a href="../missing-exo/">check the solution</a>) Compute several realizations of the color texture synthesis.
+         </p><pre class="codeinput">exo4;
+</pre><img vspace="5" hspace="5" src="index_08.png"> <h2>Spot Noise Extension<a name="51"></a></h2>
+         <p>To synthesize textures of larger size \(n_0 \times n_0\), we use the spot noise extension proposed by Galerne et al.</p>
+         <p>Target synthesis size \(n_0\).</p><pre class="codeinput">n0 = n*2;
+</pre><p>The extended spot \(f_1 \in \RR^{n_0 \times n_0 \times d}\) is computed as \[ f_1(k)  = \mu_0 + g(k) \frac{n_0}{n} (f_0(k)-m)
+            \xi_{R_0}(k) \] where \(\mu_0 \in \RR^3\) is the mean of the input texture \[ \mu_0 = \frac{1}{N} \sum_k f_0(k) \] and where
+            \(\xi_{R_0}\) is the indicator function of a region \(R_0\) of size \(n \times n\) pixels over which the input texture \(f_0\)
+            is defined.
+         </p>
+         <p>Note the multiplicative factor \(n_0/n\) that ensures that \(f_1\) has the same variance as \(f_0\).</p>
+         <p>The image \[ g(k) = \psi(k_1)\psi(k_2), \quad g \in \RR^{n \times n} \] makes use of a smooth windowing function \(\psi\),
+            that varies from 0 to 1 over a small interval of size \(a&gt;0\). This helps to remove discontinuities artifacts.
+         </p>
+         <p>Transition width.</p><pre class="codeinput">a = 10/n;
+</pre><p>Define the \(\psi\) mapping.</p><pre class="codeinput">phi = @(t)sin(t/a*pi/2).^2;
+psi = @(t)phi(t).*(t&lt;a) + (t&gt;=a &amp; t&lt;=1-a) + phi(1-t).*(t&gt;1-a);
+</pre><p>Define the \(g\) windowing mask.</p><pre class="codeinput">t = linspace(0,1,n)';
+g = repmat( psi(t)*psi(t)', [1 1 size(f0,3)]);
+</pre><p>Create the extended spot \(f_1\).</p><pre class="codeinput">mu0 = repmat(mean(mean(f0,1),2), [n n 1]);
+f1 = repmat(mean(mean(f0,1),2), [n0 n0 1]);
+f1(end/2-n/2+1:end/2+n/2, end/2-n/2+1:end/2+n/2, :) = mu0 + n0/n * g .* (f0-mu0);
+</pre><p>Display it.</p><pre class="codeinput">clf;
+u = f1; u(1,1,:)=0; u(2,1,:)=1;
+imageplot(clamp(u));
+</pre><img vspace="5" hspace="5" src="index_09.png"> <p><i>Exercice 5:</i> (<a href="../missing-exo/">check the solution</a>) Perform the color texture synthesis using this extended spot noise.
+         </p><pre class="codeinput">exo5;
+</pre><img vspace="5" hspace="5" src="index_10.png"> <p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Gaussian Models for Texture Synthesis
+% This numerical tour explores texture synthesis using Gaussian random fields.
+% Image synthesis is obtained by drawing an image at random from a random distribution that 
+% is learned from an input texture exemplar.
+
+%%
+% We use here the spot noise model developped in 
+
+%%
+% B. Galerne, Y. Gousseau and J.-M. Morel, 
+% _Random Phase Textures: Theory and Synthesis_, IEEE Transactions on Image
+% Processing, 20(1), pp. 257-267, 2011. 
+
+%%
+% We derive this model as being a Maximamu Likelihood Estimate (MLE)
+% of a stationary Gaussian
+% vector parameters from a single input texture. Although this is not the original
+% derivation of the model, it is stricly equivalent to the method of
+% Galerne et al. 
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_signal.zip signal toolbox> and 
+% <../toolbox_general.zip general toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_signal| and 
+% |toolbox_general|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_signal/');
+getd('toolbox_general/');
+
+
+%% Gaussian Modeling of Textures
+% We consider the modeling of textures \(f \in \RR^N\) of \(N\) pixels using a Gaussian
+% random vector \( X \sim \Nn(\mu,\Si) \). Here \(\mu \in \RR^N\) is the
+% mean of the distribution and \(\Si \in \RR^{N \times N}\) is a symmetric
+% semi-definite positive covariance matrix.
+
+%%
+% We recall that formally a random vector is a mapping \(X : \Om \rightarrow
+% \RR^N\) where \(\Om\) is a probalized space. 
+
+%%
+% _Texture analysis_ corresponds to learning both \(\mu\) and \(\Si\) from a
+% single exemplar texture \(f_0 \in \RR^N\). For this learning to be
+% feasible, since the number of free parameters is enormous, additional
+% assumptions on the distribution are required. We suppose here that the
+% texture model is stationary, i.e. all translates \(X(\cdot+\tau)\) have
+% the same distribition for all \(\tau \in \ZZ^2\) (we assume here periodic
+% boundary conditions for simplicity).
+
+%%
+% _Texture synthesis_ corresponds to computing a realization \(f = X(\xi) \in \RR^N\)
+% where \(\xi \in \Om\), from the random vector \(X\). Since \(X\) is
+% Gaussian distributed, this can be achieved by computing \( f = U w+\mu \)
+% where \(U \in \RR^{N \times N}\) is any matrix that factorize the
+% covariance as \(\Si = UU^*\) and \(w\) is a realisation of a random vector
+% of distribution \(\Nn(0,\text{Id}_N)\), which is a Gaussian white noise.
+% In the following, this computation is caried over very easily because the
+% factorization of the covariance is explicitely given during the
+% estimation step. 
+
+
+%%
+% Load a color textured image \(f\).
+
+n = 512;
+name = 'wood';
+f = rescale( load_image(name, n) );
+
+
+%%
+% Display it.
+
+clf;
+imageplot(f);
+
+%% Periodic + Smooth Image Decomposition
+% To avoid boundary artifact, we replace the original image \(f\)
+% by its periodic component \(p\), which is computed as detailed in:
+
+%% 
+% L. Moisan, _Periodic plus Smooth Image Decomposition_,Journal of
+% Mathematical Imaging and Vision, vol 39:2, pp. 161-179, 2011.
+%
+
+%%
+% The periodic component \(p\) is the solution of the folowing linear
+% system
+% \[ \choice{
+%       \Delta p = \Delta_i f \\
+%       \sum_k p(k) = \sum_k f(k)
+%   }
+% \]
+% where \(\Delta\) is a finite difference Laplacian with periodic boundary
+% conditions, and \(\Delta_i\) is the same Laplacian but with reflecting
+% boundary conditions. 
+
+%%
+% We first extend the original input image by symmetry to obtain \(f_e \in \RR^{(n+2) \times (n+2)} \).
+% Note that the extension of a color image is obtained by extending each
+% channel.
+
+z = zeros(1,1,size(f,3));
+fe = [z, f(1,:,:), z; f(:,1,:), f, f(:,end,:); z, f(end,:,:), z];
+
+%%
+% Compute the inner-Laplacian \(d = \Delta_i f\) as the usual Laplacian of the
+% extended image \(\Delta f_e\).
+
+laplacian = @(x)4*x - ( circshift(x,[0 1]) + circshift(x,[1 0]) + circshift(x,[-1 0]) + circshift(x,[0 -1]) );
+d = laplacian(fe);
+d = d(2:end-1, 2:end-1, :); 
+
+%%
+% We solve the linear system \( \Delta p = d \) (assuming now periodic boundary conditions
+% for the Laplacian) using the Fourier transform
+% \[ \forall \om \neq 0, \quad \hat p(\om) = \frac{\hat d(\om)}{ 
+%     \hat U(\om) } \qwhereq 
+%       \hat U(\om) = 4 - 2\cos\pa{\frac{2 \om_1 \pi}{n}} - 2\cos\pa{\frac{2 \om_2 \pi}{n}},  \]
+% together with the conservation of the mean constraint
+% \[ \hat p(0) = \sum_k f(k). \]
+
+%%
+% Here, the discrete Fourier transform of an image \(f \in \RR^{n \times n}\) is defined as
+% \[ \forall (\om_1,\om_2) \in \{0,\ldots,n\}^2, \quad
+%       \hat p(\om) = \sum_{k_1=0}^{n-1} \sum_{k_2=0}^{n-1} 
+%       p(k) e^{\frac{2 i \pi}{n} (k_1 \om_1 + k_2 \om_2) }. \]
+% Note that for a color image, this coefficient is a vector in \(\RR^3\) obtained by
+% transforming each channel. The Fourier transform is computed in
+% \(O(N\log(N))\) operations with the FFT algorithm (for 2-D image, use the
+% |fft2| command).
+
+%%
+% Compute the Laplacian transform map \(\hat U(\om)\).
+
+[X Y] = meshgrid(0:n-1, 0:n-1);
+U = 4 - 2*cos(2.*X*pi/n) - 2*cos(2.*Y*pi/n);
+
+%%
+% Inverse the Laplacian.
+
+P = fft2(d)./repmat(U, [1 1 size(f,3)]);
+P(1,1,:) = sum(sum(f,1),2);
+p = real(ifft2(P));
+
+%%
+% Compare the periodic tilings of \(f_0\) and \(f\).
+
+mydisp = @(x)[x x; x x];
+clf;
+imageplot(mydisp(f), 'Original, periodized',1,2,1);
+imageplot(mydisp(p), 'Periodic layer, periodized',1,2,2);
+
+
+%%
+% _Exercice 1:_ (<../missing-exo/ check the solution>)
+% Compare the log of the modulus of the Fourier transforms of the input image \(f\)
+% and its periodic component \(p\). What do you observe ?
+
+exo1;
+
+
+%% Spot Noise Texture Synthesis
+% In the spot noise Gaussian texture model, the covariance \(\Si\) is learned as the
+% empirical covariance of the texture input \(f_0\).
+
+%%
+% Assign \(f_0\) to the be the intensity of the periodic component of the input
+% exemplar.
+
+f0 = mean(p,3);
+
+%%
+% Display it. 
+
+u = f0; u(1,1,:)=0; u(2,1,:)=1;
+clf;
+imageplot(clamp(u));
+
+%%
+% Exploiting the stationarity of the model, the empirical covariance is
+% computed as
+% \[ \forall i,j, \quad \Si_{i,j} = \frac{1}{N} \sum_k f_0(i+k) f_0(j+k), \] 
+% Using such an empirical covariance can be understood as using a maximum
+% likelihood estimator (MLE) of the covariance.
+
+%%
+% This defines a cyclic covariance matrix.
+% It means that \(\Si\) is a
+% convolution operator 
+% \[ \forall h \in \RR^N, \quad \Si h = s \star h \]
+% where \(\star\) denotes the periodic convolution
+% \[ \forall a, b \in \RR^N, \quad a \star b(k) = \sum_{\ell} a(\ell) b(k-\ell) \]
+% (remember that the indexes \(k,\ell\) are actually 2-D indexes)
+% where the filter \(s \in \RR^N\) is the auto-correlation of the input
+% exemplar
+% \[ s = \frac{1}{N} f_0 \star \tilde f_0
+%   \qwhereq \tilde a(k)=a(-k).  \]
+
+%%
+% Since the model is stationary, the mean \(\mu \in \RR^N\) is a constant image 
+% \[ \mu = \frac{1}{N} \sum_k f_0(k). \]
+
+%%
+% This model can be expressed using the Fourier transform, using the power
+% spectrum which is the Fourier transform of the covariance filter
+% \[ \hat s(\om) = \frac{1}{N} \abs{\hat f_0(\om)}^2~. \]
+
+%%
+% Since the covariance \(\Si\) is defined in a factored form \(s = f_0
+% \star \tilde f_0\), sampling a realization from this Gaussian
+% distribution is straightforward, since it only requires computing
+% \[ f = f_0 \star w \]
+% where \( w \) is a realization of a Gaussian white noise of distribution
+% \(\Nn(N^{-1},N^{-1/2}\text{Id}_N)\).
+
+%%
+% Generate a realization \(w\) of this white noise.
+
+w = randn(n)/n; 
+w = w-mean(w(:))+1/n^2;
+
+%%
+% Compute the convolution \(f_0 \star w\), which defines the synthesized result.
+
+f = real(ifft2(fft2(f0).*fft2(w)));
+
+%%
+% Display the result.
+
+clf;
+u = f0; u(1,1,:)=0; u(2,1,:)=1;
+imageplot(clamp(u), 'Input', 1,2,1);
+u = f; u(1,1,:)=0; u(2,1,:)=1;
+imageplot(clamp(u), 'Synthesized', 1,2,2);
+
+%%
+% _Exercice 2:_ (<../missing-exo/ check the solution>)
+% Compare the histograms of the input and synthesized textures pixel empirical distributions.
+
+exo2;
+
+%% Color Spot Noise Texture Synthesis
+% Synthesis of color textures is obtained by extending the previous Gaussian
+% model to vector valued images. 
+
+%%
+% Assign \(f_0\) to the be the periodic component of the color input
+% exemplar.
+
+f0 = p;
+
+%%
+% A color image is a vector valued image \(f_0 \in \RR^{N \times d}\), where here \(d=3\).
+
+%%
+% A Gaussian field \(\Nn(\mu,\Si)\) to model color textures makes use of a covariance
+% \(\Si \in \RR^{ (Nd) \times (Nd) }\). Equivalently, it can be thought as
+% a collection \( (\Si_{i,j})_{i,j=0}^{N-1} \) of small covariances
+% matrices \( \Si_{i,j} \in \RR^{d \times d} \) that encode the
+% cross-correlations between the \(d\) channels of pixels \(i\) and \(j\).
+
+%%
+% The maximum likelihood estimation (MLE) of \(\Si\) from a single exemplar \(f_0 \in \RR^{N \times d}\)
+% is 
+% \[ \Si_{i,j} = \frac{1}{N} \sum_k f(i+k) f(j+k)^* \in \RR^{d \times d} \]
+% where \(f(j+k)^*\) denotes the transposed-conjugated vector.
+% Note that each entry of the matrix field \( (\Si_{i,j})_{i,j} \) is a
+% convolution mapping.
+
+%%
+% Since the model is assumed to be
+% stationary, this covariance operates in a block-diagonal way over the
+% Fourier transform, which means that for any vector-valued image \(f \in \RR^{N \times d} \)
+% \[ y = \Si f \quad\text{ is computed as }\quad
+%   \hat y(\om) = \hat \Si(\om) \hat f(\om) \]
+% where \(\hat f(\om) \in \CC^d\) is the 2-D Fourier transform of each
+% channel, and \( \hat \Si(\om) \in \RR^{d \times d} \) encodes the
+% cross-correlation of the different channels at some frequency \(\om\).
+
+%%
+% In the special case where \(\Si\) is defined as the MLE from an input
+% exemplar \(f_0\), each of these matrices is actually a rank-1 matrix 
+% \[ \hat \Si(\om) = \hat f_0(\om)\hat f_0(\om)^*. \]
+
+%%
+% This property is crucial, because it defines the covariance in a factored
+% form. Using the fact that \( \hat f_0(\om) \in \CC^d \) is the leading
+% eigenvector of \(\hat \Si(\om) \) and that there is only a single non zero eigenvalue, this
+% allows one to draw a realization \(f \in \RR^{N \times d}\) from a random
+% vector distributed according to  
+% \(\Nn(\mu,\Si)\) as
+% \[ \hat f(\om) = \hat w(\om) \hat f_0(\om), \]
+% where \(\hat w(\om) \in \CC\), \(\hat f_0(\om) \in \CC^d\), 
+% with \( w \in \RR^N \) being a realization of a Gaussian white noise
+% \(\Nn(N^{-1},N^{-1/2}\text{Id}_N)\).
+
+%%
+% Equivalently, if one denotes \(f_0 = (f_0^{[j]})_{j=0}^{d-1}\) the different channels
+% \( f_0^{[j]} \in \RR^N \), this corresponds to convolving each channel with the same white noise realization
+% \[ \forall j=0,\ldots,d-1, \quad
+%       f^{[j]} = f_0^{[j]} \star w. \]
+
+%%
+% _Exercice 3:_ (<../missing-exo/ check the solution>)
+% Perform the color texture synthesis.
+
+exo3;
+
+
+
+
+%%
+% _Exercice 4:_ (<../missing-exo/ check the solution>)
+% Compute several realizations of the color texture synthesis.
+
+exo4;
+
+
+
+%% Spot Noise Extension
+% To synthesize textures of larger size \(n_0 \times n_0\), we use the spot noise extension
+% proposed by Galerne et al.
+
+%%
+% Target synthesis size \(n_0\).
+
+n0 = n*2;
+
+%%
+% The extended spot \(f_1 \in \RR^{n_0 \times n_0 \times d}\) is computed 
+% as
+% \[ f_1(k)  = \mu_0 + g(k) \frac{n_0}{n} (f_0(k)-m) \xi_{R_0}(k) \]
+% where \(\mu_0 \in \RR^3\) is the mean of the input texture
+% \[ \mu_0 = \frac{1}{N} \sum_k f_0(k) \]
+% and where \(\xi_{R_0}\) is the indicator function of a region \(R_0\) of
+% size \(n \times n\) pixels over which the input texture \(f_0\) is
+% defined.
+
+%%
+% Note the multiplicative factor \(n_0/n\) that ensures that \(f_1\) has the
+% same variance as \(f_0\).
+
+%%
+% The image 
+% \[ g(k) = \psi(k_1)\psi(k_2), \quad g \in \RR^{n \times n} \]
+% makes use of a smooth windowing function \(\psi\), 
+% that varies from 0 to 1 over a small interval of size \(a>0\).
+% This helps to remove discontinuities artifacts.
+
+%%
+% Transition width.
+
+a = 10/n;
+
+%%
+% Define the \(\psi\) mapping.
+
+phi = @(t)sin(t/a*pi/2).^2;
+psi = @(t)phi(t).*(t<a) + (t>=a & t<=1-a) + phi(1-t).*(t>1-a);
+
+%%
+% Define the \(g\) windowing mask.
+
+t = linspace(0,1,n)';
+g = repmat( psi(t)*psi(t)', [1 1 size(f0,3)]);
+
+%%
+% Create the extended spot \(f_1\).
+
+mu0 = repmat(mean(mean(f0,1),2), [n n 1]);
+f1 = repmat(mean(mean(f0,1),2), [n0 n0 1]);
+f1(end/2-n/2+1:end/2+n/2, end/2-n/2+1:end/2+n/2, :) = mu0 + n0/n * g .* (f0-mu0);
+
+%%
+% Display it.
+
+clf;
+u = f1; u(1,1,:)=0; u(2,1,:)=1;
+imageplot(clamp(u));
+
+%%
+% _Exercice 5:_ (<../missing-exo/ check the solution>)
+% Perform the color texture synthesis using this extended spot noise.
+
+exo5;
+
+
+##### SOURCE END #####
+-->
+   </body>
+</html>

@@ -1,0 +1,678 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>Sound Processing with Short Time Fourier Transform</title>
+      <NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
+               	requires JavaScript to process the mathematics on this page.<BR> 
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 8.2">
+      <meta name="date" content="2014-10-20">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>Sound Processing with Short Time Fourier Transform</h1>
+         <introduction>
+            <p>This numerical tour explores local Fourier analysis of sounds, and its application to source denoising.</p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#8">Local Fourier analysis of sound.</a></li>
+               <li><a href="#19">Short time Fourier transform.</a></li>
+               <li><a href="#26">Audio Denoising</a></li>
+               <li><a href="#33">Audio Block Thresholding</a></li>
+            </ul>
+         </div>
+         <h2>Installing toolboxes and setting up the path.<a name="1"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_signal.zip">signal toolbox</a> and <a href="../toolbox_general.zip">general toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_signal</tt> and <tt>toolbox_general</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
+getd(<span class="string">'toolbox_general/'</span>);
+</pre><h2>Local Fourier analysis of sound.<a name="8"></a></h2>
+         <p>A sound is a 1D signal that is locally highly oscillating and stationary. A local Fourier analysis is thus usefull to study
+            the property of the sound such as its local amplitude and frequency.
+         </p>
+         <p>First we load a sound, with a slight sub-sampling</p><pre class="codeinput">n = 1024*16;
+options.n = n;
+[x,fs] = load_sound(<span class="string">'bird'</span>, n);
+</pre><p>You can actually play a sound. In case this does not work, you need to run the command <tt>wavwrite(x(:)', 'tmp.wav')</tt> and click on the saved file <tt>'tmp.wav'</tt> to read it.
+         </p><pre class="codeinput">sound(x(:)',fs);
+</pre><p>We can display the sound.</p><pre class="codeinput">clf;
+plot(1:n,x);
+axis(<span class="string">'tight'</span>);
+set_graphic_sizes([], 20);
+title(<span class="string">'Signal'</span>);
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p>Local zooms on the sound show that it is highly oscilating.</p><pre class="codeinput">p = 512;
+t = 1:n;
+clf;
+sel = n/4 + (0:p-1);
+subplot(2,1,1);
+plot(t(sel),x(sel)); axis <span class="string">tight</span>;
+sel = n/2 + (0:p-1);
+subplot(2,1,2);
+plot(t(sel),x(sel)); axis <span class="string">tight</span>;
+</pre><img vspace="5" hspace="5" src="index_02.png"> <p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Compute the local Fourier transform around a point <tt>t0</tt> of <tt>x</tt>, which is the FFT (use the function <tt>fft</tt>) of the windowed signal <tt>x.*h</tt> where <tt>h</tt> is smooth windowing function located around <tt>t0</tt>. For instance you can use for <tt>h</tt> a Gaussian bump centered at <tt>t0</tt>. To center the FFT for display, use <tt>fftshift</tt>.
+         </p><pre class="codeinput">exo1;
+</pre><img vspace="5" hspace="5" src="index_03.png"> <p>A good windowing function should balance both time localization and frequency localization.</p><pre class="codeinput">t = linspace(-10,10,2048);
+eta = 1e-5;
+vmin = -2;
+</pre><p>The block window has a sharp transition and thus a poor frequency localization.</p><pre class="codeinput">h = double( abs(t)&lt;1 );
+hf = fftshift(abs(fft(h)));
+hf = log10(eta+hf); hf = hf/max(hf);
+clf;
+subplot(2,1,1);
+title(<span class="string">'Block window'</span>);
+plot(t, h); axis([-2 2, -.1, 1.1]);
+subplot(2,1,2);
+plot(t, hf); axis([-2 2, vmin, 1.1]);
+title(<span class="string">'Fourier transform'</span>);
+</pre><img vspace="5" hspace="5" src="index_04.png"> <p>A Hamming window is smoother.</p><pre class="codeinput">h = cos(t*pi()/2) .* double(abs(t)&lt;1);
+hf = fftshift(abs(fft(h)));
+hf = log10(eta+hf); hf = hf/max(hf);
+clf;
+subplot(2,1,1);
+title(<span class="string">'Hamming window'</span>);
+plot(t, h); axis([-2 2, -.1, 1.1]);
+subplot(2,1,2);
+plot(t, hf); axis([-2 2, vmin, 1.1]);
+title(<span class="string">'Fourier transform'</span>);
+</pre><img vspace="5" hspace="5" src="index_05.png"> <p>A Haning window has continuous derivatives.</p><pre class="codeinput">h = (cos(t*pi())+1)/2 .* double(abs(t)&lt;1);
+hf = fftshift(abs(fft(h)));
+hf = log10(eta+hf); hf = hf/max(hf);
+clf;
+subplot(2,1,1);
+title(<span class="string">'Haning window'</span>);
+plot(t, h); axis([-2 2, -.1, 1.1]);
+subplot(2,1,2);
+plot(t, hf); axis([-2 2, vmin, 1.1]);
+title(<span class="string">'Fourier transform'</span>);
+</pre><img vspace="5" hspace="5" src="index_06.png"> <p>A normalized Haning window has a sharper transition. It has the advantage of generating a tight frame STFT, and is used in
+            the following.
+         </p><pre class="codeinput">h = sqrt(2)/2 * (1+cos(t*pi())) ./ sqrt( 1+cos(t*pi()).^2 ) .* double(abs(t)&lt;1);
+hf = fftshift(abs(fft(h)));
+hf = log10(eta+hf); hf = hf/max(hf);
+clf;
+subplot(2,1,1);
+title(<span class="string">'Normalized Haning window'</span>);
+plot(t, h); axis([-2 2, -.1, 1.1]);
+subplot(2,1,2);
+plot(t, hf); axis([-2 2, vmin, 1.1]);
+title(<span class="string">'Fourier transform'</span>);
+</pre><img vspace="5" hspace="5" src="index_07.png"> <h2>Short time Fourier transform.<a name="19"></a></h2>
+         <p>Gathering a local Fourier transform at equispaced point create a local Fourier transform, also called <b>spectrogram</b>. By carefully chosing the window, this transform corresponds to the decomposition of the signal in a redundant tight frame.
+            The redundancy corresponds to the overlap of the windows, and the tight frame corresponds to the fact that the pseudo-inverse
+            is simply the transposed of the transform (it means that the same window can be used for synthesis with a simple summation
+            of the reconstructed signal over each window).
+         </p>
+         <p>The only parameters of the transform are the size of the window and the overlap.</p><pre class="codeinput"><span class="comment">% size of the window</span>
+w = 64*2;
+<span class="comment">% overlap of the window</span>
+q = w/2;
+</pre><p>Gabor atoms are computed using a Haning window. The atoms are obtained by translating in time and in frequency (modulation)
+            the window.
+         </p><pre class="codeinput">t = 0:3*w-1;
+t1 = t-2*w;
+f = w/8;
+<span class="comment">% Position 0, frequency 0.</span>
+g1 = sin( pi*t/w ).^2 .* double(t&lt;w);
+<span class="comment">% Position 2*w, frequency 0.</span>
+g2 = sin( pi*t1/w ).^2 .* double( t1&lt;w &amp; t1&gt;=0 );
+<span class="comment">% Position 0, frequency w/8</span>
+g3 = g1 .* sin( t * 2*pi/w * f);
+<span class="comment">% Position 2*w, frequency w/8</span>
+g4 = g2 .* sin( t * 2*pi/w * f);
+<span class="comment">% display</span>
+clf;
+subplot(2,2,1);
+plot(g1); axis(<span class="string">'tight'</span>);
+title(<span class="string">'Position 0, frequency 0'</span>);
+subplot(2,2,2);
+plot(g2); axis(<span class="string">'tight'</span>);
+title(<span class="string">'Position 2*w, frequency 0'</span>);
+subplot(2,2,3);
+plot(g3); axis(<span class="string">'tight'</span>);
+title(<span class="string">'Position 0, frequency w/8'</span>);
+subplot(2,2,4);
+plot(g4); axis(<span class="string">'tight'</span>);
+title(<span class="string">'Position 2*w, frequency w/8'</span>);
+</pre><img vspace="5" hspace="5" src="index_08.png"> <p>We can compute a spectrogram of the sound to see its local Fourier content. The number of windowed used is <tt>(n-noverlap)/(w-noverlap)</tt></p><pre class="codeinput">S = perform_stft(x,w,q, options);
+</pre><p>To see more clearly the evolution of the harmonics, we can display the spectrogram in log coordinates. The top of the spectrogram
+            corresponds to low frequencies.
+         </p><pre class="codeinput"><span class="comment">% display the spectrogram</span>
+clf; imageplot(abs(S)); axis(<span class="string">'on'</span>);
+<span class="comment">% display log spectrogram</span>
+plot_spectrogram(S,x);
+</pre><img vspace="5" hspace="5" src="index_09.png"> <p>The STFT transform is decomposing the signal in a redundant tight frame. This can be checked by measuring the energy conservation.</p><pre class="codeinput"><span class="comment">% energy of the signal</span>
+e = norm(x,<span class="string">'fro'</span>).^2;
+<span class="comment">% energy of the coefficients</span>
+eS = norm(abs(S),<span class="string">'fro'</span>).^2;
+disp(strcat([<span class="string">'Energy conservation (should be 1)='</span> num2str(e/eS)]));
+</pre><pre class="codeoutput">Energy conservation (should be 1)=1
+</pre><p>One can also check that the inverse transform (which is just the transposed operator - it implements exactly the pseudo inverse)
+            is working fine.
+         </p><pre class="codeinput"><span class="comment">% one must give the signal size for the reconstruction</span>
+x1 = perform_stft(S,w,q, options);
+disp(strcat([<span class="string">'Reconstruction error (should be 0)='</span> num2str( norm(x-x1, <span class="string">'fro'</span>)./norm(x,<span class="string">'fro'</span>) ) ]));
+</pre><pre class="codeoutput">Reconstruction error (should be 0)=2.2401e-16
+</pre><h2>Audio Denoising<a name="26"></a></h2>
+         <p>One can perform denosing by a non-linear thresholding over the transfomede Fourier domain.</p>
+         <p>First we create a noisy signal</p><pre class="codeinput">sigma = .2;
+xn = x + randn(size(x))*sigma;
+</pre><p>Play the noisy sound.</p><pre class="codeinput">sound(xn,fs);
+</pre><p>Display the Sounds.</p><pre class="codeinput">clf;
+subplot(2,1,1);
+plot(x); axis([1 n -1.2 1.2]);
+set_graphic_sizes([], 20);
+title(<span class="string">'Original signal'</span>);
+subplot(2,1,2);
+plot(xn); axis([1 n -1.2 1.2]);
+set_graphic_sizes([], 20);
+title(<span class="string">'Noisy signal'</span>);
+</pre><img vspace="5" hspace="5" src="index_10.png"> <p>One can threshold the spectrogram.</p><pre class="codeinput"><span class="comment">% perform thresholding</span>
+Sn = perform_stft(xn,w,q, options);
+SnT = perform_thresholding(Sn, 2*sigma, <span class="string">'hard'</span>);
+<span class="comment">% display the results</span>
+subplot(2,1,1);
+plot_spectrogram(Sn);
+subplot(2,1,2);
+plot_spectrogram(SnT);
+</pre><img vspace="5" hspace="5" src="index_11.png"> <p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) A denoising is performed by hard or soft thresholding the STFT of the noisy signal. Compute the denosing SNR with both soft
+            and hard thresholding, and compute the threshold that minimize the SNR. Remember that a soft thresholding should be approximately
+            twice smaller than a hard thresholding. Check the result by listening. What can you conclude about the quality of the denoised
+            signal ?
+         </p><pre class="codeinput">exo2;
+</pre><img vspace="5" hspace="5" src="index_12.png"> <p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) Display and hear the results. What do you notice ?
+         </p><pre class="codeinput">exo3;
+</pre><img vspace="5" hspace="5" src="index_13.png"> <h2>Audio Block Thresholding<a name="33"></a></h2>
+         <p>It is possible to remove musical noise by thresholding blocks of STFT coefficients.</p>
+         <p>Denoising is performed by block soft thresholding.</p><pre class="codeinput"><span class="comment">% perform thresholding</span>
+Sn = perform_stft(xn,w,q, options);
+SnT = perform_thresholding(Sn, sigma, <span class="string">'block'</span>);
+<span class="comment">% display the results</span>
+subplot(2,1,1);
+plot_spectrogram(Sn);
+subplot(2,1,2);
+plot_spectrogram(SnT);
+</pre><img vspace="5" hspace="5" src="index_14.png"> <p><i>Exercice 4:</i> (<a href="../missing-exo/">check the solution</a>) Trie for various block sizes and report the best results.
+         </p><pre class="codeinput">exo4;
+</pre><img vspace="5" hspace="5" src="index_15.png"> <p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Sound Processing with Short Time Fourier Transform
+% This numerical tour explores local Fourier analysis of sounds, and its
+% application to source denoising.
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_signal.zip signal toolbox> and 
+% <../toolbox_general.zip general toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_signal| and 
+% |toolbox_general|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_signal/');
+getd('toolbox_general/');
+
+%% Local Fourier analysis of sound.
+% A sound is a 1D signal that is locally highly oscillating and stationary.
+% A local Fourier analysis is thus usefull to study the property of the
+% sound such as its local amplitude and frequency. 
+
+%%
+% First we load a sound, with a slight sub-sampling
+
+n = 1024*16;
+options.n = n;
+[x,fs] = load_sound('bird', n);
+
+%%
+% You can actually play a sound.
+% In case this does not work, you need to run the command
+% |wavwrite(x(:)', 'tmp.wav')| and click on the saved file |'tmp.wav'|
+% to read it.
+
+sound(x(:)',fs);
+
+%% 
+% We can display the sound.
+
+clf;
+plot(1:n,x);
+axis('tight');
+set_graphic_sizes([], 20);
+title('Signal');
+
+%%
+% Local zooms on the sound show that it is highly oscilating.
+
+p = 512;
+t = 1:n;
+clf;
+sel = n/4 + (0:p-1);
+subplot(2,1,1);
+plot(t(sel),x(sel)); axis tight;
+sel = n/2 + (0:p-1);
+subplot(2,1,2);
+plot(t(sel),x(sel)); axis tight;
+
+%%
+% _Exercice 1:_ (<../missing-exo/ check the solution>)
+% Compute the local Fourier transform around a point |t0| of |x|, which is the FFT (use the
+% function |fft|) of the windowed signal |x.*h| where |h| is smooth
+% windowing function located around |t0|. For instance you can use for |h|
+% a Gaussian bump centered at |t0|. To center the FFT for display, use
+% |fftshift|.
+
+exo1;
+
+%%
+% A good windowing function should balance both time localization and
+% frequency localization.
+
+t = linspace(-10,10,2048);
+eta = 1e-5;
+vmin = -2;
+
+%%
+% The block window has a sharp transition and thus a poor frequency
+% localization.
+
+h = double( abs(t)<1 );
+hf = fftshift(abs(fft(h)));
+hf = log10(eta+hf); hf = hf/max(hf);
+clf;
+subplot(2,1,1);
+title('Block window');
+plot(t, h); axis([-2 2, -.1, 1.1]);
+subplot(2,1,2);
+plot(t, hf); axis([-2 2, vmin, 1.1]);
+title('Fourier transform');
+
+%%
+% A Hamming window is smoother.
+
+h = cos(t*pi()/2) .* double(abs(t)<1);
+hf = fftshift(abs(fft(h)));
+hf = log10(eta+hf); hf = hf/max(hf);
+clf;
+subplot(2,1,1);
+title('Hamming window');
+plot(t, h); axis([-2 2, -.1, 1.1]);
+subplot(2,1,2);
+plot(t, hf); axis([-2 2, vmin, 1.1]);
+title('Fourier transform');
+
+
+%%
+% A Haning window has continuous derivatives.
+
+h = (cos(t*pi())+1)/2 .* double(abs(t)<1);
+hf = fftshift(abs(fft(h)));
+hf = log10(eta+hf); hf = hf/max(hf);
+clf;
+subplot(2,1,1);
+title('Haning window');
+plot(t, h); axis([-2 2, -.1, 1.1]);
+subplot(2,1,2);
+plot(t, hf); axis([-2 2, vmin, 1.1]);
+title('Fourier transform');
+
+%%
+% A normalized Haning window has a sharper transition. It has the advantage
+% of generating a tight frame STFT, and is used in the following.
+
+h = sqrt(2)/2 * (1+cos(t*pi())) ./ sqrt( 1+cos(t*pi()).^2 ) .* double(abs(t)<1);
+hf = fftshift(abs(fft(h)));
+hf = log10(eta+hf); hf = hf/max(hf);
+clf;
+subplot(2,1,1);
+title('Normalized Haning window');
+plot(t, h); axis([-2 2, -.1, 1.1]);
+subplot(2,1,2);
+plot(t, hf); axis([-2 2, vmin, 1.1]);
+title('Fourier transform');
+
+
+%% Short time Fourier transform.
+% Gathering a local Fourier transform at equispaced point create a local
+% Fourier transform, also called *spectrogram*. By carefully chosing the
+% window, this transform corresponds to the decomposition of the signal in
+% a redundant tight frame. The redundancy corresponds to the overlap of the
+% windows, and the tight frame corresponds to the fact that the
+% pseudo-inverse is simply the transposed of the transform (it means that
+% the same window can be used for synthesis with a simple summation of the
+% reconstructed signal over each window).
+
+%%
+% The only parameters of the transform are the size of the window and the
+% overlap.
+
+% size of the window
+w = 64*2;  
+% overlap of the window
+q = w/2;
+
+%%
+% Gabor atoms are computed using a Haning window.
+% The atoms are obtained by translating in time and in frequency
+% (modulation) the window.
+
+t = 0:3*w-1;
+t1 = t-2*w;
+f = w/8;
+% Position 0, frequency 0.
+g1 = sin( pi*t/w ).^2 .* double(t<w);
+% Position 2*w, frequency 0.
+g2 = sin( pi*t1/w ).^2 .* double( t1<w & t1>=0 );
+% Position 0, frequency w/8
+g3 = g1 .* sin( t * 2*pi/w * f);
+% Position 2*w, frequency w/8
+g4 = g2 .* sin( t * 2*pi/w * f);
+% display
+clf;
+subplot(2,2,1);
+plot(g1); axis('tight');
+title('Position 0, frequency 0');
+subplot(2,2,2);
+plot(g2); axis('tight');
+title('Position 2*w, frequency 0');
+subplot(2,2,3);
+plot(g3); axis('tight');
+title('Position 0, frequency w/8');
+subplot(2,2,4);
+plot(g4); axis('tight');
+title('Position 2*w, frequency w/8');
+
+%%
+% We can compute a spectrogram of the sound to see its local Fourier
+% content. The number of windowed used is |(n-noverlap)/(w-noverlap)|
+
+S = perform_stft(x,w,q, options);
+
+%%
+% To see more clearly the evolution of the harmonics, we can display the
+% spectrogram in log coordinates. The top of the spectrogram corresponds to
+% low frequencies.
+
+% display the spectrogram
+clf; imageplot(abs(S)); axis('on');
+% display log spectrogram
+plot_spectrogram(S,x);
+
+%%
+% The STFT transform is decomposing the signal in a redundant tight frame.
+% This can be checked by measuring the energy conservation.
+
+% energy of the signal
+e = norm(x,'fro').^2;
+% energy of the coefficients
+eS = norm(abs(S),'fro').^2;
+disp(strcat(['Energy conservation (should be 1)=' num2str(e/eS)]));
+
+%%
+% One can also
+% check that the inverse transform (which is just the transposed operator -
+% it implements exactly the pseudo inverse) is working fine.
+
+% one must give the signal size for the reconstruction
+x1 = perform_stft(S,w,q, options);
+disp(strcat(['Reconstruction error (should be 0)=' num2str( norm(x-x1, 'fro')./norm(x,'fro') ) ]));
+
+%% Audio Denoising
+% One can perform denosing by a non-linear thresholding over the
+% transfomede Fourier domain.
+
+%%
+% First we create a noisy signal
+sigma = .2;
+xn = x + randn(size(x))*sigma;
+
+%%
+% Play the noisy sound.
+
+sound(xn,fs);
+
+
+%%
+% Display the Sounds.
+
+clf;
+subplot(2,1,1);
+plot(x); axis([1 n -1.2 1.2]);
+set_graphic_sizes([], 20);
+title('Original signal');
+subplot(2,1,2);
+plot(xn); axis([1 n -1.2 1.2]);
+set_graphic_sizes([], 20);
+title('Noisy signal');
+
+%%
+% One can threshold the spectrogram.
+
+% perform thresholding
+Sn = perform_stft(xn,w,q, options);
+SnT = perform_thresholding(Sn, 2*sigma, 'hard');
+% display the results
+subplot(2,1,1);
+plot_spectrogram(Sn);
+subplot(2,1,2);
+plot_spectrogram(SnT);
+
+%%
+% _Exercice 2:_ (<../missing-exo/ check the solution>)
+% A denoising is performed by hard or soft thresholding the STFT of the
+% noisy signal. Compute the denosing SNR with both soft and hard
+% thresholding, and compute the threshold that minimize the SNR. Remember that a soft thresholding
+% should be approximately twice smaller than a hard thresholding. Check the
+% result by listening. What can you conclude about the quality of the
+% denoised signal ?
+
+exo2;
+
+%%
+% _Exercice 3:_ (<../missing-exo/ check the solution>)
+% Display and hear the results. What do you notice ?
+
+exo3;
+
+%% Audio Block Thresholding
+% It is possible to remove musical noise by thresholding blocks of STFT
+% coefficients.
+
+%%
+% Denoising is performed by block soft thresholding.
+
+% perform thresholding
+Sn = perform_stft(xn,w,q, options);
+SnT = perform_thresholding(Sn, sigma, 'block');
+% display the results
+subplot(2,1,1);
+plot_spectrogram(Sn);
+subplot(2,1,2);
+plot_spectrogram(SnT);
+
+%%
+% _Exercice 4:_ (<../missing-exo/ check the solution>)
+% Trie for various block sizes and report the best results.
+
+exo4;
+
+
+##### SOURCE END #####
+-->
+   </body>
+</html>

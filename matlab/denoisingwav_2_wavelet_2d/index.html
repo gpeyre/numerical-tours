@@ -1,0 +1,813 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>Image Denoising with Wavelets</title>
+      <NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
+               	requires JavaScript to process the mathematics on this page.<BR> 
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 8.2">
+      <meta name="date" content="2014-10-20">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>Image Denoising with Wavelets</h1>
+         <introduction>
+            <p>This numerical tour uses wavelets to perform non-linear image denoising.</p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#8">Image Denoising</a></li>
+               <li><a href="#12">Image loading and adding Gaussian Noise</a></li>
+               <li><a href="#18">Hard Thresholding in Wavelet Bases</a></li>
+               <li><a href="#32">Wavelet Denoising with Soft Thesholding</a></li>
+               <li><a href="#41">Translation Invariant Denoising with Cycle Spinning</a></li>
+               <li><a href="#55">Translation Invariant Wavelet Transform</a></li>
+               <li><a href="#62">Translation Invariant Wavelet Denoising</a></li>
+            </ul>
+         </div>
+         <h2>Installing toolboxes and setting up the path.<a name="1"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_signal.zip">signal toolbox</a> and <a href="../toolbox_general.zip">general toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_signal</tt> and <tt>toolbox_general</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
+getd(<span class="string">'toolbox_general/'</span>);
+</pre><h2>Image Denoising<a name="8"></a></h2>
+         <p>We consider a simple generative model of noisy images \(F = f_0+W\) where \(f_0 \in \RR^N\) is a deterministic image of \(N\)
+            pixels, and \(W\) is a Gaussian white noise distributed according to \(\Nn(0,\si^2 \text{Id}_N)\), where \(\si^2\) is the
+            variance of noise.
+         </p>
+         <p>The goal of denoising is to define an estimator \(\tilde F\) of \(f_0\) that depends only on \(F\), i.e. \(\tilde F = \phi(F)\)
+            where \(\phi : \RR^N \rightarrow \RR^N\) is a potentially non-linear mapping.
+         </p>
+         <p>Note that while \(f_0\) is a deterministic image, both \(F\) and \(\tilde F\) are random variables (hence the capital letters).</p>
+         <p>The goal of denoising is to reduce as much as possible the denoising error given some prior knowledge on the (unknown) image
+            \(f_0\). A mathematical way to measure this error is to bound the quadratic risk \(\EE_w(\norm{\tilde F - f_0}^2)\), where
+            the expectation is computed with respect to the distribution of the noise \(W\).
+         </p>
+         <h2>Image loading and adding Gaussian Noise<a name="12"></a></h2>
+         <p>For real life applications, one does not have access to the underlying image \(f_0\). In this tour, we however assume that
+            \(f_0\) is known, and \(f = f_0 + w\in \RR^N\) is generated using a single realization of the noise \(w\) that is drawn from
+            \(W\). We define the estimated deterministic image as \(\tilde f = \phi(f)\) which is a realization of the random vector \(\tilde
+            F\).
+         </p>
+         <p>First we load an image \(f \in \RR^N\) where \(N=n \times n\) is the number of pixels.</p><pre class="codeinput">n = 256;
+name = <span class="string">'hibiscus'</span>;
+f0 = rescale( load_image(name,n) );
+<span class="keyword">if</span> using_matlab()
+    f0 = rescale( sum(f0,3) );
+<span class="keyword">end</span>
+</pre><p>Display it.</p><pre class="codeinput">clf;
+imageplot(f0);
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p>Standard deviation \(\si\) of the noise.</p><pre class="codeinput">sigma = .08;
+</pre><p>Then we add Gaussian noise \(w\) to obtain \(f=f_0+w\).</p><pre class="codeinput">f = f0 + sigma*randn(size(f0));
+</pre><p>Display the noisy image. Note the use of the <tt>clamp</tt> function to saturate the result to \([0,1]\) to avoid a loss of contrast of the display.
+         </p><pre class="codeinput">clf;
+imageplot(clamp(f), strcat([<span class="string">'Noisy, SNR='</span> num2str(snr(f0,f),3)]));
+</pre><img vspace="5" hspace="5" src="index_02.png"> <h2>Hard Thresholding in Wavelet Bases<a name="18"></a></h2>
+         <p>A simple but efficient non-linear denoising estimator is obtained by thresholding the coefficients of \(f\) in a well chosen
+            orthogonal basis \(\Bb = \{\psi_m\}_m\) of \(\RR^N\).
+         </p>
+         <p>In the following, we will focuss on a wavelet basis, which is efficient to denoise piecewise regular images.</p>
+         <p>The hard thresholding operator with threshold \(T \geq 0\) applied to some image \(f\) is defined as \[ S_T^0(f) = \sum_{\abs{\dotp{f}{\psi_m}}&gt;T}
+            \dotp{f}{\psi_m} \psi_m        = \sum_m s_T^0(\dotp{f}{\psi_m}) \psi_m \] where the hard thresholding operator is \[     
+             s_T^0(\alpha) = \choice{            \alpha \qifq \abs{\al}&gt;T, \\               0 \quad\text{otherwise}.       } \]
+         </p>
+         <p>The denoising estimator is then defined as \[ \tilde f = S_T^0(f). \]</p>
+         <p>Set the threshold value.</p><pre class="codeinput">T = 1;
+</pre><p>Display the function \(s_T^0(\al)\).</p><pre class="codeinput">alpha = linspace(-3,3,1000);
+clf;
+plot(alpha, alpha.*(abs(alpha)&gt;T));
+axis <span class="string">tight</span>;
+</pre><img vspace="5" hspace="5" src="index_03.png"> <p>Parameters for the orthogonal wavelet transform.</p><pre class="codeinput">options.ti = 0;
+Jmin = 4;
+</pre><p>First we compute the wavelet coefficients \(a\) of the noisy image \(f\).</p><pre class="codeinput">a = perform_wavelet_transf(f,Jmin,+1,options);
+</pre><p>Display the noisy coefficients.</p><pre class="codeinput">clf;
+plot_wavelet(a,Jmin);
+</pre><img vspace="5" hspace="5" src="index_04.png"> <p>Select the threshold value, that should be proportional to the noise level \(\si\).</p><pre class="codeinput">T = 3*sigma;
+</pre><p>Hard threshold the coefficients below the noise level to obtain \(a_T(m)=s_T^0(a_m)\).</p><pre class="codeinput">aT = a .* (abs(a)&gt;T);
+</pre><p>Display the thresholded coefficients.</p><pre class="codeinput">clf;
+plot_wavelet(aT,Jmin);
+</pre><img vspace="5" hspace="5" src="index_05.png"> <p>Reconstruct the image \(\tilde f\) from these noisy coefficients.</p><pre class="codeinput">fHard = perform_wavelet_transf(aT,Jmin,-1,options);
+</pre><p>Display the denoising result.</p><pre class="codeinput">clf;
+imageplot(clamp(fHard), strcat([<span class="string">'Hard denoising, SNR='</span> num2str(snr(f0,fHard),3)]));
+</pre><img vspace="5" hspace="5" src="index_06.png"> <h2>Wavelet Denoising with Soft Thesholding<a name="32"></a></h2>
+         <p>The estimated image \(\tilde f\) using hard thresholding. suffers from many artifacts. It is possible to improve the result
+            by using soft thresholding, defined as \[ \tilde f = S_T^1(f) = \sum_m s_T^1(\dotp{f}{\psi_m}) \psi_m \] \[       \qwhereq
+                  s_T^1(\alpha) = \max\pa{0, 1 - \frac{T}{\abs{\alpha}}}\alpha. \]
+         </p>
+         <p>Display the soft thresholding function \(s_T^1(\al)\).</p><pre class="codeinput">T = 1;
+alpha = linspace(-3,3,1000);
+alphaT = max(1-T./abs(alpha), 0).*alpha;
+clf;
+plot(alpha, alphaT);
+axis <span class="string">tight</span>;
+</pre><img vspace="5" hspace="5" src="index_07.png"> <p>Select the threshold.</p><pre class="codeinput">T = 3/2*sigma;
+</pre><p>Perform the soft thresholding.</p><pre class="codeinput">aT = perform_thresholding(a,T,<span class="string">'soft'</span>);
+</pre><p>To slightly improve the soft thresholding performance, we do not threshold the coefficients corresponding to coarse scale
+            wavelets.
+         </p><pre class="codeinput">aT(1:2^Jmin,1:2^Jmin) = a(1:2^Jmin,1:2^Jmin);
+</pre><p>Re-construct the soft thresholding estimator \(\tilde f\).</p><pre class="codeinput">fSoft = perform_wavelet_transf(aT,Jmin,-1,options);
+</pre><p>Display the soft thresholding denoising result.</p><pre class="codeinput">clf;
+imageplot(clamp(fSoft), strcat([<span class="string">'Soft denoising, SNR='</span> num2str(snr(f0,fSoft),3)]));
+</pre><img vspace="5" hspace="5" src="index_08.png"> <p>One can prove that if the non-linear approximation error \( \norm{f_0-S_T(f_0)}^2 \) decays fast toward zero when \(T\) decreases,
+            then the quadratic risk \( \EE_w( \norm{f-S_T(f)}^2 ) \) also decays fast to zero when \(\si\) decays. For this result to
+            hold, it is required to select the threshold value according to the universal threshold rule \[ T = \si \sqrt{2\log(N)}. \]
+         </p>
+         <p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Determine the best threshold \(T\) for both hard and soft thresholding. Test several \(T\) values in \([.8*\sigma, 4.5\sigma\),
+            and display the empirical SNR \(-10\log_{10}(\norm{f_0-\tilde f}/\norm{f_0})\) What can you conclude from these results ?
+            Test with another image.
+         </p><pre class="codeinput">exo1;
+</pre><img vspace="5" hspace="5" src="index_09.png"> <h2>Translation Invariant Denoising with Cycle Spinning<a name="41"></a></h2>
+         <p>Orthogonal wavelet transforms are not translation invariant. It means that the processing of an image and of a translated
+            version of the image give different results.
+         </p>
+         <p>Any denoiser can be turned into a translation invariant denoiser by performing a cycle spinning. The denoiser is applied to
+            several shifted copies of the image, then the resulting denoised image are shifted back to the original position, and the
+            results are averaged.
+         </p>
+         <p>This corresponds to defining the estimator as \[ \tilde f = \frac{1}{M} \sum_{i=1}^{M}       T_{-\de_i} \circ S_T(f) \circ
+            T_{\de_i}\] where \(S_T\) is either the hard or soft thresholding, and \(T_\de(f)(x) = f(x-\de)\) is the translation operator,
+            using periodic boundary conditions. Here \((\de_i)_i\) is a set of \(M\) discrete translation. Perfect invariance is obtained
+            by using all possible \(N\) translatation, but usually a small number \(M \ll N\) of translation is used to obtain approximate
+            invariance.
+         </p>
+         <p>Number \(m\) of translations along each direction so that \(M = m^2\).</p><pre class="codeinput">m = 4;
+</pre><p>Generate a set of shifts \((\de_i)_i\).</p><pre class="codeinput">[dY,dX] = meshgrid(0:m-1,0:m-1);
+delta = [dX(:) dY(:)]';
+</pre><p>To avoid storing all the translates in memory, one can perform a progressive averaging of the translates by defining \(f^{(0)}=0\)
+            and then \[ \forall\, i=1,\ldots,M, \quad f^{(i)} = \pa{1-\frac{i}{n}} f^{(i-1)} +       \frac{i}{n} T_{-\de_i} \circ S_T(f)
+            \circ T_{\de_i}  \] One then has \(\tilde f = f^{(M)} \) after \(M\) steps.
+         </p>
+         <p>Initialize the denoised image \(f^{(0)}=0\).</p><pre class="codeinput">fTI = zeros(n,n);
+</pre><p>Initialize the index \(i\) that should run in \(1,\ldots,m^2\)</p><pre class="codeinput">i = 1;
+</pre><p>Apply the shift, using circular boundary conditions.</p><pre class="codeinput">fS = circshift(f,delta(:,i));
+</pre><p>Apply here the denoising to <tt>fS</tt>.
+         </p><pre class="codeinput">a = perform_wavelet_transf(fS,Jmin,1,options);
+aT = perform_thresholding(a,T,<span class="string">'hard'</span>);
+fS = perform_wavelet_transf(aT,Jmin,-1,options);
+</pre><p>After denoising, do the inverse shift.</p><pre class="codeinput">fS = circshift(fS,-delta(:,i));
+</pre><p>Accumulate the result to obtain at the end the denoised image that averahe the translated results.</p><pre class="codeinput">fTI = (i-1)/i*fTI + 1/i*fS;
+</pre><p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Perform the cycle spinning denoising by iterating on \(i\).
+         </p><pre class="codeinput">exo2;
+</pre><img vspace="5" hspace="5" src="index_10.png"> <p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) Study the influence of the number \(m\) of shift on the denoising quality.
+         </p><pre class="codeinput">exo3;
+</pre><img vspace="5" hspace="5" src="index_11.png"> <h2>Translation Invariant Wavelet Transform<a name="55"></a></h2>
+         <p>Another way to achieve translation invariance, which is equivalent to performing cycle spinning, is to replace the orthogonal
+            wavelet basis \(\Bb = \{\psi_m\}_{m=0}^{N-1}\) by a redundant translation invariant wavelet frame \[ \Dd = \enscond{ \psi_m(\cdot-\de)
+            }{ m = 0,\ldots,N-1, \de \in \{0,\ldots,n-1\}^2 }. \]
+         </p>
+         <p>One can prove that there is actually only \(P = N\log_2(N)\) atoms in this dictionary, that we note \(\De = \{\tilde \psi_k\}_{k=0}^{P-1}\).</p>
+         <p>One can furthermore define weights \(\la_k&gt;0\) so that the following reconstruction formula holds (pseudo-invers reconstruction)
+            \[ f = \sum_k \la_k \dotp{f}{\tilde \psi_k} \tilde \psi_k. \]
+         </p>
+         <p>For Scilab, we need to extend a little the available memory.</p>
+         <p><i>Important:</i> If you are using an old version (&lt;v5) of Scilab, then use <tt>extend_stack_size(4,1)</tt> instead.
+         </p><pre class="codeinput">extend_stack_size(4);
+</pre><p>The invariant transform is obtained using the same function, by activating the switch <tt>options.ti=1</tt>.
+         </p><pre class="codeinput">options.ti = 1;
+a = perform_wavelet_transf(f0,Jmin,+1,options);
+</pre><p><tt>a(:,:,1)</tt> corresponds to the low scale residual. Each <tt>a(:,:,3*j+k+1)</tt> for k=1:3 (orientation) corresponds to a scale of wavelet coefficient, and has the same size as the original image.
+         </p><pre class="codeinput">clf;
+i = 0;
+<span class="keyword">for</span> j=1:2
+    <span class="keyword">for</span> k=1:3
+        i = i+1;
+        imageplot(a(:,:,i+1), strcat([<span class="string">'Scale='</span> num2str(j) <span class="string">' Orientation='</span> num2str(k)]), 2,3,i );
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="index_12.png"> <h2>Translation Invariant Wavelet Denoising<a name="62"></a></h2>
+         <p>A translation invariant thresholding estimator is defined as \[ \tilde f = \sum_k \la_k s_T(\dotp{f}{\tilde \psi_k}) \tilde
+            \psi_k, \] where \(s_T\) is either the soft or the hard thresholding mapping.
+         </p>
+         <p>This estimator is equal to the cycle spinning estimator when using the full set \(M=N\) of translates. It is however much
+            faster to compute because computing the whole set of \(N\log_2(N)\) inner products \((\dotp{f}{\tilde\psi_k})_k\) is obtained
+            with the fast a trou algorithm in \(O(N\log_2(N))\) operations. Similarely, a fast inverse transform with the same complexity
+            allows one to reconstruct \(\tilde f\) from the set of thresholded coefficients.
+         </p>
+         <p>First we compute the translation invariant wavelet transform</p><pre class="codeinput">options.ti = 1;
+a = perform_wavelet_transf(f,Jmin,+1,options);
+</pre><p>Then we threshold the set of coefficients.</p><pre class="codeinput">T = 3.5*sigma;
+aT = perform_thresholding(a,T,<span class="string">'hard'</span>);
+</pre><p>Display noisy wavelets coefficients at a given fixed scale.</p><pre class="codeinput">J = size(a,3)-5;
+clf;
+imageplot(a(:,:,J), <span class="string">'Noisy coefficients'</span>);
+</pre><img vspace="5" hspace="5" src="index_13.png"> <p>Display thresholded wavelets coefficients</p><pre class="codeinput">clf;
+imageplot(aT(:,:,J), <span class="string">'Thresholded coefficients'</span>);
+</pre><img vspace="5" hspace="5" src="index_14.png"> <p>We can now reconstruct</p><pre class="codeinput">fTI = perform_wavelet_transf(aT,Jmin,-1,options);
+</pre><p>Display the denoising result \(\tilde f\).</p><pre class="codeinput">clf;
+imageplot(clamp(fTI), strcat([<span class="string">'Hard invariant, SNR='</span> num2str(snr(f0,fTI),3)]));
+</pre><img vspace="5" hspace="5" src="index_15.png"> <p><i>Exercice 4:</i> (<a href="../missing-exo/">check the solution</a>) Determine the best threshold \(T\) for both hard and soft thresholding, but now in the translation invariant case. What
+            can you conclude ?
+         </p><pre class="codeinput">exo4;
+</pre><img vspace="5" hspace="5" src="index_16.png"> <p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Image Denoising with Wavelets
+% This numerical tour uses wavelets to perform non-linear
+% image denoising.
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_signal.zip signal toolbox> and 
+% <../toolbox_general.zip general toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_signal| and 
+% |toolbox_general|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_signal/');
+getd('toolbox_general/');
+
+%% Image Denoising 
+% We consider a simple generative model of noisy images \(F = f_0+W\)
+% where \(f_0 \in \RR^N\) is a deterministic image of \(N\) pixels, and
+% \(W\) is a Gaussian white noise distributed according to \(\Nn(0,\si^2
+% \text{Id}_N)\), where \(\si^2\) is the variance of noise.
+
+%%
+% The goal of denoising is to define an estimator \(\tilde F\) of
+% \(f_0\) that depends only on \(F\), i.e. \(\tilde F = \phi(F)\)
+% where \(\phi : \RR^N \rightarrow \RR^N\) is a potentially non-linear
+% mapping. 
+
+%%
+% Note that while \(f_0\) is a deterministic image, both \(F\) and \(\tilde F\)
+% are random variables (hence the capital letters). 
+
+%%
+% The goal of denoising is to reduce as much as possible the denoising
+% error given some prior knowledge on the (unknown) image \(f_0\).
+% A mathematical way to measure this error is to bound the 
+% quadratic risk \(\EE_w(\norm{\tilde F - f_0}^2)\), where the expectation is computed
+% with respect to the distribution of the noise \(W\).
+
+%% Image loading and adding Gaussian Noise
+% For real life applications, one does not have access to the underlying
+% image \(f_0\). In this tour, we however assume that \(f_0\) is known, and
+% \(f = f_0 + w\in \RR^N\) is generated using a single realization of the noise \(w\)
+% that is drawn from \(W\). We define the estimated deterministic image as 
+% \(\tilde f = \phi(f)\) which is a realization of the random vector
+% \(\tilde F\).
+
+%%
+% First we load an image \(f \in \RR^N\) where \(N=n \times n\) is the number of pixels.
+
+n = 256;
+name = 'hibiscus';
+f0 = rescale( load_image(name,n) );
+if using_matlab()
+    f0 = rescale( sum(f0,3) );
+end
+
+%%
+% Display it.
+
+clf;
+imageplot(f0);
+
+%%
+% Standard deviation \(\si\) of the noise.
+
+sigma = .08;
+
+%%
+% Then we add Gaussian noise \(w\) to obtain \(f=f_0+w\).
+
+f = f0 + sigma*randn(size(f0));
+
+%%
+% Display the noisy image. Note the use of the |clamp| function to saturate
+% the result to \([0,1]\) to avoid a loss of contrast of the display.
+
+clf;
+imageplot(clamp(f), strcat(['Noisy, SNR=' num2str(snr(f0,f),3)]));
+
+%% Hard Thresholding in Wavelet Bases
+% A simple but efficient non-linear denoising estimator is obtained by
+% thresholding the coefficients of \(f\) in a well chosen orthogonal basis
+% \(\Bb = \{\psi_m\}_m\) of \(\RR^N\).
+
+%%
+% In the following, we will focuss on a wavelet basis, which is efficient
+% to denoise piecewise regular images.
+
+%%
+% The hard thresholding operator with threshold \(T \geq 0\) applied to
+% some image \(f\) is defined as
+% \[ S_T^0(f) = \sum_{\abs{\dotp{f}{\psi_m}}>T} \dotp{f}{\psi_m} \psi_m
+%        = \sum_m s_T^0(\dotp{f}{\psi_m}) \psi_m \]
+% where the hard thresholding operator is
+% \[
+%       s_T^0(\alpha) = \choice{
+%            \alpha \qifq \abs{\al}>T, \\
+%               0 \quad\text{otherwise}.
+%       }
+% \]
+
+%%
+% The denoising estimator is then defined as
+% \[ \tilde f = S_T^0(f). \]
+
+%% 
+% Set the threshold value.
+
+T = 1;
+
+%% 
+% Display the function \(s_T^0(\al)\).
+
+alpha = linspace(-3,3,1000);
+clf;
+plot(alpha, alpha.*(abs(alpha)>T));
+axis tight;
+
+%%
+% Parameters for the orthogonal wavelet transform.
+
+options.ti = 0;
+Jmin = 4;
+
+%%
+% First we compute the wavelet coefficients \(a\)  
+% of the noisy image \(f\).
+
+a = perform_wavelet_transf(f,Jmin,+1,options);
+
+%%
+% Display the noisy coefficients.
+
+clf;
+plot_wavelet(a,Jmin);
+
+%%
+% Select the threshold value, that should be proportional to the noise
+% level \(\si\).
+
+T = 3*sigma;
+
+%%
+% Hard threshold the coefficients below the noise level to obtain \(a_T(m)=s_T^0(a_m)\).
+
+aT = a .* (abs(a)>T);
+
+%% 
+% Display the thresholded coefficients.
+
+clf;
+plot_wavelet(aT,Jmin);
+
+%%
+% Reconstruct the image \(\tilde f\) from these noisy coefficients.
+
+fHard = perform_wavelet_transf(aT,Jmin,-1,options);
+
+%% 
+% Display the denoising result.
+
+clf;
+imageplot(clamp(fHard), strcat(['Hard denoising, SNR=' num2str(snr(f0,fHard),3)]));
+
+
+
+%% Wavelet Denoising with Soft Thesholding
+% The estimated image \(\tilde f\) using hard thresholding.
+% suffers from many artifacts. It is
+% possible to improve the result by using soft thresholding, 
+% defined as
+% \[ \tilde f = S_T^1(f) = \sum_m s_T^1(\dotp{f}{\psi_m}) \psi_m \]
+% \[
+%       \qwhereq
+%       s_T^1(\alpha) = \max\pa{0, 1 - \frac{T}{\abs{\alpha}}}\alpha.
+% \]
+
+
+%%
+% Display the soft thresholding function \(s_T^1(\al)\).
+
+T = 1;
+alpha = linspace(-3,3,1000);
+alphaT = max(1-T./abs(alpha), 0).*alpha;
+clf;
+plot(alpha, alphaT);
+axis tight;
+
+%%
+% Select the threshold.
+
+T = 3/2*sigma;
+
+%%
+% Perform the soft thresholding.
+
+aT = perform_thresholding(a,T,'soft');
+
+%% 
+% To slightly improve the soft thresholding performance, we do not
+% threshold the coefficients corresponding to coarse scale wavelets. 
+
+aT(1:2^Jmin,1:2^Jmin) = a(1:2^Jmin,1:2^Jmin);
+
+%% 
+% Re-construct the soft thresholding estimator \(\tilde f\).
+
+fSoft = perform_wavelet_transf(aT,Jmin,-1,options);
+
+%%
+% Display the soft thresholding denoising result.
+
+clf;
+imageplot(clamp(fSoft), strcat(['Soft denoising, SNR=' num2str(snr(f0,fSoft),3)]));
+
+%%
+% One can prove that if the non-linear approximation error 
+% \( \norm{f_0-S_T(f_0)}^2 \) decays fast toward zero when 
+% \(T\) decreases, then the quadratic risk 
+% \( \EE_w( \norm{f-S_T(f)}^2 ) \) also decays fast to zero 
+% when \(\si\) decays. For this result to hold, it is required
+% to select the threshold value according to the universal threshold rule
+% \[ T = \si \sqrt{2\log(N)}. \]
+
+%%
+% _Exercice 1:_ (<../missing-exo/ check the solution>)
+% Determine the best threshold \(T\) for both hard and soft thresholding.
+% Test several \(T\) values in \([.8*\sigma, 4.5\sigma\), 
+% and display the empirical SNR \(-10\log_{10}(\norm{f_0-\tilde f}/\norm{f_0})\)
+% What can you conclude from these results ?
+% Test with another image.
+
+exo1;
+
+%% Translation Invariant Denoising with Cycle Spinning
+% Orthogonal wavelet transforms are not translation invariant.
+% It means that the processing of an image and of a translated version of
+% the image give different results.
+
+%%
+% Any denoiser can be turned into a translation invariant denoiser by
+% performing a cycle spinning. The denoiser is applied to several shifted
+% copies of the image, then the resulting denoised image are shifted back
+% to the original position, and the results are averaged.
+
+%%
+% This corresponds to defining the estimator as
+% \[ \tilde f = \frac{1}{M} \sum_{i=1}^{M}
+%       T_{-\de_i} \circ S_T(f) \circ T_{\de_i}\]
+% where \(S_T\) is either the hard or soft thresholding, 
+% and \(T_\de(f)(x) = f(x-\de)\) is the translation operator, 
+% using periodic boundary conditions. 
+% Here \((\de_i)_i\) is a set of \(M\) discrete translation. Perfect invariance
+% is obtained by using all possible \(N\) translatation, but 
+% usually a small number \(M \ll N\) of translation is used to obtain approximate
+% invariance.
+
+
+%%
+% Number \(m\) of translations along each direction
+% so that \(M = m^2\). 
+
+m = 4;
+
+%%
+% Generate a set of shifts \((\de_i)_i\).
+
+[dY,dX] = meshgrid(0:m-1,0:m-1);
+delta = [dX(:) dY(:)]';
+
+%%
+% To avoid storing all the translates in memory, one can perform a
+% progressive averaging of the translates by defining \(f^{(0)}=0\) and
+% then
+% \[ \forall\, i=1,\ldots,M, \quad f^{(i)} = \pa{1-\frac{i}{n}} f^{(i-1)} + 
+%       \frac{i}{n} T_{-\de_i} \circ S_T(f) \circ T_{\de_i}  \]
+% One then has \(\tilde f = f^{(M)} \) after \(M\) steps.
+
+%% 
+% Initialize the denoised image \(f^{(0)}=0\).
+
+fTI = zeros(n,n);
+
+%%
+% Initialize the index \(i\) that should run in \(1,\ldots,m^2\)
+
+i = 1;
+
+%%
+% Apply the shift, using circular boundary conditions.
+
+fS = circshift(f,delta(:,i));
+
+%%
+% Apply here the denoising to |fS|.
+
+a = perform_wavelet_transf(fS,Jmin,1,options);
+aT = perform_thresholding(a,T,'hard');
+fS = perform_wavelet_transf(aT,Jmin,-1,options);
+
+%%
+% After denoising, do the inverse shift.
+
+fS = circshift(fS,-delta(:,i));
+
+%%
+% Accumulate the result to obtain at the end the denoised image that
+% averahe the translated results.
+
+fTI = (i-1)/i*fTI + 1/i*fS;
+
+%%
+% _Exercice 2:_ (<../missing-exo/ check the solution>)
+% Perform the cycle spinning denoising by iterating on \(i\).
+
+exo2;
+
+%%
+% _Exercice 3:_ (<../missing-exo/ check the solution>)
+% Study the influence of the number \(m\) of shift on the denoising
+% quality.
+
+exo3;
+
+
+%% Translation Invariant Wavelet Transform
+% Another way to achieve translation invariance, which is equivalent to
+% performing cycle spinning, is to replace the orthogonal wavelet
+% basis \(\Bb = \{\psi_m\}_{m=0}^{N-1}\) by a redundant translation
+% invariant wavelet frame
+% \[ \Dd = \enscond{ \psi_m(\cdot-\de) }{ m = 0,\ldots,N-1, \de \in \{0,\ldots,n-1\}^2 }. \]
+
+%%
+% One can prove that there is actually only \(P = N\log_2(N)\) atoms in this
+% dictionary, that we note \(\De = \{\tilde \psi_k\}_{k=0}^{P-1}\). 
+
+%%
+% One can furthermore define weights \(\la_k>0\) so that the
+% following reconstruction formula holds (pseudo-invers reconstruction)
+% \[ f = \sum_k \la_k \dotp{f}{\tilde \psi_k} \tilde \psi_k. \]
+
+%%
+% For Scilab, we need to extend a little the available memory.
+
+%%
+% _Important:_ If you are using an old version (<v5)
+% of Scilab, then use |extend_stack_size(4,1)| instead.
+
+extend_stack_size(4);
+
+%%
+% The invariant transform is obtained using the same function, by
+% activating the switch |options.ti=1|. 
+
+options.ti = 1;
+a = perform_wavelet_transf(f0,Jmin,+1,options);
+
+%%
+% |a(:,:,1)| corresponds to the low scale residual.
+% Each |a(:,:,3*j+k+1)| for k=1:3 (orientation) corresponds to a scale of wavelet coefficient, and has
+% the same size as the original image.
+
+clf;
+i = 0;
+for j=1:2
+    for k=1:3
+        i = i+1;
+        imageplot(a(:,:,i+1), strcat(['Scale=' num2str(j) ' Orientation=' num2str(k)]), 2,3,i );
+    end
+end
+
+
+%% Translation Invariant Wavelet Denoising
+% A translation invariant thresholding estimator is defined as
+% \[ \tilde f = \sum_k \la_k s_T(\dotp{f}{\tilde \psi_k}) \tilde \psi_k, \]
+% where \(s_T\) is either the soft or the hard thresholding mapping.
+
+%%
+% This estimator is equal to the cycle spinning estimator when using the
+% full set \(M=N\) of translates. It is however much faster to compute
+% because computing the whole set of \(N\log_2(N)\) inner products \((\dotp{f}{\tilde\psi_k})_k\)
+% is obtained with the fast a trou algorithm in \(O(N\log_2(N))\)
+% operations.
+% Similarely, a fast inverse transform with the same complexity allows one
+% to reconstruct \(\tilde f\) from the set of thresholded coefficients.
+
+%%
+% First we compute the translation invariant wavelet transform
+
+options.ti = 1;
+a = perform_wavelet_transf(f,Jmin,+1,options);
+
+%%
+% Then we threshold the set of coefficients.
+
+T = 3.5*sigma;
+aT = perform_thresholding(a,T,'hard');
+
+%%
+% Display noisy wavelets coefficients at a given fixed scale.
+
+J = size(a,3)-5;
+clf;
+imageplot(a(:,:,J), 'Noisy coefficients');
+
+
+%%
+% Display thresholded wavelets coefficients
+
+clf;
+imageplot(aT(:,:,J), 'Thresholded coefficients');
+
+%%
+% We can now reconstruct
+
+fTI = perform_wavelet_transf(aT,Jmin,-1,options);
+
+%%
+% Display the denoising result \(\tilde f\).
+
+clf;
+imageplot(clamp(fTI), strcat(['Hard invariant, SNR=' num2str(snr(f0,fTI),3)]));
+
+%%
+% _Exercice 4:_ (<../missing-exo/ check the solution>)
+% Determine the best threshold \(T\) for both hard and soft thresholding,
+% but now in the translation invariant case. What can you conclude ?
+
+exo4;
+
+
+##### SOURCE END #####
+-->
+   </body>
+</html>

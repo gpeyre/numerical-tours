@@ -1,0 +1,633 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>2-D Haar Wavelets</title>
+      <NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
+               	requires JavaScript to process the mathematics on this page.<BR> 
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 8.2">
+      <meta name="date" content="2014-10-20">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>2-D Haar Wavelets</h1>
+         <introduction>
+            <p>This numerical tour explores 2-D multiresolution analysis with the Haar transform. It was introduced in 1910 by Haar  <a href="#biblio">[Haar1910]</a> and is arguably the first example of wavelet basis.
+            </p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#8">Forward 2-D Haar transform</a></li>
+               <li><a href="#29">Inverse 2-D Haar transform.</a></li>
+               <li><a href="#38">Haar Linear Approximation</a></li>
+               <li><a href="#43">Haar Non-linear Approximation</a></li>
+               <li><a href="#48">Bibliography</a></li>
+            </ul>
+         </div>
+         <h2>Installing toolboxes and setting up the path.<a name="1"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_signal.zip">signal toolbox</a> and <a href="../toolbox_general.zip">general toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_signal</tt> and <tt>toolbox_general</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
+getd(<span class="string">'toolbox_general/'</span>);
+</pre><h2>Forward 2-D Haar transform<a name="8"></a></h2>
+         <p>The Haar transform is the simplest orthogonal wavelet transform. It is computed by iterating difference and averaging between
+            odd and even samples of the signal. Since we are in 2-D, we need to compute the average and difference in the horizontal and
+            then in the vertical direction (or in the reverse order, it does not mind).
+         </p>
+         <p>Size \(N=n&nbsp;\times n\) of the image.</p><pre class="codeinput">n = 256;
+N = n*n;
+</pre><p>First we load an image.</p><pre class="codeinput">name = <span class="string">'hibiscus'</span>;
+f = load_image(name,n);
+f = rescale( sum(f,3) );
+</pre><p>The Haar transform operates over \(J = \log_2(n)-1\) scales. It computes a series of coarse scale and fine scale coefficients
+            \(a_j, d_j^H, d_j^V, d_j^D \in \RR^{n_j \times n_j}\) where \(N_j=2^j\).
+         </p><pre class="codeinput">J = log2(n)-1;
+</pre><p>The forward Haar transform computes \[&nbsp;\Hh(f) = (d_j^\om)_{j=0,\ldots,J}^{\om=H,V,D} \cup \{a_0\} . \] Note that the set of
+            coarse scale coefficients \((a_j)_{j&gt;0}\) are not stored.
+         </p>
+         <p>This transform is orthogonal, meaning \( \Hh \circ \Hh^* = \text{Id} \), and that there is the following conservation of energy
+            \[ \sum_i \abs{f_i}^2 = \norm{f}^2 = \norm{\Hh f}^2 = \sum_{j,\om} \norm{d_j^\om}^2 + \abs{a_0}^2. \]
+         </p>
+         <p>One initilizes the algorithm with \(a_{J+1}=f\).</p>
+         <p>The first step apply a vertical transformtion, which corresponds to applying a 1-D Haar transform on each column, i.e. it
+            computes \(\tilde d_{j},\tilde a_j\) from \(a_{j+1}\) as, for all \(\ell=0,\ldots,2^{j+1}-1\) and \(k=0,\ldots,2^j-1\), \[
+                  \tilde a_j[k,\ell] = \frac{a_{j+1}[2k,\ell] + a_{j+1}[2k+1,\ell]}{\sqrt{2}}   \qandq       \tilde d_j[k,\ell] = \frac{a_{j+1}[2k,\ell]
+            - a_{j+1}[2k+1,\ell]}{\sqrt{2}}. \]
+         </p>
+         <p>Shortcut to compute \(\tilde a_j, \tilde d_j\) from \(a_{j+1}\).</p><pre class="codeinput">haarV = @(a)[   a(1:2:length(a),:) + a(2:2:length(a),:);
+                    a(1:2:length(a),:) - a(2:2:length(a),:) ]/sqrt(2);
+</pre><p>Display the result of the vertical transform.</p><pre class="codeinput">clf;
+imageplot(f,<span class="string">'Original image'</span>,1,2,1);
+imageplot(haarV(f),<span class="string">'Vertical transform'</span>,1,2,2);
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p>One then apply the same 1-D horizontal transform to both \(\tilde a_j, \tilde d_j\) to obtain the resulting matrices at scale
+            \(j\), i.e. to compute \(a_j,d_j^H,d_j^V,d_j^D\) as, for all \(\ell, k =0,\ldots,2^j-1\), \[       a_j[k,\ell] = \frac{\tilde
+            a_{j}[k,2\ell] + \tilde a_{j}[k,2\ell+1]}{\sqrt{2}}   \qandq       d_j^H[k,\ell] = \frac{\tilde a_{j}[k,2\ell] - \tilde a_{j}[k,2\ell+1]}{\sqrt{2}}.
+            \] \[       d_j^V[k,\ell] = \frac{\tilde d_{j}[k,2\ell] + \tilde d_{j}[k,2\ell+1]}{\sqrt{2}}   \qandq       d_j^D[k,\ell]
+            = \frac{\tilde d_{j}[k,2\ell] - \tilde d_{j}[k,2\ell+1]}{\sqrt{2}}. \]
+         </p>
+         <p>Shortcut for the vertical transform.</p><pre class="codeinput">haarH = @(a)haarV(a')';
+</pre><p>Shortcut for one step of Haar transform.</p><pre class="codeinput">haar = @(a)haarH(haarV(a));
+</pre><p>Display the result of the first step of the algorithm.</p><pre class="codeinput">clf;
+imageplot(f,<span class="string">'Original image'</span>,1,2,1);
+subplot(1,2,2);
+plot_wavelet(haar(f),log2(n)-1); title(<span class="string">'Transformed'</span>);
+</pre><img vspace="5" hspace="5" src="index_02.png"> <p>The output of the forward transform is stored in the variable <tt>fw</tt>. At a given iteration indexed by a scale <tt>j</tt>, it will store in <tt>fw(1:2^(j+1),1:2^(j+1))</tt> the variable \(a_{j+1}\).
+         </p>
+         <p>Initializes the algorithm at scale \(j=J\).</p><pre class="codeinput">j = J;
+</pre><p>Initialize <tt>fw</tt> to the full signal.
+         </p><pre class="codeinput">fw = f;
+</pre><p>At iteration indexed by \(j\), select the sub-part of the signal containing \(a_{j+1}\), and apply it the Haar operator.</p><pre class="codeinput">fw(1:2^(j+1),1:2^(j+1)) = haar(fw(1:2^(j+1),1:2^(j+1)));
+</pre><p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Implement a full wavelet transform that extract iteratively wavelet coefficients, by repeating these steps. Take care of
+            choosing the correct number of steps.
+         </p><pre class="codeinput">exo1;
+</pre><img vspace="5" hspace="5" src="index_03.png"> <p>Check that the transform is orthogonal, which means that the energy of the coefficient is the same as the energy of the signal.</p><pre class="codeinput">fprintf(<span class="string">'Should be 0: %.3f.\n'</span>, (norm(f(:))-norm(fw(:)))/norm(f(:)));
+</pre><pre class="codeoutput">Should be 0: 0.000.
+</pre><p>Display the wavelet coefficients.</p><pre class="codeinput">clf;
+subplot(1,2,1);
+imageplot(f); title(<span class="string">'Original'</span>);
+subplot(1,2,2);
+plot_wavelet(fw, 1); title(<span class="string">'Transformed'</span>);
+</pre><img vspace="5" hspace="5" src="index_04.png"> <h2>Inverse 2-D Haar transform.<a name="29"></a></h2>
+         <p>The backward transform computes a signal \(f_1 = \Hh^*(h)\) from a set of coefficients \(  h = (d_j^\om)_{j,\om} \cup \{a_0\}
+            \)
+         </p>
+         <p>If \(h = \Hh(f)\) are the coefficients of an image \(f\), one recovers \( f_1 = f \).</p>
+         <p>The inverse transform starts from \(j=0\), and computes \(a_{j+1}\) from the knowledge of \(a_j,d_j\) by first inverting the
+            horizontal transform, for all \(k,\ell = 0,\ldots,2^j-1\), \[       \tilde a_{j}[k,2\ell] = \frac{ a_j[k,\ell] + a_j^H[k,\ell]
+            }{\sqrt{2}}       \qandq       \tilde a_{j}[k,2\ell+1] = \frac{ a_j[k,\ell] - a_j^H[k,\ell] }{\sqrt{2}} \] \[       \tilde
+            d_{j}[k,2\ell] = \frac{ d_j^V[k,\ell] + d_j^D[k,\ell] }{\sqrt{2}}       \qandq       \tilde d_{j}[k,2\ell+1] = \frac{ d_j^V[k,\ell]
+            - d_j^D[k,\ell]       }{\sqrt{2}}. \]
+         </p><pre class="codeinput">ihaarV = @(a,d)assign( zeros(2*size(a,1),size(a,2)), <span class="keyword">...</span>
+        [1:2:2*size(a,1), 2:2:2*size(a,1)], [a+d; a-d]/sqrt(2), 1 );
+</pre><p>Then one invert the vertical transform, for all \(k = 0,\ldots,2^j-1\) and for all \(\ell=0,\ldots,2^{j+1}-1\) \[        a_{j}[2k,\ell]
+            = \frac{ \tilde a_j[k,\ell] + \tilde d_j[k,\ell] }{\sqrt{2}}       \qandq        a_{j}[2k+1,\ell] = \frac{ \tilde a_j[k,\ell]
+            - \tilde d_j[k,\ell] }{\sqrt{2}} \]
+         </p><pre class="codeinput">ihaarH = @(a,d)ihaarV(a',d')';
+</pre><p>Shortcut to invert horizontal and then vertical transforms. This defines the invert of the Haar transform.</p><pre class="codeinput">ihaar = @(a,dH,dV,dD)ihaarV( ihaarH(a,dH), ihaarH(dV,dD) );
+</pre><p>Initialize the signal to recover \(f_1\) as the transformed coefficient, and select the smallest possible scale \(j=0\).</p><pre class="codeinput">f1 = fw;
+j = 0;
+</pre><p>Apply one step of inverse transform.</p><pre class="codeinput">s = 1:2^j; t = 2^j+1:2^(j+1); u = 1:2^(j+1);
+f1(u,u) = ihaar(f1(s,s),f1(s,t),f1(t,s),f1(t,t));
+</pre><p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Write the inverse wavelet transform that computes \(f_1\) from coefficients <tt>fW</tt>.
+         </p><pre class="codeinput">exo2;
+</pre><img vspace="5" hspace="5" src="index_05.png"> <p>Check that we recover exactly the original image.</p><pre class="codeinput">fprintf(<span class="string">'Should be 0: %.3f.\n'</span>, (norm(f-f1))/norm(f));
+</pre><pre class="codeoutput">Should be 0: 0.000.
+</pre><h2>Haar Linear Approximation<a name="38"></a></h2>
+         <p>Linear approximation is obtained by setting to zeros the Haar coefficient coefficients above a certain scale \(j\).</p>
+         <p>Cut-off scale.</p><pre class="codeinput">j = J-1;
+</pre><p>Set to zero fine scale coefficients.</p><pre class="codeinput">fw1 = zeros(n); fw1(1:2^j,1:2^j) = fw(1:2^j,1:2^j);
+</pre><p>Computing the signal \(f_1\) corresponding to these coefficients <tt>fw1</tt> computes the orthogonal projection on the space of images that are constant on disjoint squares of length \(N/2^j \times
+            N/2^j\).
+         </p>
+         <p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) Display the reconstructed signal obtained from <tt>fw1</tt>, for a decreasing cut-off scale \(j\).
+         </p><pre class="codeinput">exo3;
+</pre><img vspace="5" hspace="5" src="index_06.png"> <h2>Haar Non-linear Approximation<a name="43"></a></h2>
+         <p>Non-linear approximation is obtained by thresholding low amplitude wavelet coefficients. It is defined as \[ f_T = \Hh^* \circ
+            S_T \circ \Hh(f) \] where \(S_T\) is the hard tresholding operator \[ S_T(x)_i = \choice{       x_i \qifq \abs{x_i}&gt;T, \\
+                  0 \quad \text{otherwise}.   }. \]
+         </p><pre class="codeinput">S = @(x,T) x .* (abs(x)&gt;T);
+</pre><p>Set the threshold value.</p><pre class="codeinput">T = .1;
+</pre><p>Threshold the coefficients.</p><pre class="codeinput">fwT = S(fw,T);
+</pre><p>Display the coefficients before and after thresholding.</p><pre class="codeinput">clf;
+subplot(1,2,1);
+plot_wavelet(fw); axis(<span class="string">'tight'</span>); title(<span class="string">'Original coefficients'</span>);
+subplot(1,2,2);
+plot_wavelet(fwT); axis(<span class="string">'tight'</span>); title(<span class="string">'Thresholded coefficients'</span>);
+</pre><img vspace="5" hspace="5" src="index_07.png"> <p><i>Exercice 4:</i> (<a href="../missing-exo/">check the solution</a>) Find the threshold \(T\) so that the number of remaining coefficients in <tt>fwT</tt> is a fixed number \(m\). Use this threshold to compute <tt>fwT</tt> and then display the corresponding approximation \(f_1\) of \(f\). Try for an increasing number \(m\) of coeffiients.
+         </p><pre class="codeinput">exo4;
+</pre><img vspace="5" hspace="5" src="index_08.png"> <h2>Bibliography<a name="48"></a></h2>
+         <p><a name="biblio"></a></p>
+         <div>
+            <ul>
+               <li>[Haar1910] Haar A. <a href="http://dx.doi.org/10.1007/BF01456927"><i>Zur Theorie der orthogonalen Funktionensysteme</i></a>, Mathematische Annalen, 69, pp 331-371, 1910.
+               </li>
+            </ul>
+         </div>
+         <p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% 2-D Haar Wavelets
+% This numerical tour explores 2-D multiresolution analysis with the Haar transform.
+% It was introduced in 1910 by Haar  <#biblio [Haar1910]>
+% and is arguably the first example of wavelet basis.
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_signal.zip signal toolbox> and 
+% <../toolbox_general.zip general toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_signal| and 
+% |toolbox_general|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_signal/');
+getd('toolbox_general/');
+
+%% Forward 2-D Haar transform
+% The Haar transform is the simplest orthogonal wavelet transform. It is
+% computed by iterating difference and averaging between odd and even
+% samples of the signal. Since we are in 2-D, we need to compute the average
+% and difference in the horizontal and then in the vertical direction (or
+% in the reverse order, it does not mind).
+
+%%
+% Size \(N=n \times n\) of the image.
+
+n = 256;
+N = n*n;
+
+%%
+% First we load an image.
+
+name = 'hibiscus';
+f = load_image(name,n);
+f = rescale( sum(f,3) );
+
+
+%%
+% The Haar transform operates over \(J = \log_2(n)-1\) scales.
+% It computes a series of coarse scale and fine scale coefficients
+% \(a_j, d_j^H, d_j^V, d_j^D \in \RR^{n_j \times n_j}\) where \(N_j=2^j\).
+
+J = log2(n)-1;
+
+%%
+% The forward Haar transform computes
+% \[ \Hh(f) = (d_j^\om)_{j=0,\ldots,J}^{\om=H,V,D} \cup \{a_0\} . \]
+% Note that the set of coarse scale coefficients \((a_j)_{j>0}\) are not
+% stored.
+
+%%
+% This transform is orthogonal, meaning \( \Hh \circ \Hh^* = \text{Id} \),
+% and that there is the following conservation of energy
+% \[ \sum_i \abs{f_i}^2 = \norm{f}^2 = \norm{\Hh f}^2 = \sum_{j,\om} \norm{d_j^\om}^2 + \abs{a_0}^2. \]
+
+%%
+% One initilizes the algorithm with \(a_{J+1}=f\). 
+
+%%
+% The first step apply a vertical transformtion, which corresponds to applying a 1-D
+% Haar transform on each column, i.e.
+% it computes \(\tilde d_{j},\tilde a_j\) from \(a_{j+1}\) as, for all
+% \(\ell=0,\ldots,2^{j+1}-1\) and \(k=0,\ldots,2^j-1\), 
+% \[
+%       \tilde a_j[k,\ell] = \frac{a_{j+1}[2k,\ell] + a_{j+1}[2k+1,\ell]}{\sqrt{2}}
+%   \qandq 
+%       \tilde d_j[k,\ell] = \frac{a_{j+1}[2k,\ell] - a_{j+1}[2k+1,\ell]}{\sqrt{2}}. \]
+
+
+%%
+% Shortcut to compute \(\tilde a_j, \tilde d_j\) from \(a_{j+1}\).
+
+
+haarV = @(a)[   a(1:2:length(a),:) + a(2:2:length(a),:);
+                    a(1:2:length(a),:) - a(2:2:length(a),:) ]/sqrt(2); 
+
+                
+%%
+% Display the result of the vertical transform.
+
+clf;
+imageplot(f,'Original image',1,2,1);
+imageplot(haarV(f),'Vertical transform',1,2,2);
+
+%%
+% One then apply the same 1-D horizontal transform to both \(\tilde a_j,
+% \tilde d_j\) to obtain the resulting matrices at scale \(j\), 
+% i.e. to compute \(a_j,d_j^H,d_j^V,d_j^D\) as, 
+% for all \(\ell, k =0,\ldots,2^j-1\), 
+% \[ 
+%       a_j[k,\ell] = \frac{\tilde a_{j}[k,2\ell] + \tilde a_{j}[k,2\ell+1]}{\sqrt{2}}
+%   \qandq 
+%       d_j^H[k,\ell] = \frac{\tilde a_{j}[k,2\ell] - \tilde a_{j}[k,2\ell+1]}{\sqrt{2}}. \]
+% \[ 
+%       d_j^V[k,\ell] = \frac{\tilde d_{j}[k,2\ell] + \tilde d_{j}[k,2\ell+1]}{\sqrt{2}}
+%   \qandq 
+%       d_j^D[k,\ell] = \frac{\tilde d_{j}[k,2\ell] - \tilde d_{j}[k,2\ell+1]}{\sqrt{2}}. \]
+
+%%
+% Shortcut for the vertical transform.
+
+haarH = @(a)haarV(a')';
+
+%%
+% Shortcut for one step of Haar transform.
+
+haar = @(a)haarH(haarV(a));
+
+
+%%
+% Display the result of the first step of the algorithm.
+
+clf;
+imageplot(f,'Original image',1,2,1);
+subplot(1,2,2);
+plot_wavelet(haar(f),log2(n)-1); title('Transformed');
+
+%%
+% The output of the forward transform is stored in the variable |fw|.
+% At a given iteration indexed by a scale |j|, it will store in |fw(1:2^(j+1),1:2^(j+1))|
+% the variable \(a_{j+1}\).
+
+%%
+% Initializes the algorithm at scale \(j=J\).
+
+j = J;
+
+%%
+% Initialize |fw| to the full signal. 
+
+fw = f;
+
+%%
+% At iteration indexed by \(j\), 
+% select the sub-part of the signal containing \(a_{j+1}\), 
+% and apply it the Haar operator.
+
+fw(1:2^(j+1),1:2^(j+1)) = haar(fw(1:2^(j+1),1:2^(j+1)));
+
+%%
+% _Exercice 1:_ (<../missing-exo/ check the solution>)
+% Implement a full wavelet transform that extract iteratively wavelet
+% coefficients, by repeating these steps. Take care of choosing the
+% correct number of steps.
+
+exo1;
+
+%% 
+% Check that the transform is
+% orthogonal, which means that the energy of the coefficient is the same
+% as the energy of the signal.
+
+fprintf('Should be 0: %.3f.\n', (norm(f(:))-norm(fw(:)))/norm(f(:)));
+
+%% 
+% Display the wavelet coefficients.
+
+clf;
+subplot(1,2,1);
+imageplot(f); title('Original');
+subplot(1,2,2);
+plot_wavelet(fw, 1); title('Transformed');
+
+%% Inverse 2-D Haar transform.
+% The backward transform computes a signal \(f_1 = \Hh^*(h)\) from a set of
+% coefficients \(  h = (d_j^\om)_{j,\om} \cup \{a_0\} \)
+
+%%
+% If \(h = \Hh(f)\) are the coefficients of an image \(f\), one recovers
+% \( f_1 = f \).
+
+
+%%
+% The inverse transform starts from \(j=0\), and computes \(a_{j+1}\)
+% from the knowledge of \(a_j,d_j\) by first inverting the horizontal
+% transform, for all \(k,\ell = 0,\ldots,2^j-1\), 
+% \[
+%       \tilde a_{j}[k,2\ell] = \frac{ a_j[k,\ell] + a_j^H[k,\ell] }{\sqrt{2}}
+%       \qandq
+%       \tilde a_{j}[k,2\ell+1] = \frac{ a_j[k,\ell] - a_j^H[k,\ell] }{\sqrt{2}}
+% \]
+% \[
+%       \tilde d_{j}[k,2\ell] = \frac{ d_j^V[k,\ell] + d_j^D[k,\ell] }{\sqrt{2}}
+%       \qandq
+%       \tilde d_{j}[k,2\ell+1] = \frac{ d_j^V[k,\ell] - d_j^D[k,\ell]
+%       }{\sqrt{2}}.
+% \]
+
+ihaarV = @(a,d)assign( zeros(2*size(a,1),size(a,2)), ...
+        [1:2:2*size(a,1), 2:2:2*size(a,1)], [a+d; a-d]/sqrt(2), 1 );
+
+%%
+% Then one invert the vertical transform, for all \(k = 0,\ldots,2^j-1\) and for
+% all \(\ell=0,\ldots,2^{j+1}-1\)
+% \[
+%        a_{j}[2k,\ell] = \frac{ \tilde a_j[k,\ell] + \tilde d_j[k,\ell] }{\sqrt{2}}
+%       \qandq
+%        a_{j}[2k+1,\ell] = \frac{ \tilde a_j[k,\ell] - \tilde d_j[k,\ell] }{\sqrt{2}}
+% \]
+
+ihaarH = @(a,d)ihaarV(a',d')';
+
+%%
+% Shortcut to invert horizontal and then vertical transforms. This defines
+% the invert of the Haar transform.
+
+ihaar = @(a,dH,dV,dD)ihaarV( ihaarH(a,dH), ihaarH(dV,dD) );
+
+%%
+% Initialize the signal to recover \(f_1\) as the transformed coefficient, and
+% select the smallest possible scale \(j=0\).
+
+f1 = fw;
+j = 0;
+
+%% 
+% Apply one step of inverse transform.
+
+s = 1:2^j; t = 2^j+1:2^(j+1); u = 1:2^(j+1);
+f1(u,u) = ihaar(f1(s,s),f1(s,t),f1(t,s),f1(t,t)); 
+
+%%
+% _Exercice 2:_ (<../missing-exo/ check the solution>)
+% Write the inverse wavelet transform that computes \(f_1\) from 
+% coefficients |fW|. 
+
+exo2;
+
+%%
+% Check that we recover exactly the original image.
+
+fprintf('Should be 0: %.3f.\n', (norm(f-f1))/norm(f));
+
+
+%% Haar Linear Approximation
+% Linear approximation is obtained by setting to zeros the
+% Haar coefficient coefficients above a certain scale \(j\).
+
+%%
+% Cut-off scale.
+
+j = J-1;
+
+%%
+% Set to zero fine scale coefficients.
+
+fw1 = zeros(n); fw1(1:2^j,1:2^j) = fw(1:2^j,1:2^j);
+
+%%
+% Computing the signal \(f_1\) corresponding to these coefficients |fw1|
+% computes the orthogonal projection on the space of images that are
+% constant on disjoint squares of length \(N/2^j \times N/2^j\).
+
+%%
+% _Exercice 3:_ (<../missing-exo/ check the solution>)
+% Display the reconstructed signal obtained from |fw1|, for a decreasing cut-off scale \(j\).
+
+exo3;
+
+%% Haar Non-linear Approximation
+% Non-linear approximation is obtained by thresholding low amplitude
+% wavelet coefficients.
+% It is defined as 
+% \[ f_T = \Hh^* \circ S_T \circ \Hh(f) \]
+% where \(S_T\) is the hard tresholding operator 
+% \[ S_T(x)_i = \choice{
+%       x_i \qifq \abs{x_i}>T, \\
+%       0 \quad \text{otherwise}.
+%   }. \]
+
+S = @(x,T) x .* (abs(x)>T);
+
+%%
+% Set the threshold value.
+
+T = .1;
+
+%%
+% Threshold the coefficients.
+
+fwT = S(fw,T); 
+
+%%
+% Display the coefficients before and after thresholding.
+
+clf;
+subplot(1,2,1);
+plot_wavelet(fw); axis('tight'); title('Original coefficients');
+subplot(1,2,2);
+plot_wavelet(fwT); axis('tight'); title('Thresholded coefficients');
+
+%%
+% _Exercice 4:_ (<../missing-exo/ check the solution>)
+% Find the threshold \(T\) so that the number of remaining coefficients in
+% |fwT| is a fixed number \(m\). Use this threshold to compute |fwT| and then display
+% the corresponding approximation \(f_1\) of \(f\). Try for an increasing number \(m\) of coeffiients.
+
+exo4;
+
+%% Bibliography
+% <html><a name="biblio"></a></html>
+
+%%
+% * [Haar1910] Haar A. <http://dx.doi.org/10.1007/BF01456927 _Zur Theorie der orthogonalen Funktionensysteme_>, Mathematische Annalen, 69, pp 331-371, 1910.
+
+
+##### SOURCE END #####
+-->
+   </body>
+</html>

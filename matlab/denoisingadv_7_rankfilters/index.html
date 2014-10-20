@@ -1,0 +1,712 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>Rank Filters for Image Processing</title>
+      <NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
+               	requires JavaScript to process the mathematics on this page.<BR> 
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 8.2">
+      <meta name="date" content="2014-10-20">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>Rank Filters for Image Processing</h1>
+         <introduction>
+            <p>This numerical tour explores non-linear local filters that proceeds by ordering the pixels in a neighboorhood and selecting
+               a given ranked entry.
+            </p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#8">Continuous Rank Filtering</a></li>
+               <li><a href="#15">Patches in Images</a></li>
+               <li><a href="#30">Linear Filter</a></li>
+               <li><a href="#34">Opening and Closing Rank Filters</a></li>
+               <li><a href="#44">Median Filter</a></li>
+               <li><a href="#53">Bibliography</a></li>
+            </ul>
+         </div>
+         <h2>Installing toolboxes and setting up the path.<a name="1"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_signal.zip">signal toolbox</a> and <a href="../toolbox_general.zip">general toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_signal</tt> and <tt>toolbox_general</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
+getd(<span class="string">'toolbox_general/'</span>);
+</pre><h2>Continuous Rank Filtering<a name="8"></a></h2>
+         <p>We consider an image \(f : [0,1]^2 \rightarrow \RR\).</p>
+         <p>For any \(\beta \in [0,1]\), we define the rank filter \(\phi_\be^B\) of order \(\beta\) associated to a set \(B\) to be \[
+            g = \phi_\beta^B(f)   \qwhereq   g(x) = \inf \: \enscond{t \in \RR}{           \mu( f^{-1}(]-\infty,t]) \cap x+B ) \geq \mu(B)/2
+            }. \] where \(\mu\) is the Lebesgue measure on \(\RR\).
+         </p>
+         <p>One usually assumes that \(B\) is the ball of radius \(\epsilon&gt;0\) \[ B = B_\epsilon = \enscond{x}{\norm{x} \leq \epsilon}.
+            \]
+         </p>
+         <p>When \(\be=0\) (resp. \(\be=1\), resp. \(\be=1/2\)), then \(g(x)\) is the miniminimum (resp. maximum, resp. median) value
+            of \(f\) in a small neighboorhood of radius \(\epsilon\) \[ \phi_0^{B_\epsilon}(f)(x) = \umin{\norm{y-x} \leq \epsilon} f(y),
+            \] \[ \phi_{1/2}^{B_\epsilon}(f)(x) = \umax{\norm{y-x} \leq \epsilon} f(y), \] \[ \phi_{1}^{B_\epsilon}(f)(x) = \underset{\norm{y-x}
+            \leq \epsilon}{\text{median}} f(y). \]
+         </p>
+         <p>The operator \(\phi_\beta^B\) is contrast-invariant, meaning that it computes with increasing functions \( \psi : \RR \rightarrow
+            \RR \) \[ \phi_\beta^B \circ \psi = \psi \circ \phi_\beta^B. \] The axiomatic study of contrast invariant operator was initiated
+            in the comunity of mathematical morphology, see <a href="#biblio">[Matheron75]</a>, <a href="#biblio">[Tukey77]</a>, <a href="#biblio">[Serra82]</a>.
+         </p>
+         <p>Note also that there exist generalization of rank filters (and in particular the median filter) to vector valued images \(
+            f : [0,1]^2 \rightarrow \RR^d\). Since the notion of rank does not exists anymore, one has to rely on variational caracteriation
+            of the median, see for instance <a href="#biblio">[CasSapChu00]</a>.
+         </p>
+         <p>The medial filtering is the most popular rank filter. It is particularly efficient to remove impulse noise, see for instance
+            <a href="#biblio">[Piterbarg84]</a>, <a href="#biblio">[FanHall94]</a>. See also <a href="#biblio">[AriasDon99]</a> for a theoritical analysis of median filtering and of a two-stage iterated version.
+         </p>
+         <h2>Patches in Images<a name="15"></a></h2>
+         <p>We apply rank filters to discretized images by interpreting them as piecewise constant functions.</p>
+         <p>Size \(N = n \times n\) of the image.</p><pre class="codeinput">n = 256;
+</pre><p>We load an image \(f_0 \in \RR^N\).</p><pre class="codeinput">name = <span class="string">'hibiscus'</span>;
+f0 = load_image(name, n);
+f0 = rescale(crop( sum(f0,3) ,n));
+</pre><p>Display \(f_0\).</p><pre class="codeinput">clf;
+imageplot(f0);
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p>Noise level \(\si\).</p><pre class="codeinput">sigma = .04;
+</pre><p>Generate a noisy image \(f=f_0+\epsilon\) where \(\epsilon \times \Nn(0,\si^2\text{Id}_N)\).</p><pre class="codeinput">f = f0 + randn(n,n)*sigma;
+</pre><p>Display \(f\).</p><pre class="codeinput">clf;
+imageplot(clamp(f));
+</pre><img vspace="5" hspace="5" src="index_02.png"> <p>For simplicity, we consider the case where the set \(B\) is a square of \(w_1 \times w_2\) pixels. where we denote \(w\) to
+            be the half width of the patches, and \(w_1=2w+1\) the full width.
+         </p><pre class="codeinput">w = 3;
+w1 = 2*w+1;
+</pre><p>We define the patch extraction operator \[ p = p_x(f) \in \RR^{w_1 \times w_1} \qwhereq \forall -w \leq s_1,s_2 \leq w, \quad
+            p(s) = f(x+s). \]
+         </p>
+         <p>We now define the function \(\Pi(f) = (p_x(f))_x \) that extracts all possible patches.</p>
+         <p>We set up large \((n,n,w_1,w_1)\) matrices to index the the X and Y position of the pixel to extract.</p><pre class="codeinput">[Y,X] = meshgrid(1:n,1:n);
+[dY,dX] = meshgrid(-w:w,-w:w);
+dX = reshape(dX, [1 1 w1 w1]);
+dY = reshape(dY, [1 1 w1 w1]);
+X = repmat(X, [1 1 w1 w1]) + repmat(dX, [n n 1 1]);
+Y = repmat(Y, [1 1 w1 w1]) + repmat(dY, [n n 1 1]);
+</pre><p>We handle boundary condition by reflexion</p><pre class="codeinput">X(X&lt;1) = 2-X(X&lt;1); Y(Y&lt;1) = 2-Y(Y&lt;1);
+X(X&gt;n) = 2*n-X(X&gt;n); Y(Y&gt;n) = 2*n-Y(Y&gt;n);
+</pre><p>Patch extractor operator \(\Pi\).</p><pre class="codeinput">Pi = @(f)reshape( f(X + (Y-1)*n), [n n w1*w1] );
+</pre><p>We store the patches \(\Pi(f)\) as a \(n \times n \times w_1^2\) matrix \(P\) such that, for each pixel \(x\), \(P(x)\) is
+            a vector of size \(w_1^2\) storing the entries of \(p_x(f)\).
+         </p><pre class="codeinput">P = Pi(f);
+</pre><p>Display some example of patches</p><pre class="codeinput">clf;
+<span class="keyword">for</span> i=1:16
+    x = floor( rand*(n-1)+1 );
+    y = floor( rand*(n-1)+1 );
+    imageplot( reshape(P(x,y,:,:), w1,w1), <span class="string">''</span>, 4,4,i );
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="index_03.png"> <h2>Linear Filter<a name="30"></a></h2>
+         <p>A linear filter (convolution) can be computed using this patch representation as \[ g(x) = \sum_{i} \la_i p_x(f)_i.  \]</p>
+         <p>In the case where \(\la_i=1/w_1^2\), this defines the mean value inside the patch: \[ g(x) = \frac{1}{w_1^2} \sum_{i} p_x(f)_i.
+             \]
+         </p><pre class="codeinput">Pmean = @(f)mean(Pi(f),3);
+</pre><p>Display it.</p><pre class="codeinput">clf;
+imageplot(Pmean(f));
+</pre><img vspace="5" hspace="5" src="index_04.png"> <p>Note that this is not a rank filter (this a linear filter) and that it is not contrast invariant. This is shown by displaying
+            \[ \phi_\beta^B(f) - \psi^{-1} \circ \phi_\beta^B \circ \psi(f) \] which is non-zero.
+         </p><pre class="codeinput">p = 100;
+psi = @(f)f.^(1/p);
+ipsi = @(f)f.^p;
+imageplot(Pmean(abs(f)) - ipsi(Pmean(psi(abs(f)))));
+</pre><img vspace="5" hspace="5" src="index_05.png"> <h2>Opening and Closing Rank Filters<a name="34"></a></h2>
+         <p>We now come back to the discrete computation of a rank filter \(\phi_\be^B\) for \(B\) a square of width \(w_1 \times w_1\)
+            pixels.
+         </p>
+         <p>It is defined as \(g=\phi_\beta^B(f)\) where \[ g(x) = \text{rank}_{r(\beta)}( p_x(f) ) \] where \(\text{rank}_r(v)\) extracted
+            the element of order \(k\) in the sorted value of \(v \in \RR^Q\) (here \(Q=w_1^2\)). More precisely, we denote \[ v_{\si(1)}
+            \leq v_{\si(2)} \leq \ldots \leq v_{\si(Q)} \] where \(\si \in \Sigma_Q\) is an ordering permutation, which can be computed
+            in \( O(N \log(N)) \) operations with the QuickSort algorithm. Then the ranked valued is \[ \text{rank}_r(v) = v_{\si(r)}.
+            \]
+         </p>
+         <p>In order to be consistent with the continuous definition of the rank filter, one should define the rank as \[ r=r(\beta) =
+            \lfloor Q r \rfloor. \]
+         </p><pre class="codeinput">r = @(beta)min(ceil(beta*w1*w1)+1,w1*w1);
+</pre><p>Shortcut for the rank filter.</p><pre class="codeinput">subsample = @(x,s)x(:,:,s);
+phi = @(f,beta)subsample(sort(Pi(f), 3), r(beta));
+</pre><p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Compute the rank filter for several values of \(\beta\).
+         </p><pre class="codeinput">exo1;
+</pre><img vspace="5" hspace="5" src="index_06.png"> <p>The case \(\beta=0\) corresponds to the closing operator from mathematical morphology (min filter).</p><pre class="codeinput">closing = @(f)phi(f,0);
+clf;
+imageplot(closing(f));
+</pre><img vspace="5" hspace="5" src="index_07.png"> <p>The case \(\beta=1\) corresponds to the opening operator from mathematical morphology (max filter).</p><pre class="codeinput">opening = @(f)phi(f,1);
+clf;
+imageplot(opening(f));
+</pre><img vspace="5" hspace="5" src="index_08.png"> <p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Compute a closing followed by an opening.
+         </p><pre class="codeinput">exo2;
+</pre><img vspace="5" hspace="5" src="index_09.png"> <p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) Compute an opening followed by a closing.
+         </p><pre class="codeinput">exo3;
+</pre><img vspace="5" hspace="5" src="index_10.png"> <p><i>Exercice 4:</i> (<a href="../missing-exo/">check the solution</a>) Perform iterated opening and closing.
+         </p><pre class="codeinput">exo4;
+</pre><img vspace="5" hspace="5" src="index_11.png"> <h2>Median Filter<a name="44"></a></h2>
+         <p>The median filter corresponds to the case where \(\be=1/2\).</p><pre class="codeinput">medfilt = @(f)phi(f,1/2);
+</pre><p>Display the result.</p><pre class="codeinput">clf;
+imageplot(medfilt(f));
+</pre><img vspace="5" hspace="5" src="index_12.png"> <p>Iterated median filtering computes \[ f^{(\ell+1)} = \phi_{1/2}^B( f^{(\ell)} ). \] As already mentionned, one can show that
+            a properly
+         </p>
+         <p>In the case where \(f\) is of class \(C^3\) and \(\nabla f(x) \neq 0\), one has the following Taylor expansion \[ \phi_{1/2}^{B_\epsilon}(x)
+            =   f(x) + \frac{\epsilon^2}{6} \norm{\nabla f(x)}       \text{Curv}(f)(x) + O(\epsilon^{7/3}) \] where the curvature operator
+            is \[ \text{Curv}(f) = \text{div}\pa{       \frac{\nabla f}{\norm{\nabla f}}   }. \]
+         </p>
+         <p>Intuitively, it means that if one iterates the operator \( \phi_{1/2}^{B_\epsilon} \) with a proper re-scaling \(\ell \leftrightarrow
+            t\) and when \(\epsilon \rightarrow 0\), then \(f^{(\ell)}\) tends to the solution to the famous mean-curvature motion PDE
+            \[ \pd{f}{t} = \norm{\nabla f} \text{Curv}(f).  \]
+         </p>
+         <p>This conjecture was initially mentionned in <a href="#biblio">[BeMerOsh92]</a>. This was rigorously proved in <a href="#biblio">[Ishii95]</a>, <a href="#biblio">[BarGeorg]</a>, <a href="#biblio">[Evans93]</a> using the machinery of viscosity solutions.
+         </p>
+         <p>Similar result holds for other class of contrast invariant operator, see for instance <a href="#biblio">[Cao98]</a> for affine invariant operators, and <a href="#biblio">[GuiMoRy04]</a> for an axiomatic and general framework.
+         </p>
+         <p><i>Exercice 5:</i> (<a href="../missing-exo/">check the solution</a>) Perform iterated median filtering, and store the output in <tt>f1</tt>.
+         </p><pre class="codeinput">exo5;
+</pre><img vspace="5" hspace="5" src="index_13.png"> <p>Display.</p><pre class="codeinput">clf;
+imageplot(f1);
+</pre><img vspace="5" hspace="5" src="index_14.png"> <h2>Bibliography<a name="53"></a></h2>
+         <p><a name="biblio"></a></p>
+         <div>
+            <ul>
+               <li>[Matheron75]&nbsp;G. Matheron, <a href="http://books.google.fr/books/about/Random_sets_and_integral_geometry.html?hl=fr&amp;id=bgzvAAAAMAAJ"><i>Random Sets and Integral Geometry</i></a>, Wiley, New York, 1975
+               </li>
+               <li>[Serra82]&nbsp;J. Serra, <a href="http://dl.acm.org/citation.cfm?id=1098652"><i>Image Analysis and Mathematical Morphology</i></a>, Academic Press, London, 1982
+               </li>
+               <li>[Tukey77]&nbsp;J. W. Tukey, <a href="http://books.google.fr/books/about/Exploratory_Data_Analysis.html?hl=fr&amp;id=UT9dAAAAIAAJ"><i>Exploratory Data Analysis</i></a>. Addison-Wesley, Reading, MA, 1977
+               </li>
+               <li>[BeMerOsh92] J. Bence, B. Merriman, S. Osher, <a href="http://books.google.fr/books/about/Diffusion_Generated_Motion_by_Mean_Curva.html?id=DYi-GwAACAAJ&amp;redir_esc=y"><i>Diffusionn generated motion by mean curvature</i></a>, Selected Lectures in Math. Amer. Math. Soc., Providence, 1992
+               </li>
+               <li>[Cao98]&nbsp;F. Cao, <a href="http://dx.doi.org/10.1016/S0021-7824(01)80003-9"><i>Partial differential equations and mathematical morphology</i></a>. J.Math. Pures Appl. 77 909?941, 1998
+               </li>
+               <li>[Ishii95]&nbsp;H. Ishii, <i>A generalization of the Bence, Merriman and Osher algorithm for motion by mean curvature</i>, 1995
+               </li>
+               <li>[BarGeorg] G. Barles and C. Georgelin, <a href="http://dx.doi.org/10.1137/0732020"><i>A Simple Proof of Convergence for an Approximation Scheme for Computing Motions by Mean Curvature</i></a>, SIAM J. Numer. Anal., 32(2), 484?500, 1995.
+               </li>
+               <li>[Evans93]&nbsp;L. C. Evans, <a href="http://cat.inist.fr/?aModele=afficheN&amp;cpsidt=3899933"><i>Convergence of an algorithm for mean curvature motion</i></a>, Indiana Univ. Math. J., 42, pp. 533?557, 1993.
+               </li>
+               <li>[GuiMoRy04] F. Guichard, J-M. Morel and Robert Ryan, <i>Contrast invariant image analysis and PDE's</i>, 2004.
+               </li>
+               <li>[CasSapChu00]&nbsp;V. Caselles, G. Sapiro and D. H. Chung, <a href="http://dx.doi.org/10.1023/A:1008310305351"><i>Vector median filters, inf-sup operations, and coupled PDEs: Theoretical connections</i></a>. J. Math. Imaging Vision 12 109?119, 2000
+               </li>
+               <li>[Piterbarg84]&nbsp;L. I. Piterbarg, <a href="http://www.mathnet.ru/php/archive.phtml?wshow=paper&amp;jrnid=ppi&amp;paperid=1122&amp;option_lang=eng"><i>Median filtering of random processes</i></a>, Problemy Peredachi Informatsii, 20, 65?73, 1984.
+               </li>
+               <li>[FanHall94]&nbsp;J. Fan and P. Hall, <a href="http://dx.doi.org/10.1214/aos/1176325499"><i>On curve estimation by minimizing mean absolute deviation and its implications</i></a>. Ann. Statist. 22 867?885, 1994.
+               </li>
+               <li>[AriasDon99] E. Arias-Castro and D. L. Donoho, <a href="http://dx.doi.org/10.1214/08-AOS604"><i>Does the median filter truly preserve edges better than linear filtering?</i></a>, The Annals of Statistics, Vol. 37, No. 3, 1172-1206, 2009.
+               </li>
+            </ul>
+         </div>
+         <p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Rank Filters for Image Processing
+% This numerical tour explores non-linear local filters that proceeds by
+% ordering the pixels in a neighboorhood and selecting a given ranked
+% entry.
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_signal.zip signal toolbox> and 
+% <../toolbox_general.zip general toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_signal| and 
+% |toolbox_general|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_signal/');
+getd('toolbox_general/');
+
+%% Continuous Rank Filtering
+% We consider an image \(f : [0,1]^2 \rightarrow \RR\). 
+
+%%
+% For any \(\beta \in [0,1]\), we define the rank filter
+% \(\phi_\be^B\) of order \(\beta\) associated to a set \(B\) to be 
+% \[ g = \phi_\beta^B(f) 
+%   \qwhereq
+%   g(x) = \inf \: \enscond{t \in \RR}{
+%           \mu( f^{-1}(]-\infty,t]) \cap x+B ) \geq \mu(B)/2 }. \]
+% where \(\mu\) is the Lebesgue measure on \(\RR\).
+
+%%
+% One usually assumes that \(B\) is the ball of radius \(\epsilon>0\)
+% \[ B = B_\epsilon = \enscond{x}{\norm{x} \leq \epsilon}. \]
+
+%%
+% When \(\be=0\) (resp. \(\be=1\), resp.
+% \(\be=1/2\)), then \(g(x)\) is the miniminimum 
+% (resp. maximum, resp. median) value of \(f\) in a small neighboorhood of 
+% radius \(\epsilon\)
+% \[ \phi_0^{B_\epsilon}(f)(x) = \umin{\norm{y-x} \leq \epsilon} f(y), \]
+% \[ \phi_{1/2}^{B_\epsilon}(f)(x) = \umax{\norm{y-x} \leq \epsilon} f(y), \]
+% \[ \phi_{1}^{B_\epsilon}(f)(x) = \underset{\norm{y-x} \leq \epsilon}{\text{median}} f(y). \]
+
+%%
+% The operator \(\phi_\beta^B\) is contrast-invariant, meaning that it
+% computes with increasing functions \( \psi : \RR \rightarrow \RR \)
+% \[ \phi_\beta^B \circ \psi = \psi \circ \phi_\beta^B. \]
+% The axiomatic study of contrast invariant operator was initiated in the
+% comunity of mathematical morphology, see <#biblio [Matheron75]>, <#biblio [Tukey77]>, <#biblio [Serra82]>.
+
+%%
+% Note also that there exist generalization of rank filters (and in
+% particular the median filter) to vector valued images
+% \( f : [0,1]^2 \rightarrow \RR^d\). Since the notion of rank does not
+% exists anymore, one has to rely on variational caracteriation of the
+% median, see for instance <#biblio [CasSapChu00]>.
+
+%%
+% The medial filtering is the most popular rank filter. 
+% It is particularly efficient to remove impulse noise,
+% see for instance <#biblio [Piterbarg84]>, <#biblio [FanHall94]>.
+% See also <#biblio [AriasDon99]> for a theoritical analysis of median
+% filtering and of a two-stage iterated version.
+
+%% Patches in Images
+% We apply rank filters to discretized images by interpreting them as 
+% piecewise constant functions. 
+
+%%
+% Size \(N = n \times n\) of the image.
+
+n = 256;
+
+%%
+% We load an image \(f_0 \in \RR^N\).
+
+name = 'hibiscus';
+f0 = load_image(name, n);
+f0 = rescale(crop( sum(f0,3) ,n));
+
+%%
+% Display \(f_0\).
+
+clf;
+imageplot(f0);
+
+%%
+% Noise level \(\si\).
+
+sigma = .04;
+
+%%
+% Generate a noisy image \(f=f_0+\epsilon\) where \(\epsilon \times
+% \Nn(0,\si^2\text{Id}_N)\).
+
+f = f0 + randn(n,n)*sigma;
+
+
+%%
+% Display \(f\).
+
+clf;
+imageplot(clamp(f));
+
+%%
+% For simplicity, we consider the case where
+% the set \(B\) is a square of \(w_1 \times w_2\) pixels.
+% where we denote \(w\) to be the half width of the patches, 
+% and \(w_1=2w+1\) the full width.
+
+w = 3;
+w1 = 2*w+1;
+
+%%
+% We define the patch extraction operator 
+% \[ p = p_x(f) \in \RR^{w_1 \times w_1} 
+% \qwhereq \forall -w \leq s_1,s_2 \leq w, \quad p(s) = f(x+s). \]
+
+%%
+% We now define the function \(\Pi(f) = (p_x(f))_x \)
+% that extracts all possible patches.
+
+%%
+% We set up large \((n,n,w_1,w_1)\) matrices to index the the X and Y
+% position of the pixel to extract.
+
+[Y,X] = meshgrid(1:n,1:n);
+[dY,dX] = meshgrid(-w:w,-w:w);
+dX = reshape(dX, [1 1 w1 w1]);
+dY = reshape(dY, [1 1 w1 w1]);
+X = repmat(X, [1 1 w1 w1]) + repmat(dX, [n n 1 1]);
+Y = repmat(Y, [1 1 w1 w1]) + repmat(dY, [n n 1 1]);
+
+%%
+% We handle boundary condition by reflexion
+
+X(X<1) = 2-X(X<1); Y(Y<1) = 2-Y(Y<1);
+X(X>n) = 2*n-X(X>n); Y(Y>n) = 2*n-Y(Y>n);
+
+%%
+% Patch extractor operator \(\Pi\).
+
+Pi = @(f)reshape( f(X + (Y-1)*n), [n n w1*w1] );
+
+%%
+% We store the patches \(\Pi(f)\) as a \(n \times n \times w_1^2\) matrix \(P\)
+% such that, for each pixel \(x\), \(P(x)\) is a vector of size \(w_1^2\)
+% storing the entries of \(p_x(f)\).
+
+P = Pi(f);
+
+%%
+% Display some example of patches
+
+clf;
+for i=1:16
+    x = floor( rand*(n-1)+1 );
+    y = floor( rand*(n-1)+1 );
+    imageplot( reshape(P(x,y,:,:), w1,w1), '', 4,4,i );
+end
+
+%% Linear Filter
+% A linear filter (convolution) can be computed using this patch
+% representation as
+% \[ g(x) = \sum_{i} \la_i p_x(f)_i.  \]
+
+%%
+% In the case where \(\la_i=1/w_1^2\), this 
+% defines the mean value inside the patch:
+% \[ g(x) = \frac{1}{w_1^2} \sum_{i} p_x(f)_i.  \]
+
+Pmean = @(f)mean(Pi(f),3);
+
+%%
+% Display it.
+
+clf;
+imageplot(Pmean(f));
+
+%%
+% Note that this is not a rank filter (this a linear filter) and that it is
+% not contrast invariant. This is shown by displaying 
+% \[ \phi_\beta^B(f) - \psi^{-1} \circ \phi_\beta^B \circ \psi(f) \]
+% which is non-zero.
+
+p = 100;
+psi = @(f)f.^(1/p);
+ipsi = @(f)f.^p;
+imageplot(Pmean(abs(f)) - ipsi(Pmean(psi(abs(f)))));
+
+%% Opening and Closing Rank Filters
+% We now come back to the discrete computation of a rank filter \(\phi_\be^B\)
+% for \(B\) a square of width \(w_1 \times w_1\) pixels.
+
+%%
+% It is defined as \(g=\phi_\beta^B(f)\) where
+% \[ g(x) = \text{rank}_{r(\beta)}( p_x(f) ) \]
+% where \(\text{rank}_r(v)\) extracted the element of order \(k\) in the
+% sorted value of \(v \in \RR^Q\) (here \(Q=w_1^2\)). More precisely, we denote 
+% \[ v_{\si(1)} \leq v_{\si(2)} \leq \ldots \leq v_{\si(Q)} \]
+% where \(\si \in \Sigma_Q\) is an ordering permutation, which can be
+% computed in \( O(N \log(N)) \) operations with the QuickSort algorithm.
+% Then the ranked valued is
+% \[ \text{rank}_r(v) = v_{\si(r)}. \]
+
+%%
+% In order to be consistent with the continuous definition of the 
+% rank filter, one should define the rank as
+% \[ r=r(\beta) = \lfloor Q r \rfloor. \]
+
+r = @(beta)min(ceil(beta*w1*w1)+1,w1*w1);
+
+%%
+% Shortcut for the rank filter.
+
+subsample = @(x,s)x(:,:,s);
+phi = @(f,beta)subsample(sort(Pi(f), 3), r(beta));
+
+%%
+% _Exercice 1:_ (<../missing-exo/ check the solution>)
+% Compute the rank filter for several values of \(\beta\).
+
+exo1;
+
+%%
+% The case \(\beta=0\) corresponds to the closing operator from
+% mathematical morphology (min filter).
+
+closing = @(f)phi(f,0);
+clf;
+imageplot(closing(f));
+
+%%
+% The case \(\beta=1\) corresponds to the opening operator from
+% mathematical morphology (max filter).
+
+opening = @(f)phi(f,1);
+clf;
+imageplot(opening(f));
+
+%%
+% _Exercice 2:_ (<../missing-exo/ check the solution>)
+% Compute a closing followed by an opening.
+
+exo2;
+
+%%
+% _Exercice 3:_ (<../missing-exo/ check the solution>)
+% Compute an opening followed by a closing.
+
+exo3;
+
+%%
+% _Exercice 4:_ (<../missing-exo/ check the solution>)
+% Perform iterated opening and closing. 
+
+exo4;
+
+
+%% Median Filter
+% The median filter corresponds to the case where \(\be=1/2\).
+
+medfilt = @(f)phi(f,1/2);
+
+%%
+% Display the result. 
+
+clf;
+imageplot(medfilt(f));
+
+%%
+% Iterated median filtering computes
+% \[ f^{(\ell+1)} = \phi_{1/2}^B( f^{(\ell)} ). \]
+% As already mentionned, one can show that a properly 
+
+%%
+% In the case where \(f\) is of class \(C^3\) and \(\nabla f(x) \neq 0\),
+% one has the following Taylor expansion
+% \[ \phi_{1/2}^{B_\epsilon}(x) = 
+%   f(x) + \frac{\epsilon^2}{6} \norm{\nabla f(x)}
+%       \text{Curv}(f)(x) + O(\epsilon^{7/3}) \]
+% where the curvature operator is 
+% \[ \text{Curv}(f) = \text{div}\pa{
+%       \frac{\nabla f}{\norm{\nabla f}}
+%   }. \]
+
+%%
+% Intuitively, it means that if one iterates the operator 
+% \( \phi_{1/2}^{B_\epsilon} \) with a proper re-scaling \(\ell \leftrightarrow t\) 
+% and when 
+% \(\epsilon \rightarrow 0\), then \(f^{(\ell)}\) tends to the solution to the
+% famous mean-curvature motion PDE
+% \[ \pd{f}{t} = \norm{\nabla f} \text{Curv}(f).  \]
+
+%%
+% This conjecture was initially mentionned in <#biblio [BeMerOsh92]>.
+% This was rigorously proved in <#biblio [Ishii95]>, <#biblio [BarGeorg]>,
+% <#biblio [Evans93]> using the machinery of viscosity solutions.
+
+%%
+% Similar result holds for other class of contrast invariant operator, see
+% for instance <#biblio [Cao98]> for affine invariant operators, and <#biblio [GuiMoRy04]>
+% for an axiomatic and general framework.
+
+
+%%
+% _Exercice 5:_ (<../missing-exo/ check the solution>)
+% Perform iterated median filtering, and store the output in |f1|.
+
+exo5;
+
+%%
+% Display.
+
+clf;
+imageplot(f1);
+
+
+
+%% Bibliography
+% <html><a name="biblio"></a></html>
+
+%%
+% * [Matheron75] G. Matheron, <http://books.google.fr/books/about/Random_sets_and_integral_geometry.html?hl=fr&id=bgzvAAAAMAAJ _Random Sets and Integral Geometry_>, Wiley, New York, 1975
+% * [Serra82] J. Serra, <http://dl.acm.org/citation.cfm?id=1098652 _Image Analysis and Mathematical Morphology_>, Academic Press, London, 1982
+% * [Tukey77] J. W. Tukey, <http://books.google.fr/books/about/Exploratory_Data_Analysis.html?hl=fr&id=UT9dAAAAIAAJ _Exploratory Data Analysis_>. Addison-Wesley, Reading, MA, 1977
+% * [BeMerOsh92] J. Bence, B. Merriman, S. Osher, <http://books.google.fr/books/about/Diffusion_Generated_Motion_by_Mean_Curva.html?id=DYi-GwAACAAJ&redir_esc=y _Diffusionn generated motion by mean curvature_>, Selected Lectures in Math. Amer. Math. Soc., Providence, 1992
+% * [Cao98] F. Cao, <http://dx.doi.org/10.1016/S0021-7824(01)80003-9 _Partial differential equations and mathematical morphology_>. J.Math. Pures Appl. 77 909?941, 1998
+% * [Ishii95] H. Ishii, _A generalization of the Bence, Merriman and Osher algorithm for motion by mean curvature_, 1995
+% * [BarGeorg] G. Barles and C. Georgelin, <http://dx.doi.org/10.1137/0732020 _A Simple Proof of Convergence for an Approximation Scheme for Computing Motions by Mean Curvature_>, SIAM J. Numer. Anal., 32(2), 484?500, 1995.
+% * [Evans93] L. C. Evans, <http://cat.inist.fr/?aModele=afficheN&cpsidt=3899933 _Convergence of an algorithm for mean curvature motion_>, Indiana Univ. Math. J., 42, pp. 533?557, 1993.
+% * [GuiMoRy04] F. Guichard, J-M. Morel and Robert Ryan, _Contrast invariant image analysis and PDE's_, 2004.
+% * [CasSapChu00] V. Caselles, G. Sapiro and D. H. Chung, <http://dx.doi.org/10.1023/A:1008310305351 _Vector median filters, inf-sup operations, and coupled PDEs: Theoretical connections_>. J. Math. Imaging Vision 12 109?119, 2000
+% * [Piterbarg84] L. I. Piterbarg, <http://www.mathnet.ru/php/archive.phtml?wshow=paper&jrnid=ppi&paperid=1122&option_lang=eng _Median filtering of random processes_>, Problemy Peredachi Informatsii, 20, 65?73, 1984.
+% * [FanHall94] J. Fan and P. Hall, <http://dx.doi.org/10.1214/aos/1176325499 _On curve estimation by minimizing mean absolute deviation and its implications_>. Ann. Statist. 22 867?885, 1994.
+% * [AriasDon99] E. Arias-Castro and D. L. Donoho, <http://dx.doi.org/10.1214/08-AOS604 _Does the median filter truly preserve edges better than linear filtering?_>, The Annals of Statistics, Vol. 37, No. 3, 1172-1206, 2009.
+
+
+
+##### SOURCE END #####
+-->
+   </body>
+</html>

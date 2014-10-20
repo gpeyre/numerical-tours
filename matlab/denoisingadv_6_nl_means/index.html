@@ -1,0 +1,633 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>Non Local Means</title>
+      <NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
+               	requires JavaScript to process the mathematics on this page.<BR> 
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 8.2">
+      <meta name="date" content="2014-10-20">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>Non Local Means</h1>
+         <introduction>
+            <p>This numerical tour study image denoising using non-local means. This algorithm has been introduced for denoising purposes
+               in <a href="#biblio">[BuaCoMoA05]</a></p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#8">Patches in Images</a></li>
+               <li><a href="#21">Dimensionality Reduction with PCA</a></li>
+               <li><a href="#32">Non-local Filter</a></li>
+               <li><a href="#40">Localizing the Non-local Means</a></li>
+               <li><a href="#51">Bibliography</a></li>
+            </ul>
+         </div>
+         <h2>Installing toolboxes and setting up the path.<a name="1"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_signal.zip">signal toolbox</a> and <a href="../toolbox_general.zip">general toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_signal</tt> and <tt>toolbox_general</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
+getd(<span class="string">'toolbox_general/'</span>);
+</pre><h2>Patches in Images<a name="8"></a></h2>
+         <p>This numerical tour is dedicated to the study of the structure of patches in images.</p>
+         <p>Size \(N = n \times n\) of the image.</p><pre class="codeinput">n = 128;
+</pre><p>We load a noisy image \(f_0\in \RR^N\).</p><pre class="codeinput">c = [100 200];
+f0 = load_image(<span class="string">'lena'</span>);
+f0 = rescale( crop(f0,n, c) );
+</pre><p>Display \(f_0\).</p><pre class="codeinput">clf;
+imageplot(f0);
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p>Noise level \(\si\).</p><pre class="codeinput">sigma = .04;
+</pre><p>Generate a noisy image \(f=f_0+\epsilon\) where \(\epsilon \times \Nn(0,\si^2\text{Id}_N)\).</p><pre class="codeinput">f = f0 + randn(n,n)*sigma;
+</pre><p>Display \(f\).</p><pre class="codeinput">clf;
+imageplot(clamp(f));
+</pre><img vspace="5" hspace="5" src="index_02.png"> <p>We denote \(w\) to be the half width of the patches, and \(w_1=2w+1\) the full width.</p><pre class="codeinput">w = 3;
+w1 = 2*w+1;
+</pre><p>We set up large \((n,n,w_1,w_1)\) matrices to index the the X and Y position of the pixel to extract.</p><pre class="codeinput"><span class="comment">% location of pixels</span>
+[Y,X] = meshgrid(1:n,1:n);
+<span class="comment">% offsets</span>
+[dY,dX] = meshgrid(-w:w,-w:w);
+<span class="comment">% location of pixels to extract</span>
+dX = reshape(dX, [1 1 w1 w1]);
+dY = reshape(dY, [1 1 w1 w1]);
+X = repmat(X, [1 1 w1 w1]) + repmat(dX, [n n 1 1]);
+Y = repmat(Y, [1 1 w1 w1]) + repmat(dY, [n n 1 1]);
+</pre><p>We handle boundary condition by reflexion</p><pre class="codeinput">X(X&lt;1) = 2-X(X&lt;1); Y(Y&lt;1) = 2-Y(Y&lt;1);
+X(X&gt;n) = 2*n-X(X&gt;n); Y(Y&gt;n) = 2*n-Y(Y&gt;n);
+</pre><p>Patch extractor operator</p><pre class="codeinput">patch = @(f)f(X + (Y-1)*n);
+</pre><p>Define the patch matrix \(P\) of size \((n,n,w_1,w_1)\). Each <tt>P(i,j,:,:)</tt> represent an \((w_1,w_1)\) patch extracted around pixel \((i,j)\) in the image.
+         </p><pre class="codeinput">P = patch(f);
+</pre><p>Display some example of patches</p><pre class="codeinput">clf;
+<span class="keyword">for</span> i=1:16
+    x = floor( rand*(n-1)+1 );
+    y = floor( rand*(n-1)+1 );
+    imageplot( squeeze(P(x,y,:,:)), <span class="string">''</span>, 4,4,i );
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="index_03.png"> <h2>Dimensionality Reduction with PCA<a name="21"></a></h2>
+         <p>Since NL-means type algorithms require the computation of many distances between patches, it is advantagous to reduce the
+            dimensionality of the patch while keeping as much as possible of information.
+         </p>
+         <p>Target dimensionality \(d\).</p><pre class="codeinput">d = 25;
+</pre><p>A linear dimensionality reduction is obtained by Principal Component Analysis (PCA) that projects the data on a small number
+            of leading direction of the coveriance matrix of the patches.
+         </p>
+         <p>Turn the patch matrix into an <tt>(w1*w1,n*n)</tt> array, so that each <tt>P(:,i)</tt> is a <tt>w1*w1</tt> vector representing a patch.
+         </p><pre class="codeinput">resh = @(P)reshape(P, [n*n w1*w1])';
+</pre><p>operator to remove the mean of the patches to each patch.</p><pre class="codeinput">remove_mean = @(Q)Q - repmat(mean(Q), [w1*w1 1]);
+</pre><p>Compute the mean and the covariance of the points cloud representing the patches.</p><pre class="codeinput">P1 = remove_mean(resh(P));
+C = P1*P1';
+</pre><p>Extract the eigenvectors, sorted by decreasing amplitude</p><pre class="codeinput">[V,D] = eig(C); D = diag(D);
+[D,I] = sort(D, <span class="string">'descend'</span>); V = V(:,I);
+</pre><p>Display the decaying amplitude of the eigenvalues.</p><pre class="codeinput">clf;
+plot(D); axis(<span class="string">'tight'</span>);
+</pre><img vspace="5" hspace="5" src="index_04.png"> <p>Display the leading eigenvectors - they look like Fourier modes.</p><pre class="codeinput">clf;
+<span class="keyword">for</span> i=1:16
+    imageplot( reshape(V(:,i),[w1 w1]), <span class="string">''</span>, 4,4,i );
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="index_05.png"> <p>Patch dimensionality reduction operator.</p><pre class="codeinput">iresh = @(Q)reshape(Q', [n n d]);
+descriptor = @(f)iresh( V(:,1:d)' * remove_mean(resh(P)) );
+</pre><p>Each <tt>H(i,j,:)</tt> is a \(d\)-dimensional descriptor of a patch.
+         </p><pre class="codeinput">H = descriptor(f);
+</pre><h2>Non-local Filter<a name="32"></a></h2>
+         <p>NL-means applies, to each pixel location, an adaptive averaging kernel that is computed from patch distances.</p>
+         <p>We denote \(H_{i} \in \RR^d\) the descriptor at pixel \(i\). We define the distance matrix \[ D_{i,j} = \frac{1}{w_1^2}\norm{H_i-H_j}^2.
+            \]
+         </p>
+         <p>Operator to compute the distances \((D_{i,j})_j\) between the patch around \(i=(i_1,i_2)\) and all the other ones.</p><pre class="codeinput">distance = @(i)sum( (H - repmat(H(i(1),i(2),:), [n n 1])).^2, 3 )/(w1*w1);
+</pre><p>The non-local mean filter compute a denoised image \(\tilde f\) as \[ \tilde f_i = \sum_j K_{i,j} f_j \] where the weights
+            \(K\) are computed as \[ K_{i,j} = \frac{ \tilde K_{i,j} }{ \sum_{j'} \tilde K_{i,j'} }       \qandq    \tilde K_{i,j} = e^{-\frac{D_{i,j}}{2\tau^2}}
+            . \]
+         </p>
+         <p>The width \(\tau\) of the Gaussian is very important and should be adapted to match the noise level.</p>
+         <p>Compute and normalize the weight.</p><pre class="codeinput">normalize = @(K)K/sum(K(:));
+kernel = @(i,tau)normalize( exp( -distance(i)/(2*tau^2) ) );
+</pre><p>Compute a typical example of kernel for some pixel position \((x,y)\).</p><pre class="codeinput">tau = .05;
+i = [83 72];
+D = distance(i);
+K = kernel(i,tau);
+</pre><p>Display the squared distance and the kernel.</p><pre class="codeinput">clf;
+imageplot(D, <span class="string">'D'</span>, 1,2,1);
+imageplot(K, <span class="string">'K'</span>, 1,2,2);
+</pre><img vspace="5" hspace="5" src="index_06.png"> <h2>Localizing the Non-local Means<a name="40"></a></h2>
+         <p>We set a "locality constant" \(q\) that set the maximum distance between patches to compare. This allows to speed up computation,
+            and makes NL-means type methods semi-global (to avoid searching in all the image).
+         </p><pre class="codeinput">q = 14;
+</pre><p>Using this locality constant, we compute the distance between patches only within a window. Once again, one should be careful
+            about boundary conditions.
+         </p><pre class="codeinput">selection = @(i){clamp(i(1)-q:i(1)+q, 1,n), clamp(i(2)-q:i(2)+q,1,n)};
+</pre><p>Compute distance and kernel only within the window.</p><pre class="codeinput">distance = @(i,sel)sum( (H(sel{1},sel{2},:) - repmat(H(i(1),i(2),:), <span class="keyword">...</span>
+        [length(sel{1}) length(sel{2}) 1])).^2, 3 )/(w1*w1);
+distance = @(i)distance(i,selection(i));
+kernel = @(i,tau)normalize( exp( -distance(i)/(2*tau^2) ) );
+</pre><p>Compute a typical example of kernel for some pixel position \((x,y)\).</p><pre class="codeinput">D = distance(i);
+K = kernel(i,tau);
+</pre><p>Display the squared distance and the kernel.</p><pre class="codeinput">clf;
+imageplot(D, <span class="string">'D'</span>, 1,2,1);
+imageplot(K, <span class="string">'K'</span>, 1,2,2);
+</pre><img vspace="5" hspace="5" src="index_07.png"> <p>The NL-filtered value at pixel \((x,y)\) is obtained by averaging the values of \(f\) with the weight \(K\).</p><pre class="codeinput">NLval = @(K,sel)sum(sum(K.*f(sel{1},sel{2})));
+NLval = @(i,tau)NLval( kernel(i,tau), selection(i) );
+</pre><p>We apply the filter to each pixel location to perform the NL-means algorithm.</p><pre class="codeinput">[Y,X] = meshgrid(1:n,1:n);
+NLmeans = @(tau)arrayfun(@(i1,i2)NLval([i1 i2],tau), X,Y);
+</pre><p>Display the result for some value of \(\tau\).</p><pre class="codeinput">tau = .03;
+clf;
+imageplot(NLmeans(tau));
+</pre><img vspace="5" hspace="5" src="index_08.png"> <p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Compute the denoising result for several values of \(\tau\) in order to determine the optimal denoising that minimizes \(\norm{\tilde
+            f - f_0}\).
+         </p><pre class="codeinput">exo1;
+</pre><img vspace="5" hspace="5" src="index_09.png"> <p>Display the best result.</p><pre class="codeinput">clf;
+imageplot(clamp(fNL));
+</pre><img vspace="5" hspace="5" src="index_10.png"> <p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Explore the influence of the \(q\) and \(w\) parameters.
+         </p><pre class="codeinput">exo2;
+</pre><h2>Bibliography<a name="51"></a></h2>
+         <p><a name="biblio"></a></p>
+         <div>
+            <ul>
+               <li>[BuaCoMoA05] Buades, B. Coll, J.f Morel, <a href="http://dx.doi.org/10.1137/040616024"><i>A review of image denoising algorithms, with a new one</i></a>, SIAM Multiscale Modeling and Simulation, Vol 4 (2), pp: 490-530, 2005.
+               </li>
+            </ul>
+         </div>
+         <p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Non Local Means
+% This numerical tour study image denoising using
+% non-local means. This algorithm has been 
+% introduced for denoising purposes in <#biblio [BuaCoMoA05]>
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_signal.zip signal toolbox> and 
+% <../toolbox_general.zip general toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_signal| and 
+% |toolbox_general|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_signal/');
+getd('toolbox_general/');
+
+%% Patches in Images
+% This numerical tour is dedicated to the study of the structure of patches
+% in images.
+
+%%
+% Size \(N = n \times n\) of the image.
+
+n = 128;
+
+%%
+% We load a noisy image \(f_0\in \RR^N\).
+
+c = [100 200];
+f0 = load_image('lena');
+f0 = rescale( crop(f0,n, c) );
+
+%%
+% Display \(f_0\).
+
+clf;
+imageplot(f0);
+
+%%
+% Noise level \(\si\).
+
+sigma = .04;
+
+%%
+% Generate a noisy image \(f=f_0+\epsilon\) where \(\epsilon \times
+% \Nn(0,\si^2\text{Id}_N)\).
+
+f = f0 + randn(n,n)*sigma;
+
+
+%%
+% Display \(f\).
+
+clf;
+imageplot(clamp(f));
+
+%%
+% We denote \(w\) to be the half width of the patches, 
+% and \(w_1=2w+1\) the full width.
+
+w = 3;
+w1 = 2*w+1;
+
+%%
+% We set up large \((n,n,w_1,w_1)\) matrices to index the the X and Y
+% position of the pixel to extract.
+
+% location of pixels
+[Y,X] = meshgrid(1:n,1:n);
+% offsets
+[dY,dX] = meshgrid(-w:w,-w:w);
+% location of pixels to extract
+dX = reshape(dX, [1 1 w1 w1]);
+dY = reshape(dY, [1 1 w1 w1]);
+X = repmat(X, [1 1 w1 w1]) + repmat(dX, [n n 1 1]);
+Y = repmat(Y, [1 1 w1 w1]) + repmat(dY, [n n 1 1]);
+
+%%
+% We handle boundary condition by reflexion
+
+X(X<1) = 2-X(X<1); Y(Y<1) = 2-Y(Y<1);
+X(X>n) = 2*n-X(X>n); Y(Y>n) = 2*n-Y(Y>n);
+
+%%
+% Patch extractor operator
+
+patch = @(f)f(X + (Y-1)*n);
+
+%%
+% Define the patch matrix \(P\) of size \((n,n,w_1,w_1)\).
+% Each |P(i,j,:,:)| represent an \((w_1,w_1)\) patch extracted around pixel
+% \((i,j)\) in the image.
+
+P = patch(f);
+
+%%
+% Display some example of patches
+
+clf;
+for i=1:16
+    x = floor( rand*(n-1)+1 );
+    y = floor( rand*(n-1)+1 );
+    imageplot( squeeze(P(x,y,:,:)), '', 4,4,i );
+end
+
+%% Dimensionality Reduction with PCA
+% Since NL-means type algorithms require the computation of many distances
+% between patches, it is advantagous to reduce the dimensionality of the
+% patch while keeping as much as possible of information.
+
+%%
+% Target dimensionality \(d\).
+
+d = 25;
+
+%%
+% A linear dimensionality reduction is obtained by Principal Component
+% Analysis (PCA) that projects the data on a small number of leading
+% direction of the coveriance matrix of the patches.
+
+%%
+% Turn the patch matrix into an |(w1*w1,n*n)| array, so that each |P(:,i)|
+% is a |w1*w1| vector representing a patch.
+
+resh = @(P)reshape(P, [n*n w1*w1])';
+ 
+
+%%
+% operator to remove the mean of the patches to each patch.
+
+remove_mean = @(Q)Q - repmat(mean(Q), [w1*w1 1]);
+
+%%
+% Compute the mean and the covariance of the points cloud representing the
+% patches.
+
+P1 = remove_mean(resh(P));
+C = P1*P1';
+
+%%
+% Extract the eigenvectors, sorted by decreasing amplitude
+
+[V,D] = eig(C); D = diag(D); 
+[D,I] = sort(D, 'descend'); V = V(:,I);
+
+%%
+% Display the decaying amplitude of the eigenvalues.
+
+clf;
+plot(D); axis('tight');
+
+%%
+% Display the leading eigenvectors - they look like Fourier modes.
+
+clf;
+for i=1:16
+    imageplot( reshape(V(:,i),[w1 w1]), '', 4,4,i );
+end
+
+%%
+% Patch dimensionality reduction operator.
+
+iresh = @(Q)reshape(Q', [n n d]);
+descriptor = @(f)iresh( V(:,1:d)' * remove_mean(resh(P)) );
+
+%%
+% Each |H(i,j,:)| is a \(d\)-dimensional descriptor
+% of a patch.
+
+H = descriptor(f);
+
+%% Non-local Filter
+% NL-means applies, to each pixel location, an adaptive averaging kernel
+% that is computed from patch distances.
+
+%%
+% We denote \(H_{i} \in \RR^d\) the descriptor at pixel \(i\).
+% We define the distance matrix 
+% \[ D_{i,j} = \frac{1}{w_1^2}\norm{H_i-H_j}^2. \]
+
+
+%%
+% Operator to compute the distances \((D_{i,j})_j\) between the patch around \(i=(i_1,i_2)\) 
+% and all the other ones.
+
+distance = @(i)sum( (H - repmat(H(i(1),i(2),:), [n n 1])).^2, 3 )/(w1*w1);
+
+%%
+% The non-local mean filter compute a denoised image \(\tilde f\) as
+% \[ \tilde f_i = \sum_j K_{i,j} f_j \]
+% where the weights \(K\) are computed as
+% \[ K_{i,j} = \frac{ \tilde K_{i,j} }{ \sum_{j'} \tilde K_{i,j'} } 
+%       \qandq
+%    \tilde K_{i,j} = e^{-\frac{D_{i,j}}{2\tau^2}} . \]
+
+
+%%
+% The width \(\tau\) of the Gaussian is very important and should be adapted to match
+% the noise level.
+
+
+%% 
+% Compute and normalize the weight.
+
+normalize = @(K)K/sum(K(:));
+kernel = @(i,tau)normalize( exp( -distance(i)/(2*tau^2) ) );
+
+%%
+% Compute a typical example of kernel for some pixel position \((x,y)\).
+
+tau = .05;
+i = [83 72];
+D = distance(i);
+K = kernel(i,tau);
+
+%%
+% Display the squared distance and the kernel.
+
+clf;
+imageplot(D, 'D', 1,2,1);
+imageplot(K, 'K', 1,2,2);
+
+%% Localizing the Non-local Means
+% We set a "locality constant" \(q\) that set the maximum distance between
+% patches to compare. This allows to speed up computation, and makes
+% NL-means type methods semi-global (to avoid searching in all the image).
+
+q = 14;
+
+%%
+% Using this locality constant, we compute the distance between patches
+% only within a window.
+% Once again, one should be careful about boundary conditions.
+
+selection = @(i){clamp(i(1)-q:i(1)+q, 1,n), clamp(i(2)-q:i(2)+q,1,n)};
+
+%%
+% Compute distance and kernel only within the window.
+
+distance = @(i,sel)sum( (H(sel{1},sel{2},:) - repmat(H(i(1),i(2),:), ...
+        [length(sel{1}) length(sel{2}) 1])).^2, 3 )/(w1*w1);
+distance = @(i)distance(i,selection(i));
+kernel = @(i,tau)normalize( exp( -distance(i)/(2*tau^2) ) );
+
+%%
+% Compute a typical example of kernel for some pixel position \((x,y)\).
+
+D = distance(i);
+K = kernel(i,tau);
+
+%%
+% Display the squared distance and the kernel.
+
+clf;
+imageplot(D, 'D', 1,2,1);
+imageplot(K, 'K', 1,2,2);
+
+%%
+% The NL-filtered value at pixel \((x,y)\) is obtained by averaging the values
+% of \(f\) with the weight \(K\).
+
+NLval = @(K,sel)sum(sum(K.*f(sel{1},sel{2})));
+NLval = @(i,tau)NLval( kernel(i,tau), selection(i) );
+
+%%
+% We apply the filter to each pixel location
+% to perform the NL-means algorithm.
+
+[Y,X] = meshgrid(1:n,1:n);
+NLmeans = @(tau)arrayfun(@(i1,i2)NLval([i1 i2],tau), X,Y);
+
+%%
+% Display the result for some value of \(\tau\).
+
+tau = .03;
+clf; 
+imageplot(NLmeans(tau));
+
+%%
+% _Exercice 1:_ (<../missing-exo/ check the solution>)
+% Compute the denoising result for several values of \(\tau\) in order to
+% determine the optimal denoising that minimizes \(\norm{\tilde f - f_0}\).
+
+exo1;
+
+%%
+% Display the best result.
+
+clf;
+imageplot(clamp(fNL));
+
+%%
+% _Exercice 2:_ (<../missing-exo/ check the solution>)
+% Explore the influence of the \(q\) and \(w\) parameters.
+
+exo2;
+
+%% Bibliography
+% <html><a name="biblio"></a></html>
+
+%%
+% * [BuaCoMoA05] Buades, B. Coll, J.f Morel, <http://dx.doi.org/10.1137/040616024 _A review of image denoising algorithms, with a new one_>, SIAM Multiscale Modeling and Simulation, Vol 4 (2), pp: 490-530, 2005.
+
+##### SOURCE END #####
+-->
+   </body>
+</html>

@@ -1,0 +1,695 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>Image Approximation with Orthogonal Bases</title>
+      <NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
+               	requires JavaScript to process the mathematics on this page.<BR> 
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 8.2">
+      <meta name="date" content="2014-10-20">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>Image Approximation with Orthogonal Bases</h1>
+         <introduction>
+            <p>This numerical tour uses several orthogonal bases to perform non-linear image approximation.</p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#2">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#9">Best \(M\)-terms Non-linear Approximation</a></li>
+               <li><a href="#15">Fourier Approximation</a></li>
+               <li><a href="#28">Wavelet Approximation</a></li>
+               <li><a href="#35">Cosine Approximation</a></li>
+               <li><a href="#41">Local Cosine Approximation</a></li>
+               <li><a href="#53">Comparison of Wavelet Approximations of Several Images</a></li>
+            </ul>
+         </div>
+         <p><b>Important:</b> Scilab user have to call the function <tt>extend_stack_size(4)</tt> before starting the tour to be able to handle large images.
+         </p>
+         <h2>Installing toolboxes and setting up the path.<a name="2"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_signal.zip">signal toolbox</a> and <a href="../toolbox_general.zip">general toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_signal</tt> and <tt>toolbox_general</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
+getd(<span class="string">'toolbox_general/'</span>);
+</pre><h2>Best \(M\)-terms Non-linear Approximation<a name="9"></a></h2>
+         <p>This tours makes use of an orthogonal base \( \Bb = \{ \psi_m \}_{m=0}^{N-1} \) of the space \(\RR^N\) of the images with
+            \(N\) pixels.
+         </p>
+         <p>The best \(M\)-term approximation of \(f\) is obtained by a non-linear thresholding \[ f_M = \sum_{ \abs{\dotp{f}{\psi_m}}&gt;T
+            }  \dotp{f}{\psi_m} \psi_m, \] where the value of \(T&gt;0\) should be carefully selected so that only \(M\) coefficients are
+            not thresholded, i.e. \[ \abs{ \enscond{m}{ \abs{\dotp{f}{\psi_m}}&gt;T } } = M. \]
+         </p>
+         <p>The goal is to use an ortho-basis \( \Bb \) so that the error \( \norm{f-f_M} \) decays as fast as possible when \(M\) increases,
+            for a large class of images.
+         </p>
+         <p>This tour studies several different orthogonal bases: Fourier, wavelets (which is at the heart of JPEG-2000), cosine, local
+            cosine (which is at the heart of JPEG).
+         </p>
+         <p>First we load an image of \( N = n \times n \) pixels.</p><pre class="codeinput">n = 512;
+f = rescale( load_image(<span class="string">'lena'</span>, n) );
+</pre><p>Display it.</p><pre class="codeinput">clf;
+imageplot(f);
+</pre><img vspace="5" hspace="5" src="index_01.png"> <h2>Fourier Approximation<a name="15"></a></h2>
+         <p>The discrete 2-D Fourier atoms are defined as: \[ \psi_m(x) = \frac{1}{\sqrt{N}} e^{ \frac{2i\pi}{n} ( x_1 m_1 + x_2 m_2 )
+            },  \] where \( 0 \leq m_1,m_2 &lt; n \) indexes the frequency.
+         </p>
+         <p>The set of inner products \( \{ \dotp{f}{\psi_m} \}_m \) is computed in \(O(N \log(N))\) operations with the 2-D Fast Fourier
+            Transform (FFT) algorithm (the Matlab function is <tt>fft2</tt>).
+         </p>
+         <p>Compute the Fourier transform using the FFT algorithm. Note the normalization by \(1/\sqrt{N}\) to ensure orthogonality (energy
+            conservation) of the transform.
+         </p><pre class="codeinput">fF = fft2(f)/n;
+</pre><p>Display its magnitude (in log scale). We use the function <tt>fftshift</tt> to put the low frequency in the center.
+         </p><pre class="codeinput">clf;
+imageplot(log(1e-5+abs(fftshift(fF))));
+</pre><img vspace="5" hspace="5" src="index_02.png"> <p>An image is recovered from a set of coefficients \(c_m\) using the inverse Fourier Transform (Matlab function <tt>ifft2</tt>) than implements the formula \[ f_M = \sum_m c_m \psi_m. \]
+         </p>
+         <p>Performs a thresholding.</p><pre class="codeinput">T = .3;
+c = fF .* (abs(fF)&gt;T);
+</pre><p>Inverse the Fourier transform.</p><pre class="codeinput">fM = real(ifft2(c)*n);
+</pre><p>Display the approximation.</p><pre class="codeinput">imageplot(clamp(fM));
+</pre><img vspace="5" hspace="5" src="index_03.png"> <p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Compute a best \(M\)-term approximation in the Fourier basis of \(f\), for \(M \in \{N/100, N/20\}\). Compute the approximation
+            using a well chosen hard threshold value \(T\).
+         </p><pre class="codeinput">exo1;
+</pre><img vspace="5" hspace="5" src="index_04.png"> <p>The best \(M\)-term approximation error is computed using the conservation of energy as \[ \epsilon[M]^2 = \norm{f-f_M}^2
+            = \sum_{ \abs{\dotp{f}{\psi_m}} \leq T } \abs{\dotp{f}{\psi_m}}^2.  \]
+         </p>
+         <p>If one denotes by \( \{ c_R[k] \}_{k=0}^{N-1} \) the set of coefficients magnitudes \( \abs{\dotp{f}{\psi_m}} \) ordered by
+            <b>decaying</b> magnitudes, then this error is easily computed as \[ \epsilon[M]^2 = \sum_{k=M}^{N-1} c_R[k]^2     = \norm{f}^2 - \sum_{k=0}^{M-1}
+            c_R[k]^2. \] This means that \(\epsilon^2\) is equal to \(\norm{f}^2\) minus the discrete primitive of \( c_R^2 \).
+         </p>
+         <p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Compute and display in log scales the ordered coefficients \(c_R\). <i>Hint:</i> a discrete primitive can be computed using the function <tt>cumsum</tt>.
+         </p><pre class="codeinput">exo2;
+</pre><img vspace="5" hspace="5" src="index_05.png"> <p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) Compute and display in log-scale the non-linear approximation error \(\epsilon[M]^2\). Store the values of \(\epsilon[M]^2\)
+            in a vector <tt>err_fft</tt>.
+         </p><pre class="codeinput">exo3;
+</pre><img vspace="5" hspace="5" src="index_06.png"> <h2>Wavelet Approximation<a name="28"></a></h2>
+         <p>The Wavelet basis of continuous 2-D functions is defined by by scaling and translating three mother atoms \( \{\psi^H,\psi^V,\psi^D\}
+            \): \[ \psi_{j,n}^k(x) = \frac{1}{2^j}\psi^k\pa{\frac{x-2^j n}{2^j}}  \]
+         </p>
+         <p>Non-linear wavelet approximation is a the heart of the JPEG-2000 compression standard.</p>
+         <p>The set of inner products \( \{ \dotp{f}{\psi_m} \}_m \) is computed in \(O(N)\) operations with the 2-D Fast Wavelet Transform
+            algorithm.
+         </p>
+         <p>Perform a wavelet transform. Here we use a daubechies wavelet transform.</p><pre class="codeinput">Jmin = 1;
+options.h = compute_wavelet_filter(<span class="string">'Daubechies'</span>,10);
+fW = perform_wavortho_transf(f,Jmin,+1, options);
+</pre><p>Display the coefficients.</p><pre class="codeinput">clf;
+plot_wavelet(fW,Jmin);
+title(<span class="string">'Wavelet coefficients'</span>);
+</pre><img vspace="5" hspace="5" src="index_07.png"> <p><i>Exercice 4:</i> (<a href="../missing-exo/">check the solution</a>) Compute a best \(M\)-term approximation in the wavelet basis of \(f\), for \(M \in \{N/100, N/20\}\). Compute the approximation
+            using a well chosen hard threshold value \(T\). Note that the inverse wavelet transform is obtained by replacing the +1 by
+            a -1 in the definition of the transform.
+         </p><pre class="codeinput">exo4;
+</pre><img vspace="5" hspace="5" src="index_08.png"> <p><i>Exercice 5:</i> (<a href="../missing-exo/">check the solution</a>) Compute and display in log-scale the non-linear approximation error \(\epsilon[M]^2\). Compares the Fourier and wavelets
+            approximations. Store the values of \(\epsilon[M]^2\) in a vector <tt>err_wav</tt>.
+         </p><pre class="codeinput">exo5;
+</pre><img vspace="5" hspace="5" src="index_09.png"> <h2>Cosine Approximation<a name="35"></a></h2>
+         <p>The discrete cosine approximation (DCT) is similar to the Fourier approximation, excepted that it used symmetric boundary
+            condition instead of periodic boundary condition, and is thus more useful to approximate image.
+         </p>
+         <p>A 1-D cosine atom of \(n\) sample is defined as \[ \bar\psi_m(x) = \frac{1}{\sqrt{N}} \cos\pa{ \frac{2\pi}{N} (x-1/2) m }.
+            \] A 2-D cosine atom is obtained by tensor product of 1-D atoms \[ \psi_{m_1,m_2}(x_1,x_2) = \bar\psi_{m_1}(x_1) \bar\psi_{m_2}(x_2).
+            \] On the contrary to the Fourier 2-D atoms, these 2-D DCT atoms are not oriented (they contains 4 Fourier frequencies).
+         </p>
+         <p>The set of inner products \( \{ \dotp{f}{\psi_m} \}_m \) is computed in \(O(N \log(N))\) operations with the 2-D Fast Cosine
+            Transform algorithm (the Matlab function is <tt>dct2</tt>).
+         </p><pre class="codeinput">fC = dct2(f);
+</pre><p>Display the magnitude of the DCT coefficients. Note that the low frequencies are in the upper-left corner.</p><pre class="codeinput">clf;
+imageplot(log(1e-5+abs(fC)));
+</pre><img vspace="5" hspace="5" src="index_10.png"> <p><i>Exercice 6:</i> (<a href="../missing-exo/">check the solution</a>) Compute a best \(M\)-term approximation in the wavelet basis of \(f\), for \(M \in \{N/100, N/20\}\). Compute the approximation
+            using a well chosen hard threshold value \(T\). Note that the inverse DCT transform is obtained with the function <tt>idct2</tt>.
+         </p><pre class="codeinput">exo6;
+</pre><img vspace="5" hspace="5" src="index_11.png"> <p><i>Exercice 7:</i> (<a href="../missing-exo/">check the solution</a>) Compute and display in log-scale the non-linear approximation error \(\epsilon[M]^2\). Compares the Fourier and DCT approximations.
+            Store the values of \(\epsilon[M]^2\) in a vector <tt>err_dct</tt>.
+         </p><pre class="codeinput">exo7;
+</pre><img vspace="5" hspace="5" src="index_12.png"> <h2>Local Cosine Approximation<a name="41"></a></h2>
+         <p>To improve the global DCT approximation, one can approximate independantly small patches in the image. This corresponds to
+            a decomposition in a local cosine basis, which is at the heart of the JPEG image compression standard.
+         </p>
+         <p>The only parameter of the transform is the size of the square.</p><pre class="codeinput">w = 16;
+</pre><p>Initialize at zero the transformed image in the local DCT basis.</p><pre class="codeinput">fL = zeros(n,n);
+</pre><p>Example of patch index.</p><pre class="codeinput">i = 5;
+j = 7;
+</pre><p>For a given path index <tt>(i,j)</tt>, we extract an <tt>(w,w)</tt> patch.
+         </p><pre class="codeinput">seli = (i-1)*w+1:i*w;
+selj = (j-1)*w+1:j*w;
+P = f(seli,selj);
+</pre><p>Compute the Cosine transform of the patch using the fast DCT algorithm.</p><pre class="codeinput">fL(seli,selj) = dct2(P);
+</pre><p>Display the patch and its coefficients. We removed the low frequency of <tt>P</tt> for display purpose only.
+         </p><pre class="codeinput">clf;
+imageplot(P,<span class="string">'Patch'</span>,1,2,1);
+imageplot(dct2(P-mean(P(:))),<span class="string">'DCT'</span>,1,2,2);
+</pre><img vspace="5" hspace="5" src="index_13.png"> <p><i>Exercice 8:</i> (<a href="../missing-exo/">check the solution</a>) Compute the local DCT transform <tt>fL</tt> by transforming each patch.
+         </p><pre class="codeinput">exo8;
+</pre><p>Display the coefficients.</p><pre class="codeinput">clf;
+imageplot(min(abs(fL),.005*w*w));
+</pre><img vspace="5" hspace="5" src="index_14.png"> <p><i>Exercice 9:</i> (<a href="../missing-exo/">check the solution</a>) Compute the inverse local DCT transform  of the coefficients <tt>fL</tt> by inverse transforming each patch using  the function <tt>idct2</tt>.
+         </p><pre class="codeinput">exo9;
+</pre><pre class="codeoutput">Error |f-f1|/|f| = 3.8496e-16
+</pre><p><i>Exercice 10:</i> (<a href="../missing-exo/">check the solution</a>) Compute a few best <tt>m</tt>-term approximations in the Local DCT basis of <tt>f</tt>.
+         </p><pre class="codeinput">exo10;
+</pre><img vspace="5" hspace="5" src="index_15.png"> <p><i>Exercice 11:</i> (<a href="../missing-exo/">check the solution</a>) Compute and display in log-scale the non-linear approximation error \(\epsilon[M]^2\). Store the values of \(\epsilon[M]^2\)
+            in a vector <tt>err_ldct</tt>. Compares the Fourier, Wavelets, DCT and local-DCT approximations.
+         </p><pre class="codeinput">exo11;
+</pre><img vspace="5" hspace="5" src="index_16.png"> <h2>Comparison of Wavelet Approximations of Several Images<a name="53"></a></h2>
+         <p>An image is more complicated than an other one for a given orthogonal basis if its approximation error decays more slowly.</p>
+         <p>First load several high resolution images.</p><pre class="codeinput">n = 512;
+fList(:,:,1) = rescale( load_image(<span class="string">'regular3'</span>,n) );
+fList(:,:,2) = rescale( load_image(<span class="string">'phantom'</span>,n) );
+fList(:,:,3) = rescale( load_image(<span class="string">'lena'</span>,n) );
+fList(:,:,4) = rescale( load_image(<span class="string">'mandrill'</span>,n) );
+</pre><p>Display them.</p><pre class="codeinput">clf;
+<span class="keyword">for</span> i=1:4
+    imageplot(fList(:,:,i),<span class="string">''</span>, 2,2,i);
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="index_17.png"> <p><i>Exercice 12:</i> (<a href="../missing-exo/">check the solution</a>) Compare the approximation error decay for those images. Display \( \log_{10}(\norm{f-f_M}) \) as a function of \(\log_{10}(M)\).
+         </p><pre class="codeinput">exo12;
+</pre><img vspace="5" hspace="5" src="index_18.png"> <p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Image Approximation with Orthogonal Bases
+% This numerical tour uses several orthogonal bases to perform non-linear image
+% approximation. 
+
+%%
+% *Important:* Scilab user have to call the function |extend_stack_size(4)|
+% before starting the tour to be able to handle large images.
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_signal.zip signal toolbox> and 
+% <../toolbox_general.zip general toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_signal| and 
+% |toolbox_general|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_signal/');
+getd('toolbox_general/');
+
+%% Best \(M\)-terms Non-linear Approximation
+% This tours makes use of an orthogonal base \( \Bb = \{ \psi_m \}_{m=0}^{N-1} \)
+% of the space \(\RR^N\) of the images with \(N\) pixels.
+
+%%
+% The best \(M\)-term approximation of \(f\) is obtained by a non-linear
+% thresholding
+% \[ f_M = \sum_{ \abs{\dotp{f}{\psi_m}}>T }  \dotp{f}{\psi_m} \psi_m, \] 
+% where the value of \(T>0\) should be carefully selected so that only
+% \(M\) coefficients are not thresholded, i.e.
+% \[ \abs{ \enscond{m}{ \abs{\dotp{f}{\psi_m}}>T } } = M. \]
+
+%%
+% The goal is to use an ortho-basis \( \Bb \) so that the error \( \norm{f-f_M} \)
+% decays as fast as possible when \(M\) increases, for a large class of
+% images.
+
+%%
+% This tour studies several different orthogonal bases: Fourier, wavelets (which is at the heart of JPEG-2000),
+% cosine, local cosine (which is at the heart of JPEG).
+
+
+%%
+% First we load an image of \( N = n \times n \) pixels.
+
+n = 512;
+f = rescale( load_image('lena', n) );
+
+%%
+% Display it.
+
+clf;
+imageplot(f);
+
+%% Fourier Approximation
+% The discrete 2-D Fourier atoms are defined as:
+% \[ \psi_m(x) = \frac{1}{\sqrt{N}} e^{ \frac{2i\pi}{n} ( x_1 m_1 + x_2 m_2 ) },  \]
+% where \( 0 \leq m_1,m_2 < n \) indexes the frequency.
+
+%%
+% The set of inner products \( \{ \dotp{f}{\psi_m} \}_m \) is computed in
+% \(O(N \log(N))\) operations with the 2-D Fast Fourier Transform (FFT)
+% algorithm (the Matlab function is |fft2|).
+
+%%
+% Compute the Fourier transform using the FFT algorithm.
+% Note the normalization by \(1/\sqrt{N}\) to ensure orthogonality (energy
+% conservation) of the transform.
+
+fF = fft2(f)/n;
+
+%%
+% Display its magnitude (in log scale).
+% We use the function |fftshift| to put the low frequency in the center.
+
+clf;
+imageplot(log(1e-5+abs(fftshift(fF))));
+
+
+%%
+% An image is recovered from a set of coefficients \(c_m\) using the inverse
+% Fourier Transform (Matlab function |ifft2|) than implements the formula
+% \[ f_M = \sum_m c_m \psi_m. \]
+
+%%
+% Performs a thresholding.
+
+T = .3;
+c = fF .* (abs(fF)>T);
+
+%%
+% Inverse the Fourier transform.
+
+fM = real(ifft2(c)*n);
+
+
+%%
+% Display the approximation.
+
+imageplot(clamp(fM));
+
+%%
+% _Exercice 1:_ (<../missing-exo/ check the solution>)
+% Compute a best \(M\)-term approximation in the Fourier basis of \(f\), for 
+% \(M \in \{N/100, N/20\}\). Compute the approximation using
+% a well chosen hard threshold value \(T\). 
+
+exo1;
+
+%%
+% The best \(M\)-term approximation error is computed using the
+% conservation of energy as
+% \[ \epsilon[M]^2 = \norm{f-f_M}^2 = \sum_{ \abs{\dotp{f}{\psi_m}} \leq T } \abs{\dotp{f}{\psi_m}}^2.  \]
+
+%%
+% If one denotes by \( \{ c_R[k] \}_{k=0}^{N-1} \) the set of 
+% coefficients magnitudes \( \abs{\dotp{f}{\psi_m}} \) ordered by *decaying* 
+% magnitudes, then this error is easily computed as
+% \[ \epsilon[M]^2 = \sum_{k=M}^{N-1} c_R[k]^2 
+%     = \norm{f}^2 - \sum_{k=0}^{M-1} c_R[k]^2. \]
+% This means that \(\epsilon^2\) is equal to 
+% \(\norm{f}^2\) minus the discrete primitive of \( c_R^2 \).
+
+%%
+% _Exercice 2:_ (<../missing-exo/ check the solution>)
+% Compute and display in log scales the ordered coefficients \(c_R\).
+% _Hint:_ a discrete primitive can be computed using the function
+% |cumsum|.
+
+exo2;
+
+%%
+% _Exercice 3:_ (<../missing-exo/ check the solution>)
+% Compute and display in log-scale the non-linear approximation 
+% error \(\epsilon[M]^2\). 
+% Store the values of \(\epsilon[M]^2\) in a vector |err_fft|.
+
+exo3;
+
+%% Wavelet Approximation
+% The Wavelet basis of continuous 2-D functions is defined by 
+% by scaling and translating three mother
+% atoms \( \{\psi^H,\psi^V,\psi^D\} \):
+% \[ \psi_{j,n}^k(x) = \frac{1}{2^j}\psi^k\pa{\frac{x-2^j n}{2^j}}  \]
+
+%%
+% Non-linear wavelet approximation is a the heart of the JPEG-2000 
+% compression standard.
+
+%%
+% The set of inner products \( \{ \dotp{f}{\psi_m} \}_m \) is computed in
+% \(O(N)\) operations with the 2-D Fast Wavelet Transform 
+% algorithm.
+
+%%
+% Perform a wavelet transform.
+% Here we use a daubechies wavelet transform.
+
+Jmin = 1;
+options.h = compute_wavelet_filter('Daubechies',10);
+fW = perform_wavortho_transf(f,Jmin,+1, options);
+
+%%
+% Display the coefficients.
+
+clf;
+plot_wavelet(fW,Jmin);
+title('Wavelet coefficients');
+
+
+%%
+% _Exercice 4:_ (<../missing-exo/ check the solution>)
+% Compute a best \(M\)-term approximation in the wavelet basis of \(f\), for 
+% \(M \in \{N/100, N/20\}\). Compute the approximation using
+% a well chosen hard threshold value \(T\). 
+% Note that the inverse wavelet transform is obtained by replacing the +1
+% by a -1 in the definition of the transform.
+
+exo4;
+
+
+%%
+% _Exercice 5:_ (<../missing-exo/ check the solution>)
+% Compute and display in log-scale the non-linear approximation 
+% error \(\epsilon[M]^2\). 
+% Compares the Fourier and wavelets approximations.
+% Store the values of \(\epsilon[M]^2\) in a vector |err_wav|.
+
+exo5;
+
+
+%% Cosine Approximation
+% The discrete cosine approximation (DCT) is similar to the Fourier
+% approximation, excepted that it used symmetric boundary condition instead
+% of periodic boundary condition, and is thus more useful to approximate
+% image.
+
+%%
+% A 1-D cosine atom of \(n\) sample is defined as
+% \[ \bar\psi_m(x) = \frac{1}{\sqrt{N}} \cos\pa{ \frac{2\pi}{N} (x-1/2) m }. \]
+% A 2-D cosine atom is obtained by tensor product of 1-D atoms
+% \[ \psi_{m_1,m_2}(x_1,x_2) = \bar\psi_{m_1}(x_1) \bar\psi_{m_2}(x_2). \]
+% On the contrary to the Fourier 2-D atoms, these 2-D DCT atoms are not
+% oriented (they contains 4 Fourier frequencies). 
+
+%%%
+% The set of inner products \( \{ \dotp{f}{\psi_m} \}_m \) is computed in
+% \(O(N \log(N))\) operations with the 2-D Fast Cosine Transform 
+% algorithm (the Matlab function is |dct2|).
+
+fC = dct2(f);
+
+%% 
+% Display the magnitude of the DCT coefficients.
+% Note that the low frequencies are in the upper-left corner.
+
+clf;
+imageplot(log(1e-5+abs(fC)));
+
+
+%%
+% _Exercice 6:_ (<../missing-exo/ check the solution>)
+% Compute a best \(M\)-term approximation in the wavelet basis of \(f\), for 
+% \(M \in \{N/100, N/20\}\). Compute the approximation using
+% a well chosen hard threshold value \(T\). Note that the inverse DCT
+% transform is obtained with the function |idct2|.
+
+exo6;
+
+%%
+% _Exercice 7:_ (<../missing-exo/ check the solution>)
+% Compute and display in log-scale the non-linear approximation 
+% error \(\epsilon[M]^2\). 
+% Compares the Fourier and DCT approximations.
+% Store the values of \(\epsilon[M]^2\) in a vector |err_dct|.
+
+exo7;
+
+
+%% Local Cosine Approximation
+% To improve the global DCT approximation, one can approximate
+% independantly small patches in the image. This corresponds to a
+% decomposition in a local cosine basis, which is at the heart 
+% of the JPEG image compression standard.
+
+%%
+% The only parameter of the transform is the size of the square.
+
+w = 16;
+
+%%
+% Initialize at zero the transformed image in the local DCT basis.
+
+fL = zeros(n,n);
+
+%%
+% Example of patch index.
+
+i = 5;
+j = 7;
+
+%%
+% For a given path index |(i,j)|, we extract an |(w,w)| patch.
+
+seli = (i-1)*w+1:i*w;
+selj = (j-1)*w+1:j*w;
+P = f(seli,selj);
+
+%%
+% Compute the Cosine transform of the patch using the fast DCT algorithm.
+
+fL(seli,selj) = dct2(P);
+
+%%
+% Display the patch and its coefficients. We removed the low frequency of
+% |P| for display purpose only.
+
+clf;
+imageplot(P,'Patch',1,2,1);
+imageplot(dct2(P-mean(P(:))),'DCT',1,2,2);
+
+%%
+% _Exercice 8:_ (<../missing-exo/ check the solution>)
+% Compute the local DCT transform |fL| by transforming each patch.
+
+exo8;
+
+%%
+% Display the coefficients.
+
+clf;
+imageplot(min(abs(fL),.005*w*w));
+
+%%
+% _Exercice 9:_ (<../missing-exo/ check the solution>)
+% Compute the inverse local DCT transform  of the coefficients |fL| by inverse 
+% transforming each patch using  the function |idct2|.
+
+exo9;
+
+%%
+% _Exercice 10:_ (<../missing-exo/ check the solution>)
+% Compute a few best |m|-term approximations in the Local DCT basis of
+% |f|.
+
+exo10;
+
+%%
+% _Exercice 11:_ (<../missing-exo/ check the solution>)
+% Compute and display in log-scale the non-linear approximation 
+% error \(\epsilon[M]^2\). 
+% Store the values of \(\epsilon[M]^2\) in a vector |err_ldct|.
+% Compares the Fourier, Wavelets, DCT and local-DCT approximations.
+
+exo11;
+
+%% Comparison of Wavelet Approximations of Several Images
+% An image is more complicated than an other one for a given orthogonal
+% basis if its approximation error decays more slowly.
+
+%%
+% First load several high resolution images.
+
+n = 512;
+fList(:,:,1) = rescale( load_image('regular3',n) );
+fList(:,:,2) = rescale( load_image('phantom',n) );
+fList(:,:,3) = rescale( load_image('lena',n) );
+fList(:,:,4) = rescale( load_image('mandrill',n) );
+
+
+%%
+% Display them.
+
+clf;
+for i=1:4
+    imageplot(fList(:,:,i),'', 2,2,i);
+end
+
+%%
+% _Exercice 12:_ (<../missing-exo/ check the solution>)
+% Compare the approximation error decay for those images.
+% Display \( \log_{10}(\norm{f-f_M}) \) as a function of \(\log_{10}(M)\).
+
+exo12;
+
+
+
+##### SOURCE END #####
+-->
+   </body>
+</html>
