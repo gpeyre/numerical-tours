@@ -1,0 +1,749 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      -->
+      <title>2-D Daubechies Wavelets</title><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
+               	requires JavaScript to process the mathematics on this page.<BR> 
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 8.2">
+      <meta name="date" content="2014-10-20">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>2-D Daubechies Wavelets</h1>
+         <introduction>
+            <p>This numerical tour explores 2-D multiresolution analysis with Daubchies wavelet transform.</p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#8">Wavelets Filters</a></li>
+               <li><a href="#20">Up and Down Filtering</a></li>
+               <li><a href="#27">Forward 2-D Wavelet transform</a></li>
+               <li><a href="#50">Inverse 2-D Wavelet transform.</a></li>
+               <li><a href="#62">Linear 2-D Wavelet Approximation</a></li>
+               <li><a href="#65">Non-Linear 2-D Wavelet Approximation</a></li>
+               <li><a href="#72">Separable 2-D Wavelet Transform</a></li>
+               <li><a href="#78">The Shape of a Wavelet</a></li>
+            </ul>
+         </div>
+         <h2>Installing toolboxes and setting up the path.<a name="1"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_signal.zip">signal toolbox</a> and <a href="../toolbox_general.zip">general toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_signal</tt> and <tt>toolbox_general</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
+getd(<span class="string">'toolbox_general/'</span>);
+</pre><h2>Wavelets Filters<a name="8"></a></h2>
+         <p>The 2-D wavelet transform of a continuous image \(f(x)\) computes the set of inner products \[ d_j^k[n] = \dotp{f}{\psi_{j,n}^k}
+            \] for scales \( j \in \ZZ \), position \( n \in \ZZ^2 \) and orientation \( k \in \{H,V,D\} \).
+         </p>
+         <p>The wavelet atoms are defined by scaling and translating three mother atoms \( \{\psi^H,\psi^V,\psi^D\} \): \[ \psi_{j,n}^k(x)
+            = \frac{1}{2^j}\psi^k\pa{\frac{x-2^j n}{2^j}}  \] These oriented wavelets are defined by a tensor product of a 1-D wavelet
+            function \(\psi(t)\) and a 1-D scaling function \(\phi(t)\) \[ \psi^H(x)=\phi(x_1)\psi(x_2), \quad  \psi^V(x)=\psi(x_1)\phi(x_2)
+            \qandq \psi^D(x)=\psi(x_1)\psi(x_2).\]
+         </p>
+         <p>The fast wavelet transform algorithm does not make use of the wavelet and scaling functions, but of the filters \(h\) and
+            \(g\) that caracterize their interaction: \[ g[n] = \frac{1}{\sqrt{2}}\dotp{\psi(t/2)}{\phi(t-n)} \qandq h[n] = \frac{1}{\sqrt{2}}\dotp{\phi(t/2)}{\phi(t-n)}.
+            \]
+         </p>
+         <p>The simplest filters are the Haar filters \[ h = [1, 1]/\sqrt{2} \qandq g = [-1, 1]/\sqrt{2}. \]</p>
+         <p>Daubechies wavelets extends the haar wavelets by using longer filters, that produce smoother scaling functions and wavelets.
+            Furthermore, the larger the size \(p=2k\) of the filter, the higher is the number \(k\) of vanishing moment.
+         </p>
+         <p>A high number of vanishing moments allows to better compress regular parts of the signal. However, increasing the number of
+            vanishing moments also inceases the size of the support of the wavelets, wich can be problematic in part where the signal
+            is singular (for instance discontinuous).
+         </p>
+         <p>Choosing the <i>best</i> wavelet, and thus choosing \(k\), that is adapted to a given class of signals, thus corresponds to a tradeoff between efficiency
+            in regular and singular parts.
+         </p>
+         <div>
+            <ul>
+               <li>The filter with \(k=1\) vanishing moments corresponds to the Haar filter.</li>
+               <li>The filter with \(k=2\) vanishing moments corresponds to the famous <tt>D4</tt> wavelet, which compresses perfectly linear signals.
+               </li>
+               <li>The filter with \(k=3\) vanishing moments compresses perfectly quadratic signals.</li>
+            </ul>
+         </div>
+         <p>Set the support size. To begin, we select the D4 filter.</p><pre class="codeinput">p = 4;
+</pre><p>Create the low pass filter \(h\) and the high pass \(g\). We add a zero to ensure that it has a odd length. Note that the
+            central value of \(h\) corresponds to the 0 position.
+         </p><pre class="codeinput">[h,g] = compute_wavelet_filter(<span class="string">'Daubechies'</span>,p);
+</pre><p>Note that the high pass filter \(g\) is computed directly from the low pass filter as: \[g[n] = (-1)^{1-n}h[1-n]\]</p>
+         <p>Display.</p><pre class="codeinput">disp([<span class="string">'h filter = ['</span> num2str(h) <span class="string">']'</span>]);
+disp([<span class="string">'g filter = ['</span> num2str(g) <span class="string">']'</span>]);
+</pre><pre class="codeoutput">h filter = [0     0.48296     0.83652     0.22414    -0.12941]
+g filter = [0    -0.12941    -0.22414     0.83652    -0.48296]
+</pre><h2>Up and Down Filtering<a name="20"></a></h2>
+         <p>The basic wavelet operation is low/high filtering, followed by down sampling.</p>
+         <p>Starting from some 1-D signal \(f \in \RR^N\), one thus compute the low pass signal \(a \in \RR^{N/2}\) and the high pass
+            signal \(d \in \RR^{N/2}\) as \[ a = (f \star h) \downarrow 2 \qandq d = (f \star g) \downarrow 2\] where the sub-sampling
+            is defined as \[ (u \downarrow 2)[k] = u[2k]. \]
+         </p>
+         <p>Create a random signal \(f \in \RR^N\).</p><pre class="codeinput">N = 256;
+f = rand(N,1);
+</pre><p>Low/High pass filtering followed by sub-sampling.</p><pre class="codeinput">a = subsampling( cconv(f,h) );
+d = subsampling( cconv(f,g) );
+</pre><p>For orthogonal filters, the reverse of this process is its dual (aka its transpose), which is upsampling followed by low/high
+            pass filtering with the reversed filters and summing: \[ (a \uparrow h) \star \tilde h + (d \uparrow g) \star \tilde g = f
+            \] where \(\tilde h[n]=h[-n]\) (computed modulo \(N\)) and \( (u \uparrow 2)[2n]=u[n] \) and  \( (u \uparrow 2)[2n+1]=0 \).
+         </p>
+         <p>Up-sampling followed by filtering.</p><pre class="codeinput">f1 =  cconv(upsampling(a),reverse(h)) + cconv(upsampling(d),reverse(g));
+</pre><p>Check that we really recover the same signal.</p><pre class="codeinput">disp(strcat(([<span class="string">'Error |f-f1|/|f| = '</span> num2str(norm(f-f1)/norm(f))])));
+</pre><pre class="codeoutput">Error |f-f1|/|f| = 5.452e-13
+</pre><h2>Forward 2-D Wavelet transform<a name="27"></a></h2>
+         <p>The set of wavelet coefficients are computed with a fast algorithm that exploit the embedding of the approximation spaces
+            \(V_j\) spanned by the scaling function \( \{ \phi_{j,n} \}_n \) defined as \[ \phi_{j,n}(x) = \frac{1}{2^j}\phi^0\pa{\frac{x-2^j
+            n}{2^j}} \qwhereq \phi^0(x)=\phi(x_1)\phi(x_2). \]
+         </p>
+         <p>The wavelet transform of \(f\) is computed by using intermediate discretized low resolution images obtained by projection
+            on the spaces \(V_j\): \[ a_j[n] = \dotp{f}{\phi_{j,n}}. \]
+         </p>
+         <p>First we load an image of \(N= n \times n\) pixels.</p><pre class="codeinput">n = 256;
+name = <span class="string">'hibiscus'</span>;
+f = load_image(name,n);
+f = rescale( sum(f,3) );
+</pre><p>The algorithm starts at the coarsest scale \( j=\log_2(n)-1 \)</p><pre class="codeinput">j = log2(n)-1;
+</pre><p>The first step of the algorithm perform filtering/downsampling in the horizontal direction.</p>
+         <p>\[ \tilde a_{j-1} = (a_j \star^H h) \downarrow^{2,H}  \qandq    \tilde d_{j-1} = (a_j \star^H g) \downarrow^{2,H}\]</p>
+         <p>Here, the operator \(\star^H\) and \(\downarrow^{2,H}\) are defined by applying \(\star\) and \(\downarrow^2\) to each column
+            of the matrix.
+         </p>
+         <p>The second step computes the filtering/downsampling in the vertical direction.</p>
+         <p>\[ a_{j-1}   = (\tilde a_j \star^V h) \downarrow^{2,V}  \qandq    d_{j-1}^V = (\tilde a_j \star^V g) \downarrow^{2,V},\] \[
+            d_{j-1}^H = (\tilde d_j \star^V h) \downarrow^{2,V}  \qandq    d_{j-1}^D = (\tilde d_j \star^V g) \downarrow^{2,V}.\]
+         </p>
+         <p>A wavelet transform is computed by iterating high pass and loss pass filterings with <tt>h</tt> and <tt>g</tt>, followed by sub-samplings. Since we are in 2-D, we need to compute these filterings+subsamplings in the horizontal and then
+            in the vertical direction (or in the reverse order, it does not mind).
+         </p>
+         <p>Initialize the transformed coefficients as the image itself and set the initial scale as the maximum one. <tt>fW</tt> will be iteratively transformated and will contains the coefficients.
+         </p><pre class="codeinput">fW = f;
+</pre><p>Select the sub-part of the image to transform.</p><pre class="codeinput">A = fW(1:2^(j+1),1:2^(j+1));
+</pre><p>Apply high and low filtering+subsampling in the vertical direction (1st ooordinate), to get coarse and details.</p><pre class="codeinput">Coarse = subsampling(cconv(A,h,1),1);
+Detail = subsampling(cconv(A,g,1),1);
+</pre><p><i>Note:</i> <tt>subsamplling(A,1)</tt> is equivalent to <tt>A(1:2:end,:)</tt> and <tt>subsamplling(A,2)</tt> is equivalent to <tt>A(:,1:2:end)</tt>.
+         </p>
+         <p>Concatenate them in the vertical direction to get the result.</p><pre class="codeinput">A = cat3(1, Coarse, Detail );
+</pre><p>Display the result of the vertical transform.</p><pre class="codeinput">clf;
+imageplot(f,<span class="string">'Original imge'</span>,1,2,1);
+imageplot(A,<span class="string">'Vertical transform'</span>,1,2,2);
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p>Apply high and low filtering+subsampling in the horizontal direction (2nd ooordinate), to get coarse and details.</p><pre class="codeinput">Coarse = subsampling(cconv(A,h,2),2);
+Detail = subsampling(cconv(A,g,2),2);
+</pre><p>Concatenate them in the horizontal direction to get the result.</p><pre class="codeinput">A = cat3(2, Coarse, Detail );
+</pre><p>Assign the transformed data.</p><pre class="codeinput">fW(1:2^(j+1),1:2^(j+1)) = A;
+</pre><p>Display the result of the horizontal transform.</p><pre class="codeinput">clf;
+imageplot(f,<span class="string">'Original image'</span>,1,2,1);
+subplot(1,2,2);
+plot_wavelet(fW,log2(n)-1); title(<span class="string">'Transformed'</span>)
+</pre><img vspace="5" hspace="5" src="index_02.png"> <p><i>Exercice 1:</i> (<a href="../missing-exo./">check the solution</a>) Implement a full wavelet transform that extract iteratively wavelet coefficients, by repeating these steps. Take care of
+            choosing the correct number of steps.
+         </p><pre class="codeinput">exo1;
+</pre><img vspace="5" hspace="5" src="index_03.png"> <p>Check for orthogonality of the transform (conservation of energy).</p><pre class="codeinput">disp(strcat([<span class="string">'Energy of the signal       = '</span> num2str(norm(f(:)).^2)]));
+disp(strcat([<span class="string">'Energy of the coefficients = '</span> num2str(norm(fW(:)).^2)]));
+</pre><pre class="codeoutput">Energy of the signal       = 10863.2801
+Energy of the coefficients = 10863.2801
+</pre><p>Display the wavelet coefficients.</p><pre class="codeinput">clf;
+subplot(1,2,1);
+imageplot(f); title(<span class="string">'Original'</span>);
+subplot(1,2,2);
+plot_wavelet(fW, 1); title(<span class="string">'Transformed'</span>);
+</pre><img vspace="5" hspace="5" src="index_04.png"> <h2>Inverse 2-D Wavelet transform.<a name="50"></a></h2>
+         <p>Inversing the wavelet transform means retrieving a signal <tt>f1</tt> from the coefficients <tt>fW</tt>. If <tt>fW</tt> are exactely the coefficients of <tt>f</tt>, then <tt>f=f1</tt> up to machine precision.
+         </p>
+         <p>Initialize the image to recover <tt>f1</tt> as the transformed coefficient, and select the smallest possible scale.
+         </p><pre class="codeinput">f1 = fW;
+j = 0;
+</pre><p>Select the sub-coefficient to transform.</p><pre class="codeinput">A = f1(1:2^(j+1),1:2^(j+1));
+</pre><p>Retrieve coarse and detail coefficients in the vertical direction (you can begin by the other direction, this has no importance).</p><pre class="codeinput">Coarse = A(1:2^j,:);
+Detail = A(2^j+1:2^(j+1),:);
+</pre><p>Undo the transform by up-sampling and then dual filtering.</p><pre class="codeinput">Coarse = cconv(upsampling(Coarse,1),reverse(h),1);
+Detail = cconv(upsampling(Detail,1),reverse(g),1);
+</pre><p>Recover the coefficient by summing.</p><pre class="codeinput">A = Coarse + Detail;
+</pre><p>Retrieve coarse and detail coefficients in the vertical direction (you can begin by the other direction, this has no importance).</p><pre class="codeinput">Coarse = A(:,1:2^j);
+Detail = A(:,2^j+1:2^(j+1));
+</pre><p>Undo the transform by up-sampling and then dual filtering.</p><pre class="codeinput">Coarse = cconv(upsampling(Coarse,2),reverse(h),2);
+Detail = cconv(upsampling(Detail,2),reverse(g),2);
+</pre><p>Recover the coefficient by summing.</p><pre class="codeinput">A = Coarse + Detail;
+</pre><p>Assign the result.</p><pre class="codeinput">f1(1:2^(j+1),1:2^(j+1)) = A;
+</pre><p><i>Exercice 2:</i> (<a href="../missing-exo./">check the solution</a>) Write the inverse wavelet transform that computes <tt>f1</tt> from the coefficients <tt>fW</tt>. Compare <tt>f1</tt> with <tt>f</tt>.
+         </p><pre class="codeinput">exo2;
+</pre><img vspace="5" hspace="5" src="index_05.png"> <p>Check that we recover exactly the original image.</p><pre class="codeinput">disp(strcat(([<span class="string">'Error |f-f1|/|f| = '</span> num2str(norm(f(:)-f1(:))/norm(f(:)))])));
+</pre><pre class="codeoutput">Error |f-f1|/|f| = 8.6602e-12
+</pre><h2>Linear 2-D Wavelet Approximation<a name="62"></a></h2>
+         <p>Linear approximation is performed by setting to zero the fine scale wawelets coefficients and then performing the inverse
+            wavelet transform.
+         </p>
+         <p>Here we keep only 1/16 of the wavelet coefficient, thus calculating an <tt>m</tt> term approximation with <tt>m=n^2/16</tt>.
+         </p><pre class="codeinput">eta = 4;
+fWLin = zeros(n,n);
+fWLin(1:n/eta,1:n/eta) = fW(1:n/eta,1:n/eta);
+</pre><p><i>Exercice 3:</i> (<a href="../missing-exo./">check the solution</a>) Compute and display the linear approximation <tt>fLin</tt> obtained from the coefficients <tt>fWLin</tt> by inverse wavelet transform.
+         </p><pre class="codeinput">exo3;
+</pre><img vspace="5" hspace="5" src="index_06.png"> <h2>Non-Linear 2-D Wavelet Approximation<a name="65"></a></h2>
+         <p>A non-linear <tt>m</tt>-term approximation is obtained by keeping only the <tt>m</tt> largest coefficients, which creates the smallest possible error.
+         </p>
+         <p>Removing the smallest coefficient, to keep the <tt>m</tt>-largest, is equivalently obtainedby thresholding the coefficients to set to 0 the smallest coefficients.
+         </p>
+         <p>First select a threshold value (the largest the threshold, the more agressive the approximation).</p><pre class="codeinput">T = .2;
+</pre><p>Then set to 0 coefficients with magnitude below the threshold.</p><pre class="codeinput">fWT = fW .* (abs(fW)&gt;T);
+</pre><p>Display thresholded coefficients.</p><pre class="codeinput">clf;
+subplot(1,2,1);
+plot_wavelet(fW); axis(<span class="string">'tight'</span>); title(<span class="string">'Original coefficients'</span>);
+subplot(1,2,2);
+plot_wavelet(fWT); axis(<span class="string">'tight'</span>); title(<span class="string">'Thresholded coefficients'</span>);
+</pre><img vspace="5" hspace="5" src="index_07.png"> <p><i>Exercice 4:</i> (<a href="../missing-exo./">check the solution</a>) Find the thresholds <tt>T</tt> so that the number <tt>m</tt> of remaining coefficients in <tt>fWT</tt> are <tt>m=n^2/16</tt>. Use this threshold to compute <tt>fWT</tt> and then display the corresponding approximation <tt>Mnlin</tt> of <tt>f</tt>. Compare this result with the linear approximation.
+         </p><pre class="codeinput">exo4;
+</pre><img vspace="5" hspace="5" src="index_08.png"> <p><i>Exercice 5:</i> (<a href="../missing-exo./">check the solution</a>) Try with Different kind of wavelets, with an increasing number of vanishing moments.
+         </p><pre class="codeinput">exo5;
+</pre><img vspace="5" hspace="5" src="index_09.png"> <h2>Separable 2-D Wavelet Transform<a name="72"></a></h2>
+         <p>A forward wavelet transform is obtained by applying the 1D wavelet transform to</p>
+         <p><i>Exercice 6:</i> (<a href="../missing-exo./">check the solution</a>) Implement the foward separable transform. Wavelet transformm in 1D each column <tt>f(:,i)</tt> to obtain coefficients <tt>fWSep(:,i)</tt>. Then re-transform each row <tt>fWSep(i,:)'</tt>, and store the result in <tt>fW(i,:)'</tt>.
+         </p><pre class="codeinput">exo6;
+</pre><p>Display the result.</p><pre class="codeinput">clf;
+subplot(1,2,1);
+opt.separable = 0;
+plot_wavelet(fW,1,opt);
+title(<span class="string">'Isotropic wavelets'</span>);
+subplot(1,2,2);
+opt.separable = 1;
+plot_wavelet(fWSep,1,opt);
+title(<span class="string">'Separable wavelets'</span>);
+</pre><img vspace="5" hspace="5" src="index_10.png"> <p><i>Exercice 7:</i> (<a href="../missing-exo./">check the solution</a>) Implement the backward separable transform to recover an image <tt>f1</tt> from the coefficients <tt>fWSep</tt>, which backward transform each row and then each columns.
+         </p><pre class="codeinput">exo7;
+</pre><p>Check that we recover exactly the original image.</p><pre class="codeinput">disp(strcat(([<span class="string">'Error |f-f1|/|f| = '</span> num2str(norm(f(:)-f1(:))/norm(f(:)))])));
+</pre><pre class="codeoutput">Error |f-f1|/|f| = 7.6115e-12
+</pre><p><i>Exercice 8:</i> (<a href="../missing-exo./">check the solution</a>) Perform <tt>m=n^2/16</tt>-terms best approximation with separable wavelet transform. Compare the result with isotropic wavelet approximation.
+         </p><pre class="codeinput">exo8;
+</pre><img vspace="5" hspace="5" src="index_11.png"> <h2>The Shape of a Wavelet<a name="78"></a></h2>
+         <p>An isotropic wavelet coefficient <tt>fW[k]</tt> corresponds to an inner product <tt><a href="f,psi_{j,p}^s">f,psi_{j,p}^s</a></tt> where <tt>k</tt> depends on the scale <tt>j</tt> and the position <tt>p</tt> and the orientation <tt>s</tt> (horizontal, vertical or diagonal).
+         </p>
+         <p>The wavelet image  <tt>f1 = psi_{j,p}</tt> is computed by applying the inverse wavelet transform to <tt>fW</tt> where <tt>fW[k]=1</tt> and <tt>fW[l]=0</tt> for <tt>l \neq k</tt>.
+         </p>
+         <p><i>Exercice 9:</i> (<a href="../missing-exo./">check the solution</a>) Compute wavelets at several scales and orientation. Here we show only horizontal wavelets, in 2-D.
+         </p><pre class="codeinput">exo9;
+</pre><img vspace="5" hspace="5" src="index_12.png"> <p><i>Exercice 10:</i> (<a href="../missing-exo./">check the solution</a>) Display Daubechies wavelets with different orientation, for different number of VM.
+         </p><pre class="codeinput">exo10;
+</pre><img vspace="5" hspace="5" src="index_13.png"> <p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% 2-D Daubechies Wavelets
+% This numerical tour explores 2-D multiresolution analysis 
+% with Daubchies wavelet transform.
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_signal.zip signal toolbox> and 
+% <../toolbox_general.zip general toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_signal| and 
+% |toolbox_general|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_signal/');
+getd('toolbox_general/');
+
+
+%% Wavelets Filters
+% The 2-D wavelet transform of a continuous image \(f(x)\) computes the set
+% of inner products 
+% \[ d_j^k[n] = \dotp{f}{\psi_{j,n}^k} \] 
+% for scales \( j \in \ZZ
+% \), position \( n \in \ZZ^2 \) and orientation \( k \in \{H,V,D\} \).
+
+%%
+% The wavelet atoms are defined by scaling and translating three mother
+% atoms \( \{\psi^H,\psi^V,\psi^D\} \):
+% \[ \psi_{j,n}^k(x) = \frac{1}{2^j}\psi^k\pa{\frac{x-2^j n}{2^j}}  \]
+% These oriented wavelets are defined by a tensor product of a 1-D wavelet
+% function \(\psi(t)\) and a 1-D scaling function \(\phi(t)\)
+% \[ \psi^H(x)=\phi(x_1)\psi(x_2), \quad  \psi^V(x)=\psi(x_1)\phi(x_2)
+% \qandq \psi^D(x)=\psi(x_1)\psi(x_2).\]
+
+%%
+% The fast wavelet transform algorithm does not make use of the wavelet and scaling functions,
+% but of the filters \(h\) and \(g\) that caracterize their interaction:
+% \[ g[n] = \frac{1}{\sqrt{2}}\dotp{\psi(t/2)}{\phi(t-n)} 
+% \qandq h[n] = \frac{1}{\sqrt{2}}\dotp{\phi(t/2)}{\phi(t-n)}. \]
+
+%%
+% The simplest filters are the Haar filters
+% \[ h = [1, 1]/\sqrt{2} \qandq g = [-1, 1]/\sqrt{2}. \]
+
+%%
+% Daubechies wavelets extends the haar wavelets by using longer
+% filters, that produce smoother scaling functions and wavelets.
+% Furthermore, the larger the size \(p=2k\) of the filter, the higher is the number
+% \(k\) of vanishing moment. 
+
+%% 
+% A high number of vanishing moments allows to better compress regular
+% parts of the signal. However, increasing the number of vanishing moments
+% also inceases the size of the support of the wavelets, wich can be
+% problematic in part where the signal is singular (for instance
+% discontinuous).
+
+%%
+% Choosing the _best_ wavelet, and thus choosing \(k\), that is adapted to a
+% given class of signals, thus corresponds to 
+% a tradeoff between efficiency in regular and singular parts.
+
+%%
+% * The filter with \(k=1\) vanishing moments corresponds to the Haar filter.
+% * The filter with \(k=2\) vanishing moments corresponds to the famous |D4| wavelet, which compresses perfectly linear signals.
+% * The filter with \(k=3\) vanishing moments compresses perfectly quadratic signals.
+
+%%
+% Set the support size.
+% To begin, we select the D4 filter.
+
+p = 4; 
+
+%%
+% Create the low pass filter \(h\) and the high pass \(g\). We add a zero to ensure that it has a odd
+% length. Note that the central value of \(h\) corresponds to the 0 position.
+
+[h,g] = compute_wavelet_filter('Daubechies',p);
+
+%%
+% Note that the high pass filter \(g\) is computed directly from the low
+% pass filter as:
+% \[g[n] = (-1)^{1-n}h[1-n]\]
+
+%%
+% Display.
+
+disp(['h filter = [' num2str(h) ']']);
+disp(['g filter = [' num2str(g) ']']);
+
+%% Up and Down Filtering
+% The basic wavelet operation is low/high filtering, followed by down
+% sampling. 
+
+%%
+% Starting from some 1-D signal \(f \in \RR^N\), one thus compute the
+% low pass signal \(a \in \RR^{N/2}\) and the high pass 
+% signal \(d \in \RR^{N/2}\) as
+% \[ a = (f \star h) \downarrow 2 \qandq 
+% d = (f \star g) \downarrow 2\]
+% where the sub-sampling is defined as 
+% \[ (u \downarrow 2)[k] = u[2k]. \]
+
+%%
+% Create a random signal \(f \in \RR^N\).
+
+N = 256;
+f = rand(N,1);
+
+%%
+% Low/High pass filtering followed by sub-sampling.
+
+a = subsampling( cconv(f,h) );
+d = subsampling( cconv(f,g) );
+
+%%
+% For orthogonal filters, the reverse of this process is its dual
+% (aka its transpose), which is upsampling followed by low/high pass
+% filtering with the reversed filters and summing:
+% \[ (a \uparrow h) \star \tilde h + (d \uparrow g) \star \tilde g = f \]
+% where \(\tilde h[n]=h[-n]\) (computed modulo \(N\)) and 
+% \( (u \uparrow 2)[2n]=u[n] \) and  \( (u \uparrow 2)[2n+1]=0 \).
+
+%%
+% Up-sampling followed by filtering.
+
+f1 =  cconv(upsampling(a),reverse(h)) + cconv(upsampling(d),reverse(g));
+
+%%
+% Check that we really recover the same signal.
+
+disp(strcat((['Error |f-f1|/|f| = ' num2str(norm(f-f1)/norm(f))])));
+
+%% Forward 2-D Wavelet transform
+% The set of wavelet coefficients are computed with a fast algorithm that
+% exploit the embedding of the approximation spaces \(V_j\) spanned by the 
+% scaling function \( \{ \phi_{j,n} \}_n \) defined as
+% \[ \phi_{j,n}(x) = \frac{1}{2^j}\phi^0\pa{\frac{x-2^j n}{2^j}} 
+% \qwhereq \phi^0(x)=\phi(x_1)\phi(x_2). \]
+
+%%
+% The wavelet transform of \(f\) is computed by using intermediate discretized low
+% resolution images obtained by projection on the spaces \(V_j\):
+% \[ a_j[n] = \dotp{f}{\phi_{j,n}}. \]
+
+%%
+% First we load an image of \(N= n \times n\) pixels.
+
+n = 256;
+name = 'hibiscus';
+f = load_image(name,n);
+f = rescale( sum(f,3) );
+
+%%
+% The algorithm starts at the coarsest scale \( j=\log_2(n)-1 \)
+
+j = log2(n)-1;
+
+%%
+% The first step of the algorithm perform filtering/downsampling in the
+% horizontal direction.
+
+%%
+% \[ \tilde a_{j-1} = (a_j \star^H h) \downarrow^{2,H}  \qandq 
+%    \tilde d_{j-1} = (a_j \star^H g) \downarrow^{2,H}\]
+
+%%
+% Here, the operator \(\star^H\) and \(\downarrow^{2,H}\)
+% are defined by applying \(\star\) and \(\downarrow^2\)
+% to each column of the matrix.
+
+%%
+% The second step computes the filtering/downsampling in the vertical
+% direction.
+
+%%
+% \[ a_{j-1}   = (\tilde a_j \star^V h) \downarrow^{2,V}  \qandq 
+%    d_{j-1}^V = (\tilde a_j \star^V g) \downarrow^{2,V},\]
+% \[ d_{j-1}^H = (\tilde d_j \star^V h) \downarrow^{2,V}  \qandq 
+%    d_{j-1}^D = (\tilde d_j \star^V g) \downarrow^{2,V}.\]
+
+
+%%
+% A wavelet transform is
+% computed by iterating high pass and loss pass filterings with |h| and |g|, followed by sub-samplings.
+% Since we are in 2-D, we need to compute these filterings+subsamplings
+% in the horizontal and then in the vertical direction (or
+% in the reverse order, it does not mind).
+
+
+%%
+% Initialize the transformed coefficients as the image itself and set the
+% initial scale as the maximum one.
+% |fW| will be iteratively transformated and will contains the
+% coefficients.
+
+fW = f;
+
+%%
+% Select the sub-part of the image to transform.
+
+A = fW(1:2^(j+1),1:2^(j+1));
+
+%%
+% Apply high and low filtering+subsampling in the vertical direction (1st ooordinate),
+% to get coarse and details.
+
+Coarse = subsampling(cconv(A,h,1),1);
+Detail = subsampling(cconv(A,g,1),1);
+
+%%
+% _Note:_ |subsamplling(A,1)| is equivalent to |A(1:2:end,:)| and
+% |subsamplling(A,2)| is equivalent to |A(:,1:2:end)|.
+
+%%
+% Concatenate them in the vertical direction to get the result.
+
+A = cat3(1, Coarse, Detail );
+
+%%
+% Display the result of the vertical transform.
+
+clf;
+imageplot(f,'Original imge',1,2,1);
+imageplot(A,'Vertical transform',1,2,2);
+
+%%
+% Apply high and low filtering+subsampling in the horizontal direction (2nd ooordinate),
+% to get coarse and details.
+
+Coarse = subsampling(cconv(A,h,2),2);
+Detail = subsampling(cconv(A,g,2),2);
+
+%%
+% Concatenate them in the horizontal direction to get the result.
+
+A = cat3(2, Coarse, Detail );
+
+%%
+% Assign the transformed data.
+
+fW(1:2^(j+1),1:2^(j+1)) = A;
+
+%%
+% Display the result of the horizontal transform.
+
+clf;
+imageplot(f,'Original image',1,2,1);
+subplot(1,2,2);
+plot_wavelet(fW,log2(n)-1); title('Transformed')
+
+%%
+% _Exercice 1:_ (<../missing-exo./ check the solution>)
+% Implement a full wavelet transform that extract iteratively wavelet
+% coefficients, by repeating these steps. Take care of choosing the
+% correct number of steps.
+
+exo1;
+
+%%
+% Check for orthogonality of the transform (conservation of energy).
+
+disp(strcat(['Energy of the signal       = ' num2str(norm(f(:)).^2)]));
+disp(strcat(['Energy of the coefficients = ' num2str(norm(fW(:)).^2)]));
+
+%% 
+% Display the wavelet coefficients.
+
+clf;
+subplot(1,2,1);
+imageplot(f); title('Original');
+subplot(1,2,2);
+plot_wavelet(fW, 1); title('Transformed');
+
+%% Inverse 2-D Wavelet transform.
+% Inversing the wavelet transform means retrieving a signal |f1| from the
+% coefficients |fW|. If |fW| are exactely the coefficients of |f|, then
+% |f=f1| up to machine precision.  
+
+%%
+% Initialize the image to recover |f1| as the transformed coefficient, and
+% select the smallest possible scale.
+
+f1 = fW;
+j = 0;
+
+%%
+% Select the sub-coefficient to transform.
+
+A = f1(1:2^(j+1),1:2^(j+1));
+
+
+%% 
+% Retrieve coarse and detail coefficients in the vertical direction (you
+% can begin by the other direction, this has no importance).
+
+Coarse = A(1:2^j,:);
+Detail = A(2^j+1:2^(j+1),:);
+
+%%
+% Undo the transform by up-sampling and then dual filtering.
+
+Coarse = cconv(upsampling(Coarse,1),reverse(h),1);
+Detail = cconv(upsampling(Detail,1),reverse(g),1);
+
+%%
+% Recover the coefficient by summing.
+
+A = Coarse + Detail;
+
+%% 
+% Retrieve coarse and detail coefficients in the vertical direction (you
+% can begin by the other direction, this has no importance).
+
+Coarse = A(:,1:2^j);
+Detail = A(:,2^j+1:2^(j+1));
+
+%%
+% Undo the transform by up-sampling and then dual filtering.
+
+Coarse = cconv(upsampling(Coarse,2),reverse(h),2);
+Detail = cconv(upsampling(Detail,2),reverse(g),2);
+
+%%
+% Recover the coefficient by summing.
+
+A = Coarse + Detail;
+
+%%
+% Assign the result.
+
+f1(1:2^(j+1),1:2^(j+1)) = A;
+
+%%
+% _Exercice 2:_ (<../missing-exo./ check the solution>)
+% Write the inverse wavelet transform that computes |f1| from the
+% coefficients |fW|. Compare |f1| with |f|.
+
+exo2;
+
+%%
+% Check that we recover exactly the original image.
+
+disp(strcat((['Error |f-f1|/|f| = ' num2str(norm(f(:)-f1(:))/norm(f(:)))])));
+
+%% Linear 2-D Wavelet Approximation
+% Linear approximation is performed by setting to zero the fine scale wawelets coefficients
+% and then performing the inverse wavelet transform.
+
+%%
+% Here we keep only 1/16 of the wavelet coefficient, thus calculating an |m|
+% term approximation with |m=n^2/16|.
+ 
+eta = 4;
+fWLin = zeros(n,n);
+fWLin(1:n/eta,1:n/eta) = fW(1:n/eta,1:n/eta);
+
+%%
+% _Exercice 3:_ (<../missing-exo./ check the solution>)
+% Compute and display the linear approximation |fLin| obtained from the
+% coefficients |fWLin| by inverse wavelet transform.
+
+exo3;
+
+%% Non-Linear 2-D Wavelet Approximation
+% A non-linear |m|-term approximation is obtained by keeping only the |m|
+% largest coefficients, which creates the smallest possible error.
+
+%%
+% Removing the smallest coefficient, to keep the |m|-largest, is
+% equivalently obtainedby thresholding the coefficients to
+% set to 0 the smallest coefficients. 
+
+%%
+% First select a threshold value (the largest the threshold, the more
+% agressive the approximation).
+
+T = .2;
+
+%%
+% Then set to 0 coefficients with magnitude below the threshold.
+
+fWT = fW .* (abs(fW)>T);
+
+%%
+% Display thresholded coefficients.
+
+clf;
+subplot(1,2,1);
+plot_wavelet(fW); axis('tight'); title('Original coefficients');
+subplot(1,2,2);
+plot_wavelet(fWT); axis('tight'); title('Thresholded coefficients');
+
+%%
+% _Exercice 4:_ (<../missing-exo./ check the solution>)
+% Find the thresholds |T| so that the number |m| of remaining coefficients in
+% |fWT| are |m=n^2/16|. Use this threshold to compute |fWT| and then display
+% the corresponding approximation |Mnlin| of |f|. Compare this result with
+% the linear approximation.
+
+exo4;
+
+%%
+% _Exercice 5:_ (<../missing-exo./ check the solution>)
+% Try with 
+% Different kind of wavelets, with an increasing number of vanishing
+% moments.
+
+exo5;
+
+%% Separable 2-D Wavelet Transform
+% A forward wavelet transform is obtained by applying the 1D wavelet
+% transform to 
+
+%%
+% _Exercice 6:_ (<../missing-exo./ check the solution>)
+% Implement the foward separable transform.
+% Wavelet transformm in 1D each column |f(:,i)| to obtain coefficients |fWSep(:,i)|.
+% Then re-transform each row |fWSep(i,:)'|, and store the result in |fW(i,:)'|.
+
+exo6;
+
+%% 
+% Display the result.
+
+clf;
+subplot(1,2,1);
+opt.separable = 0;
+plot_wavelet(fW,1,opt);
+title('Isotropic wavelets');
+subplot(1,2,2);
+opt.separable = 1;
+plot_wavelet(fWSep,1,opt);
+title('Separable wavelets');
+
+%%
+% _Exercice 7:_ (<../missing-exo./ check the solution>)
+% Implement the backward separable transform to recover an image |f1|
+% from the coefficients |fWSep|, which backward transform each row and then each columns.
+
+exo7;
+
+%%
+% Check that we recover exactly the original image.
+
+disp(strcat((['Error |f-f1|/|f| = ' num2str(norm(f(:)-f1(:))/norm(f(:)))])));
+
+%%
+% _Exercice 8:_ (<../missing-exo./ check the solution>)
+% Perform |m=n^2/16|-terms best approximation with separable wavelet transform.
+% Compare the result with isotropic wavelet approximation.
+
+exo8;
+
+%% The Shape of a Wavelet
+% An isotropic wavelet coefficient |fW[k]| corresponds to an inner product
+% |<f,psi_{j,p}^s>| where |k| depends on the scale |j| and the position |p| and the orientation 
+% |s| (horizontal, vertical or diagonal).
+
+%%
+% The wavelet image  |f1 = psi_{j,p}| is computed by applying the inverse wavelet
+% transform to |fW| where |fW[k]=1| and |fW[l]=0| for |l \neq k|.
+
+%%
+% _Exercice 9:_ (<../missing-exo./ check the solution>)
+% Compute wavelets at several scales and orientation.
+% Here we show only horizontal wavelets, in 2-D.
+
+exo9;
+
+%%
+% _Exercice 10:_ (<../missing-exo./ check the solution>)
+% Display Daubechies wavelets with different orientation, for different number of VM.
+
+exo10;
+
+##### SOURCE END #####
+-->
+   </body>
+</html>

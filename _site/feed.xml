@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="The Numerical Tours of Signal Processing, by Gabriel Peyré, gather Matlab, Python and Scilab experiments to explore modern signal and image processing. 
+">
+
+    <title>A Numerical Tour of Signal Processing</title>
+
+    <link rel="canonical" href="http://gpeyre.github.io/numerical-tours//numerical-tours/feed.xml">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/numerical-tours/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/numerical-tours/css/clean-blog.css">
+
+    <!-- Custom Fonts -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/numerical-tours/">Home</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+
+
+                <li>
+                    <a href="/numerical-tours/matlab">Matlab</a>
+                </li>
+                <li>
+                    <a href="/numerical-tours/python">Python</a>
+                </li>
+                <li>
+                    <a href="/numerical-tours/slides">Slides</a>
+                </li>
+                <li>
+                    <a href="/numerical-tours/book">Book</a>
+                </li>
+                <li>
+                    <a href="/numerical-tours/links">Links</a>
+                </li>
+                <li>
+                    <a href="/numerical-tours/about">About</a>
+                </li>
+                <li>
+                    <a href="/numerical-tours/contact">Contact</a>
+                </li>
+
+                <!--
+            
+                
+                <li>
+                    <a href="/numerical-tours/about/">About</a>
+                </li>
+                
+                <li>
+                    <a href="/numerical-tours/book/">Book</a>
+                </li>
+                
+                <li>
+                    <a href="/numerical-tours/contact/">Contact</a>
+                </li>
+                
+                <li>
+                    
+                </li>
+                
+                <li>
+                    <a href="/numerical-tours/">Wellcome</a>
+                </li>
+                
+                <li>
+                    <a href="/numerical-tours/links/">Links</a>
+                </li>
+                
+                <li>
+                    <a href="/numerical-tours/matlab/">Matlab's tours</a>
+                </li>
+                
+                <li>
+                    <a href="/numerical-tours/matlab/missing-exo/">Solutions</a>
+                </li>
+                
+                <li>
+                    <a href="/numerical-tours/news/">What's new</a>
+                </li>
+                
+                <li>
+                    <a href="/numerical-tours/python/">Python's tours</a>
+                </li>
+                
+                <li>
+                    <a href="/numerical-tours/slides/">Slides</a>
+                </li>
+                
+                -->
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+    <!-- Page Header -->
+<header class="intro-header" style="background-image: url('/numerical-tours/')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h1>A Numerical Tour of Signal Processing</h1>
+                    <hr class="small">
+                    <span class="subheading"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+			<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>A Numerical Tour of Signal Processing</title>
+    <description>The Numerical Tours of Signal Processing, by Gabriel Peyré, gather Matlab, Python and Scilab experiments to explore modern signal and image processing. 
+</description>
+    <link>http://gpeyre.github.io/numerical-tours//numerical-tours/</link>
+    <atom:link href="http://gpeyre.github.io/numerical-tours//numerical-tours/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Mon, 20 Oct 2014 14:46:42 +0200</pubDate>
+    <lastBuildDate>Mon, 20 Oct 2014 14:46:42 +0200</lastBuildDate>
+    <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>New tour</title>
+        <description>&lt;p&gt;&lt;a href=&quot;sparsity_9b_music&quot;&gt;This tour explores&lt;/a&gt; the use of the MUSIC algortithm to perform sparse spikes deconvolution. The localization of the spikes is obtained by finding the root of a polynomial.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 26 Aug 2014 14:00:00 +0200</pubDate>
+        <link>http://gpeyre.github.io/numerical-tours//numerical-tours/2014/08/26/new-tour-music/</link>
+        <guid isPermaLink="true">http://gpeyre.github.io/numerical-tours//numerical-tours/2014/08/26/new-tour-music/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>New tour</title>
+        <description>&lt;p&gt;&lt;a href=&quot;optimaltransp_5_entropic&quot;&gt;This tour explores&lt;/a&gt; a fast algorithm to compute the solution of a regularized optimal transportation problem. This corresponds to the resolution of a convex program which is the projection on the transport polytope for a Kulback-Leibler divergence.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 26 Aug 2014 14:00:00 +0200</pubDate>
+        <link>http://gpeyre.github.io/numerical-tours//numerical-tours/2014/08/26/new-tour-entropic/</link>
+        <guid isPermaLink="true">http://gpeyre.github.io/numerical-tours//numerical-tours/2014/08/26/new-tour-entropic/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>New site</title>
+        <description>&lt;p&gt;A lifting for the web site, which is now hosted on the github project pages. &lt;/p&gt;
+</description>
+        <pubDate>Tue, 26 Aug 2014 14:00:00 +0200</pubDate>
+        <link>http://gpeyre.github.io/numerical-tours//numerical-tours/2014/08/26/new-site/</link>
+        <guid isPermaLink="true">http://gpeyre.github.io/numerical-tours//numerical-tours/2014/08/26/new-site/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>New tour</title>
+        <description>&lt;p&gt;&lt;a href=&quot;sparsity_9_sparsespikes_cbp&quot;&gt;This tour explores&lt;/a&gt; the use of the C-BP algorithm of Simoncelli and co-workers to solve sparse spikes deconvolution problems. This corresponds to extending the discrete basis-pursuit operator by performing a Taylor expansion to locate more precisely the spikes with sub-pixelic accuracy.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 12 Jan 2014 13:00:00 +0100</pubDate>
+        <link>http://gpeyre.github.io/numerical-tours//numerical-tours/2014/01/12/new-tour-cbp/</link>
+        <guid isPermaLink="true">http://gpeyre.github.io/numerical-tours//numerical-tours/2014/01/12/new-tour-cbp/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>New tour</title>
+        <description>&lt;p&gt;&lt;a href=&quot;sparsity_8_sparsespikes_measures&quot;&gt;This tour explores&lt;/a&gt; the resolution of the sparse deconvolution problem in a grid-free maner. This is achieved by solving a dual problem, which can be re-casted into an SDP convex optimization program. &lt;/p&gt;
+</description>
+        <pubDate>Sat, 12 Oct 2013 14:00:00 +0200</pubDate>
+        <link>http://gpeyre.github.io/numerical-tours//numerical-tours/2013/10/12/new-tour-blasso/</link>
+        <guid isPermaLink="true">http://gpeyre.github.io/numerical-tours//numerical-tours/2013/10/12/new-tour-blasso/</guid>
+        
+        
+      </item>
+    
+  </channel>
+</rss>
+
+		</div>
+	</div>
+</div>
+
+<hr>
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    <!-- 
+                    <li>
+                        <a href="/numerical-tours/feed.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    -->
+                    
+                    
+                    
+                    <li>
+                        <a href="https://github.com/gpeyre">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <p class="copyright text-muted">Copyright &copy; A Numerical Tour of Signal Processing 2014</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/numerical-tours/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/numerical-tours/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/numerical-tours/js/clean-blog.min.js "></script>
+
+
+</body>
+
+</html>

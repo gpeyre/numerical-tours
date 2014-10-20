@@ -1,8 +1,9 @@
-# Site settings
+# Usign the Clean Blog theme
+
 title: A Numerical Tour of Signal Processing
 email: gabriel.peyre@ceremade.dauphine.fr
 description: > # this means to ignore newlines until "baseurl:"
-  The Numerical Tours of Signal Processing, by Gabriel Peyré, gather Matlab (and so some extend Scilab) experiments to explore modern signal and image processing. These tours are also progressively being ported to Python. The tours are complemented by slides of courses that concentrate on the theory of signal and image processing.
+  The Numerical Tours of Signal Processing, by Gabriel Peyré, gather Matlab, Python and Scilab experiments to explore modern signal and image processing. 
 baseurl: "/numerical-tours"
 url: "http://gpeyre.github.io/numerical-tours/"
 github_username:  gpeyre
