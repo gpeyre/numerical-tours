@@ -1,0 +1,680 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>Subdivision Curves</title>
+      <NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
+               	requires JavaScript to process the mathematics on this page.<BR> 
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 8.2">
+      <meta name="date" content="2014-10-21">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>Subdivision Curves</h1>
+         <introduction>
+            <p>Subdvision methods progressively refine a discrete curve and converge to a smooth curve. This allows to perform an interpolation
+               or approximation of a given coarse dataset.
+            </p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#8">Curve Subdivision</a></li>
+               <li><a href="#30">Quadratic B-splines</a></li>
+               <li><a href="#35">Interpolating Subdivision</a></li>
+               <li><a href="#45">Curve Approximation</a></li>
+               <li><a href="#54">3-D Curve Subdivision</a></li>
+               <li><a href="#56">Bibliography</a></li>
+            </ul>
+         </div>
+         <h2>Installing toolboxes and setting up the path.<a name="1"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_signal.zip">signal toolbox</a>, <a href="../toolbox_general.zip">general toolbox</a>, <a href="../toolbox_graph.zip">graph toolbox</a> and <a href="../toolbox_wavelet_meshes.zip">wavelet_meshes toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_signal</tt>, <tt>toolbox_general</tt>, <tt>toolbox_graph</tt> and <tt>toolbox_wavelet_meshes</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
+getd(<span class="string">'toolbox_general/'</span>);
+getd(<span class="string">'toolbox_graph/'</span>);
+getd(<span class="string">'toolbox_wavelet_meshes/'</span>);
+</pre><h2>Curve Subdivision<a name="8"></a></h2>
+         <p>Starting from an initial set of control points (which can be seen as a coarse curve), subdivision produces a smooth 2-D curve.</p>
+         <p>Shortcut to plot a periodic curve.</p><pre class="codeinput">ms = 20; lw = 1.5;
+myplot = @(f,c)plot(f([1:end 1]), c, <span class="string">'LineWidth'</span>, lw, <span class="string">'MarkerSize'</span>, ms);
+myaxis = @(rho)axis([-rho 1+rho -rho 1+rho], <span class="string">'off'</span>);
+</pre><p>We represent a dicretized curve of \(N\) points as a vector of complex numbers \(f \in \CC^N\). Since we consider periodic
+            boundary conditions, we assume the vectors have periodic boundary conditions.
+         </p>
+         <p>Define the initial coarse set of control points&nbsp;\(f_0 \in \CC^{N_0}\).</p><pre class="codeinput">f0 =    [0.11 0.18 0.26 0.36 0.59 0.64 0.80 0.89 0.58 0.22 0.18 0.30 0.58 0.43 0.42]' + <span class="keyword">...</span>
+   1i * [0.91 0.55 0.91 0.58 0.78 0.51 0.81 0.56 0.10 0.16 0.35 0.42 0.40 0.24 0.31]';
+</pre><p>Rescale it to fit in a box.</p><pre class="codeinput">f0 = rescale(real(f0),.01,.99) + 1i * rescale(imag(f0),.01,.99);
+</pre><p>Display it.</p><pre class="codeinput">clf; myplot(f0, <span class="string">'k.-'</span>);
+myaxis(0);
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p>One subdivision step reads \[ f_{j+1} = (f_j \uparrow 2) \star h. \] This produces discrete curves \(f_j \in \CC^{N_j}\) where
+            \(N_j = N_0 2^j\).
+         </p>
+         <p>Here \(\uparrow 2\) is the up-sampling operator \[ (f \uparrow 2)_{2i}=f_i \qandq (f \uparrow 2)_{2i+1} = 0.  \]</p>
+         <p>Recall that the periodic discrete convolution is defined as \[ (f \star h)_i = \sum_j f_j h_{i-j}, \] where the filter \(h\)
+            is zero-padded to reach the same size as \(f\).
+         </p>
+         <p>The low pass filter (subdivision kernel) \(h \in \CC^K\) should satisfies \[&nbsp;\sum_i h_i = 2 . \] This ensure that the center
+            of gravity of the curve stays constant \[ \frac{1}{N_j} \sum_{i=1}^{N_j} f_{j,i} =   \frac{1}{N_0} \sum_{i=1}^{N_0} f_{0,i}.\]
+         </p>
+         <p>Define the subdivision operator that maps \(f_j\) to \(f_{j+1}\).</p><pre class="codeinput">subdivide = @(f,h)cconv( upsampling(f), h);
+</pre><p>We use here the kernel \[ h = \frac{1}{8}[1, 4, 6, 4, 1]. \] It produced a cubic B-spline interpolation.</p><pre class="codeinput">h = [1 4 6 4 1];
+h = 2*h/sum(h(:));
+</pre><p>Initilize the subdivision with \(f_0\) at scale \(j=0\).</p><pre class="codeinput">f = f0;
+</pre><p>Perform one step.</p><pre class="codeinput">f = subdivide(f,h);
+</pre><p>Display the original and filtered discrete curves.</p><pre class="codeinput">clf; hold <span class="string">on</span>;
+myplot(f, <span class="string">'k.-'</span>);
+myplot(f0, <span class="string">'r.--'</span>);
+myaxis(0);
+</pre><img vspace="5" hspace="5" src="index_02.png"> <p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Perform several step of subdivision. Display the different curves.
+         </p><pre class="codeinput">exo1;
+</pre><img vspace="5" hspace="5" src="index_03.png"> <p>Under some restriction on the kernel \(h\), one can show that these discrete curves converges (e.g. in Hausdorff distance)
+            toward a smooth limit curve \(f^\star : [0,1] \rightarrow \CC\).
+         </p>
+         <p>We do not details here sufficient condition to ensure convergence and smoothness of the limitting curve. The interested reader
+            can have a look at <a href="#biblio">[DynLevin02]</a> for a review of theoritical guarantees for subdivision.
+         </p>
+         <p>The limit curve \(f^\star\) is a weighted average of the initial points \(f_0 = (f_{0,i})_{i=0}^{N_0-1} \in \CC^{N_0}\) using
+            a continuous scaling function \(\phi : [0,1] \rightarrow \RR\) \[ f^\star(t) = \sum_{i=0}^{N_0-1} f_{0,i} \phi(t-i/N_0). 
+            \] The continuous kernel \(\phi\) is a low-pass function which as a compact support of width \(K/N_0\). The control point
+            \(f_{0,i}\) thus only influences the final curve \(f^\star\) around \(t=i/N_0\).
+         </p>
+         <p>The scaling function \(\phi\) can be computed as the limit of the sub-division process \(f_j\) when starting from \(f_0 =
+            \delta = [1,0,\ldots,0]\), which is the Dirac vector.
+         </p>
+         <p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Compute the scaling function \(\phi\) associated to the subdivision.
+         </p><pre class="codeinput">exo2;
+</pre><img vspace="5" hspace="5" src="index_04.png"> <p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) Test with different configurations of control points.
+         </p><pre class="codeinput">exo3;
+</pre><img vspace="5" hspace="5" src="index_05.png"> <h2>Quadratic B-splines<a name="30"></a></h2>
+         <p>We consider here the Chaikin "corner cutting" scheme <a href="#biblio">[Chaikin74]</a>.
+         </p>
+         <p>For a weight \(w&gt;1\), it corresponds to the following kernel: \[ h = \frac{1}{1+w}[1, w, w, 1]. \] The weight is a tension
+            parameter that controls the properties of the interpolation.
+         </p><pre class="codeinput">hcc = @(w)[1 w w 1]/(1+w);
+</pre><p>For \(w=3\), the scaling function \(\phi\) is a quadratic B-spline.</p>
+         <p><i>Exercice 4:</i> (<a href="../missing-exo/">check the solution</a>) Test the corner-cutting for \(w=3\).
+         </p><pre class="codeinput">exo4;
+</pre><img vspace="5" hspace="5" src="index_06.png"> <p><i>Exercice 5:</i> (<a href="../missing-exo/">check the solution</a>) Test the corner-cutting for vaious values of \(w\).
+         </p><pre class="codeinput">exo5;
+</pre><img vspace="5" hspace="5" src="index_07.png"> <h2>Interpolating Subdivision<a name="35"></a></h2>
+         <p>Interpolating schemes keeps unchange the set of point at the previous level, and only smooth the position of the added points.</p>
+         <p>A subdivision is interpolating if the kernel satisfies \[ h(0)=1 \qandq \forall i \neq 0, \quad h(2i)=0. \]</p>
+         <p>We consider the four-point interpolation kernel proposed in <a href="#biblio">[DynLevGre87]</a>: \[ h = [-w, 0, 1/2+w, 1, 1/2+w, -w] \] where \(w&gt;0\) is a tension parameter.
+         </p><pre class="codeinput">h4pt = @(w)[-w, 0, 1/2+w, 1, 1/2+w, 0, -w];
+</pre><p>One usually choose \(w=1/16\) wich corresponds to cubic B-spline interpolation. It can be shown to produce \(C^1\) curves
+            for \( w \in [0, (\sqrt{5}-1)/8 \approx 0.154] \), see <a href="#biblio">[DynGreLev91]</a>.
+         </p>
+         <p><i>Exercice 6:</i> (<a href="../missing-exo/">check the solution</a>) Perform the interpolating subdivision for \(w=1/16\).
+         </p><pre class="codeinput">exo6;
+</pre><img vspace="5" hspace="5" src="index_08.png"> <p><i>Exercice 7:</i> (<a href="../missing-exo/">check the solution</a>) Test the influence of \(w\).
+         </p><pre class="codeinput">exo7;
+</pre><img vspace="5" hspace="5" src="index_09.png"> <p><i>Exercice 8:</i> (<a href="../missing-exo/">check the solution</a>) Compare the result of the quadratic B-spline, cubic B-spline, and 4-points interpolating.
+         </p><pre class="codeinput">exo8;
+</pre><img vspace="5" hspace="5" src="index_10.png"> <p>The 4-point scheme for \(w=1/16\) is generalized to \(2k\)-point schemes of Deslauriers-Dubuc <a href="#biblio">[DeslDub89]</a>. This corresponds to computing a polynomial interpolation of degree \(2k-1\), which generalizes the cubic interpolation.
+            Using larger \(k\) leads to smoother interpolation, at the price of a larger interpolation kernel.
+         </p>
+         <p>We give here the odd coefficients of the filters.</p><pre class="codeinput">H = {   [0.5000 0.5000], <span class="keyword">...</span>
+        [-0.0625, 0.5625, 0.5625, -0.0625], <span class="keyword">...</span>
+        [0.0117, -0.0977, 0.5859, 0.5859, -0.0977, 0.0117], <span class="keyword">...</span>
+        [-0.0024, 0.0239, -0.1196, 0.5981, 0.5981, -0.1196, 0.0239, -0.0024] };
+hdd = @(k)assign(assign(zeros(4*k-1,1),1:2:4*k-1,H{k}), 2*k, 1);
+</pre><p><i>Exercice 9:</i> (<a href="../missing-exo/">check the solution</a>) Display the scaling function associated to these Deslauriers-Dubuc filters.
+         </p><pre class="codeinput">exo9;
+</pre><img vspace="5" hspace="5" src="index_11.png"> <h2>Curve Approximation<a name="45"></a></h2>
+         <p>Given an input, complicated curve \(g : [0,1] \rightarrow \CC\), it is possible to approximate is by sampling the curve, and
+            then subdividing it. It corresponds to a low pass filtering approximation.
+         </p>
+         <p>Load an initial random curve, which is a high resolution curve \(g\).</p><pre class="codeinput">options.bound = <span class="string">'per'</span>;
+n = 1024*2;
+sigma = n/8;
+F = perform_blurring(randn(n,1),sigma,options) + 1i*perform_blurring(randn(n,1),sigma,options);
+F = rescale(real(F),.01,.99) + 1i * rescale(imag(F),.01,.99);
+</pre><p>Display it.</p><pre class="codeinput">clf; myplot(F, <span class="string">'k'</span>);
+myaxis(0);
+</pre><img vspace="5" hspace="5" src="index_12.png"> <p>Load an interpolating subvision mask.</p><pre class="codeinput">h = [-1, 0, 9, 1, 9, 0, -1]/16;
+h((end+1)/2)=1;
+</pre><p><i>Exercice 10:</i> (<a href="../missing-exo/">check the solution</a>) Perform an approximation \(f\) of the curve using a uniform sampling with \(N_0=20\) points.
+         </p><pre class="codeinput">exo10;
+</pre><img vspace="5" hspace="5" src="index_13.png"> <p>To quantify the quality of the approximation, we use an averaged Hausdorff distance. The distance between two sets of points
+            \(X\) and \(Y\) is \[ d(X,Y) = d_0(X,Y)+d_0(Y,X) \qwhereq       d_0(X,Y)^2 = \frac{1}{\abs{X}} \sum_{x \in X} \umin{y \in
+            Y} \norm{x-y}^2. \]
+         </p>
+         <p>Compute the pairwise distances matrix \(D_{i,j} = \norm{f_i-g_j}^2\) between points.</p><pre class="codeinput">dist = @(f,g)abs( repmat(f, [1 length(g)]) - repmat(transpose(g), [length(f) 1]) );
+</pre><p>Compute the Hausdorff distance.</p><pre class="codeinput">hausdorff = @(f,g)sqrt( mean(min(dist(f,g)).^2) );
+hausdorff = @(f,g)hausdorff(f,g) + hausdorff(g,f);
+</pre><p><i>Exercice 11:</i> (<a href="../missing-exo/">check the solution</a>) Display the decay of the Hausdorff approximation error as the number \(N_0\) of sampling points increases.
+         </p><pre class="codeinput">exo11;
+</pre><img vspace="5" hspace="5" src="index_14.png"> <h2>3-D Curve Subdivision<a name="54"></a></h2>
+         <p>It is possible to construct 3-D curves by subdivision.</p>
+         <p><i>Exercice 12:</i> (<a href="../missing-exo/">check the solution</a>) Perform curve subdivision in 3D space.
+         </p><pre class="codeinput">exo12;
+</pre><img vspace="5" hspace="5" src="index_15.png"> <h2>Bibliography<a name="56"></a></h2>
+         <p><a name="biblio"></a></p>
+         <div>
+            <ul>
+               <li>[DynLevGre87]&nbsp;N. Dyn, D. Levin and J.A. Gregory, <a href="http://dx.doi.org/10.1016/0167-8396(87)90001-X"><i>A 4-point interpolatory subdivision scheme for curve design</i></a>, Computer Aided Geometric Design, 4(4), Pages 257-268, 1987.
+               </li>
+               <li>[Chaikin74]&nbsp;G. Chaikin, <a href="http://dx.doi.org/10.1016/0146-664X(74)90028-8"><i>An algorithm for high speed curve generation</i></a>. Computer Graphics and Image Processing, 3, 346-349, 1974.
+               </li>
+               <li>[Riesen75]&nbsp;R. Riesenfeld, <a href="http://dx.doi.org/10.1016/0146-664X(75)90017-9"><i>On Chaikin's algorithm</i></a>. Computer Graphics and Image Processing 4, 3, 304-310, 1975.
+               </li>
+               <li>[DeslDub89]&nbsp;G. Deslauriers and S. Dubuc. <a href="http://dx.doi.org/10.1007/BF01889598"><i>Symmetric iterative interpolation processes</i></a>. Constructive Approximation, 5(1):49-68, Dec. 1989.
+               </li>
+               <li>[DynLevin02]&nbsp;N. Dyn and D. Levin. <a href="http://dx.doi.org/10.1017/S0962492902000028"><i>Subdivision schemes in geometric modelling</i></a>. Acta Numerica, 11:73-144, Jan. 2002.
+               </li>
+               <li>[DynGreLev91]&nbsp;N. Dyn, J.A. Gregory, G. Levin, <i>Analysis of uniform binary subdivision schemes for curve design</i>, Constructive Approximation, 7(1), p. 127-147, 1991.
+               </li>
+            </ul>
+         </div>
+         <p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Subdivision Curves
+% Subdvision methods progressively refine a discrete curve and
+% converge to a smooth curve. This allows to perform an
+% interpolation or approximation of a given coarse dataset.
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_signal.zip signal toolbox>, 
+% <../toolbox_general.zip general toolbox>, 
+% <../toolbox_graph.zip graph toolbox> and 
+% <../toolbox_wavelet_meshes.zip wavelet_meshes toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_signal|, 
+% |toolbox_general|, 
+% |toolbox_graph| and 
+% |toolbox_wavelet_meshes|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_signal/');
+getd('toolbox_general/');
+getd('toolbox_graph/');
+getd('toolbox_wavelet_meshes/');
+
+%% Curve Subdivision 
+% Starting from an initial set of control points (which can be seen as a
+% coarse curve), subdivision produces a smooth 2-D curve.
+
+%%
+% Shortcut to plot a periodic curve.
+
+ms = 20; lw = 1.5;
+myplot = @(f,c)plot(f([1:end 1]), c, 'LineWidth', lw, 'MarkerSize', ms);
+myaxis = @(rho)axis([-rho 1+rho -rho 1+rho], 'off');
+
+%%
+% We represent a dicretized curve of \(N\) points as a vector of complex numbers \(f \in \CC^N\).
+% Since we consider periodic boundary conditions, we assume the vectors
+% have periodic boundary conditions. 
+
+%%
+% Define the initial coarse set of control points \(f_0 \in \CC^{N_0}\).
+
+f0 =    [0.11 0.18 0.26 0.36 0.59 0.64 0.80 0.89 0.58 0.22 0.18 0.30 0.58 0.43 0.42]' + ...
+   1i * [0.91 0.55 0.91 0.58 0.78 0.51 0.81 0.56 0.10 0.16 0.35 0.42 0.40 0.24 0.31]';
+  
+%%
+% Rescale it to fit in a box.
+
+f0 = rescale(real(f0),.01,.99) + 1i * rescale(imag(f0),.01,.99);
+
+%%
+% Display it.
+
+clf; myplot(f0, 'k.-'); 
+myaxis(0);
+
+
+%%
+% One subdivision step reads
+% \[ f_{j+1} = (f_j \uparrow 2) \star h. \]
+% This produces discrete curves \(f_j \in \CC^{N_j}\) where \(N_j = N_0
+% 2^j\). 
+
+%%
+% Here \(\uparrow 2\) is the up-sampling operator
+% \[ (f \uparrow 2)_{2i}=f_i \qandq (f \uparrow 2)_{2i+1} = 0.  \]
+
+%%
+% Recall that the periodic discrete convolution is defined as
+% \[ (f \star h)_i = \sum_j f_j h_{i-j}, \]
+% where the filter \(h\) is zero-padded to reach the same size as \(f\).
+
+%%
+% The low pass filter (subdivision kernel) \(h \in \CC^K\) should
+% satisfies 
+% \[ \sum_i h_i = 2 . \]
+% This ensure that the center of gravity of the curve stays constant
+% \[ \frac{1}{N_j} \sum_{i=1}^{N_j} f_{j,i} =
+%   \frac{1}{N_0} \sum_{i=1}^{N_0} f_{0,i}.\]
+
+%%
+% Define the subdivision operator that maps \(f_j\) to \(f_{j+1}\). 
+
+subdivide = @(f,h)cconv( upsampling(f), h);
+
+%%
+% We use here the kernel
+% \[ h = \frac{1}{8}[1, 4, 6, 4, 1]. \]
+% It produced a cubic B-spline interpolation.
+
+h = [1 4 6 4 1];
+h = 2*h/sum(h(:));
+
+%% 
+% Initilize the subdivision with \(f_0\) at scale \(j=0\).
+
+f = f0;
+
+%%
+% Perform one step.
+
+f = subdivide(f,h);
+
+%%
+% Display the original and filtered discrete curves.
+
+clf; hold on;
+myplot(f, 'k.-');
+myplot(f0, 'r.REPLACE_WITH_DASH_DASH');
+myaxis(0);
+
+%%
+% _Exercice 1:_ (<../missing-exo/ check the solution>)
+% Perform several step of subdivision. Display the different curves.
+
+exo1;
+
+%%
+% Under some restriction on the kernel \(h\), one can show that
+% these discrete curves converges (e.g. in Hausdorff distance) toward a
+% smooth limit curve \(f^\star : [0,1] \rightarrow \CC\). 
+
+%%
+% We do not details here sufficient condition to ensure convergence and
+% smoothness of the limitting curve. The interested reader can have a look
+% at <#biblio [DynLevin02]> for a review of theoritical guarantees for
+% subdivision. 
+
+%%
+% The limit curve \(f^\star\) is a weighted average of the initial 
+% points \(f_0 = (f_{0,i})_{i=0}^{N_0-1} \in \CC^{N_0}\) using a continuous 
+% scaling function \(\phi : [0,1] \rightarrow \RR\)
+% \[ f^\star(t) = \sum_{i=0}^{N_0-1} f_{0,i} \phi(t-i/N_0).  \]
+% The continuous kernel \(\phi\) is a low-pass function which as a compact
+% support of width \(K/N_0\). The control point \(f_{0,i}\) thus only
+% influences the final curve \(f^\star\) around \(t=i/N_0\).
+
+%%
+% The scaling function \(\phi\) can be computed as the limit of the sub-division
+% process \(f_j\) when starting from \(f_0 = \delta = [1,0,\ldots,0]\),
+% which is the Dirac vector. 
+
+%%
+% _Exercice 2:_ (<../missing-exo/ check the solution>)
+% Compute the scaling function \(\phi\)
+% associated to the subdivision.
+
+exo2;
+
+%%
+% _Exercice 3:_ (<../missing-exo/ check the solution>)
+% Test with different configurations of control points.
+
+exo3;
+
+%% Quadratic B-splines
+% We consider here the Chaikin "corner cutting"
+% scheme <#biblio [Chaikin74]>.
+
+%%
+% For a weight \(w>1\), it corresponds to the following kernel:
+% \[ h = \frac{1}{1+w}[1, w, w, 1]. \]
+% The weight is a tension parameter that controls the properties of the
+% interpolation.
+
+hcc = @(w)[1 w w 1]/(1+w);
+
+%%
+% For \(w=3\), the scaling function \(\phi\) is a quadratic B-spline.
+
+
+%%
+% _Exercice 4:_ (<../missing-exo/ check the solution>)
+% Test the corner-cutting for \(w=3\).
+
+exo4;
+
+%%
+% _Exercice 5:_ (<../missing-exo/ check the solution>)
+% Test the corner-cutting for vaious values of \(w\).
+
+exo5;
+
+%% Interpolating Subdivision
+% Interpolating schemes keeps unchange the set of point at the previous
+% level, and only smooth the position of the added points.
+
+%%
+% A subdivision is interpolating if the kernel satisfies
+% \[ h(0)=1 \qandq \forall i \neq 0, \quad h(2i)=0. \]
+
+%%
+% We consider the four-point interpolation kernel
+% proposed in <#biblio [DynLevGre87]>:
+% \[ h = [-w, 0, 1/2+w, 1, 1/2+w, -w] \]
+% where \(w>0\) is a tension parameter. 
+
+h4pt = @(w)[-w, 0, 1/2+w, 1, 1/2+w, 0, -w];
+
+%%
+% One usually choose \(w=1/16\) wich corresponds to 
+% cubic B-spline interpolation.
+% It can be shown to produce \(C^1\) curves 
+% for \( w \in [0, (\sqrt{5}-1)/8 \approx 0.154] \), see <#biblio [DynGreLev91]>.
+
+%%
+% _Exercice 6:_ (<../missing-exo/ check the solution>)
+% Perform the interpolating subdivision
+% for \(w=1/16\).
+
+exo6;
+
+%%
+% _Exercice 7:_ (<../missing-exo/ check the solution>)
+% Test the influence of \(w\).
+
+exo7;
+
+%%
+% _Exercice 8:_ (<../missing-exo/ check the solution>)
+% Compare the result of the quadratic B-spline, cubic B-spline, 
+% and 4-points interpolating.
+
+exo8;
+
+
+%%
+% The 4-point scheme for \(w=1/16\) is generalized to \(2k\)-point schemes of
+% Deslauriers-Dubuc
+% <#biblio [DeslDub89]>. This corresponds to computing a polynomial
+% interpolation of degree \(2k-1\), which generalizes the cubic interpolation.
+% Using larger \(k\) leads to smoother interpolation, at the price of a
+% larger interpolation kernel.
+
+%%
+% We give here the odd coefficients of the filters.
+
+H = {   [0.5000 0.5000], ...
+        [-0.0625, 0.5625, 0.5625, -0.0625], ...
+        [0.0117, -0.0977, 0.5859, 0.5859, -0.0977, 0.0117], ...
+        [-0.0024, 0.0239, -0.1196, 0.5981, 0.5981, -0.1196, 0.0239, -0.0024] };    
+hdd = @(k)assign(assign(zeros(4*k-1,1),1:2:4*k-1,H{k}), 2*k, 1);
+
+%%
+% _Exercice 9:_ (<../missing-exo/ check the solution>)
+% Display the scaling function associated to these Deslauriers-Dubuc filters.
+
+exo9;
+
+    
+%% Curve Approximation
+% Given an input, complicated curve \(g : [0,1] \rightarrow \CC\), it is possible to approximate is by
+% sampling the curve, and then subdividing it. It corresponds to a low pass
+% filtering approximation.
+
+%%
+% Load an initial random curve, which is a high resolution curve \(g\).
+
+options.bound = 'per';
+n = 1024*2; 
+sigma = n/8;
+F = perform_blurring(randn(n,1),sigma,options) + 1i*perform_blurring(randn(n,1),sigma,options);
+F = rescale(real(F),.01,.99) + 1i * rescale(imag(F),.01,.99);
+
+%%
+% Display it.
+
+clf; myplot(F, 'k');
+myaxis(0);
+
+%%
+% Load an interpolating subvision mask.
+
+h = [-1, 0, 9, 1, 9, 0, -1]/16; 
+h((end+1)/2)=1;
+
+%%
+% _Exercice 10:_ (<../missing-exo/ check the solution>)
+% Perform an approximation \(f\) of the curve using a uniform sampling with \(N_0=20\)
+% points.
+
+exo10;
+
+%%
+% To quantify the quality of the approximation, we use an averaged
+% Hausdorff distance.
+% The distance between two sets of points \(X\) and
+% \(Y\) is
+% \[ d(X,Y) = d_0(X,Y)+d_0(Y,X) \qwhereq
+%       d_0(X,Y)^2 = \frac{1}{\abs{X}} \sum_{x \in X} \umin{y \in Y} \norm{x-y}^2. \]
+
+%%
+% Compute the pairwise distances matrix \(D_{i,j} = \norm{f_i-g_j}^2\) between points.
+
+dist = @(f,g)abs( repmat(f, [1 length(g)]) - repmat(transpose(g), [length(f) 1]) );
+
+%%
+% Compute the Hausdorff distance.
+
+hausdorff = @(f,g)sqrt( mean(min(dist(f,g)).^2) );
+hausdorff = @(f,g)hausdorff(f,g) + hausdorff(g,f);
+
+%%
+% _Exercice 11:_ (<../missing-exo/ check the solution>)
+% Display the decay of the Hausdorff approximation error as the number \(N_0\) of
+% sampling points increases.
+
+exo11;
+
+
+%% 3-D Curve Subdivision
+% It is possible to construct 3-D curves by subdivision.
+
+%%
+% _Exercice 12:_ (<../missing-exo/ check the solution>)
+% Perform curve subdivision in 3D space.
+
+exo12;
+
+%% Bibliography
+% <html><a name="biblio"></a></html>
+
+
+%%
+% * [DynLevGre87] N. Dyn, D. Levin and J.A. Gregory, <http://dx.doi.org/10.1016/0167-8396(87)90001-X _A 4-point interpolatory subdivision scheme for curve design_>, Computer Aided Geometric Design, 4(4), Pages 257-268, 1987.
+% * [Chaikin74] G. Chaikin, <http://dx.doi.org/10.1016/0146-664X(74)90028-8 _An algorithm for high speed curve generation_>. Computer Graphics and Image Processing, 3, 346-349, 1974.
+% * [Riesen75] R. Riesenfeld, <http://dx.doi.org/10.1016/0146-664X(75)90017-9 _On Chaikin's algorithm_>. Computer Graphics and Image Processing 4, 3, 304-310, 1975.
+% * [DeslDub89] G. Deslauriers and S. Dubuc. <http://dx.doi.org/10.1007/BF01889598 _Symmetric iterative interpolation processes_>. Constructive Approximation, 5(1):49-68, Dec. 1989.
+% * [DynLevin02] N. Dyn and D. Levin. <http://dx.doi.org/10.1017/S0962492902000028 _Subdivision schemes in geometric modelling_>. Acta Numerica, 11:73-144, Jan. 2002.
+% * [DynGreLev91] N. Dyn, J.A. Gregory, G. Levin, _Analysis of uniform binary subdivision schemes for curve design_, Constructive Approximation, 7(1), p. 127-147, 1991.
+
+##### SOURCE END #####
+-->
+   </body>
+</html>
