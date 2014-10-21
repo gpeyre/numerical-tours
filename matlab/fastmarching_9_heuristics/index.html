@@ -1,0 +1,528 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>Heuristically Driven Front Propagation</title>
+      <NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
+               	requires JavaScript to process the mathematics on this page.<BR> 
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 8.2">
+      <meta name="date" content="2014-10-21">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>Heuristically Driven Front Propagation</h1>
+         <introduction>
+            <p>This tour explores the use of heuristics to speed up Fast Marching methods in 2D.</p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#3">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#10">Ideal Heuristically Driven Front Propagation</a></li>
+               <li><a href="#26">Landmark-based Heuristically Driven Front Propagation</a></li>
+               <li><a href="#35">Heuristics on 3D Meshes</a></li>
+            </ul>
+         </div>
+         <p>The use of heuristics for the computation of geodesic paths was introduced in</p>
+         <p><i>Heuristically Driven Front Propagation for Fast Geodesic Extraction</i> Gabriel Peyre and Laurent Cohen, International Journal for Computational Vision and Biomechanics, Vol. 1(1), p.55-67, Jan-June
+            2008.
+         </p>
+         <h2>Installing toolboxes and setting up the path.<a name="3"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_signal.zip">signal toolbox</a>, <a href="../toolbox_general.zip">general toolbox</a> and <a href="../toolbox_graph.zip">graph toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_signal</tt>, <tt>toolbox_general</tt> and <tt>toolbox_graph</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
+getd(<span class="string">'toolbox_general/'</span>);
+getd(<span class="string">'toolbox_graph/'</span>);
+</pre><h2>Ideal Heuristically Driven Front Propagation<a name="10"></a></h2>
+         <p>The ideal heuristic <tt>H</tt> is the remaining distance to the ending point. It is ideal in the sense that it is as difficult to compute this distance
+            than to solve for the original problem of extracting the geodesic.
+         </p>
+         <p>One can however study the influence of this heuristic by replacing <tt>H</tt> by <tt>weight*H</tt> where <tt>weight&lt;1</tt> is a sub-optimality factor.
+         </p>
+         <p>Load an image.</p><pre class="codeinput">n = 300;
+name = <span class="string">'road2'</span>;
+M = rescale(load_image(name,n));
+</pre><p>Display it.</p><pre class="codeinput">clf;
+imageplot(M);
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p>Define start and end points (you can use your own points).</p><pre class="codeinput">pstart = [14;161];
+pend = [293;148];
+</pre><p>Compute a metric to extact the road.</p><pre class="codeinput">W = abs(M-M(pstart(1),pstart(2)));
+W = rescale(W, 1e-2,1);
+</pre><p>Display it.</p><pre class="codeinput">clf;
+imageplot(W);
+</pre><img vspace="5" hspace="5" src="index_02.png"> <p>Perform the full propagation.</p><pre class="codeinput">[D,S] = perform_fast_marching(1./W, pstart);
+</pre><p>Extract a geodesic curve.</p><pre class="codeinput">p = compute_geodesic(D,pend);
+</pre><p>Display the distance and the geodesic curve.</p><pre class="codeinput">clf; hold <span class="string">on</span>;
+imageplot(convert_distance_color(D,M), <span class="string">'Distance'</span>);
+h = plot(p(2,:),p(1,:), <span class="string">'.k'</span>); set(h, <span class="string">'LineWidth'</span>, 2);
+h = plot(pstart(2),pstart(1), <span class="string">'.r'</span>); set(h, <span class="string">'MarkerSize'</span>, 25);
+h = plot(pend(2),pend(1), <span class="string">'.b'</span>); set(h, <span class="string">'MarkerSize'</span>, 25);
+axis <span class="string">ij</span>;
+</pre><img vspace="5" hspace="5" src="index_03.png"> <p>Compute the heuristic.</p><pre class="codeinput">[H,S] = perform_fast_marching(1./W, pend);
+</pre><p>Display the ideal heuristic function.</p><pre class="codeinput">clf; hold <span class="string">on</span>;
+imageplot(convert_distance_color(H,M), <span class="string">'Distance'</span>);
+h = plot(p(2,:),p(1,:), <span class="string">'.k'</span>); set(h, <span class="string">'LineWidth'</span>, 2);
+h = plot(pstart(2),pstart(1), <span class="string">'.r'</span>); set(h, <span class="string">'MarkerSize'</span>, 25);
+h = plot(pend(2),pend(1), <span class="string">'.b'</span>); set(h, <span class="string">'MarkerSize'</span>, 25);
+axis <span class="string">ij</span>;
+</pre><img vspace="5" hspace="5" src="index_04.png"> <p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Display the set of points satisfying <tt>D+H&lt;=T</tt> for several value of the threshold <tt>T&gt;=D(pend)</tt>. What do you observe ?
+         </p><pre class="codeinput">exo1;
+</pre><img vspace="5" hspace="5" src="index_05.png"> <p>Perform the heuristically driven propagation.</p><pre class="codeinput">weight = .9;
+options.end_points = pend;
+options.heuristic = weight*H;
+options.nb_iter_max = Inf;
+options.constraint_map = Inf+zeros(n);
+[D,S] = perform_fast_marching(1./W, pstart, options);
+</pre><p>Display the region explored by the algorithm.</p><pre class="codeinput">I = find(S&lt;0);
+U = cat(3,M,M,M);
+U(I) = 1; U([I+n^2, I+2*n^2]) = U([I+n^2, I+2*n^2])*.3;
+clf; hold <span class="string">on</span>;
+imageplot(U);
+h = plot(p(2,:),p(1,:), <span class="string">'.k'</span>); set(h, <span class="string">'LineWidth'</span>, 2);
+h = plot(pstart(2),pstart(1), <span class="string">'.g'</span>); set(h, <span class="string">'MarkerSize'</span>, 25);
+h = plot(pend(2),pend(1), <span class="string">'.b'</span>); set(h, <span class="string">'MarkerSize'</span>, 25);
+axis <span class="string">ij</span>;
+</pre><img vspace="5" hspace="5" src="index_06.png"> <p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Display the explored region for different values of <tt>weight</tt>.
+         </p><pre class="codeinput">exo2;
+</pre><img vspace="5" hspace="5" src="index_07.png"> <h2>Landmark-based Heuristically Driven Front Propagation<a name="26"></a></h2>
+         <p>An heuristic can be derived using a pre-computed set of distance to landmark points. The more landmark, the more accurate
+            the heuristic is.
+         </p>
+         <p>Compute randomized landmarks.</p><pre class="codeinput">q = 10;
+landmarks = floor(rand(2,q)*n)+1;
+</pre><p>Pre-compute distances to landmarks.</p><pre class="codeinput">Dland = zeros(n,n,q);
+<span class="keyword">for</span> i=1:q
+    Dland(:,:,i) = perform_fast_marching(1./W, landmarks(:,i));
+<span class="keyword">end</span>
+</pre><p>Compute the heuristic.</p><pre class="codeinput">Dend = Dland( pend(1), pend(2), :);
+H = max(abs(Dland-repmat(Dend, [n n 1])), [], 3);
+</pre><p>Display the heuristic.</p><pre class="codeinput">clf;
+hold <span class="string">on</span>;
+imageplot(H);
+contour(H, 10, <span class="string">'k'</span>, <span class="string">'LineWidth'</span>, 2);
+colormap <span class="string">jet(256)</span>;
+h = plot(landmarks(1,:), landmarks(2,:), <span class="string">'y.'</span>);
+set(h, <span class="string">'MarkerSize'</span>, 15);
+axis <span class="string">ij</span>;
+</pre><img vspace="5" hspace="5" src="index_08.png"> <p>That should be compared with the optimal ideal heuristic.</p><pre class="codeinput">[H0,S] = perform_fast_marching(1./W, pend);
+clf;
+hold <span class="string">on</span>;
+imageplot(H0);
+contour(H0, 10, <span class="string">'k'</span>, <span class="string">'LineWidth'</span>, 2);
+colormap <span class="string">jet(256)</span>;
+axis <span class="string">ij</span>;
+</pre><img vspace="5" hspace="5" src="index_09.png"> <p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) Display the convergence of the heuristic as the number of landmark increases.
+         </p><pre class="codeinput">exo3;
+</pre><img vspace="5" hspace="5" src="index_10.png"> <p><i>Exercice 4:</i> (<a href="../missing-exo/">check the solution</a>) Perform the heuristically driven propagation with a landmark-based heuristic.
+         </p><pre class="codeinput">exo4;
+</pre><img vspace="5" hspace="5" src="index_11.png"> <p><i>Exercice 5:</i> (<a href="../missing-exo/">check the solution</a>) Find a strategy to find optimal seeding position for the landmarks.
+         </p><pre class="codeinput">exo5;
+</pre><h2>Heuristics on 3D Meshes<a name="35"></a></h2>
+         <p>It is possible to use the same heuristics to drive the computation of geodesic paths on 3D meshes.</p>
+         <p><i>Exercice 6:</i> (<a href="../missing-exo/">check the solution</a>) Perform the landmark-based heuristically driven propagation on a 3D mesh.
+         </p><pre class="codeinput">exo6;
+</pre><p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Heuristically Driven Front Propagation
+% This tour explores the use of heuristics to speed up Fast Marching methods in 2D.
+
+%%
+% The use of heuristics for the computation of geodesic paths was
+% introduced in 
+
+%% 
+% _Heuristically Driven Front Propagation for Fast Geodesic Extraction_
+% Gabriel Peyre and Laurent Cohen, 
+% International Journal for Computational Vision and Biomechanics, Vol. 1(1), p.55-67, Jan-June 2008.
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_signal.zip signal toolbox>, 
+% <../toolbox_general.zip general toolbox> and 
+% <../toolbox_graph.zip graph toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_signal|, 
+% |toolbox_general| and 
+% |toolbox_graph|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_signal/');
+getd('toolbox_general/');
+getd('toolbox_graph/');
+
+
+
+%% Ideal Heuristically Driven Front Propagation
+% The ideal heuristic |H| is the remaining distance to the ending point.
+% It is ideal in the sense that it is as difficult to compute this distance
+% than to solve for the original problem of extracting the geodesic.
+
+%%
+% One can however study the influence of this heuristic by replacing |H|
+% by |weight*H| where |weight<1| is a sub-optimality factor.
+
+%%
+% Load an image.
+
+n = 300;
+name = 'road2';
+M = rescale(load_image(name,n));
+
+%%
+% Display it.
+
+clf;
+imageplot(M);
+
+%%
+% Define start and end points (you can use your own points).
+
+pstart = [14;161];
+pend = [293;148];
+
+%%
+% Compute a metric to extact the road.
+
+W = abs(M-M(pstart(1),pstart(2)));
+W = rescale(W, 1e-2,1);
+
+%%
+% Display it.
+
+clf;
+imageplot(W);
+
+
+%%
+% Perform the full propagation.
+
+[D,S] = perform_fast_marching(1./W, pstart);
+
+%% 
+% Extract a geodesic curve.
+
+p = compute_geodesic(D,pend);
+
+%%
+% Display the distance and the geodesic curve.
+
+clf; hold on;
+imageplot(convert_distance_color(D,M), 'Distance');
+h = plot(p(2,:),p(1,:), '.k'); set(h, 'LineWidth', 2);
+h = plot(pstart(2),pstart(1), '.r'); set(h, 'MarkerSize', 25);
+h = plot(pend(2),pend(1), '.b'); set(h, 'MarkerSize', 25);
+axis ij;
+
+%%
+% Compute the heuristic.
+
+[H,S] = perform_fast_marching(1./W, pend);
+
+%%
+% Display the ideal heuristic function.
+
+clf; hold on;
+imageplot(convert_distance_color(H,M), 'Distance');
+h = plot(p(2,:),p(1,:), '.k'); set(h, 'LineWidth', 2);
+h = plot(pstart(2),pstart(1), '.r'); set(h, 'MarkerSize', 25);
+h = plot(pend(2),pend(1), '.b'); set(h, 'MarkerSize', 25);
+axis ij;
+
+%%
+% _Exercice 1:_ (<../missing-exo/ check the solution>)
+% Display the set of points satisfying |D+H<=T| for several value of the
+% threshold |T>=D(pend)|. What do you observe ?
+
+exo1;
+
+
+%%
+% Perform the heuristically driven propagation.
+
+weight = .9;
+options.end_points = pend;
+options.heuristic = weight*H;
+options.nb_iter_max = Inf;
+options.constraint_map = Inf+zeros(n);
+[D,S] = perform_fast_marching(1./W, pstart, options);
+
+%%
+% Display the region explored by the algorithm.
+
+I = find(S<0);
+U = cat(3,M,M,M);
+U(I) = 1; U([I+n^2, I+2*n^2]) = U([I+n^2, I+2*n^2])*.3;
+clf; hold on;
+imageplot(U);
+h = plot(p(2,:),p(1,:), '.k'); set(h, 'LineWidth', 2);
+h = plot(pstart(2),pstart(1), '.g'); set(h, 'MarkerSize', 25);
+h = plot(pend(2),pend(1), '.b'); set(h, 'MarkerSize', 25);
+axis ij;
+
+%%
+% _Exercice 2:_ (<../missing-exo/ check the solution>)
+% Display the explored region for different values of |weight|.
+
+exo2;
+
+
+
+
+%% Landmark-based Heuristically Driven Front Propagation
+% An heuristic can be derived using a pre-computed set of distance to
+% landmark points. The more landmark, the more accurate the heuristic is.
+
+%%
+% Compute randomized landmarks.
+
+q = 10;
+landmarks = floor(rand(2,q)*n)+1;
+
+%%
+% Pre-compute distances to landmarks.
+
+Dland = zeros(n,n,q);
+for i=1:q
+    Dland(:,:,i) = perform_fast_marching(1./W, landmarks(:,i));
+end
+
+%%
+% Compute the heuristic.
+
+Dend = Dland( pend(1), pend(2), :);
+H = max(abs(Dland-repmat(Dend, [n n 1])), [], 3);
+
+%%
+% Display the heuristic.
+
+clf;
+hold on;
+imageplot(H);
+contour(H, 10, 'k', 'LineWidth', 2);
+colormap jet(256);
+h = plot(landmarks(1,:), landmarks(2,:), 'y.');
+set(h, 'MarkerSize', 15);
+axis ij;
+
+%%
+% That should be compared with the optimal ideal heuristic.
+
+[H0,S] = perform_fast_marching(1./W, pend);
+clf;
+hold on;
+imageplot(H0);
+contour(H0, 10, 'k', 'LineWidth', 2);
+colormap jet(256);
+axis ij;
+
+%%
+% _Exercice 3:_ (<../missing-exo/ check the solution>)
+% Display the convergence of the heuristic as the number of landmark
+% increases.
+
+exo3;
+
+
+%%
+% _Exercice 4:_ (<../missing-exo/ check the solution>)
+% Perform the heuristically driven propagation with a landmark-based
+% heuristic.
+
+exo4;
+
+
+%%
+% _Exercice 5:_ (<../missing-exo/ check the solution>)
+% Find a strategy to find optimal seeding position for the landmarks.
+
+exo5;
+
+
+%% Heuristics on 3D Meshes
+% It is possible to use the same heuristics to drive the computation of
+% geodesic paths on 3D meshes.
+
+%%
+% _Exercice 6:_ (<../missing-exo/ check the solution>)
+% Perform the landmark-based heuristically driven propagation on a 3D
+% mesh.
+
+exo6;
+
+##### SOURCE END #####
+-->
+   </body>
+</html>
