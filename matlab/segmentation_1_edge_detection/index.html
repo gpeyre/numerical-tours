@@ -1,0 +1,601 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>Edge Detection</title>
+      <NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
+               	requires JavaScript to process the mathematics on this page.<BR> 
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 8.2">
+      <meta name="date" content="2014-10-21">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>Edge Detection</h1>
+         <introduction>
+            <p>This numerical tour explores local differential operators (grad, div, laplacian) and their use to perform edge detection.</p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#8">Diffusion and Convolution</a></li>
+               <li><a href="#17">Gradient Based Edge Detectiors</a></li>
+               <li><a href="#29">Zero-crossing of the Laplacian</a></li>
+               <li><a href="#39">Hessian Based Edge Detectors</a></li>
+            </ul>
+         </div>
+         <h2>Installing toolboxes and setting up the path.<a name="1"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_signal.zip">signal toolbox</a> and <a href="../toolbox_general.zip">general toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_signal</tt> and <tt>toolbox_general</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
+getd(<span class="string">'toolbox_general/'</span>);
+</pre><h2>Diffusion and Convolution<a name="8"></a></h2>
+         <p>To obtain robust edge detection method, it is required to first remove the noise and small scale features in the image. This
+            can be achieved using a linear blurring kernel.
+         </p>
+         <p>Size of the image.</p><pre class="codeinput">n = 256*2;
+</pre><p>Load an image \(f_0\) of \(N=n \times n\) pixels.</p><pre class="codeinput">f0 = load_image(<span class="string">'hibiscus'</span>,n);
+f0 = rescale(sum(f0,3));
+</pre><p>Display it.</p><pre class="codeinput">clf;
+imageplot(f0);
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p>Blurring is achieved using convolution: \[ f \star h(x) = \sum_y f(y-x) h(x) \] where we assume periodic boundary condition.</p>
+         <p>This can be computed in \(O(N\log(N))\) operations using the FFT, since \[ g = f \star h \qarrq \forall \om, \quad \hat g(\om)
+            = \hat f(\om) \hat h(\om).  \]
+         </p><pre class="codeinput">cconv = @(f,h)real(ifft2(fft2(f).*fft2(h)));
+</pre><p>Define a Gaussian blurring kernel of width \(\si\): \[ h_\si(x) = \frac{1}{Z} e^{ -\frac{x_1^2+x_2^2}{2\si^2} }\] where \(Z\)
+            ensure that \(\hat h(0)=1\).
+         </p><pre class="codeinput">t = [0:n/2 -n/2+1:-1];
+[X2,X1] = meshgrid(t,t);
+normalize = @(h)h/sum(h(:));
+h = @(sigma)normalize( exp( -(X1.^2+X2.^2)/(2*sigma^2) ) );
+</pre><p>Define blurring operator.</p><pre class="codeinput">blur = @(f,sigma)cconv(f,h(sigma));
+</pre><p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Test blurring with several blurring size \(\si\).
+         </p><pre class="codeinput">exo1;
+</pre><img vspace="5" hspace="5" src="index_02.png"> <h2>Gradient Based Edge Detectiors<a name="17"></a></h2>
+         <p>The simplest edge detectors only make use of the first order derivatives.</p>
+         <p>For continuous functions, the gradient reads \[ \nabla f(x) = \pa{ \pd{f(x)}{x_1}, \pd{f(x)}{x_2} } \in \RR^2. \]</p>
+         <p>We discretize this differential operator using first order finite differences. \[ (\nabla f)_i = ( f_{i_1,i_2}-f_{i_1-1,i_2},
+            f_{i_1,i_2}-f_{i_1,i_2-1} ) \in \RR^2. \] Note that for simplity we use periodic boundary conditions.
+         </p>
+         <p>Compute its gradient, using (here decentered) finite differences.</p><pre class="codeinput">s = [n 1:n-1];
+nabla = @(f)cat(3, f-f(s,:), f-f(:,s));
+</pre><p>One thus has \( \nabla : \RR^N \mapsto \RR^{N \times 2}. \)</p><pre class="codeinput">v = nabla(f0);
+</pre><p>One can display each of its components.</p><pre class="codeinput">clf;
+imageplot(v(:,:,1), <span class="string">'d/dx'</span>, 1,2,1);
+imageplot(v(:,:,2), <span class="string">'d/dy'</span>, 1,2,2);
+</pre><img vspace="5" hspace="5" src="index_03.png"> <p>A simple edge detector is simply obtained by obtained the gradient magnitude of a smoothed image.</p>
+         <p>A very simple edge detector is obtained by simply thresholding the gradient magnitude above some \(t&gt;0\). The set \(\Ee\)
+            of edges is then \[ \Ee = \enscond{x}{ d_\si(x) \geq t  } \] where we have defined \[ d_\si(x) = \norm{\nabla f_\si(x)}, \qwhereq
+            f_\si = f_0 \star h_\si. \]
+         </p>
+         <p>Compute \(d_\si\) for \(\si=1\).</p><pre class="codeinput">sigma = 1;
+d = sqrt( sum(nabla(  blur(f0,sigma)  ).^2,3) );
+</pre><p>Display it.</p><pre class="codeinput">clf;
+imageplot(d);
+</pre><img vspace="5" hspace="5" src="index_04.png"> <p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) For \(\si=1\), study the influence of the threshold value \(t\).
+         </p><pre class="codeinput">exo2;
+</pre><img vspace="5" hspace="5" src="index_05.png"> <p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) Study the influence of \(\si\).
+         </p><pre class="codeinput">exo3;
+</pre><img vspace="5" hspace="5" src="index_06.png"> <h2>Zero-crossing of the Laplacian<a name="29"></a></h2>
+         <p>Defining a Laplacian requires to define a divergence operator. The divergence operator maps vector field to images. For continuous
+            vector fields \(v(x) \in \RR^2\), it is defined as \[ \text{div}(v)(x) = \pd{v_1(x)}{x_1} +  \pd{v_2(x)}{x_2} \in \RR. \]
+            It is minus the adjoint of the gadient, i.e. \(\text{div} = - \nabla^*\).
+         </p>
+         <p>It is discretized, for \(v=(v^1,v^2)\) as \[ \text{div}(v)_i = v^1_{i_1+1,i_2} + v^2_{i_1,i_2+1}. \]</p><pre class="codeinput">t = [2:n 1];
+div = @(v)v(t,:,1)-v(:,:,1) + v(:,t,2)-v(:,:,2);
+</pre><p>The Laplacian operatore is defined as \(\Delta=\text{div} \circ  \nabla = -\nabla^* \circ \nabla\). It is thus a negative
+            symmetric operator.
+         </p><pre class="codeinput">delta = @(f)div(nabla(f));
+</pre><p>Display \(\Delta f_0\).</p><pre class="codeinput">clf;
+imageplot(delta(f0));
+</pre><img vspace="5" hspace="5" src="index_07.png"> <p>Check that the relation \( \norm{\nabla f} = - \dotp{\Delta f}{f}.  \)</p><pre class="codeinput">dotp = @(a,b)sum(a(:).*b(:));
+fprintf(<span class="string">'Should be 0: %.3i\n'</span>, dotp(nabla(f0), nabla(f0)) + dotp(delta(f0),f0) );
+</pre><pre class="codeoutput">Should be 0: -8.879e-11
+</pre><p>The zero crossing of the Laplacian is a well known edge detector. This requires first blurring the image (which is equivalent
+            to blurring the laplacian). The set \(\Ee\) of edges is defined as: \[ \Ee = \enscond{x}{ \Delta f_\si(x) = 0  }       \qwhereq
+            f_\si = f_0 \star h_\si . \]
+         </p>
+         <p>It was proposed by Marr and Hildreth:</p>
+         <p>Marr, D. and Hildreth, E., <i>Theory of edge detection,</i> In Proc. of the Royal Society London B, 207:187-217, 1980.
+         </p>
+         <p>Display the zero crossing.</p><pre class="codeinput">sigma = 4;
+clf;
+plot_levelset( delta(blur(f0,sigma)) ,0,f0);
+</pre><img vspace="5" hspace="5" src="index_08.png"> <p><i>Exercice 4:</i> (<a href="../missing-exo/">check the solution</a>) Study the influence of \(\si\).
+         </p><pre class="codeinput">exo4;
+</pre><img vspace="5" hspace="5" src="index_09.png"> <h2>Hessian Based Edge Detectors<a name="39"></a></h2>
+         <p>Zero-crossing of the Laplacian can be shown to return false edges corresponding to local minima of the gradient magnitude.
+            Moreover, this operator gives poor localization at curved edges.
+         </p>
+         <p>In order to improve over this basic detector, more advanced edge detectors make use of the second order derivatives. Several
+            authors have advocated for this choice, in particular:
+         </p>
+         <p>Haralick, R., <i>Digital step edges from zero crossing of second directional derivatives,</i> IEEE Trans. on Pattern Analysis and Machine Intelligence, 6(1):58-68, 1984.
+         </p>
+         <p>Canny, J., <i>A computational approach to edge detection,</i> IEEE Trans. on PAMI, 8(6):679-698, 1986
+         </p>
+         <p>Deriche, R., <i>Using Canny's criteria to derive a recursively implemented optimal edge detector</i>. International Journal of Computer Vision, 1:167-187, 1987.
+         </p>
+         <p>They define the edge locations \(\Ee\) as the zero-crossings of the second-order directional derivative in the gradient direction.
+            \[ \Ee = \enscond{x}{  \dotp{ H(x) \times g_\si(x) }{ g_\si(x) } = 0 }       \qwhereq g_\si = \nabla ( f_0 \star h_\si )&nbsp;
+              \] where \(\times\) is the matrix-vector multiplication.
+         </p>
+         <p>Define centered first order derivatives.</p><pre class="codeinput">dx = @(f)(f(s,:)-f(t,:)) / 2;
+dy = @(f)dx(f')';
+</pre><p>Define second order derivatives.</p><pre class="codeinput">s = [2:n 1]; t = [n 1:n-1];
+d2x = @(f)f(s,:) + f(t,:) - 2*f;
+d2y = @(f)d2x(f')';
+dxy = @(f)dy(dx(f));
+</pre><p>Define Hessian operator.</p><pre class="codeinput">hessian = @(f)cat(3, d2x(f), dxy(f), d2y(f));
+</pre><p>Compute \(g_\si = \nabla (f_0 \star h_\si). \)</p><pre class="codeinput">sigma = 6;
+g = grad( blur(f0,sigma) );
+</pre><p>Compute \(h_\si = H (f_0 \star h_\si). \)</p><pre class="codeinput">h = hessian( blur(f0,sigma) );
+</pre><p>Compute \( a_\si(x) = h_\si(x) \times g_\si (x) \) (this is a matrix times vector operation).</p><pre class="codeinput">a = h(:,:,1:2).*repmat(g(:,:,1), [1 1 2]) + <span class="keyword">...</span>
+    h(:,:,2:3).*repmat(g(:,:,2), [1 1 2]);
+</pre><p>Display the level set of \(\dotp{a_\si(x)}{g_\si(x)}\).</p><pre class="codeinput">clf;
+plot_levelset( sum(a.*g, 3) ,0,f0);
+</pre><img vspace="5" hspace="5" src="index_10.png"> <p><i>Exercice 5:</i> (<a href="../missing-exo/">check the solution</a>) Study the influence of \(\si\).
+         </p><pre class="codeinput">exo5;
+</pre><img vspace="5" hspace="5" src="index_11.png"> <p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Edge Detection
+% This numerical tour explores local differential operators (grad, div, laplacian) and their use to
+% perform edge detection.
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_signal.zip signal toolbox> and 
+% <../toolbox_general.zip general toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_signal| and 
+% |toolbox_general|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_signal/');
+getd('toolbox_general/');
+
+
+%% Diffusion and Convolution
+% To obtain robust edge detection method, it is required to first remove
+% the noise and small scale features in the image. This can be achieved
+% using a linear blurring kernel.
+
+%%
+% Size of the image.
+
+n = 256*2;
+
+%%
+% Load an image \(f_0\) of \(N=n \times n\) pixels.
+
+f0 = load_image('hibiscus',n);
+f0 = rescale(sum(f0,3));
+
+%%
+% Display it.
+
+clf;
+imageplot(f0);
+
+%%
+% Blurring is achieved using convolution:
+% \[ f \star h(x) = \sum_y f(y-x) h(x) \]
+% where we assume periodic boundary condition.
+
+%%
+% This can be computed in \(O(N\log(N))\) operations using the FFT, since
+% \[ g = f \star h \qarrq \forall \om, \quad \hat g(\om) = \hat f(\om) \hat h(\om).  \]
+
+cconv = @(f,h)real(ifft2(fft2(f).*fft2(h)));
+
+%%
+% Define a Gaussian blurring kernel of width \(\si\):
+% \[ h_\si(x) = \frac{1}{Z} e^{ -\frac{x_1^2+x_2^2}{2\si^2} }\]
+% where \(Z\) ensure that \(\hat h(0)=1\).
+
+t = [0:n/2 -n/2+1:-1];
+[X2,X1] = meshgrid(t,t);
+normalize = @(h)h/sum(h(:));
+h = @(sigma)normalize( exp( -(X1.^2+X2.^2)/(2*sigma^2) ) );
+
+%%
+% Define blurring operator.
+
+blur = @(f,sigma)cconv(f,h(sigma));
+
+%%
+% _Exercice 1:_ (<../missing-exo/ check the solution>)
+% Test blurring with several blurring size \(\si\).
+
+exo1;
+
+
+%% Gradient Based Edge Detectiors
+% The simplest edge detectors only make use of the first order derivatives.
+
+%%
+% For continuous functions, the gradient reads
+% \[ \nabla f(x) = \pa{ \pd{f(x)}{x_1}, \pd{f(x)}{x_2} } \in \RR^2. \]
+
+%%
+% We discretize this differential operator using first order finite
+% differences. 
+% \[ (\nabla f)_i = ( f_{i_1,i_2}-f_{i_1-1,i_2}, f_{i_1,i_2}-f_{i_1,i_2-1} ) \in \RR^2. \]
+% Note that for simplity we use periodic boundary conditions.
+
+%%
+% Compute its gradient, using (here decentered) finite differences.
+
+s = [n 1:n-1];
+nabla = @(f)cat(3, f-f(s,:), f-f(:,s));
+
+%%
+% One thus has \( \nabla : \RR^N \mapsto \RR^{N \times 2}. \)
+
+v = nabla(f0);
+
+%%
+% One can display each of its components.
+
+clf;
+imageplot(v(:,:,1), 'd/dx', 1,2,1);
+imageplot(v(:,:,2), 'd/dy', 1,2,2);
+
+
+%%
+% A simple edge detector is simply obtained by obtained the gradient
+% magnitude of a smoothed image.
+
+
+%%
+% A very simple edge detector is obtained by simply thresholding the
+% gradient magnitude above some \(t>0\). The set \(\Ee\) of edges is then
+% \[ \Ee = \enscond{x}{ d_\si(x) \geq t  } \]
+% where we have defined
+% \[ d_\si(x) = \norm{\nabla f_\si(x)}, \qwhereq f_\si = f_0 \star h_\si. \]
+
+%%
+% Compute \(d_\si\) for \(\si=1\).
+
+sigma = 1;
+d = sqrt( sum(nabla(  blur(f0,sigma)  ).^2,3) );
+
+%%
+% Display it.
+
+clf;
+imageplot(d);
+
+%%
+% _Exercice 2:_ (<../missing-exo/ check the solution>)
+% For \(\si=1\), study the influence of the threshold value \(t\).
+
+exo2;
+
+%%
+% _Exercice 3:_ (<../missing-exo/ check the solution>)
+% Study the influence of \(\si\).
+
+exo3;
+
+
+%% Zero-crossing of the Laplacian
+% Defining a Laplacian requires to define a divergence operator. 
+% The divergence operator maps vector field to images. 
+% For continuous vector fields \(v(x) \in \RR^2\), it is defined as
+% \[ \text{div}(v)(x) = \pd{v_1(x)}{x_1} +  \pd{v_2(x)}{x_2} \in \RR. \]
+% It is minus the adjoint of the gadient, i.e. \(\text{div} = - \nabla^*\).
+
+%% 
+% It is discretized, for \(v=(v^1,v^2)\) as
+% \[ \text{div}(v)_i = v^1_{i_1+1,i_2} + v^2_{i_1,i_2+1}. \]
+
+t = [2:n 1];
+div = @(v)v(t,:,1)-v(:,:,1) + v(:,t,2)-v(:,:,2);
+
+%%
+% The Laplacian operatore is defined as \(\Delta=\text{div} \circ  \nabla =
+% -\nabla^* \circ \nabla\). It is thus a negative symmetric operator.
+
+delta = @(f)div(nabla(f));
+
+%% 
+% Display \(\Delta f_0\).
+
+clf; 
+imageplot(delta(f0));
+
+
+%%
+% Check that the relation \( \norm{\nabla f} = - \dotp{\Delta f}{f}.  \)
+
+dotp = @(a,b)sum(a(:).*b(:));
+fprintf('Should be 0: %.3i\n', dotp(nabla(f0), nabla(f0)) + dotp(delta(f0),f0) );
+
+%%
+% The zero crossing of the Laplacian is a well known edge detector.
+% This requires first blurring the image (which is equivalent to blurring
+% the laplacian). The set \(\Ee\) of edges is defined as:
+% \[ \Ee = \enscond{x}{ \Delta f_\si(x) = 0  }
+%       \qwhereq f_\si = f_0 \star h_\si . \]
+
+%%
+% It was proposed by Marr and Hildreth:
+
+%%
+% Marr, D. and Hildreth, E., 
+% _Theory of edge detection,_ 
+% In Proc. of the Royal Society London B, 207:187-217, 1980.
+
+%%
+% Display the zero crossing.
+
+sigma = 4;
+clf;
+plot_levelset( delta(blur(f0,sigma)) ,0,f0);
+ 
+
+%%
+% _Exercice 4:_ (<../missing-exo/ check the solution>)
+% Study the influence of \(\si\).
+
+exo4;
+
+%% Hessian Based Edge Detectors
+% Zero-crossing of the Laplacian can be shown to
+% return false edges corresponding to local minima 
+% of the gradient magnitude. Moreover, this operator gives poor localization at curved edges.
+
+%%
+% In order to improve over this basic detector, 
+% more advanced edge detectors make use of the second order derivatives.
+% Several authors have advocated for this choice, in particular:
+
+%%
+% Haralick, R., 
+% _Digital step edges from zero crossing of second directional derivatives,_ 
+% IEEE Trans. on Pattern Analysis and Machine Intelligence, 6(1):58-68, 1984.
+
+%%
+% Canny, J., 
+% _A computational approach to edge detection,_
+% IEEE Trans. on PAMI, 8(6):679-698, 1986
+
+%%
+% Deriche, R., 
+% _Using Canny's criteria to derive a recursively implemented optimal edge detector_. 
+% International Journal of Computer Vision, 1:167-187, 1987.
+
+%%
+% They define the edge locations \(\Ee\) as the zero-crossings of the second-order
+% directional derivative in the gradient direction.
+% \[ \Ee = \enscond{x}{  \dotp{ H(x) \times g_\si(x) }{ g_\si(x) } = 0 }
+%       \qwhereq g_\si = \nabla ( f_0 \star h_\si )    \]
+% where \(\times\) is the matrix-vector multiplication.
+
+%%
+% Define centered first order derivatives.
+
+dx = @(f)(f(s,:)-f(t,:)) / 2;
+dy = @(f)dx(f')';
+
+%%
+% Define second order derivatives.
+
+s = [2:n 1]; t = [n 1:n-1];
+d2x = @(f)f(s,:) + f(t,:) - 2*f;
+d2y = @(f)d2x(f')';
+dxy = @(f)dy(dx(f));
+
+%%
+% Define Hessian operator.
+
+hessian = @(f)cat(3, d2x(f), dxy(f), d2y(f));
+
+%%
+% Compute \(g_\si = \nabla (f_0 \star h_\si). \)
+
+sigma = 6;
+g = grad( blur(f0,sigma) );
+
+%%
+% Compute \(h_\si = H (f_0 \star h_\si). \)
+
+h = hessian( blur(f0,sigma) );
+
+%%
+% Compute \( a_\si(x) = h_\si(x) \times g_\si (x) \)
+% (this is a matrix times vector operation). 
+
+a = h(:,:,1:2).*repmat(g(:,:,1), [1 1 2]) + ...
+    h(:,:,2:3).*repmat(g(:,:,2), [1 1 2]);
+
+%%
+% Display the level set of \(\dotp{a_\si(x)}{g_\si(x)}\).
+
+clf;
+plot_levelset( sum(a.*g, 3) ,0,f0);
+
+%%
+% _Exercice 5:_ (<../missing-exo/ check the solution>)
+% Study the influence of \(\si\).
+
+exo5;
+
+##### SOURCE END #####
+-->
+   </body>
+</html>

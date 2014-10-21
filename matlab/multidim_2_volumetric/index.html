@@ -146,7 +146,7 @@ To make changes, update the M-file and republish this document.
          <HR>
       </NOSCRIPT>
       <meta name="generator" content="MATLAB 8.2">
-      <meta name="date" content="2014-10-20">
+      <meta name="date" content="2014-10-21">
       <meta name="m-file" content="index">
       <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
    </head>
@@ -313,11 +313,6 @@ j = log2(n)-1;
     a = cat(d, subsampling(cconv(A,h,d),d), subsampling(cconv(A,g,d),d) );
 <span class="keyword">end</span>
 MW(1:2^(j+1),1:2^(j+1),1:2^(j+1)) = A;
-</pre><pre class="codeoutput">Error using @(a,b)real(ifft2(fft2(a).*fft2(b)))
-Too many input arguments.
-
-Error in index (line 290)
-    a = cat(d, subsampling(cconv(A,h,d),d), subsampling(cconv(A,g,d),d) );
 </pre><p><i>Exercice 6:</i> (<a href="../missing-exo/">check the solution</a>) Implement the full 3D forward wavelet transform by applying these steps for decaying scales <tt>j</tt> toward 0.
          </p><pre class="codeinput">exo6;
 </pre><p>Threshold the coefficients.</p><pre class="codeinput">MWT = perform_thresholding(MW,m,<span class="string">'largest'</span>);
@@ -326,7 +321,7 @@ subplot(1,2,1);
 plot_wavelet(MW(:,:,n/8));
 subplot(1,2,2);
 plot_wavelet(MWT(:,:,n/8));
-</pre><p>Initialize the backward transform.</p><pre class="codeinput">M1 = MWT;
+</pre><img vspace="5" hspace="5" src="index_14.png"> <p>Initialize the backward transform.</p><pre class="codeinput">M1 = MWT;
 j = 0;
 </pre><p>Undo one step of the wavelet transform. <i>Note:</i> <tt>subselectdim(A,sel,1)</tt> is equivalent to <tt>A(sel,:,:)</tt> while <tt>subselectdim(A,sel,2)</tt> is equivalent to <tt>A(:,sel,:)</tt>.
          </p><pre class="codeinput">A = M1(1:2^(j+1),1:2^(j+1),1:2^(j+1));
@@ -343,23 +338,23 @@ clf;
 isosurface( M1(sel,sel,sel), .5);
 title([<span class="string">'Soft thresholding, SNR='</span> num2str(snr(M,M1),3) <span class="string">'dB'</span>]);
 axis(<span class="string">'off'</span>);
-</pre><h2>Denoising Daubechies Wavelets<a name="50"></a></h2>
+</pre><img vspace="5" hspace="5" src="index_15.png"> <h2>Denoising Daubechies Wavelets<a name="50"></a></h2>
          <p>Better denoising results are obtined by thresholding orthogonal wavelet coefficients.</p>
          <p><i>Exercice 8:</i> (<a href="../missing-exo/">check the solution</a>) Implement denoising by soft and hard thresholding Daubechies wavelet coefficients.
          </p><pre class="codeinput">exo8;
-</pre><p>Display denoised iso-surface with optimal soft thresholding.</p><pre class="codeinput">sel = 1:2:n;
+</pre><img vspace="5" hspace="5" src="index_16.png"> <p>Display denoised iso-surface with optimal soft thresholding.</p><pre class="codeinput">sel = 1:2:n;
 clf;
 isosurface( Mwav(sel,sel,sel), .5);
 title([<span class="string">'Soft thresholding, SNR='</span> num2str(snr(M,Mwav),3) <span class="string">'dB'</span>]);
 axis(<span class="string">'off'</span>);
-</pre><p><i>Exercice 9:</i> (<a href="../missing-exo/">check the solution</a>) Implement cycle spinning hard thresholding with Daubechies wavelets with <tt>T=3*sigma</tt>.
+</pre><img vspace="5" hspace="5" src="index_17.png"> <p><i>Exercice 9:</i> (<a href="../missing-exo/">check the solution</a>) Implement cycle spinning hard thresholding with Daubechies wavelets with <tt>T=3*sigma</tt>.
          </p><pre class="codeinput">exo9;
 </pre><p>Display denoised iso-surface.</p><pre class="codeinput">sel = 1:2:n;
 clf;
 isosurface( Mspin(sel,sel,sel), .5);
 title([<span class="string">'Cycle spinning, SNR='</span> num2str(snr(M,Mspin),3) <span class="string">'dB'</span>]);
 axis(<span class="string">'off'</span>);
-</pre><p class="footer"><br>
+</pre><img vspace="5" hspace="5" src="index_18.png"> <p class="footer"><br>
             Copyright  (c) 2010 Gabriel Peyre<br></p>
       </div>
       <!--

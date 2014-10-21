@@ -1,0 +1,648 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>Compressed Sensing of Images</title>
+      <NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
+               	requires JavaScript to process the mathematics on this page.<BR> 
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 8.2">
+      <meta name="date" content="2014-10-21">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>Compressed Sensing of Images</h1>
+         <introduction>
+            <p>This tour explores compressed sensing of natural images, using different sparsity priors over a wavelet basis.</p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#8">Low Pass Linear Measures</a></li>
+               <li><a href="#15">Randomized Orthogonal Measurements</a></li>
+               <li><a href="#27">Compressed Sensing Recovery using Douglas Rachford Scheme</a></li>
+               <li><a href="#35">Compressed Sensing Reconstruction using Block Sparsity</a></li>
+            </ul>
+         </div>
+         <h2>Installing toolboxes and setting up the path.<a name="1"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_signal.zip">signal toolbox</a> and <a href="../toolbox_general.zip">general toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_signal</tt> and <tt>toolbox_general</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
+getd(<span class="string">'toolbox_general/'</span>);
+</pre><h2>Low Pass Linear Measures<a name="8"></a></h2>
+         <p>We first make use of \(P\) low pass linear measurements to remove the low frequency content of the image.</p>
+         <p>Natural images are not only sparse over a wavelet domain. They also exhibit a fast decay of the coefficient through the scale.
+            The coarse (low pass) wavelets caries much of the image energy. It thus make sense to measure directly the low pass coefficients.
+         </p>
+         <p>We load an image \(f \in \RR^{n^2}\) of \(n \times n\) pixels.</p><pre class="codeinput">name = <span class="string">'boat'</span>;
+n = 256;
+f = load_image(name, n);
+f = rescale(f);
+</pre><p>Shortcuts for the wavelet transform \( \{\dotp{f}{\psi_m}\}_m \). We only compute up to a scale \(J\) so that only \(k_0\)
+            sub-bands are transformed.
+         </p><pre class="codeinput">k0 = 2;
+J = log2(n)-k0;
+Wav  = @(f)perform_wavelet_transf(f,J,+1);
+WavI = @(x)perform_wavelet_transf(x,J,-1);
+</pre><p>Compute the wavelet transform.</p><pre class="codeinput">fw = Wav(f);
+</pre><p>Display the coefficients.</p><pre class="codeinput">clf;
+plot_wavelet(fw, J);
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Compute an approximation <tt>fLow</tt> using the \( P=2^{2J}=(n/k_0)^2 \) low pass coefficients.
+         </p><pre class="codeinput">exo1;
+</pre><img vspace="5" hspace="5" src="index_02.png"> <h2>Randomized Orthogonal Measurements<a name="15"></a></h2>
+         <p>We consider a compressed sensing operator that corresponds to randomized orthogonal projections.</p>
+         <p>Extract the high pass wavelet coefficients, \(x_0 = \{ \dotp{f}{\psi_m} \}_{m \in I_0}\).</p><pre class="codeinput">A = ones(n,n); A(1:2^J,1:2^J) = 0;
+I0 = find(A==1);
+x0 = fw(I0);
+</pre><p>Number of coefficients.</p><pre class="codeinput">N = length(x0);
+</pre><p>Number \( P_0 = 2^{2J}=(n/k_0)^2 \) of low pass measurements.</p><pre class="codeinput">P0 = (n/2^k0)^2;
+</pre><p>Number of CS measurements.</p><pre class="codeinput">P = 4 * P0;
+</pre><p>Generate random permutation operators \(S_1,S_2 : \RR^N \rightarrow \RR^N\) so that \(S_k(x)_i = x_{\sigma_k(i)}\) where \(
+            \sigma_k \in \Sigma_N \) is a random permutation of \(\{1,\ldots,N\}\).
+         </p><pre class="codeinput">sigma1 = randperm(N)';
+sigma2 = randperm(N)';
+S1 = @(x)x(sigma1);
+S2 = @(x)x(sigma2);
+</pre><p>The adjoint (and also inverse) operators \(S_1^*,S_2^*\) (denoted <tt>S1S,S2S</tt>) corresponds to the inverse permutation \(\sigma_k^*\) such that \(\sigma_k^* \circ \sigma_k(i)=i\).
+         </p><pre class="codeinput">sigma1S = 1:N; sigma1S(sigma1) = 1:N;
+sigma2S = 1:N; sigma2S(sigma2) = 1:N;
+S1S = @(x)x(sigma1S);
+S2S = @(x)x(sigma2S);
+</pre><p>We consider a CS operator \( \Phi : \RR^N \rightarrow \RR^P \) that corresponds to a projection on randomized atoms \[ (\Phi
+            x)_i = \dotp{x}{ \phi_{\sigma_2(i)}} \] where \( \phi_i \) is a scrambled orthogonal basis \[ \phi_i(x) = c_i( \sigma_1(x)
+            ) \] where \(\{ c_i \}_i\) is the orthogonal DCT basis.
+         </p>
+         <p>This can be rewritten in compact operator form as \[ \Phi x = ( S_2 \circ C \circ S_1 (x) ) \downarrow_P \] where \(S_1,S_2\)
+            are the permutation operators, and \(\downarrow_P\) selects the \(P\) first entries of a vector.
+         </p><pre class="codeinput">downarrow = @(x)x(1:P);
+Phi = @(x)downarrow(S2(dct(S1(x))));
+</pre><p>The adjoint operator is \[ \Phi^* x = S_1^* \circ C^* \circ S_2^* (x\uparrow_P) \] where \(\uparrow_P\) append \(N-P\) zeros
+            at the end of a vector, and \(C^*\) is the inverse DCT transform.
+         </p><pre class="codeinput">uparrow = @(x)[x; zeros(N-P,1)];
+PhiS = @(x)S1S(idct(S2S(uparrow(x))));
+</pre><p>Perform the CS (noiseless) measurements.</p><pre class="codeinput">y = Phi(x0);
+</pre><p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Reconstruct an image using the pseudo inverse coefficients \(\Phi^+ y = \Phi^* y\).
+         </p><pre class="codeinput">exo2;
+</pre><img vspace="5" hspace="5" src="index_03.png"> <h2>Compressed Sensing Recovery using Douglas Rachford Scheme<a name="27"></a></h2>
+         <p>We consider the minimum \(\ell^1\) recovery from the measurements \(y = \Phi x_0 \in \RR^P\) \[ \umin{\Phi x = y} \normu{x}.
+            \] This can be written as \[ \umin{ x } F(x) + G(x) \qwhereq \choice{       F(x) = i_{\Cc}(x), \\       G(x) = \normu{x}.
+              } \] where \(\Cc = \enscond{x}{\Phi x =y}\).
+         </p>
+         <p>One can solve this problem using the Douglas-Rachford iterations \[ \tilde x_{k+1} = \pa{1-\frac{\mu}{2}} \tilde x_k +   \frac{\mu}{2}
+            \text{rPox}_{\gamma G}( \text{rProx}_{\gamma F}(\tilde x_k)  )   \qandq x_{k+1} = \text{Prox}_{\gamma F}(\tilde x_{k+1},)
+            \]
+         </p>
+         <p>We have use the following definition for the proximal and reversed-proximal mappings: \[ \text{rProx}_{\gamma F}(x) = 2\text{Prox}_{\gamma
+            F}(x)-x \] \[ \text{Prox}_{\gamma F}(x) = \uargmin{y} \frac{1}{2}\norm{x-y}^2 + \ga F(y). \]
+         </p>
+         <p>One can show that for any value of \(\gamma&gt;0\), any \( 0 &lt; \mu &lt; 2 \), and any \(\tilde x_0\), \(x_k \rightarrow x^\star\)
+            which is a solution of the minimization of \(F+G\).
+         </p>
+         <p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) Implement the proximal and reversed-proximal mappings of \(F\) (the orthogonal projector on \(\Cc\) and \(G\) (soft thresholding).
+            In Matlab, use inline function with the <tt>@</tt> operator.
+         </p><pre class="codeinput">exo3;
+</pre><p>Value for the \(0 &lt; \mu &lt; 2\) and \(\gamma&gt;0\) parameters. You can use other values, this might speed up the convergence.</p><pre class="codeinput">mu = 1;
+gamma = 1;
+</pre><p><i>Exercice 4:</i> (<a href="../missing-exo/">check the solution</a>) Implement the DR iterative algorithm. Keep track of the evolution of the \(\ell^1\) norm \(G(x_k)\).
+         </p><pre class="codeinput">exo4;
+</pre><img vspace="5" hspace="5" src="index_04.png"> <p><i>Exercice 5:</i> (<a href="../missing-exo/">check the solution</a>) Display the image reconstructed using the \(P_0\) linear and \(P\) CS measurements. The total number of used measurements
+            is thus \(P+P_0\).
+         </p><pre class="codeinput">exo5;
+</pre><img vspace="5" hspace="5" src="index_05.png"> <h2>Compressed Sensing Reconstruction using Block Sparsity<a name="35"></a></h2>
+         <p>In order to enhance the CS reconstruction, it is possible to use more advanced priors than plain \( \ell^1 \).</p>
+         <p>One can for instance use a block \( \ell^1 \) norm \[ G(x) = \sum_i \norm{x_{B_i}} \] where \( (B_i)_i \) is a disjoint segmentation
+            of the index set \( \{1,\ldots,N\} \), where \(x_{B} = \{ x_i \}_{i \in B} \in \RR^{|B|}\) extracts the coefficients within
+            \(B\), and \( \norm{x_B} \) is the \(\ell^2\) norm.
+         </p>
+         <p>The proximal operator of this block \(\ell^1\) norm is a block thresholding \[ \forall \, m \in B_i, \quad \text{Prox}_{\ga
+            G}(x)_i =   \max(0, 1-\ga/\norm{x_{B_i}}) x_i. \]
+         </p>
+         <p>We use uniform blocks of size \(w \times w\).</p><pre class="codeinput">w = 4;
+</pre><p>Blocks position and offset in the image domain.</p><pre class="codeinput">v = 1:w:n;
+dv = 0:w-1;
+[dX,dY,X,Y] = ndgrid(dv,dv,v,v);
+q = size(X,3);
+dX = reshape(dX, [w*w q*q]);
+dY = reshape(dY, [w*w q*q]);
+X = reshape(X, [w*w q*q]);
+Y = reshape(Y, [w*w q*q]);
+</pre><p>Remove the block which fails outside the image.</p><pre class="codeinput">I = find( sum(X+dX&gt;n | Y+dY&gt;n)  );
+X(:,I) = [];
+Y(:,I) = [];
+dX(:,I) = [];
+dY(:,I) = [];
+</pre><p>Compute the indexes of the block in \(\{1,\ldots,N\}\), i.e.  not in image space but over the CS coefficients space.</p><pre class="codeinput">U = zeros(n,n);
+U(I0) = 1:N;
+Ind = X+dX + (Y+dY-1)*n;
+I = U(Ind);
+</pre><p>Remove the indexes that corresponds to low pass wavelet coefficients.</p><pre class="codeinput">I(:,sum(I==0)&gt;0) = [];
+</pre><p>A block is defined as \(B_i = \{ I_{k,i} \}_{k=1}^{w^2}\). Define the energy.</p><pre class="codeinput">G = @(x)sum( sqrt(sum(x(I).^2)) );
+</pre><p>Just for check : display in coefficient space the block structure.</p><pre class="codeinput">[A,tmp] = meshgrid( randperm(size(I,2)) , ones(w*w,1));
+x = zeros(N,1); x(I) = A;
+Z = zeros(n,n); Z(I0) = x;
+clf;
+imageplot(Z);
+colormap <span class="string">jet(256)</span>;
+</pre><img vspace="5" hspace="5" src="index_06.png"> <p><i>Exercice 6:</i> (<a href="../missing-exo/">check the solution</a>) define the proximal operator \( \text{Prox}_{\ga G} \) of \(G\), and its reversed proximal mapping.
+         </p><pre class="codeinput">exo6;
+</pre><p><i>Exercice 7:</i> (<a href="../missing-exo/">check the solution</a>) Implement the DR iterative algorithm. Keep track of the evolution of \(G(x_k)\).
+         </p><pre class="codeinput">exo7;
+</pre><img vspace="5" hspace="5" src="index_07.png"> <p><i>Exercice 8:</i> (<a href="../missing-exo/">check the solution</a>) Display the image reconstructed using the \(P_0\) linear and \(P\) CS measurements.
+         </p><pre class="codeinput">exo8;
+</pre><img vspace="5" hspace="5" src="index_08.png"> <p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Compressed Sensing of Images
+% This tour explores compressed sensing of natural images, using different
+% sparsity priors over a wavelet basis.
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_signal.zip signal toolbox> and 
+% <../toolbox_general.zip general toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_signal| and 
+% |toolbox_general|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_signal/');
+getd('toolbox_general/');
+
+
+
+
+%% Low Pass Linear Measures
+% We first make use of \(P\) low pass linear measurements to remove the low
+% frequency content of the image.
+
+%%
+% Natural images are not only sparse over a wavelet domain. They also
+% exhibit a fast decay of the coefficient through the scale. The coarse
+% (low pass) wavelets caries much of the image energy. It thus make sense
+% to measure directly the low pass coefficients.
+
+%%
+% We load an image \(f \in \RR^{n^2}\) of \(n \times n\) pixels.
+
+name = 'boat';
+n = 256;
+f = load_image(name, n);
+f = rescale(f);
+
+
+
+%%
+% Shortcuts for the wavelet transform \( \{\dotp{f}{\psi_m}\}_m \).
+% We only compute up to a scale \(J\) so that only \(k_0\) sub-bands are
+% transformed.
+
+k0 = 2;
+J = log2(n)-k0;
+Wav  = @(f)perform_wavelet_transf(f,J,+1);
+WavI = @(x)perform_wavelet_transf(x,J,-1);
+
+%%
+% Compute the wavelet transform.
+
+fw = Wav(f);
+
+%%
+% Display the coefficients.
+
+clf;
+plot_wavelet(fw, J);
+
+
+%%
+% _Exercice 1:_ (<../missing-exo/ check the solution>)
+% Compute an approximation |fLow| using the \( P=2^{2J}=(n/k_0)^2 \) low pass
+% coefficients.
+
+exo1;
+
+
+
+%% Randomized Orthogonal Measurements
+% We consider a compressed sensing operator that corresponds to randomized
+% orthogonal projections.
+
+
+%%
+% Extract the high pass wavelet coefficients, \(x_0 = \{ \dotp{f}{\psi_m} \}_{m \in I_0}\).
+
+A = ones(n,n); A(1:2^J,1:2^J) = 0;
+I0 = find(A==1);
+x0 = fw(I0);
+
+%%
+% Number of coefficients.
+
+N = length(x0);
+
+%%
+% Number \( P_0 = 2^{2J}=(n/k_0)^2 \) of low pass measurements.
+
+P0 = (n/2^k0)^2;
+
+%%
+% Number of CS measurements.
+
+P = 4 * P0;
+
+%%
+% Generate random permutation operators \(S_1,S_2 : \RR^N \rightarrow \RR^N\)
+% so that \(S_k(x)_i = x_{\sigma_k(i)}\) where \( \sigma_k \in \Sigma_N \)
+% is a random permutation of \(\{1,\ldots,N\}\).
+
+sigma1 = randperm(N)'; 
+sigma2 = randperm(N)'; 
+S1 = @(x)x(sigma1);
+S2 = @(x)x(sigma2);
+
+%%
+% The adjoint (and also inverse) operators \(S_1^*,S_2^*\) (denoted |S1S,S2S|)
+% corresponds to the inverse permutation \(\sigma_k^*\) such that \(\sigma_k^* \circ \sigma_k(i)=i\).
+
+sigma1S = 1:N; sigma1S(sigma1) = 1:N; 
+sigma2S = 1:N; sigma2S(sigma2) = 1:N; 
+S1S = @(x)x(sigma1S);
+S2S = @(x)x(sigma2S);
+
+
+%%
+% We consider a CS operator \( \Phi : \RR^N \rightarrow
+% \RR^P \) that corresponds to a projection on randomized atoms
+% \[ (\Phi x)_i = \dotp{x}{ \phi_{\sigma_2(i)}} \]
+% where \( \phi_i \) is a scrambled orthogonal basis
+% \[ \phi_i(x) = c_i( \sigma_1(x) ) \]
+% where \(\{ c_i \}_i\) is the orthogonal DCT basis.
+
+%%
+% This can be rewritten in compact operator form as
+% \[ \Phi x = ( S_2 \circ C \circ S_1 (x) ) \downarrow_P \]
+% where \(S_1,S_2\) are the permutation operators, and \(\downarrow_P\)
+% selects the \(P\) first entries of a vector.
+
+downarrow = @(x)x(1:P); 
+Phi = @(x)downarrow(S2(dct(S1(x))));
+
+%%
+% The adjoint operator is 
+% \[ \Phi^* x = S_1^* \circ C^* \circ S_2^* (x\uparrow_P) \]
+% where \(\uparrow_P\) append \(N-P\) zeros at the end of a vector, and 
+% \(C^*\) is the inverse DCT transform.
+
+uparrow = @(x)[x; zeros(N-P,1)];
+PhiS = @(x)S1S(idct(S2S(uparrow(x))));
+
+%%
+% Perform the CS (noiseless) measurements.
+
+y = Phi(x0);
+
+%%
+% _Exercice 2:_ (<../missing-exo/ check the solution>)
+% Reconstruct an image using the pseudo inverse coefficients \(\Phi^+ y =
+% \Phi^* y\).
+
+exo2;
+
+
+
+
+%% Compressed Sensing Recovery using Douglas Rachford Scheme
+% We consider the minimum \(\ell^1\) recovery from the measurements \(y = \Phi x_0 \in \RR^P\)
+% \[ \umin{\Phi x = y} \normu{x}. \]
+% This can be written as 
+% \[ \umin{ x } F(x) + G(x) \qwhereq
+% \choice{
+%       F(x) = i_{\Cc}(x), \\
+%       G(x) = \normu{x}.
+%   }
+% \]
+% where \(\Cc = \enscond{x}{\Phi x =y}\).
+
+%%
+% One can solve this problem using the Douglas-Rachford iterations
+% \[ \tilde x_{k+1} = \pa{1-\frac{\mu}{2}} \tilde x_k + 
+%   \frac{\mu}{2} \text{rPox}_{\gamma G}( \text{rProx}_{\gamma F}(\tilde x_k)  ) 
+%   \qandq x_{k+1} = \text{Prox}_{\gamma F}(\tilde x_{k+1},) \]
+
+%%
+% We have use the following definition for the proximal and
+% reversed-proximal mappings:
+% \[ \text{rProx}_{\gamma F}(x) = 2\text{Prox}_{\gamma F}(x)-x \]
+% \[ \text{Prox}_{\gamma F}(x) = \uargmin{y} \frac{1}{2}\norm{x-y}^2 + \ga F(y). \]
+
+%%
+% One can show that for any value of \(\gamma>0\), any \( 0 < \mu < 2 \), 
+% and any \(\tilde x_0\), \(x_k \rightarrow x^\star\)
+% which is a solution of the minimization of \(F+G\).
+
+%%
+% _Exercice 3:_ (<../missing-exo/ check the solution>)
+% Implement the proximal and reversed-proximal mappings of \(F\) (the orthogonal projector on
+% \(\Cc\) and \(G\) (soft thresholding). In Matlab, use inline function with the |@|
+% operator.
+
+exo3;
+
+%%
+% Value for the \(0 < \mu < 2\) and \(\gamma>0\) parameters.
+% You can use other values, this might speed up the convergence.
+
+mu = 1;
+gamma = 1;
+
+%%
+% _Exercice 4:_ (<../missing-exo/ check the solution>)
+% Implement the DR iterative algorithm.
+% Keep track of the evolution of the \(\ell^1\) norm \(G(x_k)\).
+
+exo4;
+
+%%
+% _Exercice 5:_ (<../missing-exo/ check the solution>)
+% Display the image reconstructed using the \(P_0\) linear and \(P\) CS
+% measurements. The total number of used measurements is thus \(P+P_0\).
+
+exo5;
+
+
+
+
+%% Compressed Sensing Reconstruction using Block Sparsity
+% In order to enhance the CS reconstruction, it is possible to use more
+% advanced priors than plain \( \ell^1 \). 
+
+%%
+% One can for instance use a block \( \ell^1 \) norm
+% \[ G(x) = \sum_i \norm{x_{B_i}} \]
+% where \( (B_i)_i \) is a disjoint segmentation of the index set \(
+% \{1,\ldots,N\} \), where
+% \(x_{B} = \{ x_i \}_{i \in B} \in \RR^{|B|}\) extracts the coefficients
+% within \(B\), and \( \norm{x_B} \) is the \(\ell^2\) norm.
+
+%%
+% The proximal operator of this block \(\ell^1\) norm is a block
+% thresholding
+% \[ \forall \, m \in B_i, \quad \text{Prox}_{\ga G}(x)_i = 
+%   \max(0, 1-\ga/\norm{x_{B_i}}) x_i. \]
+
+%%
+% We use uniform blocks of size \(w \times w\).
+
+w = 4;
+
+%%
+% Blocks position and offset in the image domain.
+
+v = 1:w:n;
+dv = 0:w-1;
+[dX,dY,X,Y] = ndgrid(dv,dv,v,v);
+q = size(X,3);
+dX = reshape(dX, [w*w q*q]);
+dY = reshape(dY, [w*w q*q]);
+X = reshape(X, [w*w q*q]);
+Y = reshape(Y, [w*w q*q]);
+
+%%
+% Remove the block which fails outside the image.
+
+I = find( sum(X+dX>n | Y+dY>n)  );
+X(:,I) = [];
+Y(:,I) = [];
+dX(:,I) = [];
+dY(:,I) = [];
+
+%%
+% Compute the indexes of the block in \(\{1,\ldots,N\}\), i.e.  not in image space
+% but over the CS coefficients space.
+
+U = zeros(n,n);
+U(I0) = 1:N;
+Ind = X+dX + (Y+dY-1)*n;
+I = U(Ind);
+
+%%
+% Remove the indexes that corresponds to low pass wavelet coefficients.
+
+I(:,sum(I==0)>0) = [];
+
+%%
+% A block is defined as \(B_i = \{ I_{k,i} \}_{k=1}^{w^2}\).
+% Define the energy.
+
+G = @(x)sum( sqrt(sum(x(I).^2)) );
+
+%%
+% Just for check : display in coefficient space the block structure.
+
+[A,tmp] = meshgrid( randperm(size(I,2)) , ones(w*w,1));
+x = zeros(N,1); x(I) = A;
+Z = zeros(n,n); Z(I0) = x;
+clf; 
+imageplot(Z); 
+colormap jet(256);
+
+%%
+% _Exercice 6:_ (<../missing-exo/ check the solution>)
+% define the proximal operator \( \text{Prox}_{\ga G} \) of \(G\), 
+% and its reversed proximal mapping.
+
+exo6;
+
+
+%%
+% _Exercice 7:_ (<../missing-exo/ check the solution>)
+% Implement the DR iterative algorithm.
+% Keep track of the evolution of \(G(x_k)\).
+
+exo7;
+
+%%
+% _Exercice 8:_ (<../missing-exo/ check the solution>)
+% Display the image reconstructed using the \(P_0\) linear and \(P\) CS
+% measurements.
+
+exo8;
+
+
+
+
+##### SOURCE END #####
+-->
+   </body>
+</html>

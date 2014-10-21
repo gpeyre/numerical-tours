@@ -1,0 +1,730 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>Image Deconvolution using Variational Method</title>
+      <NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
+               	requires JavaScript to process the mathematics on this page.<BR> 
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 8.2">
+      <meta name="date" content="2014-10-20">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>Image Deconvolution using Variational Method</h1>
+         <introduction>
+            <p>This numerical tour explores the use of Sobolev and TV regularization to perform image deconvolution.</p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#13">Image Blurring</a></li>
+               <li><a href="#27">Deconvolution with L2 Regularization</a></li>
+               <li><a href="#37">Deconvolution by Sobolev Regularization.</a></li>
+               <li><a href="#46">Deconvolution by Total Variation Regularization</a></li>
+               <li><a href="#67">Comparison of Variational and Sparsity Methods</a></li>
+            </ul>
+         </div>
+         <h2>Installing toolboxes and setting up the path.<a name="1"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_signal.zip">signal toolbox</a> and <a href="../toolbox_general.zip">general toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_signal</tt> and <tt>toolbox_general</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
+getd(<span class="string">'toolbox_general/'</span>);
+</pre><p>This tour is concerned with the deconvolution problem. The measurement are assumed to be blurry and noisy:  \[y=\Phi f_0 +
+            w = h \star f_0 + w\]
+         </p>
+         <p>Where here <tt>h</tt> is the filter (low pass) and <tt>w</tt> some noise (here assumed to be white Gaussian).
+         </p>
+         <p>We consider variational deconvolution methods, that finds a regularizer through a convex optimization:  \[f^\star \in \text{argmin}_f
+            \frac{1}{2}\|y-\Phi f\|^2 + \lambda J(f)\]
+         </p>
+         <p>Where \(J(f)\) is a prior energy. In this tour we consider a simple L2 prior (the image is assumed to have a bounded energy),
+            a Sobolev prior (the image is uniformly smooth) and an approximate total variation (the image has edges of bounded perimeter).
+         </p>
+         <p>Note that the parameter \(\lambda\) should be carefully chosen to fit the noise level.</p>
+         <h2>Image Blurring<a name="13"></a></h2>
+         <p>Deconvolution corresponds to removing a blur from an image. We use here a Gaussian blur.</p>
+         <p>First we load the image to be inpainted.</p><pre class="codeinput">n = 256;
+name = <span class="string">'lena'</span>;
+name = <span class="string">'mri'</span>;
+name = <span class="string">'boat'</span>;
+f0 = load_image(name);
+f0 = rescale(crop(f0,n));
+</pre><p>We build a convolution kernel. Since we are going to use Fourier to compute the convolution, we set the center of the kernel
+            in the (1,1) pixel location.
+         </p>
+         <p>Width of the kernel, in pixel.</p><pre class="codeinput">s = 3;
+</pre><p>Kernel.</p><pre class="codeinput">x = [0:n/2-1, -n/2:-1];
+[Y,X] = meshgrid(x,x);
+h = exp( (-X.^2-Y.^2)/(2*s^2) );
+h = h/sum(h(:));
+</pre><p>Useful for later : the Fourier transform (should be real because of symmetry).</p><pre class="codeinput">hF = real(fft2(h));
+</pre><p>Display the kernel and its transform. We use <tt>fftshift</tt> to center the filter for display.
+         </p><pre class="codeinput">clf;
+imageplot(fftshift(h), <span class="string">'Filter'</span>, 1,2,1);
+imageplot(fftshift(hF), <span class="string">'Fourier transform'</span>, 1,2,2);
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p>We use this short hand for the filtering. Note that this is a symmetric operator.</p><pre class="codeinput"><span class="keyword">if</span> using_matlab()
+    Phi = @(x,h)real(ifft2(fft2(x).*fft2(h)));
+<span class="keyword">end</span>
+</pre><p><b>Important</b> Scilab user should define a function <tt>Phi</tt> in a separate file <tt>Phi.sci</tt> to perform this.
+         </p>
+         <p>Apply the filter.</p><pre class="codeinput">y0 = Phi(f0,h);
+</pre><p>Display the filtered observation.</p><pre class="codeinput">clf;
+imageplot(f0, <span class="string">'Image f0'</span>, 1,2,1);
+imageplot(y0, <span class="string">'Observation without noise'</span>, 1,2,2);
+</pre><img vspace="5" hspace="5" src="index_02.png"> <p>Variance \(\sigma^2\) of the noise \(w\).</p><pre class="codeinput">sigma = .02;
+</pre><p>Add some noise to obtain the measurements &plusmn;\(y = \Phi f_0 + w\).</p><pre class="codeinput">y = y0 + randn(n)*sigma;
+</pre><p>Display.</p><pre class="codeinput">clf;
+imageplot(y0, <span class="string">'Observation without noise'</span>, 1,2,1);
+imageplot(clamp(y), <span class="string">'Observation with noise'</span>, 1,2,2);
+</pre><img vspace="5" hspace="5" src="index_03.png"> <h2>Deconvolution with L2 Regularization<a name="27"></a></h2>
+         <p>Deconvolution is obtained by dividing the Fourier transform of \(y\) by \(\hat h\).  \[f^\star(\omega) = \frac{\hat y(\omega)}{\hat
+            h(\omega)} = \hat f_0(\omega) + \hat w(\omega)/{\hat h(\omega)}\]
+         </p>
+         <p>Unfortunately this creates an explosion of the Noise.</p>
+         <p>To avoid this explosion, we consider a simple regularization.  \[f^{\star} = \text{argmin}_f \: \|y-\Phi f\|^2 + \lambda \|f\|^2\]</p>
+         <p>Since the filtering is diagonalized over Fourier, the solution is simply computed over the Fourier domain as:  \[\hat f^\star(\omega)
+            = \frac{\hat y(\omega) \hat h(\omega)}{ \|\hat h(\omega)\|^2 + \lambda }\]
+         </p>
+         <p>Useful for later: Fourier transform of the observations.</p><pre class="codeinput">yF = fft2(y);
+</pre><p>Select a value for the regularization parameter.</p><pre class="codeinput">lambda = 0.02;
+</pre><p>Perform the inversion.</p><pre class="codeinput">fL2 = real( ifft2( yF .* hF ./ ( abs(hF).^2 + lambda) ) );
+</pre><p>Display.</p><pre class="codeinput">clf;
+imageplot(y, strcat([<span class="string">'Observation, SNR='</span> num2str(snr(f0,y),3) <span class="string">'dB'</span>]), 1,2,1);
+imageplot(clamp(fL2), strcat([<span class="string">'L2 deconvolution, SNR='</span> num2str(snr(f0,fL2),3) <span class="string">'dB'</span>]), 1,2,2);
+</pre><img vspace="5" hspace="5" src="index_04.png"> <p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Find the optimal solution <tt>fL2</tt> by testing several value of <tt>lambda</tt>.
+         </p><pre class="codeinput">exo1;
+</pre><img vspace="5" hspace="5" src="index_05.png"> <p>Display optimal result.</p><pre class="codeinput">clf;
+imageplot(y, strcat([<span class="string">'Observation, SNR='</span> num2str(snr(f0,y),3) <span class="string">'dB'</span>]), 1,2,1);
+imageplot(clamp(fL2), strcat([<span class="string">'L2 deconvolution, SNR='</span> num2str(snr(f0,fL2),3) <span class="string">'dB'</span>]), 1,2,2);
+</pre><img vspace="5" hspace="5" src="index_06.png"> <h2>Deconvolution by Sobolev Regularization.<a name="37"></a></h2>
+         <p>L2 regularization did not perform any denoising. To remove some noise, we can penalize high frequencies using Sobolev regularization
+            (quadratic grow).
+         </p>
+         <p>The Sobolev prior reads (note the conversion from spacial domain to Fourier domain)  \[J(f) = \sum_x \|\nabla f(x)\|^2 = \sum_{\omega}
+            S(\omega) \|\hat f(\omega)\|^2 \] where \(S(\omega)=\|\omega\|^2\).
+         </p>
+         <p>Since this prior can be written over the Fourier domain, one can compute the solution to the deblurring with Sobolev prior
+            simply with the Fourier coefficients:  \[\hat f^\star(\omega) = \frac{\hat y(\omega) \hat h(\omega)}{ \|\hat h(\omega)\|^2
+            + \lambda S(\omega) }\]
+         </p>
+         <p>Compute the Sobolev prior penalty <tt>S</tt>&nbsp;(rescale to [0,1]).
+         </p><pre class="codeinput">S = (X.^2 + Y.^2)*(2/n)^2;
+</pre><p>Regularization parameter:</p><pre class="codeinput">lambda = 0.2;
+</pre><p>Perform the inversion.</p><pre class="codeinput">fSob = real( ifft2( yF .* hF ./ ( abs(hF).^2 + lambda*S) ) );
+</pre><p>Display the result.</p><pre class="codeinput">clf;
+imageplot(y, strcat([<span class="string">'Observation, SNR='</span> num2str(snr(f0,y),3) <span class="string">'dB'</span>]), 1,2,1);
+imageplot(clamp(fSob), strcat([<span class="string">'Sobolev deconvolution, SNR='</span> num2str(snr(f0,fSob),3) <span class="string">'dB'</span>]), 1,2,2);
+</pre><img vspace="5" hspace="5" src="index_07.png"> <p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Find the optimal solution <tt>fSob</tt> by testing several value of <tt>lambda</tt>.
+         </p><pre class="codeinput">exo2;
+</pre><img vspace="5" hspace="5" src="index_08.png"> <p>Display optimal result.</p><pre class="codeinput">clf;
+imageplot(y, strcat([<span class="string">'Observation, SNR='</span> num2str(snr(f0,y),3) <span class="string">'dB'</span>]), 1,2,1);
+imageplot(clamp(fSob), strcat([<span class="string">'Sobolev deconvolution, SNR='</span> num2str(snr(f0,fSob),3) <span class="string">'dB'</span>]), 1,2,2);
+</pre><img vspace="5" hspace="5" src="index_09.png"> <h2>Deconvolution by Total Variation Regularization<a name="46"></a></h2>
+         <p>Sobolev regularization perform a denoising but also tends to blur the edges, thus producing a poor results on cartoon images.</p>
+         <p>The TV prior is able to better reconstruct sharp edges. It reads:  \[J(f) = \sum_x \| \nabla f(x)\|\]</p>
+         <p>With respect to the Sobolev energy, it simply corresponding to measuring the L1 norm instead of the L2 norm, thus dropping
+            the square in the functional.
+         </p>
+         <p>Unfortunately, the TV functional \(J(f)\) is not a smooth function of the image \(f\). It thus requires the use of advanced
+            convex optimization method to be minimized for regularization.
+         </p>
+         <p>An alternative is to replace the absolute value by a smooth absolute value. The smoothed TV norm reads:  \[J(f) = \sum_x \sqrt{\|\nabla
+            f(x)\|^2+\varepsilon^2}\]
+         </p>
+         <p>Regularization parameter for the TV norm:</p><pre class="codeinput">epsilon = 0.4*1e-2;
+</pre><p>When <tt>epsilon</tt> gets close to zero, the smoothed energy becomes closer to the original total variation, but the optimization becomes more
+            difficult. When <tt>epsilon</tt> becomes large, the smoothed energy becomes closer to the Sobolev energy, thus blurring the edges.
+         </p>
+         <p>Unfortunately, this prior is non-quadratic, and cannot be expressed over the Fourier domain. One thus need to use an iterative
+            scheme such as a gradient descent to approximate the solution.
+         </p>
+         <p>An iteration of the gradient descent reads:  \[f^{(k+1)} = f^{(k)} - \tau \left( h \star (h \star f^{(k)} - y) +  \lambda
+            \text{Grad} J(f^{(k)})  \right)\]
+         </p>
+         <p>Regularization parameter.</p><pre class="codeinput">lambda = 0.06;
+</pre><p>The value of \(\tau\), the step size, should be smaller than twice the Lipschitz constant of the Gradient of the functional
+            to be minimized, hence: \[ \tau&lt; \frac{2}{1 + \lambda 8/\varepsilon }.\]
+         </p><pre class="codeinput">tau = 1.9 / ( 1 + lambda * 8 / epsilon);
+</pre><p>Initialization.</p><pre class="codeinput">fTV = y;
+</pre><p>Number of iteration (quite a large number is required).</p><pre class="codeinput">niter = 600;
+</pre><p>The gradient of the smoothed TV energy is:  \[\text{Grad} J(f) = -\text{div}\left( \frac{\nabla f}{ \sqrt{\|\nabla f\|^2+\varepsilon^2}
+            } \right)\]
+         </p>
+         <p>Compute the gradient of the smoothed TV functional.</p><pre class="codeinput">Gr = grad(fTV);
+d = sqrt( epsilon^2 + sum3(Gr.^2,3) );
+G = -div( Gr./repmat(d, [1 1 2])  );
+</pre><p>Compute the TV norm, usefull to keep track of its decay through iterations.</p><pre class="codeinput">tv = sum(d(:));
+</pre><p>Perform a step of gradient descent for the inversion.</p><pre class="codeinput">e = Phi(fTV,h)-y;
+fTV = fTV - tau*( Phi(e,h) + lambda*G);
+</pre><p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) Perform the deblurring by a  gradient descent. Keep track of the function being minimized.
+         </p><pre class="codeinput">exo3;
+</pre><img vspace="5" hspace="5" src="index_10.png"> <p>Display the result.</p><pre class="codeinput">clf;
+imageplot(clamp(fTV));
+</pre><img vspace="5" hspace="5" src="index_11.png"> <p><i>Exercice 4:</i> (<a href="../missing-exo/">check the solution</a>) Explore the different values of <tt>lambda</tt> to find the optimal solution. Display the SNR as a function of <tt>lambda</tt>.
+         </p><pre class="codeinput">exo4;
+</pre><img vspace="5" hspace="5" src="index_12.png"> <p>Display the result.</p><pre class="codeinput">clf;
+imageplot(clamp(fSob), strcat([<span class="string">'Sobolev, SNR='</span> num2str(snr(f0,fSob),3) <span class="string">'dB'</span>]), 1,2,1);
+imageplot(clamp(fTV), strcat([<span class="string">'TV, SNR='</span> num2str(snr(f0,fTV),3) <span class="string">'dB'</span>]), 1,2,2);
+</pre><img vspace="5" hspace="5" src="index_13.png"> <h2>Comparison of Variational and Sparsity Methods<a name="67"></a></h2>
+         <p><i>Exercice 5:</i> (<a href="../missing-exo/">check the solution</a>) Compare sparsity, Sobolev and TV deblurring.
+         </p><pre class="codeinput">exo5;
+</pre><p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Image Deconvolution using Variational Method
+% This numerical tour explores the use of 
+% Sobolev and TV regularization to perform image deconvolution.
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_signal.zip signal toolbox> and 
+% <../toolbox_general.zip general toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_signal| and 
+% |toolbox_general|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_signal/');
+getd('toolbox_general/');
+
+
+%%
+% This tour is concerned with the deconvolution problem. The measurement
+% are assumed to be blurry and noisy:
+%  \[y=\Phi f_0 + w = h \star f_0 + w\]
+%
+
+%%
+% Where here |h| is the filter (low pass) and |w| some noise (here assumed
+% to be white Gaussian).
+
+%%
+% We consider variational deconvolution methods, that finds a regularizer
+% through a convex optimization:
+%  \[f^\star \in \text{argmin}_f \frac{1}{2}\|y-\Phi f\|^2 + \lambda J(f)\]
+%
+
+%%
+% Where \(J(f)\) is a prior energy. In this tour we consider a simple L2
+% prior (the image is assumed to have a bounded energy), a Sobolev prior
+% (the image is uniformly smooth) and an approximate total variation (the
+% image has edges of bounded perimeter).
+
+%%
+% Note that the parameter \(\lambda\) should be carefully chosen to fit the
+% noise level.
+
+%% Image Blurring
+% Deconvolution corresponds to removing a blur from an image.
+% We use here a Gaussian blur.
+
+%%
+% First we load the image to be inpainted.
+
+n = 256;
+name = 'lena';
+name = 'mri';
+name = 'boat';
+f0 = load_image(name);
+f0 = rescale(crop(f0,n));
+
+
+
+%%
+% We build a convolution kernel.
+% Since we are going to use Fourier to compute the convolution, 
+% we set the center of the kernel in the (1,1) pixel location.
+
+%%
+% Width of the kernel, in pixel.
+
+s = 3;
+
+%%
+% Kernel.
+
+x = [0:n/2-1, -n/2:-1];
+[Y,X] = meshgrid(x,x);
+h = exp( (-X.^2-Y.^2)/(2*s^2) );
+h = h/sum(h(:));
+
+%%
+% Useful for later : the Fourier transform (should be real because of symmetry).
+
+hF = real(fft2(h));
+
+%%
+% Display the kernel and its transform.
+% We use |fftshift| to center the filter for display.
+
+clf;
+imageplot(fftshift(h), 'Filter', 1,2,1);
+imageplot(fftshift(hF), 'Fourier transform', 1,2,2);
+
+%%
+% We use this short hand for the filtering.
+% Note that this is a symmetric operator.
+
+if using_matlab()
+    Phi = @(x,h)real(ifft2(fft2(x).*fft2(h)));
+end
+
+%%
+% *Important* Scilab user should define a function |Phi| in a separate file |Phi.sci| 
+% to perform this.
+
+%%
+% Apply the filter.
+
+y0 = Phi(f0,h);
+
+%%
+% Display the filtered observation.
+
+clf;
+imageplot(f0, 'Image f0', 1,2,1);
+imageplot(y0, 'Observation without noise', 1,2,2);
+
+%%
+% Variance \(\sigma^2\) of the noise \(w\).
+
+sigma = .02;
+
+%%
+% Add some noise to obtain the measurements ±\(y = \Phi f_0 + w\).
+
+y = y0 + randn(n)*sigma;
+
+%% 
+% Display.
+
+clf;
+imageplot(y0, 'Observation without noise', 1,2,1);
+imageplot(clamp(y), 'Observation with noise', 1,2,2);
+
+
+%% Deconvolution with L2 Regularization
+% Deconvolution is obtained by dividing the Fourier transform of \(y\)
+% by \(\hat h\). 
+%  \[f^\star(\omega) = \frac{\hat y(\omega)}{\hat h(\omega)} = \hat f_0(\omega) + \hat w(\omega)/{\hat h(\omega)}\]
+
+%%
+% Unfortunately this creates an explosion of the Noise.
+
+%%
+% To avoid this explosion, we consider a simple regularization.
+%  \[f^{\star} = \text{argmin}_f \: \|y-\Phi f\|^2 + \lambda \|f\|^2\]
+%
+
+%%
+% Since the filtering is diagonalized over Fourier, the solution is simply
+% computed over the Fourier domain as:
+%  \[\hat f^\star(\omega) = \frac{\hat y(\omega) \hat h(\omega)}{ \|\hat h(\omega)\|^2 + \lambda }\]
+%
+
+%%
+% Useful for later: Fourier transform of the observations.
+
+yF = fft2(y);
+
+%%
+% Select a value for the regularization parameter.
+
+lambda = 0.02;
+
+%%
+% Perform the inversion.
+
+fL2 = real( ifft2( yF .* hF ./ ( abs(hF).^2 + lambda) ) );
+
+%%
+% Display.
+
+clf;
+imageplot(y, strcat(['Observation, SNR=' num2str(snr(f0,y),3) 'dB']), 1,2,1);
+imageplot(clamp(fL2), strcat(['L2 deconvolution, SNR=' num2str(snr(f0,fL2),3) 'dB']), 1,2,2);
+
+%%
+% _Exercice 1:_ (<../missing-exo/ check the solution>)
+% Find the optimal solution |fL2| by testing several value of
+% |lambda|.
+
+exo1;
+
+%%
+% Display optimal result.
+
+clf;
+imageplot(y, strcat(['Observation, SNR=' num2str(snr(f0,y),3) 'dB']), 1,2,1);
+imageplot(clamp(fL2), strcat(['L2 deconvolution, SNR=' num2str(snr(f0,fL2),3) 'dB']), 1,2,2);
+
+
+
+%% Deconvolution by Sobolev Regularization. 
+% L2 regularization did not perform any denoising. To remove some noise, we
+% can penalize high frequencies using Sobolev regularization (quadratic
+% grow).
+
+%%
+% The Sobolev prior reads (note the conversion from spacial domain to
+% Fourier domain)
+%  \[J(f) = \sum_x \|\nabla f(x)\|^2 = \sum_{\omega} S(\omega) \|\hat f(\omega)\|^2 \] 
+% where \(S(\omega)=\|\omega\|^2\).
+%
+
+
+
+%%
+% Since this prior can be written over the Fourier domain, one can compute
+% the solution to the deblurring with Sobolev prior simply with the Fourier
+% coefficients:
+%  \[\hat f^\star(\omega) = \frac{\hat y(\omega) \hat h(\omega)}{ \|\hat h(\omega)\|^2 + \lambda S(\omega) }\]
+%
+
+
+%%
+% Compute the Sobolev prior penalty |S| (rescale to [0,1]).
+
+S = (X.^2 + Y.^2)*(2/n)^2;
+
+%%
+% Regularization parameter:
+
+lambda = 0.2;
+
+%%
+% Perform the inversion.
+
+fSob = real( ifft2( yF .* hF ./ ( abs(hF).^2 + lambda*S) ) );
+
+%%
+% Display the result.
+
+clf;
+imageplot(y, strcat(['Observation, SNR=' num2str(snr(f0,y),3) 'dB']), 1,2,1);
+imageplot(clamp(fSob), strcat(['Sobolev deconvolution, SNR=' num2str(snr(f0,fSob),3) 'dB']), 1,2,2);
+
+%%
+% _Exercice 2:_ (<../missing-exo/ check the solution>)
+% Find the optimal solution |fSob| by testing several value of
+% |lambda|.
+
+exo2;
+
+%%
+% Display optimal result.
+
+clf;
+imageplot(y, strcat(['Observation, SNR=' num2str(snr(f0,y),3) 'dB']), 1,2,1);
+imageplot(clamp(fSob), strcat(['Sobolev deconvolution, SNR=' num2str(snr(f0,fSob),3) 'dB']), 1,2,2);
+
+
+
+%% Deconvolution by Total Variation Regularization
+% Sobolev regularization perform a denoising but also tends to blur the
+% edges, thus producing a poor results on cartoon images.
+
+%%
+% The TV prior is able to better reconstruct sharp edges. It reads:
+%  \[J(f) = \sum_x \| \nabla f(x)\|\]
+%
+
+%%
+% With respect to the Sobolev energy, it simply corresponding to measuring
+% the L1 norm instead of the L2 norm, thus dropping the square in the
+% functional.
+
+%%
+% Unfortunately, the TV functional \(J(f)\) is not a smooth function of the image
+% \(f\). It thus requires the use of advanced convex optimization method to
+% be minimized for regularization. 
+
+%%
+% An alternative is to replace the absolute value by a smooth absolute value. 
+% The smoothed TV norm reads:
+%  \[J(f) = \sum_x \sqrt{\|\nabla f(x)\|^2+\varepsilon^2}\]
+%
+
+%% 
+% Regularization parameter for the TV norm:
+
+epsilon = 0.4*1e-2;
+
+%%
+% When |epsilon| gets close to zero, the smoothed energy becomes closer to
+% the original total variation, but the optimization becomes more
+% difficult. When |epsilon| becomes large, the smoothed energy becomes
+% closer to the Sobolev energy, thus blurring the edges.
+
+%%
+% Unfortunately, this prior is non-quadratic, and cannot be expressed over
+% the Fourier domain. One thus need to use an iterative scheme such as a
+% gradient descent to approximate the solution.
+
+%%
+% An iteration of the gradient descent reads:
+%  \[f^{(k+1)} = f^{(k)} - \tau \left( h \star (h \star f^{(k)} - y) +  \lambda \text{Grad} J(f^{(k)})  \right)\]
+%
+
+%%
+% Regularization parameter.
+
+lambda = 0.06;
+
+%%
+% The value of \(\tau\), the step size, should be smaller than twice the
+% Lipschitz constant of the Gradient of the functional to be minimized,
+% hence:
+% \[ \tau< \frac{2}{1 + \lambda 8/\varepsilon }.\]
+%
+
+tau = 1.9 / ( 1 + lambda * 8 / epsilon);
+
+%% 
+% Initialization.
+
+fTV = y;
+
+%% 
+% Number of iteration (quite a large number is required).
+
+niter = 600;
+
+%%
+% The gradient of the smoothed TV energy is:
+%  \[\text{Grad} J(f) = -\text{div}\left( \frac{\nabla f}{ \sqrt{\|\nabla f\|^2+\varepsilon^2} } \right)\]
+%
+
+%%
+% Compute the gradient of the smoothed TV functional.
+
+Gr = grad(fTV);
+d = sqrt( epsilon^2 + sum3(Gr.^2,3) );
+G = -div( Gr./repmat(d, [1 1 2])  );
+
+%%
+% Compute the TV norm, usefull to keep track of its decay through
+% iterations.
+
+tv = sum(d(:));
+
+%%
+% Perform a step of gradient descent for the inversion.
+
+e = Phi(fTV,h)-y;
+fTV = fTV - tau*( Phi(e,h) + lambda*G);
+
+%%
+% _Exercice 3:_ (<../missing-exo/ check the solution>)
+% Perform the deblurring by a  gradient descent. 
+% Keep track of the function being minimized.
+
+exo3;
+
+%%
+% Display the result.
+
+clf;
+imageplot(clamp(fTV));
+
+%%
+% _Exercice 4:_ (<../missing-exo/ check the solution>)
+% Explore the different values of |lambda| to find the optimal solution.
+% Display the SNR as a function of |lambda|.
+
+exo4;
+
+%%
+% Display the result.
+
+clf;
+imageplot(clamp(fSob), strcat(['Sobolev, SNR=' num2str(snr(f0,fSob),3) 'dB']), 1,2,1); 
+imageplot(clamp(fTV), strcat(['TV, SNR=' num2str(snr(f0,fTV),3) 'dB']), 1,2,2);
+
+
+
+%% Comparison of Variational and Sparsity Methods
+
+%%
+% _Exercice 5:_ (<../missing-exo/ check the solution>)
+% Compare sparsity, Sobolev and TV deblurring.
+
+exo5;
+
+##### SOURCE END #####
+-->
+   </body>
+</html>

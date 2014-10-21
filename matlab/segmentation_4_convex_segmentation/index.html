@@ -1,0 +1,691 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>Convex Region-Based Image Segmentation</title>
+      <NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
+               	requires JavaScript to process the mathematics on this page.<BR> 
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 8.2">
+      <meta name="date" content="2014-10-21">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>Convex Region-Based Image Segmentation</h1>
+         <introduction>
+            <p>This numerical tour explores a convex relaxation of the piecewise constant Mumford-Shah. This relaxation is exact, and leads
+               to a global solution to the segmentation problem. It can be solved using proximal splitting scheme, and we propose to use
+               here the Douglas-Rachford algorithm. Of independent interest is the introduction of auxiliary gradient variables that enables
+               the use of purely primal splitting schemes.
+            </p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#2">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#9">Binary Segmentation</a></li>
+               <li><a href="#17">Convex Discrete Formulation</a></li>
+               <li><a href="#27">Douglas-Rachford Algorithm</a></li>
+               <li><a href="#38">Proximal Operator of \(G\)</a></li>
+               <li><a href="#45">Proximal Operator of \(F\)</a></li>
+               <li><a href="#50">Douglas-Rachford for Convex Segmentation</a></li>
+            </ul>
+         </div>
+         <p>Special thanks to Jalal Fadili for telling me about the "auxiliary variable" trick (i.e. adding the variable \(u=\nabla f\)),
+            that allows one to solve TV regularization without the need to use primal-dual schemes.
+         </p>
+         <h2>Installing toolboxes and setting up the path.<a name="2"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_signal.zip">signal toolbox</a> and <a href="../toolbox_general.zip">general toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_signal</tt> and <tt>toolbox_general</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
+getd(<span class="string">'toolbox_general/'</span>);
+</pre><h2>Binary Segmentation<a name="9"></a></h2>
+         <p>We consider some input image \(I(x) \in \RR^d\) (\(d=1\) for grayscale image and \(d=3\) for color images). Given weights
+            \(w_0\) and \(w_1\) computed from \(I\), where \(N\) is the number of pixel, the goal is to find a region \(\Om\) that minimize
+            \[ \umin{\Om} \int_\Om w_0(x) d x + \int_{\Om^c} w_1(x) d x + \la \abs{\partial \Om},   \] where \(\abs{\partial \Om}\) is
+            the perimeter of \(\Om\).
+         </p>
+         <p>To perform region based piecewise-constant segmentation, we assume we know the target values \(c_0, c_1 \in \RR^d\) for the
+            inside/outside of the segmented domain, and use quadratic weigths \[ \text{for } i=0,1, \quad &nbsp;w_i(x) = \norm{I(x)-c_i}^2.
+            \] We use these weights in all the remaining part of this tour.
+         </p>
+         <p>In the special case \(\la=0\), no regularization is performed, and the optimal set \(\) is obtained by a simple thresholding
+            \[ \Om = \enscond{x}{ w_0(x) \leq w_1(x). } \]
+         </p>
+         <p>We load the image \(I\).</p><pre class="codeinput">name = <span class="string">'hibiscus'</span>;
+n = 256;
+I = rescale( load_image(name,n) );
+</pre><p>Display it.</p><pre class="codeinput">clf;
+imageplot(I);
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p>Take as target colors red and green.</p><pre class="codeinput">c0 = [1;0;0];
+c1 = [0;1;0];
+</pre><p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Compute \(w_0\) and \(w_1\). Compute and display the segmentation when \(\la=0\).
+         </p><pre class="codeinput">exo1;
+</pre><img vspace="5" hspace="5" src="index_02.png"> <p>Define \(w=w_0-w_1\).</p><pre class="codeinput">w = w0-w1;
+</pre><h2>Convex Discrete Formulation<a name="17"></a></h2>
+         <p>If one represents \(\Om\) using its indicator function \(f\) \[ f(x) = \chi_\Om(x) = \choice{       1 \qifq x \in \Om. \\
+                  0 \quad \text{otherwise},    } \] this problem is re-casted equivalently \[ \umin{ f(x) \in \{0,1\} } \dotp{f}{w} +
+            \la \norm{f}_{\text{TV}}, \] where \(w=w_0-w_1\) and \(\norm{f}_{\text{TV}}\) is the total variation pseudo-norm, that is
+            equal to \(\abs{\partial \Om}\) for binary indicator \(f=\chi_\Om\). Here the inner product is the canonical one \(\dotp{f}{w}=\int
+            f w\).
+         </p>
+         <p>The variational problem is discretized on a grid of \(N=n \times n\) pixels, and we define the total variation pseudo-norm,
+            for \(f \in \RR^N\), as \[ \norm{f}_{\text{TV}} = \norm{\nabla f}_1       \qwhereq \norm{u}_1 = \sum_{i=1}^N \norm{u_i}, \]
+            when \(u=(u_i)_{i=1}^N \in \RR^{N \times 2}, u_i \in \RR^2 \) is a vector field.
+         </p>
+         <p>We use a finite difference gradient operator \[ (\nabla f)_i = (f_{i+\de_1}-f_i, f_{i+\de_2}-f_i) \in \RR^2, \] (we assume
+            the pixels are indexed on a 2-D grid) where \(\de_1=(1,0)\) and \(\de_2=(0,1)\). We use periodic boundary conditions for simplicity.
+         </p><pre class="codeinput">options.bound = <span class="string">'per'</span>;
+Grad = @(x)grad(x,options);
+Div = @(x)div(x,options);
+</pre><p>The inner product in the objective is discretized using the canonical inner product in \(\RR^N\) \[ \dotp{f}{w} = \sum_{i=1}^N
+            f_i w_i . \]
+         </p>
+         <p>To obtain a convex program, one replaces the binary constraint \(f_i \in \{0,1\}\) by a box constraint \( f_i \in [0,1] \).
+            This defines the folowing finite dimensional convex problem \[ \umin{ f \in [0,1]^N } \dotp{f}{w} + \la \norm{\nabla f}_{1}.
+            \]
+         </p>
+         <p>One can prove that this relaxation is exact, meaning that the minimizer \(f\), when it is unique, is binary, \(f \in \{0,1\}^N\).
+            It means that \(\Om\) such that \(f=\chi_\Om\) actually solves the original segmentation problem. See for instance:
+         </p>
+         <p>Tony F. Chan, Selim Esedoglu, and Mila Nikolova. <i>Algorithms for finding global minimizers of image segmentation and denoising models</i> SIAM J. Appl. Math., 66(5):1632-1648, 2006.
+         </p>
+         <p>It is possible to generalize this convexification method to the segmentation problem with more than 2 partitions. See for
+            instance:
+         </p>
+         <p>Antonin Chambolle, Daniel Cremers, Thomas Pock, <i>A convex approach to minimal partitions,</i> Preprint hal-00630947, 2011.
+         </p>
+         <p>To solve this problem using primal proximal splitting scheme, we introduce an auxiliary variable \(u=\nabla f\), and write
+            the optimization problem as \[ \umin{z=(f,u) \in \Zz = \RR^N \times \RR^{N \times 2} } F(z) + G(z)   \qwhereq \choice{   
+               F(f,u) = \dotp{f}{w} + \iota_{[0,1]^N}(f) + \la \norm{u}_1, \\       G(f,u) = \iota_{\Cc}(f,u),   } \] where here we included
+            the constraints using indicator functions  \[ \iota_{A}(z) = \choice{       0 \qifq z \in A, \\       +\infty \quad \text{otherwise}.
+            } \] The constraint linking \(f\) to \(u\) is   \[ \Cc = \enscond{z = (f,u) \in \Zz}{ u=\nabla f }. \]
+         </p>
+         <h2>Douglas-Rachford Algorithm<a name="27"></a></h2>
+         <p>To minimize the segmentation energy, we will make use of proximal splitting scheme. These scheme are adapted to solve structured
+            non-smooth optimization problem.
+         </p>
+         <p>They basically replace the traditional gradient-descent step (that is not available because neither \(F\) nor \(G\) are smooth
+            functionals) by proximal mappings, defined as \[ \text{Prox}_{\gamma F}(z) = \uargmin{y} \frac{1}{2}\norm{z-y}^2 + \ga F(y)
+            \] (the same definition applies also for \(G\)).
+         </p>
+         <p>The Douglas-Rachford (DR) algorithm is an iterative scheme to minimize functionals of the form \[ \umin{z} F(z) + G(z) \]
+            where \(F\) and \(G\) are convex functions for which one is able to comptue the proximal mappings \( \text{Prox}_{\gamma F}
+            \) and \( \text{Prox}_{\gamma G} \).
+         </p>
+         <p>The important point is that \(F\) and \(G\) do not need to be smooth. One onely needs then to be "proximable".</p>
+         <p>A DR iteration reads \[ \tilde z_{k+1} = \pa{1-\frac{\mu}{2}} \tilde z_k +   \frac{\mu}{2} \text{rPox}_{\gamma G}( \text{rProx}_{\gamma
+            F}(\tilde z_k)  )   \qandq z_{k+1} = \text{Prox}_{\gamma F}(\tilde z_{k+1},) \]
+         </p>
+         <p>We have use the following shortcuts: \[   \text{rProx}_{\gamma F}(z) = 2\text{Prox}_{\gamma F}(z)-z \]</p>
+         <p>It is of course possible to inter-change the roles of \(F\) and \(G\), which defines another set of iterations.</p>
+         <p>One can show that for any value of \(\gamma&gt;0\), any \( 0 &lt; \mu &lt; 2 \), and any \(\tilde z_0\), \(z_k \rightarrow z^\star\)
+            which is a minimizer of \(F+G\).
+         </p>
+         <p>Please note that it is actually \(z_k\) that converges, and not \(\tilde z_k\).</p>
+         <p>To learn more about this algorithm, you can read:</p>
+         <p><i>Proximal Splitting Methods in Signal Processing</i>, Patrick L. Combettes and Jean-Christophe Pesquet, in: Fixed-Point Algorithms for Inverse Problems in Science and Engineering,
+            New York: Springer-Verlag, 2010.
+         </p>
+         <h2>Proximal Operator of \(G\)<a name="38"></a></h2>
+         <p>The proximal mapping of \(G\) is the orthogonal projection on the convex set \(G\): \[ (\tilde f, \tilde u) = \text{Prox}_{\ga
+            G}(f,u) = \text{Proj}_\Cc(f,u). \]
+         </p>
+         <p>It can be computed by solving a linear system of equations since \[ \tilde u = \nabla \tilde f \qwhereq       \tilde f = (\text{Id}_N
+            - \Delta)^{-1}(f-\text{div}(u)).  \] Here, by convention, \(\Delta=\text{div} \circ \nabla\) and \(\text{div}=-\nabla^*\).
+         </p>
+         <p>Since we use periodic boundary conditions for the gradient operator, it is possible to solve this linear system in \(O(N \log(N))\)
+            operations using the FFT algorithm. Note that a similar method can be used with non-periodic Neumann condition (this requires
+            to extend by symmetry the image).
+         </p>
+         <p>One indeed has \[ \forall \om=(\om_1,\om_2), \quad       \hat {\tilde f}(\om) =  \frac{\hat g(\om)}{K(\om)} \qwhereq     
+             K(\om) = 1+4\sin\pa{\frac{\pi \om_1}{n}}^2+4\sin\pa{\frac{\pi \om_2}{n}}^2, \] where \(g = f-\text{div}(u)\) and where \(\hat
+            g\) is the 2-D discrete Fourier transform of an image \(g\).
+         </p>
+         <p>Compute \(K(\om)\).</p><pre class="codeinput">[X Y] = meshgrid(0:n-1, 0:n-1);
+K = 1 + 4*sin(X*pi/n).^2 + 4*sin(Y*pi/n).^2;
+</pre><p>Define Proj\(_\Cc\).</p><pre class="codeinput">Replicate = @(z)deal(z, Grad(z));
+ProjC = @(f,u)Replicate( real( ifft2( fft2( f - Div(u) ) ./ K ) ) );
+</pre><p>One has \(\text{Prox}_{\ga G} = \text{Proj}_{\Cc}\), whatever the value of \(\ga\).</p><pre class="codeinput">ProxG = @(f,u,gamma)ProjC(f,u);
+</pre><h2>Proximal Operator of \(F\)<a name="45"></a></h2>
+         <p>Recall that the function \(F(f,u)\) is actully a separable sum of a function that only depends on \(f\) and a function that
+            depends only on \(u\): \[ F(f,u) = F_0(f) + \la \norm{u}_1       \qwhereq F_0(f) = \dotp{f}{w} + \iota_{[0,1]^N}(f) \] The
+            proximal operator of \(F\) reads \[ \text{Prox}_{\ga F}(f,u) =       (   \text{Prox}_{\ga F_0 }(f),           \text{Prox}_{\ga
+            \la \norm{\cdot}_1 }(u) ).  \]
+         </p>
+         <p>Define the value of \(\la&gt;0\) (you can change this value).</p><pre class="codeinput">lambda = .1;
+</pre><p>The proximal operator of \(F_0\) is obtained by using the projection on the box constraint \[ \text{Prox}_{\ga F_0 }(f) =
+            \text{Proj}_{[0,1]^N}( f - \ga w )      \qwhereq       \text{Proj}_{[0,1]^N}(g) = \max(0,\min(1, g)). \]
+         </p><pre class="codeinput">ProxF0 = @(f,gamma)max(0, min(1, f-gamma*w)  );
+</pre><p>The proximal operator of the \( \ell^1-\ell^2 \) norm \(\norm{\cdot}_1\) is a soft thresholding of the amplitude of the vector
+            field: \[ \text{Prox}_{\ga \norm{\cdot}_1}(u)_i =       \max\pa{ 0, \frac{\ga}{\norm{u_i}} } u_i. \]
+         </p><pre class="codeinput">amplitude = @(u)repmat( sqrt( sum(u.^2, 3) ), [1 1 2]);
+ProxL1 = @(u,gamma)max(0,1-gamma./max(1e-9, amplitude(u))) .* u;
+</pre><p>Define the proximal operator of \(F\).</p><pre class="codeinput">ProxF = @(f,u,gamma)deal( ProxF0(f,gamma), ProxL1(u,gamma*lambda) );
+</pre><h2>Douglas-Rachford for Convex Segmentation<a name="50"></a></h2>
+         <p>Set the value of \(\mu\) and \(\gamma\). You might consider using your own value to speed up the convergence.</p><pre class="codeinput">mu = 1;
+gamma = 1;
+</pre><p>Number of iterations.</p><pre class="codeinput">niter = 800;
+</pre><p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Implement the DR iterative algorithm on <tt>niter</tt> iterations. Keep track of the evolution of the minimized energy \[ E(f) = \dotp{w}{f} + \la \norm{\nabla f}_1 \] during the
+            iterations. <i>Remark:</i> to speedup the convergence, you can use a "clever" initialization.
+         </p><pre class="codeinput">exo2;
+</pre><img vspace="5" hspace="5" src="index_03.png"> <p>Display the result image \(f\) at convergence. Note that \(f\) is almost binary.</p><pre class="codeinput">clf;
+imageplot(f);
+</pre><img vspace="5" hspace="5" src="index_04.png"> <p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) Test with different value of the \(\lambda\) parameter.
+         </p><pre class="codeinput">exo3;
+</pre><img vspace="5" hspace="5" src="index_05.png"> <p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Convex Region-Based Image Segmentation
+% This numerical tour explores a convex relaxation of the piecewise
+% constant Mumford-Shah. This relaxation is exact, and leads to a global
+% solution to the segmentation problem. It can be solved using proximal
+% splitting scheme, and we propose to use here the Douglas-Rachford
+% algorithm. Of independent interest is the introduction of auxiliary
+% gradient variables that enables the use of purely primal splitting
+% schemes. 
+
+%%
+% Special thanks to Jalal Fadili for telling me about the "auxiliary variable"
+% trick (i.e. adding the variable \(u=\nabla f\)), 
+% that allows one to solve TV regularization without the need to use
+% primal-dual schemes. 
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_signal.zip signal toolbox> and 
+% <../toolbox_general.zip general toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_signal| and 
+% |toolbox_general|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_signal/');
+getd('toolbox_general/');
+
+%% Binary Segmentation 
+% We consider some input image \(I(x) \in \RR^d\) (\(d=1\) for grayscale
+% image and \(d=3\) for color images).
+% Given weights \(w_0\) and \(w_1\) computed from \(I\), where
+% \(N\) is the number of pixel, the goal is to find a region \(\Om\) that
+% minimize
+% \[ \umin{\Om} \int_\Om w_0(x) d x + \int_{\Om^c} w_1(x) d x + \la \abs{\partial \Om},   \]
+% where \(\abs{\partial \Om}\) is the perimeter of \(\Om\). 
+
+%%
+% To perform region based piecewise-constant segmentation, we assume we
+% know the target values \(c_0, c_1 \in \RR^d\) for the inside/outside of
+% the segmented domain, and use quadratic weigths
+% \[ \text{for } i=0,1, \quad  w_i(x) = \norm{I(x)-c_i}^2. \]
+% We use these weights in all the remaining part of this tour.
+
+%%
+% In the special case \(\la=0\), no regularization is performed, and the
+% optimal set
+% \(\) is obtained by a simple thresholding
+% \[ \Om = \enscond{x}{ w_0(x) \leq w_1(x). } \]
+
+%%
+% We load the image \(I\).
+
+name = 'hibiscus';
+n = 256;
+I = rescale( load_image(name,n) );
+
+%%
+% Display it.
+
+clf;
+imageplot(I);
+
+%%
+% Take as target colors red and green.
+
+c0 = [1;0;0];
+c1 = [0;1;0];
+
+%%
+% _Exercice 1:_ (<../missing-exo/ check the solution>)
+% Compute \(w_0\) and \(w_1\). Compute and display the segmentation when
+% \(\la=0\).
+
+exo1;
+
+%%
+% Define \(w=w_0-w_1\).
+
+w = w0-w1;
+
+
+%% Convex Discrete Formulation
+% If one represents \(\Om\) using its indicator function \(f\)
+% \[ f(x) = \chi_\Om(x) = \choice{
+%       1 \qifq x \in \Om. \\ 
+%       0 \quad \text{otherwise}, 
+%    } \]
+% this problem is re-casted equivalently
+% \[ \umin{ f(x) \in \{0,1\} } \dotp{f}{w} + \la \norm{f}_{\text{TV}}, \]
+% where \(w=w_0-w_1\) and \(\norm{f}_{\text{TV}}\) is the total variation
+% pseudo-norm, that is equal to \(\abs{\partial \Om}\) for binary indicator \(f=\chi_\Om\).
+% Here the inner product is the canonical one \(\dotp{f}{w}=\int f w\).
+
+%%
+% The variational problem is discretized on a grid of \(N=n \times n\) pixels, and we define the
+% total variation pseudo-norm, for \(f \in \RR^N\), as
+% \[ \norm{f}_{\text{TV}} = \norm{\nabla f}_1 
+%       \qwhereq \norm{u}_1 = \sum_{i=1}^N \norm{u_i}, \]
+% when \(u=(u_i)_{i=1}^N \in \RR^{N \times 2}, u_i \in \RR^2 \) is a vector
+% field.
+
+%%
+% We use a finite difference gradient operator
+% \[ (\nabla f)_i = (f_{i+\de_1}-f_i, f_{i+\de_2}-f_i) \in \RR^2, \]
+% (we assume the pixels are indexed on a 2-D grid)
+% where \(\de_1=(1,0)\) and \(\de_2=(0,1)\).
+% We use periodic boundary conditions for simplicity.
+
+options.bound = 'per';
+Grad = @(x)grad(x,options);
+Div = @(x)div(x,options);
+
+%%
+% The inner product in the objective is discretized using the canonical
+% inner product in \(\RR^N\)
+% \[ \dotp{f}{w} = \sum_{i=1}^N f_i w_i . \]
+
+%%
+% To obtain a convex program, one replaces the binary constraint \(f_i \in \{0,1\}\)
+% by a box constraint \( f_i \in [0,1] \). This defines the folowing finite
+% dimensional convex problem
+% \[ \umin{ f \in [0,1]^N } \dotp{f}{w} + \la \norm{\nabla f}_{1}. \]
+
+%%
+% One can prove that this relaxation is exact, meaning that the minimizer \(f\),
+% when it is unique, is binary, \(f \in \{0,1\}^N\). It means that \(\Om\) such that \(f=\chi_\Om\) 
+% actually solves the original segmentation problem. See for instance:
+
+%%
+% Tony F. Chan, Selim Esedoglu, and Mila Nikolova. 
+% _Algorithms for finding global minimizers of image segmentation and denoising models_
+% SIAM J. Appl. Math., 66(5):1632-1648, 2006.
+
+%%
+% It is possible to generalize this convexification method to the
+% segmentation problem with more than 2 partitions. See for instance:
+
+%%
+% Antonin Chambolle, Daniel Cremers, Thomas Pock,
+% _A convex approach to minimal partitions,_
+% Preprint hal-00630947, 2011.
+
+%%
+% To solve this problem using primal proximal splitting scheme, we
+% introduce an auxiliary variable \(u=\nabla f\), and write the
+% optimization problem as
+% \[ \umin{z=(f,u) \in \Zz = \RR^N \times \RR^{N \times 2} } F(z) + G(z) 
+%   \qwhereq \choice{
+%       F(f,u) = \dotp{f}{w} + \iota_{[0,1]^N}(f) + \la \norm{u}_1, \\
+%       G(f,u) = \iota_{\Cc}(f,u),
+%   } \]
+% where here we included the constraints using indicator functions
+%  \[ \iota_{A}(z) = \choice{  
+%       0 \qifq z \in A, \\
+%       +\infty \quad \text{otherwise}. } \]
+% The constraint linking \(f\) to \(u\) is
+%   \[ \Cc = \enscond{z = (f,u) \in \Zz}{ u=\nabla f }. \]
+
+
+%% Douglas-Rachford Algorithm
+% To minimize the segmentation energy, we will make use of proximal
+% splitting scheme. These scheme are adapted to solve structured non-smooth
+% optimization problem.
+
+%%
+% They basically replace the traditional gradient-descent step (that is not
+% available because neither \(F\) nor \(G\) are smooth functionals) by
+% proximal mappings, defined as
+% \[ \text{Prox}_{\gamma F}(z) = \uargmin{y} \frac{1}{2}\norm{z-y}^2 + \ga F(y) \]
+% (the same definition applies also for \(G\)).
+
+%%
+% The Douglas-Rachford (DR) algorithm is an iterative scheme to minimize
+% functionals of the form
+% \[ \umin{z} F(z) + G(z) \]
+% where \(F\) and \(G\) are convex functions for which one is able to
+% comptue the proximal mappings \( \text{Prox}_{\gamma F} \) and 
+% \( \text{Prox}_{\gamma G} \).
+
+%%
+% The important point is that \(F\) and \(G\) do not need to be smooth.
+% One onely needs then to be "proximable".
+
+%%
+% A DR iteration reads
+% \[ \tilde z_{k+1} = \pa{1-\frac{\mu}{2}} \tilde z_k + 
+%   \frac{\mu}{2} \text{rPox}_{\gamma G}( \text{rProx}_{\gamma F}(\tilde z_k)  ) 
+%   \qandq z_{k+1} = \text{Prox}_{\gamma F}(\tilde z_{k+1},) \]
+
+
+%%
+% We have use the following shortcuts:
+% \[   \text{rProx}_{\gamma F}(z) = 2\text{Prox}_{\gamma F}(z)-z \]
+
+%%
+% It is of course possible to inter-change the roles of \(F\) and \(G\),
+% which defines another set of iterations.
+
+%%
+% One can show that for any value of \(\gamma>0\), any \( 0 < \mu < 2 \), 
+% and any \(\tilde z_0\), \(z_k \rightarrow z^\star\)
+% which is a minimizer of \(F+G\).
+
+%%
+% Please note that it is actually \(z_k\) that converges, and not \(\tilde
+% z_k\).
+
+%%
+% To learn more about this algorithm, you can read:
+
+%%
+% _Proximal Splitting Methods in Signal Processing_, Patrick L. Combettes
+% and Jean-Christophe Pesquet, in: Fixed-Point Algorithms for Inverse
+% Problems in Science and Engineering, New York: Springer-Verlag, 2010.
+
+
+%% Proximal Operator of \(G\)
+% The proximal mapping of \(G\) is the orthogonal projection on the convex
+% set \(G\):
+% \[ (\tilde f, \tilde u) = \text{Prox}_{\ga G}(f,u) = \text{Proj}_\Cc(f,u). \]
+
+%%
+% It can be computed by solving a linear system of equations since
+% \[ \tilde u = \nabla \tilde f \qwhereq
+%       \tilde f = (\text{Id}_N - \Delta)^{-1}(f-\text{div}(u)).  \]
+% Here, by convention, \(\Delta=\text{div} \circ \nabla\) and
+% \(\text{div}=-\nabla^*\).
+
+%%
+% Since we use periodic boundary conditions for the gradient operator, it
+% is possible to solve this linear system in \(O(N \log(N))\) operations
+% using the FFT algorithm. Note that a similar method can be used with
+% non-periodic Neumann condition (this requires to extend by symmetry the
+% image).
+
+%%
+% One indeed has
+% \[ \forall \om=(\om_1,\om_2), \quad
+%       \hat {\tilde f}(\om) =  \frac{\hat g(\om)}{K(\om)} \qwhereq
+%       K(\om) = 1+4\sin\pa{\frac{\pi \om_1}{n}}^2+4\sin\pa{\frac{\pi \om_2}{n}}^2, \]
+% where \(g = f-\text{div}(u)\) and 
+% where \(\hat g\) is the 2-D discrete Fourier transform of an image \(g\).
+
+%%
+% Compute \(K(\om)\).
+
+[X Y] = meshgrid(0:n-1, 0:n-1);
+K = 1 + 4*sin(X*pi/n).^2 + 4*sin(Y*pi/n).^2;
+
+%%
+% Define Proj\(_\Cc\).
+
+Replicate = @(z)deal(z, Grad(z));
+ProjC = @(f,u)Replicate( real( ifft2( fft2( f - Div(u) ) ./ K ) ) );
+
+
+
+%%
+% One has \(\text{Prox}_{\ga G} = \text{Proj}_{\Cc}\), whatever the value
+% of \(\ga\).
+
+ProxG = @(f,u,gamma)ProjC(f,u);
+
+%% Proximal Operator of \(F\)
+% Recall that the function \(F(f,u)\) is actully a separable sum of a function
+% that only depends on \(f\) and a function that depends only on \(u\):
+% \[ F(f,u) = F_0(f) + \la \norm{u}_1
+%       \qwhereq F_0(f) = \dotp{f}{w} + \iota_{[0,1]^N}(f) \]
+% The proximal operator of \(F\) reads
+% \[ \text{Prox}_{\ga F}(f,u) = 
+%       (   \text{Prox}_{\ga F_0 }(f), 
+%           \text{Prox}_{\ga \la \norm{\cdot}_1 }(u) ).  \]
+
+%%
+% Define the value of \(\la>0\) (you can change this value).
+
+lambda = .1;
+
+%%
+% The proximal operator of \(F_0\) is obtained by using the projection on the box
+% constraint 
+% \[ \text{Prox}_{\ga F_0 }(f) = \text{Proj}_{[0,1]^N}( f - \ga w )
+%      \qwhereq  
+%       \text{Proj}_{[0,1]^N}(g) = \max(0,\min(1, g)). \]
+
+ProxF0 = @(f,gamma)max(0, min(1, f-gamma*w)  );
+
+%%
+% The proximal operator of the \( \ell^1-\ell^2 \) norm \(\norm{\cdot}_1\)
+% is a soft thresholding of the amplitude of the vector field:
+% \[ \text{Prox}_{\ga \norm{\cdot}_1}(u)_i = 
+%       \max\pa{ 0, \frac{\ga}{\norm{u_i}} } u_i. \]
+
+amplitude = @(u)repmat( sqrt( sum(u.^2, 3) ), [1 1 2]);
+ProxL1 = @(u,gamma)max(0,1-gamma./max(1e-9, amplitude(u))) .* u;
+
+%%
+% Define the proximal operator of \(F\).
+
+ProxF = @(f,u,gamma)deal( ProxF0(f,gamma), ProxL1(u,gamma*lambda) ); 
+
+
+%% Douglas-Rachford for Convex Segmentation
+% Set the value of \(\mu\) and \(\gamma\).
+% You might consider using your own value to speed up the convergence.
+
+mu = 1;
+gamma = 1;
+
+%%
+% Number of iterations.
+
+niter = 800;
+
+%%
+% _Exercice 2:_ (<../missing-exo/ check the solution>)
+% Implement the DR iterative algorithm on |niter| iterations.
+% Keep track of the evolution of the minimized energy 
+% \[ E(f) = \dotp{w}{f} + \la \norm{\nabla f}_1 \]
+% during the iterations.
+% _Remark:_ to speedup the convergence, you can use a "clever"
+% initialization.
+
+exo2;
+
+%%
+% Display the result image \(f\) at convergence. Note that \(f\) is almost
+% binary.
+
+clf;
+imageplot(f);
+
+%%
+% _Exercice 3:_ (<../missing-exo/ check the solution>)
+% Test with different value of the \(\lambda\) parameter.
+
+exo3;
+
+##### SOURCE END #####
+-->
+   </body>
+</html>

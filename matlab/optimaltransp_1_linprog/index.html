@@ -228,11 +228,13 @@ p1 = normalize(rand(n1,1));
     myplot(X1(1,i), X1(2,i), p1(i)*length(p1)*10, <span class="string">'r'</span>);
 <span class="keyword">end</span>
 axis([min(X1(1,:)) max(X1(1,:)) min(X1(2,:)) max(X1(2,:))]); axis <span class="string">off</span>;
-</pre><p>Compute the weight matrix \( (C_{i,j})_{i,j}. \)</p><pre class="codeinput">C = repmat( sum(X0.^2)', [1 n1] ) + <span class="keyword">...</span>
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p>Compute the weight matrix \( (C_{i,j})_{i,j}. \)</p><pre class="codeinput">C = repmat( sum(X0.^2)', [1 n1] ) + <span class="keyword">...</span>
     repmat( sum(X1.^2), [n0 1] ) - 2*X0'*X1;
 </pre><p>Compute the optimal transport plan.</p><pre class="codeinput">gamma = otransp(C,p0,p1);
 </pre><p>Check that the number of non-zero entries in \(\ga^\star\) is \(n_0+n_1-1\).</p><pre class="codeinput">fprintf(<span class="string">'Number of non-zero: %d (n0+n1-1=%d)\n'</span>, full(sum(gamma(:)~=0)), n0+n1-1);
+</pre><pre class="codeoutput">Number of non-zero: 139 (n0+n1-1=139)
 </pre><p>Check that the solution satifies the constraints \(\ga \in \Cc\).</p><pre class="codeinput">fprintf(<span class="string">'Constraints deviation (should be 0): %.2e, %.2e.\n'</span>, norm(sum(gamma,2)-p0(:)),  norm(sum(gamma,1)'-p1(:)));
+</pre><pre class="codeoutput">Constraints deviation (should be 0): 9.03e-17, 6.13e-18.
 </pre><h2>Displacement Interpolation<a name="25"></a></h2>
          <p>For any \(t \in [0,1]\), one can define a distribution \(\mu_t\) such that \(t \mapsto \mu_t\) defines a geodesic for the
             Wasserstein metric.
@@ -259,15 +261,12 @@ tlist = linspace(0,1,6);
     title([<span class="string">'t='</span> num2str(t,2)]);
     axis([min(X1(1,:)) max(X1(1,:)) min(X1(2,:)) max(X1(2,:))]); axis <span class="string">off</span>;
 <span class="keyword">end</span>
-</pre><img vspace="5" hspace="5" src="index_01.png"> <h2>Optimal Assignement<a name="30"></a></h2>
+</pre><img vspace="5" hspace="5" src="index_02.png"> <h2>Optimal Assignement<a name="30"></a></h2>
          <p>In the case where the weights \(p_{0,i}=1/n, p_{1,i}=1/n\) (where \(n_0=n_1=n\)) are constants, one can show that the optimal
             transport coupling is actually a permutation matrix. This properties comes from the fact that the extremal point of the polytope
             \(\Cc\) are permutation matrices.
-         </p><pre class="codeoutput">Undefined function or variable 'exo1'.
-
-Error in index (line 206)
-
-</pre><p>This means that there exists an optimal permutation \( \si^\star \in \Sigma_n \) such that \[ \ga^\star_{i,j} = \choice{ 
+         </p>
+         <p>This means that there exists an optimal permutation \( \si^\star \in \Sigma_n \) such that \[ \ga^\star_{i,j} = \choice{ 
                  1 \qifq j=\si^\star(i), \\       0 \quad\text{otherwise}.   } \] where \(\Si_n\) is the set of permutation (bijections)
             of \(\{1,\ldots,n\}\).
          </p>
@@ -286,10 +285,10 @@ p1 = ones(n1,1)/n1;
 myplot(X0(1,:), X0(2,:), 10, <span class="string">'b'</span>);
 myplot(X1(1,:), X1(2,:), 10, <span class="string">'r'</span>);
 axis <span class="string">equal</span>; axis <span class="string">off</span>;
-</pre><p>Solve the optimal transport.</p><pre class="codeinput">gamma = otransp(C,p0,p1);
+</pre><img vspace="5" hspace="5" src="index_03.png"> <p>Solve the optimal transport.</p><pre class="codeinput">gamma = otransp(C,p0,p1);
 </pre><p>Show that \(\ga\) is a binary permutation matrix.</p><pre class="codeinput">clf;
 imageplot(gamma);
-</pre><p>Display the optimal assignement.</p><pre class="codeinput">clf; hold <span class="string">on</span>;
+</pre><img vspace="5" hspace="5" src="index_04.png"> <p>Display the optimal assignement.</p><pre class="codeinput">clf; hold <span class="string">on</span>;
 [I,J,~] = find(gamma);
 <span class="keyword">for</span> k=1:length(I)
     h = plot( [X0(1,I(k)) X1(1,J(k))], [X0(2,I(k)) X1(2,J(k))], <span class="string">'k'</span> );
@@ -298,7 +297,7 @@ imageplot(gamma);
 myplot(X0(1,:), X0(2,:), 10, <span class="string">'b'</span>);
 myplot(X1(1,:), X1(2,:), 10, <span class="string">'r'</span>);
 axis <span class="string">equal</span>; axis <span class="string">off</span>;
-</pre><p class="footer"><br>
+</pre><img vspace="5" hspace="5" src="index_05.png"> <p class="footer"><br>
             Copyright  (c) 2010 Gabriel Peyre<br></p>
       </div>
       <!--

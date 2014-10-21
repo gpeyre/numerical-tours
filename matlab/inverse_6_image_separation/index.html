@@ -1,0 +1,805 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>Cartoon+Texture Variational Image Decomposition</title>
+      <NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
+               	requires JavaScript to process the mathematics on this page.<BR> 
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 8.2">
+      <meta name="date" content="2014-10-20">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>Cartoon+Texture Variational Image Decomposition</h1>
+         <introduction>
+            <p>This numerical tour explores the use of variational energies to decompose an image into a cartoon and a texture layer.</p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#13">Total Variation Cartoon Prior</a></li>
+               <li><a href="#27">TV-\(L^2\) Model</a></li>
+               <li><a href="#40">Gabor Hilbert Energy</a></li>
+               <li><a href="#53">TV-\(H^{-1}\) Image Decomposition</a></li>
+               <li><a href="#62">TV-Gabor Image Decomposition</a></li>
+            </ul>
+         </div>
+         <h2>Installing toolboxes and setting up the path.<a name="1"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_signal.zip">signal toolbox</a> and <a href="../toolbox_general.zip">general toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_signal</tt> and <tt>toolbox_general</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
+getd(<span class="string">'toolbox_general/'</span>);
+</pre><p>A variational image separation finds a decomposition \(f = u^\star + v^\star + w^\star\) where \(u^\star\) and \(v^\star\)
+            are solutions of an optimization problem of the form \[ \min_{u,v} \: \frac{1}{2}\|f-u-v\|^2 + \lambda J(u) + \mu T(v), \]
+         </p>
+         <p>where \(J(u)\) is a cartoon image prior (that favors edges) and \(T(v)\) is a texture image prior (that favors oscillations).
+            The parameters \(\lambda,\mu\) should be adapted to the noise level and the amount of edge/textures.
+         </p>
+         <p>When no noise is present in \(f\), so that \(w^\star=0\), on minimizes \[ \min_{u} \: T(f-u) + \lambda J(u). \]</p>
+         <p>In this tour, we define \(J\) as the total variation prior. For \(T\), we use the Hilbert norm framework introduced in:</p>
+         <p><i>Constrained and SNR-based Solutions for TV-Hilbert Space Image Denoising,</i> Jean-Fran&ccedil;ois Aujol and Guy Gilboa, Journal of Mathematical Imaging and Vision, volume 26, numbers 1-2, pages 217-237, November
+            2006.
+         </p>
+         <h2>Total Variation Cartoon Prior<a name="13"></a></h2>
+         <p>The total variation is a Banach norm. On the contrary to the Sobolev norm, it is able to take into account step edges.</p>
+         <p>First we load a textured image.</p><pre class="codeinput">n = 256;
+name = <span class="string">'boat'</span>;
+f = rescale( crop(load_image(name),n) );
+</pre><p>Display it.</p><pre class="codeinput">clf;
+imageplot(f);
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p>The total variation of a smooth image \(f\) is defined as \[J(f)=\int \|\nabla f(x)\| d x\]</p>
+         <p>It is extended to non-smooth images having step discontinuities.</p>
+         <p>The total variation of an image is also equal to the total length of its level sets. \[J(f)=\int_{-\infty}^{+\infty} L( S_t(f)
+            ) dt\]
+         </p>
+         <p>Where \(S_t(f)\) is the level set at \(t\) of the image \(f\) \[S_t(f)=\{ x \backslash f(x)=t \}\]</p>
+         <p>The Gradient of the TV norm is \[ \text{Grad}J(f) = \text{div}\left( \frac{\nabla f}{\|\nabla f\|} \right) . \]</p>
+         <p>The gradient of the TV norm is not defined if at a pixel \(x\) one has \(\nabla f(x)=0\). This means that the TV norm is difficult
+            to minimize, and its gradient flow is not well defined.
+         </p>
+         <p>To define a gradient flow, we consider instead a smooth TV norm \[J_\epsilon(f) = \int \sqrt{ \varepsilon^2 + \| \nabla f(x)
+            \|^2 } d x\]
+         </p>
+         <p>This corresponds to replacing \(\|u\|\) by \( \sqrt{\varepsilon^2 + \|u\|^2} \) which is a smooth function.</p>
+         <p>We display (in 1D) the smoothing of the absolute value.</p><pre class="codeinput">u = linspace(-5,5)';
+clf;
+subplot(2,1,1); hold(<span class="string">'on'</span>);
+plot(u, abs(u), <span class="string">'b'</span>);
+plot(u, sqrt(.5^2+u.^2), <span class="string">'r'</span>);
+title(<span class="string">'\epsilon=1/2'</span>); axis(<span class="string">'square'</span>);
+subplot(2,1,2); hold(<span class="string">'on'</span>);
+plot(u, abs(u), <span class="string">'b'</span>);
+plot(u, sqrt(1^2+u.^2), <span class="string">'r'</span>);
+title(<span class="string">'\epsilon=1'</span>); axis(<span class="string">'square'</span>);
+</pre><img vspace="5" hspace="5" src="index_02.png"> <p>In the following we set a small enough regularization parameter \(\varepsilon\).</p><pre class="codeinput">epsilon = 1e-2;
+</pre><p>Compute the (smoothed) total variation of \(f\).</p><pre class="codeinput">J = @(u)sum(sum( sqrt( epsilon^2 + sum3(grad(u).^2,3) ) ));
+disp([<span class="string">'J(f) = '</span> num2str(J(f),3)]);
+</pre><pre class="codeoutput">J(f) = 4.37e+03
+</pre><h2>TV-\(L^2\) Model<a name="27"></a></h2>
+         <p>The simplest decomposition method performs a total variation denoising: \[\min_u \frac{1}{2}\|f-u\|^2 + \lambda J(u).\]</p>
+         <p>It corresponds to the TV-\(L^2\) model of Rudin-Osher-Fatermi, because the texture prior is the \(L^2\) norm: \[ T(v) = \frac{1}{2}
+            \|v\|^2. \]
+         </p>
+         <p>This a poor texture prior because it just assumes the texture has a small overall energy, and does not care about the oscillations.</p>
+         <p>Define the regularization parameter \(\lambda\).</p><pre class="codeinput">lambda = .2;
+</pre><p>The step size for diffusion should satisfy: \[ \tau &lt; \frac{2}{1 + \lambda 8 / \varepsilon} . \]</p><pre class="codeinput">tau = 1.9 / ( 1 + lambda * 8 / epsilon);
+</pre><p>Initialization of the minimization.</p><pre class="codeinput">u = f;
+</pre><p>The Gradient of the smoothed TV norm is \[ \text{Grad}J(f) = \text{div}\left( \frac{\nabla f}{\sqrt{\varepsilon^2 + \|\nabla
+            f\|^2}} \right) . \]
+         </p>
+         <p>Shortcut for the gradient of the smoothed TV norm.</p><pre class="codeinput">GradJ0 = @(Gr)-div( Gr ./ repmat( sqrt( epsilon^2 + sum3(Gr.^2,3) ) , [1 1 2]) );
+GradJ = @(u)GradJ0(grad(u));
+</pre><p>One step of descent.</p><pre class="codeinput">u = u - tau*( u - f + lambda* GradJ(u) );
+</pre><p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Compute the gradient descent and monitor the minimized energy.
+         </p><pre class="codeinput">exo1;
+</pre><img vspace="5" hspace="5" src="index_03.png"> <p>Display the cartoon layer.</p><pre class="codeinput">clf;
+imageplot(u);
+</pre><img vspace="5" hspace="5" src="index_04.png"> <p>Shortcut to increase the contrast of the textured layer for better display.</p><pre class="codeinput">rho = .8; <span class="comment">% constrast factor</span>
+eta = .2; <span class="comment">% saturation limit</span>
+displaytexture0 = @(x)sign(x).*abs(x).^rho;
+displaytexture  = @(v)displaytexture0( clamp(v,-eta,eta)/eta );
+</pre><p>Display the textured layer.</p><pre class="codeinput">clf;
+imageplot( displaytexture(f-u) );
+</pre><img vspace="5" hspace="5" src="index_05.png"> <h2>Gabor Hilbert Energy<a name="40"></a></h2>
+         <p>To model the texture, one should use a prior \(T(v)\) that favors oscillations. We thus use a weighted \(L^2\) norms computed
+            over the Fourier domain: \[ T(v) = \frac{1}{2} \sum_{\omega} \|W_{\omega} \hat f(\omega) \|^2 \] where \(W_\omega\) is the
+            weight associated to the frequency \(\omega\).
+         </p>
+         <p>This texture norm can be rewritten using the Fourier transform \(F\) as \[ T(v) = \frac{1}{2} \|\text{diag}(W)F u\|^2 \quad\text{where}\quad
+            (Fu)_\omega = \hat u(\omega).\]
+         </p>
+         <p>To favor oscillation, we use a weight that is large for low frequency and small for large frequency. A simple Hilbert norm
+            is a inverse Sobolev space \(H^{-1}\).
+         </p>
+         <p>It was first introduced in:</p>
+         <p>S.J. Osher, A. Sole, and L.A. Vese, <i>Image decomposition and restoration using total variation minimization and the \(H^{-1}\) norm</i>, SIAM Multiscale Modeling and Simulation, 1(3):349-370, 2003.
+         </p>
+         <p>This Hilbert norm is defined using \[ W_\omega =  \frac{1}{ \| \omega \| + \eta } \] where \(\eta&gt;0\) is a small constant
+            that prevents explosion at low frequencies.
+         </p><pre class="codeinput">eta = .05;
+x = [0:n/2-1, -n/2:-1]/n;
+[Y,X] = meshgrid(x,x);
+W = 1 ./ (eta + sqrt(X.^2 + Y.^2));
+</pre><p>Display the inverse weight, with 0 frequency in the middle.</p><pre class="codeinput">imageplot(fftshift(1./W));
+</pre><img vspace="5" hspace="5" src="index_06.png"> <p>Compute the texture norm. The \(1/n\) normalization is intended to make the Fourier transform orthogonal.</p><pre class="codeinput">T = @(v)1/2*norm( W.*fft2(v)/n, <span class="string">'fro'</span> ).^2;
+disp([<span class="string">'T(f) = '</span> num2str(T(f), 3) ] );
+</pre><pre class="codeoutput">T(f) = 4.81e+06
+</pre><p>The gradient of the texture norm is \[\text{Grad}T(v) = H v \quad\text{where}\quad  H = F^* \text{diag}(W^2) F, \] where \(F^*\)
+            is the inverse Fourier transform. Note that if \(\eta=1\), this gradient is the inverse Laplacian \[ \text{Grad}T(v) = \Delta^{-1}
+            v. \]
+         </p>
+         <p>Define the filtering operator \( \text{Grad}T \).</p><pre class="codeinput">GradT = @(f)real(ifft2(W.^2.*fft2(f)));
+</pre><p>This is a low pass filter.</p><pre class="codeinput">imageplot(GradT(f));
+</pre><img vspace="5" hspace="5" src="index_07.png"> <p>Define its inverse \( (\text{Grad}T)^{-1} \).</p><pre class="codeinput">GradTInv = @(f)real(ifft2(fft2(f)./W.^2));
+</pre><p>It is a high pass filter.</p><pre class="codeinput">imageplot(GradTInv(f));
+</pre><img vspace="5" hspace="5" src="index_08.png"> <h2>TV-\(H^{-1}\) Image Decomposition<a name="53"></a></h2>
+         <p>The TV-Hilbert decomposition solves \[ \min_u \mathcal{E}(u) = \frac{1}{2}  \| W F(f-u) \|^2 + \lambda J(u). \]</p>
+         <p>The mapping \(u \mapsto \mathcal{E}(u) \) is a smooth functional, it can thus be minimized using a gradient descent: \[ f^{(\ell+1)}
+            = f^{(\ell)} - \tau \left( H(u-f) + \lambda \text{Grad}J(u) \right). \]
+         </p>
+         <p>The parameter \(\lambda\) for the texture/cartoon tradeoff.</p><pre class="codeinput">lambda = 5;
+</pre><p>The gradient descent step size should satisfy: \[ \tau &lt; \frac{2}{ \max_{\omega} W_\omega^2 + \lambda \epsilon /8  } \]</p><pre class="codeinput">tau = 1.9 /( max(W(:))^2 + 8*lambda/epsilon );
+</pre><p>Initial cartoon layer.</p><pre class="codeinput">u = f;
+</pre><p>Gradient descent step.</p><pre class="codeinput">u = u - tau * ( GradT(u-f) + lambda*GradJ(u) );
+</pre><p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Perform the gradient descent, monitor the decay of the energy.
+         </p><pre class="codeinput">exo2;
+</pre><img vspace="5" hspace="5" src="index_09.png"> <p>Display the cartoon layer.</p><pre class="codeinput">clf;
+imageplot(u);
+</pre><img vspace="5" hspace="5" src="index_10.png"> <p>Display the textured layer.</p><pre class="codeinput">clf;
+imageplot( displaytexture(f-u) );
+</pre><img vspace="5" hspace="5" src="index_11.png"> <h2>TV-Gabor Image Decomposition<a name="62"></a></h2>
+         <p>The \(H^{-1}\) texture model is intended to capture very high frequency, and thus performs poorly for medium frequency textures.</p>
+         <p>To capture these patterns, we follow:</p>
+         <p><i>Structure-Texture Image Decomposition - Modeling, Algorithms, and Parameter Selection</i>, Jean-Francois Aujol, Guy Gilboa, Tony Chan, and Stanley Osher, International Journal of Computer Vision, volume 67, number
+            1, pages 111-136, April 2006
+         </p>
+         <p>and we use a radial weight profile centered around a frequency \(r\).</p>
+         <p>To determine the target frequency \(r\), we analyse a sub-window around a point \(p\) of the image containing approximately
+            a single frequency.
+         </p>
+         <p>Location \(p\) of the sub-window.</p><pre class="codeinput">p = [125 200];
+</pre><p>Size \(\mu\), in pixels, of the sub-window.</p><pre class="codeinput">mu = 10;
+</pre><p>Compute a Gaussian mask.</p><pre class="codeinput">[Y,X] = meshgrid( 1:n, 1:n );
+U = exp( ( -(X-p(1)).^2 - (Y-p(2)).^2 )/(2*mu^2)  );
+</pre><p>Display the masked image.</p><pre class="codeinput">clf;
+imageplot(U.*f);
+</pre><img vspace="5" hspace="5" src="index_12.png"> <p>Remove the low frequencies from the Fourier transform, after centering.</p><pre class="codeinput">F = fft2(U.*f);
+F = fftshift(F);
+F(end/2-20:end/2+20,end/2-20:end/2+20) = 0;
+</pre><p>Compute the location \(x_m,y_m\) of the pick of the spectrum.</p><pre class="codeinput">[tmp,i] = max(abs(F(:)));
+[xm,ym] = ind2sub([n n], i);
+</pre><p>Display.</p><pre class="codeinput">clf; hold <span class="string">on</span>;
+imageplot(abs(F));
+h = plot( [ym n-ym], [xm  n-xm], <span class="string">'r.'</span> );
+set(h, <span class="string">'MarkerSize'</span>, 20);
+</pre><img vspace="5" hspace="5" src="index_13.png"> <p>Target frequency is the distance between \( (x_m,y_m) \) and the center frequency.</p><pre class="codeinput">r = sqrt( (xm-n/2)^2 + (ym-n/2)^2 );
+</pre><p>We use the following weights: \[ W_\omega = 1 - e^{ -\frac{(\|\omega\|-r)^2}{ 2 \sigma^2 } } \] where \( \sigma&gt;0 \) controls
+            the precision one expect about the frequency location.
+         </p>
+         <p>Radial weight profile.</p><pre class="codeinput">sigma = 10;
+x = [0:n/2-1, -n/2:-1];
+[Y,X] = meshgrid(x,x);
+R = sqrt(X.^2+Y.^2);
+W = 1 - exp( -(r-R).^2 / (2*sigma^2) );
+</pre><p>Display the weight.</p><pre class="codeinput">imageplot(fftshift(W));
+</pre><img vspace="5" hspace="5" src="index_14.png"> <p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) Define the operators \(\text{Grad} T\) and apply it to an images.
+         </p><pre class="codeinput">exo3;
+</pre><img vspace="5" hspace="5" src="index_15.png"> <p><i>Exercice 4:</i> (<a href="../missing-exo/">check the solution</a>) For a well chosen value of \(\lambda\), perform the TV-Hilbert decomposition with this texture kernel.
+         </p><pre class="codeinput">exo4;
+</pre><img vspace="5" hspace="5" src="index_16.png"> <p>Display the cartoon layer.</p><pre class="codeinput">clf;
+imageplot(u);
+</pre><img vspace="5" hspace="5" src="index_17.png"> <p>Display the textured layer.</p><pre class="codeinput">clf;
+imageplot( displaytexture(f-u) );
+</pre><img vspace="5" hspace="5" src="index_18.png"> <p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Cartoon+Texture Variational Image Decomposition
+% This numerical tour explores the use of 
+% variational energies to decompose an image into a cartoon and a texture
+% layer.
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_signal.zip signal toolbox> and 
+% <../toolbox_general.zip general toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_signal| and 
+% |toolbox_general|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_signal/');
+getd('toolbox_general/');
+
+
+%%
+% A variational image separation finds a decomposition 
+% \(f = u^\star + v^\star + w^\star\) where \(u^\star\) and \(v^\star\) 
+% are solutions of an optimization problem of the form
+% \[ \min_{u,v} \: \frac{1}{2}\|f-u-v\|^2 + \lambda J(u) + \mu T(v), \]
+
+%%%
+% where \(J(u)\) is a cartoon image prior (that favors edges) and
+% \(T(v)\) is a texture image prior (that favors oscillations).
+% The parameters \(\lambda,\mu\) should be adapted to the noise level and
+% the amount of edge/textures.
+
+%%
+% When no noise is present in \(f\), so that \(w^\star=0\), on minimizes
+% \[ \min_{u} \: T(f-u) + \lambda J(u). \]
+
+%%
+% In this tour, we define \(J\) as the total variation prior. For \(T\), we use the
+% Hilbert norm framework introduced in:
+
+%%
+% _Constrained and SNR-based Solutions for TV-Hilbert Space Image Denoising,_
+% Jean-François Aujol and Guy Gilboa, 
+% Journal of Mathematical Imaging and Vision, volume 26, numbers 1-2, pages 217-237, November 2006.
+
+
+%% Total Variation Cartoon Prior
+% The total variation is a Banach norm.
+% On the contrary to the Sobolev norm, it is able to take into account step edges.
+
+%%
+% First we load a textured image.
+
+n = 256;
+name = 'boat';
+f = rescale( crop(load_image(name),n) );
+
+%%
+% Display it.
+
+clf;
+imageplot(f);
+
+%%
+% The total variation of a smooth image \(f\) is defined as
+% \[J(f)=\int \|\nabla f(x)\| d x\]
+
+%%
+% It is extended to non-smooth images having step discontinuities.
+
+%%
+% The total variation of an image is also equal to the total length of its level sets.
+% \[J(f)=\int_{-\infty}^{+\infty} L( S_t(f) ) dt\]
+
+%%
+% Where \(S_t(f)\) is the level set at \(t\) of the image \(f\)
+% \[S_t(f)=\{ x \backslash f(x)=t \}\]
+
+%%
+% The Gradient of the TV norm is
+% \[ \text{Grad}J(f) = \text{div}\left( \frac{\nabla f}{\|\nabla f\|} \right) . \]
+
+%%
+% The gradient of the TV norm is not defined if at a pixel \(x\)
+% one has \(\nabla f(x)=0\). This means that the TV norm is difficult to
+% minimize, and its gradient flow is not well defined.
+
+%%
+% To define a gradient flow, we consider instead a smooth TV norm
+% \[J_\epsilon(f) = \int \sqrt{ \varepsilon^2 + \| \nabla f(x) \|^2 } d x\]
+
+%% 
+% This corresponds to replacing \(\|u\|\) by \( \sqrt{\varepsilon^2 + \|u\|^2} \) 
+% which is a smooth function.
+
+%%
+% We display (in 1D) the smoothing of the absolute value.
+
+u = linspace(-5,5)';
+clf;
+subplot(2,1,1); hold('on');
+plot(u, abs(u), 'b');
+plot(u, sqrt(.5^2+u.^2), 'r');
+title('\epsilon=1/2'); axis('square');
+subplot(2,1,2); hold('on');
+plot(u, abs(u), 'b');
+plot(u, sqrt(1^2+u.^2), 'r');
+title('\epsilon=1'); axis('square');
+
+
+%%
+% In the following we set a small enough regularization parameter \(\varepsilon\).
+
+epsilon = 1e-2;
+
+%% 
+% Compute the (smoothed) total variation of \(f\).
+
+J = @(u)sum(sum( sqrt( epsilon^2 + sum3(grad(u).^2,3) ) ));
+disp(['J(f) = ' num2str(J(f),3)]);
+
+
+%% TV-\(L^2\) Model
+% The simplest decomposition method performs a total variation denoising:
+% \[\min_u \frac{1}{2}\|f-u\|^2 + \lambda J(u).\]
+
+%%
+% It corresponds to the TV-\(L^2\) model of Rudin-Osher-Fatermi, because the
+% texture prior is the \(L^2\) norm:
+% \[ T(v) = \frac{1}{2} \|v\|^2. \]
+
+%%
+% This a poor texture prior because it just assumes the texture has a small
+% overall energy, and does not care about the oscillations.
+
+%%
+% Define the regularization parameter \(\lambda\).
+
+lambda = .2;
+
+
+%% 
+% The step size for diffusion should satisfy:
+% \[ \tau < \frac{2}{1 + \lambda 8 / \varepsilon} . \]
+
+
+tau = 1.9 / ( 1 + lambda * 8 / epsilon);
+
+%% 
+% Initialization of the minimization.
+
+u = f;
+
+%%
+% The Gradient of the smoothed TV norm is
+% \[ \text{Grad}J(f) = \text{div}\left( \frac{\nabla f}{\sqrt{\varepsilon^2 + \|\nabla f\|^2}} \right) . \]
+
+
+%%
+% Shortcut for the gradient of the smoothed TV norm.
+
+GradJ0 = @(Gr)-div( Gr ./ repmat( sqrt( epsilon^2 + sum3(Gr.^2,3) ) , [1 1 2]) );
+GradJ = @(u)GradJ0(grad(u));
+
+%% 
+% One step of descent.
+
+u = u - tau*( u - f + lambda* GradJ(u) );
+
+%%
+% _Exercice 1:_ (<../missing-exo/ check the solution>)
+% Compute the gradient descent and monitor
+% the minimized energy.
+
+exo1;
+
+%%
+% Display the cartoon layer.
+
+clf;
+imageplot(u);
+
+
+%%
+% Shortcut to increase the contrast of the textured layer for better display.
+
+rho = .8; % constrast factor 
+eta = .2; % saturation limit
+displaytexture0 = @(x)sign(x).*abs(x).^rho;
+displaytexture  = @(v)displaytexture0( clamp(v,-eta,eta)/eta );
+
+%%
+% Display the textured layer.
+
+clf;
+imageplot( displaytexture(f-u) );
+
+
+%% Gabor Hilbert Energy
+% To model the texture, one should use a prior \(T(v)\) that favors
+% oscillations. We thus use a weighted \(L^2\) norms computed over the
+% Fourier domain:
+% \[ T(v) = \frac{1}{2} \sum_{\omega} \|W_{\omega} \hat f(\omega) \|^2 \]
+% where \(W_\omega\) is the weight associated to the frequency \(\omega\).
+
+%%
+% This texture norm can be rewritten using the Fourier transform \(F\) as
+% \[ T(v) = \frac{1}{2} \|\text{diag}(W)F u\|^2 \quad\text{where}\quad (Fu)_\omega = \hat u(\omega).\]
+
+
+%%
+% To favor oscillation, we use a weight that is large for low frequency and
+% small for large frequency. A simple Hilbert norm is a inverse Sobolev
+% space \(H^{-1}\).
+
+%%
+% It was first introduced in:
+
+%%
+% S.J. Osher, A. Sole, and L.A. Vese,
+% _Image decomposition and restoration using total variation minimization and the \(H^{-1}\) norm_,
+% SIAM Multiscale Modeling and Simulation, 1(3):349-370, 2003.
+
+%% 
+% This Hilbert norm is defined using
+% \[ W_\omega =  \frac{1}{ \| \omega \| + \eta } \]
+% where \(\eta>0\) is a small constant that prevents explosion at low
+% frequencies.
+
+eta = .05;
+x = [0:n/2-1, -n/2:-1]/n;
+[Y,X] = meshgrid(x,x);
+W = 1 ./ (eta + sqrt(X.^2 + Y.^2));
+
+%%
+% Display the inverse weight, with 0 frequency in the middle.
+
+imageplot(fftshift(1./W));
+
+%%
+% Compute the texture norm. The \(1/n\) normalization is intended to make
+% the Fourier transform orthogonal.
+
+T = @(v)1/2*norm( W.*fft2(v)/n, 'fro' ).^2;
+disp(['T(f) = ' num2str(T(f), 3) ] );
+
+%%
+% The gradient of the texture norm is
+% \[\text{Grad}T(v) = H v \quad\text{where}\quad  H = F^* \text{diag}(W^2) F, \]
+% where \(F^*\) is the inverse Fourier transform. Note that if \(\eta=1\),
+% this gradient is the inverse Laplacian
+% \[ \text{Grad}T(v) = \Delta^{-1} v. \]
+
+%%
+% Define the filtering operator \( \text{Grad}T \).
+
+GradT = @(f)real(ifft2(W.^2.*fft2(f)));
+
+%%
+% This is a low pass filter.
+
+imageplot(GradT(f));
+
+%%
+% Define its inverse \( (\text{Grad}T)^{-1} \). 
+
+GradTInv = @(f)real(ifft2(fft2(f)./W.^2));
+
+%%
+% It is a high pass filter.
+
+imageplot(GradTInv(f));
+
+%% TV-\(H^{-1}\) Image Decomposition
+% The TV-Hilbert decomposition solves
+% \[ \min_u \mathcal{E}(u) = \frac{1}{2}  \| W F(f-u) \|^2 + \lambda J(u). \]
+
+%%
+% The mapping \(u \mapsto \mathcal{E}(u) \) is a smooth functional, it can
+% thus be minimized using a gradient descent:
+% \[ f^{(\ell+1)} = f^{(\ell)} - \tau \left( H(u-f) + \lambda \text{Grad}J(u) \right). \]
+
+%%
+% The parameter \(\lambda\) for the texture/cartoon tradeoff.
+
+lambda = 5;
+
+%%
+% The gradient descent step size should satisfy:
+% \[ \tau < \frac{2}{ \max_{\omega} W_\omega^2 + \lambda \epsilon /8  } \]
+
+tau = 1.9 /( max(W(:))^2 + 8*lambda/epsilon );
+
+%%
+% Initial cartoon layer.
+
+u = f;
+
+%%
+% Gradient descent step.
+
+u = u - tau * ( GradT(u-f) + lambda*GradJ(u) );
+
+%%
+% _Exercice 2:_ (<../missing-exo/ check the solution>)
+% Perform the gradient descent, monitor the decay of the energy.
+
+exo2;
+
+%%
+% Display the cartoon layer.
+
+clf;
+imageplot(u);
+
+%%
+% Display the textured layer.
+
+clf;
+imageplot( displaytexture(f-u) );
+
+%% TV-Gabor Image Decomposition
+% The \(H^{-1}\) texture model is intended to capture very high frequency,
+% and thus performs poorly for medium frequency textures. 
+
+%%
+% To capture these patterns, we follow:
+
+%%
+% _Structure-Texture Image Decomposition - Modeling, Algorithms, and Parameter Selection_,
+% Jean-Francois Aujol, Guy Gilboa, Tony Chan, and Stanley Osher, 
+% International Journal of Computer Vision, volume 67, number 1, pages 111-136, April 2006
+
+%%
+% and we use a radial weight profile centered around a frequency \(r\).
+
+%%
+% To determine the target frequency \(r\), we analyse a sub-window around a point \(p\) 
+% of the image containing approximately a single frequency.
+
+%% 
+% Location \(p\) of the sub-window.
+
+p = [125 200];
+
+%%
+% Size \(\mu\), in pixels, of the sub-window.
+
+mu = 10;
+
+%%
+% Compute a Gaussian mask.
+
+[Y,X] = meshgrid( 1:n, 1:n );
+U = exp( ( -(X-p(1)).^2 - (Y-p(2)).^2 )/(2*mu^2)  );
+
+%%
+% Display the masked image.
+
+clf;
+imageplot(U.*f);
+
+%%
+% Remove the low frequencies from the Fourier transform, after centering.
+
+F = fft2(U.*f);
+F = fftshift(F);
+F(end/2-20:end/2+20,end/2-20:end/2+20) = 0;
+
+%%
+% Compute the location \(x_m,y_m\) of the pick of the spectrum.
+
+[tmp,i] = max(abs(F(:))); 
+[xm,ym] = ind2sub([n n], i);
+
+%%
+% Display.
+
+clf; hold on;
+imageplot(abs(F));
+h = plot( [ym n-ym], [xm  n-xm], 'r.' );
+set(h, 'MarkerSize', 20);
+
+%%
+% Target frequency is the distance between \( (x_m,y_m) \) and the center frequency.
+
+r = sqrt( (xm-n/2)^2 + (ym-n/2)^2 );
+
+%%
+% We use the following weights:
+% \[ W_\omega = 1 - e^{ -\frac{(\|\omega\|-r)^2}{ 2 \sigma^2 } } \]
+% where \( \sigma>0 \) controls the precision one expect about the
+% frequency location.
+
+
+%%
+% Radial weight profile.
+
+sigma = 10;
+x = [0:n/2-1, -n/2:-1];
+[Y,X] = meshgrid(x,x);
+R = sqrt(X.^2+Y.^2);
+W = 1 - exp( -(r-R).^2 / (2*sigma^2) );
+
+%%
+% Display the weight.
+
+imageplot(fftshift(W));
+
+%%
+% _Exercice 3:_ (<../missing-exo/ check the solution>)
+% Define the operators \(\text{Grad} T\)
+% and apply it to an images.
+
+exo3;
+
+
+%%
+% _Exercice 4:_ (<../missing-exo/ check the solution>)
+% For a well chosen value of \(\lambda\), perform the TV-Hilbert
+% decomposition with this texture kernel.
+
+exo4;
+
+%%
+% Display the cartoon layer.
+
+clf;
+imageplot(u);
+
+%%
+% Display the textured layer.
+
+clf;
+imageplot( displaytexture(f-u) );
+##### SOURCE END #####
+-->
+   </body>
+</html>

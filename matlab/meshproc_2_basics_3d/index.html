@@ -1,0 +1,635 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>Basics About 3D Meshes</title>
+      <NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
+               	requires JavaScript to process the mathematics on this page.<BR> 
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 8.2">
+      <meta name="date" content="2014-10-21">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>Basics About 3D Meshes</h1>
+         <introduction>
+            <p>This tour explores some basics about 3D triangulated mesh (loading, display, manipulations).</p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#8">3D Mesh Loading and Displaying</a></li>
+               <li><a href="#13">Functions on Meshes</a></li>
+               <li><a href="#17">Mesh Modification</a></li>
+               <li><a href="#22">Normal Computation</a></li>
+               <li><a href="#29">Differential Calculus on 3D Mesh</a></li>
+               <li><a href="#36">Curvatures</a></li>
+               <li><a href="#41">Tetrahedral Mesh Loading and Displaying</a></li>
+            </ul>
+         </div>
+         <h2>Installing toolboxes and setting up the path.<a name="1"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_signal.zip">signal toolbox</a>, <a href="../toolbox_general.zip">general toolbox</a> and <a href="../toolbox_graph.zip">graph toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_signal</tt>, <tt>toolbox_general</tt> and <tt>toolbox_graph</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
+getd(<span class="string">'toolbox_general/'</span>);
+getd(<span class="string">'toolbox_graph/'</span>);
+</pre><h2>3D Mesh Loading and Displaying<a name="8"></a></h2>
+         <p>A 3D mesh is composed of a <tt>vertex</tt> array of size <tt>(3,n)</tt> that contains the position in 3D (or sometimes 2D) of the vertices, and a <tt>face</tt> array of dimension <tt>(3,m)</tt> that contains the indexes of each triangulated face.
+         </p>
+         <p>One can load the mesh from a file.</p><pre class="codeinput">name = <span class="string">'elephant-50kv'</span>;
+options.name = name; <span class="comment">% useful for displaying</span>
+[vertex,face] = read_mesh(name);
+</pre><p>The <tt>face</tt> matrix store the topology (connectivity) of the mesh, while <tt>vertex</tt> stores the geometry (position of the points). In the following, we consider modification of the geometry only.
+         </p>
+         <p>One can display the mesh as a piecewise linear surface.</p><pre class="codeinput">clf;
+plot_mesh(vertex, face);
+shading(<span class="string">'interp'</span>);
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p>You can zoom on the mesh and display its triangulated faces.</p><pre class="codeinput">clf;
+<span class="keyword">for</span> i=1:4
+    subplot(2,2,i);
+    plot_mesh(vertex, face);
+    shading(<span class="string">'faceted'</span>);
+    zoom(1.8^(i+1));
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="index_02.png"> <h2>Functions on Meshes<a name="13"></a></h2>
+         <p>A function assign a value to each vertex of the mesh. The vertex position stored in the matrix <tt>vertex</tt> are actually 3 functions X/Y/Z.
+         </p>
+         <p>Display the function X.</p><pre class="codeinput">options.face_vertex_color = vertex(1,:)';
+clf;
+plot_mesh(vertex, face, options);
+colormap(jet(256));
+</pre><img vspace="5" hspace="5" src="index_03.png"> <p>Display the function cos(10*Y).</p><pre class="codeinput">options.face_vertex_color = cos(50*vertex(2,:)');
+clf;
+plot_mesh(vertex, face, options);
+colormap(jet(256));
+</pre><img vspace="5" hspace="5" src="index_04.png"> <p>Remove coloring.</p><pre class="codeinput">options.face_vertex_color = [];
+</pre><h2>Mesh Modification<a name="17"></a></h2>
+         <p>The <tt>vertex</tt> data can be modified, while keeping the connectivity <tt>face</tt> fixed.
+         </p>
+         <p>Random perturbation can be added to the positions (here only on the right side of the mesh).</p><pre class="codeinput">noise = randn(size(vertex))*.01;
+noise(:,vertex(1,:)&gt;mean(vertex(1,:))) = 0;
+vertex1 = vertex+noise;
+</pre><p>Display.</p><pre class="codeinput">clf;
+subplot(1,2,1);
+plot_mesh(vertex,face, options); axis(<span class="string">'tight'</span>);
+subplot(1,2,2);
+plot_mesh(vertex1,face, options); axis(<span class="string">'tight'</span>);
+</pre><img vspace="5" hspace="5" src="index_05.png"> <p>The mesh can be warped.</p><pre class="codeinput">vertex1 = sign(vertex) .* (abs(vertex)/max(abs(vertex(:)))).^1.8;
+</pre><p>Display.</p><pre class="codeinput">clf;
+subplot(1,2,1);
+plot_mesh(vertex,face, options); axis(<span class="string">'tight'</span>);
+subplot(1,2,2);
+plot_mesh(vertex1,face, options); axis(<span class="string">'tight'</span>);
+</pre><img vspace="5" hspace="5" src="index_06.png"> <h2>Normal Computation<a name="22"></a></h2>
+         <p>The norma of the mesh are easily computed on each face (by computing the normal to the triangle), and can then be interpolated
+            to the edge and vertices by averaging the surrounding faces.
+         </p>
+         <p>Load a small mesh for the display of the normals.</p><pre class="codeinput">name = <span class="string">'mushroom'</span>;
+options.name = name;
+[vertex,face] = read_mesh(name);
+</pre><p>You can compute the normal to the mesh per vertex and per face</p><pre class="codeinput">[normal,normalf] = compute_normal(vertex,face);
+</pre><p>Display the mesh and the normals.</p><pre class="codeinput">clf;
+options.normal = normal;
+plot_mesh(vertex,face,options); shading(<span class="string">'interp'</span>);
+axis(<span class="string">'tight'</span>);
+options.normal = [];
+</pre><img vspace="5" hspace="5" src="index_07.png"> <p>Re-load a larger mesh.</p><pre class="codeinput">name = <span class="string">'elephant-50kv'</span>;
+options.name = name;
+[vertex,face] = read_mesh(name);
+</pre><p>You can extrude the mesh along the normal direction.</p><pre class="codeinput">[normal,normalf] = compute_normal(vertex,face);
+vertex1 = vertex + .02*normal;
+vertex2 = vertex + .04*normal;
+</pre><p>Display.</p><pre class="codeinput"><span class="comment">% no color for display</span>
+options.face_vertex_color =  [];
+clf;
+subplot(1,2,1);
+plot_mesh(vertex1,face,options); shading(<span class="string">'interp'</span>); axis(<span class="string">'tight'</span>);
+subplot(1,2,2);
+plot_mesh(vertex2,face,options); shading(<span class="string">'interp'</span>); axis(<span class="string">'tight'</span>);
+</pre><img vspace="5" hspace="5" src="index_08.png"> <h2>Differential Calculus on 3D Mesh<a name="29"></a></h2>
+         <p>You can compute matrix (sparse) of differential and averaging operators on 3D meshes.</p>
+         <p>There are several ways to define these operators, first depending on the precise definition of the weight used for the computation.
+            Here we use 'distance' weighs, but you can try with 'conformal' (that are more precise since they depend on angle, but they
+            are also slower to compute) and 'combinatorial' (that are less accurated since they depend only on the topology of <tt>face</tt>, but are fast to compute).
+         </p>
+         <p>A weight matrix is a weighted adjacency matrix that acts as a low pass filter.</p><pre class="codeinput">laplacian_type = <span class="string">'distance'</span>;
+</pre><p>A laplacian is an high pass operator that compute second order derivatives. Here we use a 'distance'-based Laplacian, that
+            is fast to compute and quite accurate.
+         </p><pre class="codeinput"><span class="comment">% compute a normalized symmetric Laplacian</span>
+options.symmetrize = 0;
+options.normalize = 1;
+L = compute_mesh_laplacian(vertex,face,laplacian_type,options);
+<span class="comment">% compute a non normalized Laplacian</span>
+options.symmetrize = 0;
+options.normalize = 1;
+L0 = compute_mesh_laplacian(vertex,face,laplacian_type,options);
+</pre><p>We can compute the Laplacian of a function on the mesh, for instance the X and Y position.</p><pre class="codeinput">v1 = L*vertex(1,:)';
+v2 = L*vertex(2,:)';
+</pre><p>Clip the values to enhance the color display.</p><pre class="codeinput">vmax = median(abs(v1)*5); v1 = clamp(v1,-vmax,vmax);
+vmax = median(abs(v2)*5); v2 = clamp(v2,-vmax,vmax);
+</pre><p>Display.</p><pre class="codeinput">clf;
+subplot(1,2,1);
+options.face_vertex_color = v1;
+plot_mesh(vertex,face, options);
+title(<span class="string">'Laplacian of X'</span>);
+subplot(1,2,2);
+options.face_vertex_color = v2;
+plot_mesh(vertex,face, options);
+title(<span class="string">'Laplacian of Y'</span>);
+options.face_vertex_color = [];
+colormap(jet(256));
+</pre><img vspace="5" hspace="5" src="index_09.png"> <h2>Curvatures<a name="36"></a></h2>
+         <p>Second order derivatives gives access to curvatures direction and informations.</p>
+         <p>Load a mesh</p><pre class="codeinput">name = <span class="string">'elephant-50kv'</span>;
+options.name = name; <span class="comment">% useful for displaying</span>
+[vertex,face] = read_mesh(name);
+</pre><p>Since higher order derivative are quite sensitive to noise, one needs to computes them using local averaging. You can compute
+            curvature quantities using local avergaging and PCA analysis.
+         </p>
+         <p>Compute the curvature.</p><pre class="codeinput">options.curvature_smoothing = 10;
+options.verb = 0;
+[Umin,Umax,Cmin,Cmax,Cmean,Cgauss,Normal] = compute_curvature(vertex,face,options);
+</pre><p>Display.</p><pre class="codeinput">clf;
+subplot(1,2,1);
+options.face_vertex_color = perform_saturation(Cgauss,1.2);
+plot_mesh(vertex,face, options); shading <span class="string">interp</span>; colormap <span class="string">jet(256)</span>;
+title(<span class="string">'Gaussian curvature'</span>);
+subplot(1,2,2);
+options.face_vertex_color = perform_saturation(abs(Cmin)+abs(Cmax),1.2);
+plot_mesh(vertex,face, options); shading <span class="string">interp</span>; colormap <span class="string">jet(256)</span>;
+title(<span class="string">'Total curvature'</span>);
+</pre><img vspace="5" hspace="5" src="index_10.png"> <h2>Tetrahedral Mesh Loading and Displaying<a name="41"></a></h2>
+         <p>You can load and display volumetric tetrahedral meshes. Important: .tet files and <b>not</b> included in the toolbox distribution (too large files). You should download them from
+         </p>
+         <p><a href="http://www.aimatshape.net/">http://www.aimatshape.net/</a></p>
+         <p>Load a volumetric mesh.</p><pre class="codeinput">[vertex,face] = read_tet(<span class="string">'toolbox_additional/hand.tet'</span>);
+</pre><p>Display it.</p><pre class="codeinput">clf;
+plot_mesh(vertex,face,options);
+</pre><img vspace="5" hspace="5" src="index_11.png"> <p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Basics About 3D Meshes
+% This tour explores some basics about 3D triangulated mesh (loading,
+% display, manipulations).
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_signal.zip signal toolbox>, 
+% <../toolbox_general.zip general toolbox> and 
+% <../toolbox_graph.zip graph toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_signal|, 
+% |toolbox_general| and 
+% |toolbox_graph|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_signal/');
+getd('toolbox_general/');
+getd('toolbox_graph/');
+
+
+%% 3D Mesh Loading and Displaying
+% A 3D mesh is composed of a |vertex| array of size |(3,n)| that contains
+% the position in 3D (or sometimes 2D) of the vertices, and a |face| array
+% of dimension |(3,m)| that contains the indexes of each triangulated face.
+
+%% 
+% One can load the mesh from a file.
+
+name = 'elephant-50kv';
+options.name = name; % useful for displaying
+[vertex,face] = read_mesh(name);
+
+%%
+% The |face| matrix store the topology (connectivity) of the mesh, while
+% |vertex| stores the geometry (position of the points). In the following,
+% we consider modification of the geometry only.
+
+%%
+% One can display the mesh as a piecewise linear surface.
+
+clf;
+plot_mesh(vertex, face);
+shading('interp');
+
+%%
+% You can zoom on the mesh and display its triangulated faces.
+
+clf;
+for i=1:4
+    subplot(2,2,i);
+    plot_mesh(vertex, face);
+    shading('faceted');
+    zoom(1.8^(i+1));
+end
+
+%% Functions on Meshes
+% A function assign a value to each vertex of the mesh. The vertex position
+% stored in the matrix |vertex| are actually 3 functions X/Y/Z.
+
+%%
+% Display the function X.
+
+options.face_vertex_color = vertex(1,:)';
+clf;
+plot_mesh(vertex, face, options);
+colormap(jet(256));
+
+
+%%
+% Display the function cos(10*Y).
+
+options.face_vertex_color = cos(50*vertex(2,:)');
+clf;
+plot_mesh(vertex, face, options);
+colormap(jet(256));
+
+%% 
+% Remove coloring.
+
+options.face_vertex_color = [];
+
+%% Mesh Modification
+% The |vertex| data can be modified, while keeping the connectivity |face|
+% fixed.
+
+%% 
+% Random perturbation can be added to the positions (here only on the right side of the mesh).
+
+noise = randn(size(vertex))*.01;
+noise(:,vertex(1,:)>mean(vertex(1,:))) = 0;
+vertex1 = vertex+noise;
+
+%%
+% Display.
+
+clf;
+subplot(1,2,1);
+plot_mesh(vertex,face, options); axis('tight');
+subplot(1,2,2);
+plot_mesh(vertex1,face, options); axis('tight');
+
+%%
+% The mesh can be warped.
+
+
+vertex1 = sign(vertex) .* (abs(vertex)/max(abs(vertex(:)))).^1.8;
+
+%%
+% Display.
+
+clf;
+subplot(1,2,1);
+plot_mesh(vertex,face, options); axis('tight');
+subplot(1,2,2);
+plot_mesh(vertex1,face, options); axis('tight');
+
+
+%% Normal Computation
+% The norma of the mesh are easily computed on each face (by computing the
+% normal to the triangle), and can then be interpolated to the edge and vertices by averaging the surrounding faces.
+
+%%
+% Load a small mesh for the display of the normals.
+
+name = 'mushroom';
+options.name = name;
+[vertex,face] = read_mesh(name);
+
+
+%%
+% You can compute the normal to the mesh per vertex and per face
+[normal,normalf] = compute_normal(vertex,face);
+
+%% 
+% Display the mesh and the normals.
+
+clf; 
+options.normal = normal;
+plot_mesh(vertex,face,options); shading('interp'); 
+axis('tight');
+options.normal = [];
+
+%%
+% Re-load a larger mesh.
+
+name = 'elephant-50kv';
+options.name = name;
+[vertex,face] = read_mesh(name);
+
+%%
+% You can extrude the mesh along the normal direction.
+
+[normal,normalf] = compute_normal(vertex,face);
+vertex1 = vertex + .02*normal;
+vertex2 = vertex + .04*normal;
+
+%%
+% Display.
+
+% no color for display
+options.face_vertex_color =  [];
+clf;
+subplot(1,2,1);
+plot_mesh(vertex1,face,options); shading('interp'); axis('tight');
+subplot(1,2,2);
+plot_mesh(vertex2,face,options); shading('interp'); axis('tight');
+
+
+%% Differential Calculus on 3D Mesh
+% You can compute matrix (sparse) of differential and averaging operators
+% on 3D meshes. 
+
+%% 
+% There are several ways to define these operators, first depending on the
+% precise definition of the weight used for the computation. Here we use
+% 'distance' weighs, but you can try with 'conformal' (that are more
+% precise since they depend on angle, but they are also slower to compute)
+% and 'combinatorial' (that are less accurated since they depend only on
+% the topology of |face|, but are fast to compute).
+
+%% 
+% A weight matrix is a weighted adjacency matrix that acts as a low pass
+% filter.
+
+laplacian_type = 'distance';
+
+%%
+% A laplacian is an high pass operator that compute second order
+% derivatives. Here we use a 'distance'-based Laplacian, that is fast to
+% compute and quite accurate.
+
+% compute a normalized symmetric Laplacian
+options.symmetrize = 0;
+options.normalize = 1;
+L = compute_mesh_laplacian(vertex,face,laplacian_type,options);
+% compute a non normalized Laplacian
+options.symmetrize = 0;
+options.normalize = 1;
+L0 = compute_mesh_laplacian(vertex,face,laplacian_type,options);
+
+%%
+% We can compute the Laplacian of a function on the mesh, for instance the
+% X and Y position. 
+
+v1 = L*vertex(1,:)';
+v2 = L*vertex(2,:)';
+
+%% 
+% Clip the values to enhance the color
+% display.
+
+vmax = median(abs(v1)*5); v1 = clamp(v1,-vmax,vmax);
+vmax = median(abs(v2)*5); v2 = clamp(v2,-vmax,vmax);
+
+%% 
+% Display.
+
+clf;
+subplot(1,2,1);
+options.face_vertex_color = v1;
+plot_mesh(vertex,face, options);
+title('Laplacian of X');
+subplot(1,2,2);
+options.face_vertex_color = v2;
+plot_mesh(vertex,face, options);
+title('Laplacian of Y');
+options.face_vertex_color = [];
+colormap(jet(256));
+
+%% Curvatures
+% Second order derivatives gives access to curvatures direction and
+% informations.
+
+%% 
+% Load a mesh
+
+name = 'elephant-50kv';
+options.name = name; % useful for displaying
+[vertex,face] = read_mesh(name);
+
+%% 
+% Since higher order derivative are quite sensitive to noise, one needs to computes them using local 
+% averaging. You can compute curvature quantities using local avergaging and PCA
+% analysis.
+
+%% 
+% Compute the curvature.
+
+options.curvature_smoothing = 10;
+options.verb = 0;
+[Umin,Umax,Cmin,Cmax,Cmean,Cgauss,Normal] = compute_curvature(vertex,face,options);
+
+%%
+% Display.
+
+clf;
+subplot(1,2,1);
+options.face_vertex_color = perform_saturation(Cgauss,1.2);
+plot_mesh(vertex,face, options); shading interp; colormap jet(256);
+title('Gaussian curvature');
+subplot(1,2,2);
+options.face_vertex_color = perform_saturation(abs(Cmin)+abs(Cmax),1.2);
+plot_mesh(vertex,face, options); shading interp; colormap jet(256);
+title('Total curvature');
+
+
+%% Tetrahedral Mesh Loading and Displaying
+% You can load and display volumetric tetrahedral meshes.
+% Important: .tet files and *not* included in the toolbox distribution (too
+% large files). You should download them from 
+
+%%
+% http://www.aimatshape.net/
+
+%%
+% Load a volumetric mesh.
+
+[vertex,face] = read_tet('toolbox_additional/hand.tet');
+
+%%
+% Display it.
+
+clf;
+plot_mesh(vertex,face,options);
+
+
+
+
+
+##### SOURCE END #####
+-->
+   </body>
+</html>

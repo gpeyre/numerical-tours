@@ -1,0 +1,1167 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>Sudoku using POCS and Sparsity</title>
+      <NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
+               	requires JavaScript to process the mathematics on this page.<BR> 
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 8.2">
+      <meta name="date" content="2014-10-21">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>Sudoku using POCS and Sparsity</h1>
+         <introduction>
+            <p>This numerical tour explores the use of numerical schemes to solve the Sudoku game.</p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#7">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#14">Game Encoding and Decoding</a></li>
+               <li><a href="#22">Encoding Constraints</a></li>
+               <li><a href="#28">Sudoku Rules Constraints</a></li>
+               <li><a href="#45">Inpainting Constraint</a></li>
+               <li><a href="#53">Solving the Sudoku by Binary Integer Programming</a></li>
+               <li><a href="#61">Removing the Binary Constraint</a></li>
+               <li><a href="#68">Solving the Sudoku by Projection on Convex Sets</a></li>
+               <li><a href="#79">Decoding Using L1 Sparsity</a></li>
+               <li><a href="#95">Decoding Using more Aggressive Sparsity</a></li>
+            </ul>
+         </div>
+         <p>This tour was written by <a href="http://lcav.epfl.ch/~lu/">Yue M. Lu</a> and <a href="http://www.ceremade.dauphine.fr/~peyre/">Gabriel Peyr&eacute;</a>.
+         </p>
+         <p>The idea of encoding the Sudoku rule using a higer dimensional lifting, linear constraints and binary constraint is explained
+            in:
+         </p>
+         <p>Andrew C. Bartlett, Amy N. Langville, <i>An Integer Programming Model for the Sudoku Problem,</i> The Journal of Online Mathematics and Its Applications, Volume 8. May 2008.
+         </p>
+         <p>The idea of removing the binary constraint and using sparsity constraint is exposed in:</p>
+         <p>P. Babu, K. Pelckmans, P. Stoica, and J. Li, <i>Linear Systems, Sparse Solutions, and Sudoku</i>, IEEE Signal Processing Letters, vol. 17, no. 1, pp. 40-42, 2010.
+         </p>
+         <p>This tour elaborarates on these two ideas. In particular it explains why \(L^1\) minimization is equivalent to a POCS (projection
+            on convex sets) method to find a feasible point inside a convex polytope.
+         </p>
+         <h2>Installing toolboxes and setting up the path.<a name="7"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_signal.zip">signal toolbox</a> and <a href="../toolbox_general.zip">general toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_signal</tt> and <tt>toolbox_general</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
+getd(<span class="string">'toolbox_general/'</span>);
+</pre><h2>Game Encoding and Decoding<a name="14"></a></h2>
+         <p>The basic idea is to use a higher dimensional space of size <tt>(n,n,n)</tt> to represent a Sudoku matrix of size <tt>(n,n)</tt>. In this space, the arrays are constrained to have binary entries.
+         </p>
+         <p>Size of the Sudoku. This number must be a square.</p><pre class="codeinput">n = 9;
+</pre><p>Create a random integer matrix with entries in 1...9.</p><pre class="codeinput">x = floor(rand(n)*n)+1;
+</pre><p>Comparison matrix used for encoding to binary format.</p><pre class="codeinput">U = repmat( reshape(1:n, [1 1 n]), n,n );
+</pre><p>Encoding in binary format.</p><pre class="codeinput">encode = @(x)double( repmat(x, [1 1 n])==U );
+X = encode(x);
+</pre><p>The resulting matrix has binary entries and has size <tt>(n,n,n)</tt>. One has <tt>x(i,j)=k</tt> if <tt>X(i,j,k)=1</tt> and <tt>X(i,j,l)=0</tt> for <tt>l~=k</tt>.
+         </p>
+         <p>Decoding from binary format. One use a <tt>min</tt> to be able to recover even if the matrix <tt>X</tt> is not binary (because of computation errors).
+         </p><pre class="codeinput">[tmp,x1] = min( abs(X-1), [], 3 );
+</pre><p>Show that decoding is ok.</p><pre class="codeinput">disp([<span class="string">'Should be 0: '</span> num2str(norm(x-x1,<span class="string">'fro'</span>)) <span class="string">'.'</span>]);
+</pre><pre class="codeoutput">Should be 0: 0.
+</pre><h2>Encoding Constraints<a name="22"></a></h2>
+         <p>For <tt>X</tt> to be a valid encoded matrix, it should be binary and satifies that each <tt>X(i,j,:)</tt> contains only a single <tt>1</tt>, which can be represented using a linear contraint <tt>Aenc*X(:)=1</tt>.
+         </p>
+         <p>Now we construct one encoding constraint.</p><pre class="codeinput">i = 4; j = 4;
+Z = zeros(n,n,n);
+Z(i,j,:) = 1;
+</pre><p>Add this constraint to the encoding constraint matrix.</p><pre class="codeinput">Aenc = [];
+Aenc(end+1,:) = Z(:)';
+</pre><p>Show that constraint is satisfied.</p><pre class="codeinput">disp([<span class="string">'Should be 1: '</span> num2str(Aenc*X(:)) <span class="string">'.'</span>]);
+</pre><pre class="codeoutput">Should be 1: 1.
+</pre><p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Build the encoding matrix <tt>Aenc</tt>. Display it.
+         </p><pre class="codeinput">exo1;
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p>Show that constraint <tt>Aenc*X(:)=1</tt> is satisfied.
+         </p><pre class="codeinput">disp([<span class="string">'Should be 0: '</span> num2str(norm(Aenc*X(:)-1)) <span class="string">'.'</span>]);
+</pre><pre class="codeoutput">Should be 0: 0.
+</pre><h2>Sudoku Rules Constraints<a name="28"></a></h2>
+         <p>In a Sudoku valid matrix <tt>x</tt>, each column, row and sub-square of <tt>x</tt> should contains all the values in 0...n. This can be encoded on the high dimensional <tt>X</tt> using linear constraints <tt>Arow*X=1</tt>, <tt>Acol*X=1</tt> and <tt>Ablock*X=1</tt>.
+         </p>
+         <p>A valid Sudoku matrix.</p><pre class="codeinput">x = [8 1 9 6 7 4 3 2 5;
+     5 6 3 2 8 1 9 4 7;
+     7 4 2 5 9 3 6 8 1;
+     6 3 8 9 4 5 1 7 2;
+     9 7 1 3 2 8 4 5 6;
+     2 5 4 1 6 7 8 9 3;
+     1 8 5 7 3 9 2 6 4;
+     3 9 6 4 5 2 7 1 8;
+     4 2 7 8 1 6 5 3 9]
+</pre><pre class="codeoutput">
+x =
+
+     8     1     9     6     7     4     3     2     5
+     5     6     3     2     8     1     9     4     7
+     7     4     2     5     9     3     6     8     1
+     6     3     8     9     4     5     1     7     2
+     9     7     1     3     2     8     4     5     6
+     2     5     4     1     6     7     8     9     3
+     1     8     5     7     3     9     2     6     4
+     3     9     6     4     5     2     7     1     8
+     4     2     7     8     1     6     5     3     9
+
+</pre><p>Encode it in binary format.</p><pre class="codeinput">X = encode(x);
+</pre><p>Select the index of the entries of a row.</p><pre class="codeinput">i=3; k=5;
+Z = zeros(n,n,n);
+Z(i,:,k) = 1;
+</pre><p>Fill the first entries of the row matrix.</p><pre class="codeinput">Arow = [];
+Arow(end+1,:) = Z(:)';
+</pre><p>Show that constraint is satisfied.</p><pre class="codeinput">disp([<span class="string">'Should be 1: '</span> num2str(Arow*X(:)) <span class="string">'.'</span>]);
+</pre><pre class="codeoutput">Should be 1: 1.
+</pre><p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Build the full row matrix <tt>Arow</tt>. Display it.
+         </p><pre class="codeinput">exo2;
+</pre><img vspace="5" hspace="5" src="index_02.png"> <p>Show that constraint <tt>Arow*X(:)=1</tt> is satisfied.
+         </p><pre class="codeinput">disp([<span class="string">'Should be 0: '</span> num2str(norm(Arow*X(:)-1)) <span class="string">'.'</span>]);
+</pre><pre class="codeoutput">Should be 0: 0.
+</pre><p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) Build the full column matrix <tt>Acol</tt>. Display it.
+         </p><pre class="codeinput">exo3;
+</pre><img vspace="5" hspace="5" src="index_03.png"> <p>Show that constraint <tt>Acol*X(:)=1</tt> is satisfied.
+         </p><pre class="codeinput">disp([<span class="string">'Should be 0: '</span> num2str(norm(Acol*X(:)-1)) <span class="string">'.'</span>]);
+</pre><pre class="codeoutput">Should be 0: 0.
+</pre><p>Now we proceed to block constraints.</p>
+         <p>Size of a block.</p><pre class="codeinput">p = sqrt(n);
+</pre><p>The upper left square should contain all numbers in <tt>{1,...,n}</tt>.
+         </p><pre class="codeinput">k = 1;
+Z = zeros(n,n,n);
+Z(1:p,1:p,k) = 1;
+</pre><p>Add it as the first row of the block constraint matrix.</p><pre class="codeinput">Ablock = [];
+Ablock(end+1,:) = Z(:)';
+</pre><p>Show that constraint is satisfied.</p><pre class="codeinput">disp([<span class="string">'Should be 1: '</span> num2str(Ablock*X(:)) <span class="string">'.'</span>]);
+</pre><pre class="codeoutput">Should be 1: 1.
+</pre><p><i>Exercice 4:</i> (<a href="../missing-exo/">check the solution</a>) Create the full block matrix. Display it.
+         </p><pre class="codeinput">exo4;
+</pre><img vspace="5" hspace="5" src="index_04.png"> <p>Show that constraint <tt>Ablock*X(:)=1</tt> is satisfied.
+         </p><pre class="codeinput">disp([<span class="string">'Should be 0: '</span> num2str(norm(Ablock*X(:)-1)) <span class="string">'.'</span>]);
+</pre><pre class="codeoutput">Should be 0: 0.
+</pre><h2>Inpainting Constraint<a name="45"></a></h2>
+         <p>A Sudoku game asks to fill the missing entries of a partial Sudoku matrix <tt>x1</tt> to obtain a full Sudoku matrix <tt>x</tt>.
+         </p>
+         <p>The fact that for each available entry <tt>(i,j)</tt> on must have <tt>x(i,j)=x1(i,j)</tt> can be encoded using a linear constraint.
+         </p>
+         <p>Load a Sudoku with missing entries, that are represented as 0. This is an easy grid.</p><pre class="codeinput">x1 = [0 1 0 0 0 0 3 0 0;
+     0 0 3 0 8 0 0 4 0;
+     7 0 2 0 0 3 0 0 1;
+     0 3 0 9 4 0 1 0 0;
+     9 0 0 0 0 0 0 0 6;
+     0 0 4 0 6 7 0 9 0;
+     1 0 0 7 0 0 2 0 4;
+     0 9 0 0 5 0 7 0 0;
+     0 0 7 0 0 0 0 3 0];
+</pre><p>Retrieve the indexes of the available entries.</p><pre class="codeinput">[I,J] = ind2sub( [n n], find(x1(:)~=0) );
+v = x1(x1(:)~=0);
+</pre><p>Create a vector corresponding to the constraint that <tt>x1(I(i),J(i))==v(i)</tt>.
+         </p><pre class="codeinput">i = 1;
+Z = zeros(n,n,n);
+Z(I(i), J(i), v(i)) = 1;
+</pre><p>Fill the first entries of the row matrix.</p><pre class="codeinput">Ainp = [];
+Ainp(end+1,:) = Z(:)';
+</pre><p><i>Exercice 5:</i> (<a href="../missing-exo/">check the solution</a>) Build the full inpainting matrix <tt>Ainp</tt>. Display it.
+         </p><pre class="codeinput">exo5;
+</pre><img vspace="5" hspace="5" src="index_05.png"> <p>Show that constraint <tt>Ainp*X1(:)=1</tt> is satisfied.
+         </p><pre class="codeinput">X1 = encode(x1);
+disp([<span class="string">'Should be 0: '</span> num2str(norm(Ainp*X1(:)-1)) <span class="string">'.'</span>]);
+</pre><pre class="codeoutput">Should be 0: 0.
+</pre><h2>Solving the Sudoku by Binary Integer Programming<a name="53"></a></h2>
+         <p>The whole set of constraints can be written <tt>A*X(:)=1</tt>, where the matrix <tt>A</tt> is defined as a concatenation of all the constraint matrices.
+         </p><pre class="codeinput">A = [Aenc; Arow; Acol; Ablock; Ainp];
+</pre><p>Pre-compute the pseudo-inverse of A.</p><pre class="codeinput">pA = pinv(A);
+</pre><p>If the Sudoku game has an unique solution <tt>x</tt>, then the corresponding lifted vector <tt>X</tt> is the only solution to <tt>A*X(:)=1</tt> under the constraint that <tt>X</tt> is binary.
+         </p>
+         <p>This is the idea proposed in:</p>
+         <p>Andrew C. Bartlett, Amy N. Langville, <i>An Integer Programming Model for the Sudoku Problem,</i> The Journal of Online Mathematics and Its Applications, Volume 8. May 2008.
+         </p>
+         <p>Unfortunately, solving a linear system under binary constraints is difficult, in fact solving a general integer program is
+            known to be NP-hard. It means that such a method is very slow to solve Sudoku for large <tt>n</tt>.
+         </p>
+         <p>One can use branch-and-bounbs methods to solve the binary integer program, but this might be slow. One can use for instance
+            the command <tt>bintprog</tt> of Matlab (optimization toolbox), with an arbitrary objective function (since one wants to solve a feasability problem, no
+            objective is needed).
+         </p>
+         <p><i>Exercice 6:</i> (<a href="../missing-exo/">check the solution</a>) Implement the Soduku solver using an interger linear programming algorithm.
+         </p><pre class="codeinput">exo6;
+</pre><h2>Removing the Binary Constraint<a name="61"></a></h2>
+         <p>If one removes the binary constraint, one simply wants to compute a solution to the linear system <tt>A*X(:)=1</tt>. But unfortunately it has an infinite number of solutions (and the set of solutions is not bounded).
+         </p>
+         <p>It is thus unlikely that chosing a solution at random will work, but let's try it by projecting any vector on the constraint
+            <tt>A*X(:)=1</tt>.
+         </p>
+         <p>First define the orthogonal projector on the constraint <tt>{X \ A*X(:)=1}</tt>.
+         </p><pre class="codeinput">projector = @(u)reshape( u(:) - pA*(A*u(:)-1), [n n n]);
+</pre><p>We project an arbitrary vector (that does not satisfy the constraint) onto the constraint <tt>A*X(:)=1</tt>.
+         </p><pre class="codeinput">Xproj = projector( zeros(n,n,n) );
+</pre><p>Check that <tt>Xproj</tt> projects onto itself because it satisfies the constraints.
+         </p><pre class="codeinput">d = projector(Xproj)-Xproj;
+disp([<span class="string">'Should be 0: '</span> num2str(norm(d(:), <span class="string">'fro'</span>)) <span class="string">'.'</span>]);
+</pre><pre class="codeoutput">Should be 0: 4.1665e-14.
+</pre><p>Plot the histogrtam of the entries of <tt>Xproj</tt>. As you can see, they are not binary, meaning that the binary constraint is violated.
+         </p><pre class="codeinput">clf;
+hist(Xproj(:), 30);
+axis(<span class="string">'tight'</span>);
+</pre><img vspace="5" hspace="5" src="index_06.png"> <p>It is thus not a solution to the Sudoku problem. We emphasize this by counting the number of violated constraints after decoding
+            / re-encoding.
+         </p><pre class="codeinput">[tmp,xproj] = min( abs(Xproj-1), [], 3 );
+Xproj1 = encode(xproj);
+disp([<span class="string">'Number of violated constraints: '</span> num2str(sum(A*Xproj1(:)~=1)) <span class="string">'.'</span>]);
+</pre><pre class="codeoutput">Number of violated constraints: 119.
+</pre><h2>Solving the Sudoku by Projection on Convex Sets<a name="68"></a></h2>
+         <p>A way to improve the quality of the result is to find a vector that satisfies both <tt>A*X(:)=1</tt> and <tt>0&lt;=X&lt;=1</tt>. Note that this last constraint can be modified to <tt>X&gt;=0</tt> because of the fact that the entries of <tt>X(i,j,:)</tt> must sum to 1 because of <tt>A*X(:)</tt>.
+         </p>
+         <p>A way to find a point inside this polytope <tt>P = {X \ A*X(:)=1 and X&gt;=0}</tt> is to start from a random initial guess.
+         </p><pre class="codeinput">Xproj = zeros(n,n,n);
+</pre><p>And iteratively project on each constraint. This corresponds to the POCS algorithm to find a feasible point into the (non
+            empty) intersection of convex sets.
+         </p><pre class="codeinput">Xproj = max( projector(Xproj),0 );
+</pre><p><i>Exercice 7:</i> (<a href="../missing-exo/">check the solution</a>) Perform iterative projections (POCS) on the two constraints <tt>A*Xproj(:)=1</tt> and <tt>Xproj&gt;=0</tt>. Display the decay of the error <tt>norm(A*Xproj(:)-1)</tt> in logarithmic scale.
+         </p><pre class="codeinput">exo7;
+</pre><img vspace="5" hspace="5" src="index_07.png"> <p>Display the histogram of the recovered values.</p><pre class="codeinput">clf;
+hist(Xproj(:), 30);
+axis(<span class="string">'tight'</span>);
+</pre><img vspace="5" hspace="5" src="index_08.png"> <p>As you can see, the resulting vector is (nearly, up to convergence errors of the POCS) a binary one, meaning that it is actually
+            the (unique) solution to the Sudoku problem.
+         </p>
+         <p>We check this by counting the number of violated constraints after decoding and re-encoding.</p><pre class="codeinput">[tmp,xproj] = min( abs(Xproj-1), [], 3 );
+Xproj1 = encode(xproj);
+disp([<span class="string">'Number of violated constraints: '</span> num2str(sum(A*Xproj1(:)~=1)) <span class="string">'.'</span>]);
+</pre><pre class="codeoutput">Number of violated constraints: 0.
+</pre><p><i>Exercice 8:</i> (<a href="../missing-exo/">check the solution</a>) Prove (numerically) that for this grid, the polytope of constraints <tt>P={X \ A*X(:)=1 and X&gt;=0}</tt> is actually reduced to a singleton, which is the solution of the Sudoku problem.
+         </p><pre class="codeinput">exo8;
+</pre><p>Unfortunately, this is not always the case. For more difficult grids, <tt>P</tt> might not be reduced to a singleton.
+         </p>
+         <p>This is a difficult grid.</p><pre class="codeinput">x1 = [0 0 3 0 0 9 0 8 1;
+     0 0 0 2 0 0 0 6 0;
+     5 0 0 0 1 0 7 0 0;
+     8 9 0 0 0 0 0 0 0;
+     0 0 5 6 0 1 2 0 0;
+     0 0 0 0 0 0 0 3 7;
+     0 0 9 0 2 0 0 0 8;
+     0 7 0 0 0 4 0 0 0;
+     2 5 0 8 0 0 6 0 0];
+</pre><p><i>Exercice 9:</i> (<a href="../missing-exo/">check the solution</a>) Try the iterative projection on convexs set (POCS) method on this grid (remember that you need to re-define <tt>A</tt> and <tt>pA</tt>). What is your conclusion ?
+         </p><pre class="codeinput">exo9;
+</pre><pre class="codeoutput">Number of violated constraints: 20.
+</pre><img vspace="5" hspace="5" src="index_09.png"> <h2>Decoding Using L1 Sparsity<a name="79"></a></h2>
+         <p>The true solution has exactly <tt>n^2</tt> non zero entries, while a feasible point within the convex polytope <tt>P</tt> is usually not as sparse.
+         </p>
+         <p>Compute the sparsity of a projected vector.</p><pre class="codeinput">Xproj = projector( zeros(n,n,n) );
+disp([<span class="string">'Sparsity: '</span> num2str(sum(Xproj(:)~=0)) <span class="string">' (optimal: '</span> num2str(n*n) <span class="string">').'</span>]);
+</pre><pre class="codeoutput">Sparsity: 729 (optimal: 81).
+</pre><p>One can prove that any solution to <tt>A*X(:)=1</tt> has more than <tt>n^2</tt> non zeros, and that the true Sudoku solution is the unique solution to <tt>A*X(:)=1</tt> with <tt>n^2</tt> entries.
+         </p>
+         <p>One can thus (in principle) solve the Sudoku by finding the solution to <tt>A*X(:)=1</tt> with minimal L0 norm.
+         </p>
+         <p>Unfortunately, solving this problem is known to be in some sense NP-hard.</p>
+         <p>A classical method to approximate the solution to the minimum L0 norm problem it to replace it by a minimum L1 norm solution,
+            which can be computed with polynomial time algorithms.
+         </p>
+         <p>This idea is put forward in:</p>
+         <p>P. Babu, K. Pelckmans, P. Stoica, and J. Li, <i>Linear Systems, Sparse Solutions, and Sudoku</i>, IEEE Signal Processing Letters, vol. 17, no. 1, pp. 40-42, 2010.
+         </p>
+         <p>The L1 norm of the Sudoku solution is <tt>n^2</tt>. The L1 norm of a projected vector is usually larger.
+         </p><pre class="codeinput">disp([<span class="string">'L1 norm: '</span> num2str(norm(Xproj(:),1)) <span class="string">' (optimal: '</span> num2str(n*n) <span class="string">').'</span>]);
+</pre><pre class="codeoutput">L1 norm: 102.7585 (optimal: 81).
+</pre><p>Unfortunately, all the vectors in the (bouned) polytope <tt>A*X(:)=1</tt> and <tt>X&gt;=0</tt> has the same L1 norm, equal to <tt>81</tt>.
+         </p>
+         <p>This shows that the L1 minimization has the same properties as the POCS algorithm. They work if and only if the polytope is
+            reduced to a single point.
+         </p>
+         <p>Nevertheless, one can compute the solution with minimum L1 norm which corresponds to the Basis pursuit problem. This problem
+            is equivalent to a linear program, and can be solved using standard interior points method (other algorithms, such as Douglas-Rachford
+            could be used as well).
+         </p>
+         <p>Define a shortcut for the resolution of basis pursuit.</p><pre class="codeinput">solvel1 = @(A)reshape(perform_solve_bp(A, ones(size(A,1),1), n^3, 30, 0, 1e-10), [n n n]);
+</pre><p>Solve the L1 minimization.</p><pre class="codeinput">Xbp = solvel1(A);
+</pre><p>Compute the L1 norm of the solution, to check that it is indeed equal to the minimal possible L1 norm <tt>n^2</tt>.
+         </p><pre class="codeinput">disp([<span class="string">'L1 norm: '</span> num2str(norm(Xbp(:),1)) <span class="string">' (optimal: '</span> num2str(n*n) <span class="string">').'</span>]);
+</pre><pre class="codeoutput">L1 norm: 81 (optimal: 81).
+</pre><p>Unfortunately, on this difficult problem, similarely to POCS, the L1 method does not works.</p><pre class="codeinput">[tmp,xbp] = min( abs(Xbp-1), [], 3 );
+Xbp1 = encode(xbp);
+disp([<span class="string">'Number of violated constraints: '</span> num2str(sum(A*Xbp1(:)~=1)) <span class="string">'.'</span>]);
+</pre><pre class="codeoutput">Number of violated constraints: 16.
+</pre><h2>Decoding Using more Aggressive Sparsity<a name="95"></a></h2>
+         <p>Since the L1 norm does not perform better than POCS, it is tempting to use a more agressive sparsity measure, like <tt>L^alpha</tt> norm for <tt>alpha&lt;1</tt>.
+         </p>
+         <p>This leads to non-convex problems, and one can compute a (not necessarily globally optimal) local minimum.</p>
+         <p>An algorithm to find a local minimum of the energy is the reweighted L1 minimization, described in:</p>
+         <p>E. J. Cand&egrave;s, M. Wakin and S. Boyd, <i>Enhancing sparsity by reweighted l1 minimization</i>, J. Fourier Anal. Appl., 14 877-905.
+         </p>
+         <p>This idea is introduced in the paper:</p>
+         <p>P. Babu, K. Pelckmans, P. Stoica, and J. Li, <i>Linear Systems, Sparse Solutions, and Sudoku</i>, IEEE Signal Processing Letters, vol. 17, no. 1, pp. 40-42, 2010.
+         </p>
+         <p>At each iteration of the algorithm, one minimizes</p>
+         <p><img vspace="5" hspace="5" src="index_eq00602.png"> </p>
+         <p>The weights are then updated as</p>
+         <p><img vspace="5" hspace="5" src="index_eq33847.png"> </p>
+         <p>The weighted L1 minimization can be recasted as a traditional L1 minimization using a change of variables.</p>
+         <p><img vspace="5" hspace="5" src="index_eq60387.png"> </p>
+         <p>Set the target <tt>alpha</tt>, that should be in <tt>0&lt;=alpha&lt;=1</tt>.
+         </p><pre class="codeinput">alpha = 0;
+</pre><p>Set the regularisation parameter <tt>epsilon</tt>, that avoids a division by zero.
+         </p><pre class="codeinput">epsilon = 0.1;
+</pre><p>Initial set of weights.</p><pre class="codeinput">u = ones(n,n,n);
+</pre><p>Solve the weighted L1 minimization.</p><pre class="codeinput">Xrw = solvel1( A*diag(u(:)) ) .* u;
+</pre><p>Update the weights.</p><pre class="codeinput">u = (abs(Xrw).^(1-alpha)+epsilon);
+</pre><p><i>Exercice 10:</i> (<a href="../missing-exo/">check the solution</a>) Compute the solution using the reweighted L1 minimization. Track the evolution of the number of invalidated constraints
+            as the algorithm iterates.
+         </p><pre class="codeinput">exo10;
+</pre><pre class="codeoutput">Number of violated constraints: 0.
+</pre><p>Display the histogram.</p><pre class="codeinput">hist(Xrw(:), 30);
+</pre><img vspace="5" hspace="5" src="index_10.png"> <p>While reweighting L1 works for reasonnably complicated Sudoku, it might fail on very difficult one.</p>
+         <p>This is the <i>Al Escargot</i> puzzle, believed to be the hardest Sudoku available.
+         </p><pre class="codeinput">x1 = [1 0 0 0 0 7 0 9 0;
+      0 3 0 0 2 0 0 0 8;
+      0 0 9 6 0 0 5 0 0;
+      0 0 5 3 0 0 9 0 0;
+      0 1 0 0 8 0 0 0 2;
+      6 0 0 0 0 4 0 0 0;
+      3 0 0 0 0 0 0 1 0;
+      0 4 0 0 0 0 0 0 7;
+      0 0 7 0 0 0 3 0 0];
+</pre><p><i>Exercice 11:</i> (<a href="../missing-exo/">check the solution</a>) Try reweighted L1 on this puzzle.
+         </p><pre class="codeinput">exo11;
+</pre><img vspace="5" hspace="5" src="index_11.png"> <p><i>Exercice 12:</i> (<a href="../missing-exo/">check the solution</a>) Try other sparsity-enforcing minimization methods, such as Orthogonal Matching Pursuit (OMP), or iterative hard thresholding.
+         </p><pre class="codeinput">exo12;
+</pre><p><i>Exercice 13:</i> (<a href="../missing-exo/">check the solution</a>) Try the different methods of this tour on a large number of Sudokus.
+         </p><pre class="codeinput">exo13;
+</pre><p><i>Exercice 14:</i> (<a href="../missing-exo/">check the solution</a>) Try the different methods of this tour on larger Sudokus, for <tt>n=4,5,6</tt>.
+         </p><pre class="codeinput">exo14;
+</pre><p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Sudoku using POCS and Sparsity
+% This numerical tour explores the use of numerical schemes to solve the
+% Sudoku game.
+
+%%
+% This tour was written by <http://lcav.epfl.ch/~lu/ Yue M. Lu> and
+% <http://www.ceremade.dauphine.fr/~peyre/ Gabriel Peyré>.
+
+%%
+% The idea of encoding the Sudoku rule using a higer dimensional lifting,
+% linear constraints and binary constraint is explained in:
+
+%%
+% Andrew C. Bartlett, Amy N. Langville,
+% _An Integer Programming Model for the Sudoku Problem,_
+% The Journal of Online Mathematics and Its Applications, Volume 8. May 2008.
+
+%%
+% The idea of removing the binary constraint and using sparsity constraint
+% is exposed in:
+
+%%
+% P. Babu, K. Pelckmans, P. Stoica, and J. Li, 
+% _Linear Systems, Sparse Solutions, and Sudoku_, 
+% IEEE Signal Processing Letters, vol. 17, no. 1, pp. 40-42, 2010.
+
+%%
+% This tour elaborarates on these two ideas. In particular it explains 
+% why \(L^1\) minimization is equivalent to a POCS (projection on convex sets)
+% method to find a feasible point inside a convex polytope. 
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_signal.zip signal toolbox> and 
+% <../toolbox_general.zip general toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_signal| and 
+% |toolbox_general|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_signal/');
+getd('toolbox_general/');
+
+
+%% Game Encoding and Decoding
+% The basic idea is to use a higher dimensional space of size |(n,n,n)| to represent
+% a Sudoku matrix of size |(n,n)|. In this space, the arrays are
+% constrained
+% to have binary entries. 
+
+%%
+% Size of the Sudoku. This number must be a square.
+
+n = 9;
+
+%%
+% Create a random integer matrix with entries in 1...9.
+
+x = floor(rand(n)*n)+1;
+
+%%
+% Comparison matrix used for encoding to binary format.
+
+U = repmat( reshape(1:n, [1 1 n]), n,n );
+
+%%
+% Encoding in binary format. 
+
+encode = @(x)double( repmat(x, [1 1 n])==U );
+X = encode(x);
+
+%%
+% The resulting matrix has binary entries and
+% has size |(n,n,n)|. One has |x(i,j)=k| if |X(i,j,k)=1| and |X(i,j,l)=0|
+% for |l~=k|.
+
+%%
+% Decoding from binary format. One use a |min| to be able to recover even
+% if the matrix |X| is not binary (because of computation errors).
+
+[tmp,x1] = min( abs(X-1), [], 3 );
+
+%%
+% Show that decoding is ok.
+
+disp(['Should be 0: ' num2str(norm(x-x1,'fro')) '.']);
+
+%% Encoding Constraints
+% For |X| to be a valid encoded matrix, it should be binary and satifies
+% that each |X(i,j,:)| contains only a single |1|, which can be represented
+% using a linear contraint |Aenc*X(:)=1|.
+
+%%
+% Now we construct one encoding constraint.
+
+i = 4; j = 4;
+Z = zeros(n,n,n);
+Z(i,j,:) = 1;
+
+%%
+% Add this constraint to the encoding constraint matrix.
+
+Aenc = [];
+Aenc(end+1,:) = Z(:)';
+
+%%
+% Show that constraint is satisfied.
+
+disp(['Should be 1: ' num2str(Aenc*X(:)) '.']);
+
+%%
+% _Exercice 1:_ (<../missing-exo/ check the solution>)
+% Build the encoding matrix |Aenc|. Display it.
+
+exo1;
+
+%%
+% Show that constraint |Aenc*X(:)=1| is satisfied.
+
+disp(['Should be 0: ' num2str(norm(Aenc*X(:)-1)) '.']);
+
+%% Sudoku Rules Constraints
+% In a Sudoku valid matrix |x|, each column, row and sub-square of |x| should
+% contains all the values in 0...n. This can be encoded on the high dimensional |X| using linear
+% constraints |Arow*X=1|, |Acol*X=1| and |Ablock*X=1|.
+
+%%
+% A valid Sudoku matrix.
+
+x = [8 1 9 6 7 4 3 2 5; 
+     5 6 3 2 8 1 9 4 7; 
+     7 4 2 5 9 3 6 8 1; 
+     6 3 8 9 4 5 1 7 2; 
+     9 7 1 3 2 8 4 5 6; 
+     2 5 4 1 6 7 8 9 3;
+     1 8 5 7 3 9 2 6 4;
+     3 9 6 4 5 2 7 1 8; 
+     4 2 7 8 1 6 5 3 9]
+ 
+%%
+% Encode it in binary format.
+ 
+X = encode(x);
+
+%%
+% Select the index of the entries of a row.
+
+i=3; k=5;
+Z = zeros(n,n,n);
+Z(i,:,k) = 1;
+
+%%
+% Fill the first entries of the row matrix.
+
+Arow = [];
+Arow(end+1,:) = Z(:)';
+
+%%
+% Show that constraint is satisfied.
+
+disp(['Should be 1: ' num2str(Arow*X(:)) '.']);
+
+%%
+% _Exercice 2:_ (<../missing-exo/ check the solution>)
+% Build the full row matrix |Arow|. Display it.
+
+exo2;
+
+%%
+% Show that constraint |Arow*X(:)=1| is satisfied.
+
+disp(['Should be 0: ' num2str(norm(Arow*X(:)-1)) '.']);
+
+%%
+% _Exercice 3:_ (<../missing-exo/ check the solution>)
+% Build the full column matrix |Acol|. Display it.
+
+exo3;
+
+%%
+% Show that constraint |Acol*X(:)=1| is satisfied.
+
+disp(['Should be 0: ' num2str(norm(Acol*X(:)-1)) '.']);
+
+%%
+% Now we proceed to block constraints. 
+
+%% 
+% Size of a block.
+
+p = sqrt(n);
+
+%% 
+% The upper left square should contain
+% all numbers in |{1,...,n}|.
+
+k = 1;
+Z = zeros(n,n,n);
+Z(1:p,1:p,k) = 1;
+
+%%
+% Add it as the first row of the block constraint matrix.
+
+Ablock = [];
+Ablock(end+1,:) = Z(:)';
+
+
+%%
+% Show that constraint is satisfied.
+
+disp(['Should be 1: ' num2str(Ablock*X(:)) '.']);
+
+%%
+% _Exercice 4:_ (<../missing-exo/ check the solution>)
+% Create the full block matrix. Display it.
+
+exo4;
+
+%%
+% Show that constraint |Ablock*X(:)=1| is satisfied.
+
+disp(['Should be 0: ' num2str(norm(Ablock*X(:)-1)) '.']);
+
+%% Inpainting Constraint
+% A Sudoku game asks to fill the missing entries of a partial 
+% Sudoku matrix |x1| to obtain a full Sudoku matrix |x|.
+
+%%
+% The fact that for each available entry |(i,j)| on must have
+% |x(i,j)=x1(i,j)| can be encoded using a linear constraint.
+
+%%
+% Load a Sudoku with missing entries, that are represented as 0.
+% This is an easy grid.
+
+x1 = [0 1 0 0 0 0 3 0 0; 
+     0 0 3 0 8 0 0 4 0; 
+     7 0 2 0 0 3 0 0 1; 
+     0 3 0 9 4 0 1 0 0; 
+     9 0 0 0 0 0 0 0 6; 
+     0 0 4 0 6 7 0 9 0;
+     1 0 0 7 0 0 2 0 4;
+     0 9 0 0 5 0 7 0 0; 
+     0 0 7 0 0 0 0 3 0];
+
+ 
+%%
+% Retrieve the indexes of the available entries.
+
+[I,J] = ind2sub( [n n], find(x1(:)~=0) );
+v = x1(x1(:)~=0);
+
+%%
+% Create a vector corresponding to the constraint that |x1(I(i),J(i))==v(i)|.
+
+i = 1;
+Z = zeros(n,n,n);
+Z(I(i), J(i), v(i)) = 1; 
+
+%%
+% Fill the first entries of the row matrix.
+
+Ainp = [];
+Ainp(end+1,:) = Z(:)';
+
+%%
+% _Exercice 5:_ (<../missing-exo/ check the solution>)
+% Build the full inpainting matrix |Ainp|. Display it.
+
+exo5;
+
+%%
+% Show that constraint |Ainp*X1(:)=1| is satisfied.
+
+X1 = encode(x1);
+disp(['Should be 0: ' num2str(norm(Ainp*X1(:)-1)) '.']);
+
+%% Solving the Sudoku by Binary Integer Programming
+% The whole set of constraints can be written |A*X(:)=1|, where the matrix
+% |A| is defined as a concatenation of all the constraint matrices.
+
+A = [Aenc; Arow; Acol; Ablock; Ainp];
+
+%%
+% Pre-compute the pseudo-inverse of A.
+
+pA = pinv(A);
+
+%%
+% If the Sudoku game has an unique solution |x|, then the corresponding
+% lifted vector |X| is the only solution to |A*X(:)=1| under the constraint that |X| is binary.
+
+%%
+% This is the idea proposed in:
+
+%%
+% Andrew C. Bartlett, Amy N. Langville,
+% _An Integer Programming Model for the Sudoku Problem,_
+% The Journal of Online Mathematics and Its Applications, Volume 8. May 2008.
+
+%%
+% Unfortunately, solving a linear system under binary constraints is
+% difficult, in fact solving a general integer program is known to be NP-hard. 
+% It means that such a method is very slow to solve Sudoku for large
+% |n|.
+
+%% 
+% One can use branch-and-bounbs methods to solve the binary integer
+% program, but this might be slow. One can use for instance the 
+% command |bintprog| of Matlab (optimization toolbox), with 
+% an arbitrary objective function (since one wants to solve a feasability
+% problem,
+% no objective is needed).
+
+%%
+% _Exercice 6:_ (<../missing-exo/ check the solution>)
+% Implement the Soduku solver using an interger linear programming
+% algorithm.
+
+exo6;
+
+%% Removing the Binary Constraint
+% If one removes the binary constraint, one simply wants to 
+% compute a solution to
+% the linear system |A*X(:)=1|. But unfortunately it has an infinite number of
+% solutions (and the set of solutions is not bounded).
+
+%%
+% It is thus unlikely that chosing a solution at random will work, but 
+% let's try it by projecting 
+% any vector on the constraint |A*X(:)=1|.
+
+%%
+% First define the orthogonal projector on the constraint |{X \ A*X(:)=1}|.
+
+projector = @(u)reshape( u(:) - pA*(A*u(:)-1), [n n n]);
+
+%%
+% We project an arbitrary vector (that does not satisfy the constraint) onto the
+% constraint |A*X(:)=1|.
+
+Xproj = projector( zeros(n,n,n) );
+
+%%
+% Check that |Xproj| projects onto itself because it satisfies the constraints.
+
+d = projector(Xproj)-Xproj;
+disp(['Should be 0: ' num2str(norm(d(:), 'fro')) '.']);
+
+%%
+% Plot the histogrtam of the entries of |Xproj|. As you can see, they are not
+% binary, meaning that the binary constraint is violated. 
+
+clf;
+hist(Xproj(:), 30);
+axis('tight');
+
+%%
+% It is thus not a
+% solution to the Sudoku problem.
+% We emphasize this by counting
+% the number of violated constraints after decoding / re-encoding.
+
+[tmp,xproj] = min( abs(Xproj-1), [], 3 );
+Xproj1 = encode(xproj); 
+disp(['Number of violated constraints: ' num2str(sum(A*Xproj1(:)~=1)) '.']);
+
+%% Solving the Sudoku by Projection on Convex Sets
+% A way to improve the quality of the result is to find a vector that
+% satisfies both |A*X(:)=1| and |0<=X<=1|. Note that this last constraint
+% can be modified to |X>=0| because of the fact that the entries of |X(i,j,:)|
+% must sum to 1 because of |A*X(:)|.
+
+%%
+% A way to find a point inside this polytope 
+% |P = {X \ A*X(:)=1 and X>=0}| is to start from a random initial guess.
+
+Xproj = zeros(n,n,n);
+
+%%
+% And iteratively project on each constraint. This corresponds to the POCS
+% algorithm to find a feasible point into the (non empty) intersection of
+% convex sets.
+
+Xproj = max( projector(Xproj),0 );
+
+%%
+% _Exercice 7:_ (<../missing-exo/ check the solution>)
+% Perform iterative projections (POCS) on the two constraints |A*Xproj(:)=1| and
+% |Xproj>=0|. Display the decay of the error |norm(A*Xproj(:)-1)| in logarithmic scale.
+
+exo7;
+
+%%
+% Display the histogram of the recovered values.
+
+clf;
+hist(Xproj(:), 30);
+axis('tight');
+
+%%
+% As you can see, the resulting vector is (nearly, up to convergence errors of the POCS)
+% a binary one, meaning that it is
+% actually the (unique) solution to the Sudoku problem. 
+
+%%
+% We check this by counting the number of violated constraints
+% after decoding and re-encoding.
+
+[tmp,xproj] = min( abs(Xproj-1), [], 3 );
+Xproj1 = encode(xproj); 
+disp(['Number of violated constraints: ' num2str(sum(A*Xproj1(:)~=1)) '.']);
+
+%%
+% _Exercice 8:_ (<../missing-exo/ check the solution>)
+% Prove (numerically) that for this grid, the polytope of constraints
+% |P={X \ A*X(:)=1 and X>=0}| is actually reduced to a singleton, which is
+% the solution of the Sudoku problem.
+
+exo8;
+
+%%
+% Unfortunately, this is not always the case.
+% For more difficult grids, |P| might not be reduced to a singleton.
+
+%%
+% This is a difficult grid.
+
+x1 = [0 0 3 0 0 9 0 8 1;
+     0 0 0 2 0 0 0 6 0;
+     5 0 0 0 1 0 7 0 0;
+     8 9 0 0 0 0 0 0 0;
+     0 0 5 6 0 1 2 0 0;
+     0 0 0 0 0 0 0 3 7;
+     0 0 9 0 2 0 0 0 8;
+     0 7 0 0 0 4 0 0 0;
+     2 5 0 8 0 0 6 0 0];
+
+%%
+% _Exercice 9:_ (<../missing-exo/ check the solution>)
+% Try the iterative projection on convexs set (POCS) method on this grid
+% (remember that you need to re-define |A| and |pA|).
+% What is your conclusion ?
+
+exo9;
+ 
+%% Decoding Using L1 Sparsity
+% The true solution has exactly |n^2| non zero entries, while a
+% feasible point within the convex polytope |P| is usually not as sparse. 
+
+%%
+% Compute the sparsity of a projected vector.
+
+Xproj = projector( zeros(n,n,n) );
+disp(['Sparsity: ' num2str(sum(Xproj(:)~=0)) ' (optimal: ' num2str(n*n) ').']);
+
+%%
+% One can prove that any solution to |A*X(:)=1| has more
+% than |n^2| non zeros, and that the true Sudoku solution is the unique
+% solution to |A*X(:)=1| with |n^2| entries.
+
+%%
+% One can thus (in principle) solve the Sudoku by finding the solution to
+% |A*X(:)=1| with minimal L0 norm. 
+
+%%
+% Unfortunately, solving this problem is known to be in some sense NP-hard.
+
+%%
+% A classical method to approximate the solution to the minimum L0 norm
+% problem it to replace it by a minimum L1 norm solution, which can be
+% computed with polynomial time algorithms. 
+
+
+%%
+% This idea is put forward in:
+
+%%
+% P. Babu, K. Pelckmans, P. Stoica, and J. Li, 
+% _Linear Systems, Sparse Solutions, and Sudoku_, 
+% IEEE Signal Processing Letters, vol. 17, no. 1, pp. 40-42, 2010.
+
+
+%%
+% The L1 norm of the Sudoku solution is |n^2|.
+% The L1 norm of a projected vector is usually larger.
+
+disp(['L1 norm: ' num2str(norm(Xproj(:),1)) ' (optimal: ' num2str(n*n) ').']);
+
+%%
+% Unfortunately, all the vectors in the (bouned) polytope |A*X(:)=1| and |X>=0|
+% has the same L1 norm, equal to |81|. 
+
+%%
+% This shows that the L1 minimization has the same properties as the POCS
+% algorithm. They work if and only if the polytope is reduced to a single
+% point.
+
+
+%%
+% Nevertheless, one can compute the solution with minimum L1 norm which corresponds
+% to the Basis pursuit
+% problem. This problem is equivalent to a linear program, and can be
+% solved using standard interior points method (other algorithms, such as
+% Douglas-Rachford could be used as well).
+
+%% 
+% Define a shortcut for the resolution of basis pursuit.
+
+solvel1 = @(A)reshape(perform_solve_bp(A, ones(size(A,1),1), n^3, 30, 0, 1e-10), [n n n]);
+
+%%
+% Solve the L1 minimization.
+
+Xbp = solvel1(A);
+
+%%
+% Compute the L1 norm of the solution, to check that it is indeed equal to the minimal possible L1 norm |n^2|.
+
+disp(['L1 norm: ' num2str(norm(Xbp(:),1)) ' (optimal: ' num2str(n*n) ').']);
+
+%% 
+% Unfortunately, on this difficult problem, similarely to POCS, the L1
+% method does not works.
+
+[tmp,xbp] = min( abs(Xbp-1), [], 3 );
+Xbp1 = encode(xbp); 
+disp(['Number of violated constraints: ' num2str(sum(A*Xbp1(:)~=1)) '.']);
+
+%% Decoding Using more Aggressive Sparsity
+% Since the L1 norm does not perform better than POCS, it is tempting to
+% use a more agressive sparsity measure, like |L^alpha| norm for |alpha<1|.
+
+%%
+% This leads to non-convex problems, and one can compute a (not necessarily
+% globally optimal) local minimum.
+
+%%
+% An algorithm to find a local minimum of the energy is the reweighted L1
+% minimization, described in:
+
+%%
+% E. J. Candès, M. Wakin and S. Boyd,
+% _Enhancing sparsity by reweighted l1 minimization_, 
+% J. Fourier Anal. Appl., 14 877-905.
+
+%%
+% This idea is introduced in the paper:
+
+%%
+% P. Babu, K. Pelckmans, P. Stoica, and J. Li, 
+% _Linear Systems, Sparse Solutions, and Sudoku_, 
+% IEEE Signal Processing Letters, vol. 17, no. 1, pp. 40-42, 2010.
+
+%%
+% At each iteration of the algorithm, one minimizes
+
+%%
+%
+% $$min \sum 1/u_k  |x_k|$$  subject to  $$A x=1$$
+%
+
+%%
+% The weights are then updated as
+
+%%
+%
+% $$u_k=|x_k|^{1-\alpha} + \epsilon$$
+%
+
+%%
+% The weighted L1 minimization can be recasted as a traditional L1 minimization
+% using a change of variables.
+
+%%
+%
+% $$min |y|_1$$ subject to $$A diag(u) y=1$$ and $$x_k = y_k u_k$$
+%
+
+%%
+% Set the target |alpha|, that should be in |0<=alpha<=1|.
+
+alpha = 0;
+
+%%
+% Set the regularisation parameter |epsilon|, that avoids a division by
+% zero.
+
+epsilon = 0.1;
+
+%%
+% Initial set of weights.
+
+u = ones(n,n,n);
+
+%%
+% Solve the weighted L1 minimization.
+
+Xrw = solvel1( A*diag(u(:)) ) .* u;
+
+%%
+% Update the weights.
+
+u = (abs(Xrw).^(1-alpha)+epsilon);
+
+%%
+% _Exercice 10:_ (<../missing-exo/ check the solution>)
+% Compute the solution using the reweighted L1 minimization.
+% Track the evolution of the number of invalidated constraints as the
+% algorithm iterates.
+
+exo10;
+
+%%
+% Display the histogram.
+
+hist(Xrw(:), 30);
+
+%%
+% While reweighting L1 works for reasonnably complicated Sudoku, it might
+% fail on very difficult one.
+
+%%
+% This is the _Al Escargot_ puzzle, believed to be the hardest Sudoku
+% available.
+
+x1 = [1 0 0 0 0 7 0 9 0;
+      0 3 0 0 2 0 0 0 8;
+      0 0 9 6 0 0 5 0 0; 
+      0 0 5 3 0 0 9 0 0; 
+      0 1 0 0 8 0 0 0 2;
+      6 0 0 0 0 4 0 0 0; 
+      3 0 0 0 0 0 0 1 0; 
+      0 4 0 0 0 0 0 0 7;
+      0 0 7 0 0 0 3 0 0];
+  
+%%
+% _Exercice 11:_ (<../missing-exo/ check the solution>)
+% Try reweighted L1 on this puzzle.
+
+exo11;
+
+%%
+% _Exercice 12:_ (<../missing-exo/ check the solution>)
+% Try other sparsity-enforcing minimization methods, such as Orthogonal
+% Matching Pursuit (OMP), or iterative hard thresholding.
+
+exo12;
+
+%%
+% _Exercice 13:_ (<../missing-exo/ check the solution>)
+% Try the different methods of this tour on a large number of Sudokus.
+
+exo13;
+
+%%
+% _Exercice 14:_ (<../missing-exo/ check the solution>)
+% Try the different methods of this tour on larger Sudokus, for |n=4,5,6|.
+
+exo14;
+
+##### SOURCE END #####
+-->
+   </body>
+</html>

@@ -1,0 +1,794 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>Active Contours using Level Sets</title>
+      <NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
+               	requires JavaScript to process the mathematics on this page.<BR> 
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 8.2">
+      <meta name="date" content="2014-10-21">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>Active Contours using Level Sets</h1>
+         <introduction>
+            <p>This tour explores image segementation using level set methods.</p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#8">Managing level set functions</a></li>
+               <li><a href="#17">Mean Curvature Motion.</a></li>
+               <li><a href="#32">Levelset Re-distancing</a></li>
+               <li><a href="#37">Edge-based Segmentation with Geodesic Active Contour</a></li>
+               <li><a href="#63">Region-based Segmentation with Chan-Vese</a></li>
+            </ul>
+         </div>
+         <h2>Installing toolboxes and setting up the path.<a name="1"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_signal.zip">signal toolbox</a>, <a href="../toolbox_general.zip">general toolbox</a> and <a href="../toolbox_graph.zip">graph toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_signal</tt>, <tt>toolbox_general</tt> and <tt>toolbox_graph</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
+getd(<span class="string">'toolbox_general/'</span>);
+getd(<span class="string">'toolbox_graph/'</span>);
+</pre><h2>Managing level set functions<a name="8"></a></h2>
+         <p>In the level set formalism, the evolution of some curve \( (\ga(t))_{t=0}^1 \) is computed by evolving the zero level of a
+            function \(\phi : \RR^2 \rightarrow \RR \) \[ \enscond{\ga(s)}{ s \in [0,1] } = \enscond{x \in \RR^2}{\phi(x)=0}. \] This
+            corresponds to replacing the parameteric representation \(\ga\) of the curve by an implicit representation. This requires
+            an additional dimension (and hence more storage) but ease the handling of topological change of the curve during the evolution.
+         </p>
+         <p>Discretazion size \(n \times n\) of the domain \([0,1]^2\).</p><pre class="codeinput">n = 200;
+[Y,X] = meshgrid(1:n,1:n);
+</pre><p>One can create a circular shape by using the signed distance function to a circle \[ \phi_1(x) = \sqrt{ (x_1-c_1)^2 + (x_2-c_2)^2
+            } - r \] where \(r&gt;0\) is the radius and \(c \in \RR^2\) the center.
+         </p>
+         <p>Radius \(r\).</p><pre class="codeinput">r = n/3;
+</pre><p>Center \(c\).</p><pre class="codeinput">c = [r r] + 10;
+</pre><p>Distance function \(\phi_1\).</p><pre class="codeinput">phi1 = sqrt( (X-c(1)).^2 + (Y-c(2)).^2 ) - r;
+</pre><p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Load a square shape \(\phi_2\) at a different position for the center.
+         </p><pre class="codeinput">exo1;
+</pre><p>Display the curves associated to \(\phi_1\) and \(\phi_2\).</p><pre class="codeinput">clf;
+subplot(1,2,1);
+plot_levelset(phi1);
+subplot(1,2,2);
+plot_levelset(phi2);
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Compute the intersection and the union of the two shapes. Store the union in \(\phi_0\) (variable <tt>phi0</tt>), that we will use in the remaining part of the tour.
+         </p><pre class="codeinput">exo2;
+</pre><img vspace="5" hspace="5" src="index_02.png"> <h2>Mean Curvature Motion.<a name="17"></a></h2>
+         <p>The mean curvature motion corresponds to the minimizing flow of the length of the curve \[ \int_0^1 \norm{\ga'(s)} d s. \]</p>
+         <p>It is implemeted in a level set formalism by a familly \(\phi_t\) of level set function parameterized by an artificial time
+            \(t \geq 0\), that satisfies the following PDE \[ \pd{\phi_t}{t} = -G(\phi_t)   \qwhereq G(\phi) = -\norm{\nabla \phi} \text{div}
+                  \pa{  \frac{\nabla \phi}{\norm{\nabla \phi}} }  \] and where \(\nabla \phi_t(x) \in \RR^2\) is the spacial gradient.
+         </p>
+         <p>This flow is computed using a gradient descent \(\phi^{(0)} = \phi_0\) and This is implemented using a gradient descent scheme.
+            \[ \phi^{(\ell+1)} = \phi^{(\ell)} - \tau G(\phi^{(\ell)}), \] where \(\tau&gt;0\) is small enough time step.
+         </p>
+         <p>Maximum time of the evolution \(0 \leq t \leq t_{\max}\).</p><pre class="codeinput">Tmax = 200;
+</pre><p>Time step \(\tau&gt;0\) (should be small).</p><pre class="codeinput">tau = .5;
+</pre><p>Number of iterations.</p><pre class="codeinput">niter = round(Tmax/tau);
+</pre><p>We use centered differences for the discretization of the gradient.</p><pre class="codeinput">options.order = 2;
+</pre><p>Initial shape \(\phi^{(0)}\) at \(t=0\).</p><pre class="codeinput">phi = phi0;
+</pre><p>We now compute the right hand side of the evolution equation.</p>
+         <p>Compute the gradient \(\nabla \phi\).</p><pre class="codeinput">g0 = grad(phi,options);
+</pre><p>Norm \(\norm{\nabla \phi}\) of the gradient.</p><pre class="codeinput">d = max(eps, sqrt(sum(g0.^2,3)) );
+</pre><p>Normalized gradient.</p><pre class="codeinput">g = g0 ./ repmat( d, [1 1 2] );
+</pre><p>The curvature term.</p><pre class="codeinput">K = -d .* div( g,options );
+</pre><p>Perform one step of the gradient descent.</p><pre class="codeinput">phi = phi - tau*K;
+</pre><p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) Implement the mean curvature motion.
+         </p><pre class="codeinput">exo3;
+</pre><img vspace="5" hspace="5" src="index_03.png"> <h2>Levelset Re-distancing<a name="32"></a></h2>
+         <p>During PDE resolution, a level set function \(\phi\) might become ill-conditionned, so that the zero crossing is not sharp
+            enough. The quality of the level set function is restored by computing the signed distance function to the zero level set.
+         </p>
+         <p>This corresponds to first extracting the zero level set \[ \Cc = \enscond{x \in \RR^2 }{\phi(x)=0},  \] and then solving the
+            following eikonal equation PDE on \(\tilde \phi\) (in viscosity sense) \[ \norm{\nabla \tilde \phi(x)} = 1       \qandq \forall
+            y \in \Cc, \tilde\phi(y)=0. \] The one can replace \(\phi\) by \(\text{sign}(\phi(x))\tilde \phi(x)\) which is the signed
+            distance function to \(\Cc\).
+         </p>
+         <p>We set \(\phi=\phi_0^3\) so that they are both valid level set function of the same curve, but \(\phi\) is not the signed
+            distance function..
+         </p><pre class="codeinput">phi = phi0.^3;
+</pre><p>Solve the eikonal PDE using the Fast Marching algorithm.</p><pre class="codeinput">phi1 = perform_redistancing(phi0);
+</pre><p>Display the level sets.</p><pre class="codeinput">clf;
+subplot(1,2,1);
+plot_levelset(phi);
+title(<span class="string">'Before redistancing'</span>);
+subplot(1,2,2);
+plot_levelset(phi1);
+title(<span class="string">'After redistancing'</span>);
+</pre><img vspace="5" hspace="5" src="index_04.png"> <h2>Edge-based Segmentation with Geodesic Active Contour<a name="37"></a></h2>
+         <p>Geodesic active contours compute loval minimum of a weighted geodesic distance that attract the curve toward the features
+            of the background image.
+         </p>
+         <p><i>Note:</i> these active contours should not be confounded with the geodesic shortest paths, that are globally minimizing geodesics between
+            two points. Here the active contour is a close curve progressively decreasing a weighted geodesic length that is only a local
+            minimum (the global minimum would be a single point).
+         </p>
+         <p>Size of the image.</p><pre class="codeinput">n = 200;
+</pre><p>First we load an image \(f_0 \in \RR^{n \times n}\) to segment.</p><pre class="codeinput">name = <span class="string">'cortex'</span>;
+f0 = rescale( sum( load_image(name, n), 3) );
+</pre><p>Given a background image \(f_0\) to segment, one needs to compute an edge-stopping function \(W\). It should be small in area
+            of high gradient, and high in area of large gradient.
+         </p>
+         <p>We use here \[ W(x) = \al + \frac{\be}{\epsilon + d(x) }       \qwhereq d = \norm{\nabla f_0} \star h_a, \] and where \(h_a\)
+            is a blurring kernel of size \(a&gt;0\).
+         </p>
+         <p>Compute the magnitude of the gradient \(d_0(x) = \norm{\nabla f_0(x)}\).</p><pre class="codeinput">g = grad(f0,options);
+d0 = sqrt(sum(g.^2,3));
+</pre><p>Blur size \(a\).</p><pre class="codeinput">a = 5;
+</pre><p>Compute the blurring \(d = d_0 \star h_a\).</p><pre class="codeinput">d = perform_blurring( d0,a );
+</pre><p>Parameter \(\epsilon&gt;0\).</p><pre class="codeinput">epsilon = 1e-1;
+</pre><p>We set the \(\al\) and \(\be\) parameters to adjust the overall values of \(W\) (equivalently we use the function <tt>rescale</tt>).
+         </p><pre class="codeinput">W = 1./(epsilon+d);
+W = rescale(-d,.1,1);
+</pre><p>Display it.</p><pre class="codeinput">clf;
+imageplot(f0,<span class="string">'Image to segment'</span>,1,2,1);
+imageplot(W,<span class="string">'Weight'</span>,1,2,2);
+</pre><img vspace="5" hspace="5" src="index_05.png"> <p><i>Exercice 4:</i> (<a href="../missing-exo/">check the solution</a>) Compute an initial shape \(\phi_0\) at time \(t=0\), for instance a centered square.
+         </p><pre class="codeinput">exo4;
+</pre><p>Display it.</p><pre class="codeinput">clf;
+plot_levelset(phi0,0,f0);
+</pre><img vspace="5" hspace="5" src="index_06.png"> <p>The geodesic active contour minimizes a weighted length of curve \[ \umin{\ga} \int_0^1 \norm{\ga'(s)} W(\ga(s)) d s \]</p>
+         <p>The level set implementation of the gradient descent of this energy reads \[ \pd{\phi_t}{t} = G(\phi_t)   \qwhereq G(\phi)
+            = -\norm{\nabla \phi} \text{div}\pa{           W \frac{\nabla \phi}{\norm{\nabla \phi}}   } \]
+         </p>
+         <p>This is implemented using a gradient descent scheme. \[ \phi^{(\ell+1)} = \phi^{(\ell)} - \tau G(\phi^{(\ell)}), \] where
+            \(\tau&gt;0\) is small enough.
+         </p>
+         <p>Gradient step size \(\tau&gt;0\).</p><pre class="codeinput">tau = .4;
+</pre><p>Final time and number of iteration of the algorithm.</p><pre class="codeinput">Tmax = 1500;
+niter = round(Tmax/tau);
+</pre><p>Initial distance function \(\phi^{(0)}=\phi_0\).</p><pre class="codeinput">phi = phi0;
+</pre><p>Note that we can re-write the gradient of the energy as \[ G(\phi) = -W \norm{\nabla \phi} \text{div} \pa{ \frac{\nabla \phi}{\norm{\nabla
+            \phi}}  } - \dotp{\nabla W}{\nabla \phi} \]
+         </p>
+         <p>Pre-compute once for all \(\nabla W\).</p><pre class="codeinput">gW = grad(W,options);
+</pre><p><i>Exercice 5:</i> (<a href="../missing-exo/">check the solution</a>) Compute and store in <tt>G</tt> the gradient \(G(\phi)\) (right hand side of the PDE) using the current value of the distance function \(\phi\).
+         </p><pre class="codeinput">exo5;
+</pre><p>Do the descent step.</p><pre class="codeinput">phi = phi - tau*G;
+</pre><p>Once in a while (e.g. every 30 iterations), perform re-distancing of \(\phi\).</p><pre class="codeinput">phi = perform_redistancing(phi);
+</pre><p><i>Exercice 6:</i> (<a href="../missing-exo/">check the solution</a>) Implement the geodesic active contours gradient descent. Do not forget to do the re-distancing.
+         </p><pre class="codeinput">exo6;
+</pre><img vspace="5" hspace="5" src="index_07.png"> <h2>Region-based Segmentation with Chan-Vese<a name="63"></a></h2>
+         <p>Chan-Vese active contours corresponds to a region-based energy that looks for a piecewise constant approximation of the image.</p>
+         <p>The energy to be minimized is \[ \umin{\phi}       L(\phi) +       \la \int_{\phi(x)&gt;0} \abs{f_0(x)-c_1}^2 d x   +       \la
+            \int_{\phi(x)&lt;0} \abs{f_0(x)-c_2}^2 d x \] where \(L\) is the length of the zero level set of \(\phi\). Note that here \((c_1,c_2)
+            \in \RR^2\) are assumed to be known.
+         </p>
+         <p><i>Exercice 7:</i> (<a href="../missing-exo/">check the solution</a>) Compute an initial level set function \(\phi_0\), stored in <tt>phi0</tt>, for instance many small circles.
+         </p><pre class="codeinput">exo7;
+</pre><img vspace="5" hspace="5" src="index_08.png"> <p>Parameter \(\la\)</p><pre class="codeinput">lambda = 0.8;
+</pre><p>Values for \(c_1,c_2\)</p><pre class="codeinput">c1 = 0.7;
+c2 = 0;
+</pre><p>Step size.</p><pre class="codeinput">tau = .4;
+</pre><p>Number of iterations.</p><pre class="codeinput">Tmax = 100;
+niter = round(Tmax/tau);
+</pre><p>Initial distance function \(\phi_0\) at time \(t=0\).</p><pre class="codeinput">phi = phi0;
+</pre><p>The minimizing flow for the CV energy reads \[ \pd{\phi_t}{t} = - G(\phi_t) \] where \[ G(\phi) = - W \norm{\nabla \phi} \text{div}\pa{
+            	\frac{\nabla \phi}{\norm{\nabla \phi}} } + \la (f_0-c_1)^2 - \la (f_0-c_2)^2. \]
+         </p>
+         <p><i>Exercice 8:</i> (<a href="../missing-exo/">check the solution</a>) Compute this gradient \(G(\phi)\) using the current value of the distance function
+         </p><pre class="codeinput">exo8;
+</pre><p>Do a descent step.</p><pre class="codeinput">phi = phi + tau*G;
+</pre><p><i>Exercice 9:</i> (<a href="../missing-exo/">check the solution</a>) Implement the full gradient descent.
+         </p><pre class="codeinput">exo9;
+</pre><img vspace="5" hspace="5" src="index_09.png"> <p><i>Exercice 10:</i> (<a href="../missing-exo/">check the solution</a>) In the case that one does not know precisely the constants \(c_1\) and \(c_2\), how to update them automatically during
+            the evolution ? Implement this method.
+         </p><pre class="codeinput">exo10;
+</pre><p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Active Contours using Level Sets
+% This tour explores image segementation using level set methods.
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_signal.zip signal toolbox>, 
+% <../toolbox_general.zip general toolbox> and 
+% <../toolbox_graph.zip graph toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_signal|, 
+% |toolbox_general| and 
+% |toolbox_graph|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_signal/');
+getd('toolbox_general/');
+getd('toolbox_graph/');
+
+
+
+
+%% Managing level set functions
+% In the level set formalism, the evolution of some curve \( (\ga(t))_{t=0}^1 \) 
+% is computed by evolving the
+% zero level of a function \(\phi : \RR^2 \rightarrow \RR \)
+% \[ \enscond{\ga(s)}{ s \in [0,1] } = \enscond{x \in \RR^2}{\phi(x)=0}. \]
+% This corresponds to replacing the parameteric representation \(\ga\) of
+% the curve by an implicit representation. This requires an additional
+% dimension (and hence more storage) but ease the handling of topological
+% change of the curve during the evolution. 
+
+%%
+% Discretazion size \(n \times n\) of the domain \([0,1]^2\).
+
+n = 200; 
+[Y,X] = meshgrid(1:n,1:n);
+
+%%
+% One can create a circular shape by using the signed distance function to
+% a circle
+% \[ \phi_1(x) = \sqrt{ (x_1-c_1)^2 + (x_2-c_2)^2 } - r \]
+% where \(r>0\) is the radius and \(c \in \RR^2\) the center.
+
+%%
+% Radius \(r\).
+
+r = n/3;
+
+%%
+% Center \(c\).
+
+c = [r r] + 10;
+
+
+%%
+% Distance function \(\phi_1\).
+
+phi1 = sqrt( (X-c(1)).^2 + (Y-c(2)).^2 ) - r;
+
+%%
+% _Exercice 1:_ (<../missing-exo/ check the solution>)
+% Load a square shape \(\phi_2\) at a different position for the center.
+
+exo1;
+
+%%
+% Display the curves associated to \(\phi_1\) and \(\phi_2\).
+
+clf;
+subplot(1,2,1);
+plot_levelset(phi1);
+subplot(1,2,2);
+plot_levelset(phi2);
+
+%%
+% _Exercice 2:_ (<../missing-exo/ check the solution>)
+% Compute the intersection and the union of the two shapes.
+% Store the union in \(\phi_0\) (variable |phi0|), 
+% that we will use in the remaining part of the tour.
+
+exo2;
+
+
+%% Mean Curvature Motion.
+% The mean curvature motion corresponds to the minimizing flow of the
+% length of the curve 
+% \[ \int_0^1 \norm{\ga'(s)} d s. \]
+
+
+%%
+% It is implemeted in a level set formalism by a familly \(\phi_t\) of
+% level set function parameterized by an artificial time \(t \geq 0\), that
+% satisfies the following PDE
+% \[ \pd{\phi_t}{t} = -G(\phi_t)
+%   \qwhereq G(\phi) = -\norm{\nabla \phi} \text{div}
+%       \pa{  \frac{\nabla \phi}{\norm{\nabla \phi}} }  \]
+% and where \(\nabla \phi_t(x) \in \RR^2\) is the spacial gradient.
+
+%%
+% This flow is computed using a gradient descent
+% \(\phi^{(0)} = \phi_0\) and 
+% This is implemented using a gradient descent scheme.
+% \[ \phi^{(\ell+1)} = \phi^{(\ell)} - \tau G(\phi^{(\ell)}), \]
+% where \(\tau>0\) is small enough time step.
+
+%%
+% Maximum time of the evolution \(0 \leq t \leq t_{\max}\).
+
+Tmax = 200;
+
+%%
+% Time step \(\tau>0\) (should be small).
+
+tau = .5;
+
+%%
+% Number of iterations.
+
+niter = round(Tmax/tau); 
+
+%%
+% We use centered differences for the discretization of the gradient.
+
+options.order = 2;
+
+%%
+% Initial shape \(\phi^{(0)}\) at \(t=0\).
+
+phi = phi0;
+
+%%
+% We now compute the right hand side of the evolution equation.
+
+%%
+% Compute the gradient \(\nabla \phi\).
+
+g0 = grad(phi,options);
+
+%%
+% Norm \(\norm{\nabla \phi}\) of the gradient.
+
+d = max(eps, sqrt(sum(g0.^2,3)) );
+
+%%
+% Normalized gradient.
+
+g = g0 ./ repmat( d, [1 1 2] );
+
+%%
+% The curvature term.
+
+K = -d .* div( g,options );
+
+%%
+% Perform one step of the gradient descent.
+
+phi = phi - tau*K;
+
+%%
+% _Exercice 3:_ (<../missing-exo/ check the solution>)
+% Implement the mean curvature motion. 
+
+exo3;
+
+
+%% Levelset Re-distancing
+% During PDE resolution, a level set function \(\phi\) might become
+% ill-conditionned, so that the zero crossing is not sharp enough.
+% The quality of the level set function is restored by computing the
+% signed distance function to the zero level set.
+
+
+%%
+% This corresponds to first extracting the zero level set
+% \[ \Cc = \enscond{x \in \RR^2 }{\phi(x)=0},  \]
+% and then solving the following eikonal equation PDE on \(\tilde \phi\)
+% (in viscosity sense)
+% \[ \norm{\nabla \tilde \phi(x)} = 1 
+%       \qandq \forall y \in \Cc, \tilde\phi(y)=0. \]
+% The one can replace \(\phi\) by \(\text{sign}(\phi(x))\tilde \phi(x)\)
+% which is the signed distance function to \(\Cc\).
+
+%%
+% We set \(\phi=\phi_0^3\) so that they are both valid level set function
+% of the same curve, but \(\phi\) is not the signed distance function..
+
+phi = phi0.^3;
+
+%%
+% Solve the eikonal PDE using the Fast Marching algorithm.
+
+phi1 = perform_redistancing(phi0);
+
+%%
+% Display the level sets.
+
+clf;
+subplot(1,2,1);
+plot_levelset(phi);
+title('Before redistancing');
+subplot(1,2,2);
+plot_levelset(phi1);
+title('After redistancing');
+
+
+%% Edge-based Segmentation with Geodesic Active Contour
+% Geodesic active contours compute loval minimum of a weighted geodesic
+% distance that attract the curve toward the features of the background
+% image.
+
+%%
+% _Note:_ these active contours should not be confounded with the geodesic shortest paths, 
+% that are globally minimizing geodesics between two points.
+% Here the active contour is a close curve progressively decreasing a 
+% weighted geodesic length that is only a local minimum 
+% (the global minimum would be a single point).
+
+%%
+% Size of the image.
+
+n = 200;
+
+%%
+% First we load an image \(f_0 \in \RR^{n \times n}\) to segment.
+
+name = 'cortex';
+f0 = rescale( sum( load_image(name, n), 3) );
+
+%%
+% Given a background image \(f_0\) to segment, one needs to compute 
+% an edge-stopping function \(W\).
+% It should be small in area of high gradient, and high in area of large gradient.
+
+%%
+% We use here
+% \[ W(x) = \al + \frac{\be}{\epsilon + d(x) }
+%       \qwhereq d = \norm{\nabla f_0} \star h_a, \]
+% and where \(h_a\) is a blurring kernel of size \(a>0\).
+
+%%
+% Compute the magnitude of the gradient \(d_0(x) = \norm{\nabla f_0(x)}\).
+
+g = grad(f0,options);
+d0 = sqrt(sum(g.^2,3));
+
+%%
+% Blur size \(a\).
+
+a = 5;
+
+%% 
+% Compute the blurring \(d = d_0 \star h_a\).
+
+d = perform_blurring( d0,a );
+
+%%
+% Parameter \(\epsilon>0\).
+
+epsilon = 1e-1;
+
+%%
+% We set the \(\al\) and \(\be\) parameters to adjust the overall values of \(W\)
+% (equivalently we use the function |rescale|).
+
+W = 1./(epsilon+d);
+W = rescale(-d,.1,1);
+
+
+%%
+% Display it.
+
+clf;
+imageplot(f0,'Image to segment',1,2,1);
+imageplot(W,'Weight',1,2,2);
+
+%%
+% _Exercice 4:_ (<../missing-exo/ check the solution>)
+% Compute an initial shape \(\phi_0\) at time \(t=0\), 
+% for instance a centered square.
+
+exo4;
+
+%%
+% Display it.
+
+clf;
+plot_levelset(phi0,0,f0);
+
+%%
+% The geodesic active contour minimizes a weighted length of curve
+% \[ \umin{\ga} \int_0^1 \norm{\ga'(s)} W(\ga(s)) d s \]
+
+%% 
+% The level set implementation of the gradient descent of this energy reads
+% \[ \pd{\phi_t}{t} = G(\phi_t)
+%   \qwhereq G(\phi) = -\norm{\nabla \phi} \text{div}\pa{
+%           W \frac{\nabla \phi}{\norm{\nabla \phi}}
+%   } \]
+
+%%
+% This is implemented using a gradient descent scheme.
+% \[ \phi^{(\ell+1)} = \phi^{(\ell)} - \tau G(\phi^{(\ell)}), \]
+% where \(\tau>0\) is small enough.
+
+%%
+% Gradient step size \(\tau>0\).
+
+tau = .4;
+
+%%
+% Final time and number of iteration of the algorithm.
+
+Tmax = 1500;
+niter = round(Tmax/tau);
+
+%%
+% Initial distance function \(\phi^{(0)}=\phi_0\).
+
+phi = phi0;
+
+%%
+% Note that we can re-write the gradient of the energy as
+% \[ G(\phi) = -W \norm{\nabla \phi} \text{div} \pa{ \frac{\nabla \phi}{\norm{\nabla \phi}}  } - \dotp{\nabla W}{\nabla \phi} \]
+
+%%
+% Pre-compute once for all \(\nabla W\).
+
+gW = grad(W,options);
+
+%%
+% _Exercice 5:_ (<../missing-exo/ check the solution>)
+% Compute and store in |G| the gradient \(G(\phi)\) (right hand side of the PDE) 
+% using the current value of the distance function \(\phi\).
+
+exo5;
+
+%%
+% Do the descent step.
+
+phi = phi - tau*G;
+
+%%
+% Once in a while (e.g. every 30 iterations), perform re-distancing of \(\phi\).
+
+phi = perform_redistancing(phi);
+
+%%
+% _Exercice 6:_ (<../missing-exo/ check the solution>)
+% Implement the geodesic active contours gradient descent.
+% Do not forget to do the re-distancing.
+
+exo6;
+
+
+%% Region-based Segmentation with Chan-Vese 
+% Chan-Vese active contours corresponds to a region-based energy
+% that looks for a piecewise constant approximation of the image.
+
+%%
+% The energy to be minimized is
+% \[ \umin{\phi} 
+%       L(\phi) + 
+%       \la \int_{\phi(x)>0} \abs{f_0(x)-c_1}^2 d x   +
+%       \la \int_{\phi(x)<0} \abs{f_0(x)-c_2}^2 d x   
+% \]
+% where \(L\) is the length of the zero level set of \(\phi\).
+% Note that here \((c_1,c_2) \in \RR^2\) are assumed to be known.
+
+
+%%
+% _Exercice 7:_ (<../missing-exo/ check the solution>)
+% Compute an initial level set function \(\phi_0\), stored in |phi0|, 
+% for instance many small circles.
+
+exo7;
+
+%% 
+% Parameter \(\la\)
+    
+lambda = 0.8;
+
+%% 
+% Values for \(c_1,c_2\)
+
+c1 = 0.7; 
+c2 = 0;
+
+%%
+% Step size.
+
+tau = .4;
+
+%%
+% Number of iterations.
+
+Tmax = 100;
+niter = round(Tmax/tau);
+
+
+%%
+% Initial distance function \(\phi_0\) at time \(t=0\).
+
+phi = phi0;
+
+%%
+% The minimizing flow for the CV energy reads
+% \[ \pd{\phi_t}{t} = - G(\phi_t) \]
+% where
+% \[ G(\phi) = 
+% - W \norm{\nabla \phi} \text{div}\pa{
+% 	\frac{\nabla \phi}{\norm{\nabla \phi}}
+% } + \la (f_0-c_1)^2 - \la (f_0-c_2)^2. \]
+
+
+%%
+% _Exercice 8:_ (<../missing-exo/ check the solution>)
+% Compute this gradient \(G(\phi)\) using the current value of the distance function 
+
+exo8;
+
+%%
+% Do a descent step.
+
+phi = phi + tau*G;
+
+%%
+% _Exercice 9:_ (<../missing-exo/ check the solution>)
+% Implement the full gradient descent.
+
+exo9;
+
+%%
+% _Exercice 10:_ (<../missing-exo/ check the solution>)
+% In the case that one does not know precisely the constants \(c_1\) and \(c_2\),
+% how to update them automatically during the evolution ? Implement this method.
+
+exo10;
+
+##### SOURCE END #####
+-->
+   </body>
+</html>

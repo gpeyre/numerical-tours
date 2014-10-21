@@ -1,0 +1,1102 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>Sparse Spikes Deconvolution over the Space of Measures</title>
+      <NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
+               	requires JavaScript to process the mathematics on this page.<BR> 
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 8.2">
+      <meta name="date" content="2014-10-21">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>Sparse Spikes Deconvolution over the Space of Measures</h1>
+         <introduction>
+            <p>This numerical tour explores the resolution of the sparse spikes deconvolution problem over the infinite dimensional Banach
+               space of Radon measures. I would like to thank Jalal Fadili for his comments and corrections.
+            </p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#8">Sparse Spikes Deconvolution</a></li>
+               <li><a href="#27">Dual Problem</a></li>
+               <li><a href="#33">Douglas-Rachford Algorithm</a></li>
+               <li><a href="#41">Solving the Dual Problem with Douglas-Rachford</a></li>
+               <li><a href="#57">Solving the Primal Problem with Root Finding</a></li>
+               <li><a href="#70">Certificates and Pre-Certificates</a></li>
+               <li><a href="#78">Bibliography</a></li>
+            </ul>
+         </div>
+         <h2>Installing toolboxes and setting up the path.<a name="1"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_signal.zip">signal toolbox</a> and <a href="../toolbox_general.zip">general toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_signal</tt> and <tt>toolbox_general</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
+getd(<span class="string">'toolbox_general/'</span>);
+</pre><h2>Sparse Spikes Deconvolution<a name="8"></a></h2>
+         <p>We consider \(N=2f_c+1\) low-frequency noisy observations \(y = \Phi \mu_0 + w \in \CC^N\) of a input unknown Radon measure
+            \(\mu_0 \in \Mm(\mathbb{T})\) where \(\mathbb{T}=\RR/\ZZ\) \[ \forall \om \in \{-f_c,\ldots,f_c\}, \quad       (\Phi \mu_0)(\om)
+            = \int_{\mathbb{T}} e^{-2\imath\pi \om t} d\mu_0(t). \]
+         </p>
+         <p>We follow here a recent trend initiated by several papers (see for instance <a href="#biblio">[deCastroGamboa12, CandesFernandezGranda13, BrediesPikkarainen13]</a>) that performs the recovery of sparse measures (i.e. sum of Diracs) using a convex sparse regularization over the the space
+            of Radon measures (which is in some sense the dual of the Banach space of continuous functions).
+         </p>
+         <p>We consider, for \(\la&gt;0\), the following regularization \[ \umin{\mu \in \Mm(\mathbb{T})} \frac{1}{2} \norm{y-\Phi \mu}^2
+            + \la \norm{\mu}_{\text{TV}},       \quad (\Pp_\la(y)) \] where \(\norm{\mu}_{\text{TV}}\) is the so-called total variation
+            of the measure \(\mu\), which should not be confused with the total variation seminorm of a function. For an arbitrary measure,
+            it reads \[ \norm{\mu}_{\text{TV}} = \inf\enscond{ \int_{\mathbb{T}} f d\mu }{ f \in C^0(\mathbb{T}), \normi{f} \leq 1 }.
+            \] When there is no noise, it makes sense to consider the limit \(\la \rightarrow 0^+\) of \(\Pp_\la(y)\), which reads \[
+            \umin{\mu} \enscond{ \norm{\mu}_{\text{TV}} }{ y=\Phi \mu }. \]
+         </p>
+         <p>We focus our attention on discrete measures, which are finite sum of Diracs, and that we write, for \(x \in \mathbb{T}^n\)
+            and \(a \in \RR^n\) \[ \mu_{x,a} = \sum_{i=1}^n a_i \de_{x_i}. \] In this case, one has \[ \norm{\mu_{x,a}}_{\text{TV}} =
+            \norm{a}_1 = \sum_{i=1}^n \abs{a_i},  \] which shows that \(\norm{\cdot}_{\text{TV}}\) is a natural generalization of the
+            \(\ell^1\) norm to measures.
+         </p>
+         <p>Several recent papers (such as <a href="#biblio">[deCastroGamboa12, CandesFernandezGranda13, BrediesPikkarainen13, DuvalPeyre13]</a>) have studied conditions under which \(\mu_0\) is the unique solution of \(\Pp_0(y)\) when \(\la=0\) and the robustness to
+            noise when using \(\Pp_\la(y)\) with \(\la \sim \norm{w}\). We refer the interested reader to these papers and references
+            therein.
+         </p>
+         <p>The goal of this numerical tour is to detail how to numerically solve this problem using an approach proposed by <a href="#biblio">[CandesFernandezGranda13]</a> and also to get some intuition about the primal-dual relationships that underly several theoretical analyses of the performance
+            of the recovery.
+         </p>
+         <p>In the following, we denote, for \(p\in \CC^N\), the adjoint operator \[ \Phi^* p(t) = \sum_{\om=-f_c}^{f_c} p(\om) e^{2\imath
+            \om t},  \] so that \(\Phi^* : \CC^N \rightarrow L^2(\mathbb{T}).\).
+         </p>
+         <p>We denote \( \Phi_x(a) = \Phi(\mu_{a,x}) \) the action of \(\Phi\) on a discrete measure, i.e. \[ \Phi_x(a)(\om) = \sum_{k=1}^n
+            a_k e^{-2\imath\pi x_k \om }.  \]
+         </p>
+         <p>We also denote \( \Phi'_x(a) = \Phi(\mu_{a,x})' \), which defines two linear operators \( \Phi_x, \Phi'_x : \RR^n \rightarrow
+            \CC^N \), which are represented and stored as matrices in \( \RR^{N \times n} \).
+         </p>
+         <p>Some display options.</p><pre class="codeinput">ms = 20;
+lw = 1;
+</pre><p>Sampling grid for the display of functions.</p><pre class="codeinput">P = 2048*8;
+options.P = P;
+u = (0:P-1)'/P;
+</pre><p>Set the cutoff pulsation \(f_c\) and number of measurements \(N=2f_c+1\).</p><pre class="codeinput">fc = 6;
+N = 2*fc+1;
+</pre><p>Fourier transform operator.</p><pre class="codeinput">Fourier = @(fc,x)exp(-2i*pi*(-fc:fc)'*x(:)');
+</pre><p>Operators \(\Phi\) and \(\Phi^*\). Note that we assume here implicitely that we use real measures.</p><pre class="codeinput">Phi  = @(fc,x,a)Fourier(fc,x)*a;
+PhiS = @(fc,u,p)real( Fourier(fc,u)'* p );
+</pre><p>Set the spacing \(\de\) between the Diracs.</p><pre class="codeinput">delta = .7/fc;
+</pre><p>Position \(x_0\) and amplitude \(a_0\) of the input measure \(\mu_0=\mu_{x_0,a_0}\) to recover.</p><pre class="codeinput">x0 = [.5-delta .5 .5+delta]';
+a0 = [1 1 -1]';
+n = length(x0);
+</pre><p>Measurements \(y_0 = \Phi \mu_0 \) (noiseless).</p><pre class="codeinput">y0 = Phi(fc,x0,a0);
+</pre><p>Add some noise to obtain \(y = y_0 + w\). We make sure that the noise has hermitian symmetry to corresponds to the Fourier
+            coefficients of a real measure.
+         </p><pre class="codeinput">sigma = .12 * norm(y0);
+w = fftshift( fft(randn(N,1)) );
+w = w/norm(w) * sigma;
+y = y0 + w;
+</pre><p>Display the observed data on the continuous grid \(\Phi^* y_0\).</p><pre class="codeinput">f0 = PhiS(fc,u,y0);
+f = PhiS(fc,u,y);
+clf; hold <span class="string">on</span>;
+plot(u, [f0 f]);
+stem(x0, 10*sign(a0), <span class="string">'k.--'</span>, <span class="string">'MarkerSize'</span>, ms, <span class="string">'LineWidth'</span>, 1);
+axis <span class="string">tight</span>; box <span class="string">on</span>;
+legend(<span class="string">'\Phi^* y_0'</span>, <span class="string">'\Phi^* y'</span>);
+</pre><img vspace="5" hspace="5" src="index_01.png"> <h2>Dual Problem<a name="27"></a></h2>
+         <p>The Fenchel-Rockafellar dual problem associated to \(\Pp_\la(y)\) reads \[       \umax{p \in \CC^N}       \enscond{ \dotp{y}{p}
+            - \frac{\la}{2} \norm{p}^2 }{      \normi{\Phi^*p} \leq 1 }  \] which has a unique solution \(p_\la\), which is a projection
+            on a closed convex set of \(y/\la\), since \[       p_\la = \uargmin{\normi{\Phi^*p} \leq 1} \norm{y/\la-p}^2. \quad     
+             (\Dd_\la(y))  \]
+         </p>
+         <p>We denote \(\eta_\la = \Phi^* p_\la \in L^2(\mathbb{T})\), which is a trigonometric polynomial.</p>
+         <p>The Lagrangian dual problem associated to \(\Pp_0(y)\) reads \[       \umax{p \in \CC^N} \enscond{ \dotp{y}{p} }{      \normi{\Phi^*p}
+            \leq 1 }.  \] It does not have in general an unique solution. In <a href="#biblio">[DuvalPeyre13]</a>, is it proved that \( p_\la \rightarrow p_0\) when \(\la \rightarrow 0\) where \(p_0\) is the solution of \(\Dd_\la(y)\)
+            having a minimal \(\ell^2\) norm. We denote \(\eta_0=\Phi^* p_0\) the <i>minimal norm dual certificate.</i></p>
+         <p>Strong duality holds between the primal problem \(\Pp_\lambda(y)\) and its dual \(\Dd_\lambda(y)\), and thus the values of
+            these problems are equal. For any solution \(\mu_\la\) of \(\Pp_\la(y)\), one has \[ \eta_\la = \frac{1}{\la} \Phi^*( y-\Phi
+            \mu_\la ). \]
+         </p>
+         <p>Furthermore, the support of any solution \(\mu^\star = \mu_{x^\star,a^\star}\) of \( \Pp_\la(y) \) satisfies \[ \forall i,
+            \quad \abs{\eta_\la(x_i^\star)}=1.  \] This property is at the heart of the numerical scheme proposed by <a href="#biblio">[CandesFernandezGranda13]</a> to solve the primal problem.
+         </p>
+         <p>In <a href="#biblio">[DuvalPeyre13]</a>, it is shown that this certificate \(\eta_0\) is important, since it some how governs the stability of the recovered spikes
+            locations (in particular how close they are to \(x_0\)) when the noise \(w\) is small.
+         </p>
+         <h2>Douglas-Rachford Algorithm<a name="33"></a></h2>
+         <p>Note that this section is independent from the other one, and in particular this section has its own notations. The Douglas-Rachford
+            (DR) algorithm is an iterative scheme to minimize functionals of the form \[ \umin{x} F(x) + G(x) \] over a Hibert space (assumed
+            for ismplicity to be finite dimensional) endowed with a norm \(\norm{\cdot}\), where \(F\) and \(G\) are proper closed convex
+            functions with intersecting domains. We assume that the set of minimizers is non-empty. We also assume that one is able to
+            compute the proximal mappings \( \text{prox}_{\gamma F} \) and \( \text{prox}_{\gamma G} \) which are defined as \[ \text{prox}_{\gamma
+            F}(x) = \uargmin{y} \frac{1}{2}\norm{x-y}^2 + \ga F(y) \] (the same definition applies also for \(G\)).
+         </p>
+         <p>The important point is that \(F\) and \(G\) do not need to be smooth. One onely needs them to be "simple" in the sense that
+            one can compute in closed form their respective proximal mappings.
+         </p>
+         <p>This algorithm was introduced in <a href="#biblio">[LionsMercier79]</a>. as a generalization of an algorithm introduced by Douglas and Rachford in the case of quadratic minimization (which corresponds
+            to the solution of a linear system).
+         </p>
+         <p>To learn more about this algorithm, you can read <a href="#biblio">[CombettesPesquet10]</a>.
+         </p>
+         <p>A Douglas-Rachford (DR) iteration reads \[ \tilde x_{k+1} = \pa{1-\frac{\mu}{2}} \tilde x_k +   \frac{\mu}{2} \text{rprox}_{\gamma
+            G}( \text{rprox}_{\gamma F}(\tilde x_k)  )   \qandq x_{k+1} = \text{prox}_{\gamma F}(\tilde x_{k+1},) \]
+         </p>
+         <p>We have used the following shorthand notation: \[   \text{rprox}_{\gamma F}(x) = 2\text{prox}_{\gamma F}(x)-x \]</p>
+         <p>It is of course possible to inter-change the roles of \(F\) and \(G\), which defines another iterative scheme.</p>
+         <p>One can show that for any value of \(\gamma&gt;0\), any \( 0 &lt; \mu &lt; 2 \), and any \(\tilde x_0\), \(x_k \rightarrow x^\star\)
+            which is a minimizer of the minimization of \(F+G\).
+         </p>
+         <h2>Solving the Dual Problem with Douglas-Rachford<a name="41"></a></h2>
+         <p>It is in general impossible to solve numerically \(\Pp_\la(y)\) because it is an infinite dimensional problem. In contrast,
+            \(\Dd_\la(y)\) is a finite dimensional problem, so that there is some hope to be able to solve it with an algorithm.
+         </p>
+         <p>Recall that the dual problem reads \[ \umin{p \in \CC^N} \norm{p - y/\lambda}^2   \quad\text{s.t.}\quad  \normi{\Phi^* p}
+            \leq 1. \]
+         </p>
+         <p>As detailed in <a href="#biblio">[CandesFernandezGranda13]</a>, the constraint \(\normi{\Phi^* p} \leq 1\) can be re-cast as imposing that the trigonometric polynomials \(1-\Phi^* p\)
+            and \(1+\Phi^* p\) are sums of square polynomials. A classical result (see for instance <a href="#biblio">[Dumitrescu07]</a>) ensures that the convex set of sum of square polynomials (SOS) can be described as the intersection between the set of positive
+            hermitian semi-definite (SDP) matrices \(\Ss^+\) of size \( (N+1)\times(N+1) \) and an affine constraint.
+         </p>
+         <p>The problem is thus encoded using a SDP matrix \(X \in \CC^{(N+1)\times(N+1)}\). We define two linear mappings \(X \in \CC^{(N+1)\times(N+1)}
+            \mapsto Q(X) \in \CC^{N\times N}\) and \(X \in \CC^{(N+1)\times(N+1)} \mapsto p(X) \in \CC^{N}\) extracting sub-matrices as
+            follow   \[       X =           \begin{pmatrix}               Q(X) &amp; p(X) \\               p(X)^* &amp; 1           \end{pmatrix}.
+              \] The additional affine constraint is denoted as \[&nbsp;{\Cc} =       \enscond{&nbsp;Q \in \CC^{N \times N} }{       \forall c \neq
+            0, \sum_{i} Q_{i,i+c} = 0,       \text{trace}(Q)=1       }. \]
+         </p>
+         <p>We thus re-write the initial dual problem as \[       \umin{X \in \CC^{(N+1) \times (N+1)}} F(X) + G(X) \] where \[   \choice{
+                  F(X) = f(p(X)) + \iota_{\Cc}(Q(X)), \\       G(X) = \iota_{\Ss^+}(X), \\       f(p)=\frac{1}{2}\norm{y/\la-p}^2.   }
+            \]
+         </p>
+         <p>Regularization parameter \(\la\).</p><pre class="codeinput">lambda = 1;
+</pre><p>Helper functions.</p><pre class="codeinput">dotp = @(x,y)real(x'*y);
+Xmat = @(p,Q)[Q, p; p', 1];
+Qmat = @(X)X(1:end-1,1:end-1);
+pVec = @(X)X(1:end-1,end);
+</pre><p>Fonction \(f\) which is minimized in the original dual problem.</p><pre class="codeinput">f = @(p)1/2*norm( y/lambda-p )^2;
+</pre><p>Its proximal operator is \[ \text{prox}_{\ga f}(p) = \frac{p+\ga y/\la }{1+\ga}. \]</p><pre class="codeinput">Proxf = @(p,gamma)( p + gamma*y/lambda )/(1+gamma);
+</pre><p>The proximal operator of \(G = \iota_{\Ss^+}\) is the orthogonal projection on \(\Ss^+\). It is  computed, for \(X=U\diag(\si_i)_i
+            V^*\) any SVD of \(X\) as \[ \text{prox}_{\ga G}(X) = \text{Proj}_{\Ss^+}(X) = U\diag(\max(\si_i,0))_i V^*. \] For convenience,
+            this is implemented in the function <tt>perform_sdp_projection</tt>.
+         </p><pre class="codeinput">ProxG = @(X,gamma)perform_sdp_projection(X);
+</pre><p>The proximal operator of \(F\) is  the concatenation of the proximal operator of \(f\) and the proximal operator of \(\iota_{\Cc}\)
+            (which in turn is the orthogonal projector on \(\Cc\)). Note that \(\Cc\) is an affine set for which the projection is easy
+            to compute as \[       \text{Proj}_{\Cc}(Q)_{i,j} = Q_{i,j} - \rho_{j-i}  + \de_{i-j}       \qwhereq       \rho_{c} = \frac{1}{N-\abs{c}}&nbsp;\sum_{i}
+            Q_{i,i+c} \] where \(\de_{c}\) is the Kronecker delta. For convenience, this is implemented in the function <tt>perform_sos_projection</tt>.
+         </p><pre class="codeinput">ProxF = @(X,gamma)Xmat( Proxf(pVec(X),gamma/2), perform_sos_projection(Qmat(X)) );
+</pre><p>Define the reflexive prox operators shortcuts.</p><pre class="codeinput">rProxF = @(x,tau)2*ProxF(x,tau)-x;
+rProxG = @(x,tau)2*ProxG(x,tau)-x;
+</pre><p>Initial point of the DR iterations.</p><pre class="codeinput">X = zeros(2*fc+2);
+</pre><p>Parameters \(\ga&gt;0\) and \(0 &lt; \mu &lt; 2\) of the DR algorithm.</p><pre class="codeinput">gamma = 1/10;
+mu = 1;
+</pre><p>DR iterations.</p><pre class="codeinput">Y = X;
+ObjVal = []; ConstrSDP = []; ConstrSOS = [];
+niter = 300;
+<span class="keyword">for</span> i=1:niter
+    <span class="comment">% record energies</span>
+    ObjVal(i) = f(pVec(X));
+    ConstrSDP(i) = min(real(eig(X)));
+    ConstrSOS(i) = norm(perform_sos_projection(Qmat(X))-Qmat(X), <span class="string">'fro'</span>);
+    <span class="comment">% iterate</span>
+	Y = (1-mu/2)*Y + mu/2*rProxF( rProxG(Y,gamma),gamma );
+	X = ProxG(Y,gamma);
+<span class="keyword">end</span>
+p = pVec(X);
+</pre><p>Display \(\eta_\la = \Phi^* p \) where \(p=p_\la\) is the solution of \(\Dd_\la(y)\).</p><pre class="codeinput">etaLambda = PhiS(fc,u,p);
+clf; hold <span class="string">on</span>;
+stem(x0, sign(a0), <span class="string">'k.--'</span>, <span class="string">'MarkerSize'</span>, ms, <span class="string">'LineWidth'</span>, lw);
+plot([0 1],  [1 1], <span class="string">'k--'</span>, <span class="string">'LineWidth'</span>, lw);
+plot([0 1], -[1 1], <span class="string">'k--'</span>, <span class="string">'LineWidth'</span>, lw);
+plot(u, etaLambda, <span class="string">'b'</span>, <span class="string">'LineWidth'</span>, lw);
+axis([0 1 -1.1 1.1]);
+set(gca, <span class="string">'XTick'</span>, [], <span class="string">'YTick'</span>, [0 1]); box <span class="string">on</span>;
+</pre><img vspace="5" hspace="5" src="index_02.png"> <h2>Solving the Primal Problem with Root Finding<a name="57"></a></h2>
+         <p>Following <a href="#biblio">[CandesFernandezGranda13]</a>, one can hope to solve the primal problem by using the fact that the support of any solution is included in the saturation
+            set of \(\eta_\la\) \[ S = \enscond{t}{ \abs{\eta_\la(t)}=1 }. \] A key remark is that this set can be computed by finding
+            the roots of a triginometric polynomial on the unit circle
+         </p>
+         <p>We assume that \(\Phi_{x^\star}\) is injective, where \(x^\star\) is a vector containing the points in \(S\). This is obtained
+            in the case that \(\eta_\la\) is not a constant polynomial.
+         </p>
+         <p>Display the magnitude of \(1-\abs{\eta_\la(t)}^2\), which is a trigonometric polynomial which is zero at the locations \(S\)
+            of the Diracs of the primal problem.
+         </p><pre class="codeinput">clf; hold <span class="string">on</span>;
+stem(x0, sign(abs(a0)), <span class="string">'k.--'</span>, <span class="string">'MarkerSize'</span>, ms, <span class="string">'LineWidth'</span>, lw);
+plot([0 1],  [1 1], <span class="string">'k--'</span>, <span class="string">'LineWidth'</span>, lw);
+plot(u, 1-abs(etaLambda).^2, <span class="string">'b'</span>, <span class="string">'LineWidth'</span>, lw);
+axis([0 1 -.1 1.1]);
+set(gca, <span class="string">'XTick'</span>, [], <span class="string">'YTick'</span>, [0 1]);
+box <span class="string">on</span>;
+</pre><img vspace="5" hspace="5" src="index_03.png"> <p>Compute the coefficients \(c\) of the squared polynomial \(P(z) = 1-\abs{\eta(t)}^2 \geq 0\).</p><pre class="codeinput">c = -conv(p,flipud(conj(p)));
+c(N)=1+c(N);
+</pre><p>Comput the roots \(R\) of \(P\).</p><pre class="codeinput">R = roots(flipud(c));
+</pre><p>Display the localization of the roots of \(P(z)\). Note that roots come in pairs of roots having the same argument.</p><pre class="codeinput">clf;
+plot(real(R),imag(R),<span class="string">'*'</span>);
+hold <span class="string">on</span>;
+plot(cos(2*pi*x0), sin(2*pi*x0),<span class="string">'ro'</span>);
+plot( exp(1i*linspace(0,2*pi,200)), <span class="string">'--'</span> );
+hold <span class="string">off</span>;
+legend(<span class="string">'Roots'</span>,<span class="string">'Support of x'</span>);
+axis <span class="string">equal</span>; axis([-1 1 -1 1]*1.5);
+</pre><img vspace="5" hspace="5" src="index_04.png"> <p>We isolate the roots \(R_0\) which are on the unit circle, those we are interested in.</p><pre class="codeinput">tol = 1e-2;
+R0 = R(abs(1-abs(R)) &lt; tol);
+</pre><p>Note that roots located on the unit circle (those we are interested in) are actually double roots.</p><pre class="codeinput">[~,I]=sort(angle(R0));
+R0 = R0(I); R0 = R0(1:2:end);
+</pre><p>compute argument to obtain the position \(x^\star\) of the Diracs locations of the solution to the primal problem.</p><pre class="codeinput">x = angle(R0)/(2*pi);
+x = sort(mod(x,1));
+</pre><p>The first order condition of the primal problem \(\Pp_\la(y)\) implies that the optimal coefficients \(a^\star\) satisfies
+            \[ \Phi_{x^\star}^*( \Phi_{x^\star} a^\star - y ) + \la s^\star = 0, \] where \( s^\star = \text{sign}(a^\star) \) can be
+            computed explicitely as \[ s^\star = \text{sign}(\Phi_x^* p) = \text{sign}(\eta_\la(x^\star)). \]
+         </p><pre class="codeinput">Phix = Fourier(fc,x);
+s = sign(real(Phix'*p));
+</pre><p>One thus obtains, since \(\Phi_{x^\star}\) has full rank, \[       a^\star = \Phi_{x^\star}^+ y - \la (\Phi_{x^\star}^* \Phi_{x^\star})^{-1}
+            s^\star. \]
+         </p><pre class="codeinput">a = real(Phix\y - lambda*pinv(Phix'*Phix)*s );
+</pre><p>Display the retrieved Dirac locations.</p><pre class="codeinput">clf; hold <span class="string">on</span>;
+stem(x0, a0, <span class="string">'k.--'</span>, <span class="string">'MarkerSize'</span>, ms, <span class="string">'LineWidth'</span>, 1);
+stem(x, a, <span class="string">'r.--'</span>, <span class="string">'MarkerSize'</span>, ms, <span class="string">'LineWidth'</span>, 1);
+axis([0 1 -1.1 1.1]); box <span class="string">on</span>;
+legend(<span class="string">'Original'</span>, <span class="string">'Recovered'</span>);
+</pre><img vspace="5" hspace="5" src="index_05.png"> <p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) You can see that the dual certificate \(\abs{\eta_\la}\) saturate to \(+1\) or \(-1\) in region that are far away from the
+            initial support \(x_0\). This means either that the noise is too large for the method to successfully estimate robustly this
+            support, or that \(\la\) was not chosen large enough. Explore different value of noise level \(\norm{w}\) and \(\la\) to determine
+            empirically the signal/noise/\(\la\) regime where the support is sucessfully estimated.
+         </p><pre class="codeinput">exo1;
+</pre><h2>Certificates and Pre-Certificates<a name="70"></a></h2>
+         <p>The minimal norm certificate \(\eta_0\) is important because it describes the evolution of \(\mu_\la\) of \(\Pp_\la(y)\) as
+            a function of \(\la\) when \(\la\) is small enough. In particular, as shown in <a href="#biblio">[DuvalPeyre13]</a>, if the saturation set \[       S_0 = \enscond{t \in \mathbb{T}}{ \abs{\eta_0(t)}=1 } \] is equal to \(x_0\) and if \(\eta_0''(t)
+            \neq 0\) for \(t \in S_0\), then for small noise and small \(\la\), \(\mu_\la\) have the same number of Diracs as \(\mu_0\),
+            and both Diracs' locations and amplitude are close to those of \(\mu_0\).
+         </p>
+         <p>A major difficulty is that in general \(\eta_0\) is the solution of a convex progam, and is hence difficult to compute and
+            to analyze.
+         </p>
+         <p>It is however possible to compute a reasonnable guess by computing the minimal norm vector which interpolates the Diracs with
+            vanishing derivatives. It corresponds to computing \(\eta_V = \Phi^* p_V\) where \[       p_V = \uargmin{p} \norm{p}^2   
+               \quad\text{s.t.}\quad           \Ga_x^* p = b_0   \] where we define \[   \Ga_x = [\Phi_x, \Phi_x'] \in \RR^{ N \times
+            (2n) }   \qandq   b_0 = (\text{sign}(a_0),0  )^* \in \RR^{2n}. \]
+         </p>
+         <p>It is easy to see that the solution of this problem can be computed in closed form by solving a linear system \[ p_V = (\Ga_x)^{+,*}
+            b_0.  \]
+         </p>
+         <p>Compute the \(\Gamma_x\) matrix.</p><pre class="codeinput">d = 1; <span class="comment">% number of derivatives</span>
+w = ones(N,1);
+Gamma = [];
+<span class="keyword">for</span> i=0:d
+    Gamma = [Gamma, diag(w) * Fourier(fc,x0)];
+    <span class="comment">% derivate the filter</span>
+    w = w .* 2i*pi .* (-fc:fc)';
+<span class="keyword">end</span>
+</pre><p>Compute \(\eta_V\).</p><pre class="codeinput">pV = pinv(Gamma') * [sign(a0); zeros(n,1)];
+etaV = PhiS(fc, u, pV);
+</pre><p>Display the pre-certificate. In this case, it is a certificate and hence \(\eta_V = \eta_0\).</p><pre class="codeinput">clf; hold <span class="string">on</span>;
+stem(x0, sign(a0), <span class="string">'k.--'</span>, <span class="string">'MarkerSize'</span>, ms, <span class="string">'LineWidth'</span>, lw);
+plot([0 1],  [1 1], <span class="string">'k--'</span>, <span class="string">'LineWidth'</span>, lw);
+plot([0 1], -[1 1], <span class="string">'k--'</span>, <span class="string">'LineWidth'</span>, lw);
+plot(u, etaV, <span class="string">'b'</span>, <span class="string">'LineWidth'</span>, lw);
+axis([0 1 -1.1 1.1]);
+set(gca, <span class="string">'XTick'</span>, [], <span class="string">'YTick'</span>, [-1 1]);
+box <span class="string">on</span>;
+</pre><img vspace="5" hspace="5" src="index_06.png"> <p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Study the evolution of the pre-certificate as the separation between the spikes diminishes. When is it the case that \(\eta_0=\eta_V\)?
+            When is it the case that \(\mu_0\) is the solution of \(\Pp_0(\Phi \mu_0)\) ?
+         </p><pre class="codeinput">exo2;
+</pre><img vspace="5" hspace="5" src="index_07.png"> <h2>Bibliography<a name="78"></a></h2>
+         <p><a name="biblio"></a></p>
+         <div>
+            <ul>
+               <li>[LionsMercier79] P. L. Lions and B. Mercier, <i>Splitting Algorithms for the Sum of Two Nonlinear Operators</i>, SIAM Journal on Numerical Analysis, Vol. 16, No. 6 (Dec., 1979), pp. 964-979.
+               </li>
+               <li>[CombettesPesquet10] P.L. Combettes and J-C. Pesquet, <i>Proximal Splitting Methods in Signal Processing</i>, in: Fixed-Point Algorithms for Inverse Problems in Science and Engineering, New York: Springer-Verlag, 2010.
+               </li>
+               <li>[DuvalPeyre13] V. Duval and G. Peyre, <i>Exact Support Recovery for Sparse Spikes Deconvolution</i>, preprint hal-00839635, 2013
+               </li>
+               <li>[deCastroGamboa12] Y. de Castro and F. Gamboa. <i>Exact reconstruction using beurling minimal extrapolation</i>. Journal of Mathematical Analysis and Applications, 395(1):336-354, 2012.
+               </li>
+               <li>[CandesFernandezGranda13]&nbsp; E. J. Candes and C. Fernandez-Granda. <i>Towards a mathematical theory of super-resolution</i>. Communications on Pure and Applied Mathematics. To appear., 2013.
+               </li>
+               <li>[BrediesPikkarainen13] K. Bredies and H.K. Pikkarainen. Inverse problems in spaces of measures. ESAIM: Control, Optimisation
+                  and Calculus of Variations, 19:190-218, 2013.
+               </li>
+               <li>[Dumitrescu07] B. Dumitrescu, Positive Trigonometric Polynomials and Signal Processing Applications, Springer, 2007.</li>
+            </ul>
+         </div>
+         <p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Sparse Spikes Deconvolution over the Space of Measures
+% This numerical tour explores the resolution of the sparse spikes
+% deconvolution problem over the infinite dimensional Banach space of Radon measures. 
+% I would like to thank Jalal Fadili for his comments and corrections. 
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_signal.zip signal toolbox> and 
+% <../toolbox_general.zip general toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_signal| and 
+% |toolbox_general|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_signal/');
+getd('toolbox_general/');
+
+%% Sparse Spikes Deconvolution
+% We consider \(N=2f_c+1\) low-frequency noisy observations \(y = \Phi \mu_0 + w \in \CC^N\) of a input unknown
+% Radon measure \(\mu_0 \in \Mm(\mathbb{T})\) where \(\mathbb{T}=\RR/\ZZ\)
+% \[ \forall \om \in \{-f_c,\ldots,f_c\}, \quad
+%       (\Phi \mu_0)(\om) = \int_{\mathbb{T}} e^{-2\imath\pi \om t} d\mu_0(t). \]
+
+%%
+% We follow here a recent trend initiated by several papers (see for
+% instance
+% <#biblio [deCastroGamboa12, CandesFernandezGranda13, BrediesPikkarainen13]>) that
+% performs the recovery of sparse measures (i.e. sum of Diracs) using a convex sparse regularization over the
+% the space of Radon measures (which is in some sense the dual of the Banach space of continuous functions).
+
+%%
+% We consider, for \(\la>0\), the following regularization
+% \[ \umin{\mu \in \Mm(\mathbb{T})} \frac{1}{2} \norm{y-\Phi \mu}^2 + \la \norm{\mu}_{\text{TV}},
+%       \quad (\Pp_\la(y)) \]
+% where \(\norm{\mu}_{\text{TV}}\) is the so-called total variation of the
+% measure \(\mu\), which should not be 
+% confused with the total variation seminorm of a function. For an arbitrary measure, it reads
+% \[ \norm{\mu}_{\text{TV}} = \inf\enscond{ \int_{\mathbb{T}} f d\mu }{ f \in C^0(\mathbb{T}), \normi{f} \leq 1 }. \]
+% When there is no noise, it makes sense to consider the limit \(\la
+% \rightarrow 0^+\) of \(\Pp_\la(y)\), which reads
+% \[ \umin{\mu} \enscond{ \norm{\mu}_{\text{TV}} }{ y=\Phi \mu }. \]
+
+%%
+% We focus our attention on discrete measures, which are finite sum of Diracs, and that we write, for \(x \in
+% \mathbb{T}^n\) and \(a \in \RR^n\)
+% \[ \mu_{x,a} = \sum_{i=1}^n a_i \de_{x_i}. \]
+% In this case, one has
+% \[ \norm{\mu_{x,a}}_{\text{TV}} = \norm{a}_1 = \sum_{i=1}^n \abs{a_i},  \]
+% which shows that \(\norm{\cdot}_{\text{TV}}\) is a natural generalization
+% of the \(\ell^1\) norm to measures. 
+
+%% 
+% Several recent papers (such as <#biblio [deCastroGamboa12, CandesFernandezGranda13, BrediesPikkarainen13, DuvalPeyre13]>)
+% have studied conditions under which \(\mu_0\) is the
+% unique solution of \(\Pp_0(y)\) when \(\la=0\) and the robustness to
+% noise when using \(\Pp_\la(y)\) with \(\la \sim \norm{w}\). 
+% We refer the interested reader to these papers and references
+% therein. 
+
+%%
+% The goal of this numerical tour is to detail how to numerically solve
+% this problem using an approach proposed by <#biblio [CandesFernandezGranda13]>
+% and also to get some intuition about the primal-dual relationships
+% that underly several theoretical analyses of the performance of the
+% recovery. 
+
+%%
+% In the following, we denote, for \(p\in \CC^N\), the adjoint operator
+% \[ \Phi^* p(t) = \sum_{\om=-f_c}^{f_c} p(\om) e^{2\imath \om t},  \]
+% so that \(\Phi^* : \CC^N \rightarrow L^2(\mathbb{T}).\).
+
+%%
+% We denote \( \Phi_x(a) = \Phi(\mu_{a,x}) \) the action of \(\Phi\)
+% on a discrete measure, i.e.
+% \[ \Phi_x(a)(\om) = \sum_{k=1}^n a_k e^{-2\imath\pi x_k \om }.  \]
+
+%%
+% We also denote
+% \( \Phi'_x(a) = \Phi(\mu_{a,x})' \), which defines two linear operators
+% \( \Phi_x, \Phi'_x : \RR^n \rightarrow \CC^N \), which are represented and stored as matrices 
+% in \( \RR^{N \times n} \). 
+
+
+%%
+% Some display options.
+
+ms = 20;
+lw = 1;
+
+%%
+% Sampling grid for the display of functions. 
+
+P = 2048*8;
+options.P = P;
+u = (0:P-1)'/P;
+
+%%
+% Set the cutoff pulsation \(f_c\) and number of measurements \(N=2f_c+1\).
+
+fc = 6;
+N = 2*fc+1;
+
+%%
+% Fourier transform operator.
+
+Fourier = @(fc,x)exp(-2i*pi*(-fc:fc)'*x(:)');
+
+%% 
+% Operators \(\Phi\) and \(\Phi^*\). Note that we assume here implicitely that we use real measures.  
+
+Phi  = @(fc,x,a)Fourier(fc,x)*a;
+PhiS = @(fc,u,p)real( Fourier(fc,u)'* p );
+
+%%
+% Set the spacing \(\de\) between the Diracs.
+
+delta = .7/fc; 
+
+%%
+% Position \(x_0\) and amplitude \(a_0\) of the input measure \(\mu_0=\mu_{x_0,a_0}\) to recover.
+
+x0 = [.5-delta .5 .5+delta]';
+a0 = [1 1 -1]';
+n = length(x0);
+
+%%
+% Measurements \(y_0 = \Phi \mu_0 \) (noiseless).
+
+y0 = Phi(fc,x0,a0);
+
+%%
+% Add some noise to obtain \(y = y_0 + w\).
+% We make sure that the noise has hermitian symmetry to corresponds to the
+% Fourier coefficients of a real measure.
+
+sigma = .12 * norm(y0);
+w = fftshift( fft(randn(N,1)) ); 
+w = w/norm(w) * sigma;
+y = y0 + w;
+
+%%
+% Display the observed data on the continuous grid \(\Phi^* y_0\).
+
+f0 = PhiS(fc,u,y0);
+f = PhiS(fc,u,y);
+clf; hold on;
+plot(u, [f0 f]);
+stem(x0, 10*sign(a0), 'k.REPLACE_WITH_DASH_DASH', 'MarkerSize', ms, 'LineWidth', 1);
+axis tight; box on;
+legend('\Phi^* y_0', '\Phi^* y');
+
+%% Dual Problem
+% The Fenchel-Rockafellar dual problem associated to \(\Pp_\la(y)\) reads
+% \[ 
+%       \umax{p \in \CC^N} 
+%       \enscond{ \dotp{y}{p} - \frac{\la}{2} \norm{p}^2 }{
+%      \normi{\Phi^*p} \leq 1 } 
+%  \] 
+% which has a unique solution \(p_\la\), which is a projection on a closed
+% convex set of \(y/\la\), since 
+% \[ 
+%       p_\la = \uargmin{\normi{\Phi^*p} \leq 1} \norm{y/\la-p}^2. \quad
+%       (\Dd_\la(y)) 
+%  \]
+
+%%
+% We denote \(\eta_\la = \Phi^*
+% p_\la \in L^2(\mathbb{T})\), which is a trigonometric polynomial. 
+
+%%
+% The Lagrangian dual problem associated to \(\Pp_0(y)\) reads
+% \[ 
+%       \umax{p \in \CC^N} \enscond{ \dotp{y}{p} }{
+%      \normi{\Phi^*p} \leq 1 }. 
+%  \]
+% It does not have in general an unique solution. In <#biblio [DuvalPeyre13]>, is it proved that 
+% \( p_\la \rightarrow p_0\) when \(\la \rightarrow 0\) where \(p_0\) is
+% the solution of \(\Dd_\la(y)\) having a minimal \(\ell^2\) norm. We
+% denote \(\eta_0=\Phi^* p_0\) the _minimal norm dual certificate._
+
+%%
+% Strong duality holds between the primal problem \(\Pp_\lambda(y)\)
+% and its dual \(\Dd_\lambda(y)\), and thus the
+% values of these problems are equal. 
+% For any solution
+% \(\mu_\la\) of \(\Pp_\la(y)\), one has
+% \[ \eta_\la = \frac{1}{\la} \Phi^*( y-\Phi \mu_\la ). \]
+
+%%
+% Furthermore, the
+% support of any solution \(\mu^\star = \mu_{x^\star,a^\star}\) of \( \Pp_\la(y) \)
+% satisfies
+% \[ \forall i, \quad \abs{\eta_\la(x_i^\star)}=1.  \]
+% This property is at the heart of the numerical scheme proposed by
+% <#biblio [CandesFernandezGranda13]> to solve the primal problem. 
+
+%%
+% In <#biblio [DuvalPeyre13]>, it is shown that this certificate \(\eta_0\) is 
+% important, since it some how governs the stability of the recovered
+% spikes locations (in particular how close they are to \(x_0\)) when the noise \(w\) is small.
+
+
+%% Douglas-Rachford Algorithm
+% Note that this section is independent from the other one, and in
+% particular this section has its own notations. 
+% The Douglas-Rachford (DR) algorithm is an iterative scheme to minimize
+% functionals of the form
+% \[ \umin{x} F(x) + G(x) \]
+% over a Hibert space (assumed for ismplicity to be finite dimensional) 
+% endowed with a norm \(\norm{\cdot}\), where \(F\) and \(G\) 
+% are proper closed convex functions with intersecting domains. We assume that the set of minimizers is non-empty.
+% We also assume that one is able to
+% compute the proximal mappings \( \text{prox}_{\gamma F} \) and 
+% \( \text{prox}_{\gamma G} \) which are defined as
+% \[ \text{prox}_{\gamma F}(x) = \uargmin{y} \frac{1}{2}\norm{x-y}^2 + \ga F(y) \]
+% (the same definition applies also for \(G\)).
+
+%%
+% The important point is that \(F\) and \(G\) do not need to be smooth.
+% One onely needs them to be "simple" in the sense that one can compute in closed form their respective proximal mappings.
+
+%%
+% This algorithm was introduced in <#biblio [LionsMercier79]>.
+% as a generalization of an algorithm introduced by Douglas and Rachford in
+% the case of quadratic minimization (which corresponds to the solution of
+% a linear system).
+
+%%
+% To learn more about this algorithm, you can read <#biblio [CombettesPesquet10]>.
+
+%%
+% A Douglas-Rachford (DR) iteration reads
+% \[ \tilde x_{k+1} = \pa{1-\frac{\mu}{2}} \tilde x_k + 
+%   \frac{\mu}{2} \text{rprox}_{\gamma G}( \text{rprox}_{\gamma F}(\tilde x_k)  ) 
+%   \qandq x_{k+1} = \text{prox}_{\gamma F}(\tilde x_{k+1},) \]
+
+
+%%
+% We have used the following shorthand notation:
+% \[   \text{rprox}_{\gamma F}(x) = 2\text{prox}_{\gamma F}(x)-x \]
+
+%%
+% It is of course possible to inter-change the roles of \(F\) and \(G\),
+% which defines another iterative scheme.
+
+%%
+% One can show that for any value of \(\gamma>0\), any \( 0 < \mu < 2 \), 
+% and any \(\tilde x_0\), \(x_k \rightarrow x^\star\)
+% which is a minimizer of the minimization of \(F+G\).
+
+%% Solving the Dual Problem with Douglas-Rachford
+% It is in general impossible to solve numerically \(\Pp_\la(y)\) because
+% it is an infinite dimensional problem. In contrast, \(\Dd_\la(y)\) is a
+% finite dimensional problem, so that there is some hope to be able to
+% solve it with an algorithm.
+
+%%
+% Recall that the dual problem reads
+% \[ \umin{p \in \CC^N} \norm{p - y/\lambda}^2   \quad\text{s.t.}\quad  \normi{\Phi^* p} \leq 1. \] 
+
+%%
+% As detailed in <#biblio [CandesFernandezGranda13]>, the constraint
+% \(\normi{\Phi^* p} \leq 1\) can be re-cast as imposing that the
+% trigonometric polynomials \(1-\Phi^* p\) and \(1+\Phi^* p\) are sums of
+% square polynomials. A classical result (see for instance <#biblio [Dumitrescu07]>) 
+% ensures that 
+% the convex set of sum of square polynomials (SOS) can
+% be described as the intersection between the set of positive
+% hermitian semi-definite (SDP) matrices \(\Ss^+\) of size \( (N+1)\times(N+1) \) and an
+% affine constraint.
+
+%%
+% The problem is thus encoded using a SDP matrix \(X \in
+% \CC^{(N+1)\times(N+1)}\).
+% We define two linear mappings
+% \(X \in \CC^{(N+1)\times(N+1)} \mapsto Q(X) \in \CC^{N\times N}\)
+% and 
+% \(X \in \CC^{(N+1)\times(N+1)} \mapsto p(X) \in \CC^{N}\)
+% extracting sub-matrices as follow
+%   \[
+%       X = 
+%           \begin{pmatrix}
+%               Q(X) & p(X) \\ 
+%               p(X)^* & 1 
+%           \end{pmatrix}.
+%   \]
+% The additional affine constraint is denoted as
+% \[ {\Cc} = 
+%       \enscond{ Q \in \CC^{N \times N} }{
+%       \forall c \neq 0, \sum_{i} Q_{i,i+c} = 0, 
+%       \text{trace}(Q)=1
+%       }. \]
+
+%%
+% We thus re-write the initial dual problem as
+% \[ 
+%       \umin{X \in \CC^{(N+1) \times (N+1)}} F(X) + G(X) 
+% \]
+% where
+% \[
+%   \choice{    
+%       F(X) = f(p(X)) + \iota_{\Cc}(Q(X)), \\
+%       G(X) = \iota_{\Ss^+}(X), \\
+%       f(p)=\frac{1}{2}\norm{y/\la-p}^2.
+%   }
+% \]
+
+%%
+% Regularization parameter \(\la\).
+
+lambda = 1;
+
+%%
+% Helper functions.
+
+dotp = @(x,y)real(x'*y);
+Xmat = @(p,Q)[Q, p; p', 1];
+Qmat = @(X)X(1:end-1,1:end-1);
+pVec = @(X)X(1:end-1,end);
+
+
+%%
+% Fonction \(f\) which is minimized in the original dual problem.
+
+f = @(p)1/2*norm( y/lambda-p )^2;
+
+%%
+% Its proximal
+% operator is 
+% \[ \text{prox}_{\ga f}(p) = \frac{p+\ga y/\la }{1+\ga}. \]
+
+Proxf = @(p,gamma)( p + gamma*y/lambda )/(1+gamma);
+
+%%
+% The proximal operator of \(G = \iota_{\Ss^+}\) is the orthogonal projection
+% on \(\Ss^+\). It is  computed, for \(X=U\diag(\si_i)_i V^*\) any SVD of
+% \(X\) as
+% \[ \text{prox}_{\ga G}(X) = \text{Proj}_{\Ss^+}(X) = U\diag(\max(\si_i,0))_i V^*. \]
+% For convenience, this is implemented in the function
+% |perform_sdp_projection|.
+
+ProxG = @(X,gamma)perform_sdp_projection(X);
+
+%%
+% The proximal operator of \(F\) is  the concatenation of the
+% proximal operator of \(f\) and the proximal operator of \(\iota_{\Cc}\)
+% (which in turn is the orthogonal projector on \(\Cc\)). Note that \(\Cc\)
+% is an affine set for which the projection is easy to compute as
+% \[ 
+%       \text{Proj}_{\Cc}(Q)_{i,j} = Q_{i,j} - \rho_{j-i}  + \de_{i-j} 
+%       \qwhereq
+%       \rho_{c} = \frac{1}{N-\abs{c}} \sum_{i} Q_{i,i+c} 
+% \]
+% where \(\de_{c}\) is the Kronecker delta. For convenience, this is
+% implemented in the function |perform_sos_projection|. 
+
+ProxF = @(X,gamma)Xmat( Proxf(pVec(X),gamma/2), perform_sos_projection(Qmat(X)) );
+
+%%
+% Define the reflexive prox operators shortcuts.
+
+rProxF = @(x,tau)2*ProxF(x,tau)-x;
+rProxG = @(x,tau)2*ProxG(x,tau)-x;
+
+%%
+% Initial point of the DR iterations.
+
+X = zeros(2*fc+2);
+
+%%
+% Parameters \(\ga>0\) and \(0 < \mu < 2\) of the DR algorithm. 
+
+gamma = 1/10;
+mu = 1;
+
+%%
+% DR iterations.
+
+Y = X;
+ObjVal = []; ConstrSDP = []; ConstrSOS = [];
+niter = 300;
+for i=1:niter 
+    % record energies
+    ObjVal(i) = f(pVec(X));
+    ConstrSDP(i) = min(real(eig(X)));
+    ConstrSOS(i) = norm(perform_sos_projection(Qmat(X))-Qmat(X), 'fro'); 
+    % iterate
+	Y = (1-mu/2)*Y + mu/2*rProxF( rProxG(Y,gamma),gamma );        
+	X = ProxG(Y,gamma);
+end
+p = pVec(X);
+
+%%
+% Display \(\eta_\la = \Phi^* p \) where \(p=p_\la\) is the solution of
+% \(\Dd_\la(y)\).
+
+etaLambda = PhiS(fc,u,p);
+clf; hold on;
+stem(x0, sign(a0), 'k.REPLACE_WITH_DASH_DASH', 'MarkerSize', ms, 'LineWidth', lw);
+plot([0 1],  [1 1], 'kREPLACE_WITH_DASH_DASH', 'LineWidth', lw); 
+plot([0 1], -[1 1], 'kREPLACE_WITH_DASH_DASH', 'LineWidth', lw);
+plot(u, etaLambda, 'b', 'LineWidth', lw);
+axis([0 1 -1.1 1.1]);
+set(gca, 'XTick', [], 'YTick', [0 1]); box on;
+
+%% Solving the Primal Problem with Root Finding
+% Following <#biblio [CandesFernandezGranda13]>, one can hope to solve the
+% primal problem by using the fact that the support of any solution is
+% included in the saturation set of \(\eta_\la\) 
+% \[ S = \enscond{t}{ \abs{\eta_\la(t)}=1 }. \]
+% A key remark is that this set can be computed 
+% by finding the roots of a triginometric polynomial on the unit circle
+
+
+%% 
+% We assume that \(\Phi_{x^\star}\) is
+% injective, where \(x^\star\) is a vector containing the points in \(S\).
+% This is obtained in the case that \(\eta_\la\) is not a constant polynomial.
+
+%%
+% Display the magnitude of \(1-\abs{\eta_\la(t)}^2\), which is a trigonometric
+% polynomial which is zero at the locations \(S\) of the Diracs of the primal
+% problem. 
+
+clf; hold on;
+stem(x0, sign(abs(a0)), 'k.REPLACE_WITH_DASH_DASH', 'MarkerSize', ms, 'LineWidth', lw);
+plot([0 1],  [1 1], 'kREPLACE_WITH_DASH_DASH', 'LineWidth', lw);
+plot(u, 1-abs(etaLambda).^2, 'b', 'LineWidth', lw);
+axis([0 1 -.1 1.1]);
+set(gca, 'XTick', [], 'YTick', [0 1]);
+box on;
+
+%%
+% Compute the coefficients \(c\) of the squared polynomial \(P(z) =
+% 1-\abs{\eta(t)}^2 \geq 0\).
+
+c = -conv(p,flipud(conj(p)));
+c(N)=1+c(N);
+
+%%
+% Comput the roots \(R\) of \(P\).
+
+R = roots(flipud(c));
+
+%%
+% Display the localization of the roots of \(P(z)\).
+% Note that roots come in pairs of roots having the same argument. 
+
+clf;
+plot(real(R),imag(R),'*');
+hold on;
+plot(cos(2*pi*x0), sin(2*pi*x0),'ro');
+plot( exp(1i*linspace(0,2*pi,200)), 'REPLACE_WITH_DASH_DASH' );
+hold off;
+legend('Roots','Support of x'); 
+axis equal; axis([-1 1 -1 1]*1.5);
+
+%%
+% We isolate the roots \(R_0\) which are on the unit circle, those we are interested in.
+
+tol = 1e-2;
+R0 = R(abs(1-abs(R)) < tol);
+
+%%
+% Note that roots located on the unit circle (those we are interested in) are
+% actually double roots. 
+
+[~,I]=sort(angle(R0));
+R0 = R0(I); R0 = R0(1:2:end);
+
+%%
+% compute argument to obtain the position \(x^\star\) of the Diracs locations of 
+% the solution to the primal problem.
+
+x = angle(R0)/(2*pi);
+x = sort(mod(x,1));
+
+%%
+% The first order condition of the primal problem \(\Pp_\la(y)\) implies that the optimal
+% coefficients \(a^\star\) satisfies
+% \[ \Phi_{x^\star}^*( \Phi_{x^\star} a^\star - y ) + \la s^\star = 0, \]
+% where \( s^\star = \text{sign}(a^\star) \) can be computed explicitely as
+% \[ s^\star = \text{sign}(\Phi_x^* p) = \text{sign}(\eta_\la(x^\star)). \]
+
+Phix = Fourier(fc,x);
+s = sign(real(Phix'*p)); 
+
+%%
+% One thus obtains, since \(\Phi_{x^\star}\) has full rank, 
+% \[ 
+%       a^\star = \Phi_{x^\star}^+ y - \la (\Phi_{x^\star}^* \Phi_{x^\star})^{-1} s^\star. 
+% \]
+
+a = real(Phix\y - lambda*pinv(Phix'*Phix)*s ); 
+
+%%
+% Display the retrieved Dirac locations. 
+
+clf; hold on;
+stem(x0, a0, 'k.REPLACE_WITH_DASH_DASH', 'MarkerSize', ms, 'LineWidth', 1);
+stem(x, a, 'r.REPLACE_WITH_DASH_DASH', 'MarkerSize', ms, 'LineWidth', 1);
+axis([0 1 -1.1 1.1]); box on;
+legend('Original', 'Recovered');
+
+%%
+% _Exercice 1:_ (<../missing-exo/ check the solution>)
+% You can see that the dual certificate \(\abs{\eta_\la}\) saturate to
+% \(+1\) or \(-1\) in region that are far away from the initial support
+% \(x_0\). This means either that the noise is too large for the method to
+% successfully estimate robustly this support, or that \(\la\) was not
+% chosen large enough. Explore different value of noise level \(\norm{w}\) and \(\la\)
+% to determine empirically the signal/noise/\(\la\) regime where the support is 
+% sucessfully estimated.
+
+exo1;
+
+%% Certificates and Pre-Certificates
+% The minimal norm certificate \(\eta_0\) is important because it describes the
+% evolution of \(\mu_\la\) of \(\Pp_\la(y)\) as a function of \(\la\) when \(\la\) is small enough. In
+% particular, as shown in <#biblio [DuvalPeyre13]>, 
+% if the saturation set 
+% \[ 
+%       S_0 = \enscond{t \in \mathbb{T}}{ \abs{\eta_0(t)}=1 } 
+% \]
+% is equal to \(x_0\) and if \(\eta_0''(t) \neq 0\) for \(t \in S_0\),
+% then for small noise and
+% small \(\la\), \(\mu_\la\) have the same number of Diracs as \(\mu_0\), and
+% both Diracs' locations and amplitude are close to those of \(\mu_0\).
+
+%%
+% A major difficulty is that in general \(\eta_0\) is the solution of a
+% convex progam, and is hence difficult to compute and to analyze. 
+
+%%
+% It is however possible to compute a reasonnable guess by computing the minimal
+% norm vector which interpolates the Diracs with vanishing derivatives. It
+% corresponds to computing \(\eta_V = \Phi^* p_V\) where
+% \[ 
+%       p_V = \uargmin{p} \norm{p}^2 
+%       \quad\text{s.t.}\quad
+%           \Ga_x^* p = b_0
+%   \]
+% where we define
+% \[  
+%   \Ga_x = [\Phi_x, \Phi_x'] \in \RR^{ N \times (2n) }
+%   \qandq
+%   b_0 = (\text{sign}(a_0),0  )^* \in \RR^{2n}.
+% \]
+
+%%
+% It is easy to see that the solution of this problem can be computed in
+% closed form by solving a linear system
+% \[ p_V = (\Ga_x)^{+,*} b_0.  \]
+
+%% 
+% Compute the \(\Gamma_x\) matrix. 
+
+d = 1; % number of derivatives
+w = ones(N,1);
+Gamma = [];
+for i=0:d
+    Gamma = [Gamma, diag(w) * Fourier(fc,x0)];
+    % derivate the filter
+    w = w .* 2i*pi .* (-fc:fc)';
+end
+
+%%
+% Compute \(\eta_V\).
+
+pV = pinv(Gamma') * [sign(a0); zeros(n,1)];
+etaV = PhiS(fc, u, pV);
+
+%%
+% Display the pre-certificate. In this case, it is a certificate and hence
+% \(\eta_V = \eta_0\). 
+
+clf; hold on;
+stem(x0, sign(a0), 'k.REPLACE_WITH_DASH_DASH', 'MarkerSize', ms, 'LineWidth', lw);
+plot([0 1],  [1 1], 'kREPLACE_WITH_DASH_DASH', 'LineWidth', lw); 
+plot([0 1], -[1 1], 'kREPLACE_WITH_DASH_DASH', 'LineWidth', lw);
+plot(u, etaV, 'b', 'LineWidth', lw);
+axis([0 1 -1.1 1.1]);
+set(gca, 'XTick', [], 'YTick', [-1 1]);
+box on;
+
+%%
+% _Exercice 2:_ (<../missing-exo/ check the solution>)
+% Study the evolution of the pre-certificate as the separation between the spikes diminishes. 
+% When is it the case that \(\eta_0=\eta_V\)? When is it the case that \(\mu_0\) is the solution of \(\Pp_0(\Phi \mu_0)\) ?
+
+exo2;
+
+
+%% Bibliography
+% <html><a name="biblio"></a></html>
+
+%%
+% * [LionsMercier79] P. L. Lions and B. Mercier, _Splitting Algorithms for the Sum of Two Nonlinear Operators_, SIAM Journal on Numerical Analysis, Vol. 16, No. 6 (Dec., 1979), pp. 964-979.
+% * [CombettesPesquet10] P.L. Combettes and J-C. Pesquet, _Proximal Splitting Methods in Signal Processing_, in: Fixed-Point Algorithms for Inverse Problems in Science and Engineering, New York: Springer-Verlag, 2010.
+% * [DuvalPeyre13] V. Duval and G. Peyre, _Exact Support Recovery for Sparse Spikes Deconvolution_, preprint hal-00839635, 2013
+% * [deCastroGamboa12] Y. de Castro and F. Gamboa. _Exact reconstruction using beurling minimal extrapolation_. Journal of Mathematical Analysis and Applications, 395(1):336-354, 2012.
+% * [CandesFernandezGranda13]  E. J. Candes and C. Fernandez-Granda. _Towards a mathematical theory of super-resolution_. Communications on Pure and Applied Mathematics. To appear., 2013.
+% * [BrediesPikkarainen13] K. Bredies and H.K. Pikkarainen. Inverse problems in spaces of measures. ESAIM: Control, Optimisation and Calculus of Variations, 19:190-218, 2013.
+% * [Dumitrescu07] B. Dumitrescu, Positive Trigonometric Polynomials and Signal Processing Applications, Springer, 2007.
+
+
+##### SOURCE END #####
+-->
+   </body>
+</html>
