@@ -1,0 +1,1042 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>Generalized Barycentric Coordinates for Warpping</title>
+      <NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
+               	requires JavaScript to process the mathematics on this page.<BR> 
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 8.2">
+      <meta name="date" content="2014-10-21">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>Generalized Barycentric Coordinates for Warpping</h1>
+         <introduction>
+            <p>This tours tests several barycentric coordinates (mean value, harmonic and green) for non-convex polygons, and apply them
+               to 2D warping of images.
+            </p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#8">Domain to Warp</a></li>
+               <li><a href="#14">Mean-valued Coordinates</a></li>
+               <li><a href="#36">Harmonic Coordinates</a></li>
+               <li><a href="#53">Green Coordinates</a></li>
+               <li><a href="#71">Volumertric Barycentric Coordinates</a></li>
+            </ul>
+         </div>
+         <h2>Installing toolboxes and setting up the path.<a name="1"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_signal.zip">signal toolbox</a>, <a href="../toolbox_general.zip">general toolbox</a> and <a href="../toolbox_graph.zip">graph toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_signal</tt>, <tt>toolbox_general</tt> and <tt>toolbox_graph</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
+getd(<span class="string">'toolbox_general/'</span>);
+getd(<span class="string">'toolbox_graph/'</span>);
+</pre><h2>Domain to Warp<a name="8"></a></h2>
+         <p>Create a cage that bound the domain to warp.</p><pre class="codeinput">cage = <span class="string">'V'</span>;
+</pre><p>First we create a 2D closes polygon, which will be a cage used to perform 2D shape deformation.</p><pre class="codeinput">delta = .03;
+rho = .2;
+eta = .05;
+x1 = .5-rho-eta/2; x2 = .5-eta/2;
+x3 = .5+eta/2; x4 = .5+rho+eta/2;
+<span class="keyword">switch</span> cage
+    <span class="keyword">case</span> <span class="string">'L'</span>
+        V = [[delta;delta] [1-delta;delta] [1-delta;delta+rho] [delta+rho;delta+rho] [delta+rho;1-delta] [delta;1-delta]];
+    <span class="keyword">case</span> <span class="string">'U'</span>
+        V = [[x1;delta] [x4;delta] [x4;1-delta] [x3;1-delta] <span class="keyword">...</span>
+            [x3;delta+rho] [x2;delta+rho] [x2;1-delta] [x1;1-delta] ];
+    <span class="keyword">case</span> <span class="string">'V'</span>
+        V = [[x1;delta] [x4;delta] [x4;1-delta] [x3;1-delta] <span class="keyword">...</span>
+            [.5;delta+rho] [x2;1-delta] [x1;1-delta] ];
+<span class="keyword">end</span>
+k = size(V,2);
+</pre><p>Compute a grid.</p><pre class="codeinput">n = 200;
+x = linspace(0,1,n);
+[Y,X] = meshgrid(x,x);
+</pre><p>Indicator of the shape.</p><pre class="codeinput">S = 1 - inpolygon(X,Y,V(1,:),V(2,:));
+</pre><p>Compute a check-board texture inside the L shaped domain.</p><pre class="codeinput">m  = 30;
+[XT,YT] = meshgrid((0:n-1)/n,(0:n-1)/n);
+T = mod( floor(XT*m)+floor(YT*m),2 );
+T(S==1) = 1;
+</pre><p>Display it.</p><pre class="codeinput">lw = 3; ms = 25;
+clf; hold <span class="string">on</span>;
+plot_surf_texture(cat(3,X,Y,zeros(n)), T');
+h = plot(V(1,[1:end 1]), V(2,[1:end 1]), <span class="string">'r.-'</span>);
+set(h, <span class="string">'LineWidth'</span>, lw); set(h, <span class="string">'MarkerSize'</span>, ms);
+view(2); axis(<span class="string">'off'</span>); axis(<span class="string">'equal'</span>);
+</pre><img vspace="5" hspace="5" src="index_01.png"> <h2>Mean-valued Coordinates<a name="14"></a></h2>
+         <p>Mean valued coordinates are usually applied for 3D mesh parameterization, and are used to approximate the Lapalcian on a 1-ring
+            of a triangulation.
+         </p>
+         <p>The mean value coordinates for star-shaped polygons where introduced in</p>
+         <p>M. S. Floater, <i>Mean value coordinates</i> Comp. Aided Geom. Design 20, 19-27, 2003.
+         </p>
+         <p>There extension to arbitrary polygon is presented in</p>
+         <p>K. Hormann and M.S. Floater, <i>Mean value coordinates for arbitrary planar polygons</i> ACM Transactions on Graphics, 25 p. 1424-1441, 2006.
+         </p>
+         <p>See also the following paper for application to shape warping:</p>
+         <p>T. Ju, S. Schaefer and J. Warren, <i>Mean Value Coordinates for Closed Triangular Meshes</i> ACM SIGGRAPH 2005, pages 561-566, 2005.
+         </p>
+         <p>Useful operator.</p><pre class="codeinput">dotp = @(a,b)sum(a.*b);
+crossp = @(a,b)a(1,:).*b(2,:)-a(2,:).*b(1,:);
+normalize = @(a)a./repmat(sqrt(sum(a.^2)), [2 1]);
+</pre><p>Points of the domain.</p><pre class="codeinput">W = [X(:)';Y(:)'];
+</pre><p>Each C(:,:,i) will be a barycentric coordinate weight.</p><pre class="codeinput">C = zeros(n,n,k);
+</pre><p>Select a point on the polygon.</p><pre class="codeinput">i = 4;
+vi = V(:,i);
+</pre><p>Compute the mean coordinate at each point location using the tangent of the two adjacent angles.</p><pre class="codeinput">U = repmat(vi,[1 n^2])-W;
+nb = normalize( U );
+<span class="comment">% length</span>
+d = sqrt( sum(U.^2) );
+<span class="keyword">for</span> j=mod([i-2,i],k)+1
+    <span class="comment">% point</span>
+    vj = V(:,j);
+    na = normalize( repmat(vj,[1 n^2])-W );
+    <span class="comment">% angle</span>
+    dp = dotp(na,nb);
+    theta = acos(clamp(dp,-1,1));
+    <span class="comment">% add tangent of half angle</span>
+    C(:,:,i) = C(:,:,i) + reshape( tan(theta/2) ./ d, [n n]);
+<span class="keyword">end</span>
+</pre><p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Compute the full set of mean coordinates.
+         </p><pre class="codeinput">exo1;
+</pre><p>Normalize them.</p><pre class="codeinput">C = C ./ repmat( sum(C,3), [1 1 k] );
+</pre><p>Extract one of the coordinates, set it to zero outside.</p><pre class="codeinput">i = 4;
+c = abs(C(:,:,i))+1e-3;
+c(S==1) = 0;
+</pre><p>Display it.</p><pre class="codeinput">nl = 15;
+t = linspace(0,1,n);
+B = display_shape_function(c');
+clf; hold <span class="string">on</span>;
+imagesc(t,t,B); axis(<span class="string">'image'</span>); axis(<span class="string">'off'</span>);
+contour(t,t,c',nl, <span class="string">'k'</span>);
+colormap <span class="string">jet(256)</span>;
+h = plot(V(1,[1:end 1]), V(2,[1:end 1]), <span class="string">'r.-'</span>);
+set(h, <span class="string">'LineWidth'</span>, lw); set(h, <span class="string">'MarkerSize'</span>, ms);
+</pre><img vspace="5" hspace="5" src="index_02.png"> <p>Interpolation function.</p><pre class="codeinput">applyinterp = @(C,x)sum(repmat(reshape(x(:), [1 1 k]),[n n 1]).*C,3);
+</pre><p>Apply the interpolation weight to the X/Y coordinate to test for the linear precision of the coordinates.</p><pre class="codeinput">clf;
+imageplot(applyinterp(C,V(1,:)), <span class="string">'Should be X'</span>, 1,2,1);
+imageplot(applyinterp(C,V(2,:)), <span class="string">'Should be Y'</span>, 1,2,2);
+colormap <span class="string">jet(256)</span>;
+</pre><img vspace="5" hspace="5" src="index_03.png"> <p>Final position of the cage.</p><pre class="codeinput">V2 = V;
+<span class="keyword">switch</span> cage,
+    <span class="keyword">case</span> <span class="string">'L'</span>
+        V2(:,4) = [1-delta;1-delta];
+    <span class="keyword">case</span> {<span class="string">'U'</span> <span class="string">'V'</span>}
+        V2(:,3) = [1-delta;delta];
+        V2(:,4) = [1-delta;delta+rho];
+<span class="keyword">end</span>
+</pre><p>Modify the position of the cage.</p><pre class="codeinput">rho = .7;
+V1 = V*(1-rho) + V2*rho;
+</pre><p>Warp the grid.</p><pre class="codeinput">X1 = applyinterp(C,V1(1,:));
+Y1 = applyinterp(C,V1(2,:));
+</pre><p>Display the warped texture.</p><pre class="codeinput">clf; hold <span class="string">on</span>;
+plot_surf_texture(cat(3,X1,Y1,zeros(n)), T');
+h = plot(V1(1,[1:end 1]), V1(2,[1:end 1]), <span class="string">'r.-'</span>);
+set(h, <span class="string">'LineWidth'</span>, lw); set(h, <span class="string">'MarkerSize'</span>, ms);
+view(2); axis(<span class="string">'off'</span>); axis(<span class="string">'equal'</span>);
+axis([0,1,0,1]);
+</pre><img vspace="5" hspace="5" src="index_04.png"> <h2>Harmonic Coordinates<a name="36"></a></h2>
+         <p>Mean valued coordinates goes in some sense "through" the cage. To prevent this, one can compute coordinates using a diffusion
+            within the cage. This leads to harmonic coordinates.
+         </p>
+         <p>The harmonic coordinates are introduced in</p>
+         <p>P. Joshi, M. Meyer, T. DeRose, B. Green and T. Sanocki <i>Harmonic coordinates for character articulation</i> ACM Trans. Graph, 3(26), p.71, 2007
+         </p>
+         <p>Compute the points on the grid that are along the boundary, together with the curvilinear absice.</p><pre class="codeinput">Vi = round(V*n);
+bound = Vi(:,1);
+loc = 1;
+abscur = 0;
+<span class="keyword">for</span> i=1:k
+    j = mod(i,k)+1;
+    d = round(norm(Vi(:,i)-Vi(:,j)));
+    t = repmat((1:d)/d, [2 1]);
+    bound = [bound repmat(Vi(:,i),[1 d]).*(1-t) + repmat(Vi(:,j),[1 d]).*t];
+    abscur = [abscur abscur(end)+(1:d)/d];
+    loc(end+1) = loc(end)+d;
+<span class="keyword">end</span>
+q = size(bound,2);
+bound = round(bound);
+I = bound(1,:) + (bound(2,:)-1)*n;
+</pre><p>Initialize the coordinates.</p><pre class="codeinput">C = zeros(n,n,k);
+</pre><p>Compute the "hat" interpolation function at a given vertex location.</p><pre class="codeinput">i = 4;
+u = zeros(k+1,1);
+u(i) = 1;
+<span class="keyword">if</span> i==1
+    u(end)=1;
+<span class="keyword">end</span>
+u = interp1(0:k,u, abscur);
+</pre><p>Initialize the coordinate.</p><pre class="codeinput">Ci = zeros(n);
+</pre><p>Perform diffusion.</p><pre class="codeinput">sel1 = [2:n 1];
+sel2 = [n 1:n-1];
+Ci = ( Ci(sel1,:) + Ci(:,sel1) + Ci(sel2,:) + Ci(:,sel2) )/4;
+</pre><p>Impose value.</p><pre class="codeinput">Ci(I) = u;
+</pre><p>Display the first iteration.</p><pre class="codeinput">clf;
+imageplot(Ci');
+colormap <span class="string">jet(256)</span>;
+</pre><img vspace="5" hspace="5" src="index_05.png"> <p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Perform the full computation of the coordinate <tt>C(:,:,i)</tt> by iterating the diffusion and imposing the boundary value.
+         </p><pre class="codeinput">exo2;
+</pre><img vspace="5" hspace="5" src="index_06.png"> <p>Display one the functions.</p><pre class="codeinput">c = C(:,:,i); c(S==1) = 0;
+nl = 15;
+t = linspace(0,1,n);
+B = display_shape_function(c');
+clf; hold <span class="string">on</span>;
+imagesc(t,t,B); axis(<span class="string">'image'</span>); axis(<span class="string">'off'</span>);
+contour(t,t,c',nl, <span class="string">'k'</span>);
+colormap <span class="string">jet(256)</span>;
+h = plot(V(1,[1:end 1]), V(2,[1:end 1]), <span class="string">'r.-'</span>);
+set(h, <span class="string">'LineWidth'</span>, lw); set(h, <span class="string">'MarkerSize'</span>, ms);
+</pre><img vspace="5" hspace="5" src="index_07.png"> <p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) Compute the full set of coordinate functions <tt>C</tt>.
+         </p><pre class="codeinput">exo3;
+</pre><p>Apply the interpolation weight to the X/Y coordinate to test for the linear precision of the coordinates. Here it is only
+            valid inside the shape.
+         </p><pre class="codeinput">clf;
+A = applyinterp(C,V(1,:)); A(S==1) = 0;
+imageplot(A, <span class="string">'Should be X'</span>, 1,2,1);
+A = applyinterp(C,V(2,:)); A(S==1) = 0;
+imageplot(A, <span class="string">'Should be Y'</span>, 1,2,2);
+colormap <span class="string">jet(256)</span>;
+</pre><img vspace="5" hspace="5" src="index_08.png"> <p>Modify the position of the cage.</p><pre class="codeinput">rho = .7;
+V1 = V*(1-rho) + V2*rho;
+</pre><p>Warp the grid.</p><pre class="codeinput">X1 = applyinterp(C,V1(1,:));
+Y1 = applyinterp(C,V1(2,:));
+X1(S==1) = Inf; Y1(S==1) = Inf;
+</pre><p>Display the warped texture.</p><pre class="codeinput">clf; hold <span class="string">on</span>;
+plot_surf_texture(cat(3,X1,Y1,zeros(n)), T');
+h = plot(V1(1,[1:end 1]), V1(2,[1:end 1]), <span class="string">'r.-'</span>);
+set(h, <span class="string">'LineWidth'</span>, lw); set(h, <span class="string">'MarkerSize'</span>, ms);
+view(2); axis(<span class="string">'off'</span>); axis(<span class="string">'equal'</span>);
+axis([0,1,0,1]);
+</pre><img vspace="5" hspace="5" src="index_09.png"> <h2>Green Coordinates<a name="53"></a></h2>
+         <p>Another set of coordinates, that are fast to compute and does not go "though" the cage, are the Green Coordinates, introduced
+            in
+         </p>
+         <p>Y. Lipman, D. Levin and D. Cohen-Or, <i>Green Coordinates</i> ACM Trans. Graph., 27(3), pages 1-10, 2008}.
+         </p>
+         <p>Fist compute the oriented normal to the cage.</p><pre class="codeinput">N = V(:,[2:end 1]) - V;
+N = N ./ repmat( sqrt(sum(N.^2)), [2 1] );
+N = -[-N(2,:); N(1,:)];
+</pre><p>Display the normals.</p><pre class="codeinput">clf; hold <span class="string">on</span>;
+h = plot(V(1,[1:end 1]), V(2,[1:end 1]), <span class="string">'r.-'</span>);
+set(h, <span class="string">'LineWidth'</span>, lw); set(h, <span class="string">'MarkerSize'</span>, ms);
+rho = .1;
+<span class="keyword">for</span> i=1:k
+    j = mod(i,k)+1;
+    a = mean( V(:,[i,j]), 2);
+    h = plot( [a(1) a(1)+rho*N(1,i)], [a(2) a(2)+rho*N(2,i)], <span class="string">'k'</span> );
+    set(h, <span class="string">'LineWidth'</span>, lw); set(h, <span class="string">'MarkerSize'</span>, ms);
+<span class="keyword">end</span>
+axis <span class="string">square</span>; axis <span class="string">off</span>;
+</pre><img vspace="5" hspace="5" src="index_10.png"> <p>Each <tt>C(:,:,i)</tt> is a barycentric coordinate weight for the vertices,  <tt>i</tt> and <tt>D(:,:,i)</tt> is a barycentric weight for the edge <tt>(i,i+1)</tt>.
+         </p><pre class="codeinput">C = zeros(n,n,k);
+D = zeros(n,n,k);
+</pre><p>Select two consecutive points on the polygon, compute the associated normal</p><pre class="codeinput">i = 4;
+j = mod(i,k)+1;
+vi = V(:,i);
+vj = V(:,j);
+ni = -N(:,i);
+</pre><p>See the Green Coordinate paper, Appendix A, for these formula.</p><pre class="codeinput">a = repmat(vj - vi,[1 n^2]);
+b = repmat(vi,[1 n^2]) - W;
+Q = sum(a.^2); s = sum(b.^2); R = 2*sum(a.*b);
+na = sqrt(sum(a.^2));
+BA = na .* sum( b .* repmat(ni,[1 n^2]) );
+SRT = sqrt( 4*s.*Q - R.^2 );
+L0 = log(s); L1 = log(s+Q+R);
+A0 = atan(      R ./SRT ) ./ SRT;
+A1 = atan( (2*Q+R)./SRT ) ./ SRT;
+A10 = A1 - A0;
+L10 = L1 - L0;
+</pre><p>Add the contribution of this edge to the weights.</p><pre class="codeinput">d = - na .* ( (4*s-(R.^2)./Q) .* A10 + R./(2*Q).*L10 + L1 - 2 )  / (4*pi) ;
+cj = - BA .* ( L10./(2*Q) - A10 .* (  R./Q) ) / (2*pi);
+ci = + BA .* ( L10./(2*Q) - A10 .* (2+R./Q) ) / (2*pi);
+D(:,:,i) = reshape(d,n,n);
+C(:,:,i) = C(:,:,i) + reshape(ci,n,n);
+C(:,:,j) = C(:,:,j) + reshape(cj,n,n);
+</pre><p><i>Exercice 4:</i> (<a href="../missing-exo/">check the solution</a>) Compute the full Green Coordinates.
+         </p><pre class="codeinput">exo4;
+</pre><p>Display the vertex function.</p><pre class="codeinput">i = 4;
+c = rescale(C(:,:,i)); c(S==1) = 0;
+nl = 15;
+t = linspace(0,1,n);
+B = display_shape_function(c');
+clf; hold <span class="string">on</span>;
+imagesc(t,t,B); axis(<span class="string">'image'</span>); axis(<span class="string">'off'</span>);
+contour(t,t,c',nl, <span class="string">'k'</span>);
+colormap <span class="string">jet(256)</span>;
+h = plot(V(1,[1:end 1]), V(2,[1:end 1]), <span class="string">'r.-'</span>);
+set(h, <span class="string">'LineWidth'</span>, lw); set(h, <span class="string">'MarkerSize'</span>, ms);
+</pre><img vspace="5" hspace="5" src="index_11.png"> <p>Display the edge function.</p><pre class="codeinput">c = D(:,:,i); c(S==1) = 0;
+nl = 15;
+t = linspace(0,1,n);
+B = display_shape_function(c');
+clf; hold <span class="string">on</span>;
+imagesc(t,t,B); axis(<span class="string">'image'</span>); axis(<span class="string">'off'</span>);
+contour(t,t,c',nl, <span class="string">'k'</span>);
+colormap <span class="string">jet(256)</span>;
+h = plot(V(1,[1:end 1]), V(2,[1:end 1]), <span class="string">'r.-'</span>);
+set(h, <span class="string">'LineWidth'</span>, lw); set(h, <span class="string">'MarkerSize'</span>, ms);
+</pre><img vspace="5" hspace="5" src="index_12.png"> <p>Apply the interpolation weight to the X/Y coordinate to test for the linear precision of the coordinates.</p><pre class="codeinput">x = applyinterp(C,V(1,:)) + applyinterp(D,N(1,:));
+y = applyinterp(C,V(2,:)) + applyinterp(D,N(2,:));
+x(S==1) = 0; y(S==1) = 0;
+clf;
+imageplot(x, <span class="string">'Should be X'</span>, 1,2,1);
+imageplot(y, <span class="string">'Should be Y'</span>, 1,2,2);
+colormap <span class="string">jet(256)</span>;
+</pre><img vspace="5" hspace="5" src="index_13.png"> <p>Modify the position of the cage.</p><pre class="codeinput">rho = .7;
+V1 = V*(1-rho) + V2*rho;
+</pre><p>Compute the modified normals.</p><pre class="codeinput">N1 = V1(:,[2:end 1]) - V1;
+N1 = N1 ./ repmat( sqrt(sum(N1.^2)), [2 1] );
+N1 = -[-N1(2,:); N1(1,:)];
+</pre><p>Compute the amplification factor.</p><pre class="codeinput">s = sqrt( sum( (V1(:,[2:end 1]) - V1).^2 ) ./ sum( (V(:,[2:end 1]) - V).^2 ) );
+s = repmat(reshape(s, [1 1 k]), [n n 1]);
+</pre><p>Warp the grid. Do not forget to multiply the normal weight by the amplification factor.</p><pre class="codeinput">X1 = applyinterp(C,V1(1,:)) + applyinterp(s.*D,N1(1,:));
+Y1 = applyinterp(C,V1(2,:)) + applyinterp(s.*D,N1(2,:));
+X1(S==1) = Inf; Y1(S==1) = Inf;
+</pre><p>Display the warped texture.</p><pre class="codeinput">clf; hold <span class="string">on</span>;
+plot_surf_texture(cat(3,X1,Y1,zeros(n)), T');
+h = plot(V1(1,[1:end 1]), V1(2,[1:end 1]), <span class="string">'r.-'</span>);
+set(h, <span class="string">'LineWidth'</span>, lw); set(h, <span class="string">'MarkerSize'</span>, ms);
+view(2); axis(<span class="string">'off'</span>); axis(<span class="string">'equal'</span>);
+axis([0,1,0,1]);
+</pre><img vspace="5" hspace="5" src="index_14.png"> <p><i>Exercice 5:</i> (<a href="../missing-exo/">check the solution</a>) Compare the Mean value, Harmonic, and Green coordinates on serveral cages, including a cage enclosing a caracter with two
+            legs. Try to move the legs, and compare the results.
+         </p><pre class="codeinput">exo5;
+</pre><h2>Volumertric Barycentric Coordinates<a name="71"></a></h2>
+         <p>The barycentric coordinates extends to 3D volumes.</p>
+         <p><i>Exercice 6:</i> (<a href="../missing-exo/">check the solution</a>) Extend the Harmonic and Green coordinates methods to volumetric cages and volumetric data.
+         </p><pre class="codeinput">exo6;
+</pre><p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Generalized Barycentric Coordinates for Warpping
+% This tours tests several barycentric coordinates (mean value, harmonic and green)
+% for non-convex polygons, and apply them to 2D warping of images.
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_signal.zip signal toolbox>, 
+% <../toolbox_general.zip general toolbox> and 
+% <../toolbox_graph.zip graph toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_signal|, 
+% |toolbox_general| and 
+% |toolbox_graph|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_signal/');
+getd('toolbox_general/');
+getd('toolbox_graph/');
+
+
+
+%% Domain to Warp
+% Create a cage that bound the domain to warp.
+
+cage = 'V';
+
+%%
+% First we create a 2D closes polygon, which will be a cage used to perform
+% 2D shape deformation.
+
+delta = .03;
+rho = .2;
+eta = .05;
+x1 = .5-rho-eta/2; x2 = .5-eta/2;
+x3 = .5+eta/2; x4 = .5+rho+eta/2;
+switch cage
+    case 'L'
+        V = [[delta;delta] [1-delta;delta] [1-delta;delta+rho] [delta+rho;delta+rho] [delta+rho;1-delta] [delta;1-delta]];
+    case 'U'
+        V = [[x1;delta] [x4;delta] [x4;1-delta] [x3;1-delta] ...
+            [x3;delta+rho] [x2;delta+rho] [x2;1-delta] [x1;1-delta] ];
+    case 'V'
+        V = [[x1;delta] [x4;delta] [x4;1-delta] [x3;1-delta] ...
+            [.5;delta+rho] [x2;1-delta] [x1;1-delta] ];
+end
+k = size(V,2);
+
+%%
+% Compute a grid.
+
+n = 200;
+x = linspace(0,1,n);
+[Y,X] = meshgrid(x,x);
+
+%%
+% Indicator of the shape.
+
+
+S = 1 - inpolygon(X,Y,V(1,:),V(2,:));
+
+%%
+% Compute a check-board texture inside the L shaped domain.
+
+m  = 30;
+[XT,YT] = meshgrid((0:n-1)/n,(0:n-1)/n);
+T = mod( floor(XT*m)+floor(YT*m),2 );
+T(S==1) = 1;
+
+%%
+% Display it.
+
+lw = 3; ms = 25;
+clf; hold on;
+plot_surf_texture(cat(3,X,Y,zeros(n)), T');
+h = plot(V(1,[1:end 1]), V(2,[1:end 1]), 'r.-');
+set(h, 'LineWidth', lw); set(h, 'MarkerSize', ms);
+view(2); axis('off'); axis('equal');
+
+
+%% Mean-valued Coordinates
+% Mean valued coordinates are usually applied for 3D mesh parameterization,
+% and are used to approximate the Lapalcian on a 1-ring of a triangulation.
+
+%%
+% The mean value coordinates for star-shaped polygons where introduced in
+
+%%
+% M. S. Floater,
+% _Mean value coordinates_
+% Comp. Aided Geom. Design 20, 19-27, 2003.
+
+%%
+% There extension to arbitrary polygon is presented in
+
+%%
+% K. Hormann and M.S. Floater,
+% _Mean value coordinates for arbitrary planar polygons_
+% ACM Transactions on Graphics, 25 p. 1424-1441, 2006.
+
+%%
+% See also the following paper for application to shape warping:
+
+%%
+% T. Ju, S. Schaefer and J. Warren,
+% _Mean Value Coordinates for Closed Triangular Meshes_
+% ACM SIGGRAPH 2005, pages 561-566, 2005.
+
+%%
+% Useful operator.
+
+dotp = @(a,b)sum(a.*b);
+crossp = @(a,b)a(1,:).*b(2,:)-a(2,:).*b(1,:);
+normalize = @(a)a./repmat(sqrt(sum(a.^2)), [2 1]);
+
+%%
+% Points of the domain.
+
+W = [X(:)';Y(:)'];
+
+%%
+% Each C(:,:,i) will be a barycentric coordinate weight.
+
+C = zeros(n,n,k);
+
+%%
+% Select a point on the polygon.
+
+i = 4;
+vi = V(:,i);
+
+%%
+% Compute the mean coordinate at each point location using the
+% tangent of the two adjacent angles.
+
+U = repmat(vi,[1 n^2])-W;
+nb = normalize( U );
+% length
+d = sqrt( sum(U.^2) );
+for j=mod([i-2,i],k)+1
+    % point
+    vj = V(:,j);
+    na = normalize( repmat(vj,[1 n^2])-W );
+    % angle
+    dp = dotp(na,nb);
+    theta = acos(clamp(dp,-1,1));
+    % add tangent of half angle
+    C(:,:,i) = C(:,:,i) + reshape( tan(theta/2) ./ d, [n n]);
+end
+
+
+%%
+% _Exercice 1:_ (<../missing-exo/ check the solution>)
+% Compute the full set of mean coordinates.
+
+exo1;
+
+%%
+% Normalize them.
+
+C = C ./ repmat( sum(C,3), [1 1 k] );
+
+%%
+% Extract one of the coordinates, set it to zero outside.
+
+i = 4;
+c = abs(C(:,:,i))+1e-3;
+c(S==1) = 0;
+
+%%
+% Display it.
+
+nl = 15;
+t = linspace(0,1,n);
+B = display_shape_function(c');
+clf; hold on;
+imagesc(t,t,B); axis('image'); axis('off');
+contour(t,t,c',nl, 'k');
+colormap jet(256);
+h = plot(V(1,[1:end 1]), V(2,[1:end 1]), 'r.-');
+set(h, 'LineWidth', lw); set(h, 'MarkerSize', ms);
+
+
+%%
+% Interpolation function.
+
+applyinterp = @(C,x)sum(repmat(reshape(x(:), [1 1 k]),[n n 1]).*C,3);
+
+%%
+% Apply the interpolation weight to the X/Y coordinate to test for the
+% linear precision of the coordinates.
+
+clf;
+imageplot(applyinterp(C,V(1,:)), 'Should be X', 1,2,1);
+imageplot(applyinterp(C,V(2,:)), 'Should be Y', 1,2,2);
+colormap jet(256);
+
+%%
+% Final position of the cage.
+
+V2 = V;
+switch cage,
+    case 'L'
+        V2(:,4) = [1-delta;1-delta];
+    case {'U' 'V'}
+        V2(:,3) = [1-delta;delta];
+        V2(:,4) = [1-delta;delta+rho];
+end
+
+%%
+% Modify the position of the cage.
+
+rho = .7;
+V1 = V*(1-rho) + V2*rho;
+
+%%
+% Warp the grid.
+
+X1 = applyinterp(C,V1(1,:));
+Y1 = applyinterp(C,V1(2,:));
+
+%%
+% Display the warped texture.
+
+clf; hold on;
+plot_surf_texture(cat(3,X1,Y1,zeros(n)), T');
+h = plot(V1(1,[1:end 1]), V1(2,[1:end 1]), 'r.-');
+set(h, 'LineWidth', lw); set(h, 'MarkerSize', ms);
+view(2); axis('off'); axis('equal');
+axis([0,1,0,1]);
+
+
+
+%% Harmonic Coordinates
+% Mean valued coordinates goes in some sense "through" the cage.
+% To prevent this, one can compute coordinates using a diffusion
+% within the cage. This leads to harmonic coordinates.
+
+%%
+% The harmonic coordinates are introduced in
+
+%%
+% P. Joshi, M. Meyer, T. DeRose, B. Green and T. Sanocki
+% _Harmonic coordinates for character articulation_
+% ACM Trans. Graph, 3(26), p.71, 2007
+
+%%
+% Compute the points on the grid that are along the boundary, together
+% with the curvilinear absice.
+
+Vi = round(V*n);
+bound = Vi(:,1);
+loc = 1;
+abscur = 0;
+for i=1:k
+    j = mod(i,k)+1;
+    d = round(norm(Vi(:,i)-Vi(:,j)));
+    t = repmat((1:d)/d, [2 1]);
+    bound = [bound repmat(Vi(:,i),[1 d]).*(1-t) + repmat(Vi(:,j),[1 d]).*t];
+    abscur = [abscur abscur(end)+(1:d)/d];
+    loc(end+1) = loc(end)+d;
+end
+q = size(bound,2);
+bound = round(bound);
+I = bound(1,:) + (bound(2,:)-1)*n;
+
+%%
+% Initialize the coordinates.
+
+C = zeros(n,n,k);
+
+%%
+% Compute the "hat" interpolation function at a given vertex location.
+
+i = 4;
+u = zeros(k+1,1);
+u(i) = 1;
+if i==1
+    u(end)=1;
+end
+u = interp1(0:k,u, abscur);
+
+%%
+% Initialize the coordinate.
+
+Ci = zeros(n);
+
+%%
+% Perform diffusion.
+
+sel1 = [2:n 1];
+sel2 = [n 1:n-1];
+Ci = ( Ci(sel1,:) + Ci(:,sel1) + Ci(sel2,:) + Ci(:,sel2) )/4;
+
+%%
+% Impose value.
+
+Ci(I) = u;
+
+%%
+% Display the first iteration.
+
+clf;
+imageplot(Ci');
+colormap jet(256);
+
+%%
+% _Exercice 2:_ (<../missing-exo/ check the solution>)
+% Perform the full computation of the coordinate |C(:,:,i)| by iterating the diffusion
+% and imposing the boundary value.
+
+exo2;
+
+%%
+% Display one the functions.
+
+c = C(:,:,i); c(S==1) = 0;
+nl = 15;
+t = linspace(0,1,n);
+B = display_shape_function(c');
+clf; hold on;
+imagesc(t,t,B); axis('image'); axis('off');
+contour(t,t,c',nl, 'k');
+colormap jet(256);
+h = plot(V(1,[1:end 1]), V(2,[1:end 1]), 'r.-');
+set(h, 'LineWidth', lw); set(h, 'MarkerSize', ms);
+
+
+%%
+% _Exercice 3:_ (<../missing-exo/ check the solution>)
+% Compute the full set of coordinate functions |C|.
+
+exo3;
+
+
+
+%%
+% Apply the interpolation weight to the X/Y coordinate to test for the
+% linear precision of the coordinates. Here it is only valid inside the
+% shape.
+
+clf;
+A = applyinterp(C,V(1,:)); A(S==1) = 0;
+imageplot(A, 'Should be X', 1,2,1);
+A = applyinterp(C,V(2,:)); A(S==1) = 0;
+imageplot(A, 'Should be Y', 1,2,2);
+colormap jet(256);
+
+%%
+% Modify the position of the cage.
+
+rho = .7;
+V1 = V*(1-rho) + V2*rho;
+
+%%
+% Warp the grid.
+
+X1 = applyinterp(C,V1(1,:));
+Y1 = applyinterp(C,V1(2,:));
+X1(S==1) = Inf; Y1(S==1) = Inf;
+
+%%
+% Display the warped texture.
+
+clf; hold on;
+plot_surf_texture(cat(3,X1,Y1,zeros(n)), T');
+h = plot(V1(1,[1:end 1]), V1(2,[1:end 1]), 'r.-');
+set(h, 'LineWidth', lw); set(h, 'MarkerSize', ms);
+view(2); axis('off'); axis('equal');
+axis([0,1,0,1]);
+
+
+%% Green Coordinates
+% Another set of coordinates, that are fast to compute and does not go
+% "though" the cage, are the Green Coordinates, introduced in
+
+%%
+% Y. Lipman, D. Levin and D. Cohen-Or,
+% _Green Coordinates_
+% ACM Trans. Graph., 27(3), pages 1-10, 2008}.
+
+%%
+% Fist compute the oriented normal to the cage.
+
+N = V(:,[2:end 1]) - V;
+N = N ./ repmat( sqrt(sum(N.^2)), [2 1] );
+N = -[-N(2,:); N(1,:)];
+
+
+%%
+% Display the normals.
+
+clf; hold on;
+h = plot(V(1,[1:end 1]), V(2,[1:end 1]), 'r.-');
+set(h, 'LineWidth', lw); set(h, 'MarkerSize', ms);
+rho = .1;
+for i=1:k
+    j = mod(i,k)+1;
+    a = mean( V(:,[i,j]), 2);
+    h = plot( [a(1) a(1)+rho*N(1,i)], [a(2) a(2)+rho*N(2,i)], 'k' );
+    set(h, 'LineWidth', lw); set(h, 'MarkerSize', ms);
+end
+axis square; axis off;
+
+%%
+% Each |C(:,:,i)| is a barycentric coordinate weight
+% for the vertices,  |i| and |D(:,:,i)| is a barycentric weight
+% for the edge |(i,i+1)|.
+
+C = zeros(n,n,k);
+D = zeros(n,n,k);
+
+%%
+% Select two consecutive points on the polygon,
+% compute the associated normal
+
+i = 4;
+j = mod(i,k)+1;
+vi = V(:,i);
+vj = V(:,j);
+ni = -N(:,i);
+
+%%
+% See the Green Coordinate paper, Appendix A, for
+% these formula.
+
+a = repmat(vj - vi,[1 n^2]);
+b = repmat(vi,[1 n^2]) - W;
+Q = sum(a.^2); s = sum(b.^2); R = 2*sum(a.*b);
+na = sqrt(sum(a.^2));
+BA = na .* sum( b .* repmat(ni,[1 n^2]) );
+SRT = sqrt( 4*s.*Q - R.^2 );
+L0 = log(s); L1 = log(s+Q+R);
+A0 = atan(      R ./SRT ) ./ SRT;
+A1 = atan( (2*Q+R)./SRT ) ./ SRT;
+A10 = A1 - A0;
+L10 = L1 - L0;
+
+%%
+% Add the contribution of this edge to the weights.
+
+d = - na .* ( (4*s-(R.^2)./Q) .* A10 + R./(2*Q).*L10 + L1 - 2 )  / (4*pi) ;
+cj = - BA .* ( L10./(2*Q) - A10 .* (  R./Q) ) / (2*pi);
+ci = + BA .* ( L10./(2*Q) - A10 .* (2+R./Q) ) / (2*pi);
+D(:,:,i) = reshape(d,n,n);
+C(:,:,i) = C(:,:,i) + reshape(ci,n,n);
+C(:,:,j) = C(:,:,j) + reshape(cj,n,n);
+
+%%
+% _Exercice 4:_ (<../missing-exo/ check the solution>)
+% Compute the full Green Coordinates.
+
+exo4;
+
+%%
+% Display the vertex function.
+
+i = 4;
+c = rescale(C(:,:,i)); c(S==1) = 0;
+nl = 15;
+t = linspace(0,1,n);
+B = display_shape_function(c');
+clf; hold on;
+imagesc(t,t,B); axis('image'); axis('off');
+contour(t,t,c',nl, 'k');
+colormap jet(256);
+h = plot(V(1,[1:end 1]), V(2,[1:end 1]), 'r.-');
+set(h, 'LineWidth', lw); set(h, 'MarkerSize', ms);
+
+%%
+% Display the edge function.
+
+c = D(:,:,i); c(S==1) = 0;
+nl = 15;
+t = linspace(0,1,n);
+B = display_shape_function(c');
+clf; hold on;
+imagesc(t,t,B); axis('image'); axis('off');
+contour(t,t,c',nl, 'k');
+colormap jet(256);
+h = plot(V(1,[1:end 1]), V(2,[1:end 1]), 'r.-');
+set(h, 'LineWidth', lw); set(h, 'MarkerSize', ms);
+
+
+%%
+% Apply the interpolation weight to the X/Y coordinate to test for the
+% linear precision of the coordinates.
+
+x = applyinterp(C,V(1,:)) + applyinterp(D,N(1,:));
+y = applyinterp(C,V(2,:)) + applyinterp(D,N(2,:));
+x(S==1) = 0; y(S==1) = 0;
+clf;
+imageplot(x, 'Should be X', 1,2,1);
+imageplot(y, 'Should be Y', 1,2,2);
+colormap jet(256);
+
+%%
+% Modify the position of the cage.
+
+rho = .7;
+V1 = V*(1-rho) + V2*rho;
+
+%%
+% Compute the modified normals.
+
+N1 = V1(:,[2:end 1]) - V1;
+N1 = N1 ./ repmat( sqrt(sum(N1.^2)), [2 1] );
+N1 = -[-N1(2,:); N1(1,:)];
+
+%%
+% Compute the amplification factor.
+
+s = sqrt( sum( (V1(:,[2:end 1]) - V1).^2 ) ./ sum( (V(:,[2:end 1]) - V).^2 ) );
+s = repmat(reshape(s, [1 1 k]), [n n 1]);
+
+%%
+% Warp the grid.
+% Do not forget to multiply the normal weight by the amplification factor.
+
+X1 = applyinterp(C,V1(1,:)) + applyinterp(s.*D,N1(1,:));
+Y1 = applyinterp(C,V1(2,:)) + applyinterp(s.*D,N1(2,:));
+X1(S==1) = Inf; Y1(S==1) = Inf;
+
+%%
+% Display the warped texture.
+
+clf; hold on;
+plot_surf_texture(cat(3,X1,Y1,zeros(n)), T');
+h = plot(V1(1,[1:end 1]), V1(2,[1:end 1]), 'r.-');
+set(h, 'LineWidth', lw); set(h, 'MarkerSize', ms);
+view(2); axis('off'); axis('equal');
+axis([0,1,0,1]);
+
+
+
+%%
+% _Exercice 5:_ (<../missing-exo/ check the solution>)
+% Compare the Mean value, Harmonic, and Green coordinates on serveral
+% cages, including a cage enclosing a caracter with two legs. Try to move
+% the legs, and compare the results.
+
+exo5;
+
+%% Volumertric Barycentric Coordinates
+% The barycentric coordinates extends to 3D volumes.
+
+%%
+% _Exercice 6:_ (<../missing-exo/ check the solution>)
+% Extend the Harmonic and Green coordinates methods to volumetric cages and volumetric data.
+
+exo6;
+
+
+
+
+
+##### SOURCE END #####
+-->
+   </body>
+</html>

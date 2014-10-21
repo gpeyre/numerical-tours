@@ -1,0 +1,456 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>Spectral Mesh Flattening</title>
+      <NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
+               	requires JavaScript to process the mathematics on this page.<BR> 
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 8.2">
+      <meta name="date" content="2014-10-21">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>Spectral Mesh Flattening</h1>
+         <introduction>
+            <p>This tour explores 2D flattening of 3D surfaces using spectral methods.</p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#8">Spectral Mesh Flattening</a></li>
+               <li><a href="#21">Geodesic Embedding (Isomap)</a></li>
+            </ul>
+         </div>
+         <h2>Installing toolboxes and setting up the path.<a name="1"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_signal.zip">signal toolbox</a>, <a href="../toolbox_general.zip">general toolbox</a> and <a href="../toolbox_graph.zip">graph toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_signal</tt>, <tt>toolbox_general</tt> and <tt>toolbox_graph</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
+getd(<span class="string">'toolbox_general/'</span>);
+getd(<span class="string">'toolbox_graph/'</span>);
+</pre><h2>Spectral Mesh Flattening<a name="8"></a></h2>
+         <p>Mesh flattening finds 2D locations that minimize a variational energy with a non-degenracy constraint (for instance maximal
+            variance).
+         </p>
+         <p>For the Dirichlet energy (Sobolev norm), the resulting location are described by the first eigenvectors of the Laplacian.</p>
+         <p>This method is refered to as "Laplacian eigenmaps" in manifold learning, see:</p>
+         <p>The advantage over fixed boundary harmonic parameterization is that the boundary of the flattened domain is not fixed, but
+            the drawback is that the parameterization is not guaranteed to be valid (bijective).
+         </p>
+         <p>First load a mesh.</p><pre class="codeinput">name = <span class="string">'nefertiti'</span>;
+options.name = name;
+[vertex,faces] = read_mesh(name);
+n = size(vertex,2);
+</pre><p>Display it.</p><pre class="codeinput">clf;
+plot_mesh(vertex,faces, options);
+shading <span class="string">faceted</span>;
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p>Compute the mesh Laplacian matrix.</p><pre class="codeinput">options.symmetrize = 1;
+options.normalize = 0;
+L = compute_mesh_laplacian(vertex,faces,<span class="string">'conformal'</span>,options);
+</pre><p>Compute the eigenvalues and eigenvectors</p><pre class="codeinput">[U,S] = eig(full(L)); S = diag(S);
+[S,I] = sort(S,<span class="string">'ascend'</span>); U = U(:,I);
+</pre><p>The vertex positions are the eigenvectors 2 and 3.</p><pre class="codeinput">vertexF = U(:,2:3)';
+</pre><p>Use translation / rotation to align the parameterization.</p><pre class="codeinput">icenter = 88;
+irotate = 154;
+vertexF = vertexF - repmat(vertexF(:,icenter), [1 n]);
+theta = -pi/2+atan2(vertexF(2,irotate),vertexF(1,irotate));
+vertexF = [vertexF(1,:)*cos(theta)+vertexF(2,:)*sin(theta); <span class="keyword">...</span>
+           -vertexF(1,:)*sin(theta)+vertexF(2,:)*cos(theta)];
+</pre><p>Display the flattened mesh.</p><pre class="codeinput">clf;
+plot_mesh(vertexF,faces);
+</pre><img vspace="5" hspace="5" src="index_02.png"> <p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Perform the same flattening, but with the combinatorial Laplacian.
+         </p><pre class="codeinput">exo1;
+</pre><img vspace="5" hspace="5" src="index_03.png"> <h2>Geodesic Embedding (Isomap)<a name="21"></a></h2>
+         <p>Another (nonlinear) embedding can be computed by minimizing the geodesic distortion between points on the surface and points
+            over the parameterized domain.
+         </p>
+         <p>First we compute the geodesic distance on the mesh using the Fast Marching algorithm.</p><pre class="codeinput">D = zeros(n);
+<span class="keyword">for</span> i=1:n
+    D(:,i) = perform_fast_marching_mesh(vertex,faces,i);
+<span class="keyword">end</span>
+</pre><p>Enforce symmetry.</p><pre class="codeinput">D = (D+D')/2;
+</pre><p>Compute the centered matrix.</p><pre class="codeinput">J = eye(n) - ones(n)/n;
+W = -J*(D.^2)*J;
+</pre><p>Diagonalize the centered matrix.</p><pre class="codeinput">[U,S] = eig(W);
+S = diag(S);
+[S,I] = sort(S,<span class="string">'descend'</span>); U = U(:,I);
+</pre><p>Display the decay of the eigenvalues. If the mesh was isometric to the plane, then only the two largest eigenvalues would
+            be non zero.
+         </p><pre class="codeinput">clf;
+hh = plot(S(1:30), <span class="string">'.-'</span>); axis(<span class="string">'tight'</span>);
+set(hh, <span class="string">'LineWidth'</span>, 2);
+</pre><img vspace="5" hspace="5" src="index_04.png"> <p>Isomap embedding is defined from the two largest eigenvalues.</p><pre class="codeinput">vertexF = U(:,1:2)' .* repmat(sqrt(S(1:2)), [1 n]);
+</pre><p>Align the parameters.</p><pre class="codeinput">vertexF = vertexF - repmat(vertexF(:,icenter), [1 n]);
+theta = -pi/2+atan2(vertexF(2,irotate),vertexF(1,irotate));
+vertexF = [vertexF(1,:)*cos(theta)+vertexF(2,:)*sin(theta); <span class="keyword">...</span>
+           -vertexF(1,:)*sin(theta)+vertexF(2,:)*cos(theta)];
+</pre><p>Display and compare with Laplacian embeddedding.</p><pre class="codeinput">clf;
+plot_mesh(vertexF,faces,options);
+</pre><img vspace="5" hspace="5" src="index_05.png"> <p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Compute the embedding using Stress minimization with SMACOF. See the numerical tours on bending invariants for more details.
+         </p><pre class="codeinput">exo2;
+</pre><img vspace="5" hspace="5" src="index_06.png"> <p>Plot stress evolution during minimization.</p><pre class="codeinput">clf;
+plot(stress(2:end), <span class="string">'.-'</span>);
+axis(<span class="string">'tight'</span>);
+</pre><img vspace="5" hspace="5" src="index_07.png"> <p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) Compute mesh parameterization using a circle as boundary.
+         </p><pre class="codeinput">exo3;
+</pre><img vspace="5" hspace="5" src="index_08.png"> <p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Spectral Mesh Flattening 
+% This tour explores 2D flattening of 3D surfaces using spectral methods.
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_signal.zip signal toolbox>, 
+% <../toolbox_general.zip general toolbox> and 
+% <../toolbox_graph.zip graph toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_signal|, 
+% |toolbox_general| and 
+% |toolbox_graph|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_signal/');
+getd('toolbox_general/');
+getd('toolbox_graph/');
+
+
+
+%% Spectral Mesh Flattening
+% Mesh flattening finds 2D locations that minimize a variational energy
+% with a non-degenracy constraint (for instance maximal variance). 
+
+%% 
+% For the Dirichlet energy (Sobolev norm), the
+% resulting location are described by the first eigenvectors of the
+% Laplacian. 
+
+%%
+% This method is refered to as "Laplacian eigenmaps" in manifold learning,
+% see:
+
+%%
+%
+
+%% 
+% The advantage over fixed boundary harmonic parameterization is
+% that the boundary of the flattened domain is not fixed, but the drawback
+% is that the parameterization is not guaranteed to be valid (bijective).
+
+%% 
+% First load a mesh.
+
+name = 'nefertiti'; 
+options.name = name;
+[vertex,faces] = read_mesh(name);
+n = size(vertex,2);
+
+%%
+% Display it.
+
+clf;
+plot_mesh(vertex,faces, options);
+shading faceted;
+
+
+%%
+% Compute the mesh Laplacian matrix.
+
+options.symmetrize = 1;
+options.normalize = 0;
+L = compute_mesh_laplacian(vertex,faces,'conformal',options);
+
+%% 
+% Compute the eigenvalues and eigenvectors
+
+[U,S] = eig(full(L)); S = diag(S);
+[S,I] = sort(S,'ascend'); U = U(:,I);
+
+%%
+% The vertex positions are the eigenvectors 2 and 3.
+
+vertexF = U(:,2:3)';
+
+%%
+% Use translation / rotation to align the parameterization.
+
+icenter = 88;
+irotate = 154;
+vertexF = vertexF - repmat(vertexF(:,icenter), [1 n]);
+theta = -pi/2+atan2(vertexF(2,irotate),vertexF(1,irotate));
+vertexF = [vertexF(1,:)*cos(theta)+vertexF(2,:)*sin(theta); ...
+           -vertexF(1,:)*sin(theta)+vertexF(2,:)*cos(theta)];
+
+%%
+% Display the flattened mesh. 
+
+clf;
+plot_mesh(vertexF,faces);
+
+
+%%
+% _Exercice 1:_ (<../missing-exo/ check the solution>)
+% Perform the same flattening, but with the combinatorial Laplacian.
+
+exo1;
+
+
+%% Geodesic Embedding (Isomap)
+% Another (nonlinear) embedding can be computed by minimizing the geodesic
+% distortion between points on the surface and points over the
+% parameterized domain. 
+
+%%
+% First we compute the geodesic distance on the mesh using the Fast Marching algorithm.
+
+D = zeros(n);
+for i=1:n
+    D(:,i) = perform_fast_marching_mesh(vertex,faces,i);
+end
+
+%%
+% Enforce symmetry.
+
+D = (D+D')/2;
+
+%%
+% Compute the centered matrix.
+
+J = eye(n) - ones(n)/n;
+W = -J*(D.^2)*J;
+
+%%
+% Diagonalize the centered matrix.
+
+[U,S] = eig(W);
+S = diag(S);
+[S,I] = sort(S,'descend'); U = U(:,I);
+
+%%
+% Display the decay of the eigenvalues. If the mesh was isometric to the
+% plane, then only the two largest eigenvalues would be non zero.
+
+clf;
+hh = plot(S(1:30), '.-'); axis('tight');
+set(hh, 'LineWidth', 2);
+
+%%
+% Isomap embedding is defined from the two largest eigenvalues.
+
+vertexF = U(:,1:2)' .* repmat(sqrt(S(1:2)), [1 n]);
+
+%%
+% Align the parameters.
+
+vertexF = vertexF - repmat(vertexF(:,icenter), [1 n]);
+theta = -pi/2+atan2(vertexF(2,irotate),vertexF(1,irotate));
+vertexF = [vertexF(1,:)*cos(theta)+vertexF(2,:)*sin(theta); ...
+           -vertexF(1,:)*sin(theta)+vertexF(2,:)*cos(theta)];
+
+%% 
+% Display and compare with Laplacian embeddedding.
+
+clf;
+plot_mesh(vertexF,faces,options);
+
+
+
+%%
+% _Exercice 2:_ (<../missing-exo/ check the solution>)
+% Compute the embedding using Stress minimization with SMACOF.
+% See the numerical tours on bending invariants for more details.
+
+exo2;
+
+
+%%
+% Plot stress evolution during minimization.
+
+clf;
+plot(stress(2:end), '.-');
+axis('tight');
+
+%%
+% _Exercice 3:_ (<../missing-exo/ check the solution>)
+% Compute mesh parameterization using a circle as boundary.
+
+exo3;
+
+
+
+##### SOURCE END #####
+-->
+   </body>
+</html>

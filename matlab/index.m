@@ -1,27 +1,21 @@
-%% Spherical Mesh Parameterization 
-% This tour explores parameterization of 3D surfaces onto a sphere.
-
-%%
-% We use a simple minimization of the Dirichlet energy under spherical
-% constraints. There is no theoritical guarantee, but for some meshes, it
-% seems to work correctly.
+%% Geodesic Bending Invariants with Landmarks
+% This tour explores the use of farthest point sampling to compute bending
+% invariant with classical MDS (strain minimization).
 
 %% Installing toolboxes and setting up the path.
 
 %%
 % You need to download the following files: 
 % <../toolbox_signal.zip signal toolbox>, 
-% <../toolbox_general.zip general toolbox>, 
-% <../toolbox_graph.zip graph toolbox> and 
-% <../toolbox_wavelet_meshes.zip wavelet_meshes toolbox>.
+% <../toolbox_general.zip general toolbox> and 
+% <../toolbox_graph.zip graph toolbox>.
 
 %%
 % You need to unzip these toolboxes in your working directory, so
 % that you have 
 % |toolbox_signal|, 
-% |toolbox_general|, 
-% |toolbox_graph| and 
-% |toolbox_wavelet_meshes|
+% |toolbox_general| and 
+% |toolbox_graph|
 % in your directory.
 
 %%
@@ -43,269 +37,143 @@ getd = @(p)path(p,path); % scilab users must *not* execute this
 getd('toolbox_signal/');
 getd('toolbox_general/');
 getd('toolbox_graph/');
-getd('toolbox_wavelet_meshes/');
 
-%% Smoothing Operator
-% We start by creating a smoothing operator.
 
-%% 
-% First load a mesh.
+%% Farthest Points Landmarks Seeding
+% For large mesh, computing all the pairwise distances is intractable.
+% It is possible to speed up the computation by restricting the computation
+% to a small subset of landmarks.
 
-name = 'horse';
+%%
+% This seeding strategy was used for surface remeshing in:
+
+%%
+% _Geodesic Remeshing Using Front Propagation_, 
+% Gabriel Peyré and Laurent Cohen,
+% International Journal on Computer Vision, Vol. 69(1), p.145-156, Aug. 2006.
+
+%%
+% Load a mesh.
+
+name = 'elephant-50kv';
+options.name = name;
 [vertex,faces] = read_mesh(name);
-n = size(vertex,2);
-m = size(faces,2);
-clear options; options.name = name;
+nverts = size(vertex,2);
 
 %%
-% Display the mesh.
+% Display it.
 
 clf;
-options.lighting = 1;
-plot_mesh(vertex,faces,options);
-shading faceted;
+plot_mesh(vertex,faces, options);
+
+
 
 %%
-% Compute the weights.
-% The weights should be positive for the method to work.
-
-weight = 'conformal';
-weight = 'combinatorial';
-switch weight
-    case 'conformal'
-        W = make_sparse(n,n);
-        for i=1:3
-            i1 = mod(i-1,3)+1;
-            i2 = mod(i  ,3)+1;
-            i3 = mod(i+1,3)+1;
-            pp = vertex(:,faces(i2,:)) - vertex(:,faces(i1,:));
-            qq = vertex(:,faces(i3,:)) - vertex(:,faces(i1,:));
-            % normalize the vectors
-            pp = pp ./ repmat( sqrt(sum(pp.^2,1)), [3 1] );
-            qq = qq ./ repmat( sqrt(sum(qq.^2,1)), [3 1] );
-            % compute angles
-            ang = acos(sum(pp.*qq,1));
-            a = max(1 ./ tan(ang),1e-1); % this is *very* important
-            W = W + make_sparse(faces(i2,:),faces(i3,:), a, n, n );
-            W = W + make_sparse(faces(i3,:),faces(i2,:), a, n, n );
-        end
-    case 'combinatorial'
-        E = [faces([1 2],:) faces([2 3],:) faces([3 1],:)];
-        E = unique_rows([E E(2:-1:1,:)]')';
-        W = make_sparse( E(1,:), E(2,:), ones(size(E,2),1) );
-end
+% Compute a sparse set of landmarks to speed up the geodesic computations.
+% The landmarks are computed using farthest point sampling.
 
 %%
-% Compute the normalized weight matrix |tW| such that its rows
-% sums to 1.
+% First landmarks, at random.
 
-d = full( sum(W,1) );
-D = spdiags(d(:), 0, n,n);
-iD = spdiags(d(:).^(-1), 0, n,n);
-tW = iD * W;
-
-%% Spherical Relaxation
-% It is possible to smooth the positions of the mesh on the sphere by
-% performing an averaging according to |W|, and projecting back on the
-% sphere.
+landmarks = 23057;
+Dland = [];
 
 %%
-% Compute an initial mapping on the sphere.
-% This simply a radial projection.
+% Perform Fast Marching to compute the geodesic distance, and record it.
 
-vertex1 = vertex;
-vertex1 = vertex1 - repmat( mean(vertex1,2), [1 n] );
-vertex1 = vertex1 ./ repmat( sqrt(sum(vertex1.^2,1)), [3 1] );
-
-%% 
-% Check which faces have the correct orientation.
-
-% normal to faces
-[normal,normalf] = compute_normal(vertex1,faces);
-% center of faces
-C = squeeze(mean(reshape(vertex1(:,faces),[3 3 m]), 2));
-% inner product
-I = sum(C.*normalf);
+[Dland(:,end+1),S,Q] = perform_fast_marching_mesh(vertex, faces, landmarks(end));
 
 %%
-% Ratio of inverted triangles.
-% For a bijective mapping, there should not be any inverted triangle.
+% Select farthest point. Here, |min(Dland,[],2)| is the distance to the set of seed
+% points.
 
-disp(['Ratio of inverted triangles:' num2str(sum(I(:)<0)/m, 3) '%']);
+[tmp,landmarks(end+1)] = max( min(Dland,[],2) );
 
 %%
-% Display on the sphere.
+% Update distance function.
 
-options.name = 'none';
+[Dland(:,end+1),S,Q] = perform_fast_marching_mesh(vertex, faces, landmarks(end));
+
+%%
+% Display distances.
+
 clf;
-options.face_vertex_color = double(I(:)>0);
-plot_mesh(vertex1,faces,options);
-colormap gray(256); axis tight;
-shading faceted;
-
-%%
-% Perform smoothing and projection.
-
-vertex1 = vertex1*tW';
-vertex1 = vertex1 ./ repmat( sqrt(sum(vertex1.^2,1)), [3 1] );
+options.start_points = landmarks;
+plot_fast_marching_mesh(vertex,faces, min(Dland,[],2) , [], options);
 
 %%
 % _Exercice 1:_ (<../missing-exo/ check the solution>)
-% Perform iterative smoothing and projection.
-% Record the evolution of the number of inverted triangle in 
-% |ninvert|. Record also the evolution of the Dirichlet energy in 
-% |Edir|.
+% Compute a set of |n = 300| vertex by iterating this farthest
+% point sampling. Display the progression of the sampling.
 
 exo1;
 
 %%
-% Display the decay of the evolution of the Dirichlet energy.
+% Compute the distance matrix restricted to the landmarks.
 
-clf;
-plot(Edir/Edir(1));
-axis('tight');
+D = Dland(landmarks,:);
+D = (D+D')/2;
 
-%%
-% Display final spherical configuration.
 
-clf;
-plot_mesh(vertex1,faces);
-colormap gray(256); axis tight;
-shading faceted;
+%% Bending Invariant by Strain Minimization and Nistrom Interpolation
+% One can compute the bending invariant of the set of landmarks, and then
+% apply it to the whole mesh using interpolation.
 
 %%
-% Display the evolution of the number of inverted triangles.
+% Compute a centered kernel for the Landmarks, that should be approximately
+% a matrix of inner products.
 
-clf;
-plot(ninvert/m); axis tight;
-
-
-%% Spherical Geometry Images
-% Using this spherical parameterization, one  maps the surface on a
-% sphere, then on an octahedron, and finally on a square. This allows to
-% map the surface on a 2D image, thus creating a geometry image.
-
-%%
-% The method is originaly described in 
-
-%%
-% _Spherical Parameterization and Remeshing_
-% E. Praun, H. Hoppe
-% Proceedings of SIGGRAPH 2003
-
-q = 128;
-options.verb = 0;
-M = perform_sgim_sampling(vertex, vertex1, faces, q, options);
-
-%%
-% Display the spherical geometry image.
-
-clf;
-plot_geometry_image(M, 1, 1);
-axis equal;
-colormap gray(256);
-view(134,-61);
-
-
-%% Mesh Morphing
-% By mapping two meshes on the same sphere, one  computes a bijection
-% between two meshes.
+J = eye(n) - ones(n)/n;
+K = -1/2 * J*(D.^2)*J;
 
 %% 
-% By linearly interpolating the positions of the points  that are
-% in correspondance, one  performs a warp of a mesh onto another one.
+% Perform classical MDS on the reduced set of points, to obtain new positions in 3D.
+
+opt.disp = 0; 
+[Xstrain, val] = eigs(K, 3, 'LR', opt);
+Xstrain = Xstrain .* repmat(sqrt(diag(val))', [n 1]);
+Xstrain = Xstrain';
+
+%%
+% Interpolate the locations to the whole mesh by Nystrom
+% eigen-extrapolation, as detailed in 
+
+%%
+% _Sparse multidimensional scaling using landmark points_
+% V. de Silva, J.B. Tenenbaum, Preprint.
+
+vertex1 = zeros(nverts,3);
+deltan = mean(Dland.^2,1);
+for i=1:nverts
+    deltax = Dland(i,:).^2;
+    vertex1(i,:) = 1/2 * ( Xstrain * ( deltan-deltax )' )';
+end
+vertex1 = vertex1';
+
+%%
+% Display the bending invariant mesh.
+
+clf;
+plot_mesh(vertex1,faces,options);
+
+
+%% Farthest Point for Stress Minimization
+% The proposed interpolation method is valid only for the Strain minimizer
+% (spectral Nistrom interpolation). One thus needs to use another
+% interpolation method.
+
+
+%%
+% See for instance this work for a method to do such an interpolation:
+
+%%
+% A. M. Bronstein, M. M. Bronstein, R. Kimmel, 
+% _Efficient computation of isometry-invariant distances between surfaces_, 
+% SIAM J. Scientific Computing, Vol. 28/5, pp. 1812-1836, 2006.
 
 %%
 % _Exercice 2:_ (<../missing-exo/ check the solution>)
-% Implement the mesh morphing.
+% Create an interpolation scheme to interpolate the result of MDS
+% dimensionality reduction with Stree minimization (SMACOF algorithm).
 
 exo2;
-
-
-%% Spherical Relaxation with Area Correction
-% Spherical relaxation leads to an uncontrolled evolution because triangle
-% are not constrained in size.
-
-%% 
-% To avoid this, it is possible to penalize the size of large triangle.
-
-
-%%
-% This is similar to the method proposed in:
-
-%%
-% _Unconstrained Spherical Parameterization_
-% Ilja Friedel, Peter Schröder, and Mathieu Desbrun 
-% Journal of Graphics Tools, 12(1), pp. 17-26, 2007.
-
-%%
-% First initialize the gradient descent.
-
-vertex1 = vertex; 
-vertex1 = vertex1 - repmat( mean(vertex1,2), [1 n] );
-vertex1 = vertex1 ./ repmat( sqrt(sum(vertex1.^2,1)), [3 1] );
-
-%%
-% Step size for the gradient descent.
-
-eta = .5;
-
-%% 
-% Compute the center of the faces.
-
-A = squeeze(mean(reshape(vertex1(:,faces),[3 3 m]), 2));
-
-%% 
-% Compute the Dirichlet energy of each face.
-
-E = zeros(1,m);
-for i=1:3
-    i1 = mod(i,3)+1;
-    % directed edge
-    u = vertex(:,faces(i,:)) - vertex(:,faces(i1,:));
-    % norm squared
-    u = sum(u.^2);
-    % weights between the vertices
-    w = W(faces(i,:) + (faces(i1,:)-1)*n);
-    E = E + w.*u;
-end
-
-%%
-% Compute gradient direction.
-
-G = zeros(3,n);
-for j=1:m
-    f = faces(:,j);
-    Alpha = A(:,j);
-    alpha = norm(Alpha);
-    for i=1:3
-        i1 = mod(i  ,3)+1;
-        i2 = mod(i+1,3)+1;
-        % directed edges
-        u1 = vertex(:,f(i)) - vertex(:,f(i1));
-        u2 = vertex(:,f(i)) - vertex(:,f(i2));
-        % weights between the vertices
-        w1 = W(f(i) + (f(i1)-1)*n);
-        w2 = W(f(i) + (f(i2)-1)*n);
-        G(:,f(i)) = G(:,f(i)) + (w1*u1 + w2*u2) ./ alpha^2 - Alpha/alpha^4 * E(j);
-    end
-end
-
-%% 
-% Perform the gradient descent step and the projection.
-
-vertex1 = vertex1 - eta*G;
-vertex1 = vertex1 ./ repmat( sqrt(sum(vertex1.^2,1)), [3 1] );
-
-%%
-% _Exercice 3:_ (<../missing-exo/ check the solution>)
-% Perform the full descent.
-% Record the decay of the energy in |Edir|.
-
-exo3;
-
-%%
-% Plot the decay of the energy.
-
-clf;
-plot(Edir/Edir(1));
