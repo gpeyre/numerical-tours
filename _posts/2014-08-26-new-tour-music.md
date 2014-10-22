@@ -3,7 +3,7 @@ layout:     post
 title:      "New tour"
 subtitle:   "Sparse Spikes Deconvolution with MUSIC Algorithm"
 date:       2014-08-26 12:00:00
-author:     "Gabirel Peyré"
+author:     "Gabriel Peyré"
 header-img: "/img/hokusai-11.jpg"
 ---
 

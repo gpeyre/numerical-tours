@@ -3,7 +3,7 @@ layout:     post
 title:      "New tour"
 subtitle:   "Sparse Spikes Deconvolution over the Space of Measures"
 date:       2013-10-12 12:00:00
-author:     "Gabirel Peyré"
+author:     "Gabriel Peyré"
 header-img: "/img/hokusai-8.jpg"
 ---
 

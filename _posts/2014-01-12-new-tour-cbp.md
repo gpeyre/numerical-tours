@@ -3,7 +3,7 @@ layout:     post
 title:      "New tour"
 subtitle:   "Sparse Spikes Deconvolution with Continuous Basis-Pursuit"
 date:       2014-01-12 12:00:00
-author:     "Gabirel Peyré"
+author:     "Gabriel Peyré"
 header-img: "/img/hokusai-9.jpg"
 ---
 
