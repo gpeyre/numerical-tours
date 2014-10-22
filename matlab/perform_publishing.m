@@ -72,15 +72,15 @@ end
 
 %% set up path
 % directory where the wavelet-tour web site is
-repweb = getoptions(options, 'rep', '../html/');
+repweb = getoptions(options, 'rep', '../../numerical-tours-site/matlab/');
 % directory where the specific publishing is made
 rep = [repweb name '/'];
 if not(exist(rep))
     mkdir(rep);
 end
 % directory for the exercices to be stored
-repprivate = getoptions(options, 'repprivate', 'private-svg/');
-reppriv = [repweb repprivate name '/'];
+repprivate = getoptions(options, 'repprivate', 'solutions/');
+reppriv = [ repprivate name '/'];
 if not(exist(reppriv))
     mkdir(reppriv);
 end
@@ -152,8 +152,8 @@ delete([repweb name_out '.m']);
 % movefile([opts.outputDir '/' name_out '.html'], [opts.outputDir '/index.html']);
 
 %% do the online publishing 
-disp('Performing online publishing (might take some time) ...');
-perform_online_publishing(name);
+% disp('Performing online publishing (might take some time) ...');
+% perform_online_publishing(name);
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -275,7 +275,7 @@ filename = [name '.m'];
 fidexo = fopen([rep filename], 'wt');
 
 output_line(fidout, ['%%\n% _Exercice ' num2str(exo_num) ':_' ]);
-output_line(fidout, [' (the solution is <../missing-exo.html ' filename  '>)\n']);
+output_line(fidout, [' (<../missing-exo/ check the solution>)\n']);
 
 % process files
 while true

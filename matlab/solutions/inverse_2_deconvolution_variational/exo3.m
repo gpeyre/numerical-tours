@@ -10,7 +10,7 @@ for i=1:niter
     e = Phi(fTV,h)-y;
     fTV = fTV - tau*( Phi(e,h) + lambda*G);
     % energy
-    E(i) = norm(e, 'fro')^2 + lambda*sum(d(:));
+    E(i) = 1/2*norm(e, 'fro')^2 + lambda*sum(d(:));
 end
 % display energy
 clf;

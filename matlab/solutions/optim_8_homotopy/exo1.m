@@ -6,6 +6,7 @@ C = Phi'*y;
 x = zeros(N,1);
 X(:,end+1) = x; Lambda(end+1) = lambda; Sparsity(end+1) = length(I);
 clf; 
+niter = 1000;
 for it=1:niter
     % complementary support
     J = setdiff(1:N, I);
