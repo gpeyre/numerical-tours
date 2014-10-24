@@ -121,7 +121,7 @@ Computer Graphics {#graphics}
 <!-- * [Stationary Dynamic Texture Synthesis](graphics_8_dyntextures/) -->
 
 Optimal Transport {#optimaltransp}
- ----------------
+----------------
 
 * [Optimal Transport with Linear Programming](optimaltransp_1_linprog/)
 * [Optimal Transport with Benamou-Brenier Algorithm](optimaltransp_2_benamou_brenier/)
@@ -222,7 +222,7 @@ Mesh Parameterization and Deformation {#meshdeform}
 * [Mesh Deformation](meshdeform_5_deformation/)
 
 
-Multiscale Mesh Processing {#meshwavø
+Multiscale Mesh Processing {#meshwav}
 ----------------
 
 * [Subdivision Curves](meshwav_1_subdivision_curves/)
