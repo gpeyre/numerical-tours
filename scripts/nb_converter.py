@@ -31,15 +31,16 @@ class Converter(object):
     def __init__(self, fname, ntype='python'):
         self.ntype = ntype.lower()
         name = os.path.basename(fname)
-        name = name.replace('.m', '')
-        self.nb = Notebook(name, self.ntype)
+        self.name = name.replace('.m', '')
+        self.nb = Notebook(name)
         self.fname = fname
         self._excercise_num = 1
 
     def convert(self):
-        with open(self.fname) as fid:
-            lines = fid.readlines()
+        with open(self.fname, 'rb') as fid:
+            text = fid.read().decode('utf-8', 'replace')
 
+        lines = text.splitlines()
         self.nb.add_heading(lines[0][3:].rstrip())
 
         state = 'markdown'
@@ -72,7 +73,7 @@ class Converter(object):
         self.nb.save(path)
 
     def parse_line(self, line, state):
-        new_line = line.decode('utf-8', 'ignore')
+        new_line = line
         new_state = state
 
         if state == 'excercise':
@@ -173,7 +174,7 @@ class Converter(object):
             nb.add_heading(out_lines, level=2)
 
         elif state == 'excercise':
-            self.add_heading('Exercise %s' % self._excercise_num, level=3)
+            nb.add_heading('Exercise %s' % self._excercise_num, level=3)
             nb.add_markdown(out_lines)
             self._excercise_num += 1
 
@@ -192,18 +193,18 @@ class Converter(object):
             nb.add_code(out_lines)
 
         elif state == 'install':
-            func = getattr(self, 'get_%_intro' % self._name)
+            func = getattr(self, 'get_%s_intro' % self.ntype)
             func(out_lines[0].split())
 
     def get_python_intro(self, *toolboxes):
         setup = r"""
         from __future__ import division
         import numerical_tours as nt
-        from numerical_tours.solutions import %s as exercises
+        from numerical_tours.solutions import {0} as exercises
         %matplotlib inline
         %load_ext autoreload
         %autoreload 2
-        """ % self.name
+        """.format(self.name)
         self.nb.add_code(setup.strip().splitlines())
 
         notice = """You need to install `numerical_tours`:
@@ -217,7 +218,7 @@ class Converter(object):
         setup = ['%load_ext pymatbridge']
         for toolbox in toolboxes:
             setup += "addpath('../toolbox_%s')" % toolbox
-        setup += ["addpath('../solutions/%s')" % self._name]
+        setup += ["addpath('../solutions/%s')" % self.name]
         self.nb.add_code(setup)
 
         links = ['[%s](%s)' % (t, (TOOLBOX_LINK % t)) for t in toolboxes]
@@ -238,7 +239,7 @@ class Converter(object):
         setup = ['%load_ext scilab2py.ipython']
         for toolbox in toolboxes:
             setup += "getd('../toolbox_%s')" % toolbox
-        setup += ["getd('../solutions/%s')" % self._name]
+        setup += ["getd('../solutions/%s')" % self.name]
         self.nb.add_code(setup)
 
         links = ['[%s](%s)' % (t, (TOOLBOX_LINK % t)) for t in toolboxes]

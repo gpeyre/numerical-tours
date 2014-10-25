@@ -116,7 +116,7 @@ class Notebook(dict):
 
     def save(self, path):
         with open(path, 'wb') as fid:
-            json.dump(self, fid, indent=2, sort_keys=True)
+            json.dump(self.items(), fid, indent=2, sort_keys=True)
 
     @staticmethod
     def _handle_items(items):
