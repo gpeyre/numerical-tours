@@ -86,7 +86,7 @@ sum3 = @(a)sum(a(:));
 % n\). The time domain \([0,1]\) is discretized with \(p\) points.
 
 n = 20;
-p = 60;
+p = 20;
 
 %%
 % Shortcut to generate Gaussian function.
@@ -277,7 +277,7 @@ ProxJ = @(w,lambda)reshape( Proxj( ...
 % Tolerance and number of iterations for the conjugate gradient.
 
 opts.epsilon = 1e-9; 
-opts.niter_max = 200;
+opts.niter_max = 150;
 
 %%
 % Adapt conjugate gradient fucntion to handle variables that are not
@@ -356,7 +356,7 @@ rProxG = @(w,tau)2*ProxG(w,tau)-w;
 %%
 % Number of iterations.
 
-niter = 2000;
+niter = 200;
 
 %%
 % Initialization using linear interpolation of the densities.

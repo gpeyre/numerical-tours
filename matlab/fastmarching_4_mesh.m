@@ -1,7 +1,7 @@
 %% Geodesic Mesh Processing 
 % This tour explores geodesic computations on 3D meshes.
 
-perform_toolbox_installation('signal', 'general', 'graph');
+perform_toolbox_installation('signal', 'general', 'graph', 'wavelet_meshes');
 
 
 %% Distance Computation on 3D Meshes
