@@ -15,6 +15,9 @@ PY_REPLS = [(re.compile('@\((.*?)\)'),  # replace anon funcs with lambdas
 TOOLBOX_LINK = 'https://www.ceremade.dauphine.fr/~peyre/numerical-tour/tours/toolbox_%s.zip'
 
 
+LINK = re.compile(r"(\<http.*? )(_.*?_\>)")
+
+
 class Converter(object):
 
     """Convert an m file into an IPython notebook
@@ -40,6 +43,7 @@ class Converter(object):
         with open(self.fname, 'rb') as fid:
             text = fid.read().decode('utf-8', 'replace')
 
+        text = text.replace('\ufffd', ' ')
         lines = text.splitlines()
         self.nb.add_heading(lines[0][3:].rstrip())
 
@@ -68,7 +72,7 @@ class Converter(object):
         else:
             dname = os.path.dirname(fname)
             fname = os.path.basename(fname)
-            fname = os.path.join(dname, 'notebooks', fname)
+            path = os.path.join(dname, 'notebooks', fname)
 
         self.nb.save(path)
 
@@ -122,7 +126,13 @@ class Converter(object):
             new_state = 'code'
 
         if new_state == 'markdown':
-            pass
+            match = re.search(LINK, new_line)
+            if match and len(match.groups()) == 2:
+                link, name = match.groups()
+                new_link = '(' + link[1:] + ')'
+                new_name = '[' + name[2:-2] + ']'
+                new_line = new_line.replace(name, new_link)
+                new_line = new_line.replace(link, new_name)
 
         elif new_state == 'code' and self.ntype == 'python':
             new_line = self.parse_code(new_line)
@@ -176,12 +186,13 @@ class Converter(object):
         elif state == 'excercise':
             nb.add_heading('Exercise %s' % self._excercise_num, level=3)
             nb.add_markdown(out_lines)
-            self._excercise_num += 1
 
             if self.ntype == 'python':
                 nb.add_code('excercises.ex%s()' % self._excercise_num)
             else:
                 nb.add_code('ex%s()' % self._excercise_num)
+
+            self._excercise_num += 1
             nb.add_code("## Insert your code here.")
 
         elif state == 'markdown':
@@ -214,10 +225,13 @@ class Converter(object):
         """
         self.nb.add_markdown(notice.strip().splitlines())
 
-    def get_matlab_intro(self, *toolboxes):
+    def get_matlab_intro(self, toolboxes):
         setup = ['%load_ext pymatbridge']
+        self.nb.add_code(setup)
+
+        setup = ['%%matlab']
         for toolbox in toolboxes:
-            setup += "addpath('../toolbox_%s')" % toolbox
+            setup += ["addpath('../toolbox_%s')" % toolbox]
         setup += ["addpath('../solutions/%s')" % self.name]
         self.nb.add_code(setup)
 
@@ -227,15 +241,16 @@ class Converter(object):
         You need to unzip these toolboxes in your working directory,
         so that you have %s in your directory.
         You also need to install `pymatbridge`:
-        ```bash
-        pip install pymatbridge
-        ```
-        """ % (' and'.join(links), ' and'.join(toolboxes))
+
+```bash
+pip install pymatbridge
+```
+        """ % (' and '.join(links), ' and '.join(toolboxes))
         self.nb.add_heading('Installing toolboxes and setting up the path',
                             level=3)
         self.nb.add_markdown(notice)
 
-    def get_scilab_intro(self, *toolboxes):
+    def get_scilab_intro(self, toolboxes):
         setup = ['%load_ext scilab2py.ipython']
         for toolbox in toolboxes:
             setup += "getd('../toolbox_%s')" % toolbox
@@ -261,4 +276,4 @@ if __name__ == '__main__':
         fname = sys.argv[1]
     else:
         fname = '../matlab/meshwav_1_subdivision_curves.m'
-    Converter(fname).convert()
+    Converter(fname, 'matlab').convert()

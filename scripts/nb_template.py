@@ -111,12 +111,13 @@ class Notebook(dict):
                     collapsed=False,
                     input=source,
                     language="python",
+                    metadata={},
                     outputs=outputs)
         self['worksheets'][0]['cells'].append(code)
 
     def save(self, path):
-        with open(path, 'wb') as fid:
-            json.dump(self.items(), fid, indent=2, sort_keys=True)
+        with open(path, 'w') as fid:
+            json.dump(self, fid, indent=2, sort_keys=True)
 
     @staticmethod
     def _handle_items(items):
