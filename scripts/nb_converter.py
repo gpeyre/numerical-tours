@@ -1,12 +1,6 @@
 import os
 import re
 import sys
-try:
-    from smop.main import main as smop_main
-    from py_compile import compile as py_compile
-except ImportError:
-    print('Please `pip install smop`')
-    py_compile = None
 
 from nb_template import Notebook
 
@@ -63,15 +57,6 @@ class Converter(object):
 
         # handle the last section
         self.get_section(state, out_lines)
-
-        # for python, add the compiled output as the last block
-        if self.ntype == 'python' and not py_compile is None:
-            py_compile(self.fname)
-            with open(self.fname.replace('.m', '.py')) as fid:
-                lines = fid.readlines()
-            os.remove(self.fname.replace('.m', '.py'))
-            self.nb.add_heading('Converted Code', level=2)
-            self.nb.add_code(lines)
 
         fname = self.fname.replace('.m', '.ipynb')
         if self.ntype == 'python':
