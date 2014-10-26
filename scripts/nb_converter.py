@@ -13,8 +13,14 @@ PY_REPLS = [(re.compile('@\((.*?)\)'),  # replace anon funcs with lambdas
             ]
 
 
-TOOLBOX_LINK = ('https://www.ceremade.dauphine.fr/~peyre/'
-                'numerical-tour/tours/toolbox_%s.zip')
+GITHUB_LINK = 'https://github.com/gpeyre/numerical-tours/archive/master.zip'
+IPYTHON_LINK = 'http://ipython.org/install.html'
+INSTALLATION = """
+Installation
+------------
+You need to download [numerical_tours](%s)
+and have the IPython notebook [installed](%s) to run the code
+""" % (GITHUB_LINK, IPYTHON_LINK)
 
 MATH_REPLS = [(re.compile(r'\\\['), '$$'),  # replace latex delimiters
               (re.compile(r'\\\]'), '$$'),
@@ -155,22 +161,15 @@ class Converter(object):
                 new_state = 'markdown'
                 new_line = ''
 
-            elif new_line.startswith('%'):
-                new_state = 'excercise'
-                new_line = new_line[3:]
-
-            else:
-                new_state = 'excercise'
-                new_line = ''
-
         elif state == 'comment':
             if new_line.startswith('%CMT'):
                 new_state = 'markdown'
                 new_line = ''
 
         elif re.match(SECTION_HEADING, new_line):
-            new_state = 'section'
+            new_state = 'markdown'
             new_line = new_line[3:]
+            new_line += '\n' + '-' * len(new_line)
 
         elif new_line.startswith('perform_toolbox_installation('):
             new_state = 'install'
@@ -246,16 +245,24 @@ class Converter(object):
     def get_section(self, state, out_lines):
         nb = self.nb
 
-        if state in ['exercise', 'markdown']:
-            out_lines = self._handle_links(out_lines)
-            out_lines = self._handle_latex(out_lines)
+        if state == 'excercise':
+            header = 'Exercise %s' % self._excercise_num
 
-        if state == 'section':
-            nb.add_heading(out_lines, level=2)
+            # TODO: write out appropriate execercise here
+            # for ../python/numerical_tours/solutions/%name.py
+            # ../matalb/solutions/%
+            """
+            if new_line.startswith('%'):
+                new_state = 'excercise'
+                new_line = new_line[3:]
 
-        elif state == 'excercise':
-            nb.add_heading('Exercise %s' % self._excercise_num, level=3)
-            nb.add_markdown(out_lines)
+            else:
+                new_state = 'excercise'
+                new_line = ''
+
+            out_lines = [header, '-' * len(header)] + out_lines
+            nb.add_markdown(self._parse_markdown(out_lines))
+            """
 
             if self.ntype == 'python':
                 nb.add_code('excercises.ex%s()' % self._excercise_num)
@@ -266,7 +273,7 @@ class Converter(object):
             nb.add_code("## Insert your code here.")
 
         elif state == 'markdown':
-            nb.add_markdown(out_lines)
+            nb.add_markdown(self._parse_markdown(out_lines))
 
         elif state == 'code':
             if not self.ntype == 'python':
@@ -280,23 +287,15 @@ class Converter(object):
     def get_python_intro(self, *toolboxes):
         setup = r"""
         from __future__ import division
-        import numerical_tours as nt
-        from numerical_tours.solutions import {0} as exercises
+        import .nt_toolbox as nt
+        from .solutions import {0} as exercises
         %matplotlib inline
         %load_ext autoreload
         %autoreload 2
         """.format(self.name)
 
         self.nb.add_code(self._reformat(setup))
-
-        notice = """You need to install `numerical_tours`:
-
-        ```bash
-        pip install numerical_tours
-        ```
-
-        """
-        self.nb.add_markdown(self._reformat(notice))
+        self.nb.add_markdown(INSTALLATION)
 
     def get_matlab_intro(self, toolboxes):
         setup = ['%load_ext pymatbridge']
@@ -308,44 +307,37 @@ class Converter(object):
         setup += ["addpath('../solutions/%s')" % self.name]
         self.nb.add_code(setup)
 
-        links = ['[%s](%s)' % (t, (TOOLBOX_LINK % t)) for t in toolboxes]
-        notice = """
-        You need to download the following files: %s.
-        You need to unzip these toolboxes in your working directory,
-        so that you have %s in your directory.
-        You also need to install `pymatbridge`:
+        notice = """You must also install `pymatbridge`:
 
-        ```bash
+        ```
         pip install pymatbridge
         ```
-
-        """ % (' and '.join(links), ' and '.join(toolboxes))
-        self.nb.add_heading('Installing toolboxes and setting up the path',
-                            level=3)
+        """
+        notice = INSTALLATION + notice
         self.nb.add_markdown(self._reformat(notice))
 
     def get_scilab_intro(self, toolboxes):
         setup = ['%load_ext scilab2py.ipython']
-        for toolbox in toolboxes:
-            setup += "getd('../toolbox_%s')" % toolbox
-        setup += ["getd('../solutions/%s')" % self.name]
         self.nb.add_code(setup)
 
-        links = ['[%s](%s)' % (t, (TOOLBOX_LINK % t)) for t in toolboxes]
-        notice = """
-        You need to download the following files: %s.
-        You need to unzip these toolboxes in your working directory,
-        so that you have %s in your directory.
-        You also need to install `scilab2py`:
+        setup = ['%%scilab']
+        for toolbox in toolboxes:
+            setup += ["addpath('../toolbox_%s')" % toolbox]
+        setup += ["addpath('../solutions/%s')" % self.name]
+        self.nb.add_code(setup)
 
-        ```bash
+        notice = """You must also install `scilab2py`:
+
+        ```
         pip install scilab2py
         ```
-
-        """ % (' and'.join(links), ' and'.join(toolboxes))
-        self.nb.add_heading('Installing toolboxes and setting up the path',
-                            level=3)
+        """
+        notice = INSTALLATION + notice
         self.nb.add_markdown(self._reformat(notice))
+
+    def _parse_markdown(self, lines):
+        lines = self._handle_links(lines)
+        return self._handle_latex(lines)
 
     @staticmethod
     def _handle_links(lines):

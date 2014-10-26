@@ -13,14 +13,6 @@ class Notebook(dict):
                          nbformat_minor=0,
                          worksheets=[dict(cells=[])]))
 
-    def add_heading(self, source, level=1):
-        source = self._handle_items(source)
-        h = dict(cell_type="heading",
-                 level=level,
-                 metadata={},
-                 source=source)
-        self['worksheets'][0]['cells'].append(h)
-
     def add_markdown(self, source):
         source = self._handle_items(source)
         md = dict(cell_type="markdown",
