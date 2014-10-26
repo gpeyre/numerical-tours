@@ -104,8 +104,8 @@ class Converter(object):
      (see CODE_REPLS and `parse_code`).
     """
 
-    def __init__(self, fname, ntype='python'):
-        self.ntype = ntype.lower()
+    def __init__(self, fname):
+        self.ntype = 'python'
         name = os.path.basename(fname)
         self.name = name.replace('.m', '')
         self.nb = Notebook()
@@ -113,7 +113,8 @@ class Converter(object):
         self._excercise_num = 1
         self.excercises = []
 
-    def convert(self, out_dir='.'):
+    def convert(self, out_dir='.', ntype='python'):
+        self.ntype = ntype.lower()
         with open(self.fname, 'rb') as fid:
             text = fid.read().decode('utf-8', 'replace')
 
@@ -141,7 +142,8 @@ class Converter(object):
         self.get_section(state, out_lines)
 
         fname = self.fname.replace('.m', '.ipynb')
-        path = os.path.join(out_dir, fname)
+        basename = os.path.basename(fname)
+        path = os.path.join(out_dir, basename)
 
         self.nb.save(path)
 
@@ -397,4 +399,4 @@ if __name__ == '__main__':
         fname = sys.argv[1]
     else:
         fname = '../matlab/meshwav_1_subdivision_curves.m'
-    Converter(fname, 'python').convert()
+    Converter(fname).convert('.', 'python')
