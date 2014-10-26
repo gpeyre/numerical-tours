@@ -65,6 +65,9 @@ MATH_REPLS = [(re.compile(r'\\\['), '$$'),  # replace latex delimiters
               (re.compile(r'\\\)'), '$'),
               ]
 
+LINK = re.compile(r"(\<http.*? )(_.*?_\>)")
+BIBLIO_LINK = re.compile(r'\<#biblio (\[.*?\])\>')
+
 
 class Notebook(dict):
     """An IPython Notebook builder tailored for numerical-tours.
@@ -88,6 +91,7 @@ class Notebook(dict):
 
     def add_markdown(self, source):
         source = self._handle_items(source)
+        source = self._handle_links(source)
         output = []
         for line in source:
                 while line.startswith('%'):
@@ -138,6 +142,31 @@ class Notebook(dict):
             items = ''.join(items).strip().splitlines()
         return items
 
+    @staticmethod
+    def _handle_links(lines):
+        links = []
+        new_lines = []
+        for line in lines:
+            matches = re.findall(LINK, line)
+            for match in matches:
+                if not isinstance(match, tuple):
+                    continue
+                link, title = match
+                links.append(link[1:-1])
+                line = line.replace(link, '')
+                new_link = '[%s][%s]' % (title[1:-2], len(links))
+                line = line.replace(title, new_link)
+            biblio_links = re.findall(BIBLIO_LINK, line)
+            for link in biblio_links:
+                line = line.replace('<#biblio %s>' % link,
+                                    '%s(#biblio)' % link)
+            new_lines.append(line)
+        if links:
+            new_lines.append('')
+        for (ind, link) in enumerate(links):
+            new_lines.append('[%s]:%s' % (ind + 1, link))
+
+        return new_lines
 
 if __name__ == '__main__':
     nb = Notebook()

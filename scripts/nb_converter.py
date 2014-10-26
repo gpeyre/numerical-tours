@@ -15,9 +15,6 @@ PY_REPLS = [(re.compile('@\((.*?)\)'),  # replace anon funcs with lambdas
 TOOLBOX_LINK = 'https://www.ceremade.dauphine.fr/~peyre/numerical-tour/tours/toolbox_%s.zip'
 
 
-LINK = re.compile(r"(\<http.*? )(_.*?_\>)")
-
-
 class Converter(object):
 
     """Convert an m file into an IPython notebook
@@ -126,13 +123,7 @@ class Converter(object):
             new_state = 'code'
 
         if new_state == 'markdown':
-            match = re.search(LINK, new_line)
-            if match and len(match.groups()) == 2:
-                link, name = match.groups()
-                new_link = '(' + link[1:] + ')'
-                new_name = '[' + name[2:-2] + ']'
-                new_line = new_line.replace(name, new_link)
-                new_line = new_line.replace(link, new_name)
+            pass
 
         elif new_state == 'code' and self.ntype == 'python':
             new_line = self.parse_code(new_line)
@@ -190,7 +181,7 @@ class Converter(object):
             if self.ntype == 'python':
                 nb.add_code('excercises.ex%s()' % self._excercise_num)
             else:
-                nb.add_code('ex%s()' % self._excercise_num)
+                nb.add_code('%%%%matlab\nex%s()' % self._excercise_num)
 
             self._excercise_num += 1
             nb.add_code("## Insert your code here.")
