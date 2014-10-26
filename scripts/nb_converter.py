@@ -111,6 +111,7 @@ class Converter(object):
         self.nb = Notebook()
         self.fname = fname
         self._excercise_num = 1
+        self.excercises = []
 
     def convert(self):
         with open(self.fname, 'rb') as fid:
@@ -151,6 +152,9 @@ class Converter(object):
             path = os.path.join(dname, 'notebooks', fname)
 
         self.nb.save(path)
+
+        if self.ntype == 'python':
+            self._write_exercises()
 
     def parse_line(self, line, state):
         new_line = line
@@ -247,27 +251,24 @@ class Converter(object):
 
         if state == 'excercise':
             header = 'Exercise %s' % self._excercise_num
+            lines = [header, '-' * len(header)]
 
-            # TODO: write out appropriate execercise here
-            # for ../python/numerical_tours/solutions/%name.py
-            # ../matalb/solutions/%
-            """
-            if new_line.startswith('%'):
-                new_state = 'excercise'
-                new_line = new_line[3:]
+            code_lines = []
+            for line in out_lines:
+                if line.startswith('%'):
+                    lines.append(line[3:])
+                else:
+                    code_lines.append(line)
+            lines = self._parse_markdown(lines)
 
-            else:
-                new_state = 'excercise'
-                new_line = ''
+            self.excercises.append((lines[2:], code_lines))
 
-            out_lines = [header, '-' * len(header)] + out_lines
-            nb.add_markdown(self._parse_markdown(out_lines))
-            """
+            nb.add_markdown(lines)
 
             if self.ntype == 'python':
-                nb.add_code('excercises.ex%s()' % self._excercise_num)
+                nb.add_code('excercises.exo%s()' % self._excercise_num)
             else:
-                nb.add_code('%%%%matlab\nex%s()' % self._excercise_num)
+                nb.add_code('%%%%matlab\nexo%s()' % self._excercise_num)
 
             self._excercise_num += 1
             nb.add_code("## Insert your code here.")
@@ -383,6 +384,20 @@ class Converter(object):
     def _reformat(text):
         lines = text.splitlines()
         return '\n'.join([l.strip() for l in lines])
+
+    def _write_exercises(self):
+        sfile = '../python/solutions/%s.py' % self.name
+        with open(sfile, 'w') as fid:
+            for (ind, (comments, lines)) in enumerate(self.excercises):
+                fid.write('def exo%s():\n    """\n' % ind)
+                for comment in comments:
+                    fid.write('    %s\n' % comment)
+                fid.write('    """\n')
+                for line in lines:
+                    line = self.parse_code(line)
+                    if line.strip():
+                        fid.write('    %s\n' % line)
+                fid.write('\n\n')
 
 if __name__ == '__main__':
     if len(sys.argv) >= 2:
