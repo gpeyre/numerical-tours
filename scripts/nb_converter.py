@@ -19,7 +19,7 @@ INSTALLATION = """
 Installation
 ------------
 You need to download [numerical_tours](%s)
-and have the IPython notebook [installed](%s) to run the code
+and have the IPython notebook [installed](%s) to run the code.
 """ % (GITHUB_LINK, IPYTHON_LINK)
 
 MATH_REPLS = [(re.compile(r'\\\['), '$$'),  # replace latex delimiters
@@ -282,8 +282,8 @@ class Converter(object):
     def get_python_intro(self, *toolboxes):
         setup = r"""
         from __future__ import division
-        import .nt_toolbox as nt
-        from .solutions import {0} as exercises
+        import nt_toolbox as nt
+        from solutions import {0} as exercises
         %matplotlib inline
         %load_ext autoreload
         %autoreload 2
