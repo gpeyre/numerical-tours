@@ -113,7 +113,7 @@ class Converter(object):
         self._excercise_num = 1
         self.excercises = []
 
-    def convert(self):
+    def convert(self, out_dir='.'):
         with open(self.fname, 'rb') as fid:
             text = fid.read().decode('utf-8', 'replace')
 
@@ -141,20 +141,12 @@ class Converter(object):
         self.get_section(state, out_lines)
 
         fname = self.fname.replace('.m', '.ipynb')
-        if self.ntype == 'python':
-            fname = os.path.basename(fname)
-            dname = os.path.dirname('__file__')
-            path = os.path.join(os.path.abspath(dname), fname)
-
-        else:
-            dname = os.path.dirname(fname)
-            fname = os.path.basename(fname)
-            path = os.path.join(dname, 'notebooks', fname)
+        path = os.path.join(out_dir, fname)
 
         self.nb.save(path)
 
         if self.ntype == 'python':
-            self._write_exercises()
+            self._write_exercises(out_dir)
 
     def parse_line(self, line, state):
         new_line = line
@@ -385,8 +377,9 @@ class Converter(object):
         lines = text.splitlines()
         return '\n'.join([l.strip() for l in lines])
 
-    def _write_exercises(self):
-        sfile = '../python/solutions/%s.py' % self.name
+    def _write_exercises(self, out_dir):
+        sfile = 'solutions/%s.py' % self.name
+        sfile = os.path.join(out_dir, sfile)
         with open(sfile, 'w') as fid:
             for (ind, (comments, lines)) in enumerate(self.excercises):
                 fid.write('def exo%s():\n    """\n' % ind)
