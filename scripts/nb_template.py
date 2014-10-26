@@ -6,9 +6,8 @@ class Notebook(dict):
     """An IPython Notebook builder tailored for numerical-tours.
     """
 
-    def __init__(self, name):
+    def __init__(self):
         super(Notebook, self).__init__()
-        self._name = name
         self.update(dict(metadata=dict(name=""),
                          nbformat=3,
                          nbformat_minor=0,
@@ -18,7 +17,7 @@ class Notebook(dict):
         source = self._handle_items(source)
         h = dict(cell_type="heading",
                  level=level,
-                 metadata=dict(),
+                 metadata={},
                  source=source)
         self['worksheets'][0]['cells'].append(h)
 

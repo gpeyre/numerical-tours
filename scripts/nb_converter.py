@@ -102,7 +102,7 @@ class Converter(object):
         self.ntype = ntype.lower()
         name = os.path.basename(fname)
         self.name = name.replace('.m', '')
-        self.nb = Notebook(name)
+        self.nb = Notebook()
         self.fname = fname
         self._excercise_num = 1
 
@@ -157,6 +157,7 @@ class Converter(object):
 
             elif new_line.startswith('%'):
                 new_state = 'excercise'
+                new_line = new_line[3:]
 
             else:
                 new_state = 'excercise'
@@ -244,6 +245,11 @@ class Converter(object):
 
     def get_section(self, state, out_lines):
         nb = self.nb
+
+        if state in ['exercise', 'markdown']:
+            out_lines = self._handle_links(out_lines)
+            out_lines = self._handle_latex(out_lines)
+
         if state == 'section':
             nb.add_heading(out_lines, level=2)
 
@@ -260,8 +266,6 @@ class Converter(object):
             nb.add_code("## Insert your code here.")
 
         elif state == 'markdown':
-            out_lines = self._handle_links(out_lines)
-            out_lines = self._handle_latex(out_lines)
             nb.add_markdown(out_lines)
 
         elif state == 'code':
@@ -282,14 +286,17 @@ class Converter(object):
         %load_ext autoreload
         %autoreload 2
         """.format(self.name)
-        self.nb.add_code(setup.strip().splitlines())
+
+        self.nb.add_code(self._reformat(setup))
 
         notice = """You need to install `numerical_tours`:
+
         ```bash
         pip install numerical_tours
         ```
+
         """
-        self.nb.add_markdown(notice.strip().splitlines())
+        self.nb.add_markdown(self._reformat(notice))
 
     def get_matlab_intro(self, toolboxes):
         setup = ['%load_ext pymatbridge']
@@ -308,13 +315,14 @@ class Converter(object):
         so that you have %s in your directory.
         You also need to install `pymatbridge`:
 
-```bash
-pip install pymatbridge
-```
+        ```bash
+        pip install pymatbridge
+        ```
+
         """ % (' and '.join(links), ' and '.join(toolboxes))
         self.nb.add_heading('Installing toolboxes and setting up the path',
                             level=3)
-        self.nb.add_markdown(notice)
+        self.nb.add_markdown(self._reformat(notice))
 
     def get_scilab_intro(self, toolboxes):
         setup = ['%load_ext scilab2py.ipython']
@@ -330,14 +338,14 @@ pip install pymatbridge
         so that you have %s in your directory.
         You also need to install `scilab2py`:
 
-```bash
-pip install scilab2py
-```
+        ```bash
+        pip install scilab2py
+        ```
 
         """ % (' and'.join(links), ' and'.join(toolboxes))
         self.nb.add_heading('Installing toolboxes and setting up the path',
                             level=3)
-        self.nb.add_markdown(notice)
+        self.nb.add_markdown(self._reformat(notice))
 
     @staticmethod
     def _handle_links(lines):
@@ -379,9 +387,14 @@ pip install scilab2py
             output.append(line.rstrip())
         return output
 
+    @staticmethod
+    def _reformat(text):
+        lines = text.splitlines()
+        return '\n'.join([l.strip() for l in lines])
+
 if __name__ == '__main__':
     if len(sys.argv) >= 2:
         fname = sys.argv[1]
     else:
         fname = '../matlab/meshwav_1_subdivision_curves.m'
-    Converter(fname, 'matlab').convert()
+    Converter(fname, 'python').convert()
