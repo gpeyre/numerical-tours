@@ -1,77 +1,11 @@
 import json
-import re
-
-LATEX_COMMANDS = r"""
-$\newcommand{\dotp}[2]{\langle #1, #2 \rangle}
-\newcommand{\enscond}[2]{\lbrace #1, #2 \rbrace}
-\newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
-\newcommand{\umin}[1]{\underset{#1}{\min}\;}
-\newcommand{\umax}[1]{\underset{#1}{\max}\;}
-\newcommand{\umin}[1]{\underset{#1}{\min}\;}
-\newcommand{\uargmin}[1]{\underset{#1}{argmin}\;}
-\newcommand{\norm}[1]{\|#1\|}
-\newcommand{\abs}[1]{\left|#1\right|}
-\newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
-\newcommand{\pa}[1]{\left(#1\right)}
-\newcommand{\diag}[1]{{diag}\left( #1 \right)}
-\newcommand{\qandq}{\quad\text{and}\quad}
-\newcommand{\qwhereq}{\quad\text{where}\quad}
-\newcommand{\qifq}{ \quad \text{if} \quad }
-\newcommand{\qarrq}{ \quad \Longrightarrow \quad }
-\newcommand{\ZZ}{\mathbb{Z}}
-\newcommand{\CC}{\mathbb{C}}
-\newcommand{\RR}{\mathbb{R}}
-\newcommand{\EE}{\mathbb{E}}
-\newcommand{\Zz}{\mathcal{Z}}
-\newcommand{\Ww}{\mathcal{W}}
-\newcommand{\Vv}{\mathcal{V}}
-\newcommand{\Nn}{\mathcal{N}}
-\newcommand{\NN}{\mathcal{N}}
-\newcommand{\Hh}{\mathcal{H}}
-\newcommand{\Bb}{\mathcal{B}}
-\newcommand{\Ee}{\mathcal{E}}
-\newcommand{\Cc}{\mathcal{C}}
-\newcommand{\Gg}{\mathcal{G}}
-\newcommand{\Ss}{\mathcal{S}}
-\newcommand{\Pp}{\mathcal{P}}
-\newcommand{\Ff}{\mathcal{F}}
-\newcommand{\Xx}{\mathcal{X}}
-\newcommand{\Mm}{\mathcal{M}}
-\newcommand{\Ii}{\mathcal{I}}
-\newcommand{\Dd}{\mathcal{D}}
-\newcommand{\Ll}{\mathcal{L}}
-\newcommand{\Tt}{\mathcal{T}}
-\newcommand{\si}{\sigma}
-\newcommand{\al}{\alpha}
-\newcommand{\la}{\lambda}
-\newcommand{\ga}{\gamma}
-\newcommand{\Ga}{\Gamma}
-\newcommand{\La}{\Lambda}
-\newcommand{\si}{\sigma}
-\newcommand{\Si}{\Sigma}
-\newcommand{\be}{\beta}
-\newcommand{\de}{\delta}
-\newcommand{\De}{\Delta}
-\renewcommand{\phi}{\varphi}
-\renewcommand{\th}{\theta}
-\newcommand{\om}{\omega}
-\newcommand{\Om}{\Omega}
-$
-""".strip().splitlines()
-
-MATH_REPLS = [(re.compile(r'\\\['), '$$'),  # replace latex delimiters
-              (re.compile(r'\\\]'), '$$'),
-              (re.compile(r'\\\('), '$'),
-              (re.compile(r'\\\)'), '$'),
-              ]
-
-LINK = re.compile(r"(\<http.*? )(_.*?_\>)")
-BIBLIO_LINK = re.compile(r'\<#biblio (\[.*?\])\>')
 
 
 class Notebook(dict):
+
     """An IPython Notebook builder tailored for numerical-tours.
     """
+
     def __init__(self, name):
         super(Notebook, self).__init__()
         self._name = name
@@ -79,7 +13,6 @@ class Notebook(dict):
                          nbformat=3,
                          nbformat_minor=0,
                          worksheets=[dict(cells=[])]))
-        self.add_markdown(LATEX_COMMANDS)
 
     def add_heading(self, source, level=1):
         source = self._handle_items(source)
@@ -91,21 +24,10 @@ class Notebook(dict):
 
     def add_markdown(self, source):
         source = self._handle_items(source)
-        source = self._handle_links(source)
-        output = []
-        for line in source:
-                while line.startswith('%'):
-                    line = line[1:]
-                if line.startswith(' '):
-                    line = line[1:]
-                if '\\' in line:
-                    for (pattern, repl) in MATH_REPLS:
-                        line = re.sub(pattern, repl, line)
-                output.append(line.rstrip())
         md = dict(cell_type="markdown",
                   metadata={},
-                  source=output)
-        if output:
+                  source=source)
+        if source:
             self['worksheets'][0]['cells'].append(md)
 
     def add_code(self, source, outputs=None):
@@ -142,39 +64,11 @@ class Notebook(dict):
             items = ''.join(items).strip().splitlines()
         return items
 
-    @staticmethod
-    def _handle_links(lines):
-        links = []
-        new_lines = []
-        for line in lines:
-            matches = re.findall(LINK, line)
-            for match in matches:
-                if not isinstance(match, tuple):
-                    continue
-                link, title = match
-                links.append(link[1:-1])
-                line = line.replace(link, '')
-                new_link = '[%s][%s]' % (title[1:-2], len(links))
-                line = line.replace(title, new_link)
-            biblio_links = re.findall(BIBLIO_LINK, line)
-            for link in biblio_links:
-                line = line.replace('<#biblio %s>' % link,
-                                    '%s(#biblio)' % link)
-            new_lines.append(line)
-        if links:
-            new_lines.append('')
-        for (ind, link) in enumerate(links):
-            new_lines.append('[%s]:%s' % (ind + 1, link))
-
-        return new_lines
 
 if __name__ == '__main__':
     nb = Notebook()
     nb.add_heading("Hello, World!")
     nb.add_markdown('Introduction to Hello World!')
-    # the intro markdown block was added here, with the latex commands
     nb.add_markdown(r'$x = \la * \ga$')
-    # this will be replaced by the code intro
-    nb.add_code("")
-    nb.add_excercise('Explore the affect of $\sigma$')
+    nb.add_code('a = 1')
     nb.save('test.ipynb')
