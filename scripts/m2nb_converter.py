@@ -265,7 +265,7 @@ class Converter(object):
             nb.add_markdown(lines)
 
             if self.ntype == 'python':
-                nb.add_code('excercises.exo%s()' % self._excercise_num)
+                nb.add_code('solutions.exo%s()' % self._excercise_num)
             else:
                 nb.add_code('%%%%matlab\nexo%s()' % self._excercise_num)
 
@@ -288,7 +288,7 @@ class Converter(object):
         setup = r"""
         from __future__ import division
         import nt_toolbox as nt
-        from solutions import {0} as exercises
+        from nt_solutions import {0} as solutions
         %matplotlib inline
         %load_ext autoreload
         %autoreload 2
