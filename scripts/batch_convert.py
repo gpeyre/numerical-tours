@@ -10,7 +10,8 @@ def convert_all(matlabdir="../matlab/m_files/", ntype='python',
     files = os.listdir(matlabdir)
     for fname in files:
         if fname.endswith('.m'):
-            converter = m2nb_converter.Converter(matlabdir + fname)
+            path = os.path.join(matlabdir, fname)
+            converter = m2nb_converter.Converter(path)
             converter.convert(out_dir, ntype)
 
 
