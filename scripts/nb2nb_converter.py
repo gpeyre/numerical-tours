@@ -1,5 +1,7 @@
 import json
 import re
+import os
+import sys
 
 
 PY_REPLS = [(re.compile('@\((.*?)\)'),  # replace anon funcs with lambdas
@@ -32,14 +34,22 @@ class Converter(object):
     def __init__(self, fname):
         with open(fname) as fid:
             self.tree = json.load(fid)
+        self.fname = os.path.basename(fname)
+        self.name, ext = os.path.splitext(self.fname)
         if 'matlab' in fname:
             self.dest_type = 'python'
         else:
             self.dest_type = 'matlab'
 
-    def convert(self, destination):
+    def convert(self, destination_dir=None):
         # walk the tree, removing output and replacing the code
         # also replace the first code block and the installation block
+        if not destination_dir:
+            if self.dest_type == 'matlab':
+                destination_dir = '../matlab'
+            else:
+                destination_dir = '../python'
+
         ws = self.tree['worksheets']['cells'][0]
         if self.dest_type == 'python':
             intro_func = self.get_python_intro
@@ -59,7 +69,8 @@ class Converter(object):
                     source = [trans_func(line) for line in item['source']]
                     item['source'] = source
 
-        with open(destination, 'w') as fid:
+        path = os.path.join(destination_dir, self.fname)
+        with open(path, 'w') as fid:
             json.dump(self.tree, fid, indent=2, sort_keys=True)
 
     def get_python_intro(self):
@@ -124,3 +135,16 @@ def py2mat(line):
         line = re.sub(pattern, repl, line)
 
     return line
+
+
+if __name__ == '__main__':
+    usage = 'nb2nbconverter.py fname [destination_dir]'
+
+    if len(sys.argv) >= 2:
+        c = Converter(sys.argv[0])
+        c.convert(sys.argv[1])
+    elif len(sys.argv):
+        c = Converter(sys.argv[0])
+        c.convert()
+    else:
+        print(usage)
