@@ -284,7 +284,7 @@ class Converter(object):
             func = getattr(self, 'get_%s_intro' % self.ntype)
             func(out_lines[0].split())
 
-    def get_python_intro(self, *toolboxes):
+    def get_python_intro(self, toolboxes):
         setup = r"""
         from __future__ import division
         import nt_toolbox as nt

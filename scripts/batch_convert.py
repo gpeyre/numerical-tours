@@ -4,7 +4,7 @@ sys.path.insert(0, '..')
 from scripts import nb_converter
 
 
-def convert_all(matlabdir="../matlab/", ntype='python',
+def convert_all(matlabdir="../matlab/m_files/", ntype='python',
                 out_dir='../python'):
     """
     Process all matlab .m file and convert them into notebooks.
