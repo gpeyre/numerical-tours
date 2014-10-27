@@ -303,8 +303,8 @@ class Converter(object):
 
         setup = ['%%matlab']
         for toolbox in toolboxes:
-            setup += ["addpath('../toolbox_%s')" % toolbox]
-        setup += ["addpath('../solutions/%s')" % self.name]
+            setup += ["addpath('toolbox_%s')" % toolbox]
+        setup += ["addpath('solutions/%s')" % self.name]
         self.nb.add_code(setup)
 
         self.nb.add_markdown(self._reformat(MAT_INSTALLATION))
@@ -315,8 +315,8 @@ class Converter(object):
 
         setup = ['%%scilab']
         for toolbox in toolboxes:
-            setup += ["addpath('../toolbox_%s')" % toolbox]
-        setup += ["addpath('../solutions/%s')" % self.name]
+            setup += ["addpath('toolbox_%s')" % toolbox]
+        setup += ["addpath('solutions/%s')" % self.name]
         self.nb.add_code(setup)
 
     def _parse_markdown(self, lines):

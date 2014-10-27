@@ -66,7 +66,7 @@ class Converter(object):
         setup = [
             'from __future__ import division',
             'import nt_toolbox as nt',
-            'from solutions import %s as exercises' % self.name,
+            'from nt_solutions import %s as exercises' % self.name,
             '%matplotlib inline',
             '%load_ext autoreload',
             '%autoreload 2']
@@ -75,7 +75,7 @@ class Converter(object):
 
     def get_matlab_intro(self):
         setup = ['%%matlab',
-                 "addpath('../solutions/%s')" % self.name]
+                 "addpath('solutions/%s')" % self.name]
         return ['%load_ext pymatbridge', '\n'.join(setup)]
 
 
