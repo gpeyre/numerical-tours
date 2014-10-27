@@ -270,7 +270,10 @@ class Converter(object):
                 nb.add_code('%%%%matlab\nexo%s()' % self._excercise_num)
 
             self._excercise_num += 1
-            nb.add_code("%%matlab\n## Insert your code here.")
+            if self.ntype == 'matlab':
+                nb.add_code("%%matlab\n## Insert your code here.")
+            else:
+                nb.add_code("## Insert your code here.")
 
         elif state == 'markdown':
             nb.add_markdown(self._parse_markdown(out_lines))
