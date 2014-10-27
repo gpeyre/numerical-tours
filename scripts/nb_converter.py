@@ -12,15 +12,20 @@ PY_REPLS = [(re.compile('@\((.*?)\)'),  # replace anon funcs with lambdas
             (re.compile('\A\W*?clf\W*?\Z'), ''),  # kill "clf" lines
             ]
 
-
 GITHUB_LINK = 'https://github.com/gpeyre/numerical-tours/archive/master.zip'
 IPYTHON_LINK = 'http://ipython.org/install.html'
-INSTALLATION = """
+MAT2PY_LINK = 'http://arokem.github.io/python-matlab-bridge/'
+
+PY_INSTALLATION = """
 Installation
 ------------
 You need to download [numerical_tours](%s)
-and have the IPython notebook [installed](%s) to run the code.
+and install the IPython [notebook](%s) to run the code.
 """ % (GITHUB_LINK, IPYTHON_LINK)
+
+MAT_INSTALLATION = PY_INSTALLATION + """
+You must also install the [python-matlab-bridge](%s).""" % MAT2PY_LINK
+
 
 MATH_REPLS = [(re.compile(r'\\\['), '$$'),  # replace latex delimiters
               (re.compile(r'\\\]'), '$$'),
@@ -290,7 +295,7 @@ class Converter(object):
         """.format(self.name)
 
         self.nb.add_code(self._reformat(setup))
-        self.nb.add_markdown(INSTALLATION)
+        self.nb.add_markdown(PY_INSTALLATION)
 
     def get_matlab_intro(self, toolboxes):
         setup = ['%load_ext pymatbridge']
@@ -302,14 +307,7 @@ class Converter(object):
         setup += ["addpath('../solutions/%s')" % self.name]
         self.nb.add_code(setup)
 
-        notice = """You must also install `pymatbridge`:
-
-        ```
-        pip install pymatbridge
-        ```
-        """
-        notice = INSTALLATION + notice
-        self.nb.add_markdown(self._reformat(notice))
+        self.nb.add_markdown(self._reformat(MAT_INSTALLATION))
 
     def get_scilab_intro(self, toolboxes):
         setup = ['%load_ext scilab2py.ipython']
@@ -320,15 +318,6 @@ class Converter(object):
             setup += ["addpath('../toolbox_%s')" % toolbox]
         setup += ["addpath('../solutions/%s')" % self.name]
         self.nb.add_code(setup)
-
-        notice = """You must also install `scilab2py`:
-
-        ```
-        pip install scilab2py
-        ```
-        """
-        notice = INSTALLATION + notice
-        self.nb.add_markdown(self._reformat(notice))
 
     def _parse_markdown(self, lines):
         lines = self._handle_links(lines)

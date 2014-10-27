@@ -18,4 +18,4 @@ def convert_all(matlabdir="../matlab/", ntype='python',
 
 if __name__ == '__main__':
     convert_all(out_dir='../python/todo')
-    convert_all(ntype='matlab', out_dir='../matlab/notebooks')
+    convert_all(ntype='matlab', out_dir='../matlab')
