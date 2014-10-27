@@ -8,10 +8,14 @@ PY_REPLS = [(re.compile('@\((.*?)\)'),  # replace anon funcs with lambdas
              lambda m: 'lambda %s: ' % m.groups()[0]),
             (re.compile('\A\W*?end\W*?\Z'), ''),  # kill "end" lines
             (re.compile('\A\W*?clf\W*?\Z'), ''),  # kill "clf" lines
+            (re.compile('(exo\d+)'),
+             lambda m: 'solutions.%s' % m.groups()[0])
             ]
 
 MAT_REPLS = [(re.compile('lambda (.*?):'),  # replace lambda funcs with anons
-              lambda m: '@(%s) ' % m.groups()[0])
+              lambda m: '@(%s) ' % m.groups()[0]),
+             (re.compile('solutions.(exo\d+)'),
+              lambda m: '%s' % m.groups()[0])
              ]
 
 GITHUB_LINK = 'https://github.com/gpeyre/numerical-tours/archive/master.zip'
@@ -50,24 +54,34 @@ class Converter(object):
             else:
                 destination_dir = '../python'
 
-        ws = self.tree['worksheets']['cells'][0]
+        ws = self.tree['worksheets'][0]['cells']
         if self.dest_type == 'python':
             intro_func = self.get_python_intro
             trans_func = mat2py
+            intro_text = PY_INSTALLATION
         else:
             intro_func = self.get_matlab_intro
             trans_func = py2mat
+            intro_text = MAT_INSTALLATION
 
-        first_code = False
+        first_code = True
         for item in ws:
             if item['cell_type'] == 'code':
                 item['outputs'] = []
                 if first_code:
-                    item['source'] = intro_func()
+                    item['input'] = intro_func()
                     first_code = False
                 else:
-                    source = [trans_func(line) for line in item['source']]
-                    item['source'] = source
+                    source = [trans_func(line) for line in item['input']]
+                    if self.dest_type == 'python' and source[0] == '%%matlab':
+                        source = source[1:]
+                    if self.dest_type == 'matlab':
+                        source.insert(0, '%%matlab')
+                    item['input'] = source
+
+            elif item['cell_type'] == 'markdown':
+                if item['source'][0] == 'Installation':
+                    item['source'] = self._reformat(intro_text)
 
         path = os.path.join(destination_dir, self.fname)
         with open(path, 'w') as fid:
@@ -77,17 +91,23 @@ class Converter(object):
         setup = [
             'from __future__ import division',
             'import nt_toolbox as nt',
-            'from nt_solutions import %s as exercises' % self.name,
+            'from nt_solutions import %s as solutions' % self.name,
             '%matplotlib inline',
             '%load_ext autoreload',
             '%autoreload 2']
 
-        return '\n'.join(setup)
+        return setup
 
     def get_matlab_intro(self):
-        setup = ['%%matlab',
+        setup = ['%load_ext pymatbridge  # <- put me in my own cell',
+                 '%%matlab',
                  "addpath('solutions/%s')" % self.name]
-        return ['%load_ext pymatbridge', '\n'.join(setup)]
+        return setup
+
+    @staticmethod
+    def _reformat(text):
+        lines = text.splitlines()
+        return [l.strip() for l in lines]
 
 
 def mat2py(line):
@@ -140,11 +160,11 @@ def py2mat(line):
 if __name__ == '__main__':
     usage = 'nb2nbconverter.py fname [destination_dir]'
 
-    if len(sys.argv) >= 2:
-        c = Converter(sys.argv[0])
-        c.convert(sys.argv[1])
-    elif len(sys.argv):
-        c = Converter(sys.argv[0])
+    if len(sys.argv) >= 3:
+        c = Converter(sys.argv[1])
+        c.convert(sys.argv[2])
+    elif len(sys.argv) >= 2:
+        c = Converter(sys.argv[1])
         c.convert()
     else:
         print(usage)
