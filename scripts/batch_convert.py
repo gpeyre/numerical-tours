@@ -1,7 +1,5 @@
 import os
-import sys
-sys.path.insert(0, '..')
-from scripts import nb_converter
+import m2nb_converter
 
 
 def convert_all(matlabdir="../matlab/m_files/", ntype='python',
@@ -12,7 +10,7 @@ def convert_all(matlabdir="../matlab/m_files/", ntype='python',
     files = os.listdir(matlabdir)
     for fname in files:
         if fname.endswith('.m'):
-            converter = nb_converter.Converter(matlabdir + fname)
+            converter = m2nb_converter.Converter(matlabdir + fname)
             converter.convert(out_dir, ntype)
 
 
