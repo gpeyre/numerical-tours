@@ -154,6 +154,11 @@ def py2mat(line):
     for (pattern, repl) in MAT_REPLS:
         line = re.sub(pattern, repl, line)
 
+    if line.lstrip().startswith('##'):
+        line = '%%' + line.lstrip()[2:]
+    elif line.lstrip().startswith('#'):
+        line = '%' + line.lstrip()[1:]
+
     return line
 
 
