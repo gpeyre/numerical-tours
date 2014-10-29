@@ -100,8 +100,8 @@ f = rand(N,1);
 %%
 % Low/High pass filtering followed by sub-sampling.
 
-a = subsampling( cconv(f,h) );
-d = subsampling( cconv(f,g) );
+a = subsampling( cconvol(f,h) );
+d = subsampling( cconvol(f,g) );
 
 %%
 % For orthogonal filters, the reverse of this process is its dual
@@ -114,7 +114,7 @@ d = subsampling( cconv(f,g) );
 %%
 % Up-sampling followed by filtering.
 
-f1 =  cconv(upsampling(a),reverse(h)) + cconv(upsampling(d),reverse(g));
+f1 =  cconvol(upsampling(a),reverse(h)) + cconvol(upsampling(d),reverse(g));
 
 %%
 % Check that we really recover the same signal.
@@ -178,8 +178,8 @@ a1 = fw(1:2^(j+1));
 % Apply high and low filtering+subsampling
 % to obtain \(a_{j-1}\) and \(d_{j-1}\) (stored in |a| and |d|).
 
-a = subsampling(cconv(a1,h));
-d = subsampling(cconv(a1,g));
+a = subsampling(cconvol(a1,h));
+d = subsampling(cconvol(a1,g));
 
 %%
 % _Note:_ |subsampling(A)| is equivalent to |A(1:2:end)|.
@@ -219,8 +219,8 @@ subplot(4,1,1);
 plot(f); axis('tight'); title('Signal');
 for j=Jmax:-1:Jmin
     a1 = fw(1:2^(j+1));
-    a = subsampling(cconv(a1,h));
-    d = subsampling(cconv(a1,g));
+    a = subsampling(cconvol(a1,h));
+    d = subsampling(cconvol(a1,g));
     fw(1:2^(j+1)) = cat(1, a, d );
     j1 = Jmax-j;
     if j1<3
@@ -285,7 +285,7 @@ d = f1(2^j+1:2^(j+1));
 %%
 % Perform the up-sampling/filtering and summation:
 
-a = cconv(upsampling(a,1),reverse(h),1) + cconv(upsampling(d,1),reverse(g),1);
+a = cconvol(upsampling(a,1),reverse(h),1) + cconvol(upsampling(d,1),reverse(g),1);
 
 %%
 % Replace the coefficients at the correct locations.
@@ -300,8 +300,8 @@ clf;
 for j=Jmin:Jmax
     a = f1(1:2^j);
     d = f1(2^j+1:2^(j+1));
-    a = cconv(upsampling(a,1),reverse(h),1);
-    d = cconv(upsampling(d,1),reverse(g),1);
+    a = cconvol(upsampling(a,1),reverse(h),1);
+    d = cconvol(upsampling(d,1),reverse(g),1);
     f1(1:2^(j+1)) = a + d;
     j1 = Jmax-j;
     if j1<4

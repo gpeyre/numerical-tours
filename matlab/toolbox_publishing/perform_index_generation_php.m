@@ -1,4 +1,4 @@
-function perform_index_generation(filename)
+function perform_index_generation_php(filename)
 
 if nargin<1
     filename = '../html/index_tours.php';

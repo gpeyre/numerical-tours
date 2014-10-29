@@ -23,7 +23,7 @@ if dir==1
         sel = 1:2^(j+1);
         a = subselect(f,sel);
         for d=1:nb_dims(f)
-            a = cat(d, subsampling(cconv(a,h,d),d), subsampling(cconv(a,g,d),d) );
+            a = cat(d, subsampling(cconvol(a,h,d),d), subsampling(cconvol(a,g,d),d) );
         end
         f = subassign(f,sel,a);
     end
@@ -35,7 +35,7 @@ else
         for d=1:nb_dims(f)
             w = subselectdim(a,2^j+1:2^(j+1),d);
             a = subselectdim(a,1:2^j,d);
-            a = cconv(upsampling(a,d),reverse(h),d) + cconv(upsampling(w,d),reverse(g),d);
+            a = cconvol(upsampling(a,d),reverse(h),d) + cconvol(upsampling(w,d),reverse(g),d);
         end
         f = subassign(f,sel,a);
     end    

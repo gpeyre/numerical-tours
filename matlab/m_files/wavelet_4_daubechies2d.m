@@ -4,7 +4,6 @@
 
 perform_toolbox_installation('signal', 'general');
 
-
 %% Wavelets Filters
 % The 2-D wavelet transform of a continuous image \(f(x)\) computes the set
 % of inner products 
@@ -99,8 +98,8 @@ f = rand(N,1);
 %%
 % Low/High pass filtering followed by sub-sampling.
 
-a = subsampling( cconv(f,h) );
-d = subsampling( cconv(f,g) );
+a = subsampling( cconvol(f,h) );
+d = subsampling( cconvol(f,g) );
 
 %%
 % For orthogonal filters, the reverse of this process is its dual
@@ -113,7 +112,7 @@ d = subsampling( cconv(f,g) );
 %%
 % Up-sampling followed by filtering.
 
-f1 =  cconv(upsampling(a),reverse(h)) + cconv(upsampling(d),reverse(g));
+f1 =  cconvol(upsampling(a),reverse(h)) + cconvol(upsampling(d),reverse(g));
 
 %%
 % Check that we really recover the same signal.
@@ -194,8 +193,8 @@ A = fW(1:2^(j+1),1:2^(j+1));
 % Apply high and low filtering+subsampling in the vertical direction (1st ooordinate),
 % to get coarse and details.
 
-Coarse = subsampling(cconv(A,h,1),1);
-Detail = subsampling(cconv(A,g,1),1);
+Coarse = subsampling(cconvol(A,h,1),1);
+Detail = subsampling(cconvol(A,g,1),1);
 
 %%
 % _Note:_ |subsamplling(A,1)| is equivalent to |A(1:2:end,:)| and
@@ -217,8 +216,8 @@ imageplot(A,'Vertical transform',1,2,2);
 % Apply high and low filtering+subsampling in the horizontal direction (2nd ooordinate),
 % to get coarse and details.
 
-Coarse = subsampling(cconv(A,h,2),2);
-Detail = subsampling(cconv(A,g,2),2);
+Coarse = subsampling(cconvol(A,h,2),2);
+Detail = subsampling(cconvol(A,g,2),2);
 
 %%
 % Concatenate them in the horizontal direction to get the result.
@@ -249,8 +248,8 @@ clf;
 for j=Jmax:-1:Jmin
     A = fW(1:2^(j+1),1:2^(j+1));
     for d=1:2
-        Coarse = subsampling(cconv(A,h,d),d);
-        Detail = subsampling(cconv(A,g,d),d);
+        Coarse = subsampling(cconvol(A,h,d),d);
+        Detail = subsampling(cconvol(A,g,d),d);
         A = cat3(d, Coarse, Detail );
     end
     fW(1:2^(j+1),1:2^(j+1)) = A;
@@ -306,8 +305,8 @@ Detail = A(2^j+1:2^(j+1),:);
 %%
 % Undo the transform by up-sampling and then dual filtering.
 
-Coarse = cconv(upsampling(Coarse,1),reverse(h),1);
-Detail = cconv(upsampling(Detail,1),reverse(g),1);
+Coarse = cconvol(upsampling(Coarse,1),reverse(h),1);
+Detail = cconvol(upsampling(Detail,1),reverse(g),1);
 
 %%
 % Recover the coefficient by summing.
@@ -324,8 +323,8 @@ Detail = A(:,2^j+1:2^(j+1));
 %%
 % Undo the transform by up-sampling and then dual filtering.
 
-Coarse = cconv(upsampling(Coarse,2),reverse(h),2);
-Detail = cconv(upsampling(Detail,2),reverse(g),2);
+Coarse = cconvol(upsampling(Coarse,2),reverse(h),2);
+Detail = cconvol(upsampling(Detail,2),reverse(g),2);
 
 %%
 % Recover the coefficient by summing.
@@ -352,8 +351,8 @@ for j=Jmin:Jmax
             Coarse = A(:,1:2^j);
             Detail = A(:,2^j+1:2^(j+1));                
         end
-        Coarse = cconv(upsampling(Coarse,d),reverse(h),d);
-        Detail = cconv(upsampling(Detail,d),reverse(g),d);
+        Coarse = cconvol(upsampling(Coarse,d),reverse(h),d);
+        Detail = cconvol(upsampling(Detail,d),reverse(g),d);
         A = Coarse + Detail;
         j1 = Jmax-j;
         if j1>0 & j1<5

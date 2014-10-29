@@ -9,5 +9,5 @@ function perform_toolbox_installation(varargin)
 getd = @(p)path(p,path);
 
 for i=1:nargin
-    getd(['toolbox_' varargin{i} '/']);
+    getd(['../toolbox_' varargin{i} '/']);
 end

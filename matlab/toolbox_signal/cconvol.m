@@ -1,4 +1,4 @@
-function y = cconv(x,h,d)
+function y = cconv1(x,h,d)
 
 % cconv - spatial domain circular convolution
 %
@@ -11,17 +11,15 @@ function y = cconv(x,h,d)
 %
 %   Copyright (c) 2009 Gabriel Peyre
 
-error('cconv has been renamed to cconvol');
-
 if nargin<3
     d = 1;
 end
 
 if d==2
-    y = permute( cconv( permute(x,[2 1 3]),h) ,[2 1 3]);
+    y = permute( cconvol( permute(x,[2 1 3]),h) ,[2 1 3]);
     return;
 elseif d==3
-    y = permute( cconv( permute(x,[3 2 1]),h) ,[3 2 1]);
+    y = permute( cconvol( permute(x,[3 2 1]),h) ,[3 2 1]);
     return;    
 end
 
