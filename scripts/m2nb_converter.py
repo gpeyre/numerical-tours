@@ -249,8 +249,8 @@ class Converter(object):
         nb = self.nb
 
         if state == 'excercise':
-            header = 'Exercise %s' % self._excercise_num
-            lines = [header, '-' * len(header)]
+            header = '__Exercise %s__' % self._excercise_num
+            lines = [header, '']
 
             code_lines = []
             for line in out_lines:
@@ -271,7 +271,7 @@ class Converter(object):
 
             self._excercise_num += 1
             if self.ntype == 'matlab':
-                nb.add_code("%%matlab\n## Insert your code here.")
+                nb.add_code("%%matlab\n%% Insert your code here.")
             else:
                 nb.add_code("## Insert your code here.")
 
