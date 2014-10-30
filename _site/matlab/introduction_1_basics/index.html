@@ -8,8 +8,138 @@
       <!--
 This HTML is auto-generated from an M-file.
 To make changes, update the M-file and republish this document.
-      -->
-      <title>Basic Matlab/Scilab Instructions</title><SCRIPT SRC="../../MathJax/MathJax.js?config=default"></SCRIPT><NOSCRIPT>
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         \]
+         
+      </p>
+      <title>Basic Matlab/Scilab Instructions</title>
+      <NOSCRIPT>
          <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
                	requires JavaScript to process the mathematics on this page.<BR> 
                	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
@@ -63,51 +193,20 @@ size(d)
 d(1)
 <span class="comment">% display the sub-array containing entries 1 and 2</span>
 d(1:2)
-</pre><pre class="codeoutput">
-ans =
-
-     1     4
-
-
-ans =
-
-     1
-
-
-ans =
-
-     1     3
-
-</pre><p>You can create pre-defined array using some basic functions</p><pre class="codeinput"><span class="comment">% identity, 1 and random matrices</span>
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p>You can create pre-defined array using some basic functions</p><pre class="codeinput"><span class="comment">% identity, 1 and random matrices</span>
 A = eye(4,4);
 B = ones(4,4);
 C = rand(4,4);
 <span class="comment">% transpose</span>
 c = b';
-</pre><p>The multiplication operator <tt>*</tt> is the matrix multiplication. To actually multiplies each entry of a vector, you need to use <tt>.*</tt></p><pre class="codeinput"><span class="comment">% note the difference</span>
+</pre><img vspace="5" hspace="5" src="index_02.png"> <p>The multiplication operator <tt>*</tt> is the matrix multiplication. To actually multiplies each entry of a vector, you need to use <tt>.*</tt></p><pre class="codeinput"><span class="comment">% note the difference</span>
 D = C*A
 D = C.*A
 <span class="comment">% You can apply functions to each entry of a matrix</span>
 E = A./C; <span class="comment">% division</span>
 E = sin(A); <span class="comment">% sinus is applied to each entry</span>
 E = abs(A + 1i*C); <span class="comment">% modulus of each entry</span>
-</pre><pre class="codeoutput">
-D =
-
-    0.8147    0.6324    0.9575    0.9572
-    0.9058    0.0975    0.9649    0.4854
-    0.1270    0.2785    0.1576    0.8003
-    0.9134    0.5469    0.9706    0.1419
-
-
-D =
-
-    0.8147         0         0         0
-         0    0.0975         0         0
-         0         0    0.1576         0
-         0         0         0    0.1419
-
-</pre><p>You can modify matrices and arrays in various way.</p><pre class="codeinput">b = sort(b); <span class="comment">% sort values</span>
+</pre><img vspace="5" hspace="5" src="index_03.png"> <p>You can modify matrices and arrays in various way.</p><pre class="codeinput">b = sort(b); <span class="comment">% sort values</span>
 b = b .* (b&gt;2); <span class="comment">% set to zeros (threshold) the values below 2</span>
 b(3) = []; <span class="comment">% suppress the 3rd entry of a vector</span>
 B = [b; b]; <span class="comment">% create a matrix of size 2x4</span>
@@ -120,7 +219,7 @@ b(end-2:end) = 1; <span class="comment">% to access the last entries</span>
 <span class="comment">% The equivalent Scilab code is</span>
 <span class="comment">%       b = b($:-1:1);</span>
 b = b(end:-1:1); <span class="comment">% reverse a vector</span>
-</pre><p>Advanced instructions</p><pre class="codeinput">disp(<span class="string">'Hello'</span>); <span class="comment">% display a text</span>
+</pre><img vspace="5" hspace="5" src="index_04.png"> <p>Advanced instructions</p><pre class="codeinput">disp(<span class="string">'Hello'</span>); <span class="comment">% display a text</span>
 x = 1.23456;
 disp( sprintf(<span class="string">'Value of x=%.2f'</span>, x) ); <span class="comment">% print a values with 2 digits</span>
 A(A==Inf) = 3; <span class="comment">% replace Inf values by 3</span>
@@ -128,9 +227,7 @@ A(:); <span class="comment">% flatten a matrix into a column vector</span>
 max(A(:)); <span class="comment">% max of a matrix</span>
 <span class="comment">% threshold to 0 values below .3.</span>
 C = C .* (abs(C)&gt;.3);
-</pre><pre class="codeoutput">Hello
-Value of x=1.23
-</pre><p>To display information of about a function, use the <tt>help</tt> command, for instance <tt>help perform_wavelet_transf</tt>.
+</pre><img vspace="5" hspace="5" src="index_05.png"> <p>To display information of about a function, use the <tt>help</tt> command, for instance <tt>help perform_wavelet_transf</tt>.
          </p>
          <p>Basic programming constructions include <tt>for</tt>, <tt>while</tt> and <tt>switch</tt> instructions.
          </p><pre class="codeinput"><span class="keyword">for</span> i=1:3 <span class="comment">% repeat the loop for i=1, i=2, i=3</span>
@@ -141,27 +238,15 @@ i = 3;
     disp(i); <span class="comment">% do smth</span>
     i = i-1;
 <span class="keyword">end</span>
-</pre><pre class="codeoutput">     1
-
-     2
-
-     3
-
-     3
-
-     2
-
-     1
-
-</pre><h2>Load and visualize signals and images<a name="21"></a></h2>
+</pre><img vspace="5" hspace="5" src="index_06.png"> <h2>Load and visualize signals and images<a name="21"></a></h2>
          <p>Load and display an image (download function load_image.m should be in the toolboxes)</p><pre class="codeinput">n = 256; <span class="comment">% size of the image</span>
 M = load_image(<span class="string">'lena'</span>, n);
 clf;
 imageplot(M);
-</pre><img vspace="5" hspace="5" src="index_01.png"> <p>You can manipulate an image just like an arbitrary array</p><pre class="codeinput">clf;
+</pre><img vspace="5" hspace="5" src="index_07.png"> <p>You can manipulate an image just like an arbitrary array</p><pre class="codeinput">clf;
 imageplot(M(1:50,1:50), <span class="string">'Zoom'</span>, 1,2,1);
 imageplot(-M, <span class="string">'Reversed contrast'</span>, 1,2,2);
-</pre><img vspace="5" hspace="5" src="index_02.png"> <p class="footer"><br>
+</pre><p class="footer"><br>
             Copyright  (c) 2010 Gabriel Peyre<br></p>
       </div>
       <!--

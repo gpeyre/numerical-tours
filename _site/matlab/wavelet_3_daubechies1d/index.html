@@ -238,7 +238,7 @@ d = subsampling( cconv(f,g) );
          </p>
          <p>Up-sampling followed by filtering.</p><pre class="codeinput">f1 =  cconv(upsampling(a),reverse(h)) + cconv(upsampling(d),reverse(g));
 </pre><p>Check that we really recover the same signal.</p><pre class="codeinput">disp(strcat(([<span class="string">'Error |f-f1|/|f| = '</span> num2str(norm(f-f1)/norm(f))])));
-</pre><pre class="codeoutput">Error |f-f1|/|f| = 5.4339e-13
+</pre><pre class="codeoutput">Error |f-f1|/|f| = 5.4681e-13
 </pre><h2>Forward Wavelet Transform<a name="28"></a></h2>
          <p>The set of wavelet coefficients are computed with a fast algorithm that exploit the embedding of the approximation spaces
             \(V_j\) spanned by the scaling function \( \{ \phi_{j,n} \}_n \).

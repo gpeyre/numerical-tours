@@ -13,6 +13,9 @@
 
     <link rel="canonical" href="http://gpeyre.github.io/numerical-tours//numerical-tours/matlab/">
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/numerical-tours/img/favicon.png">
+
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/numerical-tours/css/bootstrap.min.css">
 
@@ -112,10 +115,6 @@
                 </li>
                 
                 <li>
-                    <a href="/numerical-tours/news/">What's new</a>
-                </li>
-                
-                <li>
                     <a href="/numerical-tours/python/">Python's tours</a>
                 </li>
                 
@@ -151,251 +150,380 @@
 <div class="container">
 	<div class="row">
 		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-			<h1 id="table-of-contents">Table of contents</h1>
+			<p align="center">
+<br />
+<br />
 
-<ul>
-  <li><a href="#introduction">Introduction</a></li>
-  <li><a href="#wavelet">Wavelet Processing</a></li>
-  <li><a href="#coding">Approximation, Coding and Compression</a></li>
-  <li><a href="#denoisingsimp">Simple Denoising Methods</a></li>
-  <li><a href="#denoisingwav">Wavelet Denoising</a></li>
-  <li><a href="#denoisingadv">Advanced Denoising Methods</a></li>
-  <li><a href="#pde">PDEs and Numerical Analysis</a></li>
-  <li><a href="#audio">Audio Processing</a></li>
-  <li><a href="#multidim">Higher Dimensional Signal Processing</a></li>
-  <li><a href="#graphics">Computer Graphics</a></li>
-  <li><a href="#optimaltransp">Optimal Transport</a></li>
-  <li><a href="#optim">Optimization</a></li>
-  <li><a href="#segmentation">Segmentation</a></li>
-  <li><a href="#sparsity">Sparsity</a></li>
-  <li><a href="#inverse">Inverse Problems</a></li>
-  <li><a href="#fastmarching">Geodesic Processing</a></li>
-  <li><a href="#shapes">Shapes</a></li>
-  <li><a href="#meshproc">Mesh Processing</a></li>
-  <li><a href="#meshdeform">Mesh Parameterization and Deformation</a></li>
-  <li><a href="#meshwav">Multiscale Mesh Processing</a></li>
-</ul>
+<a href="#introduction"> Introduction </a> <br />
+
+<a href="#wavelet"> Wavelet Processing </a> <br />
+
+<a href="#coding"> Approximation, Coding and Compression </a> <br />
+
+<a href="#denoisingsimp"> Simple Denoising Methods </a> <br />
+
+<a href="#denoisingwav"> Wavelet Denoising </a> <br />
+
+<a href="#denoisingadv"> Advanced Denoising Methods </a> <br />
+
+<a href="#audio"> Audio Processing </a> <br />
+
+<a href="#multidim"> Higher Dimensional Signal Processing </a> <br />
+
+<a href="#graphics"> Computer Graphics </a> <br />
+
+<a href="#optim"> Optimization </a> <br />
+
+<a href="#optimaltransp"> Optimal Transport </a> <br />
+
+<a href="#sparsity"> Sparsity and Redundant Representations </a> <br />
+
+<a href="#inverse"> Inverse Problems </a> <br />
+
+<a href="#fastmarching"> Geodesic Processing </a> <br />
+
+<a href="#shapes"> Shapes </a> <br />
+
+<a href="#meshproc"> Mesh Processing </a> <br />
+
+<a href="#meshdeform"> Mesh Parameterization and Deformation </a> <br />
+
+<a href="#meshwav"> Multiscale Mesh Processing </a> <br />
+
+</p>
+
+<p><br /><br /></p>
 
 <h2 id="introduction">Introduction</h2>
 
 <ul>
-  <li><a href="introduction_1_basics/">Basic Matlab/Scilab Instructions</a></li>
-  <li><a href="introduction_2_signal/">Introduction to Signal Processing</a></li>
-  <li><a href="introduction_3_image/">Introduction to Image Processing</a></li>
-  <li><a href="introduction_4_fourier_wavelets/">Image Approximation with Fourier and Wavelets</a></li>
-  <li><a href="introduction_5_wavelets_2d/">Image Processing with Wavelets</a></li>
-  <li><a href="introduction_6_elementary_fr/">Le traitement numérique des images</a></li>
+
+	<li> <a href="introduction_1_basics"> Basic Matlab/Scilab Instructions </a> </li>
+
+	<li> <a href="introduction_2_signal"> Introduction to Signal Processing </a> </li>
+
+	<li> <a href="introduction_3_image"> Introduction to Image Processing </a> </li>
+
+	<li> <a href="introduction_4_fourier_wavelets"> Image Approximation with Fourier and Wavelets </a> </li>
+
+	<li> <a href="introduction_5_wavelets_2d"> Image Processing with Wavelets </a> </li>
+
+	<li> <a href="introduction_6_elementary_fr"> Le traitement numerique des images </a> </li>
+
 </ul>
 
 <h2 id="wavelet">Wavelet Processing</h2>
 
 <ul>
-  <li><a href="wavelet_1_haar1d/">1-D Haar Wavelets</a></li>
-  <li><a href="wavelet_2_haar2d/">2-D Haar Wavelets</a></li>
-  <li><a href="wavelet_3_daubechies1d/">1-D Daubechies Wavelets</a></li>
-  <li><a href="wavelet_4_daubechies2d/">2-D Daubechies Wavelets</a></li>
+
+	<li> <a href="wavelet_1_haar1d"> 1-D Haar Wavelets </a> </li>
+
+	<li> <a href="wavelet_2_haar2d"> 2-D Haar Wavelets </a> </li>
+
+	<li> <a href="wavelet_3_daubechies1d"> 1-D Daubechies Wavelets </a> </li>
+
+	<li> <a href="wavelet_4_daubechies2d"> 2-D Daubechies Wavelets </a> </li>
+
 </ul>
 
 <h2 id="coding">Approximation, Coding and Compression</h2>
 
 <ul>
-  <li><a href="coding_1_approximation/">Image Approximation with Orthogonal Bases</a></li>
-  <li><a href="coding_2_entropic/">Entropic Coding and Compression</a></li>
-  <li><a href="coding_3_natural_images/">Natural Images Statistics</a></li>
-  <li><a href="coding_4_wavelet_compression/">Image Compression with Wavelets</a></li>
-  <li><a href="coding_5_watermarking/">Wavelet Domain Image Watermarking</a></li>
+
+	<li> <a href="coding_1_approximation"> Image Approximation with Orthogonal Bases </a> </li>
+
+	<li> <a href="coding_2_entropic"> Entropic Coding and Compression </a> </li>
+
+	<li> <a href="coding_3_natural_images"> Natural Images Statistics </a> </li>
+
+	<li> <a href="coding_4_wavelet_compression"> Image Compression with Wavelets </a> </li>
+
+	<li> <a href="coding_5_watermarking"> Wavelet Domain Image Watermarking </a> </li>
+
 </ul>
 
 <h2 id="denoisingsimp">Simple Denoising Methods</h2>
 
 <ul>
-  <li><a href="denoisingsimp_1_noise_models/">Signal and Image Noise Models</a></li>
-  <li><a href="denoisingsimp_2_linear/">Linear Signal Denoising</a></li>
-  <li><a href="denoisingsimp_2b_linear_image/">Linear Image Denoising</a></li>
-  <li><a href="denoisingsimp_4_denoiseregul/">Denoising by Sobolev and Total Variation Regularization</a></li>
+
+	<li> <a href="denoisingsimp_1_noise_models"> Signal and Image Noise Models </a> </li>
+
+	<li> <a href="denoisingsimp_2_linear"> Linear Signal Denoising </a> </li>
+
+	<li> <a href="denoisingsimp_2b_linear_image"> Linear Image Denoising </a> </li>
+
+	<li> <a href="denoisingsimp_4_denoiseregul"> Denoising by Sobolev and Total Variation Regularization </a> </li>
+
 </ul>
 
 <h2 id="denoisingwav">Wavelet Denoising</h2>
 
 <ul>
-  <li><a href="denoisingwav_1_wavelet_1d/">Signal Denoising with Wavelets</a></li>
-  <li><a href="denoisingwav_2_wavelet_2d/">Image Denoising with Wavelets</a></li>
-  <li><a href="denoisingwav_3_advanced/">Advanced Wavelet Thresholdings</a></li>
-  <li><a href="denoisingwav_4_block/">Wavelet Block Thresholding</a></li>
-  <li><a href="denoisingwav_5_data_dependent/">Data Dependent Noise Models</a></li>
-  <li><a href="denoisingwav_6_curvelets/">Curvelet Denoising</a></li>
+
+	<li> <a href="denoisingwav_1_wavelet_1d"> Signal Denoising with Wavelets </a> </li>
+
+	<li> <a href="denoisingwav_2_wavelet_2d"> Image Denoising with Wavelets </a> </li>
+
+	<li> <a href="denoisingwav_3_advanced"> Advanced Wavelet Thresholdings </a> </li>
+
+	<li> <a href="denoisingwav_4_block"> Wavelet Block Thresholding </a> </li>
+
+	<li> <a href="denoisingwav_5_data_dependent"> Data Dependent Noise Models </a> </li>
+
+	<li> <a href="denoisingwav_6_curvelets"> Curvelet Denoising </a> </li>
+
 </ul>
 
 <h2 id="denoisingadv">Advanced Denoising Methods</h2>
 
 <ul>
-  <li><a href="denoisingadv_5_mathmorph/">Mathematical Morphology</a></li>
-  <li><a href="denoisingadv_6_nl_means/">Non Local Means</a></li>
-  <li><a href="denoisingadv_7_rankfilters/">Rank Filters for Image Processing</a></li>
-  <li><a href="denoisingadv_8_bilateral/">Bilateral Filtering</a></li>
-  <li><a href="denoisingadv_9_sure/">Stein Unbiased Risk Estimator</a></li>
-</ul>
 
-<h2 id="pde">PDEs and Numerical Analysis</h2>
+	<li> <a href="denoisingadv_5_mathmorph"> Mathematical Morphology </a> </li>
 
-<ul>
-  <li><a href="pde_1_diffusion_linear/">Linear Diffusion Flows</a></li>
-  <li><a href="pde_2_diffusion_nonlinear/">Non-Linear Diffusion Flows</a></li>
-  <li><a href="pde_3_diffusion_tensor/">Tensor-driven Diffusion Flows</a></li>
-  <li><a href="pde_4_wavelet_compression/">Wavelet Compression of Integral Operators</a></li>
+	<li> <a href="denoisingadv_6_nl_means"> Non Local Means </a> </li>
+
+	<li> <a href="denoisingadv_7_rankfilters"> Rank Filters for Image Processing </a> </li>
+
+	<li> <a href="denoisingadv_8_bilateral"> Bilateral Filtering </a> </li>
+
+	<li> <a href="denoisingadv_9_sure"> Stein Unbiased Risk Estimator </a> </li>
+
 </ul>
 
 <h2 id="audio">Audio Processing</h2>
 
 <ul>
-  <li><a href="audio_1_processing/">Sound Processing with Short Time Fourier Transform</a></li>
-  <li><a href="audio_2_separation/">Source Separation with Sparsity</a></li>
-  <li><a href="audio_3_gabor/">Sparse Representation in a Gabor Dictionary</a></li>
+
+	<li> <a href="audio_1_processing"> Sound Processing with Short Time Fourier Transform </a> </li>
+
+	<li> <a href="audio_2_separation"> Source Separation with Sparsity </a> </li>
+
+	<li> <a href="audio_3_gabor"> Sparse Representation in a Gabor Dictionary </a> </li>
+
 </ul>
 
 <h2 id="multidim">Higher Dimensional Signal Processing</h2>
 
 <ul>
-  <li><a href="multidim_1_color/">Color Image Processing</a></li>
-  <li><a href="multidim_2_volumetric/">Volumetric wavelet Data Processing</a></li>
-  <li><a href="multidim_3_multispectral/">Multi-spectral Imaging</a></li>
-  <li><a href="multidim_5_opticalflow/">Optical Flow Computation</a></li>
-  <li><a href="multidim_6_tomography/">Volumetric Radon Inversion</a></li>
-  <li><a href="multidim_7_median/">Color Image Denoising with Median Filtering</a></li>
+
+	<li> <a href="multidim_1_color"> Color Image Processing </a> </li>
+
+	<li> <a href="multidim_2_volumetric"> Volumetric wavelet Data Processing </a> </li>
+
+	<li> <a href="multidim_3_multispectral"> Multi-spectral Imaging </a> </li>
+
+	<li> <a href="multidim_5_opticalflow"> Optical Flow Computation </a> </li>
+
+	<li> <a href="multidim_6_tomography"> Volumetric Radon Inversion </a> </li>
+
+	<li> <a href="multidim_7_median"> Color Image Denoising with Median Filtering </a> </li>
+
 </ul>
 
 <h2 id="graphics">Computer Graphics</h2>
 
 <ul>
-  <li><a href="graphics_1_synthesis_gaussian/">Gaussian Models for Texture Synthesis</a></li>
-  <li><a href="graphics_2_synthesis_wavelets/">Texture Synthesis Using Wavelets</a></li>
-  <li><a href="graphics_3_synthesis_diffusion/">Texture Synthesis with PDEs</a></li>
-  <li><a href="graphics_4_multiplicative_cascade/">Multiplicative Cascade Synthesis of Signals and Textures</a></li>
-  <li><a href="graphics_5_fluids/">Fluid Dynamics</a></li>
-  <li><a href="graphics_6_patches/">Texture Synthesis and Inpainting using Patch Projections</a></li>
-  <li><a href="graphics_7_shape_shading/">Shape From Shading</a></li>
-  <li><a href="graphics_8_dyntextures/">Stationary Dynamic Texture Synthesis</a></li>
-</ul>
 
-<p>Optimal Transport {#optimaltransp}
- —————-</p>
+	<li> <a href="graphics_1_synthesis_gaussian"> Gaussian Models for Texture Synthesis </a> </li>
 
-<ul>
-  <li><a href="optimaltransp_1_linprog/">Optimal Transport with Linear Programming</a></li>
-  <li><a href="optimaltransp_2_benamou_brenier/">Optimal Transport with Benamou-Brenier Algorithm</a></li>
-  <li><a href="optimaltransp_3_matching_1d/">Optimal Transport in 1-D</a></li>
-  <li><a href="optimaltransp_4_matching_sliced/">Sliced Optimal Transport</a></li>
-  <li><a href="optimaltransp_5_entropic/">Entropic Regularization of Optimal Transport</a></li>
+	<li> <a href="graphics_2_synthesis_wavelets"> Texture Synthesis Using Wavelets </a> </li>
+
+	<li> <a href="graphics_3_synthesis_diffusion"> Texture Synthesis with PDEs </a> </li>
+
+	<li> <a href="graphics_4_multiplicative_cascade"> Multiplicative Cascade Synthesis of Signals and Textures </a> </li>
+
+	<li> <a href="graphics_5_fluids"> Fluid Dynamics </a> </li>
+
+	<li> <a href="graphics_6_patches"> Texture Synthesis and Inpainting using Patch Projections </a> </li>
+
+	<li> <a href="graphics_7_shape_shading"> Shape From Shading </a> </li>
+
 </ul>
 
 <h2 id="optim">Optimization</h2>
 
 <ul>
-  <li><a href="optim_1_gradient_descent/">Gradient Descent Methods</a></li>
-  <li><a href="optim_2_newton/">Newton Method</a></li>
-  <li><a href="optim_3_cgs/">Conjugate Gradient</a></li>
-  <li><a href="optim_4_fb/">Forward-Backward Proximal Splitting</a></li>
-  <li><a href="optim_4b_dr/">Douglas Rachford Proximal Splitting</a></li>
-  <li><a href="optim_5_primal_dual/">Primal-Dual Proximal Splitting</a></li>
-  <li><a href="optim_6_gfb/">Generalized Forward-Backward Proximal Splitting</a></li>
-  <li><a href="optim_7_duality/">Fenchel-Rockafellar Duality</a></li>
-  <li><a href="optim_8_homotopy/">Homotopy Continuation</a></li>
-  <li><a href="optim_9_matching_pursuit/">Matching Pursuits</a></li>
+
+	<li> <a href="optim_1_gradient_descent"> Gradient Descent Methods </a> </li>
+
+	<li> <a href="optim_2_newton"> Newton Method </a> </li>
+
+	<li> <a href="optim_3_cgs"> Conjugate Gradient </a> </li>
+
+	<li> <a href="optim_4_fb"> Forward-Backward Proximal Splitting </a> </li>
+
+	<li> <a href="optim_4b_dr"> Douglas Rachford Proximal Splitting </a> </li>
+
+	<li> <a href="optim_5_primal_dual"> Primal-Dual Proximal Splitting </a> </li>
+
+	<li> <a href="optim_6_gfb"> Generalized Forward-Backward Proximal Splitting </a> </li>
+
+	<li> <a href="optim_7_duality"> Fenchel-Rockafellar Duality </a> </li>
+
+	<li> <a href="optim_8_homotopy"> Homotopy Continuation </a> </li>
+
+	<li> <a href="optim_9_matching_pursuit"> Matching Pursuits </a> </li>
+
 </ul>
 
-<h2 id="segmentation">Segmentation</h2>
+<h2 id="optimaltransp">Optimal Transport</h2>
 
 <ul>
-  <li><a href="segmentation_1_edge_detection/">Edge Detection</a></li>
-  <li><a href="segmentation_2_snakes_param/">Active Contours usingParameteric Curves</a></li>
-  <li><a href="segmentation_3_snakes_levelset/">Active Contours using Level Sets</a></li>
-  <li><a href="segmentation_4_convex_segmentation/">Convex Region-Based Image Segmentation</a></li>
+
+	<li> <a href="optimaltransp_1_linprog"> Optimal Transport with Linear Programming </a> </li>
+
+	<li> <a href="optimaltransp_2_benamou_brenier"> Optimal Transport with Benamou-Brenier Algorithm </a> </li>
+
+	<li> <a href="optimaltransp_3_matching_1d"> Optimal Transport in 1-D </a> </li>
+
+	<li> <a href="optimaltransp_4_matching_sliced"> Sliced Optimal Transport </a> </li>
+
+	<li> <a href="optimaltransp_5_entropic"> Entropic Regularization of Optimal Transport </a> </li>
+
 </ul>
 
-<h2 id="sparsity">Sparsity</h2>
+<h2 id="sparsity">Sparsity and Redundant Representations</h2>
 
 <ul>
-  <li><a href="sparsity_2_cs_images/">Compressed Sensing of Images</a></li>
-  <li><a href="sparsity_3_matrix_completion/">Matrix Completion with Nuclear Norm Minimization</a></li>
-  <li><a href="sparsity_4_dictionary_learning/">Dictionary Learning</a></li>
-  <li><a href="sparsity_5_dictionary_learning_denoising/">Dictionary Learning for Denoising</a></li>
-  <li><a href="sparsity_6_l1_recovery/">Performance of Sparse Recovery Using L1 Minimization</a></li>
-  <li><a href="sparsity_7_sudoku/">Sudoku using POCS and Sparsity</a></li>
-  <li><a href="sparsity_8_sparsespikes_measures/">Sparse Spikes Deconvolution over the Space of Measures</a></li>
-  <li><a href="sparsity_9_sparsespikes_cbp/">Sparse Spikes Deconvolution with Continuous Basis-Pursuit</a></li>
-  <li><a href="sparsity_9b_music/">Sparse Spikes Deconvolution with MUSIC Algorithm</a></li>
+
+	<li> <a href="sparsity_2_cs_images"> Compressed Sensing of Images </a> </li>
+
+	<li> <a href="sparsity_3_matrix_completion"> Matrix Completion with Nuclear Norm Minimization </a> </li>
+
+	<li> <a href="sparsity_4_dictionary_learning"> Dictionary Learning </a> </li>
+
+	<li> <a href="sparsity_5_dictionary_learning_denoising"> Dictionary Learning for Denoising </a> </li>
+
+	<li> <a href="sparsity_6_l1_recovery"> Performance of Sparse Recovery Using L1 Minimization </a> </li>
+
+	<li> <a href="sparsity_7_sudoku"> Sudoku using POCS and Sparsity </a> </li>
+
+	<li> <a href="sparsity_8_sparsespikes_measures"> Sparse Spikes Deconvolution over the Space of Measures </a> </li>
+
+	<li> <a href="sparsity_9_sparsespikes_cbp"> Sparse Spikes Deconvolution with Continuous Basis-Pursuit </a> </li>
+
+	<li> <a href="sparsity_9b_music"> Sparse Spikes Deconvolution with MUSIC Algorithm </a> </li>
+
 </ul>
 
 <h2 id="inverse">Inverse Problems</h2>
 
 <ul>
-  <li><a href="inverse_2_deconvolution_variational/">Image Deconvolution using Variational Method</a></li>
-  <li><a href="inverse_3_deconvolution_sparsity/">Image Deconvolution using Sparse Regularization</a></li>
-  <li><a href="inverse_4_inpainting_variational/">Inpainting using Variational Regularization</a></li>
-  <li><a href="inverse_5_inpainting_sparsity/">Inpainting using Sparse Regularization</a></li>
-  <li><a href="inverse_6_image_separation/">Cartoon+Texture Variational Image Decomposition</a></li>
-  <li><a href="inverse_8_tomography/">Reconstruction from Partial Tomography Measurements</a></li>
-  <li><a href="inverse_9_tomography_sobsparse/">Tomography Inversion using Tikhonov and Sparse Regularization</a></li>
+
+	<li> <a href="inverse_2_deconvolution_variational"> Image Deconvolution using Variational Method </a> </li>
+
+	<li> <a href="inverse_3_deconvolution_sparsity"> Image Deconvolution using Sparse Regularization </a> </li>
+
+	<li> <a href="inverse_4_inpainting_variational"> Inpainting using Variational Regularization </a> </li>
+
+	<li> <a href="inverse_5_inpainting_sparsity"> Inpainting using Sparse Regularization </a> </li>
+
+	<li> <a href="inverse_6_image_separation"> Cartoon+Texture Variational Image Decomposition </a> </li>
+
+	<li> <a href="inverse_8_tomography"> Reconstruction from Partial Tomography Measurements </a> </li>
+
+	<li> <a href="inverse_9_tomography_sobsparse"> Tomography Inversion using Tikhonov and Sparse Regularization </a> </li>
+
 </ul>
 
 <h2 id="fastmarching">Geodesic Processing</h2>
 
 <ul>
-  <li><a href="fastmarching_0_implementing/">Dijkstra and Fast Marching Algorithms</a></li>
-  <li><a href="fastmarching_1_2d/">Fast Marching in 2D</a></li>
-  <li><a href="fastmarching_2_3d/">Fast Marching in 3D</a></li>
-  <li><a href="fastmarching_3_anisotropy/">Anisotropic Fast Marching</a></li>
-  <li><a href="fastmarching_4_mesh/">Geodesic Mesh Processing</a></li>
-  <li><a href="fastmarching_4bis_geodesic_mesh/">Geodesic Distance Computation on 3-D Meshes</a></li>
-  <li><a href="fastmarching_5_sampling_2d/">Geodesic Farthest Point Sampling</a></li>
-  <li><a href="fastmarching_6_sampling_surf/">Geodesic Surface Remeshing</a></li>
-  <li><a href="fastmarching_7_sampling_compr/">Geodesic Triangulation for Image Compression</a></li>
-  <li><a href="fastmarching_8_segmentation/">Geodesic Segmentation</a></li>
-  <li><a href="fastmarching_9_heuristics/">Heuristically Driven Front Propagation</a></li>
+
+	<li> <a href="fastmarching_0_implementing"> Dijkstra and Fast Marching Algorithms </a> </li>
+
+	<li> <a href="fastmarching_1_2d"> Fast Marching in 2D </a> </li>
+
+	<li> <a href="fastmarching_2_3d"> Fast Marching in 3D </a> </li>
+
+	<li> <a href="fastmarching_3_anisotropy"> Anisotropic Fast Marching </a> </li>
+
+	<li> <a href="fastmarching_4_mesh"> Geodesic Mesh Processing </a> </li>
+
+	<li> <a href="fastmarching_4bis_geodesic_mesh"> Geodesic Distance Computation on 3-D Meshes </a> </li>
+
+	<li> <a href="fastmarching_5_sampling_2d"> Geodesic Farthest Point Sampling </a> </li>
+
+	<li> <a href="fastmarching_6_sampling_surf"> Geodesic Surface Remeshing </a> </li>
+
+	<li> <a href="fastmarching_7_sampling_compr"> Geodesic Triangulation for Image Compression </a> </li>
+
+	<li> <a href="fastmarching_8_segmentation"> Geodesic Segmentation </a> </li>
+
+	<li> <a href="fastmarching_9_heuristics"> Heuristically Driven Front Propagation </a> </li>
+
 </ul>
 
 <h2 id="shapes">Shapes</h2>
 
 <ul>
-  <li><a href="shapes_1_bendinginv_2d/">Geodesic Bending Invariants for Shapes</a></li>
-  <li><a href="shapes_2_bendinginv_3d/">Geodesic Bending Invariants for Surfaces</a></li>
-  <li><a href="shapes_3_bendinginv_landmarks/">Geodesic Bending Invariants with Landmarks</a></li>
-  <li><a href="shapes_4_shape_matching/">Shape Correspondence with Fast Marching</a></li>
-  <li><a href="shapes_5_geodesic_descriptors/">Shape Retrieval with Geodesic Descriptors</a></li>
-  <li><a href="shapes_6_medialaxis/">Geodesic Medial Axsis</a></li>
-  <li><a href="shapes_7_isomap/">Manifold Learning with Isomap</a></li>
+
+	<li> <a href="shapes_1_bendinginv_2d"> Geodesic Bending Invariants for Shapes </a> </li>
+
+	<li> <a href="shapes_2_bendinginv_3d"> Geodesic Bending Invariants for Surfaces </a> </li>
+
+	<li> <a href="shapes_3_bendinginv_landmarks"> Geodesic Bending Invariants with Landmarks </a> </li>
+
+	<li> <a href="shapes_4_shape_matching"> Shape Correspondence with Fast Marching </a> </li>
+
+	<li> <a href="shapes_5_geodesic_descriptors"> Shape Retrieval with Geodesic Descriptors </a> </li>
+
+	<li> <a href="shapes_6_medialaxis"> Geodesic Medial Axsis </a> </li>
+
+	<li> <a href="shapes_7_isomap"> Manifold Learning with Isomap </a> </li>
+
 </ul>
 
 <h2 id="meshproc">Mesh Processing</h2>
 
 <ul>
-  <li><a href="meshproc_1_basics_2d/">Basics About 2D Triangulation</a></li>
-  <li><a href="meshproc_2_basics_3d/">Basics About 3D Meshes</a></li>
-  <li><a href="meshproc_3_denoising/">Mesh Denoising</a></li>
-  <li><a href="meshproc_4_fourier/">Fourier on Meshes</a></li>
-  <li><a href="meshproc_5_pde/">PDEs on Meshes</a></li>
-  <li><a href="meshproc_6_volumetric/">Volumetric Meshes</a></li>
+
+	<li> <a href="meshproc_1_basics_2d"> Basics About 2D Triangulation </a> </li>
+
+	<li> <a href="meshproc_2_basics_3d"> Basics About 3D Meshes </a> </li>
+
+	<li> <a href="meshproc_3_denoising"> Mesh Denoising </a> </li>
+
+	<li> <a href="meshproc_4_fourier"> Fourier on Meshes </a> </li>
+
+	<li> <a href="meshproc_5_pde"> PDEs on Meshes </a> </li>
+
+	<li> <a href="meshproc_6_volumetric"> Volumetric Meshes </a> </li>
+
 </ul>
 
-<h2 id="mesh-parameterization-and-deformation-meshdeform">Mesh Parameterization and Deformation #meshdeform</h2>
+<h2 id="meshdeform">Mesh Parameterization and Deformation</h2>
 
 <ul>
-  <li><a href="meshdeform_1_parameterization/">Mesh Parameterization</a></li>
-  <li><a href="meshdeform_2_parameterization_sphere/">Spherical Mesh Parameterization</a></li>
-  <li><a href="meshdeform_3_flattening/">Spectral Mesh Flattening</a></li>
-  <li><a href="meshdeform_4_barycentric/">Generalized Barycentric Coordinates for Warpping</a></li>
-  <li><a href="meshdeform_5_deformation/">Mesh Deformation</a></li>
+
+	<li> <a href="meshdeform_1_parameterization"> Mesh Parameterization </a> </li>
+
+	<li> <a href="meshdeform_2_parameterization_sphere"> Spherical Mesh Parameterization </a> </li>
+
+	<li> <a href="meshdeform_3_flattening"> Spectral Mesh Flattening </a> </li>
+
+	<li> <a href="meshdeform_4_barycentric"> Generalized Barycentric Coordinates for Warpping </a> </li>
+
+	<li> <a href="meshdeform_5_deformation"> Mesh Deformation </a> </li>
+
 </ul>
 
-<h2 id="multiscale-mesh-processing-meshwav">Multiscale Mesh Processing #meshwav</h2>
+<h2 id="meshwav">Multiscale Mesh Processing</h2>
 
 <ul>
-  <li><a href="meshwav_1_subdivision_curves/">Subdivision Curves</a></li>
-  <li><a href="meshwav_2_subdivision_surfaces/">Subdivision Surfaces</a></li>
-  <li><a href="meshwav_3_simplification/">Mesh Simplification</a></li>
-  <li><a href="meshwav_4_haar_sphere/">Spherical Haar Wavelets</a></li>
-  <li><a href="meshwav_5_wavelets/">Wavelet Transform on 3D Meshes</a></li>
+
+	<li> <a href="meshwav_1_subdivision_curves"> Subdivision Curves </a> </li>
+
+	<li> <a href="meshwav_2_subdivision_surfaces"> Subdivision Surfaces </a> </li>
+
+	<li> <a href="meshwav_3_simplification"> Mesh Simplification </a> </li>
+
+	<li> <a href="meshwav_4_haar_sphere"> Spherical Haar Wavelets </a> </li>
+
+	<li> <a href="meshwav_5_wavelets"> Wavelet Transform on 3D Meshes </a> </li>
+
 </ul>
+
 
 		</div>
 	</div>
@@ -409,7 +537,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <ul class="list-inline text-center">
-                    <!-- 
+
                     <li>
                         <a href="/numerical-tours/feed.xml">
                             <span class="fa-stack fa-lg">
@@ -418,7 +546,6 @@
                             </span>
                         </a>
                     </li>
-                    -->
                     
                     
                     
@@ -446,6 +573,16 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="/numerical-tours/js/clean-blog.min.js "></script>
+
+<!-- Google analytics -->
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-781488-2";
+urchinTracker();
+</script>
+
+
 
 
 </body>
