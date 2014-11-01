@@ -1,0 +1,36 @@
+
+- name: Basics
+  short: basics
+  list: 
+  - name: Introduction to Image Processing
+    rep: introduction_3_image
+  - name: Le traitement numérique des images
+    rep: introduction_6_elementary_fr
+- name: Wavelets
+  short: wavelets
+  list: 
+  - name: 2-D Daubechies Wavelets
+    rep: wavelet_4_daubechies2d
+- name: Denoising
+  short: denoising
+  list: 
+  - name: Linear Image Denoising
+    rep: denoisingsimp_2b_linear_image
+  - name: Wavelet Denoising
+    rep: denoisingwav_2_wavelet_2d
+- name: Inverse Problems
+  short: inverse
+  list: 
+  - name: Image Deconvolution using Variational Method
+    rep: inverse_2_deconvolution_variational
+- name: Optimisation
+  short: optim
+  list: 
+  - name: Gradient Descent Methods
+    rep: optim_1_gradient_descent
+- name: Shapes
+  short: shapes
+  list: 
+  - name: Active Contours using Parameteric Curves
+    rep: segmentation_2_snakes_param
+

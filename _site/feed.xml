@@ -103,6 +103,14 @@
                 </li>
                 
                 <li>
+                    <a href="/numerical-tours/installation_matlab/">Installation</a>
+                </li>
+                
+                <li>
+                    <a href="/numerical-tours/installation_python/">Installation</a>
+                </li>
+                
+                <li>
                     <a href="/numerical-tours/links/">Links</a>
                 </li>
                 
@@ -166,8 +174,8 @@
 </description>
     <link>http://gpeyre.github.io/numerical-tours//numerical-tours/</link>
     <atom:link href="http://gpeyre.github.io/numerical-tours//numerical-tours/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 01 Nov 2014 13:08:29 +0100</pubDate>
-    <lastBuildDate>Sat, 01 Nov 2014 13:08:29 +0100</lastBuildDate>
+    <pubDate>Sat, 01 Nov 2014 18:46:11 +0100</pubDate>
+    <lastBuildDate>Sat, 01 Nov 2014 18:46:11 +0100</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>

@@ -10,7 +10,7 @@ These are the Matlab tours, that can be browsed as HTML pages, but can also be d
 <p align="center">
 <br/>
 <br/>
-{% for categ in site.data.tours %}
+{% for categ in site.data.tours_matlab %}
 <a href="#{{ categ.short }}"> {{ categ.name }} </a> <br/>
 {% endfor %}
 </p>
@@ -18,7 +18,7 @@ These are the Matlab tours, that can be browsed as HTML pages, but can also be d
 <br/><br/>
 
 
-{% for categ in site.data.tours %}
+{% for categ in site.data.tours_matlab %}
 
 {{ categ.name }}      {#{{ categ.short }}}
 ----------------
