@@ -10,7 +10,7 @@ These are the Python tours, that can be browsed as HTML pages, but can also be d
 Note that it is a work in progress to port all the Numerical Tours to Python. Help is wellcome, please refer to the GitHub repository for how to proceed.
 
 
-{% for categ in site.data.tours_matlab %}
+{% for categ in site.data.tours_python %}
 
 {{ categ.name }}      {#{{ categ.short }}}
 ----------------
