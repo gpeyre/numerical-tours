@@ -5,7 +5,7 @@ description: "Numerical Tours in Matlab"
 header-img: "/img/hokusai-6.jpg"
 ---
 
-These are the Matlab tours, that can be browsed as HTML pages, but can also be downloaded as iPython notebooks. Please read the [installation page](installation_matlab/) for more information about how to run these tours.
+These are the Matlab tours, that can be browsed as HTML pages, but can also be downloaded as iPython notebooks. Please read the [installation page](../installation_matlab/) for more information about how to run these tours.
 
 <p align="center">
 <br/>
