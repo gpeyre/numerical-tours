@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute the successive low pass approximations.
     """
@@ -14,7 +14,7 @@ def exo0():
         lighting none
 
 
-def exo1():
+def exo2():
     """
     Compute the full wavelet transform, and check for orthogonality
     (conservation of energy).
@@ -32,7 +32,7 @@ def exo1():
     disp(['Orthogonality deviation (should be 0): ' num2str(e)])
 
 
-def exo2():
+def exo3():
     """
     Implement the backward spherical Haar transform (replace U by U' to perform the reconstruction),
     and check for perfect reconstruction.
@@ -49,7 +49,7 @@ def exo2():
     disp(['Bijectivity deviation (should be 0): ' num2str(e)])
 
 
-def exo3():
+def exo4():
     """
     Perform Haar wavelet approximation with only 10% of the coefficients.
     orward transform
@@ -83,7 +83,7 @@ def exo3():
     lighting none
 
 
-def exo4():
+def exo5():
     """
     Compare with the traditional 2D Haar approximation of |M|.
     """
@@ -95,7 +95,7 @@ def exo4():
     imageplot(clamp(crop(M1)))
 
 
-def exo5():
+def exo6():
     """
     Implement Spherical denoising using the Haar transform. Compare it with
     vertex-based lifting scheme denoising.

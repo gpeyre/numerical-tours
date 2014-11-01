@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute several steps of iterative filterings, while ensuring the positions of the fixed points.
     """

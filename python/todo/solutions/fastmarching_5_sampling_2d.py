@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Using |Q|, compute the faces |faces| of the Delaunay triangulation.
     To that end,
@@ -22,7 +22,7 @@ def exo0():
     faces = V(: , 1: 3)'
 
 
-def exo1():
+def exo2():
     """
     Iterate the sampling process to add more and more points.
     """
@@ -52,7 +52,7 @@ def exo1():
             faces_svg{end + 1} = compute_voronoi_triangulation(Q, vertex)
 
 
-def exo2():
+def exo3():
     """
     Display the geodesic Delaunay triangulation corresponding to the
     sampling
@@ -63,7 +63,7 @@ def exo2():
     colormap jet(256)
 
 
-def exo3():
+def exo4():
     """
     Perform the Lloyd iterative algorithm.
     etric
@@ -90,7 +90,7 @@ def exo3():
             vertex(: , i) = [mean(x); mean(y)]
 
 
-def exo4():
+def exo5():
     """
     Perform the Lloyd iterative algorithm.
     eed random points.

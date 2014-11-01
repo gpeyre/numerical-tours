@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Perform Chambolle algorithm to solve the ROF problem.
     Monitor the primal $E$ and dual $-F$ energies.

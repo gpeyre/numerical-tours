@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     For a given $\lambda$, display the histogram of the repartition of
     the quadratic error $\norm{y-h(y)}^2$ and of $\text{SURE}(y)$.
@@ -35,7 +35,7 @@ def exo0():
     u = plot(v_sure*[1 1], [0 max(s)], 'r'); set(u, 'LineWidth', 3)
 
 
-def exo1():
+def exo2():
     """
     Compute, for a single realization $f=f_0+w$, the evolution
     of
@@ -56,7 +56,7 @@ def exo1():
     axis tight
 
 
-def exo2():
+def exo3():
     """
     Display the best denoising result $h_{\la^*}(f)$
     where
@@ -68,7 +68,7 @@ def exo2():
     imageplot(clamp(hf), strcat(['SNR = ' num2str(snr(f0, hf), 3) 'dB']))
 
 
-def exo3():
+def exo4():
     """
     For a given $\lambda$, display the histogram of the repartition of
     the quadratic error $\norm{y-h(y)}^2$ and of $\text{SURE}(y)$.
@@ -109,7 +109,7 @@ def exo3():
     u = plot(v_sure*[1 1], [0 max(s)], 'r'); set(u, 'LineWidth', 3)
 
 
-def exo4():
+def exo5():
     """
     Compute, for a single realization $f=f_0+w$, the evolution
     of
@@ -130,7 +130,7 @@ def exo4():
     axis tight
 
 
-def exo5():
+def exo6():
     """
     Display the best denoising result $h_{\la^*}(f)$
     where

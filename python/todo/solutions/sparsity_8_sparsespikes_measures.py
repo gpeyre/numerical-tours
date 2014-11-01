@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     You can see that the dual certificate $\abs{\eta_\la}$ saturate to
     $+1$ or $-1$ in region that are far away from the initial support
@@ -10,7 +10,7 @@ def exo0():
     """
 
 
-def exo1():
+def exo2():
     """
     Study the evolution of the pre-certificate as the separation between the spikes diminishes.
     When is it the case that $\eta_0=\eta_V$? When is it the case that $\mu_0$ is the solution of $\Pp_0(\Phi \mu_0)$ ?

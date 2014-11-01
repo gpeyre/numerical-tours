@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Test blurring with several blurring size $\si$.
     """
@@ -8,7 +8,7 @@ def exo0():
         imageplot(blur(f0, sigma), ['\sigma = ' num2str(sigma)], 2, 2, i)
 
 
-def exo1():
+def exo2():
     """
     For $\si=1$, study the influence of the threshold value $t$.
     """
@@ -18,7 +18,7 @@ def exo1():
         imageplot(double(d >t), ['t = ' num2str(t, 2)] , 2, 2, i)
 
 
-def exo2():
+def exo3():
     """
     Study the influence of $\si$.
     """
@@ -30,7 +30,7 @@ def exo2():
         imageplot(double(d >t), ['\sigma = ' num2str(sigma)], 2, 2, i)
 
 
-def exo3():
+def exo4():
     """
     Study the influence of $\si$.
     """
@@ -42,7 +42,7 @@ def exo3():
         title(['\sigma = ' num2str(sigma)])
 
 
-def exo4():
+def exo5():
     """
     Study the influence of $\si$.
     """

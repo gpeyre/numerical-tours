@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Implement the Perona-Malick diffusion flow
     for $\la = 10^{-2}$.
@@ -16,7 +16,7 @@ def exo0():
             imageplot(clamp(f), strcat(['T = ' num2str(T*k/ 4, 3)]), 2, 2, k)
 
 
-def exo1():
+def exo2():
     """
     Implement the Perona-Malick diffusion flow
     for $\la = 10^{-3}$.
@@ -34,7 +34,7 @@ def exo1():
             imageplot(clamp(f), strcat(['T = ' num2str(T*k/ 4, 3)]), 2, 2, k)
 
 
-def exo2():
+def exo3():
     """
     Implement the mean curvature flow.
     """
@@ -50,7 +50,7 @@ def exo2():
             imageplot(clamp(f), strcat(['T = ' num2str(T*k/ 4, 3)]), 2, 2, k)
 
 
-def exo3():
+def exo4():
     """
     Implement the affine-invariant curvature flow.
     """

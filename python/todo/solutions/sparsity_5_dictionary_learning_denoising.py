@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Implement the DR iterative algorithm on |niter| iterations.
     Keep track of the evolution of the minimized energy
@@ -51,7 +51,7 @@ def exo0():
     title('log_{10}| |Dx-y| - \epsilon|')
 
 
-def exo1():
+def exo2():
     """
     Compare the obtained result with translation invariant wavelet hard
     thresholding.
@@ -64,7 +64,7 @@ def exo1():
     imageplot(clamp(Mwav), ['Wavelets, SNR = ' num2str(snr(f0, Mwav), 4) 'dB'])
 
 
-def exo2():
+def exo3():
     """
     Study the influence of the parameter $\rho$ on the quality of the
     denoising. Study the influence of the number $p$ of atoms.

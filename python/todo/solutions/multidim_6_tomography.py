@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Perform the projected TV gradient desent, and monitor the epsilon-TV
     norm during the iterations.

@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute the denoising result for several values of $\tau$ in order to
     determine the optimal denoising that minimizes $\norm{\tilde f - f_0}$.
@@ -16,7 +16,7 @@ def exo0():
         imageplot(clamp(f1), ['SNR = ' num2str(e, 4) 'dB'], 2, 2, k)
 
 
-def exo1():
+def exo2():
     """
     Explore the influence of the $q$ and $w$ parameters.
     """

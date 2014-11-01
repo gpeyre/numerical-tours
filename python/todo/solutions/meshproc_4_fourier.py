@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Show the smoothed mesh for an increasing number of Fourier frequencies |nb|.
     """
@@ -9,7 +9,7 @@ def exo0():
         plot_mesh((vertex*V)*V', faces)
 
 
-def exo1():
+def exo2():
     """
     Compute a best |m|-term non-linear approximation whith |m=.1*n|, by
     hard thresholding the Fourier coefficients using the correct threshold.
@@ -34,7 +34,7 @@ def exo1():
     disp(['Non-linear: SNR = ' num2str(snr(vertex, vertexN), 3) 'dB'])
 
 
-def exo2():
+def exo3():
     """
     Compare the rate-distortion curve (log of error as a function of the
     log of the number of coefficients) for linear and non-linear approximation.
@@ -55,7 +55,7 @@ def exo2():
     legend('Linear', 'Non-linear')
 
 
-def exo3():
+def exo4():
     """
     Perform the compression for several quantization steps |T|
     and display the rate distortion curve showing the SNR

@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Build the encoding matrix |Aenc|. Display it.
     """
@@ -11,7 +11,7 @@ def exo0():
     imageplot(Aenc)
 
 
-def exo1():
+def exo2():
     """
     Build the full row matrix |Arow|. Display it.
     """
@@ -24,7 +24,7 @@ def exo1():
     imageplot(Arow)
 
 
-def exo2():
+def exo3():
     """
     Build the full column matrix |Acol|. Display it.
     """
@@ -37,7 +37,7 @@ def exo2():
     imageplot(Acol)
 
 
-def exo3():
+def exo4():
     """
     Create the full block matrix. Display it.
     """
@@ -51,7 +51,7 @@ def exo3():
     imageplot(Ablock)
 
 
-def exo4():
+def exo5():
     """
     Build the full inpainting matrix |Ainp|. Display it.
     """
@@ -63,14 +63,14 @@ def exo4():
     imageplot(Ainp)
 
 
-def exo5():
+def exo6():
     """
     Implement the Soduku solver using an interger linear programming
     algorithm.
     """
 
 
-def exo6():
+def exo7():
     """
     Perform iterative projections (POCS) on the two constraints |A*Xproj(:)=1| and
     |Xproj>=0|. Display the decay of the error |norm(A*Xproj(:)-1)| in logarithmic scale.
@@ -85,7 +85,7 @@ def exo6():
     axis('tight')
 
 
-def exo7():
+def exo8():
     """
     Prove (numerically) that for this grid, the polytope of constraints
     |P={X \ A*X(:)=1 and X>=0}| is actually reduced to a singleton, which is
@@ -93,7 +93,7 @@ def exo7():
     """
 
 
-def exo8():
+def exo9():
     """
     Try the iterative projection on convexs set (POCS) method on this grid
     (remember that you need to re-define |A| and |pA|).
@@ -123,7 +123,7 @@ def exo8():
     disp(['Number of violated constraints: ' num2str(sum(A*Xproj1(: )~ = 1)) '.'])
 
 
-def exo9():
+def exo10():
     """
     Compute the solution using the reweighted L1 minimization.
     Track the evolution of the number of invalidated constraints as the
@@ -144,7 +144,7 @@ def exo9():
     disp(['Number of violated constraints: ' num2str(sum(A*Xrw1(: )~ = 1)) '.'])
 
 
-def exo10():
+def exo11():
     """
     Try reweighted L1 on this puzzle.
     ill matrix.
@@ -174,20 +174,20 @@ def exo10():
     title('Number of invalidated constraints')
 
 
-def exo11():
+def exo12():
     """
     Try other sparsity-enforcing minimization methods, such as Orthogonal
     Matching Pursuit (OMP), or iterative hard thresholding.
     """
 
 
-def exo12():
+def exo13():
     """
     Try the different methods of this tour on a large number of Sudokus.
     """
 
 
-def exo13():
+def exo14():
     """
     Try the different methods of this tour on larger Sudokus, for |n=4,5,6|.
     """

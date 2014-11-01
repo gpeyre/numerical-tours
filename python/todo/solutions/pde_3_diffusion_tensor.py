@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Perform the full diffusion up to a large enough time.
     """

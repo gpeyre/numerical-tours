@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute curves joining the start point to several points along the
     boundary.
@@ -18,7 +18,7 @@ def exo0():
     axis ij
 
 
-def exo1():
+def exo2():
     """
     Compute the geodesic distance matrix $\de$.
     """
@@ -30,7 +30,7 @@ def exo1():
     delta = (delta + delta')/ 2
 
 
-def exo2():
+def exo3():
     """
     Perform the SMACOF iterative algorithm.
     Save in a variable |s(l)| the values of
@@ -57,7 +57,7 @@ def exo2():
     axis('equal'); axis('off'); axis('ij')
 
 
-def exo3():
+def exo4():
     """
     Implement a shape retrival algorithm based on these bending invariants.
     o correction for this exercise.

@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     A first way to denoise the image is to apply the local median filter
     implemented with the function |perform_median_filtering| on
@@ -12,7 +12,7 @@ def exo0():
     imageplot(clamp(Mindep), strcat(['Denoised, SNR = ' num2str(pindep)]), 1, 2, 2)
 
 
-def exo1():
+def exo2():
     """
     Compute the median |med| of the points in |X|
     using the iterative reweighted least squares algorithm.
@@ -31,7 +31,7 @@ def exo1():
         energy(end + 1) = sum(dist)
 
 
-def exo2():
+def exo3():
     """
     Implement the 3D median filter by looping through all the pixel |(x,y)|.
     isplay the results

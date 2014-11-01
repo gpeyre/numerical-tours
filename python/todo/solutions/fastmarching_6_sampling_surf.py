@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Perform the farthest point sampling of |m=500| points.
     nitialize
@@ -25,7 +25,7 @@ def exo0():
             k = k + 1
 
 
-def exo1():
+def exo2():
     """
     Perform a spacially adative remeshing.
     nitialize
@@ -66,7 +66,7 @@ def exo1():
             k = k + 1
 
 
-def exo2():
+def exo3():
     """
     Design a metric |W| so that the sampling is densed in area where |C| is
     large.
@@ -86,7 +86,7 @@ def exo2():
     set(h, 'MarkerSize', 20)
 
 
-def exo3():
+def exo4():
     """
     Use such a metric to perform feature sensitive remeshing.
     Tune the metric to reduce as much as possible the Hausdorff

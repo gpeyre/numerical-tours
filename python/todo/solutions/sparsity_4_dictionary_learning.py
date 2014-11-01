@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Perform the iterative hard thresholding,
     and display the decay of the energy $J(x_j) = \norm{y_j-D x_j}^2$ for several $j$.
@@ -19,7 +19,7 @@ def exo0():
     title('log_{10}(J(x_j) - J(x_j^*))')
 
 
-def exo1():
+def exo2():
     """
     Perform this gradient descent, and monitor the decay of the energy.
     """
@@ -34,7 +34,7 @@ def exo1():
     axis tight
 
 
-def exo2():
+def exo3():
     """
     Perform the dictionary learning by iterating between sparse coding and
     dictionary update.

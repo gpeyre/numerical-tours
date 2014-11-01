@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Perform a synthesis by running a heat diffusion, starting with a random
     noise a time |T=0|. At each step of the diffusion, perform an histogram
@@ -21,7 +21,7 @@ def exo0():
             imageplot(Mheat, strcat(['T = ' num2str(T*k/ 4, 3)]), 2, 2, k)
 
 
-def exo1():
+def exo2():
     """
     Starting from an initial noise image, perform a total variation
     minimization. At each step of the descent, perform an histogram
@@ -50,7 +50,7 @@ def exo1():
             imageplot(Mtv, strcat(['T = ' num2str(T*k/ 4, 3) ', TV = ' num2str(tv)]), 2, 2, k)
 
 
-def exo2():
+def exo3():
     """
     Perfrom a synthesis that mixes both TV minimization (to reduce the TV
     norm)

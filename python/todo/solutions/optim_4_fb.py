@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute the solution of L1 deconvolution.
     Keep track of the degay of the energy $E=f+g$.
@@ -17,7 +17,7 @@ def exo0():
     set_label('i', 'log_{10}(E-E*)')
 
 
-def exo1():
+def exo2():
     """
     Impement the relaxed FB algorithm and display its convergence rate for several values of $\mu$.
     isplay
@@ -44,7 +44,7 @@ def exo1():
     legend(lgd)
 
 
-def exo2():
+def exo3():
     """
     Compute the solution of L1 deconvolution using FISTA.
     Keep track of the degay of the energy $E = f+g$.

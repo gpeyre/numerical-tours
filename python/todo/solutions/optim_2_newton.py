@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Implement the Newton algorithm.
     Display the evolution of $f(x^{(\ell)})$ and $\norm{x^{(\ell)}-x^{(+\infty)}}$
@@ -24,7 +24,7 @@ def exo0():
     title('log_{10}|x_k-x^*|')
 
 
-def exo1():
+def exo2():
     """
     Display the evolution of $x^{(\ell)}$, from several starting points.
     """
@@ -44,7 +44,7 @@ def exo1():
     axis([-.5 3 -2 2])
 
 
-def exo2():
+def exo3():
     """
     Implement the Newton descent algorithm.
      d = Hinv(Gradf(x), A(x), d);
@@ -64,7 +64,7 @@ def exo2():
     axis tight
 
 
-def exo3():
+def exo4():
     """
     Compare the Newton descent with the gradient descent with a fixed step
     size, in term of decay of the energy.
@@ -84,7 +84,7 @@ def exo3():
     axis tight
 
 
-def exo4():
+def exo5():
     """
     The direct comparison between gradient method and Newton is not fair in
     term of iteration count. Indeed, and iteration of Newton requires

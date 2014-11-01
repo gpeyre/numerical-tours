@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute an approximation |fLow| using the $ P=2^{2J}=(n/k_0)^2 $ low pass
     coefficients.
@@ -10,7 +10,7 @@ def exo0():
     myplot(fLow)
 
 
-def exo1():
+def exo2():
     """
     Reconstruct an image using the pseudo inverse coefficients $\Phi^+ y =
     \Phi^* y$.
@@ -21,7 +21,7 @@ def exo1():
     clf; myplot(fL2)
 
 
-def exo2():
+def exo3():
     """
     Implement the proximal and reversed-proximal mappings of $F$ (the orthogonal projector on
     $\Cc$ and $G$ (soft thresholding). In Matlab, use inline function with the |@|
@@ -33,7 +33,7 @@ def exo2():
     rProxG = lambda x, gamma: 2*ProxG(x, gamma)-x
 
 
-def exo3():
+def exo4():
     """
     Implement the DR iterative algorithm.
     Keep track of the evolution of the $\ell^1$ norm $G(x_k)$.
@@ -52,7 +52,7 @@ def exo3():
     axis tight
 
 
-def exo4():
+def exo5():
     """
     Display the image reconstructed using the $P_0$ linear and $P$ CS
     measurements. The total number of used measurements is thus $P+P_0$.
@@ -63,7 +63,7 @@ def exo4():
     clf; myplot(fCS)
 
 
-def exo5():
+def exo6():
     """
     define the proximal operator $ \text{Prox}_{\ga G} $ of $G$,
     and its reversed proximal mapping.
@@ -76,7 +76,7 @@ def exo5():
     rProxG = lambda x, gamma: 2*ProxG(x, gamma)-x
 
 
-def exo6():
+def exo7():
     """
     Implement the DR iterative algorithm.
     Keep track of the evolution of $G(x_k)$.
@@ -93,7 +93,7 @@ def exo6():
     axis tight
 
 
-def exo7():
+def exo8():
     """
     Display the image reconstructed using the $P_0$ linear and $P$ CS
     measurements.

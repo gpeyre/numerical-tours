@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Try with other alphamapping and colormapping
     et up a colormap
@@ -14,7 +14,7 @@ def exo0():
     vol3d(h)
 
 
-def exo1():
+def exo2():
     """
     select the point (x,y) of minimum value in the slice |D(:,:,n-delta)|.
     hint: use functions 'min' and 'ind2sub'
@@ -25,7 +25,7 @@ def exo1():
     end_point = [x; y; n-delta]
 
 
-def exo2():
+def exo3():
     """
     Select other starting points. In order to do so, ask the user to
     click on a starting point in a given horizontal slice |W(:,:,delta)|.

@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute the full shape features |d(k,i)| for all points |i| and scales
     |k|.
@@ -26,7 +26,7 @@ def exo0():
     axis tight
 
 
-def exo1():
+def exo2():
     """
     Compute the descriptor for all the values of |r| in rlist.
     """
@@ -37,7 +37,7 @@ def exo1():
     imageplot(C)
 
 
-def exo2():
+def exo3():
     """
     Compute a metric associated to |C|, by rescaling.
     Using the Fast Marching, compute the shortest paths |gpath| from point |(1,1)|

@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute the solution for several value of $\lambda$ and choose the
     optimal |lambda| and the corresponding optimal denoising |fSob0|.
@@ -19,7 +19,7 @@ def exo0():
     set_label('lambda', 'SNR')
 
 
-def exo1():
+def exo2():
     """
     Compute the total variation of |f0|.
     isplay
@@ -28,7 +28,7 @@ def exo1():
     imageplot(f0, strcat(['TV = ', num2str(tv, 4)]), 1, 2, 1)
 
 
-def exo2():
+def exo3():
     """
     Compute the gradient descent and monitor
     the minimized energy.
@@ -48,7 +48,7 @@ def exo2():
     set_label('iteration', 'Energy')
 
 
-def exo3():
+def exo4():
     """
     Compute the solution for several value of $\lambda$ and choose the
     optimal $\lambda$ and the corresponding optimal denoising |fSob0|.
@@ -76,7 +76,7 @@ def exo3():
     set_label('\lambda', 'SNR')
 
 
-def exo4():
+def exo5():
     """
     Compare the TV denoising with a hard thresholding in a translation
     invariant tight frame of wavelets.

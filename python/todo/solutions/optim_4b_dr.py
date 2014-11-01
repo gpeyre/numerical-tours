@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Implement the DR iterative algorithm on |niter| iterations.
     Keep track of the evolution of the $\ell^1$ norm.
@@ -14,7 +14,7 @@ def exo0():
     axis tight
 
 
-def exo1():
+def exo2():
     """
     Test the recovery of a less sparse signal.
     What do you observe ?
@@ -37,7 +37,7 @@ def exo1():
     title('Recovered by L1 minimization')
 
 
-def exo2():
+def exo3():
     """
     Perform DR on the set of signals |x0|. Note that the proximal mappings
     operate in parallel on all the signals in |x0|.

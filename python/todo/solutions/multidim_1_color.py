@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Recover an image from the transformed YUV representation $U_1$.
     """
@@ -8,7 +8,7 @@ def exo0():
     imageplot(clamp(f1), 'Modified', 1, 2, 2)
 
 
-def exo1():
+def exo2():
     """
     Show the reconstructed image obtained by progressively rotating the hue component,
     i.e. replacing $H$ by $H + \theta$.
@@ -24,7 +24,7 @@ def exo1():
         imageplot(clamp(hsv12rgb(g1)), ['\theta = ' num2str(theta(i))], 2, 3, i)
 
 
-def exo2():
+def exo3():
     """
     Inverse the PCA transformation in order to retrive an image
     the modified PCA representation |U1|.
@@ -36,14 +36,14 @@ def exo2():
     imageplot(clamp(f1), 'f_1', 1, 2, 2)
 
 
-def exo3():
+def exo4():
     """
     Compare (translation invariant) wavelet denoising of color image in the
     RGB and PCA color space (the PCA space should be estimated from the noisy image).
     """
 
 
-def exo4():
+def exo5():
     """
     For a complicated, non-homogenous color image, compute a local color
     space for each pixel, by performing a PCA over group of pixels. Use this
@@ -51,7 +51,7 @@ def exo4():
     """
 
 
-def exo5():
+def exo6():
     """
     Compare wavelet domain image compression (quantization+coding) over the
     original RGB space and a more adapted global or local color space.

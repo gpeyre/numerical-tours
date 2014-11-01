@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Perform the full subdivision.
     """
@@ -29,13 +29,13 @@ def exo0():
         shading('faceted'); lighting('flat'); view(3); axis('tight')
 
 
-def exo1():
+def exo2():
     """
     Try with other control meshes.
     """
 
 
-def exo2():
+def exo3():
     """
     Perform several steps of subdivision.
     """
@@ -75,13 +75,13 @@ def exo2():
     shading('interp'); lighting('phong'); axis('tight')
 
 
-def exo3():
+def exo4():
     """
     Try on different 3D models.
     """
 
 
-def exo4():
+def exo5():
     """
     Implement another subdivision scheme that is not interpolating, for
     instance the loop scheme. Be careful about the handling of points that
@@ -132,7 +132,7 @@ def exo4():
     shading('interp'); lighting('phong'); axis('tight')
 
 
-def exo5():
+def exo6():
     """
     Implement another subdivision scheme that does not perform a 1:4 split
     of each face, for instance the sqrt(3) scheme.

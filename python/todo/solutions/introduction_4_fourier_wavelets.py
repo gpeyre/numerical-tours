@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Perform the linear Fourier approximation with $M$ coefficients.
     Store the result in the variable |fM|.
@@ -13,7 +13,7 @@ def exo0():
     imageplot(clamp(fM), ['Linear, Fourier, SNR = ' num2str(snr(f, fM), 4) 'dB'])
 
 
-def exo1():
+def exo2():
     """
     Compute the value of the threshold $T$ so that the number of
     coefficients is $M$. Display the corresponding approximation
@@ -30,7 +30,7 @@ def exo1():
     imageplot(clamp(fM), ['Non-linear, Fourier, SNR = ' num2str(snr(f, fM), 4) 'dB'])
 
 
-def exo2():
+def exo3():
     """
     Perform linear approximation with $M$ wavelet coefficients.
     isplay
@@ -43,7 +43,7 @@ def exo2():
     imageplot(clamp(fM), ['Linear, Wavelets, SNR = ' num2str(snr(f, fM), 4) 'dB'])
 
 
-def exo3():
+def exo4():
     """
     Perform non-linear approximation with $M$ wavelet coefficients by
     chosing the correct value for $T$. Store the result in the variable

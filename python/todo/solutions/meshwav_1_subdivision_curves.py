@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Perform several step of subdivision. Display the different curves.
     """
@@ -13,7 +13,7 @@ def exo0():
         myaxis(0)
 
 
-def exo1():
+def exo2():
     """
     Compute the scaling function $\phi$
     associated to the subdivision.
@@ -25,7 +25,7 @@ def exo1():
     plot(linspace(-1/ 2, 1/ 2, length(f)), f); axis([-1/ 2 1/ 2 -.01 max(f)*1.03])
 
 
-def exo2():
+def exo3():
     """
     Test with different configurations of control points.
     """
@@ -40,7 +40,7 @@ def exo2():
         myaxis(.03)
 
 
-def exo3():
+def exo4():
     """
     Test the corner-cutting for $w=3$.
     """
@@ -55,7 +55,7 @@ def exo3():
         myaxis(.03)
 
 
-def exo4():
+def exo5():
     """
     Test the corner-cutting for vaious values of $w$.
     """
@@ -76,7 +76,7 @@ def exo4():
     myaxis(.03)
 
 
-def exo5():
+def exo6():
     """
     Perform the interpolating subdivision
     for $w=1/16$.
@@ -94,7 +94,7 @@ def exo5():
         hold off
 
 
-def exo6():
+def exo7():
     """
     Test the influence of $w$.
     """
@@ -115,7 +115,7 @@ def exo6():
     axis tight; axis off; axis equal
 
 
-def exo7():
+def exo8():
     """
     Compare the result of the quadratic B-spline, cubic B-spline,
     and 4-points interpolating.
@@ -139,7 +139,7 @@ def exo7():
     legend(lgd)
 
 
-def exo8():
+def exo9():
     """
     Display the scaling function associated to these Deslauriers-Dubuc filters.
     """
@@ -154,7 +154,7 @@ def exo8():
         axis([-n/ 2 n/ 2 -.15 1.03])
 
 
-def exo9():
+def exo10():
     """
     Perform an approximation $f$ of the curve using a uniform sampling with $N_0=20$
     points.
@@ -174,7 +174,7 @@ def exo9():
     myaxis(0)
 
 
-def exo10():
+def exo11():
     """
     Display the decay of the Hausdorff approximation error as the number $N_0$ of
     sampling points increases.
@@ -200,7 +200,7 @@ def exo10():
     axis tight
 
 
-def exo11():
+def exo12():
     """
     Perform curve subdivision in 3D space.
     ontrol mesh.

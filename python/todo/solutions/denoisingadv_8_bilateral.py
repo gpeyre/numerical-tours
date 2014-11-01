@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Display a filtering $\Gg_\si(f_0)$ with increasing size $\si$.
     """
@@ -8,7 +8,7 @@ def exo0():
         imageplot(Filter(f0, s), ['\sigma = ' num2str(s)], 2, 2, i)
 
 
-def exo1():
+def exo2():
     """
     Display several weights $ W_{v_i} $.
     """
@@ -18,7 +18,7 @@ def exo1():
         imageplot(W(: , : , v), ['v_i = ' num2str((v-1)/ (p-1), 2)], 2, 2, i)
 
 
-def exo2():
+def exo3():
     """
     Display several stacks $F_{v_i}$.
     """
@@ -28,7 +28,7 @@ def exo2():
         imageplot(F(: , : , v), ['v_i = ' num2str((v-1)/ (p-1), 2)], 2, 2, i)
 
 
-def exo3():
+def exo4():
     """
     Compare nearest-neighbor and linear destacking.
     """
@@ -39,7 +39,7 @@ def exo3():
     imageplot(crop(fLin, q, c), 'Linear', 1, 2, 2)
 
 
-def exo4():
+def exo5():
     """
     Study the influence of $\sigma_x$ on the filter, for a fixed
     $\sigma_v=0.2$.
@@ -51,7 +51,7 @@ def exo4():
         imageplot(bilateral_lin(f0, sx, sv), ['\sigma_x = ' num2str(sx, 2)], 2, 2, i)
 
 
-def exo5():
+def exo6():
     """
     Study the influence of $\sigma_v$ on the filter, for a fixed
     $\sigma_x=8$.
@@ -63,7 +63,7 @@ def exo5():
         imageplot(bilateral_lin(f0, sx, sv), ['\sigma_v = ' num2str(sv, 2)], 2, 2, i)
 
 
-def exo6():
+def exo7():
     """
     Compute the optimal parameter $(\sigma_x,\sigma_v)$ to maximize the
     SNR between $f_0$ and the filtered image. Record the optimal denoising
@@ -91,7 +91,7 @@ def exo6():
         fOpt = f
 
 
-def exo7():
+def exo8():
     """
     Compare with translation invariant wavelet thresholding.
     """
@@ -104,7 +104,7 @@ def exo7():
     imageplot(clamp(fWav), ['Wavelets, SNR = ' num2str(snr(f0, fWav), 3) 'dB'])
 
 
-def exo8():
+def exo9():
     """
     Perform detail boosting by enhancing the detail layer.
     For instance use various non-linear remapping of the intensities such as
@@ -117,13 +117,13 @@ def exo8():
         imageplot(clamp(fr), ['\gamma = ' num2str(gamma)], 2, 2, i)
 
 
-def exo9():
+def exo10():
     """
     Extend the bilateral filter for color images.
     """
 
 
-def exo10():
+def exo11():
     """
     Try several tone mapping operators, such as for instance
     $$ \phi_1(t)=\frac{t}{t+\epsilon} \qandq \phi_2(t) = \log(t+\epsilon) $$
@@ -132,7 +132,7 @@ def exo10():
     imageplot(color_recompose(fV./ (fV + 1e-4)), '\phi_2', 1, 2, 2)
 
 
-def exo11():
+def exo12():
     """
     Compute the tone mapped image using $\tilde f_V$.
     Test with several value of $\ga,\epsilon, \si_x,\si_v$.

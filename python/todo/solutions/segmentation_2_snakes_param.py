@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Perform the curve evolution.
     You need to resample it a few times.
@@ -19,7 +19,7 @@ def exo0():
             axis('tight');  axis('off')
 
 
-def exo1():
+def exo2():
     """
     Perform the curve evolution.
     """
@@ -41,7 +41,7 @@ def exo1():
             axis('ij'); axis('off')
 
 
-def exo2():
+def exo3():
     """
     Create an initial circle $\gamma_0$ of $p$ points.
     """
@@ -56,7 +56,7 @@ def exo2():
     set(h, 'LineWidth', 2)
 
 
-def exo3():
+def exo4():
     """
     Perform the curve evolution.
     
@@ -84,7 +84,7 @@ def exo3():
             axis('ij'); axis('off')
 
 
-def exo4():
+def exo5():
     """
     Compute an edge attracting criterion $W(x)>0$, that is small in area of strong
     gradient.
@@ -98,7 +98,7 @@ def exo4():
     imageplot(W)
 
 
-def exo5():
+def exo6():
     """
     Perform the curve evolution.
     Be careful to impose the boundary conditions at each step.

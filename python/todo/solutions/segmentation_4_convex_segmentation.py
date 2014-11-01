@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute $w_0$ and $w_1$. Compute and display the segmentation when
     $\la=0$.
@@ -12,7 +12,7 @@ def exo0():
     imageplot(display_segmentation(Omega))
 
 
-def exo1():
+def exo2():
     """
     Implement the DR iterative algorithm on |niter| iterations.
     Keep track of the evolution of the minimized energy
@@ -45,7 +45,7 @@ def exo1():
     title('log_{10}(E(f) - E^*)')
 
 
-def exo2():
+def exo3():
     """
     Test with different value of the $\lambda$ parameter.
     """

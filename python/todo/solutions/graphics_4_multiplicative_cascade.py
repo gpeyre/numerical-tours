@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Perform the cascade. Display intermediate steps.
     """
@@ -14,7 +14,7 @@ def exo0():
     		axis([0 T 0 1.1*max(f)])
 
 
-def exo1():
+def exo2():
     """
     Compute several realization for the same log-normal parameters.
     """
@@ -35,7 +35,7 @@ def exo1():
        axis([0 T 0 1.1*max(f)])
 
 
-def exo2():
+def exo3():
     """
     Compute realizations for different log-normal parameters |mu| and |sigma2|.
     Use the same distribution of points.
@@ -66,7 +66,7 @@ def exo2():
        title(['mu = ' num2str(mu) ', sigma^2 = ' num2str(sigma2)])
 
 
-def exo3():
+def exo4():
     """
     Perform the full cascade, display intermediate steps.
     """
@@ -82,7 +82,7 @@ def exo3():
            imageplot(f)
 
 
-def exo4():
+def exo5():
     """
     Compute the fractional integration for several values of alpha.
     """
@@ -94,7 +94,7 @@ def exo4():
        imageplot(F, ['alpha = ' num2str(alpha)])
 
 
-def exo5():
+def exo6():
     """
     Perform the  cascade for several log-normal parameters |mu| and |sigma2|.
     """

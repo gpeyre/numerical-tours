@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Implement the Floyd algorithm to compute the full distance matrix
     |D|, where |D(i,j)| is the geodesic distance between
@@ -8,7 +8,7 @@ def exo0():
         D = min(D, repmat(D(: , i), [1 n]) + repmat(D(i, : ), [n 1]))
 
 
-def exo1():
+def exo2():
     """
     Perform classical MDS to compute the 2D flattening.
     entered kernel
@@ -28,7 +28,7 @@ def exo1():
     axis('equal'); axis('off')
 
 
-def exo2():
+def exo3():
     """
     Perform stress minimization MDS using SMACOF to compute the 2D flattening.
     """
@@ -59,7 +59,7 @@ def exo2():
         stress(end + 1) = sqrt(sum(abs(D(: )-D1(: )).^2) / n^2)
 
 
-def exo3():
+def exo4():
     """
     Apply Isomap to a library of small images, for instance binary digits or
     faces with a rotating camera.

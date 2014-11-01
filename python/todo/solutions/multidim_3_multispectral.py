@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Implement the inverse transform to recover an approximation |M1| from
     the coefficients |UWT|.
@@ -16,7 +16,7 @@ def exo0():
     imageplot(clamp(M1(: , : , rgbsel)), strcat(['Approximated, SNR = ' num2str(e, 2) 'dB']), 1, 2, 2)
 
 
-def exo1():
+def exo2():
     """
     Compare the approximation error (both in term of SNR and visually)
     of a multispectral image with a 3D Haar basis and with a tensor product
@@ -24,7 +24,7 @@ def exo1():
     """
 
 
-def exo2():
+def exo3():
     """
     Compare the denoising (both in term of SNR and visually) of a multispectral image with an independant
     thresholding of each channel within a translation invariant 2D wavelet basis,

@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Perform the iterative soft thresholding.
     Monitor the decay of the energy $E$ you are minimizing.
@@ -18,7 +18,7 @@ def exo0():
         set(h, 'LineWidth', 2)
 
 
-def exo1():
+def exo2():
     """
     Since there is no noise, one should in theory takes $\lambda
     \rightarrow 0$.
@@ -32,7 +32,7 @@ def exo1():
     imageplot(clamp(fSpars), ['Sparsity inpainting, SNR = ' num2str(snr(f0, fSpars), 3) 'dB'])
 
 
-def exo2():
+def exo3():
     """
     Perform the iterative soft thresholding. Monitor the decay of the
     energy $E$.
@@ -49,7 +49,7 @@ def exo2():
     plot(E); axis('tight')
 
 
-def exo3():
+def exo4():
     """
     Perform the iteration with a decaying value of $\lambda$
     """
@@ -63,7 +63,7 @@ def exo3():
     imageplot(clamp(fTI), ['Sparsity inpainting TI, SNR = ' num2str(snr(f0, fTI), 3) 'dB'])
 
 
-def exo4():
+def exo5():
     """
     Perform the iteration with a decaying value of $\lambda$
     """

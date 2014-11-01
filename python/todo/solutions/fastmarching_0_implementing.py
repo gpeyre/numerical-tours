@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Implement the Dijkstra algorithm by iterating these step while the
     stack |I| is non empty.
@@ -14,7 +14,7 @@ def exo0():
         colormap jet(256)
 
 
-def exo1():
+def exo2():
     """
     Implement the Fast Marching algorithm.
     Display from time to time the front that propagates.
@@ -29,7 +29,7 @@ def exo1():
         colormap jet(256)
 
 
-def exo2():
+def exo3():
     """
     Compute the distance map to these starting point using the FM algorithm.
     """
@@ -41,7 +41,7 @@ def exo2():
     colormap jet(256)
 
 
-def exo3():
+def exo4():
     """
     Perform the full geodesic path extraction by iterating the gradient
     descent. You must be very careful when the path become close to

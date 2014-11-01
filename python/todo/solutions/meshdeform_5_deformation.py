@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Perform a more complicated deformation of the boundary.
     eform
@@ -11,7 +11,7 @@ def exo0():
     view(-150, 45)
 
 
-def exo1():
+def exo2():
     """
     Move both the inside and the boundary.
     
@@ -33,14 +33,14 @@ def exo1():
     zoom(.8)
 
 
-def exo2():
+def exo3():
     """
     Apply the mesh deformation method to a real mesh, with both large scale
     and fine scale details.
     """
 
 
-def exo3():
+def exo4():
     """
     Apply the deformation to the coarse mesh |vertex0| to obtain |vertex1|.
     *Important:* you need to compute and use the cotan Laplacian of the coarse
@@ -77,7 +77,7 @@ def exo3():
     zoom(.8)
 
 
-def exo4():
+def exo5():
     """
     Add the normal contribution |d.*normal| to |vertex1|, but
     after replacing the normal of |vertex0| by the normal of |vertex1|.
@@ -89,14 +89,14 @@ def exo4():
     view(-150, 45)
 
 
-def exo5():
+def exo6():
     """
     Try on other surfaces. How can you compute |vertex0| for an arbitrary
     surface ?
     """
 
 
-def exo6():
+def exo7():
     """
     Compute the bi-laplacian deformation of the coarse shape
     |vertex0| by using |LL| instead of |L|.
@@ -113,7 +113,7 @@ def exo6():
     zoom(.8)
 
 
-def exo7():
+def exo8():
     """
     Compute the deformation obtained by moving from the Laplacian
     to the bi-laplacian, i.e. with |t*L+(1-t)*LL| for varying t.
@@ -133,7 +133,7 @@ def exo7():
         zoom(.8)
 
 
-def exo8():
+def exo9():
     """
     Apply the full model (Laplacian, bi-Laplacian and non-linear
     deformation) to the deformation of a complicated mesh.

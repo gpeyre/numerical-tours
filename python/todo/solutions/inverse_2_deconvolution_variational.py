@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Find the optimal solution |fL2| by testing several value of
     |lambda|.
@@ -18,7 +18,7 @@ def exo0():
     fL2 = real(ifft2(yF .* hF ./ (abs(hF).^2 + lambda)))
 
 
-def exo1():
+def exo2():
     """
     Find the optimal solution |fSob| by testing several value of
     |lambda|.
@@ -38,7 +38,7 @@ def exo1():
     fSob = real(ifft2(yF .* hF ./ (abs(hF).^2 + lambda*S)))
 
 
-def exo2():
+def exo3():
     """
     Perform the deblurring by a  gradient descent.
     Keep track of the function being minimized.
@@ -61,7 +61,7 @@ def exo2():
     set_label('Iteration #', 'Energy')
 
 
-def exo3():
+def exo4():
     """
     Explore the different values of |lambda| to find the optimal solution.
     Display the SNR as a function of |lambda|.
@@ -90,7 +90,7 @@ def exo3():
     fTV = fBest
 
 
-def exo4():
+def exo5():
     """
     Compare sparsity, Sobolev and TV deblurring.
     """

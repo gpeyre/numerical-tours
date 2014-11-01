@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Display structuring elements of increasing sizes.
     """
@@ -8,7 +8,7 @@ def exo0():
         i = i + 1
 
 
-def exo1():
+def exo2():
     """
     Test with structing elements of increasing size.
     """
@@ -18,7 +18,7 @@ def exo1():
         imageplot(dillation(M, w), ['w = ' num2str(w)], 2, 2, i)
 
 
-def exo2():
+def exo3():
     """
     Test with structing elements of increasing size.
     """
@@ -28,7 +28,7 @@ def exo2():
         imageplot(errosion(M, w), ['w = ' num2str(w)], 2, 2, i)
 
 
-def exo3():
+def exo4():
     """
     Test with structing elements of increasing size.
     """

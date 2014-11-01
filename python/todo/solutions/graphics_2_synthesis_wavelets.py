@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Iterate these two steps (spatial and wavelet histogram matching) until convergence to a stable step.
     pacial matching
@@ -16,7 +16,7 @@ def exo0():
         imageplot(M1, strcat(['Iteration ' num2str(k)]), 2, 2, k)
 
 
-def exo1():
+def exo2():
     """
     Perform color texture synthesis with wavelets over the RGB space.
     isplay.
@@ -36,13 +36,13 @@ def exo1():
     imageplot(M1, 'Synthesized', 1, 2, 2)
 
 
-def exo2():
+def exo3():
     """
     Try with other color spaces, for instance PCA adapte space.
     """
 
 
-def exo3():
+def exo4():
     """
     Perform iteratively the randomized matching. Plot the decay of the
     mathing error.
@@ -68,7 +68,7 @@ def exo3():
     axis('tight')
 
 
-def exo4():
+def exo5():
     """
     Perform color texture synthesis with wavelets using this color histogram
     matching at each iteration.

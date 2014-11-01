@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Display how the average coherence of a random matrix
     decays with the redundancy $\eta = P/N$ of
@@ -31,7 +31,7 @@ def exo0():
     axis tight
 
 
-def exo1():
+def exo2():
     """
     Show that this inequality holds on a given matrix.
     What can you conclude about the sharpness of these criteria ?
@@ -49,7 +49,7 @@ def exo1():
     fprintf('Coh(|s|) = %.2f\n', Coh(Phi, k))
 
 
-def exo2():
+def exo3():
     """
     For a given matrix $\Phi$ generated using |PhiRand|, draw as a function of the sparsity $k$
     the probability that a random sign vector $s$ of sparsity
@@ -77,7 +77,7 @@ def exo2():
     axis tight
 
 
-def exo3():
+def exo4():
     """
     Display, for an increasing value of $k$ the histogram of repartition
     of the eigenvalues $A^* A$ where $A$ is a Gaussian matrix of size $(P,k)$ and
@@ -113,7 +113,7 @@ def exo3():
         title(sprintf('P = %d, k = %d', P, k))
 
 
-def exo4():
+def exo5():
     """
     Estimate numerically lower bound on $\de_k^1,\de_k^2$ by Monte-Carlo
     sampling of sub-matrices.
@@ -139,7 +139,7 @@ def exo4():
     axis tight
 
 
-def exo5():
+def exo6():
     """
     Plot the evolution of the criteria F, ERC and Coh as a function of $d$.
     Do the same plot for other signs patterns for $x_0$.

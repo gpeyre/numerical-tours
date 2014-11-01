@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute the norm of the gradient |G| modulo |nbound|. Be careful to remove the boundary
     of the shape from this indicator. Display the thresholded gradient map.
@@ -18,7 +18,7 @@ def exo0():
     imageplot(-A)
 
 
-def exo1():
+def exo2():
     """
     Display the Skeleton obtained for different threshold values.
     """

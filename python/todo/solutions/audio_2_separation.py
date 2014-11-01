@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute the STFT of the micros, and store them into a matrix |Y|.
     """
@@ -10,7 +10,7 @@ def exo0():
         title(strcat('Micro #', num2str(i)))
 
 
-def exo1():
+def exo2():
     """
     Display some points of |P| in the transformed (time/frequency) domain.
     """
@@ -21,7 +21,7 @@ def exo1():
     title('Transformed domain')
 
 
-def exo2():
+def exo3():
     """
     The histogram computed from the whole set of points are not peacked
     enough. To stabilize the detection of mixing direction, compute an
@@ -45,7 +45,7 @@ def exo2():
     bar(t, h); axis('tight')
 
 
-def exo3():
+def exo4():
     """
     Detect the direction |M1| approximating the true direction |M| by
     looking at the local maxima of the histogram. First detect the set of

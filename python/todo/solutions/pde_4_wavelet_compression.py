@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Display the result $g_{\tau(m)}$ for different values of $m$.
     """
@@ -12,7 +12,7 @@ def exo0():
         title(['m/ N = ' num2str(m/ N)])
 
 
-def exo1():
+def exo2():
     """
     Study the speed gain as a function of $m$ of using the sparse multiplication with respect
     to the direct computation of $T f$.

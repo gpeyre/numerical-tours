@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute the cotangent Laplacian $W$ of the mesh
     $$ W_{i,j} = \text{cot}(\al_{i,j}) + \text{cot}(\be_{i,j}) $$
@@ -21,7 +21,7 @@ def exo0():
        W = W + make_sparse(F(i3, : ), F(i2, : ), 1 ./ tan(ang), n, n)
 
 
-def exo1():
+def exo2():
     """
     Compute the linear heat diffusion.
     """
@@ -39,7 +39,7 @@ def exo1():
             k = k + 1
 
 
-def exo2():
+def exo3():
     """
     Compute the linear heat diffusion by iterating this gradient descent.
     """
@@ -57,7 +57,7 @@ def exo2():
             k = k + 1
 
 
-def exo3():
+def exo4():
     """
     Solve the wave equation PDE.
     """

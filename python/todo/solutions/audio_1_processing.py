@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute the local Fourier transform around a point |t0| of |x|, which is the FFT (use the
     function |fft|) of the windowed signal |x.*h| where |h| is smooth
@@ -39,7 +39,7 @@ def exo0():
     title('Windowed FFT (zoom)')
 
 
-def exo1():
+def exo2():
     """
     A denoising is performed by hard or soft thresholding the STFT of the
     noisy signal. Compute the denosing SNR with both soft and hard
@@ -72,7 +72,7 @@ def exo1():
     set_label('T/ sigma', 'SNR')
 
 
-def exo2():
+def exo3():
     """
     Display and hear the results. What do you notice ?
     isplay
@@ -89,7 +89,7 @@ def exo2():
     sound(x1, fs)
 
 
-def exo3():
+def exo4():
     """
     Trie for various block sizes and report the best results.
      progressbar(k,length(bsX(:)));

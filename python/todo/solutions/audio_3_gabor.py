@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute the true redundancy of the transform. Check that the transform
     is a tight frame (energy conservation).
@@ -9,7 +9,7 @@ def exo0():
     disp(strcat(['True redundancy of the dictionary = ' num2str(P/ n) '.']))
 
 
-def exo1():
+def exo2():
     """
     Find the best threshold, that gives the smallest error.
     """
@@ -23,7 +23,7 @@ def exo1():
     set_label('T/ \sigma', 'SNR')
 
 
-def exo2():
+def exo3():
     """
     Perform the iterative thresholding by progressively decaying the value
     of |lambda| during the iterations, starting from |lambda=1.5*sigma| until
@@ -55,7 +55,7 @@ def exo2():
     set_label('\lambda/ \sigma', 'SNR')
 
 
-def exo3():
+def exo4():
     """
     Compare the source separation obtained by masking with a tight frame Gabor
     transform and with the coefficients computed by a basis pursuit
