@@ -5,16 +5,24 @@ description: "for Matlab"
 header-img: "/img/hokusai-5.jpg"
 ---
 
-Installation
+Installation of the toolboxes
 ------------
 
-You need to download [numerical_tours][1]
-and install the IPython [notebook][2] to run the code.
+Each tour makes use some of the following toolboxes, that needs to be downloaded as .zip file, and then unzipped within your working directory (from which you will run the notebooks):
 
-You must also install the [python-matlab-bridge][3].
+* [toolbox_general](https://github.com/gpeyre/numerical-tours/raw/master/matlab/toolbox_general.zip)
+* [toolbox_signal](https://github.com/gpeyre/numerical-tours/raw/master/matlab/toolbox_signal.zip)
+* [toolbox_graph](https://github.com/gpeyre/numerical-tours/raw/master/matlab/toolbox_graph.zip) (needed only for a few tours)
+* [toolbox_wavelet_meshes](https://github.com/gpeyre/numerical-tours/raw/master/matlab/toolbox_wavelet_meshes.zip) (needed only for a few tours)
 
-Make sure you can run the command `matlab` from a command window
-(or terminal).  If not, try the methods below:
+Alternatively, you can download the whole [numerical_tours][1].
+
+Installation of IPython
+------------
+
+If you intend to run the tours are IPython notebook (which we recommend), you need to install IPython [notebook][2] to run the code. You must also install the [python-matlab-bridge][3].
+
+Make sure you can run the command `matlab` from a command window (or terminal).  If not, try the methods below:
 
 __Unix-like-systems (including OSX):__
 
