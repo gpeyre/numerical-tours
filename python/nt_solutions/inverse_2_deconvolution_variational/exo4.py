@@ -5,7 +5,7 @@ fBest = y
 fTV = y
 err = zeros((len(lambda_list),1))
 for it in  arange(0,len(lambda_list)):
-    print('.',end="",flush=True)
+    # print('.',end="",flush=True)
     Lambda = lambda_list[it]
     for i in arange(0,niter):
         # Compute the gradient of the smoothed TV functional.

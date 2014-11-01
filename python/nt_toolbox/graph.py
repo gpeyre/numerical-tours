@@ -1,5 +1,10 @@
 import numpy as np
-import matplotlib as mp
+import pylab
+import matplotlib.image as mpimg
+import matplotlib.pyplot as plt
+from scipy import ndimage
+# TODO: try to not make use of transform.resize
+from skimage import transform
 
 def perform_dijstra_fm(W, pstart, niter=np.inf, method='dijstr', bound='sym', svg_rate=10):
     """
