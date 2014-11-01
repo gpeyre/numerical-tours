@@ -107,6 +107,10 @@
                 </li>
                 
                 <li>
+                    <a href="/numerical-tours/matlab-notebooks/">Matlab's tours</a>
+                </li>
+                
+                <li>
                     <a href="/numerical-tours/matlab/">Matlab's tours</a>
                 </li>
                 
@@ -120,6 +124,10 @@
                 
                 <li>
                     <a href="/numerical-tours/slides/">Slides</a>
+                </li>
+                
+                <li>
+                    <a href="/numerical-tours/page2/">Wellcome</a>
                 </li>
                 
                 -->
@@ -158,9 +166,41 @@
 </description>
     <link>http://gpeyre.github.io/numerical-tours//numerical-tours/</link>
     <atom:link href="http://gpeyre.github.io/numerical-tours//numerical-tours/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 27 Oct 2014 08:50:20 +0100</pubDate>
-    <lastBuildDate>Mon, 27 Oct 2014 08:50:20 +0100</lastBuildDate>
+    <pubDate>Sat, 01 Nov 2014 13:08:29 +0100</pubDate>
+    <lastBuildDate>Sat, 01 Nov 2014 13:08:29 +0100</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>Matlab notebooks</title>
+        <description>&lt;p&gt;Thanks to &lt;a href=&quot;https://github.com/blink1073&quot;&gt;Steven Silvester&lt;/a&gt;, most of the Matlab tours are now available as iPython notebooks. This means that:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The corresponding tours are now directly rendered online using &lt;a href=&quot;http://nbviewer.ipython.org/&quot;&gt;nbviewer&lt;/a&gt;, which means that HTML conversion is not anymore needed.&lt;/li&gt;
+  &lt;li&gt;The user can now download the corresponding .ipynb file and run it locally, possibly modifying and completing its content.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This requires that you install Python and iPython (I recommend for instance the &lt;a href=&quot;http://continuum.io/downloads&quot;&gt;Anaconda&lt;/a&gt; distribution). You also need to install the &lt;a href=&quot;https://pypi.python.org/pypi/pymatbridge&quot;&gt;pymatbridge&lt;/a&gt; Python module in order to run Matlab code from the notebook.&lt;/p&gt;
+
+&lt;p&gt;The command &lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;%load_ext pymatbridge&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;will start Matlab in the background, and then you simply need to put the keyword &lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;%%matlab&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;if you want to add a new cell to the notebook with your own Matlab code.   &lt;/p&gt;
+</description>
+        <pubDate>Sat, 01 Nov 2014 13:00:00 +0100</pubDate>
+        <link>http://gpeyre.github.io/numerical-tours//numerical-tours/2014/11/01/matlab-notebooks/</link>
+        <guid isPermaLink="true">http://gpeyre.github.io/numerical-tours//numerical-tours/2014/11/01/matlab-notebooks/</guid>
+        
+        
+      </item>
     
       <item>
         <title>New site</title>

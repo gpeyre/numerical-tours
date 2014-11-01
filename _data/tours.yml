@@ -125,6 +125,7 @@
     rep: graphics_6_patches
   - name: Shape From Shading
     rep: graphics_7_shape_shading
+    format: html
 
 - name: Optimization
   short: optim
@@ -141,6 +142,7 @@
     rep: optim_4b_dr
   - name: Primal-Dual Proximal Splitting
     rep: optim_5_primal_dual
+    format: html
   - name: Generalized Forward-Backward Proximal Splitting
     rep: optim_6_gfb
   - name: Fenchel-Rockafellar Duality
@@ -213,16 +215,20 @@
     rep: fastmarching_1_2d
   - name: Fast Marching in 3D
     rep: fastmarching_2_3d
+    format: html
   - name: Anisotropic Fast Marching
     rep: fastmarching_3_anisotropy
   - name: Geodesic Mesh Processing
     rep: fastmarching_4_mesh
+    format: html
   - name: Geodesic Distance Computation on 3-D Meshes
     rep: fastmarching_4bis_geodesic_mesh
+    format: html
   - name: Geodesic Farthest Point Sampling
     rep: fastmarching_5_sampling_2d
   - name: Geodesic Surface Remeshing
     rep: fastmarching_6_sampling_surf
+    format: html
   - name: Geodesic Triangulation for Image Compression
     rep: fastmarching_7_sampling_compr
   - name: Geodesic Segmentation
@@ -237,8 +243,10 @@
     rep: shapes_1_bendinginv_2d
   - name: Geodesic Bending Invariants for Surfaces
     rep: shapes_2_bendinginv_3d
+    format: html
   - name: Geodesic Bending Invariants with Landmarks
     rep: shapes_3_bendinginv_landmarks
+    format: html
   - name: Shape Correspondence with Fast Marching
     rep: shapes_4_shape_matching
   - name: Shape Retrieval with Geodesic Descriptors
@@ -247,48 +255,65 @@
     rep: shapes_6_medialaxis
   - name: Manifold Learning with Isomap
     rep: shapes_7_isomap
+    format: html
 
 - name: Mesh Processing
   short: meshproc
   list: 
   - name: Basics About 2D Triangulation
     rep: meshproc_1_basics_2d
+    format: html
   - name: Basics About 3D Meshes
     rep: meshproc_2_basics_3d
+    format: html
   - name: Mesh Denoising
     rep: meshproc_3_denoising
+    format: html
   - name: Fourier on Meshes
     rep: meshproc_4_fourier
+    format: html
   - name: PDEs on Meshes
     rep: meshproc_5_pde
+    format: html
   - name: Volumetric Meshes
     rep: meshproc_6_volumetric
+    format: html
 
 - name: Mesh Parameterization and Deformation
   short: meshdeform
   list: 
   - name: Mesh Parameterization
     rep: meshdeform_1_parameterization
+    format: html
   - name: Spherical Mesh Parameterization
     rep: meshdeform_2_parameterization_sphere
+    format: html
   - name: Spectral Mesh Flattening
     rep: meshdeform_3_flattening
+    format: html
   - name: Generalized Barycentric Coordinates for Warpping
     rep: meshdeform_4_barycentric
+    format: html
   - name: Mesh Deformation
     rep: meshdeform_5_deformation
+    format: html
 
 - name: Multiscale Mesh Processing
   short: meshwav
   list: 
   - name: Subdivision Curves
     rep: meshwav_1_subdivision_curves
+    format: html
   - name: Subdivision Surfaces
     rep: meshwav_2_subdivision_surfaces
+    format: html
   - name: Mesh Simplification
     rep: meshwav_3_simplification
+    format: html
   - name: Spherical Haar Wavelets
     rep: meshwav_4_haar_sphere
+    format: html
   - name: Wavelet Transform on 3D Meshes
     rep: meshwav_5_wavelets
+    format: html
 

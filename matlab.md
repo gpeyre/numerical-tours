@@ -23,7 +23,11 @@ header-img: "/img/hokusai-6.jpg"
 
 <ul>
 {% for tour in categ.list %}
-	<li> <a href="{{ tour.rep }}"> {{ tour.name }} </a> </li>
+	{% if tour.format == "html" %}
+		<li> <a href="{{ tour.rep }}"> {{ tour.name }} </a> </li>
+	{% else %}
+		<li> <a href="http://nbviewer.ipython.org/github/gpeyre/numerical-tours/blob/master/matlab/{{ tour.rep }}.ipynb"> {{ tour.name }} </a> </li>
+	{% endif %}
 {% endfor %}
 </ul>
 
