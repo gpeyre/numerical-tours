@@ -376,7 +376,7 @@ class Converter(object):
         sfile = os.path.join(out_dir, sfile)
         with open(sfile, 'w') as fid:
             for (ind, (comments, lines)) in enumerate(self.excercises):
-                fid.write('def exo%s():\n    """\n' % ind)
+                fid.write('def exo%s():\n    """\n' % (ind + 1))
                 for comment in comments:
                     fid.write('    %s\n' % comment)
                 fid.write('    """\n')
