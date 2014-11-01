@@ -5,8 +5,8 @@ subplot(4,1,1);
 plot(f); axis('tight'); title('Signal');
 for j=Jmax:-1:Jmin
     a1 = fw(1:2^(j+1));
-    a = subsampling(cconv(a1,h));
-    d = subsampling(cconv(a1,g));
+    a = subsampling(cconvol(a1,h));
+    d = subsampling(cconvol(a1,g));
     fw(1:2^(j+1)) = cat(1, a, d );
     j1 = Jmax-j;
     if j1<3
