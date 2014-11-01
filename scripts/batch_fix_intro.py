@@ -13,9 +13,13 @@ def fix_intro(path):
         out_type = 'python'
 
     ws = tree['worksheets'][0]['cells']
-    intro = ws[0]
-    intro = intro[:2] + lib.INTRO % out_type + intro[2:]
-    ws = ws[:2] + ws[3:]
+    intro = ws[0]['source']
+    ws[0]['source'] = intro[:2] + [lib.INTRO % out_type] + intro[2:]
+
+    tree['worksheets'][0]['cells'] = ws[:4] + ws[5:]
+
+    with open(path, 'w') as fid:
+        json.dump(tree, fid)
 
 
 def convert_all(dirname):
@@ -30,5 +34,5 @@ def convert_all(dirname):
 
 
 if __name__ == '__main__':
-    #convert_all('../matlab/')
-    fix_intro('../matlab/sparsity_9_sparsespikes_cbp.ipynb')
+    convert_all('../matlab/')
+    #fix_intro('../matlab/sparsity_9_sparsespikes_cbp.ipynb')
