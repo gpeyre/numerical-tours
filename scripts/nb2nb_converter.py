@@ -3,34 +3,7 @@ import re
 import os
 import sys
 
-
-PY_REPLS = [(re.compile('@\((.*?)\)'),  # replace anon funcs with lambdas
-             lambda m: 'lambda %s: ' % m.groups()[0]),
-            (re.compile('\A\W*?end\W*?\Z'), ''),  # kill "end" lines
-            (re.compile('\A\W*?clf\W*?\Z'), ''),  # kill "clf" lines
-            (re.compile('(exo\d+)'),
-             lambda m: 'solutions.%s' % m.groups()[0])
-            ]
-
-MAT_REPLS = [(re.compile('lambda (.*?):'),  # replace lambda funcs with anons
-              lambda m: '@(%s) ' % m.groups()[0]),
-             (re.compile('solutions.(exo\d+)'),
-              lambda m: '%s' % m.groups()[0])
-             ]
-
-GITHUB_LINK = 'https://github.com/gpeyre/numerical-tours/archive/master.zip'
-IPYTHON_LINK = 'http://ipython.org/install.html'
-MAT2PY_LINK = 'http://arokem.github.io/python-matlab-bridge/'
-
-PY_INSTALLATION = """
-Installation
-------------
-You need to download [numerical_tours](%s)
-and install the IPython [notebook](%s) to run the code.
-""" % (GITHUB_LINK, IPYTHON_LINK)
-
-MAT_INSTALLATION = PY_INSTALLATION + """
-You must also install the [python-matlab-bridge](%s).""" % MAT2PY_LINK
+import nt_conversion_lib as lib
 
 
 class Converter(object):
@@ -58,11 +31,9 @@ class Converter(object):
         if self.dest_type == 'python':
             intro_func = self.get_python_intro
             trans_func = mat2py
-            intro_text = PY_INSTALLATION
         else:
             intro_func = self.get_matlab_intro
             trans_func = py2mat
-            intro_text = MAT_INSTALLATION
 
         first_code = True
         for item in ws:
@@ -80,8 +51,9 @@ class Converter(object):
                     item['input'] = source
 
             elif item['cell_type'] == 'markdown':
-                if item['source'][0] == 'Installation':
-                    item['source'] = self._reformat(intro_text)
+                if item['source'][0].startswith(
+                        "*Important:* Please read the [installation page]"):
+                    item['source'][0] = lib.INTRO % self.dest_type
 
         path = os.path.join(destination_dir, self.fname)
         with open(path, 'w') as fid:
