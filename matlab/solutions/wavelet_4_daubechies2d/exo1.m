@@ -5,8 +5,8 @@ clf;
 for j=Jmax:-1:Jmin
     A = fW(1:2^(j+1),1:2^(j+1));
     for d=1:2
-        Coarse = subsampling(cconv(A,h,d),d);
-        Detail = subsampling(cconv(A,g,d),d);
+        Coarse = subsampling(cconvol(A,h,d),d);
+        Detail = subsampling(cconvol(A,g,d),d);
         A = cat3(d, Coarse, Detail );
     end
     fW(1:2^(j+1),1:2^(j+1)) = A;

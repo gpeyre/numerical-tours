@@ -3,8 +3,8 @@ clf;
 for j=Jmin:Jmax
     a = f1(1:2^j);
     d = f1(2^j+1:2^(j+1));
-    a = cconv(upsampling(a,1),reverse(h),1);
-    d = cconv(upsampling(d,1),reverse(g),1);
+    a = cconvol(upsampling(a,1),reverse(h),1);
+    d = cconvol(upsampling(d,1),reverse(g),1);
     f1(1:2^(j+1)) = a + d;
     j1 = Jmax-j;
     if j1<4

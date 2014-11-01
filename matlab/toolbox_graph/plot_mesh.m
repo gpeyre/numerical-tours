@@ -135,7 +135,7 @@ if not(isempty(texture))
     end
     set_view(name, view_param);
     axis off; axis equal;
-    camlight;
+    % camlight; % problem with pithon notebook
     shading faceted;
     return;
 end
@@ -154,12 +154,15 @@ else
     end
     h = patch('vertices',vertex,'faces',face,'FaceVertexCData',face_vertex_color, 'FaceColor',shading_type);
 end
+
+
 colormap gray(256);
 lighting phong;
 % camlight infinite; 
 camproj('perspective');
 axis square; 
 axis off;
+
 
 if ~isempty(normal)
     %%% plot the normals %%%
@@ -174,7 +177,7 @@ end
 cameramenu;
 set_view(name, view_param);
 shading(shading_type);
-camlight;
+%% camlight; %% BUG WITH PYTHON
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
