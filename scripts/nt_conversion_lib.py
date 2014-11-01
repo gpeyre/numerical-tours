@@ -26,7 +26,7 @@ BIBLIO_LINK = re.compile(r'\<#biblio (\[.*?\])\>')
 SECTION_HEADING = re.compile('\A%% \w')
 
 INTRO = """
-"*Important:* Please read the [installation page](http://gpeyre.github.io/numerical-tours/installation_%s/) for details about how to install the toolboxes."
+*Important:* Please read the [installation page](http://gpeyre.github.io/numerical-tours/installation_%s/) for details about how to install the toolboxes.
 """
 
 MATH_CMDS = r"""
