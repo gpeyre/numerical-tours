@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     To avoid boundary artifacts and estimate really the frequency content of
     the image (and not of the artifacts!), one needs to multiply |M| by a
@@ -17,7 +17,7 @@ def exo0():
     imageplot(Lf, 'Fourier transform', 1, 2, 2)
 
 
-def exo1():
+def exo2():
     """
     Perform low pass filtering by removing the high frequencies of the
     spectrum. What do you oberve ?

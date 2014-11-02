@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Display a denoised signal for several values of $\mu$.
     """
@@ -10,7 +10,7 @@ def exo0():
         title(['\mu = ' num2str(mu)])
 
 
-def exo1():
+def exo2():
     """
     Display the evolution of the oracle denoising error
     $ \norm{y-x_0} $ as a function of $\mu$.

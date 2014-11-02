@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Display the surface with several light directions $d \in \RR^3$.
     """
@@ -11,7 +11,7 @@ def exo0():
         imageplot(max(L, vmin))
 
 
-def exo1():
+def exo2():
     """
     Try to reconstruct the image starting from other base points.
     What do you observe ?
@@ -33,7 +33,7 @@ def exo1():
         camlight
 
 
-def exo2():
+def exo3():
     """
     Try to improve the quality of the reconstruction by selecting several
     points, and imposing their height.

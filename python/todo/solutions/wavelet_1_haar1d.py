@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Implement a full wavelet Haar transform that extract iteratively wavelet
     coefficients, by repeating these steps. Take care of choosing the
@@ -20,7 +20,7 @@ def exo0():
             title(strcat(['Details, j = ' num2str(j)]))
 
 
-def exo1():
+def exo2():
     """
     Write the inverse wavelet transform that computes |f1| from the
     coefficients |fw|.
@@ -35,7 +35,7 @@ def exo1():
             title(strcat(['Partial reconstruction, j = ' num2str(j)]))
 
 
-def exo2():
+def exo3():
     """
     Display the reconstructed signal obtained from |fw1|, for a decreasing cut-off scale $j$.
     """
@@ -53,7 +53,7 @@ def exo2():
         title(strcat(['j = ' num2str(j) ', SNR = ' num2str(snr(f, f1), 3) 'dB']))
 
 
-def exo3():
+def exo4():
     """
     Find the threshold $T$ so that the number of remaining coefficients in
     |fwT| is a fixed number $m$. Use this threshold to compute |fwT| and then display
@@ -80,7 +80,7 @@ def exo3():
         title(strcat(['m = ' num2str(m) ', SNR = ' num2str(snr(f, f1), 3) 'dB']))
 
 
-def exo4():
+def exo5():
     """
     Compute wavelets at several positions and scales.
     """

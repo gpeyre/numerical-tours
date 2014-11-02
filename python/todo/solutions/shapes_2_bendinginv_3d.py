@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute the geodesic distance matrix $\de$.
     It is going to take some of time.
@@ -10,7 +10,7 @@ def exo0():
     delta = (delta + delta)'/ 2
 
 
-def exo1():
+def exo2():
     """
     Perform the SMACOF iterative algorithm.
     Save in a variable |s(l)| the values of
@@ -36,7 +36,7 @@ def exo1():
     axis('equal'); axis('off'); axis('ij')
 
 
-def exo2():
+def exo3():
     """
     Implement a surface retrival algorithm based on these bending invariants.
     o correction for this exercise.

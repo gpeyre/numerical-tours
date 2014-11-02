@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Implement the DR iterative algorithm on |niter| iterations.
     Keep track of the evolution of the energy $J$.

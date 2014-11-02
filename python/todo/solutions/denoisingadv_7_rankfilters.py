@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute the rank filter for several values of $\beta$.
     """
@@ -8,7 +8,7 @@ def exo0():
         imageplot(phi(f, beta), ['\beta = ' num2str(beta)], 2, 3, i)
 
 
-def exo1():
+def exo2():
     """
     Compute a closing followed by an opening.
     """
@@ -16,7 +16,7 @@ def exo1():
     imageplot(closingopening(f))
 
 
-def exo2():
+def exo3():
     """
     Compute an opening followed by a closing.
     """
@@ -24,7 +24,7 @@ def exo2():
     imageplot(openingclosing(f))
 
 
-def exo3():
+def exo4():
     """
     Perform iterated opening and closing.
     """
@@ -38,7 +38,7 @@ def exo3():
         imageplot(f1, ['iteration ' num2str(i)], 2, 4, 4 + i)
 
 
-def exo4():
+def exo5():
     """
     Perform iterated median filtering, and store the output in |f1|.
     """

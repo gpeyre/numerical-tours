@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Implement the conjugate gradient method, and monitor the decay of the
     energy $\norm{r_k}=\norm{Ax_k-b}$.
@@ -22,7 +22,7 @@ def exo0():
     axis tight
 
 
-def exo1():
+def exo2():
     """
     Implement the conjugate gradient method, and monitor the decay of the
     energy $F(x_k)$.
@@ -46,7 +46,7 @@ def exo1():
     axis tight
 
 
-def exo2():
+def exo3():
     """
     Implement the conjugate gradient method, and monitor the decay of the
     energy $F(x_k)) = \norm{\nabla x_k}$

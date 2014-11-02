@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute the ratio $M/N$ of non-zero coefficients.
     """
@@ -6,7 +6,7 @@ def exo0():
     disp(['Ratio of non-zero coefficients: M/ N = ' num2str(M/ n0^2, 3) '.'])
 
 
-def exo1():
+def exo2():
     """
     Compute a threshold $T$ to keep only $M$ coefficients.
     """
@@ -16,7 +16,7 @@ def exo1():
     T = v(M + 1)
 
 
-def exo2():
+def exo3():
     """
     Compute an approximation with an decreasing number of coefficients.
     """
@@ -27,7 +27,7 @@ def exo2():
         imageplot(clamp(f1), strcat(['M/ N = 1/ ' num2str(n0^2/ M) ', SNR = ' num2str(snr(f, f1), 3) 'dB']), 2, 2, i)
 
 
-def exo3():
+def exo4():
     """
     Try to optimize the value of the threshold $T$ to get the best possible
     denoising result.
@@ -44,7 +44,7 @@ def exo3():
     set_label('T/ \sigma', 'SNR')
 
 
-def exo4():
+def exo5():
     """
     Compute the full denoising by cycling through the $i$ indices.
     """
@@ -58,14 +58,14 @@ def exo4():
     imageplot(clamp(f1), strcat(['Denoising, SNR = ' num2str(snr(f, f1), 3) 'dB']), 1, 2, 2)
 
 
-def exo5():
+def exo6():
     """
     Determine the optimal threshold $T$ for this translation invariant
     denoising.
     """
 
 
-def exo6():
+def exo7():
     """
     Test on other images.
     """

@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compare the log of the modulus of the Fourier transforms of the input image $f$
     and its periodic component $p$. What do you observe ?
@@ -8,7 +8,7 @@ def exo0():
     imageplot(mydisp(fft2(p)), 'Periodic layer', 1, 2, 2)
 
 
-def exo1():
+def exo2():
     """
     Compare the histograms of the input and synthesized textures pixel empirical distributions.
     """
@@ -22,7 +22,7 @@ def exo1():
     title('Synthesized')
 
 
-def exo2():
+def exo3():
     """
     Perform the color texture synthesis.
     """
@@ -33,7 +33,7 @@ def exo2():
     imageplot(clamp(u), 'Synthesized', 1, 2, 2)
 
 
-def exo3():
+def exo4():
     """
     Compute several realizations of the color texture synthesis.
     """
@@ -45,7 +45,7 @@ def exo3():
         imageplot(clamp(u))
 
 
-def exo4():
+def exo5():
     """
     Perform the color texture synthesis using this extended spot noise.
     """

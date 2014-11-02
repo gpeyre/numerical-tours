@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Load a square shape $\phi_2$ at a different position for the center.
     adius
@@ -11,7 +11,7 @@ def exo0():
     phi2 = max(abs(X-c(1)), abs(Y-c(2))) - r
 
 
-def exo1():
+def exo2():
     """
     Compute the intersection and the union of the two shapes.
     Store the union in $\phi_0$ (variable |phi0|),
@@ -26,7 +26,7 @@ def exo1():
     title('Intersection')
 
 
-def exo2():
+def exo3():
     """
     Implement the mean curvature motion.
     """
@@ -48,7 +48,7 @@ def exo2():
             plot_levelset(phi)
 
 
-def exo3():
+def exo4():
     """
     Compute an initial shape $\phi_0$ at time $t=0$,
     for instance a centered square.
@@ -59,7 +59,7 @@ def exo3():
     phi0 = max(abs(X-c(1)), abs(Y-c(2))) - r
 
 
-def exo4():
+def exo5():
     """
     Compute and store in |G| the gradient $G(\phi)$ (right hand side of the PDE)
     using the current value of the distance function $\phi$.
@@ -72,7 +72,7 @@ def exo4():
     G = - W .* d .* div(g, options) - sum(gW.*gD, 3)
 
 
-def exo5():
+def exo6():
     """
     Implement the geodesic active contours gradient descent.
     Do not forget to do the re-distancing.
@@ -95,7 +95,7 @@ def exo5():
             plot_levelset(phi, 0, f0)
 
 
-def exo6():
+def exo7():
     """
     Compute an initial level set function $\phi_0$, stored in |phi0|,
     for instance many small circles.
@@ -114,7 +114,7 @@ def exo6():
     plot_levelset(phi0, 0, f0)
 
 
-def exo7():
+def exo8():
     """
     Compute this gradient $G(\phi)$ using the current value of the distance function
     (phi$.
@@ -126,7 +126,7 @@ def exo7():
     G = d .* div(g, options) - lambda*(f0-c1).^2 + lambda*(f0-c2).^2
 
 
-def exo8():
+def exo9():
     """
     Implement the full gradient descent.
     """
@@ -147,7 +147,7 @@ def exo8():
             plot_levelset(phi, 0, f0)
 
 
-def exo9():
+def exo10():
     """
     In the case that one does not know precisely the constants $c_1$ and $c_2$,
     how to update them automatically during the evolution ? Implement this method.

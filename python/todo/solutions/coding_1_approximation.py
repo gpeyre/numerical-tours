@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute a best $M$-term approximation in the Fourier basis of $f$, for
     $M \in \{N/100, N/20\}$. Compute the approximation using
@@ -12,7 +12,7 @@ def exo0():
         imageplot(clamp(fM), ['M/ N = ' num2str(M/ n^2, 2) ', SNR = ' num2str(snr(f, fM), 3) 'dB'], 1, 2, i)
 
 
-def exo1():
+def exo2():
     """
     Compute and display in log scales the ordered coefficients $c_R$.
     _Hint:_ a discrete primitive can be computed using the function
@@ -28,7 +28,7 @@ def exo1():
     axis('tight')
 
 
-def exo2():
+def exo3():
     """
     Compute and display in log-scale the non-linear approximation
     error $\epsilon[M]^2$.
@@ -43,7 +43,7 @@ def exo2():
     title('log_{10}(\epsilon^2[M]/ ||f||^2)')
 
 
-def exo3():
+def exo4():
     """
     Compute a best $M$-term approximation in the wavelet basis of $f$, for
     $M \in \{N/100, N/20\}$. Compute the approximation using
@@ -58,7 +58,7 @@ def exo3():
         imageplot(clamp(fM), ['M/ N = ' num2str(M/ n^2, 2) ', SNR = ' num2str(snr(f, fM), 3) 'dB'], 1, 2, i)
 
 
-def exo4():
+def exo5():
     """
     Compute and display in log-scale the non-linear approximation
     error $\epsilon[M]^2$.
@@ -83,7 +83,7 @@ def exo4():
         box('on')
 
 
-def exo5():
+def exo6():
     """
     Compute a best $M$-term approximation in the wavelet basis of $f$, for
     $M \in \{N/100, N/20\}$. Compute the approximation using
@@ -97,7 +97,7 @@ def exo5():
         imageplot(clamp(fM), ['M/ N = ' num2str(M/ n^2, 2) ', SNR = ' num2str(snr(f, fM), 3) 'dB'], 1, 2, i)
 
 
-def exo6():
+def exo7():
     """
     Compute and display in log-scale the non-linear approximation
     error $\epsilon[M]^2$.
@@ -122,7 +122,7 @@ def exo6():
     legend('Fourier', 'DCT')
 
 
-def exo7():
+def exo8():
     """
     Compute the local DCT transform |fL| by transforming each patch.
     """
@@ -134,7 +134,7 @@ def exo7():
             fL(seli, selj) = dct2(f(seli, selj))
 
 
-def exo8():
+def exo9():
     """
     Compute the inverse local DCT transform  of the coefficients |fL| by inverse
     transforming each patch using  the function |idct2|.
@@ -148,7 +148,7 @@ def exo8():
     disp(strcat((['Error |f-f1|/ |f| = ' num2str(norm(f(: )-f1(: ))/ norm(f(: )))])))
 
 
-def exo9():
+def exo10():
     """
     Compute a few best |m|-term approximations in the Local DCT basis of
     |f|.
@@ -167,7 +167,7 @@ def exo9():
         imageplot(clamp(fM), ['M/ n^2 = ' num2str(M/ n^2, 2) ', SNR = ' num2str(snr(f, fM), 3) 'dB'], 1, 2, u)
 
 
-def exo10():
+def exo11():
     """
     Compute and display in log-scale the non-linear approximation
     error $\epsilon[M]^2$.
@@ -198,7 +198,7 @@ def exo10():
         box('on')
 
 
-def exo11():
+def exo12():
     """
     Compare the approximation error decay for those images.
     Display $ \log_{10}(\norm{f-f_M}) $ as a function of $\log_{10}(M)$.

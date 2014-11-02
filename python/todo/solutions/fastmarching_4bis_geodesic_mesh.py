@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Perform the full iterative algorithm until convergence.
     Store in |err(l)| the fixed point error
@@ -22,7 +22,7 @@ def exo0():
         shading interp
 
 
-def exo1():
+def exo2():
     """
     Compute and display the geodesic distance.
     """
@@ -34,7 +34,7 @@ def exo1():
     colormap jet(256); shading interp
 
 
-def exo2():
+def exo3():
     """
     Display the convergence of the computed geodesic distance to the the true
     geodesic distance (which is the Euclidean distance $ \norm{x_i} $) as $n$
@@ -60,7 +60,7 @@ def exo2():
     axis tight
 
 
-def exo3():
+def exo4():
     """
     Compute the geodesic distance for a metric $W_i$ that is not constant
     over the mesh.

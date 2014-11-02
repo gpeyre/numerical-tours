@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute the combinatorial adjacency matrix |W|.
     ompute edge list.

@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Perform the projected gradient descent.
     Record in a variable |E| the evolution of the Sobolev energy $E$.
@@ -16,7 +16,7 @@ def exo0():
             k = k + 1
 
 
-def exo1():
+def exo2():
     """
     Perform the projected gradient descent.
     Record in a variable |J| the evolution of the TV energy $J_\epsilon$.
@@ -33,7 +33,7 @@ def exo1():
             k = k + 1
 
 
-def exo2():
+def exo3():
     """
     Perform Sobolev inpainting on this image.
     """
@@ -50,7 +50,7 @@ def exo2():
     imageplot(f)
 
 
-def exo3():
+def exo4():
     """
     Try other methods to solve this inpainting problem.
     You can for instance have a look on the numerical on sparsity for

@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Perform the gradient descent of the energy, and display the decay of the
     energy.
@@ -17,7 +17,7 @@ def exo0():
     ylabel('Energy')
 
 
-def exo1():
+def exo2():
     """
     Compute the whole optical flow |F|, by cycling through the pixels.
     """

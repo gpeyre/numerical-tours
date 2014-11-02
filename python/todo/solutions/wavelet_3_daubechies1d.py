@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Implement a full wavelet transform that extract iteratively wavelet
     coefficients, by repeating these steps. Take care of choosing the
@@ -10,8 +10,8 @@ def exo0():
     plot(f); axis('tight'); title('Signal')
     for j in Jmax: -1: Jmin:
         a1 = fw(1: 2^(j + 1))
-        a = subsampling(cconv(a1, h))
-        d = subsampling(cconv(a1, g))
+        a = subsampling(cconvol(a1, h))
+        d = subsampling(cconvol(a1, g))
         fw(1: 2^(j + 1)) = cat(1, a, d)
         j1 = Jmax-j
         if j1 <3
@@ -20,7 +20,7 @@ def exo0():
             title(['Details, j = ' num2str(j)])
 
 
-def exo1():
+def exo2():
     """
     Write the inverse wavelet transform that computes |f1| from the
     coefficients |fw|.
@@ -29,8 +29,8 @@ def exo1():
     for j in Jmin: Jmax:
         a = f1(1: 2^j)
         d = f1(2^j + 1: 2^(j + 1))
-        a = cconv(upsampling(a, 1), reverse(h), 1)
-        d = cconv(upsampling(d, 1), reverse(g), 1)
+        a = cconvol(upsampling(a, 1), reverse(h), 1)
+        d = cconvol(upsampling(d, 1), reverse(g), 1)
         f1(1: 2^(j + 1)) = a + d
         j1 = Jmax-j
         if j1 <4
@@ -39,7 +39,7 @@ def exo1():
             title(['Partial reconstruction, j = ' num2str(j)])
 
 
-def exo2():
+def exo3():
     """
     Find the threshold $T$ to obtained a given number $M$ of
     non thresholded coefficients.
@@ -68,7 +68,7 @@ def exo2():
         title(['M = ' num2str(m) ', SNR = ' num2str(snr(f, f1), 3) 'dB'])
 
 
-def exo3():
+def exo4():
     """
     Try with
     Different kind of wavelets, with an increasing number of vanishing
@@ -97,7 +97,7 @@ def exo3():
         title([num2str(vm) ' VM, SNR = ' num2str(snr(f, f1), 3) 'dB'])
 
 
-def exo4():
+def exo5():
     """
     Compute wavelets at several positions and scales.
     """
@@ -123,7 +123,7 @@ def exo4():
             set_linewidth(hh, 2)
 
 
-def exo5():
+def exo6():
     """
     Display Daubechies wavelets with an increasing number of vanishing
     moments.

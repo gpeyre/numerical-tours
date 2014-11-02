@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute a set of |n = 300| vertex by iterating this farthest
     point sampling. Display the progression of the sampling.
@@ -20,7 +20,7 @@ def exo0():
             k = k + 1
 
 
-def exo1():
+def exo2():
     """
     Create an interpolation scheme to interpolate the result of MDS
     dimensionality reduction with Stree minimization (SMACOF algorithm).

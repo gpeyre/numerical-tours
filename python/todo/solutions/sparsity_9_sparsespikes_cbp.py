@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute the Lipschitz constant $L=\norm{\Ga_z}^2$. _Hint:_ you can use power iteration to estimate the largest eigenvalues
     of $\Ga_z^*\Ga_z$. We display here the evolution of the estimate of this eigenvalue with the number of power iterations.
@@ -17,7 +17,7 @@ def exo0():
     clf; plot(e, 'LineWidth', 2); axis tight
 
 
-def exo1():
+def exo2():
     """
     Implement the forward-backward algorithm. Monitor the decay of the energy
     $ \log_{10}( E(u^{(\ell)})/ E^\star  -1   ) $
@@ -36,7 +36,7 @@ def exo1():
     plot(sel, log(R(sel)/ min(R)-1), '-', 'LineWidth', 2); axis tight
 
 
-def exo2():
+def exo3():
     """
     Compute the full homotopy path $\la \mapsto (a_\la,b_\la) $
     where $ (a_\la,b_\la) $ is the solution of C-BP with regularization parameter

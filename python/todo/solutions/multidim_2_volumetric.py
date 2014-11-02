@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Implement the forward wavelet transform by iteratively applying these
     transform steps to the low pass residual.
@@ -16,7 +16,7 @@ def exo0():
         MW(sel, sel, sel) = cat3(3, (MW(sel, sel, 1: 2: p) + MW(sel, sel, 2: 2: p))/ sqrt(2), (MW(sel, sel, 1: 2: p)-MW(sel, sel, 2: 2: p))/ sqrt(2))
 
 
-def exo1():
+def exo2():
     """
     Implement the backward transform to compute an approximation |M1| from
     the coefficients |MWT|.
@@ -44,7 +44,7 @@ def exo1():
         M1(sel1, sel1, 2: 2: 2*p) = (A-D)/ sqrt(2)
 
 
-def exo2():
+def exo3():
     """
     Select the optimal blurring width |s| to reach the smallest possible
     SNR. Keep the optimal denoising |Mblur|
@@ -64,7 +64,7 @@ def exo2():
     set_label('s', 'SNR')
 
 
-def exo3():
+def exo4():
     """
     Perforn Wavelet denoising by thresholding the wavelet coefficients of
     Mnoisy. Test both hard thresholding and soft thresholding to determine
@@ -89,7 +89,7 @@ def exo3():
     legend('hard', 'soft')
 
 
-def exo4():
+def exo5():
     """
     Implement cycle spinning hard thresholding with |T=3*sigma|.
     """
@@ -108,7 +108,7 @@ def exo4():
         Mspin = Mspin*(i-1)/ i + M1/ i
 
 
-def exo5():
+def exo6():
     """
     Implement the full 3D forward wavelet transform by applying these steps
     for decaying scales |j| toward 0.
@@ -118,7 +118,7 @@ def exo5():
     MW = perform_wavortho_transf(M, Jmin, + 1, options)
 
 
-def exo6():
+def exo7():
     """
     Implement the full 3D backward wavelet transform by applying these steps
     for increasing scales |j|.
@@ -126,7 +126,7 @@ def exo6():
     M1 = perform_wavortho_transf(MWT, Jmin, -1, options)
 
 
-def exo7():
+def exo8():
     """
     Implement denoising by soft and hard thresholding Daubechies wavelet
     coefficients.
@@ -149,7 +149,7 @@ def exo7():
     legend('hard', 'soft')
 
 
-def exo8():
+def exo9():
     """
     Implement cycle spinning hard thresholding with Daubechies wavelets with |T=3*sigma|.
     """

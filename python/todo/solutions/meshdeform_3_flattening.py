@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Perform the same flattening, but with the combinatorial Laplacian.
     """
@@ -13,7 +13,7 @@ def exo0():
     plot_mesh(vertexF, faces)
 
 
-def exo1():
+def exo2():
     """
     Compute the embedding using Stress minimization with SMACOF.
     See the numerical tours on bending invariants for more details.
@@ -41,7 +41,7 @@ def exo1():
         stress(end + 1) = sqrt(sum(abs(D(: )-D1(: )).^2) / n^2)
 
 
-def exo2():
+def exo3():
     """
     Compute mesh parameterization using a circle as boundary.
     otan weights

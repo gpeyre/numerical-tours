@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Implement the full homotopy algorithm.
     Record in |X(:,i)|, |Lambda(i)|, |Sparsity(i)| respectively
@@ -69,7 +69,7 @@ def exo0():
         Sparsity(end + 1) = length(I)
 
 
-def exo1():
+def exo2():
     """
     Test the algorithm for $x_0$ of varying sparsity $s$.
     What can you conclude in term of noise robustness ?

@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Check that each subsampled gradient $L_i$ is indeed a tight frame, and
     determine the value of $b$.
@@ -12,7 +12,7 @@ def exo0():
         norm(abs(LLs_u(: ) - b*randu(: )))/ norm(randu(: ))
 
 
-def exo1():
+def exo2():
     """
     The parameter $ \la $ does not appear explicitely in the iterations of the generalized forward-backward algorithm. Where does it step in ?
     t scales the functionals $G_i$ and $\text{prox}_{n \gamma G_i}$
@@ -20,7 +20,7 @@ def exo1():
     """
 
 
-def exo2():
+def exo3():
     """
     Compute 100 iterations of the generalized forward-backward,
     while monitoring the value $E(x_t,\la)$ of the objective
@@ -44,7 +44,7 @@ def exo2():
     axis tight
 
 
-def exo3():
+def exo4():
     """
     Display the resulting SNR as a function of $\la$.
     Take the best regularization parameter and display the
@@ -76,7 +76,7 @@ def exo3():
     axis tight
 
 
-def exo4():
+def exo5():
     """
     Solve the composite regularization model. Keep the previous value of
     $\la$, set $\mu = 10^{-3}$,

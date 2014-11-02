@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute a density function that is larger at area of large gradient.
     |W(x) = (norm(grad(M))+epsilon|)^alpha|, for |alpha=.7|.
@@ -15,7 +15,7 @@ def exo0():
     imageplot(W, 'Metric', 1, 2, 2)
 
 
-def exo1():
+def exo2():
     """
     Perform farthest points sampling to compute sampling location |vertex|
     and the corresponding geodesic Delaunay triangulation |faces|.
@@ -45,7 +45,7 @@ def exo1():
     faces = compute_voronoi_triangulation(Q, vertex)
 
 
-def exo2():
+def exo3():
     """
     For a large value of |m| compute the approximation for several |alpha|.
     """

@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Perform the iterative soft thresholding.
     Monitor the decay of the energy $E$ you are minimizing.
@@ -18,7 +18,7 @@ def exo0():
     set(h, 'LineWidth', 2)
 
 
-def exo1():
+def exo2():
     """
     Try to find the best threshold $\lambda$. To this end, perform a *lot*
     of iterations, and progressively decay the threshold $\lambda$ during the
@@ -55,7 +55,7 @@ def exo1():
     set(h, 'LineWidth', 2)
 
 
-def exo2():
+def exo3():
     """
     Perform the iterative soft thresholding. Monitor the decay of the
     energy.
@@ -73,7 +73,7 @@ def exo2():
     plot(E); axis('tight')
 
 
-def exo3():
+def exo4():
     """
     Compute the optimal value of $\lambda$, and record the optimal
     reconstruction |fBestTI|.
@@ -105,7 +105,7 @@ def exo3():
     plot(lambda_list_TI, errTI); axis('tight')
 
 
-def exo4():
+def exo5():
     """
     Compare with the result of TV regularization, record the optimal
     TV result in |fBestTV|.

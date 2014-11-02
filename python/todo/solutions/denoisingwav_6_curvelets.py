@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute the best threshold to minimize the denoising error in curvelets.
     Call |Mcurv| the optimal denoising.
@@ -18,7 +18,7 @@ def exo0():
     Mcurv = perform_curvelet_transform(MWT, options)
 
 
-def exo1():
+def exo2():
     """
     Perform cycle spinning to enhance the recovery error.
     """
@@ -35,7 +35,7 @@ def exo1():
         Mcurv = (1-1/ i)*Mcurv + 1/ i*Ms
 
 
-def exo2():
+def exo3():
     """
     Compare with translation invariant hard thresholding.
     """
@@ -49,7 +49,7 @@ def exo2():
     imageplot(clamp(Mcurv), ['Curvelet, SNR = ' num2str(snr(M0, Mcurv), 3) 'dB'], 1, 2, 2)
 
 
-def exo3():
+def exo4():
     """
     Applies curvelet iterative thresholding to solve an inverse problem such
     as inpainting, deconvolution or compressed sending.

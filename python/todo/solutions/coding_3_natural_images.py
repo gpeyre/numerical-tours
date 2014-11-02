@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Histogram equalization is an orthogonal projector that maps the values
     of one signal onto the values of the other signal. This is achieved by

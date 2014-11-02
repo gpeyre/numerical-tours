@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Implement the primal-dual algorithm.
     Monitor the evolution of the TV energy $F(K(f_k))$
@@ -22,7 +22,7 @@ def exo0():
     axis('tight')
 
 
-def exo1():
+def exo2():
     """
     Use the primal dual scheme to perform regularization in the presence of
     noise
@@ -30,7 +30,7 @@ def exo1():
     """
 
 
-def exo2():
+def exo3():
     """
     Display the evolution of the inpainting process.
     """

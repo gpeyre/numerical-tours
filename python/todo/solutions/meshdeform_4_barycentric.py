@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute the full set of mean coordinates.
     """
@@ -23,7 +23,7 @@ def exo0():
             s = -s
 
 
-def exo1():
+def exo2():
     """
     Perform the full computation of the coordinate |C(:,:,i)| by iterating the diffusion
     and imposing the boundary value.
@@ -49,7 +49,7 @@ def exo1():
     C(: , : , i) = Ci
 
 
-def exo2():
+def exo3():
     """
     Compute the full set of coordinate functions |C|.
     """
@@ -68,7 +68,7 @@ def exo2():
         C(: , : , i) = Ci
 
 
-def exo3():
+def exo4():
     """
     Compute the full Green Coordinates.
     """
@@ -100,7 +100,7 @@ def exo3():
         C(: , : , j) = C(: , : , j) + reshape(cj, n, n)
 
 
-def exo4():
+def exo5():
     """
     Compare the Mean value, Harmonic, and Green coordinates on serveral
     cages, including a cage enclosing a caracter with two legs. Try to move
@@ -108,7 +108,7 @@ def exo4():
     """
 
 
-def exo5():
+def exo6():
     """
     Extend the Harmonic and Green coordinates methods to volumetric cages and volumetric data.
     """

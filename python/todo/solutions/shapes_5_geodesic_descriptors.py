@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Using |options.nb_iter_max| display the progression of the Fast
     Marching.
@@ -17,7 +17,7 @@ def exo0():
     options.nb_iter_max = Inf
 
 
-def exo1():
+def exo2():
     """
     Compute curves joining the start point to several points along the
     boundary.
@@ -35,7 +35,7 @@ def exo1():
     axis ij
 
 
-def exo2():
+def exo3():
     """
     Build a collection |E| of distance maps, so that |E(:,:,i)| is the
     geodesic distance to |samples(:,i)|.
@@ -50,14 +50,14 @@ def exo2():
         E(: , : , i) = d
 
 
-def exo3():
+def exo4():
     """
     Load a library of shapes. Compute the different histograms for these
     shapes.
     """
 
 
-def exo4():
+def exo5():
     """
     Perform the retrieval by comparing the histogram. Test diffetent metrics
     for the retrieval.

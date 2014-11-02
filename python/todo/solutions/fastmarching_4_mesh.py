@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Using |options.nb_iter_max|, display the progression of the propagation.
     """
@@ -15,7 +15,7 @@ def exo0():
         % display here starting points
 
 
-def exo1():
+def exo2():
     """
     For each point |pend(k)|, compute a discrete geodesic path |path| such
     that |path(1)=pend(k)| and |D(path(i+1))<D(path(i))|
@@ -41,7 +41,7 @@ def exo1():
     plot_fast_marching_mesh(vertex, faces, Q, pathsD, options)
 
 
-def exo2():
+def exo3():
     """
     Using |options.nb_iter_max|, display the progression of the propagation for constant |W|.
     """
@@ -54,7 +54,7 @@ def exo2():
         plot_fast_marching_mesh(vertex, faces, D0, [], options)
 
 
-def exo3():
+def exo4():
     """
     Using |options.nb_iter_max|, display the progression of the propagation for a curvature based |W|.
     """
@@ -66,7 +66,7 @@ def exo3():
         plot_fast_marching_mesh(vertex, faces, D, [], options)
 
 
-def exo4():
+def exo5():
     """
     Extract geodesics.
     ompute distances
@@ -88,7 +88,7 @@ def exo4():
     plot_fast_marching_mesh(vertex, faces, perform_hist_eq(D, 'linear'), paths, options)
 
 
-def exo5():
+def exo6():
     """
     Using |options.nb_iter_max|, display the progression of the propagation for a curvature based |W|.
     """
@@ -101,7 +101,7 @@ def exo5():
         plot_fast_marching_mesh(vertex, faces, D, [], options)
 
 
-def exo6():
+def exo7():
     """
     Extract geodesics.
     ompute distances

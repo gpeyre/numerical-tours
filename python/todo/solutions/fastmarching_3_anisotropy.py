@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute the geodesic distance for several anisotropy, and for several
     starting points.
@@ -13,7 +13,7 @@ def exo0():
         imageplot(convert_distance_color(D), ['Anisotropy = ' num2str(anisotropy)], 2, 2, i)
 
 
-def exo1():
+def exo2():
     """
     Perform farthest point sampling.
     """
@@ -42,25 +42,25 @@ def exo1():
             % faces_svg{end + 1} = compute_voronoi_triangulation(Q, vertex)
 
 
-def exo2():
+def exo3():
     """
     Compute a metric |H| adapted to the approximation of this image.
     """
 
 
-def exo3():
+def exo4():
     """
     Perform farthest point sampling.
     """
 
 
-def exo4():
+def exo5():
     """
     Compute the geodesic Delaunay triangulation of this set of point.
     """
 
 
-def exo5():
+def exo6():
     """
     Perform image approximation using linear splines.
     """

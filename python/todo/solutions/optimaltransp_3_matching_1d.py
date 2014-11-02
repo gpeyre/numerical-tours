@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute and display the histogram of $f$ for an increasing number of bins.
     """
@@ -10,7 +10,7 @@ def exo0():
         axis([0 1 0 2.5])
 
 
-def exo1():
+def exo2():
     """
     Compare the two histograms.
     """
@@ -23,7 +23,7 @@ def exo1():
     bar(t, h1*Q/ n^2); axis([0 1 0 6])
 
 
-def exo2():
+def exo3():
     """
     Display the progression of the interpolation of the histograms.
     """

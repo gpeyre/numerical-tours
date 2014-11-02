@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Try for various Gaussian variance |mu| to compute the denoising |xh|.
     Compute, in an oracle manner, the best variance |muopt| by computing the
@@ -24,7 +24,7 @@ def exo0():
     disp(strcat(['The optimal smoothing width is ' num2str(muopt) ' pixels, SNR = ' num2str(snr_opt) 'dB.']))
 
 
-def exo1():
+def exo2():
     """
     Try for various Gaussian variance to compute the denoising |Mh|.
     Compute, in an oracle manner, the best variance |muopt| by computing the

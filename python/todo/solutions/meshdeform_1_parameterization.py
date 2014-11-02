@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute the fixed positions $Z$ of the points indexed by $B$ that are along a
     square. Warning: $p$ is not divisible by 4.
@@ -18,7 +18,7 @@ def exo0():
     axis off; axis square
 
 
-def exo1():
+def exo2():
     """
     Compute the parameterization $Y$ on a square.
     """
@@ -34,7 +34,7 @@ def exo1():
     shading faceted; axis tight
 
 
-def exo2():
+def exo3():
     """
     Shift the $B$ positions so that the eyes of the model are approximately
     horizontal.
@@ -48,7 +48,7 @@ def exo2():
     shading faceted; axis tight
 
 
-def exo3():
+def exo4():
     """
     Compute a geometry image from the boundary free parameterization
     and use it to map a checkboard texture.
@@ -66,7 +66,7 @@ def exo3():
     camlight
 
 
-def exo4():
+def exo5():
     """
     Compute the Laplacian $L$ of the mesh, the boundary $B$ and the modified
     Laplacian $L_1$.
@@ -100,7 +100,7 @@ def exo4():
         L1(B(i), B(i)) = 1
 
 
-def exo5():
+def exo6():
     """
     Perform the parameterization of the mesh on a circle.
     
@@ -123,7 +123,7 @@ def exo5():
     shading('faceted')
 
 
-def exo6():
+def exo7():
     """
     Display a high frequency function defined on the parameteric domain on
     the mesh. What do you observe ?

@@ -1,18 +1,18 @@
-def exo0():
+def exo1():
     """
     Plot the approximation curve error as a function of the number of
     coefficient.
     """
 
 
-def exo1():
+def exo2():
     """
     Perform denoising of spherical function by thresholding. Study the
     evolution of the optimal threshold as a function of the noise level.
     """
 
 
-def exo2():
+def exo3():
     """
     Display a dual
     wavelet that is used for the reconstruction

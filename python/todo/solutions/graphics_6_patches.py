@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Perform several step of synthesis.
     """
@@ -25,32 +25,32 @@ def exo0():
         imageplot(M, '', 2, ceil(niter/ 2), it)
 
 
-def exo1():
+def exo2():
     """
     Perform more iteration, and increase the value of |q| and |noffs|.
     """
 
 
-def exo2():
+def exo3():
     """
     Explore the influence of the parameters |w| and |q| on the quality of
     the synthesis.
     """
 
 
-def exo3():
+def exo4():
     """
     Perform the synthesis using different textures.
     """
 
 
-def exo4():
+def exo5():
     """
     Extend the algorithm to handle color textures.
     """
 
 
-def exo5():
+def exo6():
     """
     Perform the inpainting by repeating several time the projection with
     different offsets. You do not needs to average the offset for
@@ -85,7 +85,7 @@ def exo5():
         imageplot(M, '', 2, ceil(niter/ 2), it)
 
 
-def exo6():
+def exo7():
     """
     Test the inpainting with larger holes and with various B&W and color
     images.

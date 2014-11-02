@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute the gradient descent and monitor
     the minimized energy.
@@ -13,7 +13,7 @@ def exo0():
     set_label('iteration', 'Energy')
 
 
-def exo1():
+def exo2():
     """
     Perform the gradient descent, monitor the decay of the energy.
     """
@@ -27,7 +27,7 @@ def exo1():
     axis('tight')
 
 
-def exo2():
+def exo3():
     """
     Define the operators $\text{Grad} T$
     and apply it to an images.
@@ -38,7 +38,7 @@ def exo2():
     imageplot(f-GradT(f), 'f-Grad(T)', 1, 2, 2)
 
 
-def exo3():
+def exo4():
     """
     For a well chosen value of $\lambda$, perform the TV-Hilbert
     decomposition with this texture kernel.

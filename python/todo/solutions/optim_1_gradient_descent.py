@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Perform the gradient descent using a fixed step size $\tau_k=\tau$.
     Display the decay of the energy $f(x^{(k)})$ through the iteration.
@@ -20,7 +20,7 @@ def exo0():
     title('log_{10}(x^{(k)})')
 
 
-def exo1():
+def exo2():
     """
     Display the iteration for several different step sizes.
     
@@ -47,7 +47,7 @@ def exo1():
         axis off; axis equal
 
 
-def exo2():
+def exo3():
     """
     Implement the gradient descent. Monitor the decay of $f$ through the
     iterations.
@@ -63,7 +63,7 @@ def exo2():
     axis tight
 
 
-def exo3():
+def exo4():
     """
     Display the evolution of the inpainting process.
     """
@@ -86,7 +86,7 @@ def exo3():
             q = q + 1
 
 
-def exo4():
+def exo5():
     """
     Try with several values of $\epsilon$.
     au = tau * 100;

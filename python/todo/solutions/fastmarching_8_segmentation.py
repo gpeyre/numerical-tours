@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Display geodesic balls {x \ M(x)<T} for various T.
     """
@@ -18,7 +18,7 @@ def exo0():
         axis('ij')
 
 
-def exo1():
+def exo2():
     """
     Display the level sets.
     """

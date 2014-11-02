@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Display $\Ww_{\rho U}(f)$ for various values of $\rho$.
     """
@@ -8,7 +8,7 @@ def exo0():
         imageplot(W(f, rho*U), ['\rho = ' num2str(rho)], 2, 2, i)
 
 
-def exo1():
+def exo2():
     """
     Define an iterative scheme via:
     $$ f^{(\ell+1)} = \Ww_{\rho U}(f^{(\ell)}).  $$
@@ -26,7 +26,7 @@ def exo1():
             imageplot(f1, strcat(['t = ' num2str(i*rho)]), 2, 2, k)
 
 
-def exo2():
+def exo3():
     """
     Compute the fluid dynamic by iterating these steps.
     nitialization

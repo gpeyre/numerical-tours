@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute and display the pseudo inverse reconstruction
     $ \Phi^+ y $. What do you observe ?
@@ -8,7 +8,7 @@ def exo0():
     imageplot(clamp(fL2), ['SNR = ' num2str(e, 3) 'dB'])
 
 
-def exo1():
+def exo2():
     """
     Find the optimal solution |fSob| by testing several value of
     $\lambda$.
@@ -27,7 +27,7 @@ def exo1():
     fSob = real(ifft2(y .* xi ./ (xi + lambda*S)))*n
 
 
-def exo2():
+def exo3():
     """
     Perform the iterative soft thresholding.
     Monitor the decay of the energy $E$ you are minimizing.
@@ -47,7 +47,7 @@ def exo2():
     set(h, 'LineWidth', 2)
 
 
-def exo3():
+def exo4():
     """
     Try to find the best threshold $\lambda$. To this end, perform a *lot*
     of iterations, and progressively decay the threshold $\lambda$ during the
@@ -76,7 +76,7 @@ def exo3():
     set(h, 'LineWidth', 2)
 
 
-def exo4():
+def exo5():
     """
     Use the iterative thresholding but this time
     with the translation invariant wavelet transform.
@@ -106,7 +106,7 @@ def exo4():
     set(h, 'LineWidth', 2)
 
 
-def exo5():
+def exo6():
     """
     Compare Sobolev and Sparse reconstruction for MRI imaging.
     For a given number of Fourier sample, compare the quality of the

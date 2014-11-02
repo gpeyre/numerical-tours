@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute the coefficients |MWT| obtained by thresholding at
     |T| the coefficients |MW|. Compute the coefficients |MWQ| obtained
@@ -17,7 +17,7 @@ def exo0():
     title('Thresholded - Quantized')
 
 
-def exo1():
+def exo2():
     """
     Compare the effect of quantizing at |T=.2| and thresholding at |T=.2|
     the wavelet coefficients of an image.
@@ -33,7 +33,7 @@ def exo1():
     imageplot(MT-MQ, strcat(['Thresholding - Approximating, SNR = + ' num2str(eT-eQ, 2)]), 1, 2, 2)
 
 
-def exo2():
+def exo3():
     """
     Compute a bin size |T0| to quantize the original |M| itself to obtained
     |MQ0| such that |norm(M-MQ,'fro')| is as close as possible to the error
@@ -51,7 +51,7 @@ def exo2():
     imageplot(clamp(MQ0), 'Spacial quantized', 1, 2, 2)
 
 
-def exo3():
+def exo4():
     """
     Compute the entropy lower bound for the quantized
     wavelet coefficients and for the quantized pixel values.
@@ -65,7 +65,7 @@ def exo3():
     disp(['Wavelet entropy: ' num2str(E, 2)])
 
 
-def exo4():
+def exo5():
     """
     Compute, for various threshold |T|, the number of bits per pixels |E(T)|
     of the quantized wavelet coefficients,
@@ -92,7 +92,7 @@ def exo4():
         set(hh, 'LineWidth', 2)
 
 
-def exo5():
+def exo6():
     """
     Extract the three fine scale wavelet coefficients (horizontal, vertical,
     diagonal directions) and quantize them, for instance with |T=.1|.
@@ -109,7 +109,7 @@ def exo5():
     disp(['Entropy, diag: ' num2str(Edia, 3)])
 
 
-def exo6():
+def exo7():
     """
     Compare the number of bits needed to code all the wavelet coefficients
     together, and the number of bits needed to code independantly each scale
@@ -129,7 +129,7 @@ def exo6():
     disp(['nb.bis, separate: ' num2str(Esep/ n^2, 3) ' bpp'])
 
 
-def exo7():
+def exo8():
     """
     Compute the rate distortion curve obtained by coding the coefficient
     separately through the scale, and compare with the rate distortion curve

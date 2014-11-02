@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Perform iterative collapse to reach |p = round(2*n/3)| vertices.
     isplay
@@ -20,14 +20,14 @@ def exo0():
     shading faceted
 
 
-def exo1():
+def exo2():
     """
     As a post processing, find a way to remove from |faces1| and |vertex1| the unecessary
     information (remove vertex and faces that are not used).
     """
 
 
-def exo2():
+def exo3():
     """
     Perform iterative collapse to reach |p = round(2*n/3)| vertices.
     Use an ordering of the edge by their length.
@@ -51,7 +51,7 @@ def exo2():
     shading faceted
 
 
-def exo3():
+def exo4():
     """
     Try to use other criteria.
     o correction for this exercise.

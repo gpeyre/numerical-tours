@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute and display $d_y$
     VD
@@ -15,7 +15,7 @@ def exo0():
     axis([0 1 0 1]); box on
 
 
-def exo1():
+def exo2():
     """
     Display the roots of $P_y$ that are inside the unit disk
     oefficients
@@ -39,7 +39,7 @@ def exo1():
     axis off
 
 
-def exo2():
+def exo3():
     """
     Keep only the best $N$ ones, i.e. those that are the closest from the
     unit circle.
@@ -65,7 +65,7 @@ def exo2():
     stem(x1, a1, 'k--')
 
 
-def exo3():
+def exo4():
     """
     Display the evolution of roots as the noise level $\sigma$ increases.
     

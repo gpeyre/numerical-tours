@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Using |options.nb_iter_max|, display the progressive propagation.
     This corresponds to displaying the front
@@ -15,7 +15,7 @@ def exo0():
         h = plot(x0(2), x0(1), '.r'); set(h, 'MarkerSize', 25)
 
 
-def exo1():
+def exo2():
     """
     Perform the full geodesic path extraction by iterating the gradient
     descent. You must be very careful when the path become close to
@@ -30,7 +30,7 @@ def exo1():
     gamma(: , end + 1) = x0
 
 
-def exo2():
+def exo3():
     """
     Study the influence of the $\epsilon$ parameter.
     """
@@ -58,7 +58,7 @@ def exo2():
         title(['\epsilon = ' num2str(epsilon)])
 
 
-def exo3():
+def exo4():
     """
     Perform the shortest path
     extraction for various images such as 'cavern' or 'mountain'.
@@ -95,7 +95,7 @@ def exo3():
     h = plot(x1(2), x1(1), '.b'); set(h, 'MarkerSize', 25)
 
 
-def exo4():
+def exo5():
     """
     Extract the set of points that are along the boundary of the Voronoi
     region. This corresponds for instance to the points of the region
@@ -132,7 +132,7 @@ def exo4():
     h = plot(dU); axis('tight'); title('D along the boundary'); set(h, 'LineWidth', 2)
 
 
-def exo5():
+def exo6():
     """
     Extract the geodesics joining $a$ and $b$ to the two starting points
     (this makes 4 geodesic curves). Use them to perform segmentation.
@@ -170,7 +170,7 @@ def exo5():
     h = plot(x1(2, : ), x1(1, : ), '.b'); set(h, 'MarkerSize', 25)
 
 
-def exo6():
+def exo7():
     """
     Perform partial propagations from $x_0$.
     """
@@ -185,7 +185,7 @@ def exo6():
         h = plot(x0(2), x0(1), '.r'); set(h, 'MarkerSize', 25)
 
 
-def exo7():
+def exo8():
     """
     Extract geodesics joining several points $x_1$ to the central point
     $x_0$.
@@ -219,7 +219,7 @@ def exo7():
     h = plot(x1(2, : ), x1(1, : ), '.b'); set(h, 'MarkerSize', 25)
 
 
-def exo8():
+def exo9():
     """
     Perform the dual propagation, and stop it when the front meet.
     Extract the two half geodesic curves.

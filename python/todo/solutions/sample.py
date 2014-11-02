@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     As an exercise, display the function.
     """

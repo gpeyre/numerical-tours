@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Determine the best threshold $T$ for both hard and soft thresholding.
     Test several $T$ values in $[.8*\sigma, 4.5\sigma$,
@@ -23,7 +23,7 @@ def exo0():
     legend('Hard', 'Soft')
 
 
-def exo1():
+def exo2():
     """
     Perform the cycle spinning denoising by iterating on $i$.
     """
@@ -40,7 +40,7 @@ def exo1():
     imageplot(clamp(fTI), strcat(['Cycle spinning denoising, SNR = ' num2str(snr(f0, fTI), 3)]), 1, 2, 2)
 
 
-def exo2():
+def exo3():
     """
     Study the influence of the number $m$ of shift on the denoising
     quality.
@@ -66,7 +66,7 @@ def exo2():
     set_label('m', 'SNR')
 
 
-def exo3():
+def exo4():
     """
     Determine the best threshold $T$ for both hard and soft thresholding,
     but now in the translation invariant case. What can you conclude ?

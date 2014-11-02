@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Display the evolution of the image on the mesh as the number of
     iterations increases.
@@ -17,7 +17,7 @@ def exo0():
     options.face_vertex_color = []
 
 
-def exo1():
+def exo2():
     """
     Determine the optimal number of iterations to maximize the SNR.
     Record, for each number |i| of iteration, the SNR in |err(i)|.
@@ -35,7 +35,7 @@ def exo1():
             Xbest = X1
 
 
-def exo2():
+def exo3():
     """
     Compute the linear heat diffusion.
     Monitor the denoising
@@ -56,7 +56,7 @@ def exo2():
             % title(strcat(['T = ' num2str(Tmax*k/ 4, 3)]))
 
 
-def exo3():
+def exo4():
     """
     Solve this problem for various $\mu$ on a 3D mesh.
     Draw the evolution of the SNR denoising error as a function of $\mu$.

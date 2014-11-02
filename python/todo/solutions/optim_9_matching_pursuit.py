@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Perform the Matching pursuit. Record the evolution of the solution $x^{(\ell)}$
     as well as the maximum correlation $ \la^{(\ell)} = \abs{c_i} $.
@@ -19,7 +19,7 @@ def exo0():
     title('log(E)')
 
 
-def exo1():
+def exo2():
     """
     Perform the Orthogonal Matching Pursuit algorithm,
     and compare it with the Matching Pursuit.

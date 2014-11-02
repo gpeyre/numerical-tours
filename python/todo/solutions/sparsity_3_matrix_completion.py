@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Implement the Douglas-Rachford iterative algorithm.
     Keep track of the evolution of the nuclear norm $G(x_k)$.
@@ -19,7 +19,7 @@ def exo0():
     axis tight
 
 
-def exo1():
+def exo2():
     """
     Compute, for several value of rank $r$, an empirical estimate of
     the ratio of rank-$r$ random matrice than are exactly recovered using
@@ -52,7 +52,7 @@ def exo1():
     set(h, 'LineWidth', 2)
 
 
-def exo2():
+def exo3():
     """
     Implement the forward-backward method, monitor the decay of the enrgy
     minimized by the algorithm.
@@ -68,7 +68,7 @@ def exo2():
     set(h, 'LineWidth', 2)
 
 
-def exo3():
+def exo4():
     """
     Plot the error $\norm{x^\star-x_0}/\norm{x_0}$ as a function of the mutiplier
     $\lambda$.

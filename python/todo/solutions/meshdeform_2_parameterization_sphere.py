@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Perform iterative smoothing and projection.
     Record the evolution of the number of inverted triangle in
@@ -45,13 +45,13 @@ def exo0():
             k = k + 1
 
 
-def exo1():
+def exo2():
     """
     Implement the mesh morphing.
     """
 
 
-def exo2():
+def exo3():
     """
     Perform the full descent.
     Record the decay of the energy in |Edir|.

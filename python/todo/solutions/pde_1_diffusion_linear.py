@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute the solution to the heat equation.
     """
@@ -11,7 +11,7 @@ def exo0():
             imageplot(clamp(f), strcat(['T = ' num2str(T*k/ 4, 3)]), 2, 2, k)
 
 
-def exo1():
+def exo2():
     """
     Display the heat convolution for increasing values of $t$.
     """

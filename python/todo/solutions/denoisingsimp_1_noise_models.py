@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     What is the optimal threshold |T| to remove as much as possible of noise
     ? Try several values of |T|.
@@ -13,7 +13,7 @@ def exo0():
     set_label('T', 'Error')
 
 
-def exo1():
+def exo2():
     """
     The theory predicts that the maximum of |n| Gaussian variable of variance |sigma^2|
     is smaller than |sqrt(2*log(n))| with large probability (that tends to 1

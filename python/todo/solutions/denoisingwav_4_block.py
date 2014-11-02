@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Display the evolution of the denoising SNR when $T$ varies.
     Store in |fThresh| the optimal denoising result.
@@ -12,7 +12,7 @@ def exo0():
     fThresh = ThreshWav(f, T)
 
 
-def exo1():
+def exo2():
     """
     Test the effect of block thresholding on the image $f_0$ itself, for increasing value of $T$.
     (of course thresholding directly the image has no interest, this is just
@@ -24,7 +24,7 @@ def exo1():
         imageplot(clamp(ThreshBlock(f, T)), ['T = ' num2str(T, 2)], 2, 2, i)
 
 
-def exo2():
+def exo3():
     """
     Display the evolution of the denoising SNR when $T$ varies.
     Store in |fBlock| the optimal denoising result.
@@ -38,7 +38,7 @@ def exo2():
     fBlock = ThreshWav(f, T)
 
 
-def exo3():
+def exo4():
     """
     Display the evolution of the denoising SNR when $T$ varies.
     Store in |fTI| the optimal denoising result.

@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Display noisy image contaminated by Poisson noise of varying range.
     """
@@ -9,7 +9,7 @@ def exo0():
         imageplot(f1, strcat(['\lambda_{max} = ' num2str(lmax(i))]), 2, 2, i)
 
 
-def exo1():
+def exo2():
     """
     Perform translation invariant wavelet hard thresholding directly on the
     Poisson noisy image $f$. Check for an optimal threshold that maximize
@@ -36,7 +36,7 @@ def exo1():
     fPoisson = perform_wavelet_transf(fWT, Jmin, -1, options)
 
 
-def exo2():
+def exo3():
     """
     Display the estimated variance of a Poisson distribution for various
     $\lambda$ (e.g. 10000 realization for each $\lambda$) and display
@@ -69,7 +69,7 @@ def exo2():
     set_label('\lambda', 'Variance')
 
 
-def exo3():
+def exo4():
     """
     Perform translation invariance wavelet hard thresholding on the
     variance stabilized image. Use for instance the Anscombe VST.
@@ -101,13 +101,13 @@ def exo3():
     fVST = (f1/ 2).^2 - 3/ 8
 
 
-def exo4():
+def exo5():
     """
     Perform VST denoising using the Freeman VST.
     """
 
 
-def exo5():
+def exo6():
     """
     Generate several noisy images for several noise levels.
     """
@@ -117,7 +117,7 @@ def exo5():
         imageplot(f0.*Wu, strcat(['\sigma = ' num2str(slist(i))]), 2, 2, i)
 
 
-def exo6():
+def exo7():
     """
     Perform translation invariance wavelet hard thresholding directly on the
     noisy image $f=f_0 W$. Check for an optimal threshold that maximize
@@ -144,7 +144,7 @@ def exo6():
     fMult = perform_wavelet_transf(fWT, Jmin, -1, options)
 
 
-def exo7():
+def exo8():
     """
     Perform translation invariance wavelet hard thresholding on the
     variance stabilized image using the log.

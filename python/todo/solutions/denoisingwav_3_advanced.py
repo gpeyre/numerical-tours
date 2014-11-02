@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute the denoising SNR for different values of |mu| and different
     value of |T|. Important: to get good results, you should not threshold
@@ -23,7 +23,7 @@ def exo0():
     axis('on')
 
 
-def exo1():
+def exo2():
     """
     Compare the performance of Soft and Stein thresholders, by determining
     the best threshold value.

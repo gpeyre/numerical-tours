@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Implement a full wavelet transform that extract iteratively wavelet
     coefficients, by repeating these steps. Take care of choosing the
@@ -10,8 +10,8 @@ def exo0():
     for j in Jmax: -1: Jmin:
         A = fW(1: 2^(j + 1), 1: 2^(j + 1))
     for d in 1: 2:
-            Coarse = subsampling(cconv(A, h, d), d)
-            Detail = subsampling(cconv(A, g, d), d)
+            Coarse = subsampling(cconvol(A, h, d), d)
+            Detail = subsampling(cconvol(A, g, d), d)
             A = cat3(d, Coarse, Detail)
         fW(1: 2^(j + 1), 1: 2^(j + 1)) = A
         j1 = Jmax-j
@@ -21,7 +21,7 @@ def exo0():
             imageplot(A(2^j + 1: 2^(j + 1), 2^j + 1: 2^(j + 1)), strcat(['Diagonal, j = ' num2str(j)]), 3, 4, j1 + 9)
 
 
-def exo1():
+def exo2():
     """
     Write the inverse wavelet transform that computes |f1| from the
     coefficients |fW|. Compare |f1| with |f|.
@@ -36,8 +36,8 @@ def exo1():
             else
                 Coarse = A(: , 1: 2^j)
                 Detail = A(: , 2^j + 1: 2^(j + 1))
-            Coarse = cconv(upsampling(Coarse, d), reverse(h), d)
-            Detail = cconv(upsampling(Detail, d), reverse(g), d)
+            Coarse = cconvol(upsampling(Coarse, d), reverse(h), d)
+            Detail = cconvol(upsampling(Detail, d), reverse(g), d)
             A = Coarse + Detail
             j1 = Jmax-j
             if j1 >0 & j1 <5
@@ -46,7 +46,7 @@ def exo1():
         f1(1: 2^(j + 1), 1: 2^(j + 1)) = A
 
 
-def exo2():
+def exo3():
     """
     Compute and display the linear approximation |fLin| obtained from the
     coefficients |fWLin| by inverse wavelet transform.
@@ -57,7 +57,7 @@ def exo2():
     imageplot(clamp(fLin), strcat(['Linear, SNR = ' num2str(elin)]), 1, 2, 2)
 
 
-def exo3():
+def exo4():
     """
     Find the thresholds |T| so that the number |m| of remaining coefficients in
     |fWT| are |m=n^2/16|. Use this threshold to compute |fWT| and then display
@@ -83,7 +83,7 @@ def exo3():
     imageplot(clamp(Mnlin), strcat(['Non-linear, SNR = ' num2str(snr(f, Mnlin), 3) 'dB']), 1, 2, 2)
 
 
-def exo4():
+def exo5():
     """
     Try with
     Different kind of wavelets, with an increasing number of vanishing
@@ -106,7 +106,7 @@ def exo4():
         imageplot(clamp(f1), strcat([num2str(vm) ' VM, SNR = ' num2str(snr(f, f1), 3) 'dB']), 1, 3, i)
 
 
-def exo5():
+def exo6():
     """
     Implement the foward separable transform.
     Wavelet transformm in 1D each column |f(:,i)| to obtain coefficients |fWSep(:,i)|.
@@ -120,7 +120,7 @@ def exo5():
         fWSep(i, : ) = perform_wavortho_transf(fWSep(i, : )', Jmin, + 1)'
 
 
-def exo6():
+def exo7():
     """
     Implement the backward separable transform to recover an image |f1|
     from the coefficients |fWSep|, which backward transform each row and then each columns.
@@ -132,7 +132,7 @@ def exo6():
         f1(i, : ) = perform_wavortho_transf(f1(i, : )', Jmin, -1)'
 
 
-def exo7():
+def exo8():
     """
     Perform |m=n^2/16|-terms best approximation with separable wavelet transform.
     Compare the result with isotropic wavelet approximation.
@@ -147,7 +147,7 @@ def exo7():
     imageplot(clamp(f1), strcat(['Separable, SNR = ' num2str(snr(f, f1), 3) 'dB']), 1, 2, 2)
 
 
-def exo8():
+def exo9():
     """
     Compute wavelets at several scales and orientation.
     Here we show only horizontal wavelets, in 2-D.
@@ -176,7 +176,7 @@ def exo8():
             imageplot(f1, strcat(['j = ' num2str(j) ' ' str]), 3, 3, k)
 
 
-def exo9():
+def exo10():
     """
     Display Daubechies wavelets with different orientation, for different number of VM.
     """

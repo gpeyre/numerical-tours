@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Perform the iterations, and display the decay of the errors
     $$ \norm{\pi_\ell \ones - p}
@@ -21,7 +21,7 @@ def exo0():
     axis tight
 
 
-def exo1():
+def exo2():
     """
     Display the transport map for several values of $\gamma$.
     """

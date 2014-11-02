@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Display the set of points satisfying |D+H<=T| for several value of the
     threshold |T>=D(pend)|. What do you observe ?
@@ -19,7 +19,7 @@ def exo0():
         axis ij
 
 
-def exo1():
+def exo2():
     """
     Display the explored region for different values of |weight|.
     """
@@ -44,7 +44,7 @@ def exo1():
         axis ij
 
 
-def exo2():
+def exo3():
     """
     Display the convergence of the heuristic as the number of landmark
     increases.
@@ -69,7 +69,7 @@ def exo2():
         axis ij
 
 
-def exo3():
+def exo4():
     """
     Perform the heuristically driven propagation with a landmark-based
     heuristic.
@@ -98,13 +98,13 @@ def exo3():
         axis ij
 
 
-def exo4():
+def exo5():
     """
     Find a strategy to find optimal seeding position for the landmarks.
     """
 
 
-def exo5():
+def exo6():
     """
     Perform the landmark-based heuristically driven propagation on a 3D
     mesh.

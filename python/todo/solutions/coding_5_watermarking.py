@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Compute |rho| so that |PSNR(y,x0,1)=snr_embedding|.
     """
@@ -6,13 +6,13 @@ def exo0():
     disp(['rho = ' num2str(rho, 3) '.'])
 
 
-def exo1():
+def exo2():
     """
     According to you, for which PSNR the watermark becomes unoticeable?
     """
 
 
-def exo2():
+def exo3():
     """
     Using a Monte Carlo simulation (generation of the order of $10^3$
     watermarks, display the histogram of the repartition of $C(x_0,w)$.
@@ -29,7 +29,7 @@ def exo2():
     bar(t, h); axis('tight')
 
 
-def exo3():
+def exo4():
     """
     Compare, for various values of $T$ the estimation obtained by
     the Gaussian approximation with the true value obtained with the
@@ -37,7 +37,7 @@ def exo3():
     """
 
 
-def exo4():
+def exo5():
     """
     Compute, by Monte Carlo sampling (i.e. draw at random many $w$)
     the distribution of $C(A(x),w)$ for $x = x_0 + \rho \abs{x_0} w$. Store the different realization of
@@ -55,7 +55,7 @@ def exo4():
     hist(c, 30)
 
 
-def exo5():
+def exo6():
     """
     Compute, for a varying value of $ p_{\text{FA}} $, the corresponding
     value of $ p_{\text{TP}} $. Display the resulting curve (ROC curve).
@@ -74,7 +74,7 @@ def exo5():
     ylabel('p_{TP}')
 
 
-def exo6():
+def exo7():
     """
     Try different attack strengths, by changing the value of $\tau$.
     For a $p_{\text{FA}}=10^{-6}$, determine the value of $\tau$
@@ -82,7 +82,7 @@ def exo6():
     """
 
 
-def exo7():
+def exo8():
     """
     Try different attacks, for instance on the image itself (blurring,
     denoising, etc.).

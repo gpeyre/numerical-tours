@@ -1,4 +1,4 @@
-def exo0():
+def exo1():
     """
     Iterate many time the randomized assignement until convergence of $\tilde f$.
     The random projector $\Theta$ should be re-computed at each iteration.
@@ -18,7 +18,7 @@ def exo0():
             q = q + 1
 
 
-def exo1():
+def exo2():
     """
     Show the progressive interpolation for varying $t \in [0,1]$.
     """
@@ -32,7 +32,7 @@ def exo1():
         title(['t = ' num2str(t, 2)])
 
 
-def exo2():
+def exo3():
     """
     Perform the equalization of each of the coordinate independantly
     of $f$ with $g$. Display the resulting image.
@@ -42,7 +42,7 @@ def exo2():
     imageplot(F1)
 
 
-def exo3():
+def exo4():
     """
     To obtain an exact matching, one can use the stochastic gradient descent
     algorithm to minimize $SW$.
@@ -64,7 +64,7 @@ def exo3():
     F1 = reshape(f1', [n n 3])
 
 
-def exo4():
+def exo5():
     """
     Display the geodesic interpolation between the two histograms $\mu_f$ and $\mu_g$.
     """
