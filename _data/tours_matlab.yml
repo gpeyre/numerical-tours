@@ -142,7 +142,6 @@
     rep: optim_4b_dr
   - name: Primal-Dual Proximal Splitting
     rep: optim_5_primal_dual
-    format: html
   - name: Generalized Forward-Backward Proximal Splitting
     rep: optim_6_gfb
   - name: Fenchel-Rockafellar Duality
