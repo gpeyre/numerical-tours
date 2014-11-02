@@ -35,11 +35,19 @@ def perform_dijstra_fm(W, pstart, niter=np.inf, method='dijstr', bound='sym', sv
     ##
     # For simplicity of implementation, we use periodic boundary conditions.
 
+    # boundary = @(x)x.*(x<=n & x>0) + (2-x).*(x<=0) + (2*n-x).*(x>n);
+    def symmetrize(x,n):
+        if (x<0):
+            x = -x;
+        elif (x>=n):
+            x = 2*(n-1)-x
+        return x
+
+
     if bound=='per':
         boundary = lambda x: np.mod(x,n)
     else:
-        boundary = lambda x: np.mod(x,n) # todo
-        # boundary = @(x)x.*(x<=n & x>0) + (2-x).*(x<=0) + (2*n-x).*(x>n);
+        boundary = lambda x: [symmetrize(x[0],n), symmetrize(x[1],n)] # todo
     
     ##
     # For a given grid index |k|, and a given neighboring index k in \({1,2,3,4}\), 
@@ -117,7 +125,14 @@ def perform_dijstra_fm(W, pstart, niter=np.inf, method='dijstr', bound='sym', sv
             dy = min(DNeigh(D,2), DNeigh(D,3))
             u = ind2sub1(j)
             w = extract1d(W,j);
-            D[u[0],u[1]] = min(dx + w, dy + w)
+            if method=='dijstr':
+                D[u[0],u[1]] = min(dx + w, dy + w)
+            else:
+                Delta = 2*w - (dx-dy)**2
+                if (Delta>=0):
+                    D[u[0],u[1]] = (dx + dy + np.sqrt(Delta))/ 2
+                else:
+                    D[u[0],u[1]] = min(dx + w, dy + w)
         # svd
         t = iter/svg_rate
         if (np.mod(iter,svg_rate)==0) & (t<q):
