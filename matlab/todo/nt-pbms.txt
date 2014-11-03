@@ -1,0 +1,16 @@
+
+%% PROBLEMS %%
+
+-- optim_5_primal_dual --
+
+optim_5_primal_dual.ipynb seems corrupted.
+
+-- audio_3_gabor.ipynb --
+S1 = perform_thresholding(S1, lambdaV, 'soft-multichannel');
+
+-- denoisingadv_6_nl_means --
+D = distance(i);
+K = kernel(i,tau);
+
+-- denoisingwav_5_data_dependent --
+a = psi(K) - log(K);
