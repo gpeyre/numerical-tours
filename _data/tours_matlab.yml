@@ -11,7 +11,7 @@
     rep: introduction_4_fourier_wavelets
   - name: Image Processing with Wavelets
     rep: introduction_5_wavelets_2d
-  - name: Le traitement numerique des images
+  - name: Le traitement numérique des images
     rep: introduction_6_elementary_fr
 
 - name: Wavelet Processing
