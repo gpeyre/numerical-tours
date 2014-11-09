@@ -5,7 +5,7 @@ description: "Numerical Tours in Python"
 header-img: "/img/hokusai-2.jpg"
 ---
 
-These are the Python tours, that can be browsed as HTML pages, but can also be downloaded as iPython notebooks. Please read the [installation page](../installation_python/) for more information about how to run these tours.
+These are the [Python](https://www.python.org/) tours, that can be browsed as HTML pages, but can also be downloaded as [iPython notebooks](http://ipython.org/notebook.html). Please read the [installation page](../installation_python/) for more information about how to run these tours.
 
 Note that it is a work in progress to port all the Numerical Tours to Python. Help is wellcome, please refer to the GitHub repository for how to proceed.
 

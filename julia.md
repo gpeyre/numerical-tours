@@ -1,0 +1,32 @@
+---
+layout: page
+title: "Julia's tours"
+description: "Numerical Tours in Julia"
+header-img: "/img/hokusai-8.jpg"
+---
+
+These are the [Julia](http://julialang.org/) tours, that can be browsed as HTML pages, but can also be downloaded as [iPython notebooks](http://ipython.org/notebook.html). Please read the [installation page](../installation_julia/) for more information about how to run these tours.
+
+Note that it is a work in progress to port all the Numerical Tours to Julia. Help is wellcome, please refer to the GitHub repository for how to proceed.
+
+
+{% for categ in site.data.tours_julia %}
+
+{{ categ.name }}      {#{{ categ.short }}}
+----------------
+
+<ul>
+{% for tour in categ.list %}
+	{% if tour.format == "html" %}
+		<li> <a href="{{ tour.rep }}"> {{ tour.name }} </a> </li>
+	{% else %}
+		<li> <a href="http://nbviewer.ipython.org/github/gpeyre/numerical-tours/blob/master/julia/{{ tour.rep }}.ipynb"> {{ tour.name }} </a> </li>
+	{% endif %}
+{% endfor %}
+</ul>
+
+{% endfor %}
+
+
+
+

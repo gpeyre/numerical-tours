@@ -1,0 +1,6 @@
+
+- name: Wavelets
+  short: wavelets
+  list: 
+  - name: 2-D Daubechies Wavelets
+    rep: wavelet_4_daubechies2d
