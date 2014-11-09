@@ -1,4 +1,4 @@
-function y = cconv1(x,h,d)
+function y = cconvol(x,h,d)
 
 % cconv - spatial domain circular convolution
 %
