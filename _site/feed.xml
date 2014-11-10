@@ -64,6 +64,9 @@
                     <a href="/numerical-tours/python">Python</a>
                 </li>
                 <li>
+                    <a href="/numerical-tours/julia">Julia</a>
+                </li>
+                <li>
                     <a href="/numerical-tours/slides">Slides</a>
                 </li>
                 <li>
@@ -99,7 +102,11 @@
                 </li>
                 
                 <li>
-                    <a href="/numerical-tours/">Wellcome</a>
+                    <a href="/numerical-tours/">Welcome</a>
+                </li>
+                
+                <li>
+                    <a href="/numerical-tours/installation_julia/">Installation</a>
                 </li>
                 
                 <li>
@@ -111,11 +118,11 @@
                 </li>
                 
                 <li>
-                    <a href="/numerical-tours/links/">Links</a>
+                    <a href="/numerical-tours/julia/">Julia's tours</a>
                 </li>
                 
                 <li>
-                    <a href="/numerical-tours/matlab-notebooks/">Matlab's tours</a>
+                    <a href="/numerical-tours/links/">Links</a>
                 </li>
                 
                 <li>
@@ -135,7 +142,7 @@
                 </li>
                 
                 <li>
-                    <a href="/numerical-tours/page2/">Wellcome</a>
+                    <a href="/numerical-tours/page2/">Welcome</a>
                 </li>
                 
                 -->
@@ -174,9 +181,20 @@
 </description>
     <link>http://gpeyre.github.io/numerical-tours//numerical-tours/</link>
     <atom:link href="http://gpeyre.github.io/numerical-tours//numerical-tours/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 01 Nov 2014 18:46:11 +0100</pubDate>
-    <lastBuildDate>Sat, 01 Nov 2014 18:46:11 +0100</lastBuildDate>
+    <pubDate>Sun, 09 Nov 2014 20:48:22 +0100</pubDate>
+    <lastBuildDate>Sun, 09 Nov 2014 20:48:22 +0100</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>Julia notebooks</title>
+        <description>&lt;p&gt;The &lt;a href=&quot;/numerical-tours/julia/&quot;&gt;first Numerical Tour&lt;/a&gt; in &lt;a href=&quot;http://julialang.org/&quot;&gt;Julia&lt;/a&gt; is available. &lt;a href=&quot;http://julialang.org/&quot;&gt;Julia&lt;/a&gt; is an amazing language for scientific computing, that combines the ease of use of Matlab with speed comparable of C and an ecosystem which includes the powerful IPython notebooks.  &lt;/p&gt;
+</description>
+        <pubDate>Sun, 09 Nov 2014 13:00:00 +0100</pubDate>
+        <link>http://gpeyre.github.io/numerical-tours//numerical-tours/2014/11/09/julia-notebooks/</link>
+        <guid isPermaLink="true">http://gpeyre.github.io/numerical-tours//numerical-tours/2014/11/09/julia-notebooks/</guid>
+        
+        
+      </item>
     
       <item>
         <title>Matlab notebooks</title>
