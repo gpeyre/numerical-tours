@@ -4,7 +4,7 @@ Jmax = 4; ms = 20; lw = 1.5;
 f = f0;
 for j=0:Jmax
     f = cat(2, upsampling(f(:,1)), upsampling(f(:,2)), upsampling(f(:,3))  );
-    f = cat(2, cconv(f(:,1),h), cconv(f(:,2),h), cconv(f(:,3),h) );    
+    f = cat(2, cconvol(f(:,1),h), cconvol(f(:,2),h), cconvol(f(:,3),h) );    
 end
 clf;
 subplot(1,2,1);

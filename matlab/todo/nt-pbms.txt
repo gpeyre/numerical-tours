@@ -1,10 +1,6 @@
 
 %% PROBLEMS %%
 
--- optim_5_primal_dual --
-
-optim_5_primal_dual.ipynb seems corrupted.
-
 -- audio_3_gabor.ipynb --
 S1 = perform_thresholding(S1, lambdaV, 'soft-multichannel');
 
@@ -14,3 +10,13 @@ K = kernel(i,tau);
 
 -- denoisingwav_5_data_dependent --
 a = psi(K) - log(K);
+
+-- fastmarching_4bis_geodesic_mesh --
+[vertex,faces] = perform_mesh_subdivision(vertex0,faces0,nsub,options);
+exo1()
+
+-- meshwav_1_subdivision_curves --
+exo12()
+
+-- meshwav_4_haar_sphere --
+[vertex,face] = compute_semiregular_sphere(J,options);
