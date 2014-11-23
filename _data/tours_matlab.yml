@@ -264,6 +264,9 @@
     rep: meshproc_5_pde
   - name: Volumetric Meshes
     rep: meshproc_6_volumetric
+  - name: Geodesic Distance with Poisson Equation
+    rep: meshproc_7_geodesic_poisson
+    format: html
 
 - name: Mesh Parameterization and Deformation
   short: meshdeform

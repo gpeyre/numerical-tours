@@ -7,4 +7,4 @@ author:     "Gabriel Peyré"
 header-img: "/img/hokusai-11.jpg"
 ---
 
-[This tour explores](sparsity_9b_music) the use of the MUSIC algortithm to perform sparse spikes deconvolution. The localization of the spikes is obtained by finding the root of a polynomial.
+[This tour explores]({{ site.baseurl }}/matlab/sparsity_9b_music/) the use of the MUSIC algortithm to perform sparse spikes deconvolution. The localization of the spikes is obtained by finding the root of a polynomial.

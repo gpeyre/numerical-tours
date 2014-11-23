@@ -181,9 +181,20 @@
 </description>
     <link>http://gpeyre.github.io/numerical-tours//numerical-tours/</link>
     <atom:link href="http://gpeyre.github.io/numerical-tours//numerical-tours/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 09 Nov 2014 20:48:22 +0100</pubDate>
-    <lastBuildDate>Sun, 09 Nov 2014 20:48:22 +0100</lastBuildDate>
+    <pubDate>Sun, 23 Nov 2014 10:28:14 +0100</pubDate>
+    <lastBuildDate>Sun, 23 Nov 2014 10:28:14 +0100</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>New tour</title>
+        <description>&lt;p&gt;&lt;a href=&quot;/numerical-tours/matlab/meshproc_7_geodesic_poisson&quot;&gt;This tour details&lt;/a&gt; the &lt;a href=&quot;dl.acm.org/citation.cfm?id=2516977&quot;&gt;Geodesic in Heat method&lt;/a&gt;, which allows one to approximate geodesic distances by solving a Poisson equation. It relies on the powerful results that the level sets of the heat diffusion converge to those of the geodesic distance as the diffusion time tends to 0.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 23 Nov 2014 13:00:00 +0100</pubDate>
+        <link>http://gpeyre.github.io/numerical-tours//numerical-tours/2014/11/23/new-tour-geodesic-poisson/</link>
+        <guid isPermaLink="true">http://gpeyre.github.io/numerical-tours//numerical-tours/2014/11/23/new-tour-geodesic-poisson/</guid>
+        
+        
+      </item>
     
       <item>
         <title>Julia notebooks</title>
@@ -198,7 +209,7 @@
     
       <item>
         <title>Matlab notebooks</title>
-        <description>&lt;p&gt;Thanks to &lt;a href=&quot;https://github.com/blink1073&quot;&gt;Steven Silvester&lt;/a&gt;, most of the Matlab tours are now available as iPython notebooks. This means that:&lt;/p&gt;
+        <description>&lt;p&gt;Thanks to &lt;a href=&quot;https://github.com/blink1073&quot;&gt;Steven Silvester&lt;/a&gt;, most of the &lt;a href=&quot;/numerical-tours/matlab/&quot;&gt;Matlab tours&lt;/a&gt; are now available as iPython notebooks. This means that:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;The corresponding tours are now directly rendered online using &lt;a href=&quot;http://nbviewer.ipython.org/&quot;&gt;nbviewer&lt;/a&gt;, which means that HTML conversion is not anymore needed.&lt;/li&gt;
@@ -241,7 +252,7 @@
     
       <item>
         <title>New tour</title>
-        <description>&lt;p&gt;&lt;a href=&quot;sparsity_9b_music&quot;&gt;This tour explores&lt;/a&gt; the use of the MUSIC algortithm to perform sparse spikes deconvolution. The localization of the spikes is obtained by finding the root of a polynomial.&lt;/p&gt;
+        <description>&lt;p&gt;&lt;a href=&quot;/numerical-tours/matlab/sparsity_9b_music/&quot;&gt;This tour explores&lt;/a&gt; the use of the MUSIC algortithm to perform sparse spikes deconvolution. The localization of the spikes is obtained by finding the root of a polynomial.&lt;/p&gt;
 </description>
         <pubDate>Tue, 26 Aug 2014 14:00:00 +0200</pubDate>
         <link>http://gpeyre.github.io/numerical-tours//numerical-tours/2014/08/26/new-tour-music/</link>
@@ -252,7 +263,7 @@
     
       <item>
         <title>New tour</title>
-        <description>&lt;p&gt;&lt;a href=&quot;optimaltransp_5_entropic&quot;&gt;This tour explores&lt;/a&gt; a fast algorithm to compute the solution of a regularized optimal transportation problem. This corresponds to the resolution of a convex program which is the projection on the transport polytope for a Kulback-Leibler divergence.&lt;/p&gt;
+        <description>&lt;p&gt;&lt;a href=&quot;/numerical-tours/matlab/optimaltransp_5_entropic/&quot;&gt;This tour explores&lt;/a&gt; a fast algorithm to compute the solution of a regularized optimal transportation problem. This corresponds to the resolution of a convex program which is the projection on the transport polytope for a Kulback-Leibler divergence.&lt;/p&gt;
 </description>
         <pubDate>Tue, 26 Aug 2014 14:00:00 +0200</pubDate>
         <link>http://gpeyre.github.io/numerical-tours//numerical-tours/2014/08/26/new-tour-entropic/</link>
@@ -263,7 +274,7 @@
     
       <item>
         <title>New tour</title>
-        <description>&lt;p&gt;&lt;a href=&quot;sparsity_9_sparsespikes_cbp&quot;&gt;This tour explores&lt;/a&gt; the use of the C-BP algorithm of Simoncelli and co-workers to solve sparse spikes deconvolution problems. This corresponds to extending the discrete basis-pursuit operator by performing a Taylor expansion to locate more precisely the spikes with sub-pixelic accuracy.&lt;/p&gt;
+        <description>&lt;p&gt;&lt;a href=&quot;/numerical-tours/matlab/sparsity_9_sparsespikes_cbp/&quot;&gt;This tour explores&lt;/a&gt; the use of the C-BP algorithm of Simoncelli and co-workers to solve sparse spikes deconvolution problems. This corresponds to extending the discrete basis-pursuit operator by performing a Taylor expansion to locate more precisely the spikes with sub-pixelic accuracy.&lt;/p&gt;
 </description>
         <pubDate>Sun, 12 Jan 2014 13:00:00 +0100</pubDate>
         <link>http://gpeyre.github.io/numerical-tours//numerical-tours/2014/01/12/new-tour-cbp/</link>
@@ -274,7 +285,7 @@
     
       <item>
         <title>New tour</title>
-        <description>&lt;p&gt;&lt;a href=&quot;sparsity_8_sparsespikes_measures&quot;&gt;This tour explores&lt;/a&gt; the resolution of the sparse deconvolution problem in a grid-free maner. This is achieved by solving a dual problem, which can be re-casted into an SDP convex optimization program. &lt;/p&gt;
+        <description>&lt;p&gt;&lt;a href=&quot;/numerical-tours/matlab/sparsity_8_sparsespikes_measures/&quot;&gt;This tour explores&lt;/a&gt; the resolution of the sparse deconvolution problem in a grid-free maner. This is achieved by solving a dual problem, which can be re-casted into an SDP convex optimization program. &lt;/p&gt;
 </description>
         <pubDate>Sat, 12 Oct 2013 14:00:00 +0200</pubDate>
         <link>http://gpeyre.github.io/numerical-tours//numerical-tours/2013/10/12/new-tour-blasso/</link>

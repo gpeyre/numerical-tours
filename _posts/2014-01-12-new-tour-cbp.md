@@ -7,4 +7,4 @@ author:     "Gabriel Peyré"
 header-img: "/img/hokusai-9.jpg"
 ---
 
-[This tour explores](sparsity_9_sparsespikes_cbp) the use of the C-BP algorithm of Simoncelli and co-workers to solve sparse spikes deconvolution problems. This corresponds to extending the discrete basis-pursuit operator by performing a Taylor expansion to locate more precisely the spikes with sub-pixelic accuracy.
+[This tour explores]({{ site.baseurl }}/matlab/sparsity_9_sparsespikes_cbp/) the use of the C-BP algorithm of Simoncelli and co-workers to solve sparse spikes deconvolution problems. This corresponds to extending the discrete basis-pursuit operator by performing a Taylor expansion to locate more precisely the spikes with sub-pixelic accuracy.

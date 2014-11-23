@@ -7,7 +7,7 @@ author:     "Gabriel Peyré"
 header-img: "/img/hokusai-12.jpg"
 ---
 
-Thanks to [Steven Silvester](https://github.com/blink1073), most of the Matlab tours are now available as iPython notebooks. This means that:
+Thanks to [Steven Silvester](https://github.com/blink1073), most of the [Matlab tours]({{ site.baseurl }}/matlab/) are now available as iPython notebooks. This means that:
 
 * The corresponding tours are now directly rendered online using [nbviewer](http://nbviewer.ipython.org/), which means that HTML conversion is not anymore needed.
 * The user can now download the corresponding .ipynb file and run it locally, possibly modifying and completing its content.
