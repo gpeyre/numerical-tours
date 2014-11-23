@@ -181,13 +181,13 @@
 </description>
     <link>http://gpeyre.github.io/numerical-tours//numerical-tours/</link>
     <atom:link href="http://gpeyre.github.io/numerical-tours//numerical-tours/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 23 Nov 2014 10:28:14 +0100</pubDate>
-    <lastBuildDate>Sun, 23 Nov 2014 10:28:14 +0100</lastBuildDate>
+    <pubDate>Sun, 23 Nov 2014 10:30:45 +0100</pubDate>
+    <lastBuildDate>Sun, 23 Nov 2014 10:30:45 +0100</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
         <title>New tour</title>
-        <description>&lt;p&gt;&lt;a href=&quot;/numerical-tours/matlab/meshproc_7_geodesic_poisson&quot;&gt;This tour details&lt;/a&gt; the &lt;a href=&quot;dl.acm.org/citation.cfm?id=2516977&quot;&gt;Geodesic in Heat method&lt;/a&gt;, which allows one to approximate geodesic distances by solving a Poisson equation. It relies on the powerful results that the level sets of the heat diffusion converge to those of the geodesic distance as the diffusion time tends to 0.&lt;/p&gt;
+        <description>&lt;p&gt;&lt;a href=&quot;/numerical-tours/matlab/meshproc_7_geodesic_poisson&quot;&gt;This tour details&lt;/a&gt; the &lt;a href=&quot;http://dl.acm.org/citation.cfm?id=2516977&quot;&gt;Geodesic in Heat method&lt;/a&gt;, which allows one to approximate geodesic distances by solving a Poisson equation. It relies on the powerful results that the level sets of the heat diffusion converge to those of the geodesic distance as the diffusion time tends to 0.&lt;/p&gt;
 </description>
         <pubDate>Sun, 23 Nov 2014 13:00:00 +0100</pubDate>
         <link>http://gpeyre.github.io/numerical-tours//numerical-tours/2014/11/23/new-tour-geodesic-poisson/</link>
