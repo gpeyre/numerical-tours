@@ -6,8 +6,8 @@ function perform_publishing(name, options)
 %
 %   If name is empty, process all the files (and also zip all toolboxes).
 %
-%   options.rep set output directory (default 'html/')
-%   options.repprivate set output directory for exercices (default 'private-svg/')
+%   options.rep set output directory (default '../../../numerical-tours-site/matlab/')
+%   options.repprivate set output directory for exercices (default '../solutions/')
 %   options.stylesheet set XSL stylesheet path.
 %   options.format set output format (default 'html').
 %
@@ -24,7 +24,7 @@ function perform_publishing(name, options)
 %
 %   Copyright (c) 2008 Gabriel Peyre
 
-path('toolbox_general/', path);
+path('../toolbox_general/', path);
 
 options.null = 0;
 
@@ -72,14 +72,14 @@ end
 
 %% set up path
 % directory where the wavelet-tour web site is
-repweb = getoptions(options, 'rep', '../../numerical-tours-site/matlab/');
+repweb = getoptions(options, 'rep', '../../../numerical-tours-site/matlab/');
 % directory where the specific publishing is made
 rep = [repweb name '/'];
 if not(exist(rep))
     mkdir(rep);
 end
 % directory for the exercices to be stored
-repprivate = getoptions(options, 'repprivate', 'solutions/');
+repprivate = getoptions(options, 'repprivate', '../solutions/');
 reppriv = [ repprivate name '/'];
 if not(exist(reppriv))
     mkdir(reppriv);
