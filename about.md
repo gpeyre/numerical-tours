@@ -9,7 +9,6 @@ The *Numerical Tours of Signal Processing*, by [Gabriel Peyré](contact/), gathe
 These tours are also progressively being ported to Python.
 The tours are complemented by slides of courses that concentrate on the theory of  signal and image processing.
 
-
 How to use these tours?
 -------------------
 
@@ -19,7 +18,6 @@ you are asked to download and install the required toolboxes  ...
 (there exists three toolboxes: general/signal/graph), that contain many useful 
 helper functions. Each tour alternates between code you can copy/paste in 
 Matlab or Scilab, and exercises you need to solve on your own.
-
 
 How to cite the Numerical Tours
 -------------------

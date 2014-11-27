@@ -146,7 +146,7 @@ To make changes, update the M-file and republish this document.
          <HR>
       </NOSCRIPT>
       <meta name="generator" content="MATLAB 8.4">
-      <meta name="date" content="2014-11-23">
+      <meta name="date" content="2014-11-27">
       <meta name="m-file" content="index">
       <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
    </head>
@@ -162,9 +162,9 @@ To make changes, update the M-file and republish this document.
             <ul>
                <li><a href="#1">Installing toolboxes and setting up the path.</a></li>
                <li><a href="#8">Gradient, Divergence and Laplacian on Surfaces</a></li>
-               <li><a href="#25">Heat Diffusion and Time Stepping</a></li>
-               <li><a href="#32">Geodesic in Heat Method</a></li>
-               <li><a href="#43">Bibliography</a></li>
+               <li><a href="#30">Heat Diffusion and Time Stepping</a></li>
+               <li><a href="#37">Geodesic in Heat Method</a></li>
+               <li><a href="#48">Bibliography</a></li>
             </ul>
          </div>
          <h2>Installing toolboxes and setting up the path.<a name="1"></a></h2>
@@ -209,8 +209,10 @@ axis(<span class="string">'tight'</span>);
          </p>
          <p>Callback to get the coordinates of all the vertex of index \(i=1,2,3\) in all faces.</p><pre class="codeinput">XF = @(i)X(:,F(i,:));
 </pre><p>Compute un-normalized normal through the formula \(e_1 \wedge e_2 \) where \(e_i\) are the edges.</p><pre class="codeinput">Na = cross( XF(2)-XF(1), XF(3)-XF(1) );
-</pre><p>Compute the area of each face as half the norm of the cross product.</p><pre class="codeinput">A = sqrt( sum( Na.^2 ) )/2;
-</pre><p>Compute the set of unit-norm normals to each face.</p><pre class="codeinput">N = Na ./ repmat(2*A, [3 1]);
+</pre><p>Compute the area of each face as half the norm of the cross product.</p><pre class="codeinput">amplitude = @(X)sqrt( sum( X.^2 ) );
+A = amplitude(Na)/2;
+</pre><p>Compute the set of unit-norm normals to each face.</p><pre class="codeinput">normalize = @(X)X ./ repmat(amplitude(X), [3 1]);
+N = normalize(Na);
 </pre><p>Populate the sparse entries of the matrices for the operator implementing \( \sum_{i \in f} u_i (N_f \wedge e_i) \).</p><pre class="codeinput">I = []; J = []; V = []; <span class="comment">% indexes to build the sparse matrices</span>
 <span class="keyword">for</span> i=1:3
     <span class="comment">% opposite edge e_i indexes</span>
@@ -224,24 +226,53 @@ axis(<span class="string">'tight'</span>);
     V = [V, wi];
 <span class="keyword">end</span>
 </pre><p>Sparse matrix with entries \(1/(2A_f)\).</p><pre class="codeinput">dA = spdiags(1./(2*A(:)),0,m,m);
-</pre><p>Compute each \(\nabla_s\) matrix.</p><pre class="codeinput">G = {};
+</pre><p>Compute gradient.</p><pre class="codeinput">GradMat = {};
 <span class="keyword">for</span> k=1:3
-    G{k} = dA*sparse(I,J,V(k,:),m,n);
+    GradMat{k} = dA*sparse(I,J,V(k,:),m,n);
 <span class="keyword">end</span>
-</pre><p>Grad and div operators.</p><pre class="codeinput">Grad = @(u)[G{1}*u, G{2}*u, G{3}*u]';
-Div = @(q)G{1}'*q(1,:)' + G{2}'*q(2,:)' + G{3}'*q(3,:)';
-</pre><p>Laplacian matrix</p><pre class="codeinput">Delta = G{1}'*G{1} + G{2}'*G{2} + G{3}'*G{3};
+</pre><p>\(\nabla\) gradient operator.</p><pre class="codeinput">Grad = @(u)[GradMat{1}*u, GradMat{2}*u, GradMat{3}*u]';
+</pre><p>Compute divergence matrices as transposed of grad for the face area inner product.</p><pre class="codeinput">dAf = spdiags(2*A(:),0,m,m);
+DivMat = {GradMat{1}'*dAf, GradMat{2}'*dAf, GradMat{3}'*dAf};
+</pre><p>Div operator.</p><pre class="codeinput">Div = @(q)DivMat{1}*q(1,:)' + DivMat{2}*q(2,:)' + DivMat{3}*q(3,:)';
+</pre><p>Laplacian operator as the composition of grad and div.</p><pre class="codeinput">Delta = DivMat{1}*GradMat{1} + DivMat{2}*GradMat{2} + DivMat{3}*GradMat{3};
+</pre><p>Cotan of an angle between two vectors.</p><pre class="codeinput">cota = @(a,b)cot( acos( dot(normalize(a),normalize(b)) ) );
+</pre><p>Compute cotan weights Laplacian.</p><pre class="codeinput">I = []; J = []; V = []; <span class="comment">% indexes to build the sparse matrices</span>
+Ia = []; Va = []; <span class="comment">% area of vertices</span>
+<span class="keyword">for</span> i=1:3
+    <span class="comment">% opposite edge e_i indexes</span>
+    s = mod(i,3)+1;
+    t = mod(i+1,3)+1;
+    <span class="comment">% adjacent edge</span>
+    ctheta = cota(XF(s)-XF(i), XF(t)-XF(i));
+    <span class="comment">% ctheta = max(ctheta, 1e-2); % avoid degeneracy</span>
+    <span class="comment">% update the index listing</span>
+    I = [I, F(s,:), F(t,:)];
+    J = [J, F(t,:), F(s,:)];
+    V = [V, ctheta, ctheta];
+    <span class="comment">% update the diagonal with area of face around vertices</span>
+    Ia = [Ia, F(i,:)];
+    Va = [Va, A];
+<span class="keyword">end</span>
+<span class="comment">% Aread diagonal matrix</span>
+Ac = sparse(Ia,Ia,Va,n,n);
+<span class="comment">% Cotan weights</span>
+Wc = sparse(I,J,V,n,n);
+<span class="comment">% Laplacian with cotan weights.</span>
+DeltaCot = spdiags(full(sum(Wc))', 0, n,n) - Wc;
+</pre><p>Check that the Laplacian with cotan weights is actually equal to the composition of divergence and gradient.</p><pre class="codeinput">fprintf(<span class="string">'Should be 0: %e\n'</span>, norm(Delta-DeltaCot, <span class="string">'fro'</span>)/norm(Delta, <span class="string">'fro'</span>));
+</pre><pre class="codeoutput">Should be 0: 1.604879e-10
 </pre><p>Display a function \(f\) on the mesh.</p><pre class="codeinput">f = X(2,:);
 options.face_vertex_color = f(:);
 clf; plot_mesh(X,F,options);
 axis(<span class="string">'tight'</span>);
 colormap <span class="string">parula(256)</span>;
-</pre><img vspace="5" hspace="5" src="index_02.png"> <p>Display its Laplacian.</p><pre class="codeinput">g = clamp(Delta*f(:), -50, 50);
+</pre><img vspace="5" hspace="5" src="index_02.png"> <p>Display its Laplacian.</p><pre class="codeinput">g = Delta*f(:);
+g = clamp(g, -3*std(g), 3*std(g));
 options.face_vertex_color = rescale(g);
 clf; plot_mesh(X,F,options);
 axis(<span class="string">'tight'</span>);
 colormap <span class="string">parula(256)</span>;
-</pre><img vspace="5" hspace="5" src="index_03.png"> <h2>Heat Diffusion and Time Stepping<a name="25"></a></h2>
+</pre><img vspace="5" hspace="5" src="index_03.png"> <h2>Heat Diffusion and Time Stepping<a name="30"></a></h2>
          <p>The method developped in <a href="#biblio">[CraneWeischedelWardetzky13]</a> relies on the fact that the level set of the geodesic distance function to a starting point \(i\) agrees with the level set
             of the solution of the heat diffusion when the time of diffusion tends to zero. This fundamental result is proved in <a href="#biblio">[Varadhan67]</a>.
          </p>
@@ -253,23 +284,23 @@ colormap <span class="string">parula(256)</span>;
 </pre><p>Set time \(t\).</p><pre class="codeinput">t = 1000;
 </pre><p>Solve the linear system.</p><pre class="codeinput">delta = zeros(n,1);
 delta(i) = 1;
-u = (speye(n)+t*Delta)\delta;
+u = (Ac+t*Delta)\delta;
 </pre><p>Display this solution.</p><pre class="codeinput">options.face_vertex_color = u;
 clf; plot_mesh(X,F,options);
 axis(<span class="string">'tight'</span>);
 colormap <span class="string">parula(256)</span>;
 </pre><img vspace="5" hspace="5" src="index_04.png"> <p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Solve the heat diffusion equation \[ \frac{\partial g}{\partial t} = -\Delta g \] by performing several implicit time stepping.
          </p><pre class="codeinput">exo1;
-</pre><img vspace="5" hspace="5" src="index_05.png"> <h2>Geodesic in Heat Method<a name="32"></a></h2>
+</pre><img vspace="5" hspace="5" src="index_05.png"> <h2>Geodesic in Heat Method<a name="37"></a></h2>
          <p>The main point of the method <a href="#biblio">[CraneWeischedelWardetzky13]</a> is to retrieve an approximation of the distance function \(\phi\) from the level set of implicit heat diffusion step \(u\).
          </p>
          <p>This is achieved by using the fact that \(\norm{\nabla \phi}=1\), i.e. one should have \[ \nabla \phi \approx -\frac{\nabla
             u}{\norm{\nabla u}}. \] Solving this equation in the least square sense leads to the resolution of a Poisson equation.
          </p>
          <p>Compute the solution \(u\) with explicit time stepping.</p><pre class="codeinput">t = .1;
-u = (speye(n)+t*Delta)\delta;
+u = (Ac+t*DeltaCot)\delta;
 </pre><p>Compute the gradient field.</p><pre class="codeinput">g = Grad(u);
-</pre><p>Normalize it to obtain \[ h = -\frac{\nabla u}{\norm{\nabla u}}. \]</p><pre class="codeinput">h = -g ./ repmat( sqrt(sum(g.^2)), [3 1] );
+</pre><p>Normalize it to obtain \[ h = -\frac{\nabla u}{\norm{\nabla u}}. \]</p><pre class="codeinput">h = -normalize(g);
 </pre><p>Integrate it back by solving \[ \Delta \phi = \text{div}(h).  \]</p><pre class="codeinput">phi = Delta \ Div(h);
 </pre><p>Display.</p><pre class="codeinput">options.face_vertex_color = phi;
 clf; plot_mesh(X,F,options);
@@ -285,13 +316,13 @@ colormap <span class="string">parula(256)</span>;
          </p><pre class="codeinput">exo2;
 </pre><img vspace="5" hspace="5" src="index_08.png"> <p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) Compute distances from an increasing number of starting points that are computed using a farthest point sampling.
          </p><pre class="codeinput">exo3;
-</pre><img vspace="5" hspace="5" src="index_09.png"> <h2>Bibliography<a name="43"></a></h2>
+</pre><img vspace="5" hspace="5" src="index_09.png"> <h2>Bibliography<a name="48"></a></h2>
          <p><a name="biblio"></a></p>
          <div>
             <ul>
                <li>[CraneWeischedelWardetzky13] K. Crane, C. Weischedel, M. Wardetzky, <i>Geodesics in heat: A new approach to computing distance based on heat flow</i>, ACM Transactions on Graphics , vol. 32, no. 5, pp. 152:1-152:11, 2013.
                </li>
-               <li>[Varadhan67] S.R.S. Varadhan, <i>On the behavior of the fundamental solution of the heat equation with variable coefficients</i> Communications on Pure and Applied Mathematics 20, 2, 431?455, 1967
+               <li>[Varadhan67] S.R.S. Varadhan, <i>On the behavior of the fundamental solution of the heat equation with variable coefficients</i> Communications on Pure and Applied Mathematics 20, 2, 431-455, 1967
                </li>
             </ul>
          </div>
@@ -401,12 +432,14 @@ Na = cross( XF(2)-XF(1), XF(3)-XF(1) );
 %%
 % Compute the area of each face as half the norm of the cross product.
 
-A = sqrt( sum( Na.^2 ) )/2;
+amplitude = @(X)sqrt( sum( X.^2 ) );
+A = amplitude(Na)/2;
 
 %%
 % Compute the set of unit-norm normals to each face.
 
-N = Na ./ repmat(2*A, [3 1]);
+normalize = @(X)X ./ repmat(amplitude(X), [3 1]);
+N = normalize(Na);
 
 %%
 % Populate the sparse entries of the matrices for the 
@@ -431,23 +464,71 @@ end
 dA = spdiags(1./(2*A(:)),0,m,m); 
 
 %%
-% Compute each \(\nabla_s\) matrix. 
+% Compute gradient.
 
-G = {};
+GradMat = {};
 for k=1:3
-    G{k} = dA*sparse(I,J,V(k,:),m,n);
+    GradMat{k} = dA*sparse(I,J,V(k,:),m,n);
 end
 
 %%
-% Grad and div operators.
+% \(\nabla\) gradient operator.
 
-Grad = @(u)[G{1}*u, G{2}*u, G{3}*u]';
-Div = @(q)G{1}'*q(1,:)' + G{2}'*q(2,:)' + G{3}'*q(3,:)';
+Grad = @(u)[GradMat{1}*u, GradMat{2}*u, GradMat{3}*u]';
 
 %%
-% Laplacian matrix
+% Compute divergence matrices as transposed of grad for the face area inner product.
 
-Delta = G{1}'*G{1} + G{2}'*G{2} + G{3}'*G{3};
+dAf = spdiags(2*A(:),0,m,m); 
+DivMat = {GradMat{1}'*dAf, GradMat{2}'*dAf, GradMat{3}'*dAf};
+
+%%
+% Div operator. 
+
+Div = @(q)DivMat{1}*q(1,:)' + DivMat{2}*q(2,:)' + DivMat{3}*q(3,:)';
+
+%%
+% Laplacian operator as the composition of grad and div. 
+
+Delta = DivMat{1}*GradMat{1} + DivMat{2}*GradMat{2} + DivMat{3}*GradMat{3};
+
+%%
+% Cotan of an angle between two vectors.
+
+cota = @(a,b)cot( acos( dot(normalize(a),normalize(b)) ) );
+
+%%
+% Compute cotan weights Laplacian. 
+
+I = []; J = []; V = []; % indexes to build the sparse matrices
+Ia = []; Va = []; % area of vertices
+for i=1:3
+    % opposite edge e_i indexes
+    s = mod(i,3)+1;
+    t = mod(i+1,3)+1;
+    % adjacent edge
+    ctheta = cota(XF(s)-XF(i), XF(t)-XF(i));
+    % ctheta = max(ctheta, 1e-2); % avoid degeneracy
+    % update the index listing
+    I = [I, F(s,:), F(t,:)];
+    J = [J, F(t,:), F(s,:)]; 
+    V = [V, ctheta, ctheta];
+    % update the diagonal with area of face around vertices
+    Ia = [Ia, F(i,:)];
+    Va = [Va, A]; 
+end
+% Aread diagonal matrix
+Ac = sparse(Ia,Ia,Va,n,n);
+% Cotan weights
+Wc = sparse(I,J,V,n,n);
+% Laplacian with cotan weights.
+DeltaCot = spdiags(full(sum(Wc))', 0, n,n) - Wc;
+
+%%
+% Check that the Laplacian with cotan weights is actually equal to 
+% the composition of divergence and gradient.
+
+fprintf('Should be 0: %e\n', norm(Delta-DeltaCot, 'fro')/norm(Delta, 'fro'));
 
 %%
 % Display a function \(f\) on the mesh.
@@ -461,7 +542,8 @@ colormap parula(256);
 %%
 % Display its Laplacian.
 
-g = clamp(Delta*f(:), -50, 50);
+g = Delta*f(:);
+g = clamp(g, -3*std(g), 3*std(g));
 options.face_vertex_color = rescale(g);
 clf; plot_mesh(X,F,options); 
 axis('tight');
@@ -497,7 +579,7 @@ t = 1000;
 
 delta = zeros(n,1); 
 delta(i) = 1;
-u = (speye(n)+t*Delta)\delta;
+u = (Ac+t*Delta)\delta;
 
 %%
 % Display this solution.
@@ -531,7 +613,7 @@ exo1;
 % Compute the solution \(u\) with explicit time stepping.
 
 t = .1;
-u = (speye(n)+t*Delta)\delta;
+u = (Ac+t*DeltaCot)\delta;
 
 %%
 % Compute the gradient field.
@@ -542,7 +624,7 @@ g = Grad(u);
 % Normalize it to obtain 
 % \[ h = -\frac{\nabla u}{\norm{\nabla u}}. \]
 
-h = -g ./ repmat( sqrt(sum(g.^2)), [3 1] );
+h = -normalize(g);
 
 %%
 % Integrate it back by solving
@@ -585,13 +667,12 @@ exo2;
 
 exo3;
 
-
 %% Bibliography
 % <html><a name="biblio"></a></html>
 
 %%
 % * [CraneWeischedelWardetzky13] K. Crane, C. Weischedel, M. Wardetzky, _Geodesics in heat: A new approach to computing distance based on heat flow_, ACM Transactions on Graphics , vol. 32, no. 5, pp. 152:1-152:11, 2013.
-% * [Varadhan67] S.R.S. Varadhan, _On the behavior of the fundamental solution of the heat equation with variable coefficients_ Communications on Pure and Applied Mathematics 20, 2, 431?455, 1967
+% * [Varadhan67] S.R.S. Varadhan, _On the behavior of the fundamental solution of the heat equation with variable coefficients_ Communications on Pure and Applied Mathematics 20, 2, 431-455, 1967
 
 	
 
