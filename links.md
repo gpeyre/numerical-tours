@@ -2,7 +2,7 @@
 layout: page
 title: "Links"
 description: "A list of useful links"
-header-img: "/img/hokusai-4.jpg"
+header-img: "img/hokusai-4.jpg"
 ---
 
 
@@ -33,7 +33,7 @@ Matlab Toolboxes
 * [L1-Magic](http://www.l1-magic.org/): L1 optimization and compressed sensing.
 * [Numerical Tours of Gabriel Peyré](http://www.ceremade.dauphine.fr/~peyre/numerical-tour/).
 * [Gabriel Peyré](http://www.mathworks.fr/matlabcentral/fileexchange/authors/14044): Matlab toolboxes.
-* [Nuit Blanche](http://igorcarron.googlepages.com/cs#reconstruction): links to compressed sensing optimization codes.		
+* [Nuit Blanche](http://igorcarron.googlepages.com/cs#reconstruction): links to compressed sensing optimization codes.
 * [Rice Wavelet Toolbox](http://www-dsp.rice.edu/software/RWT): a wavelet Matlab toolbox with orthogonal and biorthogonal transforms and applications to denoising (DSP group at Rice university.
 * [Discrete DFDs](http://tfd.sourceforge.net/): a collection of Matlab files for computing time-frequency distributions or time-frequency representations.
 
@@ -45,9 +45,9 @@ C / C++ Codes
 * [MPTK](http://gforge.inria.fr/projects/mptk/): fast matching pursuit for audio signal decomposition.');
 * [OpenJPEG](http://www.openjpeg.org/): an open source implementation of JPEG-2000.');
 * [SPIHT](http://www.cipr.rpi.edu/research/SPIHT/): a C++ software for wavelet image compression (Amir Said and William Pearlman).');
-* [FracLab](http://apis.saclay.inria.fr/FracLab/): wavelet fractal analysis toolbox developed at INRIA (Christophe Canus, Paulo Gonccalves, Bertrand Guiheneuf and Jacques Levy Vehel).');	
-* [MegaWave](http://megawave.cmla.ens-cachan.fr/): a collection of command line C subroutines under Unix for wavelet, wavelet packet and local cosine processing, with sound and image processing applications (Jacques Froment)' );	
+* [FracLab](http://apis.saclay.inria.fr/FracLab/): wavelet fractal analysis toolbox developed at INRIA (Christophe Canus, Paulo Gonccalves, Bertrand Guiheneuf and Jacques Levy Vehel).');
+* [MegaWave](http://megawave.cmla.ens-cachan.fr/): a collection of command line C subroutines under Unix for wavelet, wavelet packet and local cosine processing, with sound and image processing applications (Jacques Froment)' );
 * [Swave](http://chelsea.princeton.edu/~rcarmona/TFbook): is an S+ tool box with continuous wavelet transforms and windowed Fourier transforms, including detection of ridges (Rene Carmona, Wen-Liang Hwang and Bruno Torresani)'	);
 * [Time-Frequency Toolbox](http://tftb.nongnu.org/): a Matlab toolbox for the analysis of non-stationary signals with quadratic time-frequency distributions (Francois Auger, Patrick Flandrin, Olivier Lemoine and Paulo Goncalves)');
 * [Wavelet Toolbox in Khoros](http://www.gts.tsc.uvigo.es/~wavelets/): includes orthogonal and biorthogonal wavelet transforms for multidimensional signals (Jonio Cavalcanti and Ramiro Jordon)' );
-* [Matching Pursuit Code](http://erl.neuro.jhmi.edu/mpsoft/): Original MP code of Mallat Zhang, updated for EEG analysis.')		
+* [Matching Pursuit Code](http://erl.neuro.jhmi.edu/mpsoft/): Original MP code of Mallat Zhang, updated for EEG analysis.')

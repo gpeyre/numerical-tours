@@ -2,7 +2,7 @@
 layout: page
 title: "Slides"
 description: "For courses"
-header-img: "/img/hokusai-7.jpg"
+header-img: "img/hokusai-7.jpg"
 ---
 
 
@@ -30,5 +30,3 @@ Slides for a Mesh Processing Course
 * [Surface Parameterization](https://speakerdeck.com/gpeyre/mesh-processing-course-parameterization-and-flattening)
 * [Active Contours](https://speakerdeck.com/gpeyre/mesh-processing-course-active-contours)
 * [Multiresolution Mesh Processing](https://speakerdeck.com/gpeyre/mesh-processing-course-multiresolution-mesh-processing)
-
-

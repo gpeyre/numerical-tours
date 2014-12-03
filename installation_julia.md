@@ -2,7 +2,7 @@
 layout: page
 title: "Installation"
 description: "for Julia"
-header-img: "/img/hokusai-5.jpg"
+header-img: "img/hokusai-5.jpg"
 ---
 
 Installation of the toolboxes packages
@@ -18,7 +18,7 @@ You will also need:
 Installation of IPython
 ------------
 
-If you intend to run the tours are IPython notebook (which we recommend), you need to install [IPython notebook][2] to run the code. 
+If you intend to run the tours are IPython notebook (which we recommend), you need to install [IPython notebook][2] to run the code.
 You will also need to install [IJulia](https://github.com/JuliaLang/IJulia.jl).
 
 

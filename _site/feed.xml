@@ -11,16 +11,16 @@
 
     <title>A Numerical Tour of Signal Processing</title>
 
-    <link rel="canonical" href="http://gpeyre.github.io/numerical-tours//numerical-tours/feed.xml">
+    <link rel="canonical" href="www.numerical-tours.com/feed.xml">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/numerical-tours/img/favicon.png">
+    <link rel="icon" type="image/png" href="/img/favicon.png">
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/numerical-tours/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/numerical-tours/css/clean-blog.css">
+    <link rel="stylesheet" href="/css/clean-blog.css">
 
     <!-- Custom Fonts -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -49,7 +49,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/numerical-tours/">Home</a>
+            <a class="navbar-brand" href="/">Home</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -58,43 +58,43 @@
 
 
                 <li>
-                    <a href="/numerical-tours/matlab">Matlab</a>
+                    <a href="/matlab">Matlab</a>
                 </li>
                 <li>
-                    <a href="/numerical-tours/python">Python</a>
+                    <a href="/python">Python</a>
                 </li>
                 <li>
-                    <a href="/numerical-tours/julia">Julia</a>
+                    <a href="/julia">Julia</a>
                 </li>
                 <li>
-                    <a href="/numerical-tours/slides">Slides</a>
+                    <a href="/slides">Slides</a>
                 </li>
                 <li>
-                    <a href="/numerical-tours/book">Book</a>
+                    <a href="/book">Book</a>
                 </li>
                 <li>
-                    <a href="/numerical-tours/links">Links</a>
+                    <a href="/links">Links</a>
                 </li>
                 <li>
-                    <a href="/numerical-tours/about">About</a>
+                    <a href="/about">About</a>
                 </li>
                 <li>
-                    <a href="/numerical-tours/contact">Contact</a>
+                    <a href="/contact">Contact</a>
                 </li>
 
                 <!--
             
                 
                 <li>
-                    <a href="/numerical-tours/about/">About</a>
+                    <a href="/about/">About</a>
                 </li>
                 
                 <li>
-                    <a href="/numerical-tours/book/">Book</a>
+                    <a href="/book/">Book</a>
                 </li>
                 
                 <li>
-                    <a href="/numerical-tours/contact/">Contact</a>
+                    <a href="/contact/">Contact</a>
                 </li>
                 
                 <li>
@@ -102,47 +102,47 @@
                 </li>
                 
                 <li>
-                    <a href="/numerical-tours/">Welcome</a>
+                    <a href="/">Welcome</a>
                 </li>
                 
                 <li>
-                    <a href="/numerical-tours/installation_julia/">Installation</a>
+                    <a href="/installation_julia/">Installation</a>
                 </li>
                 
                 <li>
-                    <a href="/numerical-tours/installation_matlab/">Installation</a>
+                    <a href="/installation_matlab/">Installation</a>
                 </li>
                 
                 <li>
-                    <a href="/numerical-tours/installation_python/">Installation</a>
+                    <a href="/installation_python/">Installation</a>
                 </li>
                 
                 <li>
-                    <a href="/numerical-tours/julia/">Julia's tours</a>
+                    <a href="/julia/">Julia's tours</a>
                 </li>
                 
                 <li>
-                    <a href="/numerical-tours/links/">Links</a>
+                    <a href="/links/">Links</a>
                 </li>
                 
                 <li>
-                    <a href="/numerical-tours/matlab/">Matlab's tours</a>
+                    <a href="/matlab/">Matlab's tours</a>
                 </li>
                 
                 <li>
-                    <a href="/numerical-tours/matlab/missing-exo/">Solutions</a>
+                    <a href="/matlab/missing-exo/">Solutions</a>
                 </li>
                 
                 <li>
-                    <a href="/numerical-tours/python/">Python's tours</a>
+                    <a href="/python/">Python's tours</a>
                 </li>
                 
                 <li>
-                    <a href="/numerical-tours/slides/">Slides</a>
+                    <a href="/slides/">Slides</a>
                 </li>
                 
                 <li>
-                    <a href="/numerical-tours/page2/">Welcome</a>
+                    <a href="/page2/">Welcome</a>
                 </li>
                 
                 -->
@@ -155,7 +155,7 @@
 
 
     <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/numerical-tours/')">
+<header class="intro-header" style="background-image: url('/')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -179,37 +179,37 @@
     <title>A Numerical Tour of Signal Processing</title>
     <description>The Numerical Tours of Signal Processing, by Gabriel Peyré, gather Matlab, Python and Scilab experiments to explore modern signal and image processing. 
 </description>
-    <link>http://gpeyre.github.io/numerical-tours//numerical-tours/</link>
-    <atom:link href="http://gpeyre.github.io/numerical-tours//numerical-tours/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 24 Nov 2014 08:54:21 +0100</pubDate>
-    <lastBuildDate>Mon, 24 Nov 2014 08:54:21 +0100</lastBuildDate>
+    <link>www.numerical-tours.com/</link>
+    <atom:link href="www.numerical-tours.com/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Wed, 03 Dec 2014 13:25:52 +0100</pubDate>
+    <lastBuildDate>Wed, 03 Dec 2014 13:25:52 +0100</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
         <title>New tour</title>
-        <description>&lt;p&gt;&lt;a href=&quot;/numerical-tours/matlab/meshproc_7_geodesic_poisson&quot;&gt;This tour details&lt;/a&gt; the &lt;a href=&quot;http://dl.acm.org/citation.cfm?id=2516977&quot;&gt;Geodesic in Heat method&lt;/a&gt;, which allows one to approximate geodesic distances by solving a Poisson equation. It relies on the powerful result that the level sets of the heat diffusion converge to those of the geodesic distance as the diffusion time tends to 0.&lt;/p&gt;
+        <description>&lt;p&gt;&lt;a href=&quot;/matlab/meshproc_7_geodesic_poisson&quot;&gt;This tour details&lt;/a&gt; the &lt;a href=&quot;http://dl.acm.org/citation.cfm?id=2516977&quot;&gt;Geodesic in Heat method&lt;/a&gt;, which allows one to approximate geodesic distances by solving a Poisson equation. It relies on the powerful result that the level sets of the heat diffusion converge to those of the geodesic distance as the diffusion time tends to 0.&lt;/p&gt;
 </description>
         <pubDate>Sun, 23 Nov 2014 13:00:00 +0100</pubDate>
-        <link>http://gpeyre.github.io/numerical-tours//numerical-tours/2014/11/23/new-tour-geodesic-poisson/</link>
-        <guid isPermaLink="true">http://gpeyre.github.io/numerical-tours//numerical-tours/2014/11/23/new-tour-geodesic-poisson/</guid>
+        <link>www.numerical-tours.com/2014/11/23/new-tour-geodesic-poisson/</link>
+        <guid isPermaLink="true">www.numerical-tours.com/2014/11/23/new-tour-geodesic-poisson/</guid>
         
         
       </item>
     
       <item>
         <title>Julia notebooks</title>
-        <description>&lt;p&gt;The &lt;a href=&quot;/numerical-tours/julia/&quot;&gt;first Numerical Tour&lt;/a&gt; in &lt;a href=&quot;http://julialang.org/&quot;&gt;Julia&lt;/a&gt; is available. &lt;a href=&quot;http://julialang.org/&quot;&gt;Julia&lt;/a&gt; is an amazing language for scientific computing, that combines the ease of use of Matlab with speed comparable of C and an ecosystem which includes the powerful IPython notebooks.  &lt;/p&gt;
+        <description>&lt;p&gt;The &lt;a href=&quot;/julia/&quot;&gt;first Numerical Tour&lt;/a&gt; in &lt;a href=&quot;http://julialang.org/&quot;&gt;Julia&lt;/a&gt; is available. &lt;a href=&quot;http://julialang.org/&quot;&gt;Julia&lt;/a&gt; is an amazing language for scientific computing, that combines the ease of use of Matlab with speed comparable of C and an ecosystem which includes the powerful IPython notebooks.  &lt;/p&gt;
 </description>
         <pubDate>Sun, 09 Nov 2014 13:00:00 +0100</pubDate>
-        <link>http://gpeyre.github.io/numerical-tours//numerical-tours/2014/11/09/julia-notebooks/</link>
-        <guid isPermaLink="true">http://gpeyre.github.io/numerical-tours//numerical-tours/2014/11/09/julia-notebooks/</guid>
+        <link>www.numerical-tours.com/2014/11/09/julia-notebooks/</link>
+        <guid isPermaLink="true">www.numerical-tours.com/2014/11/09/julia-notebooks/</guid>
         
         
       </item>
     
       <item>
         <title>Matlab notebooks</title>
-        <description>&lt;p&gt;Thanks to &lt;a href=&quot;https://github.com/blink1073&quot;&gt;Steven Silvester&lt;/a&gt;, most of the &lt;a href=&quot;/numerical-tours/matlab/&quot;&gt;Matlab tours&lt;/a&gt; are now available as iPython notebooks. This means that:&lt;/p&gt;
+        <description>&lt;p&gt;Thanks to &lt;a href=&quot;https://github.com/blink1073&quot;&gt;Steven Silvester&lt;/a&gt;, most of the &lt;a href=&quot;/matlab/&quot;&gt;Matlab tours&lt;/a&gt; are now available as iPython notebooks. This means that:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;The corresponding tours are now directly rendered online using &lt;a href=&quot;http://nbviewer.ipython.org/&quot;&gt;nbviewer&lt;/a&gt;, which means that HTML conversion is not anymore needed.&lt;/li&gt;
@@ -218,78 +218,78 @@
 
 &lt;p&gt;This requires that you install Python and iPython (I recommend for instance the &lt;a href=&quot;http://continuum.io/downloads&quot;&gt;Anaconda&lt;/a&gt; distribution). You also need to install the &lt;a href=&quot;https://pypi.python.org/pypi/pymatbridge&quot;&gt;pymatbridge&lt;/a&gt; Python module in order to run Matlab code from the notebook.&lt;/p&gt;
 
-&lt;p&gt;The command &lt;/p&gt;
+&lt;p&gt;The command&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;%load_ext pymatbridge&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;will start Matlab in the background, and then you simply need to put the keyword &lt;/p&gt;
+&lt;p&gt;will start Matlab in the background, and then you simply need to put the keyword&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;%%matlab&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;if you want to add a new cell to the notebook with your own Matlab code.   &lt;/p&gt;
+&lt;p&gt;if you want to add a new cell to the notebook with your own Matlab code.&lt;/p&gt;
 </description>
         <pubDate>Sat, 01 Nov 2014 13:00:00 +0100</pubDate>
-        <link>http://gpeyre.github.io/numerical-tours//numerical-tours/2014/11/01/matlab-notebooks/</link>
-        <guid isPermaLink="true">http://gpeyre.github.io/numerical-tours//numerical-tours/2014/11/01/matlab-notebooks/</guid>
+        <link>www.numerical-tours.com/2014/11/01/matlab-notebooks/</link>
+        <guid isPermaLink="true">www.numerical-tours.com/2014/11/01/matlab-notebooks/</guid>
         
         
       </item>
     
       <item>
         <title>New site</title>
-        <description>&lt;p&gt;A lifting for the web site, which is now hosted on the github project pages. &lt;/p&gt;
+        <description>&lt;p&gt;A lifting for the web site, which is now hosted on the github project pages.&lt;/p&gt;
 </description>
         <pubDate>Mon, 20 Oct 2014 14:00:00 +0200</pubDate>
-        <link>http://gpeyre.github.io/numerical-tours//numerical-tours/2014/10/20/new-site/</link>
-        <guid isPermaLink="true">http://gpeyre.github.io/numerical-tours//numerical-tours/2014/10/20/new-site/</guid>
+        <link>www.numerical-tours.com/2014/10/20/new-site/</link>
+        <guid isPermaLink="true">www.numerical-tours.com/2014/10/20/new-site/</guid>
         
         
       </item>
     
       <item>
         <title>New tour</title>
-        <description>&lt;p&gt;&lt;a href=&quot;/numerical-tours/matlab/sparsity_9b_music/&quot;&gt;This tour explores&lt;/a&gt; the use of the MUSIC algortithm to perform sparse spikes deconvolution. The localization of the spikes is obtained by finding the root of a polynomial.&lt;/p&gt;
+        <description>&lt;p&gt;&lt;a href=&quot;/matlab/sparsity_9b_music/&quot;&gt;This tour explores&lt;/a&gt; the use of the MUSIC algortithm to perform sparse spikes deconvolution. The localization of the spikes is obtained by finding the root of a polynomial.&lt;/p&gt;
 </description>
         <pubDate>Tue, 26 Aug 2014 14:00:00 +0200</pubDate>
-        <link>http://gpeyre.github.io/numerical-tours//numerical-tours/2014/08/26/new-tour-music/</link>
-        <guid isPermaLink="true">http://gpeyre.github.io/numerical-tours//numerical-tours/2014/08/26/new-tour-music/</guid>
+        <link>www.numerical-tours.com/2014/08/26/new-tour-music/</link>
+        <guid isPermaLink="true">www.numerical-tours.com/2014/08/26/new-tour-music/</guid>
         
         
       </item>
     
       <item>
         <title>New tour</title>
-        <description>&lt;p&gt;&lt;a href=&quot;/numerical-tours/matlab/optimaltransp_5_entropic/&quot;&gt;This tour explores&lt;/a&gt; a fast algorithm to compute the solution of a regularized optimal transportation problem. This corresponds to the resolution of a convex program which is the projection on the transport polytope for a Kulback-Leibler divergence.&lt;/p&gt;
+        <description>&lt;p&gt;&lt;a href=&quot;/matlab/optimaltransp_5_entropic/&quot;&gt;This tour explores&lt;/a&gt; a fast algorithm to compute the solution of a regularized optimal transportation problem. This corresponds to the resolution of a convex program which is the projection on the transport polytope for a Kulback-Leibler divergence.&lt;/p&gt;
 </description>
         <pubDate>Tue, 26 Aug 2014 14:00:00 +0200</pubDate>
-        <link>http://gpeyre.github.io/numerical-tours//numerical-tours/2014/08/26/new-tour-entropic/</link>
-        <guid isPermaLink="true">http://gpeyre.github.io/numerical-tours//numerical-tours/2014/08/26/new-tour-entropic/</guid>
+        <link>www.numerical-tours.com/2014/08/26/new-tour-entropic/</link>
+        <guid isPermaLink="true">www.numerical-tours.com/2014/08/26/new-tour-entropic/</guid>
         
         
       </item>
     
       <item>
         <title>New tour</title>
-        <description>&lt;p&gt;&lt;a href=&quot;/numerical-tours/matlab/sparsity_9_sparsespikes_cbp/&quot;&gt;This tour explores&lt;/a&gt; the use of the C-BP algorithm of Simoncelli and co-workers to solve sparse spikes deconvolution problems. This corresponds to extending the discrete basis-pursuit operator by performing a Taylor expansion to locate more precisely the spikes with sub-pixelic accuracy.&lt;/p&gt;
+        <description>&lt;p&gt;&lt;a href=&quot;/matlab/sparsity_9_sparsespikes_cbp/&quot;&gt;This tour explores&lt;/a&gt; the use of the C-BP algorithm of Simoncelli and co-workers to solve sparse spikes deconvolution problems. This corresponds to extending the discrete basis-pursuit operator by performing a Taylor expansion to locate more precisely the spikes with sub-pixelic accuracy.&lt;/p&gt;
 </description>
         <pubDate>Sun, 12 Jan 2014 13:00:00 +0100</pubDate>
-        <link>http://gpeyre.github.io/numerical-tours//numerical-tours/2014/01/12/new-tour-cbp/</link>
-        <guid isPermaLink="true">http://gpeyre.github.io/numerical-tours//numerical-tours/2014/01/12/new-tour-cbp/</guid>
+        <link>www.numerical-tours.com/2014/01/12/new-tour-cbp/</link>
+        <guid isPermaLink="true">www.numerical-tours.com/2014/01/12/new-tour-cbp/</guid>
         
         
       </item>
     
       <item>
         <title>New tour</title>
-        <description>&lt;p&gt;&lt;a href=&quot;/numerical-tours/matlab/sparsity_8_sparsespikes_measures/&quot;&gt;This tour explores&lt;/a&gt; the resolution of the sparse deconvolution problem in a grid-free maner. This is achieved by solving a dual problem, which can be re-casted into an SDP convex optimization program. &lt;/p&gt;
+        <description>&lt;p&gt;&lt;a href=&quot;/matlab/sparsity_8_sparsespikes_measures/&quot;&gt;This tour explores&lt;/a&gt; the resolution of the sparse deconvolution problem in a grid-free maner. This is achieved by solving a dual problem, which can be re-casted into an SDP convex optimization program.&lt;/p&gt;
 </description>
         <pubDate>Sat, 12 Oct 2013 14:00:00 +0200</pubDate>
-        <link>http://gpeyre.github.io/numerical-tours//numerical-tours/2013/10/12/new-tour-blasso/</link>
-        <guid isPermaLink="true">http://gpeyre.github.io/numerical-tours//numerical-tours/2013/10/12/new-tour-blasso/</guid>
+        <link>www.numerical-tours.com/2013/10/12/new-tour-blasso/</link>
+        <guid isPermaLink="true">www.numerical-tours.com/2013/10/12/new-tour-blasso/</guid>
         
         
       </item>
@@ -311,7 +311,7 @@
                 <ul class="list-inline text-center">
 
                     <li>
-                        <a href="/numerical-tours/feed.xml">
+                        <a href="/feed.xml">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -338,13 +338,13 @@
 </footer>
 
 <!-- jQuery -->
-<script src="/numerical-tours/js/jquery.min.js "></script>
+<script src="/js/jquery.min.js "></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="/numerical-tours/js/bootstrap.min.js "></script>
+<script src="/js/bootstrap.min.js "></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/numerical-tours/js/clean-blog.min.js "></script>
+<script src="/js/clean-blog.min.js "></script>
 
 <!-- Google analytics -->
 <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">

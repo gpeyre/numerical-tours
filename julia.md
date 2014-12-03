@@ -2,7 +2,7 @@
 layout: page
 title: "Julia's tours"
 description: "Numerical Tours in Julia"
-header-img: "/img/hokusai-8.jpg"
+header-img: "img/hokusai-8.jpg"
 ---
 
 These are the [Julia](http://julialang.org/) tours, that can be browsed as HTML pages, but can also be downloaded as [iPython notebooks](http://ipython.org/notebook.html). Please read the [installation page](../installation_julia/) for more information about how to run these tours.
@@ -26,7 +26,3 @@ Note that it is a work in progress to port all the Numerical Tours to Julia. Hel
 </ul>
 
 {% endfor %}
-
-
-
-

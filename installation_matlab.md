@@ -2,7 +2,7 @@
 layout: page
 title: "Installation"
 description: "for Matlab"
-header-img: "/img/hokusai-5.jpg"
+header-img: "img/hokusai-5.jpg"
 ---
 
 Installation of the toolboxes
@@ -26,19 +26,19 @@ Make sure you can run the command `matlab` from a command window (or terminal). 
 
 __Unix-like-systems (including OSX):__
 
-Add the following to your `~/.profile`: 
+Add the following to your `~/.profile`:
 
 `export PATH="$PATH:<PATH_TO_MATLAB>"`
 
 __Windows systems:__
 
-From a CMD window: 
+From a CMD window:
 
 `> setx PATH "%PATH%;C:\PATH_TO_MATLAB.EXE"`
 
-Note, if you see the message: 
+Note, if you see the message:
 
-"WARNING: The data being saved is truncated to 1024 characters" 
+"WARNING: The data being saved is truncated to 1024 characters"
 
 It means your PATH variable is too long. You'll have to manually trim in in the Windows Environmental Variables editor.
 

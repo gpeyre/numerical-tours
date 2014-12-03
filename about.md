@@ -2,21 +2,21 @@
 layout: page
 title: "About"
 description: "The Numerical Tours"
-header-img: "/img/hokusai-3.jpg"
+header-img: "img/hokusai-3.jpg"
 ---
 
-The *Numerical Tours of Signal Processing*, by [Gabriel Peyré](contact/), gather Matlab (and so some extend Scilab) experiments to explore modern signal and image processing. 
+The *Numerical Tours of Signal Processing*, by [Gabriel Peyré](contact/), gather Matlab (and so some extend Scilab) experiments to explore modern signal and image processing.
 These tours are also progressively being ported to Python.
 The tours are complemented by slides of courses that concentrate on the theory of  signal and image processing.
 
 How to use these tours?
 -------------------
 
-Each tour is a set of experiments that can be performed using 
-either Matlab or Scilab. At the beginning of each tour, 
+Each tour is a set of experiments that can be performed using
+either Matlab or Scilab. At the beginning of each tour,
 you are asked to download and install the required toolboxes  ...
-(there exists three toolboxes: general/signal/graph), that contain many useful 
-helper functions. Each tour alternates between code you can copy/paste in 
+(there exists three toolboxes: general/signal/graph), that contain many useful
+helper functions. Each tour alternates between code you can copy/paste in
 Matlab or Scilab, and exercises you need to solve on your own.
 
 How to cite the Numerical Tours
