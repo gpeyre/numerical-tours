@@ -4,7 +4,7 @@ clf;
 u = delta;
 for i=1:max(nlist)
     % solve
-    u = (speye(n)+t*Delta)\u;
+    u = (Ac+t*DeltaCot)\u;
     % display
     if k<=4 && i==nlist(k)
         subplot(2,2,k); hold on;

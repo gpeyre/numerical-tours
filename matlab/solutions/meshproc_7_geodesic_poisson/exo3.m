@@ -9,13 +9,9 @@ t = 1/1000;
 clf;
 for i=1:max(nlist)
     % solve
-    u = (speye(n)+t*Delta)\delta;
-    % compute gradient
-    g = Grad(u);
-    % Normalize it to obtain
-    h = -g ./ repmat( sqrt(sum(g.^2)), [3 1] );
-    % Integrate it back by solving
-    phi = Delta \ Div(h);
+    u = (Ac+t*DeltaCot)\delta;
+   	% re-integrate normalized gradient
+    phi = -Delta \ Div( normalize( Grad(u) ) );
     % display
     if k<=4 && i==nlist(k)
         subplot(2,2,k); hold on;
