@@ -216,7 +216,7 @@
 
 - name: Segmentation and Curves Evolutions
   short: segmentation
-    list:
+  list:
   - name: Edge Detection
     rep: segmentation_1_edge_detection
   - name: Active Contours using Parameteric Curves
