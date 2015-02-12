@@ -1,6 +1,6 @@
 - name: Introduction
   short: introduction
-  list: 
+  list:
   - name: Basic Matlab/Scilab Instructions
     rep: introduction_1_basics
   - name: Introduction to Signal Processing
@@ -16,7 +16,7 @@
 
 - name: Wavelet Processing
   short: wavelet
-  list: 
+  list:
   - name: 1-D Haar Wavelets
     rep: wavelet_1_haar1d
   - name: 2-D Haar Wavelets
@@ -28,7 +28,7 @@
 
 - name: Approximation, Coding and Compression
   short: coding
-  list: 
+  list:
   - name: Image Approximation with Orthogonal Bases
     rep: coding_1_approximation
   - name: Entropic Coding and Compression
@@ -42,7 +42,7 @@
 
 - name: Simple Denoising Methods
   short: denoisingsimp
-  list: 
+  list:
   - name: Signal and Image Noise Models
     rep: denoisingsimp_1_noise_models
   - name: Linear Signal Denoising
@@ -54,7 +54,7 @@
 
 - name: Wavelet Denoising
   short: denoisingwav
-  list: 
+  list:
   - name: Signal Denoising with Wavelets
     rep: denoisingwav_1_wavelet_1d
   - name: Image Denoising with Wavelets
@@ -70,7 +70,7 @@
 
 - name: Advanced Denoising Methods
   short: denoisingadv
-  list: 
+  list:
   - name: Mathematical Morphology
     rep: denoisingadv_5_mathmorph
   - name: Non Local Means
@@ -84,7 +84,7 @@
 
 - name: Audio Processing
   short: audio
-  list: 
+  list:
   - name: Sound Processing with Short Time Fourier Transform
     rep: audio_1_processing
   - name: Source Separation with Sparsity
@@ -94,7 +94,7 @@
 
 - name: Higher Dimensional Signal Processing
   short: multidim
-  list: 
+  list:
   - name: Color Image Processing
     rep: multidim_1_color
   - name: Volumetric wavelet Data Processing
@@ -110,7 +110,7 @@
 
 - name: Computer Graphics
   short: graphics
-  list: 
+  list:
   - name: Gaussian Models for Texture Synthesis
     rep: graphics_1_synthesis_gaussian
   - name: Texture Synthesis Using Wavelets
@@ -128,7 +128,7 @@
 
 - name: Optimization
   short: optim
-  list: 
+  list:
   - name: Gradient Descent Methods
     rep: optim_1_gradient_descent
   - name: Newton Method
@@ -152,7 +152,7 @@
 
 - name: Optimal Transport
   short: optimaltransp
-  list: 
+  list:
   - name: Optimal Transport with Linear Programming
     rep: optimaltransp_1_linprog
   - name: Optimal Transport with Benamou-Brenier Algorithm
@@ -166,7 +166,7 @@
 
 - name: Sparsity and Redundant Representations
   short: sparsity
-  list: 
+  list:
   - name: Compressed Sensing of Images
     rep: sparsity_2_cs_images
   - name: Matrix Completion with Nuclear Norm Minimization
@@ -188,7 +188,7 @@
 
 - name: Inverse Problems
   short: inverse
-  list: 
+  list:
   - name: Image Deconvolution using Variational Method
     rep: inverse_2_deconvolution_variational
   - name: Image Deconvolution using Sparse Regularization
@@ -204,9 +204,31 @@
   - name: Tomography Inversion using Tikhonov and Sparse Regularization
     rep: inverse_9_tomography_sobsparse
 
+- name: Partial Differential Equations
+  short: pdes
+  list:
+  - name: Linear Diffusion Flows
+    rep: pde_1_diffusion_linear
+  - name: Non-Linear Diffusion Flows
+    rep: pde_2_diffusion_nonlinear
+  - name: Tensor-driven Diffusion Flows
+    rep: pde_3_diffusion_tensor
+
+- name: Segmentation and Curves Evolutions
+  short: segmentation
+    list:
+  - name: Edge Detection
+    rep: segmentation_1_edge_detection
+  - name: Active Contours using Parameteric Curves
+    rep: segmentation_2_snakes_param
+  - name: Active Contours using Level Sets
+    rep: segmentation_3_snakes_levelset
+  - name: Convex Region-Based Image Segmentation
+    rep: segmentation_4_convex_segmentation
+
 - name: Geodesic Processing
   short: fastmarching
-  list: 
+  list:
   - name: Dijkstra and Fast Marching Algorithms
     rep: fastmarching_0_implementing
   - name: Fast Marching in 2D
@@ -233,7 +255,7 @@
 
 - name: Shapes
   short: shapes
-  list: 
+  list:
   - name: Geodesic Bending Invariants for Shapes
     rep: shapes_1_bendinginv_2d
   - name: Geodesic Bending Invariants for Surfaces
@@ -251,7 +273,7 @@
 
 - name: Mesh Processing
   short: meshproc
-  list: 
+  list:
   - name: Basics About 2D Triangulation
     rep: meshproc_1_basics_2d
   - name: Basics About 3D Meshes
@@ -270,7 +292,7 @@
 
 - name: Mesh Parameterization and Deformation
   short: meshdeform
-  list: 
+  list:
   - name: Mesh Parameterization
     rep: meshdeform_1_parameterization
   - name: Spherical Mesh Parameterization
@@ -284,7 +306,7 @@
 
 - name: Multiscale Mesh Processing
   short: meshwav
-  list: 
+  list:
   - name: Subdivision Curves
     rep: meshwav_1_subdivision_curves
   - name: Subdivision Surfaces
@@ -296,4 +318,3 @@
     format: html
   - name: Wavelet Transform on 3D Meshes
     rep: meshwav_5_wavelets
-

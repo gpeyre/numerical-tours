@@ -1,0 +1,68 @@
+The Numerical Tours of Signal Processing is intended to be the companion books of the popular web-site  www.numerical-tours.com
+
+The book will feature a detailed and expanded version of the most popular tours, including a unique interplay between a concise description of the mathematical tools, and a detailed Matlab implementation of state of the art methods in the fields of data image processing.
+
+The book is intended for a broad audience of undergraduate and graduate students in applied mathematics and electrical engineering. It should also be of interest for researchers working in the fields of signal/image processing, data processing and machine learning.
+
+All the Matlab codes needed to reproduce the figures of the book will be distributed through the platform www.numerical-tours.com, therefore adhering to the reproducible research paradigm.
+
+The table of content of the book will feature:
+
+Chap 1. Introduction
+* Basic Matlab Instructions
+* Introduction to Signal Processing
+* Introduction to Image Processing
+* Image Approximation with Fourier and Wavelets
+* Image Processing with Wavelets
+
+Chap 2. Wavelet Processing
+* 2-D Daubechies Wavelets
+* Approximation, Coding and Compression
+* Image Approximation with Orthogonal Bases
+* Entropic Coding and Compression
+* Image Compression with Wavelets
+
+Chap 3. Denoising
+* Signal and Image Noise Models
+* Linear Image Denoising
+* Denoising by Sobolev and Total Variation Regularization
+* Image Denoising with Wavelets
+* Non Local Means
+* Stein Unbiased Risk Estimator
+
+Chap 4. Computer Graphics
+* Gaussian Models for Texture Synthesis
+* Texture Synthesis Using Wavelets
+* Multiplicative Cascade Synthesis of Signals and Textures
+* Fluid Dynamics
+* Shape From Shading
+
+Chap 5. Optimization
+* Gradient and Newton Descent Methods
+* Linear System and Conjugate Gradient
+* Proximal Splitting
+* Matching Pursuits
+
+Chap 6. Chap Inverse Problems and sparsity
+* Compressed Sensing of Images
+* Matrix Completion with Nuclear Norm Minimization
+* Dictionary Learning
+* Sparse Spikes Deconvolution over the Space of Measures
+* Sparse Spikes Deconvolution with MUSIC Algorithm
+* Image Deconvolution using Variational Method
+* Image Deconvolution using Sparse Regularization
+* Cartoon+Texture Variational Image Decomposition
+
+Chap 7. Geodesic Processing
+* Dijkstra and Fast Marching Algorithms
+* Geodesic Mesh Processing
+* Geodesic Bending Invariants for Shapes
+* Manifold Learning with Isomap
+* Geodesic Distance with Poisson Equation
+
+Chap 8. Mesh Processing
+* Linear Method for Mesh Processing
+* Mesh Parameterization and Deformation
+* Generalized Barycentric Coordinates for Warpping
+* Mesh Deformation
+* Multiscale Mesh Processing
