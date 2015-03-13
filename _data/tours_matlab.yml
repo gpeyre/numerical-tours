@@ -213,6 +213,8 @@
     rep: pde_2_diffusion_nonlinear
   - name: Tensor-driven Diffusion Flows
     rep: pde_3_diffusion_tensor
+  - name: Wavelet Compression of Integral Operators
+    rep: pde_4_wavelet_compression
 
 - name: Segmentation and Curves Evolutions
   short: segmentation

@@ -15,6 +15,16 @@ You will also need:
 * [PyPlot](https://github.com/stevengj/PyPlot.jl) package to be able to call [Matplotlib](http://matplotlib.org/) for displaying plots.
 * [Autoreload](https://github.com/malmaud/Autoreload.jl) package to ease developpement (automatic reloading of modified external files).
 
+You can install these package using the
+
+> Pkg.add("PyPlot")
+
+and
+
+> Pkg.add("Autoreload")
+
+from the Julia command line.
+
 Installation of IPython
 ------------
 
