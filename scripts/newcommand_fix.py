@@ -10,7 +10,7 @@ for fname in glob.glob('../python/todo/*.ipynb'):
                     line = line.replace('"\\\\newcommand', '"$\\\\newcommand')
                 if line.strip().startswith('"\\\\renewcommand'):
                     line = line.replace('"\\\\renewcommand', '"$\\\\newcommand')
-                line = line.replace('\\n"', '$\\n"')
+                line = line.replace('}",', '}$"')
             if not line.strip() == '"$"':
                 lines.append(line)
 
