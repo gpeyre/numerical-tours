@@ -30,59 +30,61 @@ INTRO = """
 """
 
 MATH_CMDS = r"""
-$\newcommand{\dotp}[2]{\langle #1, #2 \rangle}
-\newcommand{\enscond}[2]{\lbrace #1, #2 \rbrace}
-\newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
-\newcommand{\umin}[1]{\underset{#1}{\min}\;}
-\newcommand{\umax}[1]{\underset{#1}{\max}\;}
-\newcommand{\umin}[1]{\underset{#1}{\min}\;}
-\newcommand{\uargmin}[1]{\underset{#1}{argmin}\;}
-\newcommand{\norm}[1]{\|#1\|}
-\newcommand{\abs}[1]{\left|#1\right|}
-\newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
-\newcommand{\pa}[1]{\left(#1\right)}
-\newcommand{\diag}[1]{{diag}\left( #1 \right)}
-\newcommand{\qandq}{\quad\text{and}\quad}
-\newcommand{\qwhereq}{\quad\text{where}\quad}
-\newcommand{\qifq}{ \quad \text{if} \quad }
-\newcommand{\qarrq}{ \quad \Longrightarrow \quad }
-\newcommand{\ZZ}{\mathbb{Z}}
-\newcommand{\CC}{\mathbb{C}}
-\newcommand{\RR}{\mathbb{R}}
-\newcommand{\EE}{\mathbb{E}}
-\newcommand{\Zz}{\mathcal{Z}}
-\newcommand{\Ww}{\mathcal{W}}
-\newcommand{\Vv}{\mathcal{V}}
-\newcommand{\Nn}{\mathcal{N}}
-\newcommand{\NN}{\mathcal{N}}
-\newcommand{\Hh}{\mathcal{H}}
-\newcommand{\Bb}{\mathcal{B}}
-\newcommand{\Ee}{\mathcal{E}}
-\newcommand{\Cc}{\mathcal{C}}
-\newcommand{\Gg}{\mathcal{G}}
-\newcommand{\Ss}{\mathcal{S}}
-\newcommand{\Pp}{\mathcal{P}}
-\newcommand{\Ff}{\mathcal{F}}
-\newcommand{\Xx}{\mathcal{X}}
-\newcommand{\Mm}{\mathcal{M}}
-\newcommand{\Ii}{\mathcal{I}}
-\newcommand{\Dd}{\mathcal{D}}
-\newcommand{\Ll}{\mathcal{L}}
-\newcommand{\Tt}{\mathcal{T}}
-\newcommand{\si}{\sigma}
-\newcommand{\al}{\alpha}
-\newcommand{\la}{\lambda}
-\newcommand{\ga}{\gamma}
-\newcommand{\Ga}{\Gamma}
-\newcommand{\La}{\Lambda}
-\newcommand{\si}{\sigma}
-\newcommand{\Si}{\Sigma}
-\newcommand{\be}{\beta}
-\newcommand{\de}{\delta}
-\newcommand{\De}{\Delta}
-\renewcommand{\phi}{\varphi}
-\renewcommand{\th}{\theta}
-\newcommand{\om}{\omega}
-\newcommand{\Om}{\Omega}
-$
+{\dotp}[2]{\langle #1, #2 \rangle}
+{\enscond}[2]{\lbrace #1, #2 \rbrace}
+{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+{\umin}[1]{\underset{#1}{\min}\;}
+{\umax}[1]{\underset{#1}{\max}\;}
+{\umin}[1]{\underset{#1}{\min}\;}
+{\uargmin}[1]{\underset{#1}{argmin}\;}
+{\norm}[1]{\|#1\|}
+{\abs}[1]{\left|#1\right|}
+{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+{\pa}[1]{\left(#1\right)}
+{\diag}[1]{{diag}\left( #1 \right)}
+{\qandq}{\quad\text{and}\quad}
+{\qwhereq}{\quad\text{where}\quad}
+{\qifq}{ \quad \text{if} \quad }
+{\qarrq}{ \quad \Longrightarrow \quad }
+{\ZZ}{\mathbb{Z}}
+{\CC}{\mathbb{C}}
+{\RR}{\mathbb{R}}
+{\EE}{\mathbb{E}}
+{\Zz}{\mathcal{Z}}
+{\Ww}{\mathcal{W}}
+{\Vv}{\mathcal{V}}
+{\Nn}{\mathcal{N}}
+{\NN}{\mathcal{N}}
+{\Hh}{\mathcal{H}}
+{\Bb}{\mathcal{B}}
+{\Ee}{\mathcal{E}}
+{\Cc}{\mathcal{C}}
+{\Gg}{\mathcal{G}}
+{\Ss}{\mathcal{S}}
+{\Pp}{\mathcal{P}}
+{\Ff}{\mathcal{F}}
+{\Xx}{\mathcal{X}}
+{\Mm}{\mathcal{M}}
+{\Ii}{\mathcal{I}}
+{\Dd}{\mathcal{D}}
+{\Ll}{\mathcal{L}}
+{\Tt}{\mathcal{T}}
+{\si}{\sigma}
+{\al}{\alpha}
+{\la}{\lambda}
+{\ga}{\gamma}
+{\Ga}{\Gamma}
+{\La}{\Lambda}
+{\si}{\sigma}
+{\Si}{\Sigma}
+{\be}{\beta}
+{\de}{\delta}
+{\De}{\Delta}
+{\phi}{\varphi}
+{\th}{\theta}
+{\om}{\omega}
+{\Om}{\Omega}
 """.strip().splitlines()
+
+MATH_CMDS = '$\\newcommand' + '$\n$\\newcommand'.join(MATH_CMDS) + '$'
+MATH_CMDS = MATH_CMDS.splitlines()
