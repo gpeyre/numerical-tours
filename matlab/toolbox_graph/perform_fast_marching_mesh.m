@@ -13,7 +13,7 @@ function [D,S,Q] = perform_fast_marching_mesh(vertex, faces, start_points, optio
 %       value), 1 for far (ie point not already computed). Distance function
 %       for far points is Inf.
 %   Q is the index of the closest point. Q is set to 0 for far points.
-%       Q provide a Voronoi decomposition of the domain. 
+%       Q provide a Voronoi decomposition of the domain.
 %
 %   Optional:
 %   - You can provide non-uniform speed in options.W.
@@ -59,7 +59,7 @@ start_points = start_points(:);
 end_points = end_points(:);
 
 % use fast C-coded version if possible
-if exist('perform_front_propagation_2d')~=0
+if exist('perform_front_propagation_mesh')~=0
     [D,S,Q] = perform_front_propagation_mesh(vertex, faces-1, W,start_points-1,end_points-1, nb_iter_max, H, L, values, dmax);
     Q = Q+1;
 else
