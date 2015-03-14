@@ -12,10 +12,10 @@ end
 
 %% Parameteric Curves
 % In this tours, the active contours are represented using parametric
-% curve \( \ga : [0,1] \rightarrow \RR^2 \). 
+% curve \( \ga : [0,1] \rightarrow \RR^2 \).
 
 %%
-% This curve is discretized using a piewise linear curve with 
+% This curve is discretized using a piewise linear curve with
 % \(p\) segments, and is stored as a complex vector of points in the plane
 % \(\ga \in \CC^p\).
 
@@ -26,7 +26,7 @@ x = []; y = [];
 while b==1
     clf; hold on;
     plot(x,y,'r.-');
-    axis([0 1 0 1])    
+    axis([0 1 0 1])
     [x(end+1),y(end+1),b] = ginput(1);
 end
 end
@@ -113,9 +113,9 @@ gamma3 = gamma1 - delta * normal(gamma1);
 
 clf;
 hold on;
-h = plot(gamma1([1:end 1]), 'k'); set(h, 'LineWidth', 2); 
-h = plot(gamma2([1:end 1]), 'r--'); set(h, 'LineWidth', 2); 
-h = plot(gamma3([1:end 1]), 'b--'); set(h, 'LineWidth', 2); 
+h = plot(gamma1([1:end 1]), 'k'); set(h, 'LineWidth', 2);
+h = plot(gamma2([1:end 1]), 'r--'); set(h, 'LineWidth', 2);
+h = plot(gamma3([1:end 1]), 'b--'); set(h, 'LineWidth', 2);
 axis('tight'); axis('off');
 
 %% Evolution by Mean Curvature
@@ -136,10 +136,10 @@ axis('tight'); axis('off');
 % \[ E(\ga) = \int_0^1 \norm{\ga'(t)} d t \]
 
 %%
-% The gradient of the length is 
+% The gradient of the length is
 % \[ \nabla E(\ga)(t) = -\kappa_\ga(t) n_\ga(t)  \]
 % where \( \kappa_\ga \) is the curvature, defined as
-% \[ \kappa_\ga(t) = \frac{1}{\norm{\ga'(t)}} \dotp{ t_\ga'(t) }{ n_\ga(t) } . \]
+% \[ \kappa_\ga(t) = \frac{1}{\norm{\ga'(t)}} \dotp{ t_\ga'(t) }{ n_\ga(t) }ï¿½. \]
 
 
 %%
@@ -154,13 +154,13 @@ normalC = @(gamma)BwdDiff(tangent(gamma)) ./ abs( FwdDiff(gamma) );
 
 dt = 0.001 / 100;
 
-%% 
+%%
 % Number of iterations.
 
 Tmax = 3 / 100;
 niter = round(Tmax/dt);
 
-%% 
+%%
 % Initialize the curve for \(s=0\).
 
 gamma = gamma1;
@@ -249,7 +249,7 @@ p = 128; % number of points on the curve
 theta = linspace(0,2*pi,p+1)'; theta(end) = [];
 gamma0 = n/2*(1+1i) +  r*(cos(theta) + 1i*sin(theta));
 
-%% 
+%%
 % Initialize the curve at time \(t=0\) with a circle.
 
 gamma = gamma0;
@@ -289,7 +289,7 @@ gamma = gamma - dt*g;
 
 %%
 % To avoid the curve from being poorly sampled, it is important to
-% re-sample it evenly. 
+% re-sample it evenly.
 
 gamma = resample( gamma );
 
@@ -300,11 +300,11 @@ displist = round(linspace(1,niter,10));
 k = 1;
 clf; hold on;
 imageplot(W);
-for i=1:niter    
+for i=1:niter
     N = normal(gamma);
     g = EvalW(gamma).*normalC(gamma) - dotp(EvalG(gamma), N) .* N;
-    gamma = resample( gamma + dt*g );    
-    if i==displist(k)       
+    gamma = resample( gamma + dt*g );
+    if i==displist(k)
         h = plot(imag(gamma([1:end 1])),real(gamma([1:end 1])), 'r');
         if i==1 || i==niter
             set(h, 'LineWidth', 2);
@@ -413,8 +413,8 @@ imageplot(f);
 for i=1:niter
     n = normal(gamma);
     g = EvalW(gamma).*normalC(gamma) - dotp(EvalG(gamma), n) .* n;
-    gamma = resample( gamma + dt*g );    
-    if i==displist(k)       
+    gamma = resample( gamma + dt*g );
+    if i==displist(k)
         h = plot(imag(gamma([1:end 1])),real(gamma([1:end 1])), 'r');
         if i==1 || i==niter
             set(h, 'LineWidth', 2);
@@ -435,7 +435,7 @@ imwrite(rescale(W), [rep 'geodcontours-cortex-metric.png'], 'png');
 %% Evolution of a Non-closed Curve
 % It is possible to perform the evolution of a non-closed curve by adding
 % boundary constraint
-% \[ \ga(0)=x_0 \qandq \ga(1)=x_1. \] 
+% \[ \ga(0)=x_0 \qandq \ga(1)=x_1. \]
 
 %%
 % In this case, the algorithm find a local minimizer of the geodesic
@@ -541,10 +541,10 @@ imageplot(f);
 for i=1:niter
     N = normal(gamma);
     g = EvalW(gamma).*normalC(gamma) - dotp(EvalG(gamma), N) .* N;
-    gamma = resample( gamma + dt*g );    
+    gamma = resample( gamma + dt*g );
     % impose start/end point
     gamma(1) = x0; gamma(end) = x1;
-    if i==displist(k)   
+    if i==displist(k)
         h = plot(imag(gamma([1:end])),real(gamma([1:end])), 'r');
         if i==1 || i==niter
             set(h, 'LineWidth', 2);
