@@ -1,6 +1,6 @@
 import glob
 
-for fname in glob.glob('../python/todo/*.ipynb'):
+for fname in glob.glob('../matlab/*.ipynb'):
     print(fname)
     lines = []
     with open(fname) as fid:
@@ -10,7 +10,7 @@ for fname in glob.glob('../python/todo/*.ipynb'):
                     line = line.replace('"\\\\newcommand', '"$\\\\newcommand')
                 if line.strip().startswith('"\\\\renewcommand'):
                     line = line.replace('"\\\\renewcommand', '"$\\\\newcommand')
-                line = line.replace('}",', '}$"')
+                line = line.replace('}\\n"', '}$\\n"')
             if not line.strip() == '"$"':
                 lines.append(line)
 
