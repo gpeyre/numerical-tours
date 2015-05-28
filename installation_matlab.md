@@ -26,7 +26,7 @@ Make sure you can run the command `matlab` from a command window (or terminal). 
 
 __Unix-like-systems (including OSX):__
 
-Add the following to your `~/.profile`:
+Add the following to your `~/.profile` or `~/.bash_profile`:
 
 `export PATH="$PATH:<PATH_TO_MATLAB>"`
 
