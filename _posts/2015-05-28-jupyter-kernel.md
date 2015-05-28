@@ -2,7 +2,7 @@
 layout:     post
 title:      "Kernel Update"
 subtitle:   "Jupyter notebooks"
-date:       2015-15-28 12:00:00
+date:       2015-05-28 12:00:00
 author:     "Gabriel Peyré"
 header-img: "img/hokusai-7.jpg"
 ---

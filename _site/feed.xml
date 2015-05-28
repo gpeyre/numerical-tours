@@ -181,9 +181,20 @@
 </description>
     <link>www.numerical-tours.com/</link>
     <atom:link href="www.numerical-tours.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 03 Dec 2014 13:51:51 +0100</pubDate>
-    <lastBuildDate>Wed, 03 Dec 2014 13:51:51 +0100</lastBuildDate>
-    <generator>Jekyll v2.4.0</generator>
+    <pubDate>Thu, 28 May 2015 08:20:22 +0200</pubDate>
+    <lastBuildDate>Thu, 28 May 2015 08:20:22 +0200</lastBuildDate>
+    <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>Kernel Update</title>
+        <description>&lt;p&gt;&lt;a href=&quot;https://github.com/blink1073&quot;&gt;Steven Silvester&lt;/a&gt; converted to the whole set of tours to the &lt;a href=&quot;https://jupyter.org/&quot;&gt;Jupyter notebooks&lt;/a&gt;. This means in particular that Matlab tours now run natively with the use of the &lt;a href=&quot;https://github.com/calysto/matlab_kernel&quot;&gt;Matlab kernel&lt;/a&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 28 May 2015 14:00:00 +0200</pubDate>
+        <link>www.numerical-tours.com/2015/05/28/jupyter-kernel/</link>
+        <guid isPermaLink="true">www.numerical-tours.com/2015/05/28/jupyter-kernel/</guid>
+        
+        
+      </item>
     
       <item>
         <title>New tour</title>
@@ -198,7 +209,7 @@
     
       <item>
         <title>Julia notebooks</title>
-        <description>&lt;p&gt;The &lt;a href=&quot;/julia/&quot;&gt;first Numerical Tour&lt;/a&gt; in &lt;a href=&quot;http://julialang.org/&quot;&gt;Julia&lt;/a&gt; is available. &lt;a href=&quot;http://julialang.org/&quot;&gt;Julia&lt;/a&gt; is an amazing language for scientific computing, that combines the ease of use of Matlab with speed comparable of C and an ecosystem which includes the powerful IPython notebooks.  &lt;/p&gt;
+        <description>&lt;p&gt;The &lt;a href=&quot;/julia/&quot;&gt;first Numerical Tour&lt;/a&gt; in &lt;a href=&quot;http://julialang.org/&quot;&gt;Julia&lt;/a&gt; is available. &lt;a href=&quot;http://julialang.org/&quot;&gt;Julia&lt;/a&gt; is an amazing language for scientific computing, that combines the ease of use of Matlab with speed comparable of C and an ecosystem which includes the powerful IPython notebooks.&lt;/p&gt;
 </description>
         <pubDate>Sun, 09 Nov 2014 13:00:00 +0100</pubDate>
         <link>www.numerical-tours.com/2014/11/09/julia-notebooks/</link>
@@ -331,7 +342,7 @@
                     </li>
                     
                 </ul>
-                <p class="copyright text-muted">Copyright &copy; A Numerical Tour of Signal Processing 2014</p>
+                <p class="copyright text-muted">Copyright &copy; A Numerical Tour of Signal Processing 2015</p>
             </div>
         </div>
     </div>
