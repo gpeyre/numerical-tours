@@ -55,9 +55,16 @@ def convert_to_matlab_kernel(fname):
 
 if __name__ == '__main__':
     import sys
+    import os
     fname = '../matlab/audio_1_processing.ipynb'
 
-    if len(sys.argv) > 1:
+    if '--batch' in sys.argv:
+        matlab_dir = '../matlab'
+        files = os.listdir(matlab_dir)
+        for fname in files:
+            if fname.endswith('.m'):
+                path = os.path.join(matlab_dir, fname)
+                convert_to_matlab_kernel(fname)
+    elif len(sys.argv) > 1:
         fname = sys.argv[1]
-
-    convert_to_matlab_kernel(fname)
+        convert_to_matlab_kernel(fname)
