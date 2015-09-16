@@ -40,19 +40,19 @@ n = size(V,2);
 m = size(F,2);
 
 % associate each edge to a pair of faces
+Af = -triangulation2adjacency(F);
+
 i = [F(1,:) F(2,:) F(3,:)];
 j = [F(2,:) F(3,:) F(1,:)];
 s = [1:m 1:m 1:m];
+Af = sparse(i,j,s,n,n); 
 
-%%% CORRECTED %%%
-% ensure each edge appears only once
-[~,I] = unique([i;j]','rows');
-i = i(I); j = j(I); s = s(I);
-%%% END CORRECTED %%%
+%% PATCH %%%
+Af(Af>m) = 0;
+%% END PATCH %%%
 
-A = sparse(i,j,s,n,n); 
-[i,j,s1] = find(A);     % direct link
-[i,j,s2] = find(A');    % reverse link
+[i,j,s1] = find(Af);     % direct link
+[i,j,s2] = find(Af');    % reverse link
 
 I = find( (s1>0) + (s2>0) == 2 );
 
@@ -70,10 +70,10 @@ e = V(:,j) - V(:,i);
 d = sqrt(sum(e.^2,1));
 e = e ./ repmat(d,3,1);
 % avoid too large numerics
-d = d./mean(d);
+% d = d./mean(d);
 
 % normals to faces
-[~,normal] = compute_normal(V,F);
+[tmp,normal] = compute_normal(V,F);
 
 % inner product of normals
 dp = sum( normal(:,E(:,1)) .* normal(:,E(:,2)), 1 );
@@ -92,7 +92,9 @@ for x=1:3
         T(y,x,:) = T(x,y,:);
     end
 end
+
 T = T.*repmat( reshape(d.*beta,1,1,ne), [3,3,1] );
+% T = T.*repmat( reshape(beta,1,1,ne), [3,3,1] );
 
 % do pooling on vertices
 Tv = zeros(3,3,n);
@@ -105,7 +107,22 @@ for k=1:ne
     w(:,:,j(k)) = w(:,:,j(k)) + 1;
 end
 w(w<eps) = 1;
-Tv = Tv./repmat(w,[3,3,1]);
+Tv = Tv; % ./repmat(w,[3,3,1]);
+
+%%
+% Compute area around each V
+
+% area of each face
+a = V(:,F(3,:)) - V(:,F(1,:));
+b = V(:,F(2,:)) - V(:,F(1,:));
+ab = crossp(a',b')';
+Af = sqrt(sum(ab.^2))/2;
+% area of each vertex
+m = size(F,2);
+U = sparse( [1:m, 1:m, 1:m], [F(1,:) F(2,:) F(3,:)], [Af,Af,Af] );
+Av = full(sum(U,1));
+% normalize
+Tv = Tv ./ repmat( reshape(Av,[1 1 n]), [3 3 1] );
 
 % do averaging to smooth the field
 options.niter_averaging = naver;

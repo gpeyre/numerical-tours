@@ -295,8 +295,12 @@ class Converter(object):
                 fid.write('\n\n')
 
 if __name__ == '__main__':
-    if len(sys.argv) >= 2:
-        fname = sys.argv[1]
+    usage = 'm2nb_converter.py fname [destination_dir]'
+    ntype = 'python'
+    ntype = 'matlab'
+    if len(sys.argv) >= 3:
+        Converter(sys.argv[1]).convert(sys.argv[2], ntype)
+    elif len(sys.argv) >= 2:
+        Converter(sys.argv[1]).convert('.', ntype)
     else:
-        fname = '../matlab/meshwav_1_subdivision_curves.m'
-    Converter(fname).convert('.', 'python')
+        print(usage)
