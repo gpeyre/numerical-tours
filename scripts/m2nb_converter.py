@@ -4,6 +4,7 @@ import sys
 
 from nb_template import Notebook
 import nt_conversion_lib as lib
+from convert_to_matlab_kernel import convert_to_matlab_kernel
 
 
 class Converter(object):
@@ -65,6 +66,8 @@ class Converter(object):
 
         if self.ntype == 'python':
             self._write_exercises(out_dir)
+        elif self.ntype == 'matlab':
+            convert_to_matlab_kernel(path)
 
     def parse_line(self, line, state):
         new_line = line
