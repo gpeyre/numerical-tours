@@ -84,6 +84,7 @@ MATH_CMDS = r"""
 {\th}{\theta}
 {\om}{\omega}
 {\Om}{\Omega}
+{\eqdef}{\equiv}
 """.strip().splitlines()
 
 MATH_CMDS = '$\\newcommand' + '$\n$\\newcommand'.join(MATH_CMDS) + '$'

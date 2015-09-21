@@ -155,6 +155,11 @@ delete([repweb name_out '.m']);
 % disp('Performing online publishing (might take some time) ...');
 % perform_online_publishing(name);
 
+%% do the python conversion
+if 0
+    str = ['python ../../scripts/m2nb_converter.py ./' name '.m ../'];
+    system(str);
+end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

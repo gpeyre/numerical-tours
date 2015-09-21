@@ -1,11 +1,14 @@
-glist = [.1 .01 .001 .0001];
-niter = 500;
+glist = [.1 .01 .005 .001 ];
+niter = 300;
 clf;
-for ig=1:length(glist)
-    gamma = glist(ig);
-    pi = exp( -C/gamma );
+for k=1:length(glist)
+    gamma = glist(k);
+    xi = exp(-C/gamma);
+    b = ones(N(2),1); 
     for i=1:niter
-        pi = ProjC2( ProjC1(pi,p), q);
+        a = p ./ (xi*b);
+        b = q ./ (xi'*a); 
     end
-    imageplot(normalizeMax(pi), ['\gamma=' num2str(gamma)], 2,2,ig);
+    Pi = diag(a)*xi*diag(b);
+    imageplot( clamp(Pi,0,min(1./N)*.3) , ['\gamma=' num2str(gamma)], 2,2,k);
 end

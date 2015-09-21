@@ -1,19 +1,15 @@
-mynorm = @(x)norm(x(:));
-ndisp = 5; disprate = 10; qdisp = 1;
-E1 = []; E2 = [];
-clf;
+b = ones(N,1);
+niter = 2000;
+Err_p = []; Err_q = []; 
 for i=1:niter
-    Pi = ProjC1(Pi);
-    E2(i) = mynorm( sum(Pi,1)-permute(P,[2 1 3]) ) / mynorm(P);
-    %
-    Pi = ProjC2(Pi,P);
-    p = prod(sum(Pi,2), 3).^(1/K); % average
-    pp = repmat(p, [1 1 K]);
-    E1(i) = mynorm( sum(Pi,2) - pp ) / mynorm(pp);
-    if mod(i,disprate)==1 && qdisp<=ndisp
-        subplot(ndisp,1,qdisp);
-        bar(x, p, 'k');
-        axis tight;
-        qdisp = qdisp+1;
-    end
+    a = p ./ (xi*b);
+    Err_q(end+1) = norm( b .* (xi*a) - q )/norm(q);
+    b = q ./ (xi'*a);    
+    Err_p(end+1) = norm( a .* (xi'*b) - p )/norm(p);
 end
+% Display the violation of constraint error in log-plot. 
+clf;
+subplot(2,1,1);
+plot(log10(Err_p)); axis tight; title('log|\pi 1 - p|');
+subplot(2,1,2);
+plot(log10(Err_q)); axis tight; title('log|\pi^T 1 - q|');

@@ -345,7 +345,12 @@ switch lower(type)
         [Y,X] = meshgrid(x,x);
         M = (X-center(1)).^2 + (Y-center(2)).^2 < radius^2;
         
-        
+    case 'twodisks'
+        M = zeros(n);
+        options.center = [.25 .25]; 
+        M = load_image('disk', n, options);
+        options.center = [.75 .75]; 
+        M = M + load_image('disk', n, options);
     case 'diskregular'
         M = rescale(load_image('disk',n,options));
         if not(isfield(options, 'alpha'))
