@@ -104,7 +104,6 @@ To make changes, update the M-file and republish this document.
          \newcommand{\normz}[1]{\norm{#1}_{0}}
          \newcommand{\abs}[1]{\vert #1 \vert}
          
-         
          \newcommand{\argmin}{\text{argmin}}
          \newcommand{\argmax}{\text{argmax}}
          \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
@@ -135,18 +134,20 @@ To make changes, update the M-file and republish this document.
          \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
          \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
          \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         
+         \newcommand{\eqdef}{\equiv}
          \]
          
       </p>
       <title>Sound Processing with Short Time Fourier Transform</title>
       <NOSCRIPT>
-         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
-               	requires JavaScript to process the mathematics on this page.<BR> 
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A>
+               	requires JavaScript to process the mathematics on this page.<BR>
                	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
          <HR>
       </NOSCRIPT>
-      <meta name="generator" content="MATLAB 8.2">
-      <meta name="date" content="2014-10-21">
+      <meta name="generator" content="MATLAB 8.4">
+      <meta name="date" content="2015-09-21">
       <meta name="m-file" content="index">
       <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
    </head>
@@ -178,6 +179,8 @@ To make changes, update the M-file and republish this document.
          <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
 </pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
 getd(<span class="string">'toolbox_general/'</span>);
+</pre><pre class="codeoutput">Warning: Name is nonexistent or not a directory: toolbox_signal 
+Warning: Name is nonexistent or not a directory: toolbox_general 
 </pre><h2>Local Fourier analysis of sound.<a name="8"></a></h2>
          <p>A sound is a 1D signal that is locally highly oscillating and stationary. A local Fourier analysis is thus usefull to study
             the property of the sound such as its local amplitude and frequency.
@@ -185,6 +188,7 @@ getd(<span class="string">'toolbox_general/'</span>);
          <p>First we load a sound, with a slight sub-sampling</p><pre class="codeinput">n = 1024*16;
 options.n = n;
 [x,fs] = load_sound(<span class="string">'bird'</span>, n);
+</pre><pre class="codeoutput">Warning: WAVREAD will be removed in a future release. Use AUDIOREAD instead. 
 </pre><p>You can actually play a sound. In case this does not work, you need to run the command <tt>wavwrite(x(:)', 'tmp.wav')</tt> and click on the saved file <tt>'tmp.wav'</tt> to read it.
          </p><pre class="codeinput">sound(x(:)',fs);
 </pre><p>We can display the sound.</p><pre class="codeinput">clf;

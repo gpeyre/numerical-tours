@@ -104,7 +104,6 @@ To make changes, update the M-file and republish this document.
          \newcommand{\normz}[1]{\norm{#1}_{0}}
          \newcommand{\abs}[1]{\vert #1 \vert}
          
-         
          \newcommand{\argmin}{\text{argmin}}
          \newcommand{\argmax}{\text{argmax}}
          \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
@@ -135,18 +134,20 @@ To make changes, update the M-file and republish this document.
          \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
          \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
          \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         
+         \newcommand{\eqdef}{\equiv}
          \]
          
       </p>
       <title>Entropic Regularization of Optimal Transport</title>
       <NOSCRIPT>
-         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
-               	requires JavaScript to process the mathematics on this page.<BR> 
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A>
+               	requires JavaScript to process the mathematics on this page.<BR>
                	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
          <HR>
       </NOSCRIPT>
-      <meta name="generator" content="MATLAB 8.2">
-      <meta name="date" content="2014-10-20">
+      <meta name="generator" content="MATLAB 8.4">
+      <meta name="date" content="2015-09-21">
       <meta name="m-file" content="index">
       <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
    </head>
@@ -165,9 +166,12 @@ To make changes, update the M-file and republish this document.
             <ul>
                <li><a href="#1">Installing toolboxes and setting up the path.</a></li>
                <li><a href="#8">Entropic Regularization of Optimal Transport</a></li>
-               <li><a href="#13">Iterative Bregman Projection Algorithm</a></li>
-               <li><a href="#16">Iterative Projection for Regularized Transport</a></li>
-               <li><a href="#29">Bibliography</a></li>
+               <li><a href="#14">Iterative Bregman Projection Algorithm</a></li>
+               <li><a href="#17">Iterative Projection for Regularized Transport aka Sinkhorn's Algorithm</a></li>
+               <li><a href="#21">Transport Between Point Clouds</a></li>
+               <li><a href="#41">Transport Between Histograms</a></li>
+               <li><a href="#56">Wasserstein Barycenters</a></li>
+               <li><a href="#74">Bibliography</a></li>
             </ul>
          </div>
          <h2>Installing toolboxes and setting up the path.<a name="1"></a></h2>
@@ -182,89 +186,234 @@ To make changes, update the M-file and republish this document.
          <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
 </pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_signal/'</span>);
 getd(<span class="string">'toolbox_general/'</span>);
+</pre><pre class="codeoutput">Warning: Name is nonexistent or not a directory: toolbox_signal 
+Warning: Name is nonexistent or not a directory: toolbox_general 
 </pre><h2>Entropic Regularization of Optimal Transport<a name="8"></a></h2>
-         <p>We consider two input histograms \(p,q \in \Si_N\), where we denote the simplex in \(\RR^N\) \[ \Si_{N} = \enscond{ p \in
-            (\RR^+)^N }{ \sum_i p_i = 1 }.  \] We consider the following discrete regularized transport \[  W_\ga(p,q) = \umin{\pi \in
-            \Pi(p,q)} \dotp{C}{\pi} - \ga E(\pi).  \] where the polytope of coupling is defined as \[ \Pi(p,q) = \enscond{\pi \in (\RR^+)^{N
-            \times N}}{ \pi \ones = p, \pi^* \ones = q },  \] and for \(f \in (\RR^+)^{P}\) for some \(P &gt; 0\), we define its entropy
-            as \[ E(f) = - \sum_{i=1}^N f_i ( \log(f_i) - 1). \]
+         <p>We consider two input histograms \(p,q \in \Si_N\), where we denote the simplex in \(\RR^N\) \[ \Si_{N} \eqdef \enscond{ p
+            \in (\RR^+)^N }{ \sum_i p_i = 1 }.  \] We consider the following discrete regularized transport \[  W_\ga(p,q) \eqdef \umin{\pi
+            \in \Pi(p,q)} \dotp{C}{\pi} - \ga E(\pi).  \] where the polytope of coupling is defined as \[ \Pi(p,q) \eqdef \enscond{\pi
+            \in (\RR^+)^{N \times N}}{ \pi \ones = p, \pi^T \ones = q },  \] where \( \ones \eqdef (1,\ldots,1)^T \in \RR^N \), and for
+            \(\pi \in (\RR^+)^{N \times N}\), we define its entropy as \[ E(\pi) \eqdef - \sum_{i,j} \pi_{i,j} ( \log(\pi_{i,j}) - 1).
+            \]
          </p>
          <p>When \(\ga=0\) one recovers the classical (discrete) optimal transport. We refer to the monograph <a href="#biblio">[Villani]</a> for more details about OT. The idea of regularizing transport to allows for faster computation is introduced in <a href="#biblio">[Cuturi]</a>.
          </p>
          <p>Here the matrix \(C \in (\RR^+)^{N \times N} \) defines the ground cost, i.e. \(C_{i,j}\) is the cost of moving mass from
             a bin indexed by \(i\) to a bin indexed by \(j\).
          </p>
-         <p>The regularized transportation problem can be re-written as a projection \[ W_\ga(p,q) = \ga&nbsp;\umin{\pi \in \Pi(p,q)} \KLdiv{\pi}{\bar
-            \pi} 	\qwhereq 	\bar\pi_{i,j} = e^{ -\frac{C_{i,j}}{\ga} }  \] of \(\bar\pi\) according to the Kullback-Leibler divergence.
-            The Kullback-Leibler divergence between \(f, \bar f \in (\RR^+)^P\) is \[ \KLdiv{f}{\bar f} = \sum_{i=1}^P f_{i} \pa{&nbsp;\log\pa{
-            \frac{f_i}{\bar f_i} } - 1}. \] With a slight abuse of notation, we extend these definitions for vectors \(\pi \in \RR^{N
-            \times N}\) (and also higher \(d\)-dimensional tensor arrays), so that \(P=N^2\) (or more generally \(P=N^d\)) by replacing
-            the sum over elements \(f_i\) by \(\pi_{i,j}\) with \(i,j=1,\ldots,N\).
+         <p>The regularized transportation problem can be re-written as a projection \[ W_\ga(p,q) = \ga&nbsp;\umin{\pi \in \Pi(p,q)} \KLdiv{\pi}{\xi}
+            	\qwhereq 	\xi_{i,j} = e^{ -\frac{C_{i,j}}{\ga} }  \] of \(\xi\) according to the Kullback-Leibler divergence. The Kullback-Leibler
+            divergence between \(\pi, \xi \in (\RR^+)^P\) is \[ \KLdiv{\pi}{\xi} = \sum_{i,j} \pi_{i,j} \pa{&nbsp;\log\pa{ \frac{\pi_{i,j}}{\xi_{i,j}}
+            } - 1}. \]
          </p>
-         <p>Given a convex set \(\Cc \subset \RR^N\), the projection according to the Kullback-Leiber divergence is defined as \[ \KLproj_\Cc(\bar
-            f) = \uargmin{ f \in \Cc } \KLdiv{f}{\bar f}. \]
+         <p>This interpretation of regularized transport as a KL projection and its numerical applications are detailed in <a href="#biblio">[BenamouEtAl]</a>.
          </p>
-         <h2>Iterative Bregman Projection Algorithm<a name="13"></a></h2>
-         <p>Given affine constraint sets \( (\Cc_1,\ldots,\Cc_K) \), we aim at computing \[   \KLproj_\Cc(\bar \pi) \qwhereq \Cc = \Cc_1
-            \cap \ldots \cap \Cc_K. \]
+         <p>Given a convex set \(\Cc \subset \RR^N\), the projection according to the Kullback-Leiber divergence is defined as \[ \KLproj_\Cc(\xi)
+            = \uargmin{ \pi \in \Cc } \KLdiv{\pi}{\xi}. \]
          </p>
-         <p>This can be achieved, starting by \(\pi_0=\bar\pi\), by iterating \[ \forall \ell \geq 0, \quad \pi_{\ell+1} =  \KLproj_{\Cc_\ell}(\pi_\ell),
+         <h2>Iterative Bregman Projection Algorithm<a name="14"></a></h2>
+         <p>Given affine constraint sets \( (\Cc_1,\ldots,\Cc_K) \), we aim at computing \[   \KLproj_\Cc(\xi) \qwhereq \Cc = \Cc_1 \cap
+            \ldots \cap \Cc_K. \]
+         </p>
+         <p>This can be achieved, starting by \(\pi_0=\xi\), by iterating \[ \forall \ell \geq 0, \quad \pi_{\ell+1} =  \KLproj_{\Cc_\ell}(\pi_\ell),
             \] where the index of the constraints should be understood modulo \(K\), i.e. we set \( \Cc_{\ell+K}=\Cc_\ell \).
          </p>
          <p>One can indeed show that \(\pi_\ell \rightarrow \KLproj_\Cc(\bar \pi)\). We refer to <a href="#biblio">[BauschkeLewis]</a> for more details about this algorithm and its extension to compute the projection on the intersection of convex sets (Dikstra
             algorithm).
          </p>
-         <h2>Iterative Projection for Regularized Transport<a name="16"></a></h2>
-         <p>We can re-cast the regularized optimal transport problem within this framework by introducing \[ \Cc_1 = \enscond{\pi \in
-            (\RR^+)^{N \times N} }{\pi \ones = p} \qandq  \Cc_2 = \enscond{\pi \in (\RR^+)^{N \times N} }{\pi^* \ones = q}\]
+         <h2>Iterative Projection for Regularized Transport aka Sinkhorn's Algorithm<a name="17"></a></h2>
+         <p>We can re-cast the regularized optimal transport problem within this framework by introducing \[ \Cc_1 \eqdef \enscond{\pi
+            \in (\RR^+)^{N \times N} }{\pi \ones = p} \qandq  \Cc_2 \eqdef \enscond{\pi \in (\RR^+)^{N \times N} }{\pi^T \ones = q}. \]
          </p>
          <p>The KL projection on \(\Cc_1\) sets are easily computed by divisive normalization of rows. Indeed, denoting \( \pi = \KLproj_{\Cc_1}(\bar
             \pi) \), one has \[ \forall (i,j), \quad   \pi_{i,j} = \frac{ p_i \bar\pi_{i,j} }{ \sum_{s} \bar\pi_{i,s} } \] and similarely
             for \(\KLproj_{\Cc_1}(\bar \pi) \) by replacing rows by colums.
          </p>
+         <p>A fundamental remark is that, if \(\bar\pi = \diag(a) \xi \diag(b)\) (a so-called diagonal scaling of the kernel \(\xi\)),
+            then one has \[ \KLproj_{\Cc_1}(\bar \pi) = \diag(\tilde a) \xi \diag(b)   \qandq   \KLproj_{\Cc_2}(\bar \pi) = \diag(a) \xi
+            \diag(\tilde b)\]  where the new scaling reads   \[ \tilde a = \frac{p}{\xi(b)}  \qandq  \tilde b = \frac{q}{\xi^T(a)} \]
+            where \(\frac{\cdot}{\cdot}\) is entry-wise division.
+         </p>
+         <p>This means that the iterates of Bregman iterative projections, starting with \( a_0 \eqdef \ones \) always have the form \(
+            \pi_\ell = \diag(a_\ell) \xi \diag(b_\ell)  \) and these diagonal scaling weights are updated as follow \[  a_{\ell+1} \eqdef
+            \frac{p}{\xi(b_\ell)}       \qandq   b_{\ell+1} \eqdef \frac{q}{\xi^T(a_{\ell+1})}. \] This algorithm is in fact the well
+            known Sinkhorn algorithm <a href="#biblio">[Sinkhorn]</a>.
+         </p>
+         <h2>Transport Between Point Clouds<a name="21"></a></h2>
+         <p>We first test the method for two input measures that are uniform measures (i.e. constant histograms) supported on two point
+            clouds (that do not necessarily have the same size).
+         </p>
+         <p>We thus first load two points clouds \(x=(x_i)_{i=1}^{N_1}, y=(y_i)_{i=1}^{N_2}, \) where \(x_i, y_i \in \RR^2\).</p>
+         <p>Number of points in each cloud.</p><pre class="codeinput">N = [300,200];
+</pre><p>Dimension of the clouds.</p><pre class="codeinput">d = 2;
+</pre><p>Point cloud \(x\), of \(N_1\) points inside a square.</p><pre class="codeinput">x = rand(2,N(1))-.5;
+</pre><p>Point cloud \(y\), of \(N_2\) points inside an anulus.</p><pre class="codeinput">theta = 2*pi*rand(1,N(2));
+r = .8 + .2*rand(1,N(2));
+y = [cos(theta).*r; sin(theta).*r];
+</pre><p>Shortcut for displaying point clouds.</p><pre class="codeinput">plotp = @(x,col)plot(x(1,:)', x(2,:)', <span class="string">'o'</span>, <span class="string">'MarkerSize'</span>, 10, <span class="string">'MarkerEdgeColor'</span>, <span class="string">'k'</span>, <span class="string">'MarkerFaceColor'</span>, col, <span class="string">'LineWidth'</span>, 2);
+</pre><p>Display of the two clouds.</p><pre class="codeinput">clf; hold <span class="string">on</span>;
+plotp(x, <span class="string">'b'</span>);
+plotp(y, <span class="string">'r'</span>);
+axis(<span class="string">'off'</span>); axis(<span class="string">'equal'</span>);
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p>Cost matrix \(C_{i,j} = \norm{x_i-y_j}^2\).</p><pre class="codeinput">x2 = sum(x.^2,1); y2 = sum(y.^2,1);
+C = repmat(y2,N(1),1)+repmat(x2.',1,N(2))-2*x.'*y;
+</pre><p>Target histograms, here uniform histograms.</p><pre class="codeinput">p = ones(N(1),1)/N(1);
+q = ones(N(2),1)/N(2);
+</pre><p>Regularization strength \(\ga\).</p><pre class="codeinput">gamma = .01;
+</pre><p>Gibbs Kernel.</p><pre class="codeinput">xi = exp(-C/gamma);
+</pre><p>Initialization of \(b_0=\ones_{N_2}\) (\(a_0\) does not need to be initialized).</p><pre class="codeinput">b = ones(N(2),1);
+</pre><p>One sinkhorn iterations.</p><pre class="codeinput">a = p ./ (xi*b);
+b = q ./ (xi'*a);
+</pre><p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Implement Sinkhorn algorithm. Display the evolution of the constraints satisfaction errors \( \norm{ \pi \ones - p }, \norm{
+            \pi^T \ones - q } \) (you need to think about how to compute these residuals from \((a,b)\) alone).
+         </p><pre class="codeinput">exo1;
+</pre><img vspace="5" hspace="5" src="index_02.png"> <p>Compute the final matrix.</p><pre class="codeinput">Pi = diag(a)*xi*diag(b);
+</pre><p>Display it.</p><pre class="codeinput">clf;
+imageplot(Pi);
+</pre><img vspace="5" hspace="5" src="index_03.png"> <p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Display the regularized transport solution for various values of \(\gamma\). For a too small value of \(\gamma\), what do
+            you observe ?
+         </p><pre class="codeinput">exo2;
+</pre><img vspace="5" hspace="5" src="index_04.png"> <p>Compute the obtained optimal \(\pi\).</p><pre class="codeinput">Pi = diag(a)*xi*diag(b);
+</pre><p>Keep only the highest entries of the coupling matrix, and use them to draw a map between the two clouds. First we draw "strong"
+            connexions, i.e. linkds \((i,j)\) corresponding to large values of \(\pi_{i,j}\). We then draw weaker connexions.
+         </p><pre class="codeinput">clf;
+hold <span class="string">on</span>;
+A = sparse( Pi .* (Pi&gt; min(1./N)*.7) ); [i,j,~] = find(A);
+h = plot([x(1,i);y(1,j)], [x(2,i);y(2,j)], <span class="string">'k'</span>);
+set(h, <span class="string">'LineWidth'</span>, 2); <span class="comment">% weaker connections.</span>
+A = sparse( Pi .* (Pi&gt; min(1./N)*.3) ); [i,j,~] = find(A);
+h = plot([x(1,i);y(1,j)], [x(2,i);y(2,j)], <span class="string">'k:'</span>);
+set(h, <span class="string">'LineWidth'</span>, 1);
+plotp(x, <span class="string">'b'</span>); <span class="comment">% plot the two point clouds.</span>
+plotp(y, <span class="string">'r'</span>);
+axis(<span class="string">'off'</span>); axis(<span class="string">'equal'</span>);
+</pre><img vspace="5" hspace="5" src="index_05.png"> <h2>Transport Between Histograms<a name="41"></a></h2>
+         <p>We now consider a different setup, where the histogram values \(p,q\) are not uniform, but the measures are defined on a uniform
+            grid \(x_i=y_i=i/N\). They are thue often refered to as "histograms".
+         </p>
          <p>Size \(N\) of the histograms.</p><pre class="codeinput">N = 200;
-</pre><p>Define \(\KLproj_{\Cc_1}\).</p><pre class="codeinput">ProjC1 = @(pi,p)pi .* repmat( p./max(sum(pi,2), 1e-10), [1 N] );
-</pre><p>Define \(\KLproj_{\Cc_2}\).</p><pre class="codeinput">ProjC2 = @(pi,q)pi .* repmat( q'./max(sum(pi,1), 1e-10), [N 1] );
-</pre><p>We use here a 1-D square Euclidean metric.</p><pre class="codeinput">x = (0:N-1)'/N; y = x;
-Y = repmat(y', [N 1]);
-X = repmat(x, [1 N]);
-C = abs(X-Y).^2;
-</pre><p>Define the histogram \(p,q\)</p><pre class="codeinput">Gaussian = @(x0,sigma)exp( -(x-x0).^2/(2*sigma^2) );
+</pre><p>We use here a 1-D square Euclidean metric.</p><pre class="codeinput">t = (0:N-1)'/N;
+</pre><p>Define the histogram \(p,q\) as translated Gaussians.</p><pre class="codeinput">Gaussian = @(t0,sigma)exp( -(t-t0).^2/(2*sigma^2) );
 normalize = @(p)p/sum(p(:));
-x0 = .2; y0 = .8;  sigma = .07;
-p = Gaussian(x0,sigma);
-q = Gaussian(y0,sigma);
+sigma = .06;
+p = Gaussian(.25,sigma);
+q = Gaussian(.8,sigma);
 </pre><p>Add some minimal mass and normalize.</p><pre class="codeinput">vmin = .02;
 p = normalize( p+max(p)*vmin);
 q = normalize( q+max(q)*vmin);
-</pre><p>Display them.</p><pre class="codeinput">clf;
+</pre><p>Display the histograms.</p><pre class="codeinput">clf;
 subplot(2,1,1);
-bar(x, p, <span class="string">'k'</span>); axis <span class="string">tight</span>;
+bar(t, p, <span class="string">'k'</span>); axis <span class="string">tight</span>;
 subplot(2,1,2);
-bar(y, q, <span class="string">'k'</span>); axis <span class="string">tight</span>;
-</pre><img vspace="5" hspace="5" src="index_01.png"> <p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Perform the iterations, and display the decay of the errors \[ \norm{\pi_\ell \ones - p}   \qandq   \norm{\pi_\ell^* \ones
-            - q} \] in log scale.
-         </p><pre class="codeinput">exo1;
-</pre><img vspace="5" hspace="5" src="index_02.png"> <p>Display the optimal \(\pi\).</p><pre class="codeinput">clf;
-imageplot(pi);
-</pre><img vspace="5" hspace="5" src="index_03.png"> <p>For visualization purpose, to more clearly see the optimal map, do a normalization.</p><pre class="codeinput">normalizeMax = @(pi)pi ./ repmat( max(pi,[],1), [N 1] );
+bar(t, q, <span class="string">'k'</span>); axis <span class="string">tight</span>;
+</pre><img vspace="5" hspace="5" src="index_06.png"> <p>Regularization strength \(\ga\).</p><pre class="codeinput">gamma = (.03)^2;
+</pre><p>The Gibbs kernel is a Gaussian convolution, \[ \xi_{i,j} = e^{ -(i/N-j/N)^2/\gamma }. \]</p><pre class="codeinput">[Y,X] = meshgrid(t,t);
+xi = exp( -(X-Y).^2 / gamma);
+</pre><p>Initialization of \(b_0=\ones_{N}\).</p><pre class="codeinput">b = ones(N,1);
+</pre><p>One sinkhorn iteration.</p><pre class="codeinput">a = p ./ (xi*b);
+b = q ./ (xi'*a);
+</pre><p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) Implement Sinkhorn algorithm. Display the evolution of the constraints satisfaction errors \( \norm{ \pi \ones - p }, \norm{
+            \pi^T \ones - q } \) (you need to think how to compute it from \((a,b)\).
+         </p><pre class="codeinput">exo3;
+</pre><img vspace="5" hspace="5" src="index_07.png"> <p>Display the coupling. Use a log domain plot to better vizualize it.</p><pre class="codeinput">Pi = diag(a)*xi*diag(b);
 clf;
-imageplot(normalizeMax(pi));
-</pre><img vspace="5" hspace="5" src="index_04.png"> <p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Display the transport map for several values of \(\gamma\).
-         </p><pre class="codeinput">exo2;
-<span class="comment">%</span>
-</pre><img vspace="5" hspace="5" src="index_05.png"> <h2>Bibliography<a name="29"></a></h2>
+imageplot(log(Pi+1e-5));
+</pre><img vspace="5" hspace="5" src="index_08.png"> <p>One can compute an approximation of the transport plan between the two measure by computing the so-called barycentric projection
+            map \[ t_i \in [0,1] \longmapsto s_j \eqdef \frac{\sum_{j} \pi_{i,j} t_j }{ \sum_{j} \pi_{i,j} }    =  \frac{ [a \odot \xi(b
+            \odot t)]_j }{ p_i }. \] where \(\odot\) and \(\frac{\cdot}{\cdot}\) are the enry-wise multiplication and division.
+         </p>
+         <p>This computation can thus be done using only multiplication with the kernel \(\xi\).</p><pre class="codeinput">s = (xi*(b.*t)) .* a ./ p;
+</pre><p>Display the transport map, super-imposed over the coupling.</p><pre class="codeinput">clf; hold <span class="string">on</span>;
+imagesc(t,t,log(Pi+1e-5)); colormap <span class="string">gray(256)</span>;
+plot(s,t, <span class="string">'r'</span>, <span class="string">'LineWidth'</span>, 3);
+axis <span class="string">image</span>; axis <span class="string">off</span>; axis <span class="string">ij</span>;
+</pre><img vspace="5" hspace="5" src="index_09.png"> <h2>Wasserstein Barycenters<a name="56"></a></h2>
+         <p>Instead of computing transport, we now turn to the problem of computing barycenter of measures. A barycenter \(q\) solves
+            \[ \umin{q} \sum_{k=1}^K W_\ga(p_k,q)  \] where \(\la_k\) are positive weights with \(\sum_k \la_k=1\). This follows the definition
+            of barycenters proposed in <a href="#biblio">[AguehCarlier]</a>.
+         </p>
+         <p>With of the histograms.</p><pre class="codeinput">N = 70;
+</pre><p>Load input histograms \( (p_k)_{k=1}^K \).</p><pre class="codeinput">names = {<span class="string">'disk'</span> <span class="string">'twodisks'</span> <span class="string">'letter-x'</span> <span class="string">'letter-z'</span>};
+r = [.35 .19 .12*N .12*N];
+vmin = .05;
+P = [];
+<span class="keyword">for</span> i=1:length(names)
+    options.radius = r(i);
+    p = load_image(names{i},N, options);
+    p = normalize( rescale(p)+vmin );
+    P(:,:,i) = p;
+<span class="keyword">end</span>
+K = size(P,3);
+</pre><p>Display the input histograms.</p><pre class="codeinput">a = mat2cell(P, N,N,ones(K,1));
+clf;
+imageplot(a, <span class="string">''</span>, 2,2);
+</pre><img vspace="5" hspace="5" src="index_10.png"> <p>In this specific case, the kernel \(\xi\) associated with the squared Euclidean norm is a convolution with a Gaussian filter
+            \[ \xi_{i,j} = e^{ -\norm{i/N-j/N}^2/\gamma } \] where here \((i,j)\) are 2-D indexes.
+         </p>
+         <p>The multiplication against the kernel \(\xi(a_\ell)\) can now be computed efficiently, using fast convolution methods. This
+            crucial points was exploited and generalized in <a href="#biblio">[SolomonEtAl]</a> to design fast optimal transport algorithm.
+         </p>
+         <p>Regularization strength \(\ga\).</p><pre class="codeinput">gamma = (.04)^2;
+</pre><p>Define the \(\xi\) kernel. We use here the fact that the convolution is separable to implement it using only 1-D convolution,
+            which further speeds up computations.
+         </p><pre class="codeinput">n = 41; <span class="comment">% width of the convolution kernel</span>
+t = linspace(-n/(2*N),n/(2*N),n)';
+g = exp(-t.^2 / gamma); g2 = g*g';
+xi = @(x)conv2(conv2(x, g, <span class="string">'same'</span>)', g, <span class="string">'same'</span>)';
+</pre><p>Display the application of the \(\xi\) kernel on one of the input histogram.</p><pre class="codeinput">clf;
+imageplot({P(:,:,1) xi(P(:,:,1))});
+</pre><img vspace="5" hspace="5" src="index_11.png"> <p>Weights for isobarycenter.</p><pre class="codeinput">lambda = ones(K,1)/K;
+</pre><p>It is shown in <a href="#biblio">[BenamouEtAl]</a> that the problem of Barycenter computation boilds down to optimizing over couplings \((\pi_k)_k\), and that this can be achieved
+            using iterative Bregman projection that defines iterates \((\pi_{k,\ell})_k\). These iterates can be written using diagonal
+            scalings \( \pi_{k,\ell} \eqdef \diag(a_{k,\ell}) \xi \diag(b_{k,\ell}). \)
+         </p>
+         <p>Initialize the scaling factors.</p><pre class="codeinput">b = ones(N,N,K); a = b;
+</pre><p>The first step of the Bregman projection method corresponds to the projection on the fixed marginals constraints \(\pi_k \ones=p_k\).
+            This is achieved by updating \[ \forall k=1,\ldots,K, \quad a_{k,\ell+1} = \frac{p_k}{ \xi( b_{k,\ell} ) }. \]
+         </p><pre class="codeinput"><span class="keyword">for</span> k=1:K
+    a(:,:,k) = P(:,:,k) ./ xi(b(:,:,k));
+<span class="keyword">end</span>
+</pre><p>The second step of the Bregman projection method corresponds to the projection on the equal marginals constraints \(\forall
+            k, \pi_k^T \ones=q\). This is achieved by first computing the target barycenter using a geometric means \[ \log(q_\ell) \eqdef
+            \sum_k \lambda_k \log( b_{k,\ell} \odot \xi( a_{k,\ell} ) ). \]
+         </p><pre class="codeinput">q = zeros(N);
+<span class="keyword">for</span> k=1:K
+    q = q + lambda(k) * log( max(1e-19, b(:,:,k) .* xi(a(:,:,k)) ) );
+<span class="keyword">end</span>
+q = exp(q);
+</pre><p>And then one can update the other maginals to be equal to this barycenter at step \(\ell\). \[ \forall k=1,\ldots,K, \quad
+            b_{k,\ell+1} \eqdef \frac{q_\ell}{ \xi(a_{k,\ell+1}) }. \]
+         </p><pre class="codeinput"><span class="keyword">for</span> k=1:K
+    b(:,:,k) = q ./ xi(a(:,:,k));
+<span class="keyword">end</span>
+</pre><p><i>Exercice 4:</i> (<a href="../missing-exo/">check the solution</a>) Implement the iterative algorithm to compute the iso-barycenter of the measures. Plot the decay of the error \( \sum_k \norm{\pi_k
+            \ones - p_k} \).
+         </p><pre class="codeinput">exo4;
+</pre><img vspace="5" hspace="5" src="index_12.png"> <p>Display the barycenter.</p><pre class="codeinput">clf;
+imageplot(q);
+</pre><img vspace="5" hspace="5" src="index_13.png"> <p><i>Exercice 5:</i> (<a href="../missing-exo/">check the solution</a>) Compute barycenters for varying weights \(\la\) corresponding to a bilinear interpolation inside a square.
+         </p><pre class="codeinput">exo5;
+</pre><img vspace="5" hspace="5" src="index_14.png"> <h2>Bibliography<a name="74"></a></h2>
          <p><a name="biblio"></a></p>
          <div>
             <ul>
-               <li>[Villani]&nbsp;Villani, C. (2009). Optimal transport: old and new, volume 338. Springer Verlag.</li>
-               <li>[Cuturi]&nbsp;Cuturi, M. (2013). Sinkhorn distances: Lightspeed computation of optimal transport. In Burges, C. J. C., Bottou,
+               <li>[Villani]&nbsp;C. Villani, (2009). Optimal transport: old and new, volume 338. Springer Verlag.</li>
+               <li>[Cuturi]&nbsp;M. Cuturi, (2013). Sinkhorn distances: Lightspeed computation of optimal transport. In Burges, C. J. C., Bottou,
                   L., Ghahramani, Z., and Weinberger, K. Q., editors, Proc. NIPS, pages 2292-2300.
                </li>
-               <li>[AguehCarlier]&nbsp;Agueh, M. and Carlier, G. (2011). Barycenters in the Wasserstein space. SIAM J. on Mathematical Analysis, 43(2):904-924.</li>
-               <li>[CuturiDoucet]&nbsp;Cuturi, M. and Doucet, A. (2014). Fast computation of wasserstein barycenters. In Proc. ICML.</li>
+               <li>[AguehCarlier]&nbsp;M. Agueh, and G Carlier, (2011). Barycenters in the Wasserstein space. SIAM J. on Mathematical Analysis, 43(2):904-924.</li>
+               <li>[CuturiDoucet]&nbsp;M. Cuturi and A. Doucet (2014). Fast computation of wasserstein barycenters. In Proc. ICML.</li>
                <li>[BauschkeLewis]&nbsp;H. H. Bauschke and A. S. Lewis. Dykstra's algorithm with Bregman projections: a convergence proof. Optimization,
                   48(4):409-427, 2000.
+               </li>
+               <li>[Sinkhorn] R. Sinkhorn. A relationship between arbitrary positive matrices and doubly stochastic matrices. Ann. Math. Statist.,
+                  35:876-879, 1964.
+               </li>
+               <li>[SolomonEtAl] J. Solomon, F. de Goes, G. Peyr&eacute;, M. Cuturi, A. Butscher, A. Nguyen, T. Du, and L. Guibas. Convolutional Wasserstein
+                  distances: Efficient optimal transportation on geometric domains. Transaction on Graphics, Proc. SIGGRAPH, 2015.
+               </li>
+               <li>[BenamouEtAl] J-D. Benamou, G. Carlier, M. Cuturi, L. Nenna, G. Peyr&eacute;. Iterative Bregman Projections for Regularized Transportation
+                  Problems. SIAM Journal on Scientific Computing, 37(2), pp. A1111-A1138, 2015.
                </li>
             </ul>
          </div>
@@ -318,13 +467,14 @@ getd('toolbox_general/');
 
 %% Entropic Regularization of Optimal Transport
 % We consider two input histograms \(p,q \in \Si_N\), where we denote the simplex in \(\RR^N\)
-% \[ \Si_{N} = \enscond{ p \in (\RR^+)^N }{ \sum_i p_i = 1 }.  \]
+% \[ \Si_{N} \eqdef \enscond{ p \in (\RR^+)^N }{ \sum_i p_i = 1 }.  \]
 % We consider the following discrete regularized transport
-% \[  W_\ga(p,q) = \umin{\pi \in \Pi(p,q)} \dotp{C}{\pi} - \ga E(\pi).  \]
+% \[  W_\ga(p,q) \eqdef \umin{\pi \in \Pi(p,q)} \dotp{C}{\pi} - \ga E(\pi).  \]
 % where the polytope of coupling is defined as
-% \[ \Pi(p,q) = \enscond{\pi \in (\RR^+)^{N \times N}}{ \pi \ones = p, \pi^* \ones = q },  \]
-% and for \(f \in (\RR^+)^{P}\) for some \(P > 0\), we define its entropy as
-% \[ E(f) = - \sum_{i=1}^N f_i ( \log(f_i) - 1). \]
+% \[ \Pi(p,q) \eqdef \enscond{\pi \in (\RR^+)^{N \times N}}{ \pi \ones = p, \pi^T \ones = q },  \]
+% where \( \ones \eqdef (1,\ldots,1)^T \in \RR^N \), 
+% and for \(\pi \in (\RR^+)^{N \times N}\), we define its entropy as
+% \[ E(\pi) \eqdef - \sum_{i,j} \pi_{i,j} ( \log(\pi_{i,j}) - 1). \]
 
 %%
 % When \(\ga=0\) one recovers the classical (discrete) optimal transport.
@@ -332,30 +482,33 @@ getd('toolbox_general/');
 % The idea of regularizing transport to allows for faster computation is
 % introduced in <#biblio [Cuturi]>.
 
-
 %%
 % Here the matrix \(C \in (\RR^+)^{N \times N} \) defines the ground cost, i.e.
 % \(C_{i,j}\) is the cost of moving mass from a bin indexed by \(i\) to a bin indexed by \(j\).
 
 %%
 % The regularized transportation problem can be re-written as a projection 
-% \[ W_\ga(p,q) = \ga \umin{\pi \in \Pi(p,q)} \KLdiv{\pi}{\bar \pi}
+% \[ W_\ga(p,q) = \ga \umin{\pi \in \Pi(p,q)} \KLdiv{\pi}{\xi}
 % 	\qwhereq
-% 	\bar\pi_{i,j} = e^{ -\frac{C_{i,j}}{\ga} }  \]
-% of \(\bar\pi\) according to the Kullback-Leibler divergence. The Kullback-Leibler divergence between \(f, \bar f \in (\RR^+)^P\) is 
-% \[ \KLdiv{f}{\bar f} = \sum_{i=1}^P f_{i} \pa{ \log\pa{ \frac{f_i}{\bar f_i} } - 1}. \]
-% With a slight abuse of notation, we extend these definitions for vectors \(\pi \in \RR^{N \times N}\) (and also higher \(d\)-dimensional tensor arrays), so that \(P=N^2\) (or more generally \(P=N^d\)) by replacing the sum over elements \(f_i\) by \(\pi_{i,j}\) with \(i,j=1,\ldots,N\). 
+% 	\xi_{i,j} = e^{ -\frac{C_{i,j}}{\ga} }  \]
+% of \(\xi\) according to the Kullback-Leibler divergence. 
+% The Kullback-Leibler divergence between \(\pi, \xi \in (\RR^+)^P\) is 
+% \[ \KLdiv{\pi}{\xi} = \sum_{i,j} \pi_{i,j} \pa{ \log\pa{ \frac{\pi_{i,j}}{\xi_{i,j}} } - 1}. \]
+
+%%
+% This interpretation of regularized transport as a KL projection and its numerical
+% applications are detailed in <#biblio [BenamouEtAl]>.
 
 %%
 % Given a convex set \(\Cc \subset \RR^N\), the projection according to the Kullback-Leiber divergence is defined as
-% \[ \KLproj_\Cc(\bar f) = \uargmin{ f \in \Cc } \KLdiv{f}{\bar f}. \]
+% \[ \KLproj_\Cc(\xi) = \uargmin{ \pi \in \Cc } \KLdiv{\pi}{\xi}. \]
 
 %% Iterative Bregman Projection Algorithm
 % Given affine constraint sets \( (\Cc_1,\ldots,\Cc_K) \), we aim at computing 
-% \[   \KLproj_\Cc(\bar \pi) \qwhereq \Cc = \Cc_1 \cap \ldots \cap \Cc_K. \]
+% \[   \KLproj_\Cc(\xi) \qwhereq \Cc = \Cc_1 \cap \ldots \cap \Cc_K. \]
 
 %%
-% This can be achieved, starting by \(\pi_0=\bar\pi\), by iterating
+% This can be achieved, starting by \(\pi_0=\xi\), by iterating
 % \[ \forall \ell \geq 0, \quad \pi_{\ell+1} =  \KLproj_{\Cc_\ell}(\pi_\ell), \]
 % where the index of the constraints should be understood modulo \(K\),
 % i.e. we set \( \Cc_{\ell+K}=\Cc_\ell \).
@@ -366,12 +519,12 @@ getd('toolbox_general/');
 % algorithm and its extension to compute the projection on the intersection of
 % convex sets (Dikstra algorithm). 
 
-%% Iterative Projection for Regularized Transport
+%% Iterative Projection for Regularized Transport aka Sinkhorn's Algorithm
 % We can re-cast the regularized optimal transport problem within this
 % framework by introducing
-% \[ \Cc_1 = \enscond{\pi \in (\RR^+)^{N \times N} }{\pi \ones = p}
+% \[ \Cc_1 \eqdef \enscond{\pi \in (\RR^+)^{N \times N} }{\pi \ones = p}
 % \qandq 
-%  \Cc_2 = \enscond{\pi \in (\RR^+)^{N \times N} }{\pi^* \ones = q}\]
+%  \Cc_2 \eqdef \enscond{\pi \in (\RR^+)^{N \times N} }{\pi^T \ones = q}. \]
 
 %%
 % The KL projection on \(\Cc_1\) sets are easily computed by divisive
@@ -383,36 +536,177 @@ getd('toolbox_general/');
 % colums.
 
 %%
+% A fundamental remark is that, if \(\bar\pi = \diag(a) \xi \diag(b)\) (a
+% so-called diagonal scaling of the kernel \(\xi\)), then one has 
+% \[ \KLproj_{\Cc_1}(\bar \pi) = \diag(\tilde a) \xi \diag(b)
+%   \qandq 
+%   \KLproj_{\Cc_2}(\bar \pi) = \diag(a) \xi \diag(\tilde b)\]
+%  where the new scaling reads
+%   \[ \tilde a = \frac{p}{\xi(b)}  \qandq  \tilde b = \frac{q}{\xi^T(a)} \]
+% where \(\frac{\cdot}{\cdot}\) is entry-wise division.
+
+%%
+% This means that the iterates of Bregman iterative projections, starting
+% with \( a_0 \eqdef \ones \) always have the form 
+% \( \pi_\ell = \diag(a_\ell) \xi \diag(b_\ell)  \)
+% and these diagonal scaling weights are updated as follow
+% \[  a_{\ell+1} \eqdef \frac{p}{\xi(b_\ell)} 
+%       \qandq 
+%   b_{\ell+1} \eqdef \frac{q}{\xi^T(a_{\ell+1})}. \]
+% This algorithm is in fact the well known Sinkhorn algorithm <#biblio [Sinkhorn]>. 
+
+%% Transport Between Point Clouds
+% We first test the method for two input measures that are uniform measures
+% (i.e. constant histograms) supported on two point clouds 
+% (that do not necessarily have the same size). 
+
+%%
+% We thus first load two points clouds \(x=(x_i)_{i=1}^{N_1}, y=(y_i)_{i=1}^{N_2}, \)
+% where \(x_i, y_i \in \RR^2\). 
+
+%% 
+% Number of points in each cloud.
+
+N = [300,200];
+
+%%
+% Dimension of the clouds.
+
+d = 2;
+
+%% 
+% Point cloud \(x\), of \(N_1\) points inside a square.
+
+x = rand(2,N(1))-.5;
+
+%%
+% Point cloud \(y\), of \(N_2\) points inside an anulus.
+
+theta = 2*pi*rand(1,N(2));
+r = .8 + .2*rand(1,N(2));
+y = [cos(theta).*r; sin(theta).*r];
+
+%%
+% Shortcut for displaying point clouds.
+
+plotp = @(x,col)plot(x(1,:)', x(2,:)', 'o', 'MarkerSize', 10, 'MarkerEdgeColor', 'k', 'MarkerFaceColor', col, 'LineWidth', 2);
+
+%%
+% Display of the two clouds.
+
+clf; hold on;
+plotp(x, 'b');
+plotp(y, 'r');
+axis('off'); axis('equal');
+
+%%
+% Cost matrix \(C_{i,j} = \norm{x_i-y_j}^2\).
+
+x2 = sum(x.^2,1); y2 = sum(y.^2,1);
+C = repmat(y2,N(1),1)+repmat(x2.',1,N(2))-2*x.'*y;
+
+%%
+% Target histograms, here uniform histograms.
+
+p = ones(N(1),1)/N(1);
+q = ones(N(2),1)/N(2);
+
+%%
+% Regularization strength \(\ga\).
+
+gamma = .01;
+
+%%
+% Gibbs Kernel.
+
+xi = exp(-C/gamma);
+
+%%
+% Initialization of \(b_0=\ones_{N_2}\) (\(a_0\) does not need to be
+% initialized).
+
+b = ones(N(2),1);
+
+%%
+% One sinkhorn iterations.
+
+a = p ./ (xi*b);
+b = q ./ (xi'*a);
+
+%%
+% _Exercice 1:_ (<../missing-exo/ check the solution>)
+% Implement Sinkhorn algorithm.
+% Display the evolution of the constraints satisfaction errors 
+% \( \norm{ \pi \ones - p }, \norm{ \pi^T \ones - q } \)
+% (you need to think about how to compute these residuals from \((a,b)\) alone).
+
+exo1;
+
+%%
+% Compute the final matrix.
+
+Pi = diag(a)*xi*diag(b);
+
+%% 
+% Display it.
+
+clf;
+imageplot(Pi);
+
+%%
+% _Exercice 2:_ (<../missing-exo/ check the solution>)
+% Display the regularized transport solution for various values of \(\gamma\).
+% For a too small value of \(\gamma\), what do you observe ?
+
+exo2;
+
+%%
+% Compute the obtained optimal \(\pi\).
+
+Pi = diag(a)*xi*diag(b);
+
+%%
+% Keep only the highest entries of the coupling matrix, and use them to
+% draw a map between the two clouds. 
+% First we draw "strong" connexions, i.e. linkds \((i,j)\) corresponding to
+% large values of \(\pi_{i,j}\). 
+% We then draw weaker connexions.
+
+clf;
+hold on;
+A = sparse( Pi .* (Pi> min(1./N)*.7) ); [i,j,~] = find(A);
+h = plot([x(1,i);y(1,j)], [x(2,i);y(2,j)], 'k');
+set(h, 'LineWidth', 2); % weaker connections.
+A = sparse( Pi .* (Pi> min(1./N)*.3) ); [i,j,~] = find(A);
+h = plot([x(1,i);y(1,j)], [x(2,i);y(2,j)], 'k:');
+set(h, 'LineWidth', 1);
+plotp(x, 'b'); % plot the two point clouds.
+plotp(y, 'r');
+axis('off'); axis('equal');
+
+%% Transport Between Histograms
+% We now consider a different setup, where the histogram values 
+% \(p,q\) are not uniform, but the measures are defined on a uniform grid
+% \(x_i=y_i=i/N\). They are thue often refered to as "histograms".
+
+%%
 % Size \(N\) of the histograms.
 
 N = 200;
 
 %%
-% Define \(\KLproj_{\Cc_1}\).
-
-ProjC1 = @(pi,p)pi .* repmat( p./max(sum(pi,2), 1e-10), [1 N] );
-
-%%
-% Define \(\KLproj_{\Cc_2}\).
-
-ProjC2 = @(pi,q)pi .* repmat( q'./max(sum(pi,1), 1e-10), [N 1] );
-
-%%
 % We use here a 1-D square Euclidean metric.
 
-x = (0:N-1)'/N; y = x;
-Y = repmat(y', [N 1]);
-X = repmat(x, [1 N]);
-C = abs(X-Y).^2;
+t = (0:N-1)'/N; 
 
 %%
-% Define the histogram \(p,q\)
+% Define the histogram \(p,q\) as translated Gaussians.
 
-Gaussian = @(x0,sigma)exp( -(x-x0).^2/(2*sigma^2) );
+Gaussian = @(t0,sigma)exp( -(t-t0).^2/(2*sigma^2) );
 normalize = @(p)p/sum(p(:));
-x0 = .2; y0 = .8;  sigma = .07;
-p = Gaussian(x0,sigma); 
-q = Gaussian(y0,sigma); 
+sigma = .06;
+p = Gaussian(.25,sigma); 
+q = Gaussian(.8,sigma);
 
 %%
 % Add some minimal mass and normalize.
@@ -421,57 +715,228 @@ vmin = .02;
 p = normalize( p+max(p)*vmin);
 q = normalize( q+max(q)*vmin);
 
-
 %%
-% Display them.
+% Display the histograms.
 
 clf;
 subplot(2,1,1);
-bar(x, p, 'k'); axis tight;
+bar(t, p, 'k'); axis tight;
 subplot(2,1,2);
-bar(y, q, 'k'); axis tight;
+bar(t, q, 'k'); axis tight;
 
 %%
-% _Exercice 1:_ (<../missing-exo/ check the solution>)
-% Perform the iterations, and display the decay of the errors
-% \[ \norm{\pi_\ell \ones - p} 
-%   \qandq 
-%   \norm{\pi_\ell^* \ones - q} \]
-% in log scale.
+% Regularization strength \(\ga\).
 
-exo1;
+gamma = (.03)^2;
 
 %%
-% Display the optimal \(\pi\).
+% The Gibbs kernel is a Gaussian convolution, 
+% \[ \xi_{i,j} = e^{ -(i/N-j/N)^2/\gamma }. \]
+
+[Y,X] = meshgrid(t,t);
+xi = exp( -(X-Y).^2 / gamma);
+
+%%
+% Initialization of \(b_0=\ones_{N}\).
+
+b = ones(N,1);
+
+%%
+% One sinkhorn iteration.
+
+a = p ./ (xi*b);
+b = q ./ (xi'*a);
+
+%%
+% _Exercice 3:_ (<../missing-exo/ check the solution>)
+% Implement Sinkhorn algorithm.
+% Display the evolution of the constraints satisfaction errors 
+% \( \norm{ \pi \ones - p }, \norm{ \pi^T \ones - q } \)
+% (you need to think how to compute it from \((a,b)\).
+
+exo3;
+
+%%
+% Display the coupling. Use a log domain plot to better vizualize it.
+
+Pi = diag(a)*xi*diag(b);
+clf;
+imageplot(log(Pi+1e-5));
+
+%%
+% One can compute an approximation of the transport plan
+% between the two measure by computing the so-called barycentric projection map
+% \[ t_i \in [0,1] \longmapsto s_j \eqdef \frac{\sum_{j} \pi_{i,j} t_j }{ \sum_{j} \pi_{i,j} }
+%    =  \frac{ [a \odot \xi(b \odot t)]_j }{ p_i }. \]
+% where \(\odot\) and \(\frac{\cdot}{\cdot}\) are the enry-wise multiplication and division.
+
+%%
+% This computation can thus be done using only multiplication with the
+% kernel \(\xi\).
+
+s = (xi*(b.*t)) .* a ./ p;
+
+%%
+% Display the transport map, super-imposed over the coupling.
+
+clf; hold on;
+imagesc(t,t,log(Pi+1e-5)); colormap gray(256);
+plot(s,t, 'r', 'LineWidth', 3);
+axis image; axis off; axis ij;
+
+%% Wasserstein Barycenters
+% Instead of computing transport, we now turn to the problem of computing
+% barycenter of measures. A barycenter \(q\) solves
+% \[ \umin{q} \sum_{k=1}^K W_\ga(p_k,q)  \]
+% where \(\la_k\) are positive weights with \(\sum_k \la_k=1\). This
+% follows the definition of barycenters proposed in
+% <#biblio [AguehCarlier]>.
+
+%%
+% With of the histograms.
+
+N = 70;
+
+%%
+% Load input histograms \( (p_k)_{k=1}^K \).
+
+names = {'disk' 'twodisks' 'letter-x' 'letter-z'};
+r = [.35 .19 .12*N .12*N]; 
+vmin = .05;
+P = [];
+for i=1:length(names)
+    options.radius = r(i);
+    p = load_image(names{i},N, options); 
+    p = normalize( rescale(p)+vmin );
+    P(:,:,i) = p;
+end
+K = size(P,3);
+
+%%
+% Display the input histograms.
+
+a = mat2cell(P, N,N,ones(K,1));
+clf;
+imageplot(a, '', 2,2);
+
+%%
+% In this specific case, the kernel \(\xi\) associated with the
+% squared Euclidean norm is a convolution with a Gaussian filter
+% \[ \xi_{i,j} = e^{ -\norm{i/N-j/N}^2/\gamma } \]
+% where here \((i,j)\) are 2-D indexes. 
+
+%%
+% The multiplication against the kernel \(\xi(a_\ell)\)
+% can now be computed efficiently, using fast convolution methods.
+% This
+% crucial points was exploited and generalized in <#biblio [SolomonEtAl]>
+% to design fast optimal transport algorithm. 
+
+%%
+% Regularization strength \(\ga\).
+
+gamma = (.04)^2;
+
+%%
+% Define the \(\xi\) kernel.
+% We use here the fact that the convolution is separable to implement it
+% using only 1-D convolution, which further speeds up computations. 
+
+n = 41; % width of the convolution kernel
+t = linspace(-n/(2*N),n/(2*N),n)';
+g = exp(-t.^2 / gamma); g2 = g*g';
+xi = @(x)conv2(conv2(x, g, 'same')', g, 'same')';
+
+%%
+% Display the application of the \(\xi\) kernel on one of the input histogram.
 
 clf;
-imageplot(pi);
+imageplot({P(:,:,1) xi(P(:,:,1))});
 
 %%
-% For visualization purpose, to more clearly see the optimal map, do a
-% normalization.
+% Weights for isobarycenter.
 
-normalizeMax = @(pi)pi ./ repmat( max(pi,[],1), [N 1] );
+lambda = ones(K,1)/K;
+
+%%
+% It is shown in <#biblio [BenamouEtAl]> that the problem of Barycenter computation
+% boilds down to
+% optimizing over couplings \((\pi_k)_k\), and that this can be achieved
+% using iterative Bregman projection that defines iterates \((\pi_{k,\ell})_k\).
+% These iterates can be written using diagonal scalings 
+% \( \pi_{k,\ell} \eqdef \diag(a_{k,\ell}) \xi \diag(b_{k,\ell}). \)
+
+%%
+% Initialize the scaling factors.
+
+b = ones(N,N,K); a = b;
+
+%%
+% The first step of the Bregman projection method corresponds to the
+% projection on the fixed marginals constraints \(\pi_k \ones=p_k\). This
+% is achieved by updating 
+% \[ \forall k=1,\ldots,K, \quad a_{k,\ell+1} = \frac{p_k}{ \xi( b_{k,\ell} ) }. \]
+
+for k=1:K
+    a(:,:,k) = P(:,:,k) ./ xi(b(:,:,k));
+end
+
+%%
+% The second step of the Bregman projection method corresponds to the
+% projection on the equal marginals constraints \(\forall k, \pi_k^T \ones=q\). This
+% is achieved by first computing the target barycenter using a geometric means 
+% \[ \log(q_\ell) \eqdef \sum_k \lambda_k \log( b_{k,\ell} \odot \xi( a_{k,\ell} ) ). \]
+
+
+q = zeros(N);
+for k=1:K
+    q = q + lambda(k) * log( max(1e-19, b(:,:,k) .* xi(a(:,:,k)) ) );
+end
+q = exp(q);
+
+%%
+% And then one can update the other maginals to be equal to this barycenter at step \(\ell\).
+% \[ \forall k=1,\ldots,K, \quad b_{k,\ell+1} \eqdef \frac{q_\ell}{ \xi(a_{k,\ell+1}) }. \]
+
+for k=1:K
+    b(:,:,k) = q ./ xi(a(:,:,k));
+end
+
+
+%%
+% _Exercice 4:_ (<../missing-exo/ check the solution>)
+% Implement the iterative algorithm to compute the iso-barycenter of the measures.
+% Plot the decay of the error \( \sum_k \norm{\pi_k \ones - p_k} \). 
+
+exo4;
+
+%%
+% Display the barycenter.
+
 clf;
-imageplot(normalizeMax(pi));
+imageplot(q);
 
 %%
-% _Exercice 2:_ (<../missing-exo/ check the solution>)
-% Display the transport map for several values of \(\gamma\).
+% _Exercice 5:_ (<../missing-exo/ check the solution>)
+% Compute barycenters for varying weights \(\la\) corresponding to 
+% a bilinear interpolation inside a square.
 
-exo2;
-% 
+exo5;
+
+
 
 %% Bibliography
 % <html><a name="biblio"></a></html>
 
 %%
-% * [Villani] Villani, C. (2009). Optimal transport: old and new, volume 338. Springer Verlag.
-% * [Cuturi] Cuturi, M. (2013). Sinkhorn distances: Lightspeed computation of optimal transport. In Burges, C. J. C., Bottou, L., Ghahramani, Z., and Weinberger, K. Q., editors, Proc. NIPS, pages 2292-2300.
-% * [AguehCarlier] Agueh, M. and Carlier, G. (2011). Barycenters in the Wasserstein space. SIAM J. on Mathematical Analysis, 43(2):904-924.
-% * [CuturiDoucet] Cuturi, M. and Doucet, A. (2014). Fast computation of wasserstein barycenters. In Proc. ICML.
+% * [Villani] C. Villani, (2009). Optimal transport: old and new, volume 338. Springer Verlag.
+% * [Cuturi] M. Cuturi, (2013). Sinkhorn distances: Lightspeed computation of optimal transport. In Burges, C. J. C., Bottou, L., Ghahramani, Z., and Weinberger, K. Q., editors, Proc. NIPS, pages 2292-2300.
+% * [AguehCarlier] M. Agueh, and G Carlier, (2011). Barycenters in the Wasserstein space. SIAM J. on Mathematical Analysis, 43(2):904-924.
+% * [CuturiDoucet] M. Cuturi and A. Doucet (2014). Fast computation of wasserstein barycenters. In Proc. ICML.
 % * [BauschkeLewis] H. H. Bauschke and A. S. Lewis. Dykstra's algorithm with Bregman projections: a convergence proof. Optimization, 48(4):409-427, 2000.
-
+% * [Sinkhorn] R. Sinkhorn. A relationship between arbitrary positive matrices and doubly stochastic matrices. Ann. Math. Statist., 35:876-879, 1964.
+% * [SolomonEtAl] J. Solomon, F. de Goes, G. Peyré, M. Cuturi, A. Butscher, A. Nguyen, T. Du, and L. Guibas. Convolutional Wasserstein distances: Efficient optimal transportation on geometric domains. Transaction on Graphics, Proc. SIGGRAPH, 2015.
+% * [BenamouEtAl] J-D. Benamou, G. Carlier, M. Cuturi, L. Nenna, G. Peyré. Iterative Bregman Projections for Regularized Transportation Problems. SIAM Journal on Scientific Computing, 37(2), pp. A1111-A1138, 2015. 
 ##### SOURCE END #####
 -->
    </body>

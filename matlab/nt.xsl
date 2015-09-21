@@ -14,7 +14,7 @@ $Revision: 1.1.6.14 $  $Date: 2006/11/29 21:50:11 $
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
   <xsl:output method="html"
-    indent="yes" 
+    indent="yes"
     doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"/>
   <xsl:strip-space elements="mwsh:code"/>
 
@@ -38,14 +38,14 @@ To make changes, update the M-file and republish this document.
       </xsl:comment>
 
   <!-- jsMath loading -->
-  <!-- 
+  <!--
         <SCRIPT SRC="http://www.ceremade.dauphine.fr/~peyre/numerical-tour/jsMath/easy/load.js"></SCRIPT>
   -->
     <!-- MathJax.js loading -->
-  <!--  OLD 
+  <!--  OLD
   <SCRIPT SRC="../../MathJax/MathJax.js?config=default"></SCRIPT>
   -->
-  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script> 
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 
   <p style="font-size:0px">
 \[
@@ -143,7 +143,6 @@ To make changes, update the M-file and republish this document.
 \newcommand{\normz}[1]{\norm{#1}_{0}}
 \newcommand{\abs}[1]{\vert #1 \vert}
 
-
 \newcommand{\argmin}{\text{argmin}}
 \newcommand{\argmax}{\text{argmax}}
 \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
@@ -174,19 +173,21 @@ To make changes, update the M-file and republish this document.
 \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
 \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
 \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+
+\newcommand{\eqdef}{\equiv}
 \]
 </p>
 
     <title><xsl:value-of select="$title"/></title>
 
-	<NOSCRIPT> 
-	<DIV STYLE="color:#CC0000; text-align:center"> 
-	<B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
-	requires JavaScript to process the mathematics on this page.<BR/> 
-	If your browser supports JavaScript, be sure it is enabled.</B> 
-	</DIV><HR/> 
+	<NOSCRIPT>
+	<DIV STYLE="color:#CC0000; text-align:center">
+	<B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A>
+	requires JavaScript to process the mathematics on this page.<BR/>
+	If your browser supports JavaScript, be sure it is enabled.</B>
+	</DIV><HR/>
 	</NOSCRIPT>
-	
+
 
     <meta name="generator">
       <xsl:attribute name="content">MATLAB <xsl:value-of select="version"/></xsl:attribute>
@@ -204,7 +205,7 @@ To make changes, update the M-file and republish this document.
   </head>
 
   <body>
-    
+
     <xsl:call-template name="header"/>
 
     <div class="content">
@@ -219,7 +220,7 @@ To make changes, update the M-file and republish this document.
 			<xsl:apply-templates select="cell[1]/text"/>
 		</introduction>
     </xsl:if>
-    
+
     <xsl:variable name="body-cells" select="cell[not(@style = 'overview')]"/>
 
     <!-- Include contents if there are titles for any subsections. -->
@@ -228,7 +229,7 @@ To make changes, update the M-file and republish this document.
         <xsl:with-param name="body-cells" select="$body-cells"/>
       </xsl:call-template>
     </xsl:if>
-    
+
     <!-- Loop over each cell -->
     <xsl:for-each select="$body-cells">
         <!-- Title of cell -->
@@ -264,14 +265,14 @@ To make changes, update the M-file and republish this document.
     </p>
 
     </div>
-    
+
     <xsl:apply-templates select="originalCode"/>
 
   </body>
 </html>
 </xsl:template>
 
-<xsl:template name="stylesheet">  
+<xsl:template name="stylesheet">
 
 </xsl:template>
 
@@ -283,7 +284,7 @@ To make changes, update the M-file and republish this document.
   <h2>Contents</h2>
   <div><ul>
     <xsl:for-each select="$body-cells">
-      <xsl:if test="./steptitle">        
+      <xsl:if test="./steptitle">
         <li><a><xsl:attribute name="href">#<xsl:value-of select="position()"/></xsl:attribute><xsl:value-of select="steptitle"/></a></li>
       </xsl:if>
     </xsl:for-each>
@@ -417,10 +418,10 @@ To make changes, update the M-file and republish this document.
       <xsl:value-of select=
         "concat(substring-before($outputString,$target),$replacement)"/>
       <xsl:call-template name="globalReplace">
-        <xsl:with-param name="outputString" 
+        <xsl:with-param name="outputString"
           select="substring-after($outputString,$target)"/>
         <xsl:with-param name="target" select="$target"/>
-        <xsl:with-param name="replacement" 
+        <xsl:with-param name="replacement"
           select="$replacement"/>
       </xsl:call-template>
     </xsl:when>
