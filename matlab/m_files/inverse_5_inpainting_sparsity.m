@@ -222,7 +222,7 @@ lambda = .03;
 %%
 % Since we use \( \tau=1 \) and \( \Phi = \Phi^* = \text{diag}(1-\Omega) \),  the gradient descent step 
 % is a projection on the inpainting constraint 
-% \[ C = \{ f \backslash \forall \Omega(x)=0, f(x)=y(x) \} \]
+% \[Â C = \{ f \backslash \forall \Omega(x)=0, f(x)=y(x) \} \]
 % One thus has
 % \[ f - \tau \Phi^{*} (\Phi f - y)  = \text{Proj}_C(f) \]
 
@@ -314,7 +314,7 @@ imwrite(clamp(fSpars), [rep name '-inpainting-l1ortho.png'], 'png');
 % \[a^{\star} \in \text{argmin}_a \: E(a) = \frac{1}{2}\|y-\Phi \Psi a\|^2 + \lambda J(a)\]
 
 %%
-% *Important*: The operator \(\Psi^*\) is the forward translation invariant wavele transform. 
+% *Important*: The operator \(\Psi^*\) is the forward translation invariant wavelet transform. 
 % It computes the inner product with the unit norm wavelet atoms:
 % \[ (\Psi^* f)_m = \langle f,\psi_m \rangle \quad \text{with} \quad \|\psi_m\|=1. \]
 
@@ -337,7 +337,7 @@ u = [4^(-J) 4.^(-floor(J+2/3:-1/3:1)) ];
 U = repmat( reshape(u,[1 1 length(u)]), [n n 1] );
 
 %%
-% Value of the regularization parameter.
+% Choose a value of the regularization parameter.
 
 lambda = .01;
 
