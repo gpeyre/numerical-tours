@@ -90,7 +90,7 @@ Lambda = rand(n,n)>rho;
 %%
 % Masking operator \( \Phi \).
 
-Phi = @(f)f.*Lambda;
+Phi = @(f) f.*Lambda;
 
 %%
 % Compute the observations \(y=\Phi f_0\).
@@ -120,20 +120,20 @@ imageplot(y);
 %%
 % Shorcut for the operators.
 
-K  = @(f)grad(f);
-KS = @(u)-div(u);
+K  = @(f) grad(f);
+KS = @(u) -div(u);
 
 %%
 % Shortcut for the TV norm.
 
-Amplitude = @(u)sqrt(sum(u.^2,3));
-F = @(u)sum(sum(Amplitude(u)));
+Amplitude = @(u) sqrt(sum(u.^2,3));
+F = @(u) sum(sum(Amplitude(u)));
 
 %%
 % The proximal operator of the vectorial \(\ell^1\) norm reads
 % \[ \text{Prox}_{\lambda F}(u) = \max\pa{0,1-\frac{\la}{\norm{u_k}}} u_k \]
 
-ProxF = @(u,lambda)max(0,1-lambda./repmat(Amplitude(u), [1 1 2])).*u;
+ProxF = @(u,lambda) max(0,1-lambda./repmat(Amplitude(u), [1 1 2])).*u;
 
 %%
 % Display the thresholding on the vertical component of the vector.
@@ -147,7 +147,8 @@ surf(V(:,:,1));
 colormap jet(256);
 view(150,40);
 axis('tight');
-camlight; shading interp;
+camlight;  % XXX Remove if you use Octave
+shading interp;
 
 %%
 % For any 1-homogeneous convex
@@ -166,7 +167,7 @@ camlight; shading interp;
 % make use of Moreau's identity:
 %   \[ x = \text{Prox}_{\tau F^*}(x) + \tau \text{Prox}_{F/\tau}(x/\tau) \]
 
-ProxFS = @(y,sigma)y-sigma*ProxF(y/sigma,1/sigma);
+ProxFS = @(y,sigma) y-sigma*ProxF(y/sigma,1/sigma);
 
 %%
 % Display this dual proximal on the vertical component of the vector.
@@ -177,7 +178,8 @@ surf(V(:,:,1));
 colormap jet(256);
 view(150,40);
 axis('tight');
-camlight; shading interp;
+camlight;  % XXX Remove if you use Octave
+shading interp;
 
 %%
 % The proximal operator of \(G = i_H\) is the projector on \(H\). In our
@@ -185,7 +187,7 @@ camlight; shading interp;
 % compute
 % \[ \text{Prox}_{\tau G}(f) = \text{Proj}_{H}(f) = f + \Phi(y - \Phi(f)) \]
 
-ProxG = @(f,tau)f + Phi(y - Phi(f));
+ProxG = @(f,tau) f + Phi(y - Phi(f));
 
 
 %% Primal-dual Total Variation Regularization Algorithm
@@ -210,28 +212,29 @@ g = K(y)*0;
 f1 = f;
 
 %%
-% Example of one iterations.
+% Example of one iteration.
 
 fold = f;
 g = ProxFS( g+sigma*K(f1), sigma);
-f = ProxG(  f-tau*KS(g), tau);
+f = ProxG( f-tau*KS(g), tau);
 f1 = f + theta * (f-fold);
 
 %EXO
 %% Implement the primal-dual algorithm.
 %% Monitor the evolution of the TV energy \(F(K(f_k))\)
-%% during the iterations.
+%% during the iterations (is it decreasing ?).
 %% Note that one always has \( f_k \in H \) so that the iterates
 %% satisfies the constraints.
 niter = 200;
-E = []; C = [];
+E = [];
+C = [];
 for i=1:niter    
-    % update
+    % Update
     fold = f;
     g = ProxFS( g+sigma*K(f1), sigma);
-    f = ProxG(  f-tau*KS(g), tau);
+    f = ProxG( f-tau*KS(g), tau);
     f1 = f + theta * (f-fold);
-    % monitor the decay of the energy
+    % Monitor the decay of the energy
     E(i) = F(K(f));
     C(i) = snr(f0,f);
 end
@@ -260,19 +263,19 @@ imageplot(f);
 
 %%
 % To emphasis the effect of the TV functional, we use a simple geometric
-% image.
+% image (a square).
 
 n = 64;
 name = 'square';
 f0 = load_image(name,n);
 
 %%
-% We remove the central part of the image.
+% We remove the central part of the image along the x axis.
 
 a = 4;
 Lambda = ones(n);
 Lambda(end/2-a:end/2+a,:) = 0;
-Phi = @(f)f.*Lambda;
+Phi = @(f) f.*Lambda;
 
 %%
 % Display.
@@ -284,9 +287,10 @@ imageplot(Phi(f0), 'Damaged', 1,2,2);
 %EXO
 %% Display the evolution of the inpainting process.
 y = Phi(f0);
-ProxG = @(f,tau)f + Phi(y - Phi(f));
+ProxG = @(f,tau) f + Phi(y - Phi(f));
 niter = 600;
-ndisp = round(linspace(1,niter, 5)); ndisp(1) = [];
+ndisp = round(linspace(1,niter, 5));
+ndisp(1) = [];
 E = [];
 f = y;
 g = K(y)*0;
@@ -294,14 +298,14 @@ f1 = f;
 q = 1;
 clf;
 for i=1:niter    
-    % update
+    % Update
     fold = f;
     g = ProxFS( g+sigma*K(f1), sigma);
-    f = ProxG(  f-tau*KS(g), tau);
+    f = ProxG( f-tau*KS(g), tau);
     f1 = f + theta * (f-fold);
-    % monitor the decay of the energy
+    % Monitor the decay of the energy
     E(i) = F(K(f));
-    if i==ndisp(q)
+    if i == ndisp(q)
         subplot(2,2,q);
         imageplot(f);
         q = q+1;
