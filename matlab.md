@@ -5,7 +5,7 @@ description: "Numerical Tours in Matlab"
 header-img: "img/hokusai-6.jpg"
 ---
 
-These are the [Matlab](http://www.mathworks.fr/products/matlab/) tours, that can be browsed as HTML pages, but can also be downloaded as iPython notebooks. Please read the [installation page](../installation_matlab/) for more information about how to run these tours.
+These are the [Matlab](http://www.mathworks.fr/products/matlab/) tours, that can be browsed as HTML pages, but can also be downloaded as iPython notebooks. Please read the [installation page](../installation_matlab/) for more information about how to run these tours. A lot of Matlab tours are also compatible with [Scilab](http://www.scilab.org/) and with [GNU Octave](https://www.gnu.org/software/octave/).
 
 <p align="center">
 <br/>

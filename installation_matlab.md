@@ -17,6 +17,13 @@ Each tour makes use some of the following toolboxes, that needs to be downloaded
 
 Alternatively, you can download the whole [numerical_tours][1].
 
+
+Scilab and Octave
+------------
+
+Note that a lot of Matlab tours are also compatible with [Scilab](http://www.scilab.org/) and with [GNU Octave](https://www.gnu.org/software/octave/).
+
+
 Installation of IPython
 ------------
 
