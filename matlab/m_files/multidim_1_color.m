@@ -49,21 +49,21 @@ imageplot({f mean(f,3)}, {'f' 'L'});
 %% CMY Color Space
 % Another popular representation for color images uses as basis colors the
 % cyan, magenta and yellow (CMY color space). They are computed as
-% \[ C=1-R, \quad f=1-G, \quad Y=1-B. \]
+% \[ C=1-R, \quad M=1-G, \quad Y=1-B. \]
 
 %%
 % One can display on screen a color image in CMY space using the rule of substractive color
 % mixing. 
 
 %%
-% Show the C, f, Y channels.
+% Show the C, M, Y channels.
 
 f1 = cat(3, f(:,:,1),     f(:,:,2)*0+1, f(:,:,3)*0+1);
 f2 = cat(3, f(:,:,1)*0+1, f(:,:,2)    , f(:,:,3)*0+1);
 f3 = cat(3, f(:,:,1)*0+1, f(:,:,2)*0+1, f(:,:,3));
 clf;
 imageplot({f f1 f2 f3}, ...
-        { 'f' 'C' 'f' 'Y'}, 2, 2);
+        { 'f' 'C' 'M' 'Y'}, 2, 2);
 
 %% YUV Color Space
 % A linear color space is defined by applying a transformation
@@ -71,7 +71,7 @@ imageplot({f f1 f2 f3}, ...
 
 %%
 % It means that each pixel values \(f(x) \in \RR^3\) is replaced by
-% \(\tilde f(x) = T f(x)\), which store the three channels in the novel color space.
+% \(\tilde{f}(x) = T f(x)\), which store the three channels in the novel color space.
 
 %% 
 % An example of transformation is the YUV color space, where Y is the
@@ -90,8 +90,8 @@ T = [.299 .587 .114; ...
 %% 
 % The RGB to YUV conversion is obtained by applying the matrix.
 
-applymat = @(f,T)reshape( reshape(f, [n*n 3])*T, [n n 3] );
-rgb2yuv  = @(f)applymat(f,T);
+applymat = @(f, T) reshape( reshape(f, [n*n 3])*T, [n n 3] );
+rgb2yuv  = @(f) applymat(f, T);
 
 %%
 % Display the YUV channels.
@@ -111,7 +111,7 @@ U1(:,:,2:3) = U1(:,:,2:3)/2;
 
 %EXO
 %% Recover an image from the transformed YUV representation \(U_1\).
-rgb2yuv = @(f)applymat(f,T^(-1));
+rgb2yuv = @(f) applymat(f, T^(-1));
 f1 = rgb2yuv(U1);
 clf;
 imageplot(f, 'Image', 1,2,1);
@@ -134,15 +134,15 @@ imageplot(clamp(f1), 'Modified', 1,2,2);
 % First we compute the value (luminance) coordinate, which is the orthogonal
 % projection on \([1, 1, 1]\).
 
-Value = @(f)sum(f, 3) / sqrt(3);
+Value = @(f) sum(f, 3) / sqrt(3);
 
 %% 
-% The we compute the projection on the plane orthogonal to \([1, 1, 1]\), for
-% instance using the projections \(A\) and \(B\) on the two orthognoal unit vectors 
-% \[ [0, 1, -1]/\sqrt{2} \qandq  [2, -1, -1]/\sqrt{6}. \]
+% Then we compute the projection on the plane orthogonal to \([1, 1, 1]\), for
+% instance using the projections \(A\) and \(B\) on the two orthogonal unit vectors 
+% \[[0, 1, -1]/\sqrt{2} \qandq  [2, -1, -1]/\sqrt{6}. \]
 
-A = @(f)( f(:,:,2)-f(:,:,3) )/sqrt(2);
-B = @(f)( 2*f(:,:,1) - f(:,:,2) - f(:,:,3) )/sqrt(6);
+A = @(f) ( f(:,:,2) - f(:,:,3) )/sqrt(2);
+B = @(f) ( 2*f(:,:,1) - f(:,:,2) - f(:,:,3) )/sqrt(6);
 
 %%
 % The \((V,A,B)\) components are obtained from RGB using 
@@ -155,8 +155,8 @@ T = [   1/sqrt(3) 1/sqrt(3) 1/sqrt(3); ...
 %%
 % The Hue/Saturation are the polor coordinates within this plane.
 
-Saturation = @(f)sqrt( A(f).^2 + B(f).^2 );
-Hue = @(f)atan2(B(f),A(f));
+Saturation = @(f) sqrt( A(f).^2 + B(f).^2 );
+Hue = @(f) atan2(B(f), A(f));
 
 %%
 % Shortcut for HSV color transformation.
@@ -198,7 +198,7 @@ end
 % adapted to an image to process.
 
 %%
-% Store appart the mean.
+% Store appart the mean of the image.
 
 m = mean(mean(f,1), 2);
 
@@ -231,7 +231,7 @@ C = (X'*X)/N;
 % The transformed image \(g\) in PCA space is defined as
 % \[ g(x) = V^*(f(x)-m) \]
 
-rgb2pca = @(f,V,m)applymat(f - repmat(m, [n n 1]),V);
+rgb2pca = @(f,V,m) applymat(f - repmat(m, [n n 1]),V);
 g = rgb2pca(f,V,m);
 
 %%
@@ -264,7 +264,7 @@ imageplot(clamp(f1), 'f_1', 1,2,2);
 
 %% Color Histograms
 % To better understand the colors structure of an image, it is useful to
-% visualize histogram of the color repartition.
+% visualize histograms of the color repartition.
 
 %%
 % We can display the 1-D histogram of each RGB color channel.
@@ -371,7 +371,7 @@ imageplot( func(hist2d(X,Q)) );
 sigma = .13;
 
 %%
-% A noisy image color image \(f_1\) is corrupted by a color Gaussian noise.
+% A noisy image color image \(f_1\) is corrupted by a color Gaussian noise (not a white noise).
 
 f1 = f + randn(n,n,3)*sigma;
 
