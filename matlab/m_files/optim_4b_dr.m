@@ -166,13 +166,13 @@ proxF = @(x,y)x + pA*(y-A*x);
 
 %% 
 % The first algorithm, (DR1), reads:
-% \[ \tilde x_{k+1} = \pa{1-\frac{\mu}{2}} \tilde x_k + \frac{\mu}{2} \text{rprox}_F( \text{rprox}_\gamma(\tilde x_k)  ) 
-% \qandq x_k = \text{prox}_\gamma(\tilde x_k) \]
+% \[ \tilde x_{k+1} = \pa{1-\frac{\mu}{2}} \tilde x_k + \frac{\mu}{2} \text{rprox}_{F}( \text{rprox}_{\gamma G}(\tilde x_k)  ) 
+% \qandq x_k = \text{prox}_{\gamma G}(\tilde x_k) \]
 
 %% 
 % The first algorithm, (DR2), reads:
 % \[ \tilde x_{k+1} = \pa{1-\frac{\mu}{2}} \tilde x_k + \frac{\mu}{2} \text{rprox}_{\gamma G}( \text{rprox}_F(\tilde x_k)  ) 
-% \qandq x_k = \text{Prox}_F(\tilde x_k) \]
+% \qandq x_k = \text{prox}_{F}(\tilde x_k) \]
 
 %%
 % The advantage of (DR2) is the the iterates \(x_k\) always satisfy
@@ -202,16 +202,16 @@ niter = 500;
 %EXO
 %% Implement the DR iterative algorithm on |niter| iterations.
 %% Keep track of the evolution of the \(\ell^1\) norm.
-lun = []; err = [];
+l_one_norm = []; err = [];
 tx = zeros(n,1);
 for i=1:niter
     tx = (1-mu/2)*tx + mu/2*rproxG( rproxF(tx,y),gamma );
     x = proxF(tx,y);
-    lun(i) = norm(x,1);
+    l_one_norm(i) = norm(x,1);
     err(i) = norm(y-A*x);
 end
 clf;
-plot(lun);
+plot(l_one_norm);
 axis tight;
 %EXO
 
@@ -219,7 +219,7 @@ axis tight;
 % We display the convergence speed of the \(\ell^1\) norm on the first half iterations, in log
 % scales.
 
-plot(log10(lun(1:end/2)-lun(end)));
+plot(log10(l_one_norm(1:end/2)-l_one_norm(end)));
 axis('tight');
 
 
@@ -310,12 +310,12 @@ q = 1000;
 slist = 14:2:42;
 
 %%
-% List of sparsity of each signal
+% List of sparsity of each signal.
 
 Slist = slist(mod(0:q-1,length(slist))+1);
 
-%%per
-% Genetate signals so that |x0(:,j)| has sparsity |Slist(i)|.
+%%
+% Generate signals so that |x0(:,j)| has sparsity |Slist(i)|.
 
 U = rand(n,q);
 v = sort(U);
