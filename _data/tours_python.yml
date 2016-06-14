@@ -1,7 +1,7 @@
 
 - name: Basics
   short: basics
-  list: 
+  list:
   - name: Introduction to Image Processing
     rep: introduction_3_image
   - name: Le traitement numérique des images
@@ -9,13 +9,13 @@
 
 - name: Wavelets
   short: wavelets
-  list: 
+  list:
   - name: 2-D Daubechies Wavelets
     rep: wavelet_4_daubechies2d
 
 - name: Denoising
   short: denoising
-  list: 
+  list:
   - name: Linear Image Denoising
     rep: denoisingsimp_2b_linear_image
   - name: Wavelet Denoising
@@ -23,24 +23,34 @@
 
 - name: Inverse Problems
   short: inverse
-  list: 
+  list:
   - name: Image Deconvolution using Variational Method
     rep: inverse_2_deconvolution_variational
 
-- name: Optimisation
+- name: Optimization
   short: optim
-  list: 
+  list:
   - name: Gradient Descent Methods
     rep: optim_1_gradient_descent
+  - name: Gradient Descent (by [Laurent Condat](https://www.gipsa-lab.grenoble-inp.fr/~laurent.condat/))
+    rep: optim_1_condat_gradient_descent
+  - name: Forward-Backward Splitting (by [Laurent Condat](https://www.gipsa-lab.grenoble-inp.fr/~laurent.condat/))
+    rep: optim_2_condat_fb
+  - name: Forward-Backward method on the dual problem (by [Laurent Condat](https://www.gipsa-lab.grenoble-inp.fr/~laurent.condat/))
+    rep: optim_3_condat_fb_duality
+  - name: Douglas Rachford Proximal Splitting (by [Laurent Condat](https://www.gipsa-lab.grenoble-inp.fr/~laurent.condat/))
+    rep: optim_4_condat_dr
+  - name: Chambolle-Pock Primal-Dual Splitting Algorithm (by [Laurent Condat](https://www.gipsa-lab.grenoble-inp.fr/~laurent.condat/))
+    rep: optim_5_condat_primal_dual
 
 - name: Shapes
   short: shapes
-  list: 
+  list:
   - name: Active Contours using Parameteric Curves
     rep: segmentation_2_snakes_param
 
 - name: Geodesic Processing
   short: fastmarching
-  list: 
+  list:
   - name: Dijkstra and Fast Marching Algorithms
     rep: fastmarching_0_implementing
