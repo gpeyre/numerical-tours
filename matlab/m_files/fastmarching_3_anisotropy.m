@@ -78,7 +78,9 @@ pstart = [n n]/4;
 % Perform the propagation.
 
 hx = 1/n; hy = 1/n;
+H(i,j,:,:) = [1,0;0,1] * 10000000;
 [D, dUx, dUy, Vor, L] = fm2dAniso([hx;hy], H, pstart);
+D(1,1) = 0;
 
 %%
 % Display the result.

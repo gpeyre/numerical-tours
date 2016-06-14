@@ -1,5 +1,5 @@
 %% Inpainting using Sparse Regularization
-% This numerical tour explores the use of 
+% This numerical tour explores the use of
 % sparse energies to regularize the image inpaiting problem.
 
 perform_toolbox_installation('signal', 'general');
@@ -22,7 +22,7 @@ end
 %%
 % This tour is focussed on using sparsity to recover an image from the
 % measurements \(y\). It considers a synthesis-based regularization, that
-% compute a sparse set of coefficients \( (a_m^{\star})_m \) 
+% compute a sparse set of coefficients \( (a_m^{\star})_m \)
 % in a frame \(\Psi = (\psi_m)_m\) that solves
 % \[a^{\star} \in \text{argmin}_a \: \frac{1}{2}\|y-\Phi \Psi a\|^2 + \lambda J(a)\]
 
@@ -33,7 +33,7 @@ end
 % value through the iterations of the recovery process.
 
 %%
-% Here we used the notation 
+% Here we used the notation
 % \[\Psi a = \sum_m a_m \psi_m\]
 % to indicate the reconstruction operator, and \(J(a)\) is the \(\ell^1\)
 % sparsity prior
@@ -63,7 +63,7 @@ clf;
 imageplot(f0, 'Image f_0');
 
 
-%% 
+%%
 % Amount of removed pixels.
 
 rho = .7;
@@ -72,7 +72,7 @@ rho = .7;
 % Then we construct a mask \(\Omega\) made of random pixel locations.
 
 Omega = zeros(n,n);
-sel = randperm(n^2); 
+sel = randperm(n^2);
 Omega(sel(1:round(rho*n^2))) = 1;
 
 %%
@@ -89,9 +89,9 @@ end
 %%
 % The damaged observations reads \(y = \Phi f_0\).
 
-y = Phi(f0,Omega); 
+y = Phi(f0,Omega);
 
-%% 
+%%
 % Display the observations.
 
 clf;
@@ -142,8 +142,8 @@ axis('equal');
 %%
 % In the next section, we use an orthogonal wavelet basis \(\Psi\).
 
-%% 
-% We set the parameters of the wavelet transform. 
+%%
+% We set the parameters of the wavelet transform.
 
 Jmax = log2(n)-1;
 Jmin = Jmax-3;
@@ -162,7 +162,7 @@ if using_matlab()
     PsiS = @(f)perform_wavelet_transf(f, Jmin, +1,options);
 end
 
-%% 
+%%
 % The soft thresholding opterator in the basis \(\Psi\) is defined as
 % \[S_T^\Psi(f) = \sum_m s_T( \langle f,\psi_m \rangle ) \psi_m \]
 
@@ -193,7 +193,7 @@ imageplot( clamp(SoftThreshPsi(f0,.1)) );
 % synthesis prior is also an analysis prior, that reads
 % \[f^{\star} \in \text{argmin}_f \: E(f) = \frac{1}{2}\|y-\Phi f\|^2 + \lambda \sum_m \|\langle f,\psi_m \rangle\|. \]
 
-%% 
+%%
 % To solve this non-smooth optimization problem, one can use
 % forward-backward splitting, also known as iterative soft thresholding.
 
@@ -201,7 +201,7 @@ imageplot( clamp(SoftThreshPsi(f0,.1)) );
 % It computes a series of images \(f^{(\ell)}\) defined as
 % \[ f^{(\ell+1)} = S_{\tau\lambda}^{\Psi}( f^{(\ell)} - \tau \Phi^{*} (\Phi f^{(\ell)} - y)  ) \]
 
-%% 
+%%
 % Set up the value of the threshold.
 
 lambda = .03;
@@ -220,9 +220,15 @@ lambda = .03;
 % \[\tau = 1\]
 
 %%
+<<<<<<< Updated upstream
 % Since we use \( \tau=1 \) and \( \Phi = \Phi^* = \text{diag}(1-\Omega) \),  the gradient descent step 
 % is a projection on the inpainting constraint 
 % \[ C = \{ f \backslash \forall \Omega(x)=0, f(x)=y(x) \} \]
+=======
+% Since we use \( \tau=1 \) and \( \Phi = \Phi^* = \text{diag}(1-\Omega) \),  the gradient descent step
+% is a projection on the inpainting constraint
+% \[�C = \{ f \backslash \forall \Omega(x)=0, f(x)=y(x) \} \]
+>>>>>>> Stashed changes
 % One thus has
 % \[ f - \tau \Phi^{*} (\Phi f - y)  = \text{Proj}_C(f) \]
 
@@ -280,7 +286,7 @@ if using_matlab()
 end
 %EXO
 
-%% 
+%%
 % Display the result.
 
 clf;
@@ -294,7 +300,7 @@ niter = 1000;
 lambda_list = linspace(.03,0,niter);
 err = [];
 for i=1:niter
-    fSpars = SoftThreshPsi( ProjC(fSpars,Omega), lambda_list(i) );    
+    fSpars = SoftThreshPsi( ProjC(fSpars,Omega), lambda_list(i) );
 end
 clf;
 imageplot(clamp(fSpars), ['Sparsity inpainting, SNR=' num2str(snr(f0,fSpars),3) 'dB']);
@@ -314,7 +320,11 @@ imwrite(clamp(fSpars), [rep name '-inpainting-l1ortho.png'], 'png');
 % \[a^{\star} \in \text{argmin}_a \: E(a) = \frac{1}{2}\|y-\Phi \Psi a\|^2 + \lambda J(a)\]
 
 %%
+<<<<<<< Updated upstream
 % *Important*: The operator \(\Psi^*\) is the forward translation invariant wavelet transform. 
+=======
+% *Important*: The operator \(\Psi^*\) is the forward translation invariant wavele transform.
+>>>>>>> Stashed changes
 % It computes the inner product with the unit norm wavelet atoms:
 % \[ (\Psi^* f)_m = \langle f,\psi_m \rangle \quad \text{with} \quad \|\psi_m\|=1. \]
 
@@ -381,7 +391,7 @@ a = U.*PsiS(fSpars);
 %%
 % Gradient descent.
 
-fTI = Psi(a);    
+fTI = Psi(a);
 a = a + tau*PsiS( Phi( y-Phi(fTI,Omega),Omega ) );
 
 %%
@@ -390,7 +400,7 @@ a = a + tau*PsiS( Phi( y-Phi(fTI,Omega),Omega ) );
 a = SoftThresh( a, lambda*tau );
 
 %EXO
-%% Perform the iterative soft thresholding. Monitor the decay of the 
+%% Perform the iterative soft thresholding. Monitor the decay of the
 %% energy \(E\).
 niter = 1000;
 a = U.*PsiS(fSpars);
@@ -398,8 +408,8 @@ E = [];
 for i=1:niter
     fTI = Psi(a);
     d = y-Phi(fTI,Omega);
-    E(i) = 1/2*norm(d , 'fro')^2 + lambda * sum( abs(a(:)) );   
-    % step 
+    E(i) = 1/2*norm(d , 'fro')^2 + lambda * sum( abs(a(:)) );
+    % step
     a = SoftThresh( a + tau*PsiS(Phi(d,Omega)), lambda*tau );
 end
 clf;
@@ -425,7 +435,7 @@ lambda_list = linspace(.03,0,niter);
 for i=1:niter
     fTI = Psi(a);
     d = y-Phi(fTI,Omega);
-    % step 
+    % step
     a = SoftThresh( a + tau * PsiS( Phi(d,Omega) ) , lambda_list(i)*tau ) ;
 end
 clf;
@@ -503,19 +513,16 @@ fHard = ProjC(fHard,Omega);
 %%
 % Hard threshold (here \(\lambda=\lambda_0\)) is used).
 
-fHard = Xi( HardThresh( PsiS(fHard), tau*lambda_list(1) ) ); 
+fHard = Xi( HardThresh( PsiS(fHard), lambda_list(1) ) ); 
 
 %EXO
 %% Perform the iteration with a decaying value of \(\lambda\)
 niter = 500;
 lambda_list = linspace(1,0,niter);
-fHard = y; 
+fHard = y;
 for i=1:niter
     fHard = Xi( HardThresh(PsiS(ProjC(fHard,Omega)), lambda_list(i)) );
 end
 clf;
 imageplot(clamp(fHard), ['Inpainting hard thresh., SNR=' num2str(snr(f0,fHard),3) 'dB']);
 %EXO
-
-
-
