@@ -32,15 +32,15 @@
   list:
   - name: Gradient Descent Methods
     rep: optim_1_gradient_descent
-  - name: Gradient Descent (by [Laurent Condat](https://www.gipsa-lab.grenoble-inp.fr/~laurent.condat/))
-    rep: optim_1_condat_gradient_descent
-  - name: Forward-Backward Splitting (by [Laurent Condat](https://www.gipsa-lab.grenoble-inp.fr/~laurent.condat/))
+  - name: Gradient Descent (by Laurent Condat)
+    rep: optim_1bis_gradient_descent
+  - name: Forward-Backward Splitting (by Laurent Condat)
     rep: optim_2_condat_fb
-  - name: Forward-Backward method on the dual problem (by [Laurent Condat](https://www.gipsa-lab.grenoble-inp.fr/~laurent.condat/))
+  - name: Forward-Backward method on the dual problem (by Laurent Condat)
     rep: optim_3_condat_fb_duality
-  - name: Douglas Rachford Proximal Splitting (by [Laurent Condat](https://www.gipsa-lab.grenoble-inp.fr/~laurent.condat/))
+  - name: Douglas Rachford Proximal Splitting (by Laurent Condat)
     rep: optim_4_condat_dr
-  - name: Chambolle-Pock Primal-Dual Splitting Algorithm (by [Laurent Condat](https://www.gipsa-lab.grenoble-inp.fr/~laurent.condat/))
+  - name: Chambolle-Pock Primal-Dual Splitting Algorithm (by Laurent Condat)
     rep: optim_5_condat_primal_dual
 
 - name: Shapes
