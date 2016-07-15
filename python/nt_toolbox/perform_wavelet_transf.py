@@ -37,7 +37,7 @@ def perform_wavelet_transf(f, Jmin, dir, filter = "9-7",separable = 0, ti = 0):
     else: 
         raise ValueError('Unknown filter')
 
-    if  d == 2 and separable == 1:
+    if d == 2 and separable == 1:
         ti = 0
         if ti == 1:
             wrn.warning("Separable does not works for translation invariant transform")
@@ -88,6 +88,7 @@ def perform_wavelet_transf(f, Jmin, dir, filter = "9-7",separable = 0, ti = 0):
         #    x = np.tile(x,(1,1,1))
         for j in jlist:
             dist = 2**(Jmax - j)
+            
             if d == 1:
                 if dir == 1:
                     x[:(j-Jmin+2),:,:] = lifting_step_ti(x[0,:,:], h, dir, dist)
@@ -95,6 +96,7 @@ def perform_wavelet_transf(f, Jmin, dir, filter = "9-7",separable = 0, ti = 0):
                     x[0,:,:] = lifting_step_ti(x[:(j-Jmin+2),:,:], h, dir, dist)                
             else:
                 dj = 3*(j-Jmin)
+           
                 if dir == 1:
                     x[[0,dj+1],:,:] = lifting_step_ti(x[0,:,:], h, dir, dist)
                 
@@ -105,17 +107,19 @@ def perform_wavelet_transf(f, Jmin, dir, filter = "9-7",separable = 0, ti = 0):
                     x[[1+dj,3+dj],:,:] = lifting_step_ti(np.transpose(x[dj+1,:,:]), h, dir, dist)
                     x[dj+1,:,:] = np.transpose(x[dj+1,:,:])
                     x[dj+3,:,:] = np.transpose(x[dj+3,:,:])               
-                else:  
+                else:
+   
                     x[dj+1,:,:] = np.transpose(x[dj+1,:,:])
                     x[dj+3,:,:] = np.transpose(x[dj+3,:,:])
                     
                     x[dj+1,:,:] = np.transpose(lifting_step_ti(x[[1+dj, 3+dj],:,:], h, dir, dist))
-                   
+                    
                     x[0,:,:] = np.transpose(x[0,:,:])
                     x[dj+2,:,:] = np.transpose(x[dj+2,:,:])
                     x[0,:,:] = np.transpose(lifting_step_ti(x[[0,dj+2],:,:], h, dir, dist))
-                    
-                    x[0:,:] = lifting_step_ti( x[[0,dj+1],:,:], h, dir, dist)
+
+                    x[0,:,:] = lifting_step_ti(x[[0,dj+1],:,:], h, dir, dist)
+     
         if dir == -1:
             x = x[0,:,:]
     
@@ -179,7 +183,7 @@ def lifting_step_ti(x0, h, dir, dist):
     
     s2[s2 > n] = 2*n - s2[s2 > n]
     s2[s2 < 1] = 2   - s2[s2 < 1]
-    
+
     #indices in python start from 0
     s1 = s1 - 1
     s2 = s2 - 1
@@ -198,19 +202,15 @@ def lifting_step_ti(x0, h, dir, dist):
             
     else:
         # retrieve detail coefs
+        
         d = x[1,:,:]*h[-1]
         x = x[0,:,:]/h[-1]
-        print(x)
-        if np.ndim(x) == 2:
-            x = np.tile(x,(1,1,1))
-            d = np.tile(d,(1,1,1))
+
         for i in range(m,0,-1):
-            x = x - h[2*i-1] * (d[:,s1,:] + d[:,s2,:])
-            d = d + h[2*i-2] * (x[:,s1,:] + x[:,s2,:])
-            
+            x = x - h[2*i-1] * (d[s1,:] + d[s2,:])
+            d = d + h[2*i-2] * (x[s1,:] + x[s2,:])
+  
         # merge
         x = (x + d)/2
-        if np.ndim(x) == 3:
-            x = x[0]
         
     return x
