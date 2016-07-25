@@ -103,15 +103,16 @@ def imageplot(f, str='', sbpt=[]):
     if str != '':
         plt.title(str)
 
-def load_image(name, n=-1, flatten=1, resc=1):
+def load_image(name, n=-1, flatten=1, resc=1, grayscale=1):
     """
         Load an image from a file, rescale its dynamic to [0,1], turn it into a grayscale image
         and resize it to size n x n.
     """
     f = plt.imread(name)
     # turn into normalized grayscale image
-    if (flatten==1) and np.ndim(f)>2:
-        f = np.sum(f, axis=2)
+    if grayscale == 1: 
+        if (flatten==1) and np.ndim(f)>2:
+            f = np.sum(f, axis=2)
     if resc==1:
         f = nt.rescale(f)
     # change the size of the image
