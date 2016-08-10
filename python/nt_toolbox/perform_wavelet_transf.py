@@ -25,6 +25,9 @@ def perform_wavelet_transf(f, Jmin, dir, filter = "9-7",separable = 0, ti = 0):
     #copy f
     x = np.copy(f)
     
+    #convert Jmin to int
+    Jmin = int(Jmin)
+    
     # detect dimensionality 
     d = np.ndim(x)
     # P/U/P/U/etc the last coefficient is scaling
