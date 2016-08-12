@@ -2,7 +2,7 @@ import numpy as np
 import pylab as pyl
 from scipy import signal
 
-def perform_blurring(M, sigma, bound):
+def perform_blurring(M, sigma, bound="sym"):
     """
         perform_blurring - gaussian blurs an image
     
@@ -87,7 +87,7 @@ def build_gaussian_filter_2d(n,s,N=[]):
      
         The filter is normalised so that it sums to 1.
      
-        Copyright (c) 2004 Gabriel PeyrŽ
+        Copyright (c) 2004 Gabriel Peyre
     """
     
     n = np.asarray(n)
@@ -184,9 +184,27 @@ def perform_convolution(x,h,bound="sym"):
     
     if bound == 'sym':
     
-        #################################
+                #################################
         # symmetric boundary conditions #
-        raise Exception('Not yet implemented')
+        d1 = np.asarray(p).astype(int)/2  # padding before
+        d2 = p - d1 - 1    			    # padding after
+        
+        if nd == 1:
+        ################################# 1D #################################
+            nx = len(x)
+            xx = np.vstack((x[d1:-1:-1],x,x[nx-1:nx-d2-1:-1]))
+            y = signal.convolve(xx,h)
+            y = y[p:nx-p-1]
+                           
+        elif nd == 2:
+        ################################# 2D #################################
+            #double symmetry
+            nx,ny=np.shape(x)
+            xx = x
+            xx = np.vstack((xx[d1[0]:-1:-1,:], xx, xx[nx-1:nx-d2[0]-1:-1,:]))
+            xx = np.hstack((xx[:,d1[1]:-1:-1], xx, xx[:,ny-1:ny-d2[1]-1:-1]))
+            y = signal.convolve2d(xx,h)
+            y = y[(2*d1[0]):(2*d1[0]+n[0]+1), (2*d1[1]):(2*d1[1]+n[1]+1)]        
         
     else:
     
