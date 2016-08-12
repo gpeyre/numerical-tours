@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from nt_toolbox.signal import imageplot
 
-def plot_levelset(Z,level,f=-1):
+def plot_levelset(Z, level=0, f=-1):
     """
         f is supposed to be of the same shape as Z
     """
