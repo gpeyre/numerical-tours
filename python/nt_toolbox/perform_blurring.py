@@ -203,7 +203,7 @@ def perform_convolution(x,h,bound="sym"):
             xx = x
             xx = np.vstack((xx[d1[0]:-1:-1,:], xx, xx[nx-1:nx-d2[0]-1:-1,:]))
             xx = np.hstack((xx[:,d1[1]:-1:-1], xx, xx[:,ny-1:ny-d2[1]-1:-1]))
-            y = signal.convolve2d(xx,h)
+            y = signal.convolve2d(xx,h,mode="same")
             y = y[(2*d1[0]):(2*d1[0]+n[0]+1), (2*d1[1]):(2*d1[1]+n[1]+1)]        
         
     else:
