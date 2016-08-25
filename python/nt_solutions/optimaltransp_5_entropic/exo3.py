@@ -21,4 +21,4 @@ plt.subplot(2,1,2)
 plt.title("$||\pi^T -q||$")
 plt.plot(np.log(np.asarray(Err_q)), linewidth = 2)
 
-plt.show()                           
+plt.show()                                 

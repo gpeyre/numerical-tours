@@ -1,5 +1,9 @@
+# Insert your code here.
+
 m = 5 
-[T,S] = np.meshgrid(np.linspace(0,1,m), np.linspace(0,1,m));
+[T,S] = np.meshgrid(np.linspace(0,1,m), np.linspace(0,1,m))
+T = np.ravel(T,order="F")
+S = np.ravel(S,order="F")
 niter = 1000
 
 for j in range(m**2):
@@ -17,12 +21,13 @@ for j in range(m**2):
         q = np.zeros(N)
     
         for k in range(K):
-            q = q + lambd[k] * np.log10(np.maximum(1e-19*np.ones(len(b[:,:,k])), b[:,:,k]*xi(a[:,:,k])))
+            q = q + lambd[k] * np.log(np.maximum(1e-19*np.ones(len(b[:,:,k])), b[:,:,k]*xi(a[:,:,k])))
 
         q = np.exp(q)
+        
         for k in range(K):
             b[:,:,k] = q/xi(a[:,:,k])
             
     # display
-    plt.subplot(m,m,j+1);
+    plt.subplot(m,m,j+1)
     imageplot(q)
