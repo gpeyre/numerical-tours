@@ -17,4 +17,4 @@ for i in range(1,niter+1):
     #display
     if i%(niter//4) == 0:
         k +=1
-        imageplot(f1, "Time = %i" %(i*tau), [2,2,k])
+        imageplot(g, "Time = %i" %(i*tau), [2,2,k])
