@@ -15,10 +15,10 @@ plt.figure(figsize = (10,7))
 
 plt.subplot(2,1,1)
 plt.title("$||\pi -p||$")
-plt.plot(np.log10(np.asarray(Err_p) + 1e-5), linewidth = 2)
+plt.plot(np.log(np.asarray(Err_p) + 1e-5), linewidth = 2)
 
 plt.subplot(2,1,2)
 plt.title("$||\pi^T -q||$")
-plt.plot(np.log10(np.asarray(Err_q) + 1e-5), linewidth = 2)
+plt.plot(np.log(np.asarray(Err_q) + 1e-5), linewidth = 2)
 
 plt.show()  

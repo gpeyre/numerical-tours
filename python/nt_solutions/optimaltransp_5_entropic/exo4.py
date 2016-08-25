@@ -14,7 +14,7 @@ for i in range(niter):
     q = np.zeros(N)
     
     for k in range(K):
-        q = q + lambd[k] * np.log10(np.maximum(1e-19*np.ones(len(b[:,:,k])), b[:,:,k]*xi(a[:,:,k])))
+        q = q + lambd[k] * np.log(np.maximum(1e-19*np.ones(len(b[:,:,k])), b[:,:,k]*xi(a[:,:,k])))
 
     q = np.exp(q)
 
@@ -22,5 +22,5 @@ for i in range(niter):
         b[:,:,k] = q/xi(a[:,:,k])
 
 plt.figure(figsize=(7,5))
-plt.plot(np.log10(Err_q))
+plt.plot(np.log(Err_q),linewidth = 2)
 plt.show()
