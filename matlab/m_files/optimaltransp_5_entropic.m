@@ -2,7 +2,7 @@
 % This numerical tours exposes the general methodology of regularizing the
 % optimal transport (OT) linear program using entropy. This allows to
 % derive fast computation algorithm based on iterative projections
-% according to a Kulback-Leiber divergence. 
+% according to a Kulback-Leiber divergence.
 % \[ \DeclareMathOperator{\KL}{KL}
 % \newcommand{\KLdiv}[2]{\KL\pa{#1 | #2}}
 % \newcommand{\KLproj}{P^{\tiny\KL}}
@@ -17,7 +17,7 @@ perform_toolbox_installation('signal', 'general');
 % \[  W_\ga(p,q) \eqdef \umin{\pi \in \Pi(p,q)} \dotp{C}{\pi} - \ga E(\pi).  \]
 % where the polytope of coupling is defined as
 % \[ \Pi(p,q) \eqdef \enscond{\pi \in (\RR^+)^{N \times N}}{ \pi \ones = p, \pi^T \ones = q },  \]
-% where \( \ones \eqdef (1,\ldots,1)^T \in \RR^N \), 
+% where \( \ones \eqdef (1,\ldots,1)^T \in \RR^N \),
 % and for \(\pi \in (\RR^+)^{N \times N}\), we define its entropy as
 % \[ E(\pi) \eqdef - \sum_{i,j} \pi_{i,j} ( \log(\pi_{i,j}) - 1). \]
 
@@ -32,13 +32,13 @@ perform_toolbox_installation('signal', 'general');
 % \(C_{i,j}\) is the cost of moving mass from a bin indexed by \(i\) to a bin indexed by \(j\).
 
 %%
-% The regularized transportation problem can be re-written as a projection 
-% \[ W_\ga(p,q) = \ga \umin{\pi \in \Pi(p,q)} \KLdiv{\pi}{\xi}
+% The regularized transportation problem can be re-written as a projection
+% \[ W_\ga(p,q) = \gaï¿½\umin{\pi \in \Pi(p,q)} \KLdiv{\pi}{\xi}
 % 	\qwhereq
 % 	\xi_{i,j} = e^{ -\frac{C_{i,j}}{\ga} }  \]
-% of \(\xi\) according to the Kullback-Leibler divergence. 
-% The Kullback-Leibler divergence between \(\pi, \xi \in (\RR^+)^P\) is 
-% \[ \KLdiv{\pi}{\xi} = \sum_{i,j} \pi_{i,j} \pa{ \log\pa{ \frac{\pi_{i,j}}{\xi_{i,j}} } - 1}. \]
+% of \(\xi\) according to the Kullback-Leibler divergence.
+% The Kullback-Leibler divergence between \(\pi, \xi \in (\RR^+)^P\) is
+% \[ \KLdiv{\pi}{\xi} = \sum_{i,j} \pi_{i,j} \pa{ï¿½\log\pa{ \frac{\pi_{i,j}}{\xi_{i,j}} } - 1}. \]
 
 %%
 % This interpretation of regularized transport as a KL projection and its numerical
@@ -49,7 +49,7 @@ perform_toolbox_installation('signal', 'general');
 % \[ \KLproj_\Cc(\xi) = \uargmin{ \pi \in \Cc } \KLdiv{\pi}{\xi}. \]
 
 %% Iterative Bregman Projection Algorithm
-% Given affine constraint sets \( (\Cc_1,\ldots,\Cc_K) \), we aim at computing 
+% Given affine constraint sets \( (\Cc_1,\ldots,\Cc_K) \), we aim at computing
 % \[   \KLproj_\Cc(\xi) \qwhereq \Cc = \Cc_1 \cap \ldots \cap \Cc_K. \]
 
 %%
@@ -62,18 +62,18 @@ perform_toolbox_installation('signal', 'general');
 % One can indeed show that \(\pi_\ell \rightarrow \KLproj_\Cc(\bar \pi)\).
 % We refer to <#biblio [BauschkeLewis]> for more details about this
 % algorithm and its extension to compute the projection on the intersection of
-% convex sets (Dikstra algorithm). 
+% convex sets (Dikstra algorithm).
 
 %% Iterative Projection for Regularized Transport aka Sinkhorn's Algorithm
 % We can re-cast the regularized optimal transport problem within this
 % framework by introducing
 % \[ \Cc_1 \eqdef \enscond{\pi \in (\RR^+)^{N \times N} }{\pi \ones = p}
-% \qandq 
+% \qandq
 %  \Cc_2 \eqdef \enscond{\pi \in (\RR^+)^{N \times N} }{\pi^T \ones = q}. \]
 
 %%
 % The KL projection on \(\Cc_1\) sets are easily computed by divisive
-% normalization of rows. Indeed, denoting 
+% normalization of rows. Indeed, denoting
 % \( \pi = \KLproj_{\Cc_1}(\bar \pi) \), one has
 % \[ \forall (i,j), \quad
 %   \pi_{i,j} = \frac{ p_i \bar\pi_{i,j} }{ \sum_{s} \bar\pi_{i,s} } \]
@@ -82,9 +82,9 @@ perform_toolbox_installation('signal', 'general');
 
 %%
 % A fundamental remark is that, if \(\bar\pi = \diag(a) \xi \diag(b)\) (a
-% so-called diagonal scaling of the kernel \(\xi\)), then one has 
+% so-called diagonal scaling of the kernel \(\xi\)), then one has
 % \[ \KLproj_{\Cc_1}(\bar \pi) = \diag(\tilde a) \xi \diag(b)
-%   \qandq 
+%   \qandq
 %   \KLproj_{\Cc_2}(\bar \pi) = \diag(a) \xi \diag(\tilde b)\]
 %  where the new scaling reads
 %   \[ \tilde a = \frac{p}{\xi(b)}  \qandq  \tilde b = \frac{q}{\xi^T(a)} \]
@@ -92,24 +92,24 @@ perform_toolbox_installation('signal', 'general');
 
 %%
 % This means that the iterates of Bregman iterative projections, starting
-% with \( a_0 \eqdef \ones \) always have the form 
+% with \( a_0 \eqdef \ones \) always have the form
 % \( \pi_\ell = \diag(a_\ell) \xi \diag(b_\ell)  \)
 % and these diagonal scaling weights are updated as follow
-% \[  a_{\ell+1} \eqdef \frac{p}{\xi(b_\ell)} 
-%       \qandq 
+% \[  a_{\ell+1} \eqdef \frac{p}{\xi(b_\ell)}
+%       \qandq
 %   b_{\ell+1} \eqdef \frac{q}{\xi^T(a_{\ell+1})}. \]
-% This algorithm is in fact the well known Sinkhorn algorithm <#biblio [Sinkhorn]>. 
+% This algorithm is in fact the well known Sinkhorn algorithm <#biblio [Sinkhorn]>.
 
 %% Transport Between Point Clouds
 % We first test the method for two input measures that are uniform measures
-% (i.e. constant histograms) supported on two point clouds 
-% (that do not necessarily have the same size). 
+% (i.e. constant histograms) supported on two point clouds
+% (that do not necessarily have the same size).
 
 %%
 % We thus first load two points clouds \(x=(x_i)_{i=1}^{N_1}, y=(y_i)_{i=1}^{N_2}, \)
-% where \(x_i, y_i \in \RR^2\). 
+% where \(x_i, y_i \in \RR^2\).
 
-%% 
+%%
 % Number of points in each cloud.
 
 N = [300,200];
@@ -119,7 +119,7 @@ N = [300,200];
 
 d = 2;
 
-%% 
+%%
 % Point cloud \(x\), of \(N_1\) points inside a square.
 
 x = rand(2,N(1))-.5;
@@ -180,19 +180,19 @@ b = q ./ (xi'*a);
 
 %EXO
 %% Implement Sinkhorn algorithm.
-%% Display the evolution of the constraints satisfaction errors 
+%% Display the evolution of the constraints satisfaction errors
 %% \( \norm{ \pi \ones - p }, \norm{ \pi^T \ones - q } \)
 %% (you need to think about how to compute these residuals from \((a,b)\) alone).
 b = ones(N(2),1);
 niter = 300;
-Err_p = []; Err_q = []; 
+Err_p = []; Err_q = [];
 for i=1:niter
     a = p ./ (xi*b);
     Err_q(end+1) = norm( b .* (xi'*a) - q )/norm(q);
-    b = q ./ (xi'*a);    
+    b = q ./ (xi'*a);
     Err_p(end+1) = norm( a .* (xi*b) - p )/norm(p);
 end
-% Display the violation of constraint error in log-plot. 
+% Display the violation of constraint error in log-plot.
 clf;
 subplot(2,1,1);
 plot(log10(Err_p)); axis tight; title('log|\pi 1 - p|');
@@ -205,7 +205,7 @@ plot(log10(Err_q)); axis tight; title('log|\pi^T 1 - q|');
 
 Pi = diag(a)*xi*diag(b);
 
-%% 
+%%
 % Display it.
 
 clf;
@@ -220,10 +220,10 @@ clf;
 for k=1:length(glist)
     gamma = glist(k);
     xi = exp(-C/gamma);
-    b = ones(N(2),1); 
+    b = ones(N(2),1);
     for i=1:niter
         a = p ./ (xi*b);
-        b = q ./ (xi'*a); 
+        b = q ./ (xi'*a);
     end
     Pi = diag(a)*xi*diag(b);
     imageplot( clamp(Pi,0,min(1./N)*.3) , ['\gamma=' num2str(gamma)], 2,2,k);
@@ -237,9 +237,9 @@ Pi = diag(a)*xi*diag(b);
 
 %%
 % Keep only the highest entries of the coupling matrix, and use them to
-% draw a map between the two clouds. 
+% draw a map between the two clouds.
 % First we draw "strong" connexions, i.e. linkds \((i,j)\) corresponding to
-% large values of \(\pi_{i,j}\). 
+% large values of \(\pi_{i,j}\).
 % We then draw weaker connexions.
 
 clf;
@@ -255,7 +255,7 @@ plotp(y, 'r');
 axis('off'); axis('equal');
 
 %% Transport Between Histograms
-% We now consider a different setup, where the histogram values 
+% We now consider a different setup, where the histogram values
 % \(p,q\) are not uniform, but the measures are defined on a uniform grid
 % \(x_i=y_i=i/N\). They are thue often refered to as "histograms".
 
@@ -267,7 +267,7 @@ N = 200;
 %%
 % We use here a 1-D square Euclidean metric.
 
-t = (0:N-1)'/N; 
+t = (0:N-1)'/N;
 
 %%
 % Define the histogram \(p,q\) as translated Gaussians.
@@ -275,7 +275,7 @@ t = (0:N-1)'/N;
 Gaussian = @(t0,sigma)exp( -(t-t0).^2/(2*sigma^2) );
 normalize = @(p)p/sum(p(:));
 sigma = .06;
-p = Gaussian(.25,sigma); 
+p = Gaussian(.25,sigma);
 q = Gaussian(.8,sigma);
 
 %%
@@ -300,7 +300,7 @@ bar(t, q, 'k'); axis tight;
 gamma = (.03)^2;
 
 %%
-% The Gibbs kernel is a Gaussian convolution, 
+% The Gibbs kernel is a Gaussian convolution,
 % \[ \xi_{i,j} = e^{ -(i/N-j/N)^2/\gamma }. \]
 
 [Y,X] = meshgrid(t,t);
@@ -319,19 +319,19 @@ b = q ./ (xi'*a);
 
 %EXO
 %% Implement Sinkhorn algorithm.
-%% Display the evolution of the constraints satisfaction errors 
+%% Display the evolution of the constraints satisfaction errors
 %% \( \norm{ \pi \ones - p }, \norm{ \pi^T \ones - q } \)
 %% (you need to think how to compute it from \((a,b)\).
 b = ones(N,1);
 niter = 2000;
-Err_p = []; Err_q = []; 
+Err_p = []; Err_q = [];
 for i=1:niter
     a = p ./ (xi*b);
     Err_q(end+1) = norm( b .* (xi*a) - q )/norm(q);
-    b = q ./ (xi'*a);    
+    b = q ./ (xi'*a);
     Err_p(end+1) = norm( a .* (xi'*b) - p )/norm(p);
 end
-% Display the violation of constraint error in log-plot. 
+% Display the violation of constraint error in log-plot.
 clf;
 subplot(2,1,1);
 plot(log10(Err_p)); axis tight; title('log|\pi 1 - p|');
@@ -384,12 +384,12 @@ N = 70;
 % Load input histograms \( (p_k)_{k=1}^K \).
 
 names = {'disk' 'twodisks' 'letter-x' 'letter-z'};
-r = [.35 .19 .12*N .12*N]; 
+r = [.35 .19 .12*N .12*N];
 vmin = .05;
 P = [];
 for i=1:length(names)
     options.radius = r(i);
-    p = load_image(names{i},N, options); 
+    p = load_image(names{i},N, options);
     p = normalize( rescale(p)+vmin );
     P(:,:,i) = p;
 end
@@ -406,14 +406,14 @@ imageplot(a, '', 2,2);
 % In this specific case, the kernel \(\xi\) associated with the
 % squared Euclidean norm is a convolution with a Gaussian filter
 % \[ \xi_{i,j} = e^{ -\norm{i/N-j/N}^2/\gamma } \]
-% where here \((i,j)\) are 2-D indexes. 
+% where here \((i,j)\) are 2-D indexes.
 
 %%
 % The multiplication against the kernel \(\xi(a_\ell)\)
 % can now be computed efficiently, using fast convolution methods.
 % This
 % crucial points was exploited and generalized in <#biblio [SolomonEtAl]>
-% to design fast optimal transport algorithm. 
+% to design fast optimal transport algorithm.
 
 %%
 % Regularization strength \(\ga\).
@@ -423,7 +423,7 @@ gamma = (.04)^2;
 %%
 % Define the \(\xi\) kernel.
 % We use here the fact that the convolution is separable to implement it
-% using only 1-D convolution, which further speeds up computations. 
+% using only 1-D convolution, which further speeds up computations.
 
 n = 41; % width of the convolution kernel
 t = linspace(-n/(2*N),n/(2*N),n)';
@@ -446,7 +446,7 @@ lambda = ones(K,1)/K;
 % boilds down to
 % optimizing over couplings \((\pi_k)_k\), and that this can be achieved
 % using iterative Bregman projection that defines iterates \((\pi_{k,\ell})_k\).
-% These iterates can be written using diagonal scalings 
+% These iterates can be written using diagonal scalings
 % \( \pi_{k,\ell} \eqdef \diag(a_{k,\ell}) \xi \diag(b_{k,\ell}). \)
 
 %%
@@ -457,7 +457,7 @@ b = ones(N,N,K); a = b;
 %%
 % The first step of the Bregman projection method corresponds to the
 % projection on the fixed marginals constraints \(\pi_k \ones=p_k\). This
-% is achieved by updating 
+% is achieved by updating
 % \[ \forall k=1,\ldots,K, \quad a_{k,\ell+1} = \frac{p_k}{ \xi( b_{k,\ell} ) }. \]
 
 for k=1:K
@@ -467,7 +467,7 @@ end
 %%
 % The second step of the Bregman projection method corresponds to the
 % projection on the equal marginals constraints \(\forall k, \pi_k^T \ones=q\). This
-% is achieved by first computing the target barycenter using a geometric means 
+% is achieved by first computing the target barycenter using a geometric means
 % \[ \log(q_\ell) \eqdef \sum_k \lambda_k \log( b_{k,\ell} \odot \xi( a_{k,\ell} ) ). \]
 
 
@@ -488,7 +488,7 @@ end
 
 %EXO
 %% Implement the iterative algorithm to compute the iso-barycenter of the measures.
-%% Plot the decay of the error \( \sum_k \norm{\pi_k \ones - p_k} \). 
+%% Plot the decay of the error \( \sum_k \norm{\pi_k \ones - p_k} \).
 niter = 800;
 b = ones(N,N,K); a = b;
 mynorm = @(x)norm(x);
@@ -520,9 +520,9 @@ clf;
 imageplot(q);
 
 %EXO
-%% Compute barycenters for varying weights \(\la\) corresponding to 
+%% Compute barycenters for varying weights \(\la\) corresponding to
 %% a bilinear interpolation inside a square.
-m = 5; 
+m = 5;
 [T,S] = meshgrid(linspace(0,1,m), linspace(0,1,m));
 clf;
 niter = 1000;
@@ -556,11 +556,11 @@ end
 % <html><a name="biblio"></a></html>
 
 %%
-% * [Villani] C. Villani, (2009). Optimal transport: old and new, volume 338. Springer Verlag.
-% * [Cuturi] M. Cuturi, (2013). Sinkhorn distances: Lightspeed computation of optimal transport. In Burges, C. J. C., Bottou, L., Ghahramani, Z., and Weinberger, K. Q., editors, Proc. NIPS, pages 2292-2300.
-% * [AguehCarlier] M. Agueh, and G Carlier, (2011). Barycenters in the Wasserstein space. SIAM J. on Mathematical Analysis, 43(2):904-924.
-% * [CuturiDoucet] M. Cuturi and A. Doucet (2014). Fast computation of wasserstein barycenters. In Proc. ICML.
-% * [BauschkeLewis] H. H. Bauschke and A. S. Lewis. Dykstra's algorithm with Bregman projections: a convergence proof. Optimization, 48(4):409-427, 2000.
+% * [Villani]ï¿½C. Villani, (2009). Optimal transport: old and new, volume 338. Springer Verlag.
+% * [Cuturi]ï¿½M. Cuturi, (2013). Sinkhorn distances: Lightspeed computation of optimal transport. In Burges, C. J. C., Bottou, L., Ghahramani, Z., and Weinberger, K. Q., editors, Proc. NIPS, pages 2292-2300.
+% * [AguehCarlier]ï¿½M. Agueh, and G Carlier, (2011). Barycenters in the Wasserstein space. SIAM J. on Mathematical Analysis, 43(2):904-924.
+% * [CuturiDoucet]ï¿½M. Cuturi and A. Doucet (2014). Fast computation of wasserstein barycenters. In Proc. ICML.
+% * [BauschkeLewis]ï¿½H. H. Bauschke and A. S. Lewis. Dykstra's algorithm with Bregman projections: a convergence proof. Optimization, 48(4):409-427, 2000.
 % * [Sinkhorn] R. Sinkhorn. A relationship between arbitrary positive matrices and doubly stochastic matrices. Ann. Math. Statist., 35:876-879, 1964.
-% * [SolomonEtAl] J. Solomon, F. de Goes, G. Peyré, M. Cuturi, A. Butscher, A. Nguyen, T. Du, and L. Guibas. Convolutional Wasserstein distances: Efficient optimal transportation on geometric domains. Transaction on Graphics, Proc. SIGGRAPH, 2015.
-% * [BenamouEtAl] J-D. Benamou, G. Carlier, M. Cuturi, L. Nenna, G. Peyré. Iterative Bregman Projections for Regularized Transportation Problems. SIAM Journal on Scientific Computing, 37(2), pp. A1111-A1138, 2015. 
+% * [SolomonEtAl] J. Solomon, F. de Goes, G. Peyrï¿½, M. Cuturi, A. Butscher, A. Nguyen, T. Du, and L. Guibas. Convolutional Wasserstein distances: Efficient optimal transportation on geometric domains. Transaction on Graphics, Proc. SIGGRAPH, 2015.
+% * [BenamouEtAl] J-D. Benamou, G. Carlier, M. Cuturi, L. Nenna, G. Peyrï¿½. Iterative Bregman Projections for Regularized Transportation Problems. SIAM Journal on Scientific Computing, 37(2), pp. A1111-A1138, 2015.
