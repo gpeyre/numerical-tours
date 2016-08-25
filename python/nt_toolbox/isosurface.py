@@ -13,7 +13,7 @@ def isosurface(M,v,step,title=""):
     
     fig = plt.figure(figsize = (10,7))
     ax = fig.add_subplot(111, projection='3d')
-    ax.plot_trisurf(verts[:, 0], verts[:,1], faces, verts[:, 2], lw=.1, cmap="viridis")
+    ax.plot_trisurf(verts[:, 0], verts[:,1], faces, verts[:, 2], lw=.1, cmap="jet")
     ax.axis("off")
     ax.view_init(elev=35, azim=70)
     plt.title(title)
