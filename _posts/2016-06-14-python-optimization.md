@@ -2,7 +2,7 @@
 layout:     post
 title:      "New Python Tours"
 subtitle:   "Optimization by Laurent Condat"
-date:       2015-09-21 12:00:00
+date:       2016-06-14 12:00:00
 author:     "Gabriel Peyré"
 header-img: "img/hokusai-11.jpg"
 ---
