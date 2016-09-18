@@ -7,8 +7,6 @@ header-img: "img/hokusai-2.jpg"
 
 These are the [Python](https://www.python.org/) tours, that can be browsed as HTML pages, but can also be downloaded as [iPython notebooks](http://ipython.org/notebook.html). Please read the [installation page](../installation_python/) for more information about how to run these tours.
 
-Note that it is a work in progress to port all the Numerical Tours to Python. Help is wellcome, please refer to the GitHub repository for how to proceed.
-
 
 {% for categ in site.data.tours_python %}
 
