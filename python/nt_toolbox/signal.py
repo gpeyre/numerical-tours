@@ -45,7 +45,7 @@ def cconv(x, h, d):
         return np.transpose(cconv(np.transpose(x), h, 1))
     y = np.zeros(x.shape)
     p = len(h)
-    pc = round( (p - 1) / 2 )
+    pc = int(round( float((p - 1) / 2 )))
     for i in range(0, p):
         y = y + h[i] * nt.circshift1d(x, i - pc)
     return y
@@ -110,7 +110,7 @@ def load_image(name, n=-1, flatten=1, resc=1, grayscale=1):
     """
     f = plt.imread(name)
     # turn into normalized grayscale image
-    if grayscale == 1: 
+    if grayscale == 1:
         if (flatten==1) and np.ndim(f)>2:
             f = np.sum(f, axis=2)
     if resc==1:
@@ -188,7 +188,7 @@ def plot_wavelet(fW, Jmin=0):
         if v > 0:
             B = .5 + .5 * A / v
         return B
-    ## 
+    ##
     n = fW.shape[1]
     Jmax = np.log2(n) - 1
     U = fW.copy()
@@ -264,7 +264,7 @@ def subsampling(x, d):
     return y
 
 def upsampling(x, d):
-    """ 
+    """
         up-sampling along dimension d by factor p=2
     """
     p = 2
