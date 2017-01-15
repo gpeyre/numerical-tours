@@ -13,5 +13,6 @@ for i in range(n_iter):
 
 sel = range(5)
 plt.plot(np.log10(E[:len(E)//2, sel] - np.min(E[:, sel], axis=0)))
+plt.axis('tight')
 plt.title('$log_{10}(J(x_j) - J(x_j^*))$')
 plt.show()
