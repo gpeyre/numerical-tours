@@ -278,3 +278,35 @@ def upsampling(x, d):
     else:
         raise Exception('Not implemented')
     return y
+
+
+def plot_dictionary(D, title='Dictionary'):
+    ''' Plot a dictionary of shape (width*width, n_atoms) '''
+    # Check that D.shape == (width*width, n_atoms)
+    assert len(D.shape) == 2
+    assert int(np.sqrt(D.shape[0]))**2 == D.shape[0]
+    (signal_size, n_atoms) = D.shape
+    # Rescale values in each atom to have a max absolute value of 1
+    # This gives brighter plots
+    D = D / np.max(abs(D), axis=0)
+
+    # Reshape dictionary to patches
+    width = int(np.sqrt(D.shape[0]))
+    D = D.reshape((width, width, n_atoms))
+    n = int(np.ceil(np.sqrt(n_atoms)))  # Size of the plot in number of atoms
+
+    # Pad the atoms
+    pad_size = 1
+    missing_atoms = n ** 2 - n_atoms
+
+    padding = (((pad_size, pad_size), (pad_size, pad_size),
+                (0, missing_atoms)))
+    D = np.pad(D, padding, mode='constant', constant_values=1)
+    padded_width = width + 2*pad_size
+    D = D.reshape(padded_width, padded_width, n, n)
+    D = D.transpose(2, 0, 3, 1)  # Needed for the reshape
+    big_image_size = n*padded_width
+    D = D.reshape(big_image_size, big_image_size)
+    imageplot(D)
+    plt.title(title)
+    plt.show()

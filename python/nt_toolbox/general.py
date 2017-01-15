@@ -6,6 +6,26 @@ from scipy import ndimage
 # TODO: try to not make use of transform.resize
 from skimage import transform
 
+
+def crop(M, n=None):
+    """ crop - crop an image to reduce its size
+    Only crops square black and white images for now.
+    """
+    # Check that image is square and black and white (no channels)
+    assert M.shape[0] == M.shape[1]
+    assert len(M.shape) == 2
+
+    n0 = M.shape[0]
+
+    if n is None:
+        n = (n0/2)
+    # Start and end of selection
+    start_ind = int(np.floor((n0 - n) / 2))
+    end_ind = int(-np.ceil((n0 - n) / 2))
+
+    return M[start_ind:end_ind, start_ind:end_ind]
+
+
 def circshift(x, p):
     """
         Circular shift of an array.
