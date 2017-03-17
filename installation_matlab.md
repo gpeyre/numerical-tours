@@ -49,6 +49,12 @@ Note, if you see the message:
 
 It means your PATH variable is too long. You'll have to manually trim in in the Windows Environmental Variables editor.
 
+
+Solutions of the exercises
+------------
+
+The solutions to the exercises [are available online](https://github.com/gpeyre/numerical-tours/tree/master/matlab/solutions).
+
 [1]: https://github.com/gpeyre/numerical-tours/archive/master.zip
 [2]: http://ipython.org/install.html
 [3]: http://arokem.github.io/python-matlab-bridge/

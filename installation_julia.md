@@ -40,6 +40,12 @@ To run the Julia's tours as IPython notebook using IJulia, you need to call from
 > ipython notebook --profile julia
 
 
+Solutions of the exercises
+------------
+
+The solutions to the exercises [are available online](https://github.com/gpeyre/numerical-tours/tree/master/julia/nt_solutions).
+
+
 [1]: https://github.com/gpeyre/numerical-tours/archive/master.zip
 [2]: http://ipython.org/install.html
 [3]: http://arokem.github.io/python-matlab-bridge/

@@ -17,6 +17,13 @@ Installation of IPython
 
 If you intend to run the tours are IPython notebook (which we recommend), you need to install IPython [notebook][2] to run the code.
 
+
+Solutions of the exercises
+------------
+
+The solutions to the exercises [are available online](https://github.com/gpeyre/numerical-tours/tree/master/python/nt_solutions).
+
+
 [1]: https://github.com/gpeyre/numerical-tours/archive/master.zip
 [2]: http://ipython.org/install.html
 [3]: http://arokem.github.io/python-matlab-bridge/
