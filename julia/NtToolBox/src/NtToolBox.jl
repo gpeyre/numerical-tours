@@ -204,6 +204,18 @@ function Grad(M, bound = "sym", order = 1)
     return fx
 end
 
+# function circshift(x, p)
+#     """
+#         Circular shift of an array.
+#     """
+#     y = copy(x)
+#     y = cat(1, y[p[1]+1:end, :], y[1:p[1]+1, :])
+#     if (size(x)[2] > 0) & (length(p) > 1)
+#         y = cat(2, y[:, p[1]+1:end], y[:, 1:p[1]+1])
+#     end
+#     return y
+# end
+
 
 include("ndgrid.jl")
 include("signal.jl")
@@ -211,7 +223,9 @@ include("perform_wavelet_transf.jl")
 include("compute_wavelet_filter.jl")
 include("Div.jl")
 include("perform_blurring.jl")
-
+include("read_bin.jl")
+include("isosurface.jl")
+include("perform_thresholding.jl")
 
 
 

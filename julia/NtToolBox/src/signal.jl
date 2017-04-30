@@ -72,7 +72,7 @@ function snr(x, y)
 
   Copyright (c) 2014 Gabriel Peyre
   """
-  return 20 * log10(norm(x) / norm(x - y))
+  return 20 * log10(norm(x[:]) / norm(x[:] - y[:]))
 end
 
 ############################################################################
@@ -198,57 +198,106 @@ function cconvol(x,h,d=1)
 end # cconvol
 
 #####################################################
-function plot_wavelet(fW, Jmin=0)
-    #    plot_wavelet - plot wavelets coefficients.
-    #    U = plot_wavelet(fW, Jmin):
-    #    Copyright (c) 2014 Gabriel Peyre
+# function plot_wavelet(fW, Jmin=0)
+#     #    plot_wavelet - plot wavelets coefficients.
+#     #    U = plot_wavelet(fW, Jmin):
+#     #    Copyright (c) 2014 Gabriel Peyre
+#
+#     function rescaleWav(A)
+#         v = maximum( abs(A[:]) );
+#         B = copy(A)
+#         if v > 0
+#             B = .5 + .5 * A / v;
+#         end
+#         return B;
+#     end
+#     function rescale(x,a=0,b=1)
+# 		m = minimum(x[:]);
+# 		M = maximum(x[:]);
+# 		if M-m<1e-10
+# 		    y = x;
+# 		else
+# 		    y = (b-a) * (x-m)/(M-m) + a;
+# 		end
+# 		return y;
+# 	  end ## end of rescale
+#     ##
+#     n = size(fW,1);
+#     Jmax = Int(log2(n) - 1);
+#     U = copy(fW);
+#     for j = Jmax:-1:Jmin
+#     	L = Array{Int64,1}(1:2^j); H = Array{Int64,1}((2^j)+1:2^(j+1));
+#         U[L,H] = rescaleWav( U[L,H] );
+#         U[H,L] = rescaleWav( U[H,L] );
+#         U[H,H] = rescaleWav( U[H,H] );
+#     end
+#     # coarse scale
+#     L = Array{Int64,1}(1:2^Jmin);
+#     U[L,L] = rescale(U[L,L]);
+#     # plot underlying image
+#     imageplot(U);
+#     # display crosses
+#     for j=Jmax:-1:Jmin
+#         plot([0, 2^(j+1)], [2^j, 2^j], "r");
+#         plot([2^j, 2^j], [0, 2^(j + 1)], "r");
+#     end
+#     # display box
+#     plot([0, n], [0, 0], "r");
+#     plot([0, n], [n, n], "r");
+#     plot([0, 0], [0, n], "r");
+#     plot([n, n], [0, n], "r");
+#     return U;
+#
+# end # plot_wavelet
 
+#########
+function plot_wavelet(fW, Jmin = 0)
+    """
+        plot_wavelet - plot wavelets coefficients.
+
+        U = plot_wavelet(fW, Jmin):
+
+        Copyright (c) 2014 Gabriel Peyre
+    """
     function rescaleWav(A)
-        v = maximum( abs(A[:]) );
+        v = maximum(abs(A[:]))
         B = copy(A)
         if v > 0
-            B = .5 + .5 * A / v;
+            B = .5 + .5 .* A ./ v
         end
-        return B;
+        return B
     end
-    function rescale(x,a=0,b=1)
-		m = minimum(x[:]);
-		M = maximum(x[:]);
-		if M-m<1e-10
-		    y = x;
-		else
-		    y = (b-a) * (x-m)/(M-m) + a;
-		end
-		return y;
-	end ## end of rescale
     ##
-    n = size(fW,1);
-    Jmax = log2(n) - 1;
-    U = copy(fW);
-    for j = Jmax:-1:Jmin
-    	L = 1:2^j; H = (2^j)+1:2^(j+1);
-        U[L,H] = rescaleWav( U[L,H] );
-        U[H,L] = rescaleWav( U[H,L] );
-        U[H,H] = rescaleWav( U[H,H] );
-    end
+    n = size(fW)[2]
+    Jmax = Int(log2(n) - 1)
+    U = copy(fW)
+    for j in Jmax:-1:Jmin
+        U[1:2^j,    2^j+1:2 ^
+            (j + 1)] = rescaleWav(U[1:2^j, 2^j+1:2^(j + 1)])
+        U[2^j+1:2^(j+1), 1:2 ^
+          j] = rescaleWav(U[2^j+1:2^(j+1), 1:2^j])
+        U[2^j+1:2^(j+1), 2^j+1:2^(j+1)] = (
+            rescaleWav(U[2^j+1:2^(j+1), 2^j+1:2^(j+1)]))
+
     # coarse scale
-    L = 1:2^Jmin;
-    U[L,L] = rescale(U[L,L]);
+        U[1:2^j, 1:2^j] = rescale(U[1:2^j, 1:2^j])
+    end
     # plot underlying image
-    imageplot(U);
+    imageplot(U)
     # display crosses
-    for j=Jmax:-1:Jmin
-        plot([0, 2^(j+1)], [2^j, 2^j], "r");
-        plot([2^j, 2^j], [0, 2^(j + 1)], "r");
+    for j in Jmax:-1:Jmin
+        plot([0, 2^(j+1)], [2^j, 2^j], "r")
+        plot([2^j, 2^j], [0, 2^(j+1)], "r")
     end
     # display box
-    plot([0, n], [0, 0], "r");
-    plot([0, n], [n, n], "r");
-    plot([0, 0], [0, n], "r");
-    plot([n, n], [0, n], "r");
-    return U;
+    plot([0, n], [0, 0], "r")
+    plot([0, n], [n, n], "r")
+    plot([0, 0], [0, n], "r")
+    plot([n, n], [0, n], "r")
+    return U
+end
 
-end # plot_wavelet
+########
 
 
 
