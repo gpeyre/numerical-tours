@@ -1,5 +1,5 @@
 %% Image Deconvolution using Variational Method
-% This numerical tour explores the use of 
+% This numerical tour explores the use of
 % Sobolev and TV regularization to perform image deconvolution.
 
 perform_toolbox_installation('signal', 'general');
@@ -58,7 +58,7 @@ basename = [name '-deconv'];
 
 %%
 % We build a convolution kernel.
-% Since we are going to use Fourier to compute the convolution, 
+% Since we are going to use Fourier to compute the convolution,
 % we set the center of the kernel in the (1,1) pixel location.
 
 %%
@@ -96,7 +96,7 @@ if using_matlab()
 end
 
 %%
-% *Important* Scilab user should define a function |Phi| in a separate file |Phi.sci| 
+% *Important* Scilab user should define a function |Phi| in a separate file |Phi.sci|
 % to perform this.
 
 %%
@@ -117,11 +117,11 @@ imageplot(y0, 'Observation without noise', 1,2,2);
 sigma = .02;
 
 %%
-% Add some noise to obtain the measurements ±\(y = \Phi f_0 + w\).
+% Add some noise to obtain the measurements ï¿½\(y = \Phi f_0 + w\).
 
 y = y0 + randn(n)*sigma;
 
-%% 
+%%
 % Display.
 
 clf;
@@ -135,7 +135,7 @@ imwrite(clamp(y), [rep name '-deconv-observations.png'], 'png');
 
 %% Deconvolution with L2 Regularization
 % Deconvolution is obtained by dividing the Fourier transform of \(y\)
-% by \(\hat h\). 
+% by \(\hat h\).
 %  \[f^\star(\omega) = \frac{\hat y(\omega)}{\hat h(\omega)} = \hat f_0(\omega) + \hat w(\omega)/{\hat h(\omega)}\]
 
 %%
@@ -207,7 +207,7 @@ imageplot(clamp(fL2), strcat(['L2 deconvolution, SNR=' num2str(snr(f0,fL2),3) 'd
 imwrite(clamp(fL2), [rep name '-deconv-l2.png'], 'png');
 %CMT
 
-%% Deconvolution by Sobolev Regularization. 
+%% Deconvolution by Sobolev Regularization.
 % L2 regularization did not perform any denoising. To remove some noise, we
 % can penalize high frequencies using Sobolev regularization (quadratic
 % grow).
@@ -215,7 +215,7 @@ imwrite(clamp(fL2), [rep name '-deconv-l2.png'], 'png');
 %%
 % The Sobolev prior reads (note the conversion from spacial domain to
 % Fourier domain)
-%  \[J(f) = \sum_x \|\nabla f(x)\|^2 = \sum_{\omega} S(\omega) \|\hat f(\omega)\|^2 \] 
+%  \[J(f) = \sum_x \|\nabla f(x)\|^2 = \sum_{\omega} S(\omega) \|\hat f(\omega)\|^2 \]
 % where \(S(\omega)=\|\omega\|^2\).
 %
 
@@ -230,7 +230,7 @@ imwrite(clamp(fL2), [rep name '-deconv-l2.png'], 'png');
 
 
 %%
-% Compute the Sobolev prior penalty |S| (rescale to [0,1]).
+% Compute the Sobolev prior penalty |S|ï¿½(rescale to [0,1]).
 
 S = (X.^2 + Y.^2)*(2/n)^2;
 
@@ -301,15 +301,15 @@ imwrite(clamp(fSob), [rep name '-deconv-sobolev.png'], 'png');
 %%
 % Unfortunately, the TV functional \(J(f)\) is not a smooth function of the image
 % \(f\). It thus requires the use of advanced convex optimization method to
-% be minimized for regularization. 
+% be minimized for regularization.
 
 %%
-% An alternative is to replace the absolute value by a smooth absolute value. 
+% An alternative is to replace the absolute value by a smooth absolute value.
 % The smoothed TV norm reads:
 %  \[J(f) = \sum_x \sqrt{\|\nabla f(x)\|^2+\varepsilon^2}\]
 %
 
-%% 
+%%
 % Regularization parameter for the TV norm:
 
 epsilon = 0.4*1e-2;
@@ -344,12 +344,12 @@ lambda = 0.06;
 
 tau = 1.9 / ( 1 + lambda * 8 / epsilon);
 
-%% 
+%%
 % Initialization.
 
 fTV = y;
 
-%% 
+%%
 % Number of iteration (quite a large number is required).
 
 niter = 600;
@@ -379,11 +379,11 @@ e = Phi(fTV,h)-y;
 fTV = fTV - tau*( Phi(e,h) + lambda*G);
 
 %EXO
-%% Perform the deblurring by a  gradient descent. 
+%% Perform the deblurring by a  gradient descent.
 %% Keep track of the function being minimized.
 tau = 1.9 / ( 1 + lambda * 8 / epsilon);
 fTV = y;
-E = []; 
+E = [];
 for i=1:niter
     % Compute the gradient of the smoothed TV functional.
     Gr = grad(fTV);
@@ -442,7 +442,7 @@ fTV = fBest;
 % Display the result.
 
 clf;
-imageplot(clamp(fSob), strcat(['Sobolev, SNR=' num2str(snr(f0,fSob),3) 'dB']), 1,2,1); 
+imageplot(clamp(fSob), strcat(['Sobolev, SNR=' num2str(snr(f0,fSob),3) 'dB']), 1,2,1);
 imageplot(clamp(fTV), strcat(['TV, SNR=' num2str(snr(f0,fTV),3) 'dB']), 1,2,2);
 
 %CMT

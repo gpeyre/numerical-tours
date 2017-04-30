@@ -1,5 +1,5 @@
 %% Sparse Spikes Deconvolution with MUSIC Algorithm
-% This numerical tour explores the use of the 
+% This numerical tour explores the use of the
 % MUSIC algorithm to perform sparse deconvolution.
 
 %%
@@ -8,12 +8,12 @@
 % in signal processing <#biblio [KrimViberg]>, where it is mostly used for
 % line spectral estimation (i.e. find locations
 % of Diracs in the Fourier spectrum), and we re-formulate here as a problem
-% of finding Diracs' over the temporal domain. 
+% of finding Diracs' over the temporal domain.
 
 %%
 % We follow here the exposition of <#biblio [LiaoFannjiang]> who propose a
-% theoretical analysis of the performances of this method. 
-% Several related algorithms exists, see for instance 
+% theoretical analysis of the performances of this method.
+% Several related algorithms exists, see for instance
 % <#biblio [RoyKailathHuaSarkar,DemNeedNg]>.
 
 perform_toolbox_installation('signal', 'general');
@@ -24,23 +24,23 @@ ms = 20; % markersize
 % \(\mathbb{T}=\RR/\ZZ\) from
 % of possibly noisy low-pass measurements
 % \[ y = y_0 + w \qwhereq y_0 = \Phi m_0 \]
-% where \(w\) is the noise term, 
+% where \(w\) is the noise term,
 % and so that \( \Phi m \) computes the first \(M+1\) low frequencies of
 % the Fourier transform of \(m\), i.e.
-% \[ \forall \ell \in \{0,\ldots,M\}, \quad (\Phi m)_\ell = \int_{\mathbb{T}} e^{-2\imath\pi x \ell} d m(x). \] 
-% We only consider positive frequency because we assume \(m\) is a real measure. 
+% \[ \forall \ell \in \{0,\ldots,M\}, \quad (\Phi m)_\ell = \int_{\mathbb{T}} e^{-2\imath\pi x \ell} d m(x). \]
+% We only consider positive frequency because we assume \(m\) is a real measure.
 
 %%
 % In the following, we consider a discrete measure of the form
 % \(m_0=m_{a_0,x_0}\) where we used the following notation
 % \[ m_{a,x} = \sum_{i=1}^N a_i \de_{x_i} \]
-% where \(a \in \RR^N\) and \(x \in \mathbb{T}^N\). 
+% where \(a \in \RR^N\) and \(x \in \mathbb{T}^N\).
 
 %%
 % We thus have \(\Phi m_{a,x} = \Phi_x^M a\) where
-% \[ \Phi_x^{M} = ( e^{-2\imath\pi x_j \ell} )_{0 \leq\ell \leq M, 1 \leq j \leq N} 
+% \[ \Phi_x^{M} = ( e^{-2\imath\pi x_j \ell} )_{0 \leq\ell \leq M, 1 \leq j \leq N}
 %   \in \RR^{(M+1) \times N}.
-% \] 
+% \]
 
 %%
 % Note that \(\Phi_x^{M}\) is a (rectangular) Vandermonde matrix, since
@@ -49,7 +49,7 @@ ms = 20; % markersize
 %%
 % For \(y \in \RR^M\) and for \(0<L<M\) we denote the Hankel matrix
 % \[
-% 	H_y = 
+% 	H_y =
 % 	\begin{pmatrix}
 % 		y_0 & y_1 & \ldots & y_{M-L} \\
 % 		y_1 & y_2 & \ldots & y_{M-L+1} \\
@@ -67,10 +67,10 @@ ms = 20; % markersize
 
 %%
 % We suppose that \(\min(L,M-L+1) \geq N\). The fundamental property, which
-% is based on the above factorization, is that 
+% is based on the above factorization, is that
 % \[
-% 	s \in \{x_{0,1},\ldots,x_{0,N}\} 
-% 	\quad\Longleftrightarrow\quad    
+% 	s \in \{x_{0,1},\ldots,x_{0,N}\}
+% 	\quad\Longleftrightarrow\quad
 % 	\phi_L(s) \in \text{Im}(H_{y_0})
 % 	\qwhereq
 % 	\phi_L(s) = (e^{-2\imath\pi \ell s })_{0 \leq s \leq L} \in \CC^{L+1}.
@@ -80,7 +80,7 @@ ms = 20; % markersize
 % From observations \(y\), we define the following detection function
 % \[
 %   \forall s \in \mathbb{T}, \quad
-%       d_y(s) = \norm{ U^{\bot,*} \phi^L(s) }^2, 
+%       d_y(s) = \norm{ U^{\bot,*} \phi^L(s) }^2,
 % \]
 % where we considered the following SVD factorization
 % \[
@@ -102,7 +102,7 @@ ms = 20; % markersize
 % \]
 
 %% Sparse Spikes Deconvolution
-% We compute here some low frequency measurements. 
+% We compute here some low frequency measurements.
 
 %%
 % Number \(M\) of recorded frequency.
@@ -123,7 +123,7 @@ x0 = [.1 .4 .5 .7 .9]';
 %%
 % Number \(N\) of spikes.
 
-N = 5; 
+N = 5;
 
 
 %%
@@ -136,21 +136,21 @@ a0 = [.7 -.8 .9 1 -.9]';
 
 Phi = @(x)exp(-2i*pi*(0:M)'*x(:)');
 
-%% 
+%%
 % Observations \(y=y_0+w\).
 
 sigma = .15;
 w = (randn(M+1,1)+1i*randn(M+1,1)); w = w/norm(w);
-y0 = Phi(x0)*a0; 
+y0 = Phi(x0)*a0;
 y = y0 + sigma*norm(y0)*w;
 
 %%
-% Compute the observed low frequency signal 
-% \[ 
-%      f = \frac{1}{2M+1} \sum_{\ell=-P}^P y_\ell e^{2\imath\pi \ell \cdot}
+% Compute the observed low frequency signal
+% \[
+%      f = \frac{1}{2M+1}ï¿½\sum_{\ell=-P}^P y_\ell e^{2\imath\pi \ell \cdot}
 % \]
 % where we completed the observation using \(y_{-\ell} = \bar y_{\ell}\)
-% since the input measure is real. 
+% since the input measure is real.
 
 PhiT = @(x)exp(2i*pi*x(:)*(-M:M)) / (2*M+1);
 f = real( PhiT(z) * [conj(y(end:-1:2)); y]);
@@ -162,27 +162,27 @@ clf; hold on;
 plot(z, f);
 stem(x0,a0, 'r');
 
-%% Noiseless Recovery 
+%% Noiseless Recovery
 % We first check the exact recovery when using \(y_0\).
 
 %%
-% We set here \(L=M/2\), which is a standard choice. 
+% We set here \(L=M/2\), which is a standard choice.
 
 L = M/2;
 
 %%
-% Build Hankel matrix, 
+% Build Hankel matrix,
 % one must have min(size(H))>N.
 
 MusicHankel = @(y)hankel(y(1:L),y(L:M));
 
-%% 
+%%
 % Compute SVD of \(H_{y_0}\).
 
-[U,S,V] = svd(MusicHankel(y0),0); 
+[U,S,V] = svd(MusicHankel(y0),0);
 S = diag(S);
 
-%% 
+%%
 % Display the decay of the eigenvalues of \(H_{y_0}\). Since there is no
 % noise, only the \(N\) largest one are non-zero. This is a convenient way
 % to detect \(N\) if it is unknown.
@@ -217,7 +217,7 @@ axis([0 1 0 1]); box on;
 %        = \sum_j \sum_{\ell,\ell'} \bar U^{\bot}_{\ell,j}
 %        U^{\bot}_{\ell',j} z^{\ell-\ell'}
 % \]
-% where we denoted \(z=e^{2\imath\pi s}\). 
+% where we denoted \(z=e^{2\imath\pi s}\).
 
 %%
 % So the zeros of \(d_y\) are equal to the zeros of the polynomial \(P_y\)
@@ -234,24 +234,24 @@ axis([0 1 0 1]); box on;
 %%
 % This means that
 % \[
-%     \enscond{s}{d_y(s)=0} = \frac{1}{2\pi} \text{Angle}\pa{
+%     \enscond{s}{d_y(s)=0} = \frac{1}{2\pi} \text{Angle}\pa{
 %           \enscond{z}{P_y(z)=0 \qandq \abs{z}=1}
 %       }
 % \]
-% where Angle returns the angle of a complex number. 
+% where Angle returns the angle of a complex number.
 
-%% 
+%%
 % Compute the coefficients \(C\) of the polynomial \(P_{y_0}\).
 
 B = [];
 for j=1:size(Ubot,2)
     u = Ubot(:,j);
-    v = flipud(conj(u)); 
+    v = flipud(conj(u));
     B(:,j) = conv(u,v);
 end
 C = sum(B,2);
 
-%% 
+%%
 % Find its roots.
 
 R = roots(C(end:-1:1));
@@ -282,11 +282,11 @@ x1 = x1(1:2:end);
 
 disp( ['Error (should be 0): ' num2str(norm(x1-x0))] );
 
-%% Noisy Recovery 
+%% Noisy Recovery
 % In practice, one has access to noisy observation \(y=y_0+w\), and one
-% approximates the support \(x\) using the best \(N\) local minima 
+% approximates the support \(x\) using the best \(N\) local minima
 % \( \tilde x =  \{\tilde x_1,\ldots,\tilde x_N\} \in \mathbb{T}^N \) of
-% \(d_{y}\). 
+% \(d_{y}\).
 
 %EXO
 %% Compute and display \(d_y\)
@@ -309,7 +309,7 @@ axis([0 1 0 1]); box on;
 B = [];
 for j=1:size(Ubot,2)
     u = Ubot(:,j);
-    v = flipud(conj(u)); 
+    v = flipud(conj(u));
     B(:,j) = conv(u,v);
 end
 C = sum(B,2);
@@ -328,8 +328,8 @@ axis off;
 
 %EXO
 %% Keep only the best \(N\) ones, i.e. those that are the closest from the
-%% unit circle. 
-%% We denote those as \(\tilde x \in \mathbb{T}^N\). 
+%% unit circle.
+%% We denote those as \(\tilde x \in \mathbb{T}^N\).
 %% Recover an approximation \(\tilde a\) of the amplitudes \(a_0\)
 %% By solving in least squares (using backslash operator) the system
 %% \( \Phi_{\tilde x} \tilde a = y. \)
@@ -408,5 +408,3 @@ axis off;
 % * [RoyKailath] R. Roy and T. Kailath, _ESPRIT ? Estimation of signal parameters via rotation invariance  techniques_, IEEE Trans. Acoust., Speech, Signal Proc., vol. 17, no. 7, July 1989
 % * [HuaSarkar] Y. Hua and T. K. Sarkar, _Matrix pencil method for estimating parameters of exponentially damped/undamped sinusoids in noise_, IEEE Transactions on Acoustics, Speech and Signal Processing 38(5), pp.814-824, 1990.
 % * [DemNeedNg] L. Demanet, D. Needell and N. Nguyen, _Super-resolution via superset selection and pruning_, Proceedings of the 10th International Conference on Sampling Theory and Applications, 2013.
-
-
