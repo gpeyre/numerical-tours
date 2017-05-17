@@ -9,11 +9,11 @@ using NtToolBox.Mdot
 
 function load_image(name, n = -1, flatten = 1, resc = 1, grayscale = 1)
 
-  if ndims(imread(name)) >=3
-    f = imread(name)[:, :, 1:3]
+  if ndims(PyPlot.imread(name)) >=3
+    f = PyPlot.imread(name)[:, :, 1:3]
   end
 
-  f = imread(name)
+  f = PyPlot.imread(name)
 
   if grayscale == 1
     if (flatten == 1) & (ndims(f) > 2)
@@ -28,13 +28,7 @@ function load_image(name, n = -1, flatten = 1, resc = 1, grayscale = 1)
   end
   if n > 0
     if ndims(f) == 3
-      f1 = Images.imresize(f[:, :, 1], (n, n))
-      f2 = Images.imresize(f[:, :, 2], (n, n))
-      f3 = Images.imresize(f[:, :, 3], (n, n))
-      f = f[1:n, 1:n, :]
-      f[:, :, 1] = f1
-      f[:, :, 2] = f2
-      f[:, :, 3] = f2
+        f = Images.imresize(f,(n,n,3))
     elseif ndims(f) == 2
       f = Images.imresize(f, (n, n))
     end
@@ -278,10 +272,11 @@ function plot_wavelet(fW, Jmin = 0)
           j] = rescaleWav(U[2^j+1:2^(j+1), 1:2^j])
         U[2^j+1:2^(j+1), 2^j+1:2^(j+1)] = (
             rescaleWav(U[2^j+1:2^(j+1), 2^j+1:2^(j+1)]))
+    end
 
     # coarse scale
-        U[1:2^j, 1:2^j] = rescale(U[1:2^j, 1:2^j])
-    end
+    U[1:2^Jmin, 1:2^Jmin] = rescale(U[1:2^Jmin, 1:2^Jmin])
+
     # plot underlying image
     imageplot(U)
     # display crosses
