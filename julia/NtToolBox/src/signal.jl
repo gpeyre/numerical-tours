@@ -9,11 +9,11 @@ using NtToolBox.Mdot
 
 function load_image(name, n = -1, flatten = 1, resc = 1, grayscale = 1)
 
-  if ndims(imread(name)) >=3
-    f = imread(name)[:, :, 1:3]
+  if ndims(PyPlot.imread(name)) >=3
+    f = PyPlot.imread(name)[:, :, 1:3]
   end
 
-  f = imread(name)
+  f = PyPlot.imread(name)
 
   if grayscale == 1
     if (flatten == 1) & (ndims(f) > 2)
@@ -278,10 +278,11 @@ function plot_wavelet(fW, Jmin = 0)
           j] = rescaleWav(U[2^j+1:2^(j+1), 1:2^j])
         U[2^j+1:2^(j+1), 2^j+1:2^(j+1)] = (
             rescaleWav(U[2^j+1:2^(j+1), 2^j+1:2^(j+1)]))
+    end
 
     # coarse scale
-        U[1:2^j, 1:2^j] = rescale(U[1:2^j, 1:2^j])
-    end
+    U[1:2^Jmin, 1:2^Jmin] = rescale(U[1:2^Jmin, 1:2^Jmin])
+
     # plot underlying image
     imageplot(U)
     # display crosses
@@ -415,25 +416,25 @@ end
 
 function bilinear_interpolate(im, x, y)
 
-    x0 = Array{Int64,1}(floor(x))
-    x1 = x0 + 1
-    y0 = Array{Int64,1}(floor(y))
-    y1 = y0 + 1
+  x0 = Array{Int64,1}(floor(x))
+  x1 = x0 + 1
+  y0 = Array{Int64,1}(floor(y))
+  y1 = y0 + 1
 
-    x0 = clamp(x0, 1, size(im)[2])
-    x1 = clamp(x1, 1, size(im)[2])
-    y0 = clamp(y0, 1, size(im)[1])
-    y1 = clamp(y1, 1, size(im)[1])
+  x0 = Base.clamp(x0, 1, size(im)[2])
+  x1 = Base.clamp(x1, 1, size(im)[2])
+  y0 = Base.clamp(y0, 1, size(im)[1])
+  y1 = Base.clamp(y1, 1, size(im)[1])
 
-    Ia = im[ y0, x0 ]
-    Ib = im[ y1, x0 ]
-    Ic = im[ y0, x1 ]
-    Id = im[ y1, x1 ]
+  Ia = im[ y0, : ][x0]
+  Ib = im[ y1, : ][x0]
+  Ic = im[ y0, : ][x1]
+  Id = im[ y1, : ][x1]
 
-    wa = (x1 - x) .* (y1 - y)
-    wb = (x1 - x) .* (y - y0)
-    wc = (x - x0) .* (y1 - y)
-    wd = (x - x0) .* (y - y0)
+  wa = (x1 - x) .* (y1 - y)
+  wb = (x1 - x) .* (y - y0)
+  wc = (x - x0) .* (y1 - y)
+  wd = (x - x0) .* (y - y0)
 
-    return wa.*Ia + wb.*Ib + wc.*Ic + wd.*Id
+  return wa.*Ia + wb.*Ib + wc.*Ic + wd.*Id
 end

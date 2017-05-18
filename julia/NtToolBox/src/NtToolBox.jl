@@ -3,7 +3,7 @@ module NtToolBox
 
 # package code goes here
 
-export load_image, imageplot, rescale, clamP, snr, perform_wavelet_transf, plot_wavelet, compute_wavelet_filter, perform_wavortho_transf, grad, div, plot_levelset, gaussian_blur, bilinear_interpolate, Grad, Div
+export load_image, imageplot, rescale, clamP, snr, perform_wavelet_transf, plot_wavelet, compute_wavelet_filter, perform_wavortho_transf, grad, div, plot_levelset, gaussian_blur, bilinear_interpolate, Grad, Div, perform_redistancing
 
 ## m must be of type Array{Float32, 3} or Array{Float64, 3}, it makes products between the vectors of the 3rd dimension and v
 
@@ -109,101 +109,6 @@ function plot_levelset(Z, level = 0, f = [])
     imageplot(f)
 end
 
-function Grad(M, bound = "sym", order = 1)
-    """
-        grad - gradient, forward differences
-
-          [gx,gy] = grad(M, options);
-        or
-          g = grad(M, options);
-
-          options.bound = 'per' or 'sym'
-          options.order = 1 (backward differences)
-                        = 2 (centered differences)
-
-          Works also for 3D array.
-          Assme that the function is evenly sampled with sampling step 1.
-
-          See also: div.
-
-          Copyright (c) Gabriel Peyre
-    """
-
-
-    # retrieve number of dimensions
-    nbdims = ndims(M)
-
-
-    if bound == "sym"
-        nx = size(M)[1]
-        if order == 1
-            fx = M[hcat((collect(2 : nx),[nx])), :] - M
-        else
-            fx = (M[hcat((collect(2 : nx), [nx])), :] - M[hcat(([1], collect(1 : nx - 1))), :])./2.
-            # boundary
-            fx[1, :] = M[2, :] - M[1, :]
-            fx[nx, :] = M[nx, :] - M[nx - 1, :]
-        end
-
-        if nbdims >= 2
-            ny = size(M)[2]
-            if order == 1
-                fy = M[:, hcat((collect(2 : ny), [ny]))] - M
-            else
-                fy = (M[:, hcat((collect(2 : ny), [ny]))] - M[:, hcat(([1], collect(1 : ny - 1)))])./2.
-                # boundary
-                fy[:, 1] = M[:, 2] - M[:, 1]
-                fy[:, ny] = M[:, ny]-M[:, ny - 1]
-            end
-        end
-
-        if nbdims >= 3
-            nz = size(M)[3]
-            if order == 1
-                fz = M[:, :, hcat((collect(2 : nz), [nz]))] - M
-            else
-                fz = (M[:, :, hcat((collect(2 : nz), [nz]))] - M[:, :, hcat(([1], collect(1 : nz - 1)))])./2.
-                # boundary
-                fz[:, :, 1] = M[:, :, 2] - M[:, :, 1]
-                fz[:, :, ny] = M[:, :, nz] - M[:, :, nz - 1]
-            end
-        end
-    else
-        nx = size(M)[1]
-        if order == 1
-            fx = M[hcat((collect(2 : nx), [1])), :] - M
-        else
-            fx = (M[hcat((collect(2 : nx), [1])), :] - M[hcat(([nx], collect(1 : nx - 1))), :])./2.
-        end
-
-        if nbdims >= 2
-            ny = size(M)[2]
-            if order == 1
-                fy = M[:, hcat((collect(2 : ny), [1]))] - M
-            else
-                fy = (M[:, hcat((collect(2 : ny), [1]))] - M[:, hcat(([ny], collect(1 : ny - 1)))])./2.
-            end
-        end
-
-        if nbdims >= 3
-            nz = size(M)[3]
-            if order == 1
-                fz = M[:, :, hcat((collect(2 : nz), [1]))] - M
-            else
-                fz = (M[:, :, hcat((collect(2 : nz), [1]))] - M[:, :, hcat(([nz], collect(1 : nz - 1)))])./2.
-            end
-        end
-    end
-
-    if nbdims==2
-        fx = cat(3, fx[:, :], fy[:, :])
-    elseif nbdims==3
-        fx = cat(4, (fx[:, :, :], fy[:, :, :], fz[:, :, :]))
-    end
-
-    return fx
-end
-
 # function circshift(x, p)
 #     """
 #         Circular shift of an array.
@@ -221,11 +126,13 @@ include("ndgrid.jl")
 include("signal.jl")
 include("perform_wavelet_transf.jl")
 include("compute_wavelet_filter.jl")
+include("Grad.jl")
 include("Div.jl")
 include("perform_blurring.jl")
 include("read_bin.jl")
 include("isosurface.jl")
 include("perform_thresholding.jl")
+include("perform_redistancing.jl")
 
 
 

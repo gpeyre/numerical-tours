@@ -213,7 +213,7 @@ def perform_convolution(x,h,bound="sym"):
         
         if p > n:
             raise Exception('h filter should be shorter than x.')
-        
+        print p
         n = np.asarray(n) 
         p = np.asarray(p)   
         d = np.floor((p-1)/2.)

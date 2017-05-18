@@ -55,9 +55,9 @@ function Div(Px, Py, bound = "sym", order = 1)
                 fz[:, :, nz] = - Pz[:, :, nz - 1]
             end
         else
-            fx = (Px[vcat(collect(2 : nx), nx), :] - Px[vcat([1], collect(1, nx-1)), :])./2.
-            fx[1, :] = + Px[1, :]./2. + Px[1, :]           # boundary
-            fx[1, :] = + Px[2, :]./2. - Px[1, :]
+            fx = (Px[vcat(collect(2 : nx), nx), :] - Px[vcat([1], collect(1 : nx-1)), :])./2.
+            fx[1, :] = + Px[2, :]./2. + Px[1, :]           # boundary
+            fx[2, :] = + Px[3, :]./2. - Px[1, :]
             fx[nx, :] = - Px[nx, :] - Px[nx - 1, :]./2.
             fx[nx - 1, :] = + Px[nx, :] - Px[nx - 2, :]./2.
 

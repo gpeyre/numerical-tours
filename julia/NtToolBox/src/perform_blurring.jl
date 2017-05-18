@@ -179,17 +179,21 @@ function perform_convolution(x, h, bound = "sym")
         error("bound should be sym or per")
     end
 
-    if (ndims(x) == 3) & (size(x)[3] < 4)
-        #for color images
+    if ndims(x) == 3
+      if size(x)[3] < 4
+          #for color images
         y = x
         for i in 1 : size(x)[3]
-            y[:, :, i] = perform_convolution(x[:, :, i], h, bound)
+          y[:, :, i] = perform_convolution(x[:, :, i], h, bound)
         end
-        return y
+      end
+    return y
     end
 
-    if (ndims(x) == 3) & (size(x)[3] >= 4)
+    if ndims(x) == 3
+      if size(x)[3] >= 4
         error("Not yet implemented for 3D array, use smooth3 instead.")
+      end
     end
 
     n = size(x)
@@ -236,15 +240,16 @@ function perform_convolution(x, h, bound = "sym")
         if p > n
             error("h filter should be shorter than x.")
         end
-
-        d = floor((p - 1)/2.)
+        n = [n[1], n[2]]
+        p = [p[1], p[2]]
+        d = Array{Int64, 1}(floor((p - 1)/2.))
         if nd == 1
             h = hcat(h[d : end], hcat(zeros(n - p), h[1 : d - 1]))
             y = real(ifft((fft(x)*x).*(fft(h)*h)*((fft(x)*x).*(fft(h)*h))))
         else
-            h = hcat(h[d[1] : end, :], hcat(zeros(n[1] - p[1], p[2]), h[1 : d[1] - 1, :]))
-            h = vcat(h[:, d[2] : end], vcat(zeros(n[1], n[2] - p[2]), h[:, 1 : d[2]]))
-            y = real(plan_ifft((plan_fft(x)*x).*(plan_fft(h)*h)*((plan_fft(x)*x).*(plan_fft(h)*h))))
+            h = vcat(h[d[1] + 1 : end, :], vcat(zeros(n[1] - p[1], p[2]), h[1 : d[1], :]))
+            h = hcat(h[:, d[2] + 1 : end], hcat(zeros(n[1], n[2] - p[2]), h[:, 1 : d[2] ]))
+            y = real(plan_ifft((plan_fft(x)*x).*(plan_fft(h)*h))*((plan_fft(x)*x).*(plan_fft(h)*h)))
         end
     end
     return y

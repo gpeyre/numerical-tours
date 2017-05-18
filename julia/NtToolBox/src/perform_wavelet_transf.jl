@@ -1,4 +1,4 @@
-function perform_wavelet_transf(f, Jmin, dir; filter = "9-7",separable = 0, ti = 0)
+function perform_wavelet_transf(f, Jmin, dir, filter = "9-7",separable = 0, ti = 0)
 
     """""
     perform_wavelet_transf - peform fast lifting transform
@@ -107,41 +107,41 @@ function perform_wavelet_transf(f, Jmin, dir; filter = "9-7",separable = 0, ti =
 
             if d == 1
                 if dir == 1
-                    x[1:(j - Jmin + 2), :, :] = lifting_step_ti(x[1, :, :], h, dir, dist)
+                    x[:,:,1:(j - Jmin + 2)] = lifting_step_ti(x[ :, :, 1], h, dir, dist)
                 else
-                    x[1, :, :] = lifting_step_ti(x[1:(j - Jmin + 2), :, :], h, dir, dist)
+                    x[:, :, 1] = lifting_step_ti(x[:,:,1:(j - Jmin + 2)], h, dir, dist)
                 end
             else
                 dj = 3*(j - Jmin)
 
                 if dir == 1
-                    x[[1, dj + 2], :, :] = lifting_step_ti(x[1, :, :], h, dir, dist)
+                    x[:, :, [1, dj + 2]] = lifting_step_ti(x[:, :, 1], h, dir, dist)
 
-                    x[[1, dj + 3], :, :] = lifting_step_ti(transpose(x[1, :, :]), h, dir, dist)
-                    x[1, :, :] = transpose(x[1, :, :])
-                    x[dj + 3, :, :] = transpose(x[dj + 3, :, :])
+                    x[:, :,[1, dj + 3]] = lifting_step_ti(transpose(x[:, :,1]), h, dir, dist)
+                    x[:, :, 1] = transpose(x[:, :, 1])
+                    x[:, :, dj+3] = transpose(x[dj + 3, :, :])
 
-                    x[[2 + dj, 4 + dj], :, :] = lifting_step_ti(transpose(x[dj + 2,:,:]), h, dir, dist)
-                    x[dj + 2, :, :] = transpose(x[dj + 2, :, :])
-                    x[dj + 4, :, :] = transpose(x[dj + 4, :, :])
+                    x[:, :, [2 + dj, 4 + dj]] = lifting_step_ti(transpose(x[:,:, dj + 2]), h, dir, dist)
+                    x[:, :, dj + 2] = transpose(x[:, :, dj + 2])
+                    x[:, :, dj + 4] = transpose(x[:, :, dj + 4])
                 else
 
-                    x[dj + 2, :, :] = transpose(x[dj + 2, :, :])
-                    x[dj + 4, :, :] = transpose(x[dj + 4, :, :])
+                    x[:, :, dj + 2] = transpose(x[:, :, dj + 2])
+                    x[:, :, dj + 4] = transpose(x[:, :, dj + 4])
 
-                    x[dj + 2, :, :] = transpose(lifting_step_ti(x[[2 + dj, 4 + dj], :, :], h, dir, dist))
+                    x[:, :, dj + 2] = transpose(lifting_step_ti(x[:, :, [2 + dj, 4 + dj]], h, dir, dist))
 
-                    x[1, :, :] = transpose(x[1, :, :])
-                    x[dj + 3, :, :] = transpose(x[dj + 3, :, :])
-                    x[1, :, :] = transpose(lifting_step_ti(x[[1, dj + 3], :, :], h, dir, dist))
+                    x[:, :, 1] = transpose(x[:, :, 1])
+                    x[:, :, dj + 3] = transpose(x[:, :, dj+3])
+                    x[:, :, 1] = transpose(lifting_step_ti(x[:, :, [1, dj + 3]], h, dir, dist))
 
-                    x[1, :, :] = lifting_step_ti(x[[1, dj + 2], :, :], h, dir, dist)
+                    x[:, :, 1] = lifting_step_ti(x[:, :, [1, dj + 2]], h, dir, dist)
                 end
             end
         end
 
         if dir == -1
-            x = x[1, :, :]
+            x = x[:, :, 1]
         end
     end
 
@@ -167,10 +167,10 @@ function lifting_step(x0, h, dir)
         #x = x[0::2,]
         x = x[collect(i for i in 1:size(x)[1] if i%2 == 1), :]
         for i in 1:m
-            d = d - h[2*i] .* (x + vcat(x[2:end, :], x[end, :]'))  #I must check if h[2^i + 1] is multidimensional or not.
-            x = x + h[2*i + 1] .* (d + vcat(d[1, :]', d[1:end-1, :]))   #I must check if h[2^i + 2] is multidimensional or not.
+            d = d - h[2*i - 1] .* (x + vcat(x[2:end, :], x[end, :]'))  #I must check if h[2^i + 1] is multidimensional or not.
+            x = x + h[2*i] .* (d + vcat(d[1, :]', d[1:(end-1), :]))   #I must check if h[2^i + 2] is multidimensional or not.
         end
-        x = vcat(x.*h[end], d/h[end])
+        x = vcat(x.*h[end], d./h[end])
 
     else
         # retrieve detail coefs
@@ -178,7 +178,7 @@ function lifting_step(x0, h, dir)
         d = x[Int(fin/2) + 1:end, :].*h[end]
         x = x[1:Int(fin/2), :]./h[end]
         for i in m:-1:1
-            x = x - h[2*i] .* (d + vcat(d[1, :], d[1:end, :]))
+            x = x - h[2*i] .* (d + vcat(d[1, :], d[1:(end-1), :]))
             d = d + h[2*i - 1] .* (x + vcat(x[2:end, :], x[end, :]))
         end
         # merge
@@ -224,8 +224,8 @@ function lifting_step_ti(x0, h, dir, dist)
             if ndims(x) == 2
                 x = repeat(x, outer = [1, 1, 1])
             end
-            d = d - h[2*i + 1] .* (x[:, s1, :] + x[:, s2, :])
-            x = x + h[2*i + 2] .* (d[:, s1, :] + d[:, s2, :])
+            d = d - h[2*i - 1] .* (x[:, s1, :] + x[:, s2, :])
+            x = x + h[2*i] .* (d[:, s1, :] + d[:, s2, :])
         end
 
         #merge
