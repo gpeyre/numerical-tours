@@ -174,12 +174,12 @@ function lifting_step(x0, h, dir)
 
     else
         # retrieve detail coefs
-        fin = length(x)
-        d = x[Int(fin/2) + 1:end, :].*h[end]
+        fin = size(x)[1]
+        d = x[Int(fin/2) + 1 : end, :].*h[end]
         x = x[1:Int(fin/2), :]./h[end]
         for i in m:-1:1
-            x = x - h[2*i] .* (d + vcat(d[1, :], d[1:(end-1), :]))
-            d = d + h[2*i - 1] .* (x + vcat(x[2:end, :], x[end, :]))
+            x = x - h[2*i] .* (d + vcat(d[1, :]', d[1 : end - 1, :]))
+            d = d + h[2*i - 1] .* (x + vcat(x[2 : end, :], x[end, :]'))
         end
         # merge
         x1 = vcat(x, x)
