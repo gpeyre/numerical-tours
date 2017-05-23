@@ -119,7 +119,7 @@ function perform_wavelet_transf(f, Jmin, dir, filter = "9-7",separable = 0, ti =
 
                     x[:, :,[1, dj + 3]] = lifting_step_ti(transpose(x[:, :,1]), h, dir, dist)
                     x[:, :, 1] = transpose(x[:, :, 1])
-                    x[:, :, dj+3] = transpose(x[dj + 3, :, :])
+                    x[:, :, dj + 3] = transpose(x[:, :, dj + 3])
 
                     x[:, :, [2 + dj, 4 + dj]] = lifting_step_ti(transpose(x[:,:, dj + 2]), h, dir, dist)
                     x[:, :, dj + 2] = transpose(x[:, :, dj + 2])
@@ -178,7 +178,7 @@ function lifting_step(x0, h, dir)
         d = x[Int(fin/2) + 1 : end, :].*h[end]
         x = x[1:Int(fin/2), :]./h[end]
         for i in m:-1:1
-            x = x - h[2*i] .* (d + vcat(d[1, :]', d[1 : end - 1, :]))
+            x = x - h[2*i] .* (d + vcat(d[1, :]', d[1 : end - 1, :])) #L'erreur est ici
             d = d + h[2*i - 1] .* (x + vcat(x[2 : end, :], x[end, :]'))
         end
         # merge
@@ -220,23 +220,22 @@ function lifting_step_ti(x0, h, dir, dist)
     if dir == 1
         # split
         d = x
-        for i in 1:m
+        for i in 0 : m - 1
             if ndims(x) == 2
                 x = repeat(x, outer = [1, 1, 1])
             end
-            d = d - h[2*i - 1] .* (x[:, s1, :] + x[:, s2, :])
-            x = x + h[2*i] .* (d[:, s1, :] + d[:, s2, :])
+            d = d - h[2*i + 1] .* (x[s1, :, :] + x[s2, :, :])
+            x = x + h[2*i + 2] .* (d[s1, :, :] + d[s2, :, :])
         end
 
         #merge
-        #x = np.concatenate((x.*h[end], d/h[end]))
-        x = [x.*h[end]; d/h[end]]
+        x = cat(3, x.*h[end], d./h[end])
 
     else
         # retrieve detail coefs
 
-        d = x[2, :, :].*h[end]
-        x = x[1, :, :]/h[end]
+        d = x[:, :, 2].*h[end]
+        x = x[:, :, 1]/h[end]
 
         for i in m:-1:1
             x = x - h[2*i] .* (d[s1, :] + d[s2, :])
