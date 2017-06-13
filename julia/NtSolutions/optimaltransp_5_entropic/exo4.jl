@@ -1,4 +1,4 @@
-niter = 12
+niter = 800
 b = ones(N,N,K)
 a = copy(b)
 Err_q = zeros(niter)
@@ -41,3 +41,4 @@ for i in 1:niter
 end
 figure(figsize=(7,5))
 plot(log(Err_q),linewidth = 2)
+xlim(0,niter)

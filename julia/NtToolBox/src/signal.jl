@@ -7,7 +7,7 @@ using NtToolBox.Mdot
 
 ## Load an image from a file, rescale its dynamic to [0,1], turn it into a grayscale image and resize it to size n x n.
 
-function load_image(name, n = -1, flatten = 1, resc = 1, grayscale = 1)
+function load_image(name; n = -1, flatten = 1, resc = 1, grayscale = 1)
 
   if ndims(PyPlot.imread(name)) >=3
     f = PyPlot.imread(name)[:, :, 1:3]
@@ -410,9 +410,11 @@ end
 
 function bilinear_interpolate(im, x, y)
 
-    x0 = Array{Int64,1}(floor(x))
+    # x0 = Array{Int64,1}(floor(x))
+    x0 = [Int(floor(x))]
     x1 = x0 + 1
-    y0 = Array{Int64,1}(floor(y))
+    # y0 = Array{Int64,1}(floor(y))
+    y0 = [Int(floor(y))]
     y1 = y0 + 1
 
     x0 = clamp(x0, 1, size(im)[2])

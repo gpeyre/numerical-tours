@@ -4,7 +4,7 @@ m = 5
 T,S = meshgrid(collect(linspace(0,1,m)), collect(linspace(0,1,m)))
 T = vec(T')
 S = vec(S')
-niter = 12
+niter = 800
 
 for j in 1:m^2
     # weights
@@ -22,7 +22,7 @@ for j in 1:m^2
         q = zeros(N,N)
 
         for k in 1:K
-            q = q + lambd[k] * log(max(1e-19, b[:,:,k].*xi(a[:,:,k])))
+            q = q + lambd[k] * log(max(1e-15, b[:,:,k].*xi(a[:,:,k])))
         end
 
         q = exp(q)
