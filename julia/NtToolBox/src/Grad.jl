@@ -60,26 +60,25 @@ function Grad(M, bound = "sym", order = 1)
     else
         nx = size(M)[1]
         if order == 1
-            fx = M[hcat((collect(2 : nx), [1])), :] - M
+            fx = M[[collect(2 : nx); 1], :] - M
         else
-            fx = (M[hcat((collect(2 : nx), [1])), :] - M[hcat(([nx], collect(1 : nx - 1))), :])./2.
+            fx = (M[[collect(2 : nx); 1], :] - M - M[[nx; collect(1 : nx-1)], :])/2.
         end
-
         if nbdims >= 2
             ny = size(M)[2]
             if order == 1
-                fy = M[:, hcat((collect(2 : ny), [1]))] - M
+                fy = M[:,[collect(2 : ny); 1]] - M
             else
-                fy = (M[:, hcat((collect(2 : ny), [1]))] - M[:, hcat(([ny], collect(1 : ny - 1)))])./2.
+                fy = (M[:,[collect(2 : ny); 1]] - M - M[:,[ny; collect(1 : ny-1)]])/2.
             end
         end
 
         if nbdims >= 3
             nz = size(M)[3]
             if order == 1
-                fz = M[:, :, hcat((collect(2 : nz), [1]))] - M
+                fz = M[:, :, [collect(2 : nz); 1]] - M
             else
-                fz = (M[:, :, hcat((collect(2 : nz), [1]))] - M[:, :, hcat(([nz], collect(1 : nz - 1)))])./2.
+                fz = (M[:, :, [collect(2 : nz); 1]] - M[:, :, [nz; collect(1 : nz-1)]])/2.
             end
         end
     end
