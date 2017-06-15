@@ -3,7 +3,7 @@ module NtToolBox
 
 # package code goes here
 
-export load_image, imageplot, rescale, clamP, snr, perform_wavelet_transf, plot_wavelet, compute_wavelet_filter, perform_wavortho_transf, grad, div, plot_levelset, gaussian_blur, bilinear_interpolate, Grad, Div, perform_redistancing
+export load_image, imageplot, rescale, clamP, snr, perform_wavelet_transf, plot_wavelet, compute_wavelet_filter, perform_wavortho_transf, grad, div, plot_levelset, gaussian_blur, bilinear_interpolate, Grad, Div, perform_redistancing, perform_haar_transf, perform_fast_marching
 
 ## m must be of type Array{Float32, 3} or Array{Float64, 3}, it makes products between the vectors of the 3rd dimension and v
 
@@ -133,6 +133,8 @@ include("read_bin.jl")
 include("isosurface.jl")
 include("perform_thresholding.jl")
 include("perform_redistancing.jl")
+include("perform_haar_transf.jl")
+include("perform_fast_marching.jl")
 
 
 

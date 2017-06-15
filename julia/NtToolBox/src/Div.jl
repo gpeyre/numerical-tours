@@ -97,16 +97,16 @@ function Div(Px, Py, bound = "sym", order = 1)
 
         else
             nx = size(Px)[1]
-            fx = (Px[vcat(collect(2 : nx), 1), :]) - (Px[vcat(nx, collect(1, nx - 1)), :])
+            fx = (Px[vcat(collect(2 : nx), 1), :]) - (Px[vcat(nx, collect(1 : nx - 1)), :])
 
             if nbdims >= 2
                 ny = size(Py)[2]
-                fy = (Py[:, vcat(collect(2 : ny), 1)]) - (Py[:, vcat(ny, collect(1, ny - 1))])
+                fy = (Py[:, vcat(collect(2 : ny), 1)]) - (Py[:, vcat(ny, collect(1 : ny - 1))])
             end
 
             if nbdims >= 3
                 nz = size(Pz)[3]
-                fz = (Pz[:, :, vcat(collect(2, nz), 1)]) - (Pz[:, :, vcat(nz, collect(1 : nz - 1))])
+                fz = (Pz[:, :, vcat(collect(2 : nz), 1)]) - (Pz[:, :, vcat(nz, collect(1 : nz - 1))])
             end
         end
     end

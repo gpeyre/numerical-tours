@@ -1,3 +1,4 @@
+
 function perform_redistancing(D)
     """
         perform_redistancing - redistance a function
@@ -57,10 +58,11 @@ function perform_redistancing(D)
     I = find(V .!= 0)
     x, y = ind2sub(size(D), I)
     start_points = [x[:]'; y[:]']
+    start_points[1, :], start_points[2, :] = start_points[2, :], start_points[1, :]
 
-    # D1 = perform_fast_marching(ones(n, n), start_points)
-    # D1 = D1.*n
-    # D1[D .< 0] = -D1[D .< 0]
+    D1 = NtToolBox.perform_fast_marching(ones(n, n), start_points)
+    D1 = D1.*n
+    D1[D .< 0] = -D1[D .< 0]
 
-    return start_points
+    return D1
 end

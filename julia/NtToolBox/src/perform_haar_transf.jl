@@ -1,5 +1,6 @@
 function perform_haar_transf(M, Jmin, dir)
     n = size(M)[1]
+    Mf = copy(M)
     if dir == 1
         MW = copy(M)
 
@@ -14,7 +15,7 @@ function perform_haar_transf(M, Jmin, dir)
             MW[sel, sel, sel] = cat(2, (MW[sel, even, sel] + MW[sel, odd, sel])./sqrt(2), (MW[sel, even, sel] - MW[sel, odd, sel])./sqrt(2))
             # average/ difference along Z
             MW[sel, sel, sel] = cat(3, (MW[sel, sel, even] + MW[sel, sel, odd])./sqrt(2), (MW[sel, sel, even] - MW[sel, sel, odd])./sqrt(2))
-            Mf = MW
+            Mf = copy(MW)
         end
     else
 
@@ -42,7 +43,7 @@ function perform_haar_transf(M, Jmin, dir)
             D = M1[sel1, sel1, selw]
             M1[sel1, sel1, even] = (A + D)./sqrt(2)
             M1[sel1, sel1, odd] = (A - D)./sqrt(2)
-            Mf = M1
+            Mf = copy(M1)
         end
     end
 
