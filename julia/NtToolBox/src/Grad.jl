@@ -1,4 +1,4 @@
-function Grad(M; bound = "sym", order = 1)
+function Grad(M, bound = "sym", order = 1)
     """
         grad - gradient, forward differences
 

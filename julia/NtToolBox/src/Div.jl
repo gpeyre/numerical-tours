@@ -1,4 +1,4 @@
-function Div(Px, Py; bound = "sym", order = 1)
+function Div(Px, Py, bound = "sym", order = 1)
     """
         div - divergence operator
 

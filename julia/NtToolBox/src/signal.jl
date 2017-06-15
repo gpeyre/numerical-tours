@@ -7,7 +7,7 @@ using NtToolBox.Mdot
 
 ## Load an image from a file, rescale its dynamic to [0,1], turn it into a grayscale image and resize it to size n x n.
 
-function load_image(name; n = -1, flatten = 1, resc = 1, grayscale = 1)
+function load_image(name, n = -1, flatten = 1, resc = 1, grayscale = 1)
 
   if ndims(PyPlot.imread(name)) >=3
     f = PyPlot.imread(name)[:, :, 1:3]
@@ -28,13 +28,7 @@ function load_image(name; n = -1, flatten = 1, resc = 1, grayscale = 1)
   end
   if n > 0
     if ndims(f) == 3
-      f1 = Images.imresize(f[:, :, 1], (n, n))
-      f2 = Images.imresize(f[:, :, 2], (n, n))
-      f3 = Images.imresize(f[:, :, 3], (n, n))
-      f = f[1:n, 1:n, :]
-      f[:, :, 1] = f1
-      f[:, :, 2] = f2
-      f[:, :, 3] = f2
+        f = Images.imresize(f,(n,n,3))
     elseif ndims(f) == 2
       f = Images.imresize(f, (n, n))
     end
@@ -46,7 +40,7 @@ end
 
 ## Use nearest neighbor interpolation for the display.
 
-function imageplot(f; str = "", sbpt = [])    # Function to check.
+function imageplot(f, str = "", sbpt = [])    # Function to check.
 
   if sbpt != []
     subplot(sbpt[1], sbpt[2], sbpt[3])
@@ -107,7 +101,7 @@ function trim_dim(x)
 end
 
 ###################################################
-function subsampling(x;d=1,p=2)
+function subsampling(x,d=1,p=2)
 
 	# downsampling - subsampling along dimension d
 	#
@@ -416,25 +410,27 @@ end
 
 function bilinear_interpolate(im, x, y)
 
-  x0 = Array{Int64,1}(floor(x))
-  x1 = x0 + 1
-  y0 = Array{Int64,1}(floor(y))
-  y1 = y0 + 1
+    # x0 = Array{Int64,1}(floor(x))
+    x0 = [Int(floor(x))]
+    x1 = x0 + 1
+    # y0 = Array{Int64,1}(floor(y))
+    y0 = [Int(floor(y))]
+    y1 = y0 + 1
 
-  x0 = Base.clamp(x0, 1, size(im)[2])
-  x1 = Base.clamp(x1, 1, size(im)[2])
-  y0 = Base.clamp(y0, 1, size(im)[1])
-  y1 = Base.clamp(y1, 1, size(im)[1])
+    x0 = clamp(x0, 1, size(im)[2])
+    x1 = clamp(x1, 1, size(im)[2])
+    y0 = clamp(y0, 1, size(im)[1])
+    y1 = clamp(y1, 1, size(im)[1])
 
-  Ia = im[ y0, : ][x0]
-  Ib = im[ y1, : ][x0]
-  Ic = im[ y0, : ][x1]
-  Id = im[ y1, : ][x1]
+    Ia = im[ y0, x0 ]
+    Ib = im[ y1, x0 ]
+    Ic = im[ y0, x1 ]
+    Id = im[ y1, x1 ]
 
-  wa = (x1 - x) .* (y1 - y)
-  wb = (x1 - x) .* (y - y0)
-  wc = (x - x0) .* (y1 - y)
-  wd = (x - x0) .* (y - y0)
+    wa = (x1 - x) .* (y1 - y)
+    wb = (x1 - x) .* (y - y0)
+    wc = (x - x0) .* (y1 - y)
+    wd = (x - x0) .* (y - y0)
 
-  return wa.*Ia + wb.*Ib + wc.*Ic + wd.*Id
+    return wa.*Ia + wb.*Ib + wc.*Ic + wd.*Id
 end
