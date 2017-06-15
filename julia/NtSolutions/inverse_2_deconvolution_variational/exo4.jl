@@ -11,7 +11,7 @@ for it in  1 : length(lambda_list)
         # Compute the gradient of the smoothed TV functional.
         Gr = grad(fTV)
         d = sqrt(epsilon^2 + sum(Gr.^2, 3))
-        G = -NtToolBox.div(Gr / repeat3(d) )
+        G = -NtToolBox.div(Gr ./ repeat3(d) )
         # step
         e = Phi(fTV, h) - y
         fTV = fTV - tau.*( Phi(e, h) + Lambda.*G)

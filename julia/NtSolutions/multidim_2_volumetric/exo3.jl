@@ -1,6 +1,7 @@
 ntests = 20;
 slist = linspace(.01, 1.5, ntests);
 err = [];
+Mblur = copy(Mh)
 for i in 1:ntests
     h = exp( -(X.^2 + Y.^2 + Z.^2)./(2*slist[i]^2) );
     h = h./sum(h[:]);
@@ -9,7 +10,7 @@ for i in 1:ntests
 
     if (i > 1)
         if err[i] > maximum(err[1:i-1])
-            Mblur = Mh
+            Mblur = copy(Mh)
         end
     end
 end
