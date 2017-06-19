@@ -159,7 +159,7 @@ include("Grad.jl")
 include("Div.jl")
 include("perform_blurring.jl")
 include("read_bin.jl")
-#include("isosurface.jl")
+include("isosurface.jl")
 include("perform_thresholding.jl")
 include("load_sound.jl")
 include("perform_stft.jl")
@@ -175,7 +175,7 @@ include("perform_conjugate_gradient.jl")
 include("graph.jl")
 include("perform_redistancing.jl")
 include("perform_haar_transf.jl")
-#include("perform_fast_marching.jl")
+include("perform_fast_marching.jl")
 
 
 
