@@ -8,7 +8,9 @@ header-img: "img/hokusai-5.jpg"
 Installation of the toolboxes packages
 ------------
 
-Each tour makes use some of a toolbox package, that needs to be [downloaded as a .zip file](https://github.com/gpeyre/numerical-tours/raw/master/julia/nt_toolbox.zip), and then unzipped within your working directory (from which you will run the notebooks): Alternatively, you can download the whole [numerical_tours][1].
+Each tour makes use some of a toolbox package, that needs to be [downloaded as a .zip file](https://github.com/gpeyre/numerical-tours/raw/master/julia/NtToolBox.zip), and then unzipped within julia package directory. To know its location : 
+
+> Pkg.dir()
 
 You will also need:
 
@@ -43,7 +45,7 @@ To run the Julia's tours as IPython notebook using IJulia, you need to call from
 Solutions of the exercises
 ------------
 
-The solutions to the exercises [are available online](https://github.com/gpeyre/numerical-tours/tree/master/julia/nt_solutions).
+The solutions to the exercises [are available online](https://github.com/gpeyre/numerical-tours/tree/master/julia/NtSolutions).
 
 
 [1]: https://github.com/gpeyre/numerical-tours/archive/master.zip
