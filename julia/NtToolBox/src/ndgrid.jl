@@ -11,7 +11,7 @@ end
 
 function ndgrid_fill(a, v, s, snext)
     for j = 1:length(a)
-        a[j] = v[div(rem(j-1, snext), s)+1]
+        a[j] = v[Base.div(rem(j-1, snext), s)+1]
     end
 end
 
