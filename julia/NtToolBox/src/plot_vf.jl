@@ -1,5 +1,3 @@
-include("ndgrid.jl")
-
 function plot_vf(velocities)
     """
         velocities is supposed to be of shape nxnx2
