@@ -21,6 +21,8 @@
   list:
   - name: Image Approximation with Orthogonal Bases
     rep: coding_1_approximation
+  - name: Entropic Coding and Compression
+    rep: coding_2_entropic
 
 - name: Denoising
   short: denoising
