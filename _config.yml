@@ -3,10 +3,12 @@
 title: A Numerical Tour of Signal Processing
 email: gabriel.peyre@ceremade.dauphine.fr
 description: > # this means to ignore newlines until "baseurl:"
-  The Numerical Tours of Signal Processing, by Gabriel Peyré, gather Matlab, Python and Scilab experiments to explore modern signal and image processing. 
+  The Numerical Tours of Signal Processing, by Gabriel Peyré, gather Matlab, Python and Scilab experiments to explore modern signal and image processing.
 baseurl: ""
 url: "www.numerical-tours.com"
 github_username:  gpeyre
+
+gems: [jekyll-paginate]
 
 # Build settings
 markdown: kramdown

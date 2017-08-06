@@ -6,12 +6,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="The Numerical Tours of Signal Processing, by Gabriel Peyré, gather Matlab, Python and Scilab experiments to explore modern signal and image processing. 
+    <meta name="description" content="The Numerical Tours of Signal Processing, by Gabriel Peyré, gather Matlab, Python and Scilab experiments to explore modern signal and image processing.
 ">
 
     <title>A Numerical Tour of Signal Processing</title>
 
-    <link rel="canonical" href="www.numerical-tours.com/feed.xml">
+    <link rel="canonical" href="http://localhost:4000/feed.xml">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/img/favicon.png">
@@ -102,7 +102,11 @@
                 </li>
                 
                 <li>
-                    <a href="/">Welcome</a>
+                    <a href="/index--new/">Numerical Tours</a>
+                </li>
+                
+                <li>
+                    <a href="/">Numerical Tours</a>
                 </li>
                 
                 <li>
@@ -142,7 +146,11 @@
                 </li>
                 
                 <li>
-                    <a href="/page2/">Welcome</a>
+                    <a href="/page2/">Numerical Tours</a>
+                </li>
+                
+                <li>
+                    <a href="/page3/">Numerical Tours</a>
                 </li>
                 
                 -->
@@ -177,21 +185,69 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>A Numerical Tour of Signal Processing</title>
-    <description>The Numerical Tours of Signal Processing, by Gabriel Peyré, gather Matlab, Python and Scilab experiments to explore modern signal and image processing. 
+    <description>The Numerical Tours of Signal Processing, by Gabriel Peyré, gather Matlab, Python and Scilab experiments to explore modern signal and image processing.
 </description>
-    <link>www.numerical-tours.com/</link>
-    <atom:link href="www.numerical-tours.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 28 May 2015 08:20:22 +0200</pubDate>
-    <lastBuildDate>Thu, 28 May 2015 08:20:22 +0200</lastBuildDate>
-    <generator>Jekyll v2.5.3</generator>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Sun, 06 Aug 2017 13:55:46 +0200</pubDate>
+    <lastBuildDate>Sun, 06 Aug 2017 13:55:46 +0200</lastBuildDate>
+    <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title>Numerical Tours now in Julia</title>
+        <description>&lt;p&gt;More than 30 new &lt;a href=&quot;/julia/&quot;&gt;Numerical Tours&lt;/a&gt; in &lt;a href=&quot;https://julialang.org/&quot;&gt;Julia&lt;/a&gt; has just been released. It consists in all the most important Numerical Tours, and covers all the topics, from Wavelet image denoising to 3D mesh parameterization. &lt;a href=&quot;/julia/&quot;&gt;Enjoy!&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This conversion has been funded by the ERC project &lt;a href=&quot;http://gpeyre.github.io/sigma-vision/&quot;&gt;SIGMA-Vision&lt;/a&gt;, and it has been performed by &lt;a href=&quot;https://github.com/Chaoukia&quot;&gt;Ayman Chaouki&lt;/a&gt; and &lt;a href=&quot;https://github.com/qmoret&quot;&gt;Quentin Moret&lt;/a&gt;, congratulation for this nice work!&lt;/p&gt;
+</description>
+        <pubDate>Sat, 05 Aug 2017 14:00:00 +0200</pubDate>
+        <link>http://localhost:4000/2017/08/05/julia-tours/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/08/05/julia-tours/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Numerical Tours now in Python</title>
+        <description>&lt;p&gt;More than 30 new &lt;a href=&quot;/python/&quot;&gt;Numerical Tours&lt;/a&gt; in Python has just been released. It consists in all the most important Numerical Tours, and covers all the topics, from Wavelet image denoising to 3D mesh parameterization. &lt;a href=&quot;/python/&quot;&gt;Enjoy!&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This conversion has been funded by the ERC project &lt;a href=&quot;http://gpeyre.github.io/sigma-vision/&quot;&gt;SIGMA-Vision&lt;/a&gt;, and it has been performed by &lt;a href=&quot;https://github.com/pierrestock&quot;&gt;Pierre Stock&lt;/a&gt;, congratulation for this nice work!&lt;/p&gt;
+</description>
+        <pubDate>Sat, 17 Sep 2016 14:00:00 +0200</pubDate>
+        <link>http://localhost:4000/2016/09/17/python-tours/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/09/17/python-tours/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>New Python Tours</title>
+        <description>&lt;p&gt;&lt;a href=&quot;https://www.gipsa-lab.grenoble-inp.fr/~laurent.condat/&quot;&gt;Laurent Condat&lt;/a&gt; just released a very nice set of &lt;a href=&quot;http://www.numerical-tours.com/python/&quot;&gt;Python tours&lt;/a&gt; on optimization and applications in imaging.  Simply go to the &lt;a href=&quot;http://www.numerical-tours.com/python/&quot;&gt;“optimization” section&lt;/a&gt; in the Python’s tours. These new tours cover a wide range of topics, but target in particuler non-smooth convex optimization and first order proximal splitting schemes. Thanks &lt;a href=&quot;https://www.gipsa-lab.grenoble-inp.fr/~laurent.condat/&quot;&gt;Laurent&lt;/a&gt;!&lt;/p&gt;
+</description>
+        <pubDate>Tue, 14 Jun 2016 14:00:00 +0200</pubDate>
+        <link>http://localhost:4000/2016/06/14/python-optimization/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/06/14/python-optimization/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Updated tour</title>
+        <description>&lt;p&gt;I have updated the tour on &lt;a href=&quot;/matlab/optimaltransp_5_entropic/&quot;&gt;Entropic Regularization of Optimal Transport&lt;/a&gt;. It now present the algorihtms the way they should be presented, i.e. using the concept of diagonal scaling, that corresponds to Sinkhorn’s algorithm in the case of transport, and that can be extended to the computation of barycenters.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 21 Sep 2015 14:00:00 +0200</pubDate>
+        <link>http://localhost:4000/2015/09/21/updated-tour-entropic/</link>
+        <guid isPermaLink="true">http://localhost:4000/2015/09/21/updated-tour-entropic/</guid>
+        
+        
+      </item>
     
       <item>
         <title>Kernel Update</title>
         <description>&lt;p&gt;&lt;a href=&quot;https://github.com/blink1073&quot;&gt;Steven Silvester&lt;/a&gt; converted to the whole set of tours to the &lt;a href=&quot;https://jupyter.org/&quot;&gt;Jupyter notebooks&lt;/a&gt;. This means in particular that Matlab tours now run natively with the use of the &lt;a href=&quot;https://github.com/calysto/matlab_kernel&quot;&gt;Matlab kernel&lt;/a&gt;.&lt;/p&gt;
 </description>
         <pubDate>Thu, 28 May 2015 14:00:00 +0200</pubDate>
-        <link>www.numerical-tours.com/2015/05/28/jupyter-kernel/</link>
-        <guid isPermaLink="true">www.numerical-tours.com/2015/05/28/jupyter-kernel/</guid>
+        <link>http://localhost:4000/2015/05/28/jupyter-kernel/</link>
+        <guid isPermaLink="true">http://localhost:4000/2015/05/28/jupyter-kernel/</guid>
         
         
       </item>
@@ -201,8 +257,8 @@
         <description>&lt;p&gt;&lt;a href=&quot;/matlab/meshproc_7_geodesic_poisson&quot;&gt;This tour details&lt;/a&gt; the &lt;a href=&quot;http://dl.acm.org/citation.cfm?id=2516977&quot;&gt;Geodesic in Heat method&lt;/a&gt;, which allows one to approximate geodesic distances by solving a Poisson equation. It relies on the powerful result that the level sets of the heat diffusion converge to those of the geodesic distance as the diffusion time tends to 0.&lt;/p&gt;
 </description>
         <pubDate>Sun, 23 Nov 2014 13:00:00 +0100</pubDate>
-        <link>www.numerical-tours.com/2014/11/23/new-tour-geodesic-poisson/</link>
-        <guid isPermaLink="true">www.numerical-tours.com/2014/11/23/new-tour-geodesic-poisson/</guid>
+        <link>http://localhost:4000/2014/11/23/new-tour-geodesic-poisson/</link>
+        <guid isPermaLink="true">http://localhost:4000/2014/11/23/new-tour-geodesic-poisson/</guid>
         
         
       </item>
@@ -212,8 +268,8 @@
         <description>&lt;p&gt;The &lt;a href=&quot;/julia/&quot;&gt;first Numerical Tour&lt;/a&gt; in &lt;a href=&quot;http://julialang.org/&quot;&gt;Julia&lt;/a&gt; is available. &lt;a href=&quot;http://julialang.org/&quot;&gt;Julia&lt;/a&gt; is an amazing language for scientific computing, that combines the ease of use of Matlab with speed comparable of C and an ecosystem which includes the powerful IPython notebooks.&lt;/p&gt;
 </description>
         <pubDate>Sun, 09 Nov 2014 13:00:00 +0100</pubDate>
-        <link>www.numerical-tours.com/2014/11/09/julia-notebooks/</link>
-        <guid isPermaLink="true">www.numerical-tours.com/2014/11/09/julia-notebooks/</guid>
+        <link>http://localhost:4000/2014/11/09/julia-notebooks/</link>
+        <guid isPermaLink="true">http://localhost:4000/2014/11/09/julia-notebooks/</guid>
         
         
       </item>
@@ -244,8 +300,8 @@
 &lt;p&gt;if you want to add a new cell to the notebook with your own Matlab code.&lt;/p&gt;
 </description>
         <pubDate>Sat, 01 Nov 2014 13:00:00 +0100</pubDate>
-        <link>www.numerical-tours.com/2014/11/01/matlab-notebooks/</link>
-        <guid isPermaLink="true">www.numerical-tours.com/2014/11/01/matlab-notebooks/</guid>
+        <link>http://localhost:4000/2014/11/01/matlab-notebooks/</link>
+        <guid isPermaLink="true">http://localhost:4000/2014/11/01/matlab-notebooks/</guid>
         
         
       </item>
@@ -255,8 +311,8 @@
         <description>&lt;p&gt;A lifting for the web site, which is now hosted on the github project pages.&lt;/p&gt;
 </description>
         <pubDate>Mon, 20 Oct 2014 14:00:00 +0200</pubDate>
-        <link>www.numerical-tours.com/2014/10/20/new-site/</link>
-        <guid isPermaLink="true">www.numerical-tours.com/2014/10/20/new-site/</guid>
+        <link>http://localhost:4000/2014/10/20/new-site/</link>
+        <guid isPermaLink="true">http://localhost:4000/2014/10/20/new-site/</guid>
         
         
       </item>
@@ -266,41 +322,8 @@
         <description>&lt;p&gt;&lt;a href=&quot;/matlab/sparsity_9b_music/&quot;&gt;This tour explores&lt;/a&gt; the use of the MUSIC algortithm to perform sparse spikes deconvolution. The localization of the spikes is obtained by finding the root of a polynomial.&lt;/p&gt;
 </description>
         <pubDate>Tue, 26 Aug 2014 14:00:00 +0200</pubDate>
-        <link>www.numerical-tours.com/2014/08/26/new-tour-music/</link>
-        <guid isPermaLink="true">www.numerical-tours.com/2014/08/26/new-tour-music/</guid>
-        
-        
-      </item>
-    
-      <item>
-        <title>New tour</title>
-        <description>&lt;p&gt;&lt;a href=&quot;/matlab/optimaltransp_5_entropic/&quot;&gt;This tour explores&lt;/a&gt; a fast algorithm to compute the solution of a regularized optimal transportation problem. This corresponds to the resolution of a convex program which is the projection on the transport polytope for a Kulback-Leibler divergence.&lt;/p&gt;
-</description>
-        <pubDate>Tue, 26 Aug 2014 14:00:00 +0200</pubDate>
-        <link>www.numerical-tours.com/2014/08/26/new-tour-entropic/</link>
-        <guid isPermaLink="true">www.numerical-tours.com/2014/08/26/new-tour-entropic/</guid>
-        
-        
-      </item>
-    
-      <item>
-        <title>New tour</title>
-        <description>&lt;p&gt;&lt;a href=&quot;/matlab/sparsity_9_sparsespikes_cbp/&quot;&gt;This tour explores&lt;/a&gt; the use of the C-BP algorithm of Simoncelli and co-workers to solve sparse spikes deconvolution problems. This corresponds to extending the discrete basis-pursuit operator by performing a Taylor expansion to locate more precisely the spikes with sub-pixelic accuracy.&lt;/p&gt;
-</description>
-        <pubDate>Sun, 12 Jan 2014 13:00:00 +0100</pubDate>
-        <link>www.numerical-tours.com/2014/01/12/new-tour-cbp/</link>
-        <guid isPermaLink="true">www.numerical-tours.com/2014/01/12/new-tour-cbp/</guid>
-        
-        
-      </item>
-    
-      <item>
-        <title>New tour</title>
-        <description>&lt;p&gt;&lt;a href=&quot;/matlab/sparsity_8_sparsespikes_measures/&quot;&gt;This tour explores&lt;/a&gt; the resolution of the sparse deconvolution problem in a grid-free maner. This is achieved by solving a dual problem, which can be re-casted into an SDP convex optimization program.&lt;/p&gt;
-</description>
-        <pubDate>Sat, 12 Oct 2013 14:00:00 +0200</pubDate>
-        <link>www.numerical-tours.com/2013/10/12/new-tour-blasso/</link>
-        <guid isPermaLink="true">www.numerical-tours.com/2013/10/12/new-tour-blasso/</guid>
+        <link>http://localhost:4000/2014/08/26/new-tour-music/</link>
+        <guid isPermaLink="true">http://localhost:4000/2014/08/26/new-tour-music/</guid>
         
         
       </item>
@@ -342,7 +365,7 @@
                     </li>
                     
                 </ul>
-                <p class="copyright text-muted">Copyright &copy; A Numerical Tour of Signal Processing 2015</p>
+                <p class="copyright text-muted">Copyright &copy; A Numerical Tour of Signal Processing 2017</p>
             </div>
         </div>
     </div>
