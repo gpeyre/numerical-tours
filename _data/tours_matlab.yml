@@ -164,6 +164,19 @@
   - name: Entropic Regularization of Optimal Transport
     rep: optimaltransp_5_entropic
 
+- name: Machine Learning
+  short: ml
+  list:
+  - name: PCA, Nearest-Neighbors and Clustering
+    rep: ml_1_pca_nn
+    format: html
+  - name: Linear Regression and Kernel Methods
+    rep: ml_2_regression
+    format: html
+  - name: Logistic Classification
+    rep: ml_3_classification
+    format: html
+
 - name: Sparsity and Redundant Representations
   short: sparsity
   list:

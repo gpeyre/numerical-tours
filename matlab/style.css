@@ -1,15 +1,15 @@
-body { 
+body {
 	font-family : verdana,Frosty,Arial;
     font-weight     : normal;
   	background-color: white;
 	/* matlab */
-  	margin:20px; 
+  	margin:20px;
   	text-align: justify;
 }
 
 h1 {
-  color: #000099; 
-  font-size: 35px; 
+  color: #000099;
+  font-size: 35px;
   text-align: center;
 }
 
@@ -48,7 +48,7 @@ pre.codeinput {
 }
 @media print {
   pre.codeinput {word-wrap:break-word; width:100%;}
-} 
+}
 
 span.keyword {color: #0000FF}
 span.comment {color: #228B22}
@@ -65,9 +65,10 @@ pre.error {
   color: red;
 }
 
-img { 
-display: block; 
+img {
+display: block;
 margin: 0 auto;
+width: 400pt;
 }
 
 p.footer {
@@ -79,7 +80,7 @@ p.footer {
 }
 
 /* MATLAB STYLE */
-/* 
+/*
 body {
   background-color: white;
   margin:10px;

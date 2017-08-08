@@ -28,10 +28,13 @@ These are the [Matlab](http://www.mathworks.fr/products/matlab/) tours, that can
 	<li>
 	{% if tour.format == "html" %}
 		<a href="{{ tour.rep }}"> {{ tour.name }} </a>
+		&nbsp;&nbsp;
+		(<a href="{{ tour.rep }}">web</a>)
 	{% else %}
 		<a href="http://nbviewer.ipython.org/github/gpeyre/numerical-tours/blob/master/matlab/{{ tour.rep }}.ipynb"> {{ tour.name }} </a>
+		&nbsp;&nbsp;
+		(<a href="http://nbviewer.ipython.org/github/gpeyre/numerical-tours/blob/master/matlab/{{ tour.rep }}.ipynb">ipynb</a>|<a href="{{ tour.rep }}">web</a>)
 	{% endif %}
-	&nbsp;&nbsp;(<a href="http://nbviewer.ipython.org/github/gpeyre/numerical-tours/blob/master/matlab/{{ tour.rep }}.ipynb">ipynb</a>|<a href="{{ tour.rep }}">web</a>)
 	</li>
 {% endfor %}
 </ul>
