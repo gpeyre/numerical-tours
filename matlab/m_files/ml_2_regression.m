@@ -2,6 +2,16 @@
 % This tour studies linear regression method, and its non-linear variant
 % using kernlization.
 
+%%
+% We recommend that after doing this Numerical Tours, you apply it to your
+% own data, for instance using a dataset from <https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/ LibSVM>.
+%%
+% _Disclaimer:_ these machine learning tours are intended to be
+% overly-simplistic implementations and applications of baseline machine learning methods. 
+% For more advanced uses and implementations, we recommend
+% to use a state-of-the-art library, the most well known being
+% <http://scikit-learn.org/ Scikit-Learn>
+
 perform_toolbox_installation('general');
 
 %% Dataset Loading

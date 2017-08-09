@@ -1,6 +1,17 @@
 %% PCA, Nearest-Neighbors and Clustering
 % This tour details PCA (visualization), NN classification and K-means on the IRIS dataset.
 
+%%
+% We recommend that after doing this Numerical Tours, you apply it to your
+% own data, for instance using a dataset from <https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/ LibSVM>.
+
+%%
+% _Disclaimer:_ these machine learning tours are intended to be
+% overly-simplistic implementations and applications of baseline machine learning methods. 
+% For more advanced uses and implementations, we recommend
+% to use a state-of-the-art library, the most well known being
+% <http://scikit-learn.org/ Scikit-Learn>
+
 perform_toolbox_installation('general');
 
 %% Dataset Loading
@@ -46,33 +57,30 @@ k = max(y);
 %%
 % Compute empirical mean \(m \in \RR^n\) and covariance \(C \in \RR^{n \times n}\).
 
-m = mean(X,1);
-Xm = X-repmat(m, [p 1]);
-C = Xm'*Xm;
+Xm = @(X)X-repmat(mean(X,1), [size(X,1) 1]);
+Cov = @(X)Xm(X)'*Xm(X);
 
 %%
 % Display the covariance matrix.
 
 clf;
-imagesc(C);
+imagesc(Cov(X));
 
 %%
-% Compute PCA ortho-basis.
+% Compute PCA ortho-basis. 
 
-[U,D] = eig(C); 
-[d,I] = sort(diag(D), 'descend');
-U = U(:,I);
+[U,D,V] = svd(Xm(X),'econ');
 
 %%
 % Compute the feature in the PCA basis.
 
-z = (U'*Xm')';
+Z = Xm(X) * V;
 
 %%
 % Plot sqrt of the eigenvalues.
 
 clf; 
-plot(sqrt(d), '.-', 'LineWidth', 2, 'MarkerSize', 30);
+plot(diag(D), '.-', 'LineWidth', 2, 'MarkerSize', 30);
 axis tight;
 SetAR(1/2);
 
@@ -85,7 +93,7 @@ ms = 25;
 clf; hold on;
 for i=1:k
     I = find(y==i);
-    plot(z(I,1), z(I,2), '.', 'Color', col{i}, 'MarkerSize', ms);
+    plot(Z(I,1), Z(I,2), '.', 'Color', col{i}, 'MarkerSize', ms);
 end
 axis tight; axis equal; box on;
 SetAR(1);
@@ -97,7 +105,7 @@ SetAR(1);
 clf; hold on;
 for i=1:k
     I = find(y==i);
-    plot3(z(I,1), z(I,2), z(I,3), '.', 'Color', col{i}, 'MarkerSize', ms);
+    plot3(Z(I,1), Z(I,2), Z(I,3), '.', 'Color', col{i}, 'MarkerSize', ms);
 end
 view(3); axis tight; axis equal; box on;
 SetAR(1);
@@ -177,7 +185,7 @@ xlabel('R'); ylabel('S');
 %% Display, as a function of the position in 2D PCA space, the class output by 
 %% the R-NN method.
 % bounding boxes
-B = max(max(abs(z(:,1:2))));
+B = max(max(abs(Z(:,1:2))));
 q = 200;
 r = linspace(-B,B,q);
 [V,U] = meshgrid(r,r);
@@ -188,7 +196,7 @@ clf;
 for i=1:length(Rlist)
     R=Rlist(i);
     %
-    D = distmat(z(:,1:2),z1);
+    D = distmat(Z(:,1:2),z1);
     [Ds,I] = sort(D,1);
     Y = y(I);
     %
@@ -205,7 +213,7 @@ for i=1:length(Rlist)
     imagesc(r,r,C');
     for i=1:k
         I = find(y==i);
-        plot(z(I,1), z(I,2), '.', 'Color', col{i}, 'MarkerSize', ms);
+        plot(Z(I,1), Z(I,2), '.', 'Color', col{i}, 'MarkerSize', ms);
     end
     axis tight; axis equal; axis off;
     title(['R=' num2str(R)]);
