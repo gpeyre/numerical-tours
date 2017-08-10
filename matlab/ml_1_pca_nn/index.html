@@ -201,8 +201,7 @@ y = y-min(y)+1;
 </pre><p>\(p\) is the number of samples, \(n\) is the dimensionality of the features, \(k\) is the number of classes.</p><pre class="codeinput">[p,n] = size(X);
 k = max(y);
 </pre><h2>Dimenionality Reduction and PCA<a name="16"></a></h2>
-         <p>In order to display in 2-D or 3-D the data, <a href="https://en.wikipedia.org/wiki/Dimensionality_reduction">dimensionality reduction</a> is needed. The simplest method is the &lt;https://en.wikipedia.org/wiki/Principal_component_analysis Principal Component Analysis
-            &gt; (PCA), which perform an orthogonal linear projection on the principal axsis (eigenvector) of the covariance matrix.
+         <p>In order to display in 2-D or 3-D the data, <a href="https://en.wikipedia.org/wiki/Dimensionality_reduction">dimensionality reduction</a> is needed. The simplest method is the <a href="https://en.wikipedia.org/wiki/Principal_component_analysis">Principal Component Analysis</a> (PCA), which perform an orthogonal linear projection on the principal axsis (eigenvector) of the covariance matrix.
          </p>
          <p>Compute <a href="https://en.wikipedia.org/wiki/Sample_mean_and_covariance">empirical mean</a> \[    m = \frac{1}{p} \sum_{i=1}^n \in \RR^n \] and <a href="https://en.wikipedia.org/wiki/Sample_mean_and_covariance">covariance</a> \[ C = \frac{1}{p} \sum_{i=1}^n (x_i-m) (x_i-m)^\top ?\in \RR^{n \times n}. \] Denoting \(\tilde X = X - 1_p m^\top \), one
             has \(C=\tilde X^\top \tilde X\).
@@ -436,7 +435,7 @@ k = max(y);
 %% Dimenionality Reduction and PCA
 % In order to display in 2-D or 3-D the data, <https://en.wikipedia.org/wiki/Dimensionality_reduction dimensionality reduction> 
 % is needed.
-% The simplest method is the <https://en.wikipedia.org/wiki/Principal_component_analysis Principal Component Analysis > (PCA), 
+% The simplest method is the <https://en.wikipedia.org/wiki/Principal_component_analysis Principal Component Analysis> (PCA), 
 % which perform an
 % orthogonal linear projection on the principal axsis (eigenvector) of the
 % covariance matrix.
