@@ -161,10 +161,11 @@ To make changes, update the M-file and republish this document.
          <div>
             <ul>
                <li><a href="#3">Installing toolboxes and setting up the path.</a></li>
-               <li><a href="#10">Dataset Loading</a></li>
-               <li><a href="#17">Batch Gradient Descent</a></li>
-               <li><a href="#22">Stochastic Gradient descent</a></li>
-               <li><a href="#30">Stochastic Gradient Gescent with Averaging</a></li>
+               <li><a href="#11">Dataset Loading</a></li>
+               <li><a href="#17">Batch Gradient Descent (BGD)</a></li>
+               <li><a href="#22">Stochastic Gradient Descent (SGD)</a></li>
+               <li><a href="#31">Stochastic Gradient Descent with Averaging (SGA)</a></li>
+               <li><a href="#38">Stochastic Averaged Gradient Descent (SAG)</a></li>
             </ul>
          </div>
          <p>We recommend that after doing this Numerical Tours, you apply it to your own data, for instance using a dataset from <a href="https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/">LibSVM</a>.
@@ -183,12 +184,14 @@ To make changes, update the M-file and republish this document.
          </p>
          <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
 </pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_general/'</span>);
-</pre><h2>Dataset Loading<a name="10"></a></h2>
-         <p>We load a dataset of \(n\) images of size \(p = 8 \times 8\), representing digits from 0 to 9 (so there are \(k=10\) classes).</p>
-         <p>First define a few helpers.</p><pre class="codeinput">SetAR = @(ar)set(gca, <span class="string">'PlotBoxAspectRatio'</span>, [1 ar 1], <span class="string">'FontSize'</span>, 20);
+</pre><p>First define a few helpers.</p><pre class="codeinput">SetAR = @(ar)set(gca, <span class="string">'PlotBoxAspectRatio'</span>, [1 ar 1], <span class="string">'FontSize'</span>, 20);
 Xm = @(X)X-repmat(mean(X,1), [size(X,1) 1]);
 Cov = @(X)Xm(X)'*Xm(X);
-</pre><p>Load the dataset. Randomly permute it. Separate the features \(X\) from the data \(y\) to predict information.</p><pre class="codeinput">name = <span class="string">'quantum'</span>;
+</pre><h2>Dataset Loading<a name="11"></a></h2>
+         <p>We load a subset of the <a href="http://osmot.cs.cornell.edu/kddcup/datasets.html">dataset Quantum Physics Dataset</a> of \(n=10000\) features in dimension \(78\). The goal in this task is to learn a classification rule that differentiates
+            between two types of particles generated in high energy collider experiments.
+         </p>
+         <p>Load the dataset. Randomly permute it. Separate the features \(X\) from the data \(y\) to predict information.</p><pre class="codeinput">name = <span class="string">'quantum'</span>;
 load([<span class="string">'ml-'</span> name]);
 A = A(randperm(size(A,1)),:);
 X = A(:,1:end-1);
@@ -201,8 +204,8 @@ X = X ./ repmat( sqrt(sum(X.^2)/size(X,1)), [size(X,1),1] );
 </pre><p>Plot the classes.</p><pre class="codeinput">I = randperm(n); I = I(1:500);
 options.disp_dim = 3;
 clf; plot_multiclasses(X(I,:),y(I),options);
-</pre><img vspace="5" hspace="5" src="index_01.png"> <h2>Batch Gradient Descent<a name="17"></a></h2>
-         <p>We first test vanilla (batch) gradient descent on the problem of supervised logistic classification.</p>
+</pre><img vspace="5" hspace="5" src="index_01.png"> <h2>Batch Gradient Descent (BGD)<a name="17"></a></h2>
+         <p>We first test the usual (batch) gradient descent (BGD) on the problem of supervised logistic classification.</p>
          <p>We refer to the dedicated numerical tour on logistic classification for background and more details about the derivations
             of the energy and its gradient.
          </p>
@@ -214,54 +217,81 @@ E = @(w,X,y)L(X*w,y);
 theta = @(v)1 ./ (1+exp(-v));
 nablaL = @(s,r)- 1/n * y.* theta(-s.*y);
 nablaE = @(w,X,y)X'*nablaL(X*w,y);
-AddBias = @(X)[X ones(size(X,1),1)];
-AddBias = @(X)X; <span class="comment">% no bias is used in this tour</span>
 </pre><p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Implement a gradient descent  \[ w_{\ell+1} = w_\ell - \tau_\ell \nabla E(w_\ell). \] Monitor the energy decay. Test different
             step size, and compare with the theory (in particular plot in log domain to illustrate the linear rate).
          </p><pre class="codeinput">exo1;
-</pre><img vspace="5" hspace="5" src="index_02.png"> <h2>Stochastic Gradient descent<a name="22"></a></h2>
+</pre><img vspace="5" hspace="5" src="index_02.png"> <h2>Stochastic Gradient Descent (SGD)<a name="22"></a></h2>
          <p>As any empirical risk minimization procedure, the logistic classification minimization problem can be written as \[ \umin{w}
             E(w) = \frac{1}{n} \sum_i E_i(w) \qwhereq E_i(w) = L(\dotp{x_i}{w},y_i). \]
          </p>
          <p>For very large \(n\) (which could in theory even be infinite, in which case the sum needs to be replaced by an expectation
             or equivalenty an integral), computing \(\nabla E\) is prohebitive. It is possible instead to use a stochastic gradient descent
-            scheme   \[ w_{\ell+1} = w_\ell - \tau_\ell \nabla E_{i(\ell)}(w_\ell) \] where, for each iteration index \(\ell\), \(i(\ell)\)
-            is drawn uniformly at random in \(  \{1,\ldots,n\} \).
+            (SGD) scheme   \[ w_{\ell+1} = w_\ell - \tau_\ell \nabla E_{i(\ell)}(w_\ell) \] where, for each iteration index \(\ell\),
+            \(i(\ell)\) is drawn uniformly at random in \(  \{1,\ldots,n\} \).
          </p>
          <p>Note that here \[ \nabla E_{i}(w) = x_i \nabla L( \dotp{x_i}{w}, y_i )   \qwhereq  \nabla L(u,v) = v \odot \th(-u)  \]</p><pre class="codeinput">nablaEi = @(w,i)-y(i) .* X(i,:)' * theta( -y(i) * (X(i,:)*w)  );
-</pre><p>A crucial question is the choice of step size schedule \(\tau_\ell\). It must tends to 0 in order to cancel the noise induced
-            on the gradient by the stochastic sampling. But it should not goes too fast to zero in order for the method to keep converging.
+</pre><p>Note that each step of a batch gradient descent has complexity \(O(np)\), while a step of SGD only has complexity \(O(p)\).
+            SGD is thus advantageous when \(n\) is very large, and one cannot afford to do several passes through the data. In some situation,
+            SGD can provide accurate results even with \(\ell \ll n\), exploiting redundancy between the samples.
          </p>
-         <p>A typical schedule that ensures both property is to have asymptically \(\tau_\ell \sim \ell^{-1}\) for \(\ell\rightarrow +\infty\).
-            We thus propose to use \[ \tau_\ell \eqdef \frac{\tau_0}{1 + \ell/\ell_0} \] where \(\ell_0\) indicates roughly the number
-            of iterations serving as a "warmup" phase.
+         <p>A crucial question is the choice of step size schedule \(\tau_\ell\). It must tends to 0 in order to cancel the noise induced
+            on the gradient by the stochastic sampling. But it should not go too fast to zero in order for the method to keep converging.
          </p>
-         <p>One can prove the following convergence result  \[ \EE( E(w_\ell) - E(w^\star) ) \sim \frac{1}{\sqrt{\ell}}. \]</p>
+         <p>A typical schedule that ensures both properties is to have asymptically \(\tau_\ell \sim \ell^{-1}\) for \(\ell\rightarrow
+            +\infty\). We thus propose to use \[ \tau_\ell \eqdef \frac{\tau_0}{1 + \ell/\ell_0} \] where \(\ell_0\) indicates roughly
+            the number of iterations serving as a "warmup" phase.
+         </p>
+         <p>One can prove the following convergence result  \[ \EE( E(w_\ell) ) - E(w^\star) = O\pa{ \frac{1}{\sqrt{\ell}} }, \] where
+            \(\EE\) indicates an expectation with respect to the i.i.d. sampling performed at each iteration.
+         </p>
          <p>Select default values for \( (\ell_0,\tau_0) \).</p><pre class="codeinput">l0 = 100;
 tau0 = .05;
-</pre><p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Perform the Stochastic gradient descent. Display the evolution of the energy \(E(w_\ell)\). Perform several runs to illustrate
-            the probabilistic nature of the method. Explore different values for \( (\ell_0,\tau_0) \).
+</pre><p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Perform the Stochastic gradient descent. Display the evolution of the energy \(E(w_\ell)\). One can overlay on top (black
+            dashed curve) the convergence of the batch gradient descent, with a carefull scaling of the number of iteration to account
+            for the fact that the complexity of a batch iteration is \(n\) times larger. Perform several runs to illustrate the probabilistic
+            nature of the method. Explore different values for \( (\ell_0,\tau_0) \).
          </p><pre class="codeinput">exo2;
-</pre><img vspace="5" hspace="5" src="index_03.png"> <h2>Stochastic Gradient Gescent with Averaging<a name="30"></a></h2>
-         <p>Stochastic gradient descent is very slow because of the fast decay of \(\tau_\ell\) toward zero.</p>
-         <p>To improve the convergence rate, it is possible to average the past iterate, i.e. run a "classical" SGD on auxiliary variables
-            \( (\tilde w_\ell)_\ell\)   \[ \tilde w_{\ell+1} = \tilde w_\ell - \tau_\ell \nabla E_{i(\ell)}(\tilde w_\ell) \] and output
-            as estimated weight vector the average \[ w_\ell \eqdef \frac{1}{\ell} \sum_{k=1}^\ell \tilde w_\ell. \]
+</pre><img vspace="5" hspace="5" src="index_03.png"> <h2>Stochastic Gradient Descent with Averaging (SGA)<a name="31"></a></h2>
+         <p>Stochastic gradient descent is slow because of the fast decay of \(\tau_\ell\) toward zero.</p>
+         <p>To improve somehow the convergence speed, it is possible to average the past iterate, i.e. run a "classical" SGD on auxiliary
+            variables \( (\tilde w_\ell)_\ell\)   \[ \tilde w_{\ell+1} = \tilde w_\ell - \tau_\ell \nabla E_{i(\ell)}(\tilde w_\ell) \]
+            and output as estimated weight vector the average \[ w_\ell \eqdef \frac{1}{\ell} \sum_{k=1}^\ell \tilde w_\ell. \] This defines
+            the Stochastic Gradient Descent with Averaging (SGA) algorithm.
          </p>
          <p>Note that it is possible to avoid explicitely storing all the iterates by simply updating a running average as follow \[ w_{\ell+1}
-            = \frac{1}{\ell} \tilde w +  \frac{\ell-1}{\ell} w_\ell.  \]
+            = \frac{1}{\ell} \tilde w_\ell +  \frac{\ell-1}{\ell} w_\ell.  \]
          </p>
          <p>In this case, a typical choice of decay is rather of the form \[ \tau_\ell \eqdef \frac{\tau_0}{1 + \sqrt{\ell/\ell_0}}. \]
             Notice that the step size now goes much slower to 0, at rate \(\ell^{-1/2}\).
          </p>
          <p>Typically, because the averaging stabilizes the iterates, the choice of \((\ell_0,\tau_0)\) is less important than for SGD.</p>
-         <p>One can prove that it leads to a faster convergence rate than SGD, since  \[ \EE( E(w_\ell) - E(w^\star) ) \sim \frac{1}{\ell}.
-            \] Furthermore, for strongly convex energies \(E\) (which is the case here when \(X\) is injective), then one obtains linear
-            convergence rate.
+         <p><a href="https://arxiv.org/pdf/1303.6149.pdf">Bach proves that</a> for logistic classification, it leads to a faster convergence (the constant involved are smaller) than SGD, since on contrast
+            to SGD, SGA is adaptive to the local strong convexity of \(E\).
          </p>
          <p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) Implement the Stochastic gradient descent with averaging. Display the evolution of the energy \(E(w_\ell)\).
          </p><pre class="codeinput">exo3;
-</pre><img vspace="5" hspace="5" src="index_04.png"> <p class="footer"><br>
+</pre><img vspace="5" hspace="5" src="index_04.png"> <h2>Stochastic Averaged Gradient Descent (SAG)<a name="38"></a></h2>
+         <p>For problem size \(n\) where the dataset (of size \(n \times p\)) can fully fit into memory, it is possible to further improve
+            the SGA method by bookeeping the previous gradient. This gives rise to the <a href="https://arxiv.org/pdf/1309.2388">Stochastic Averaged Gradient Descent (SAG)</a> algorithm.
+         </p>
+         <p>We stored all the previously computed gradient in \( (G^i)_{i=1}^n \), which necessitate \(n \times p\) memory. The iterates
+            are defined by using a proxy \(g\) for the batch gradient, which is progressively enhanced during the iterates.
+         </p>
+         <p>The algorithm reads \[ h \leftarrow \nabla E_{i(\ell)}(\tilde w_\ell), \] \[ g  \leftarrow g - G^{i(\ell)} + h,   \] \[ G^{i(\ell)}
+            \leftarrow h,  \] \[ w_{\ell+1} = w_\ell - \tau g.  \] Note that in contrast to SGD and SGA, this method uses a fixed step
+            size \(\tau\). Similarely to the BGD, in order to ensure convergence, the step size \(\tau\) should be of the order of \(1/L\)
+            where \(L\) is the Lipschitz constant of \(E\).
+         </p>
+         <p>This algorithm improves over SGA and BGD since it has a convergence rate of \(O(1/\ell\). Furthermore, in the presence of
+            strong convexity (for instance when \(X\) is injective for logistic classification), it has a linear convergence rate, i.e.
+             \[ \EE( E(w_\ell) ) - E(w^\star) = O\pa{ \rho^\ell }, \] for some \(0 &lt; \rho &lt; 1\).
+         </p>
+         <p>Note that this improvement over SGD and SGA is made possible only because SAG explictely use the fact that \(n\) is finite
+            (while SGD and SGA can be extended to infinite \(n\) and more general minimization of expectations).
+         </p>
+         <p><i>Exercice 4:</i> (<a href="../missing-exo/">check the solution</a>) Implement SAG. Display the evolution of the energy \(E(w_\ell)\).
+         </p><pre class="codeinput">exo4;
+</pre><img vspace="5" hspace="5" src="index_05.png"> <p class="footer"><br>
             Copyright  (c) 2010 Gabriel Peyre<br></p>
       </div>
       <!--
@@ -310,17 +340,19 @@ getd = @(p)path(p,path); % scilab users must *not* execute this
 
 getd('toolbox_general/');
 
-
-%% Dataset Loading
-% We load a dataset of \(n\) images of size \(p = 8 \times 8\), representing digits from 0
-% to 9 (so there are \(k=10\) classes). 
-
 %%
 % First define a few helpers.
 
 SetAR = @(ar)set(gca, 'PlotBoxAspectRatio', [1 ar 1], 'FontSize', 20);
 Xm = @(X)X-repmat(mean(X,1), [size(X,1) 1]);
 Cov = @(X)Xm(X)'*Xm(X);
+
+
+%% Dataset Loading
+% We load a subset of the <http://osmot.cs.cornell.edu/kddcup/datasets.html
+% dataset Quantum Physics Dataset>
+% of \(n=10000\) features in dimension \(78\). The goal in this task is to learn a classification rule that differentiates between two types of particles generated in high energy collider experiments.
+
 
 %%
 % Load the dataset.
@@ -357,8 +389,8 @@ I = randperm(n); I = I(1:500);
 options.disp_dim = 3;
 clf; plot_multiclasses(X(I,:),y(I),options);
 
-%% Batch Gradient Descent 
-% We first test vanilla (batch) gradient descent on the problem of
+%% Batch Gradient Descent (BGD)
+% We first test the usual (batch) gradient descent (BGD) on the problem of
 % supervised logistic classification.
 
 %%
@@ -380,8 +412,6 @@ E = @(w,X,y)L(X*w,y);
 theta = @(v)1 ./ (1+exp(-v));
 nablaL = @(s,r)- 1/n * y.* theta(-s.*y);
 nablaE = @(w,X,y)X'*nablaL(X*w,y);
-AddBias = @(X)[X ones(size(X,1),1)];
-AddBias = @(X)X; % no bias is used in this tour
 
 %%
 % _Exercice 1:_ (<../missing-exo/ check the solution>)
@@ -393,7 +423,7 @@ AddBias = @(X)X; % no bias is used in this tour
 
 exo1;
 
-%% Stochastic Gradient descent
+%% Stochastic Gradient Descent (SGD)
 % As any empirical risk minimization procedure, the 
 % logistic classification minimization problem can be written as 
 % \[ \umin{w} E(w) = \frac{1}{n} \sum_i E_i(w) \qwhereq E_i(w) = L(\dotp{x_i}{w},y_i). \]
@@ -401,7 +431,7 @@ exo1;
 %%
 % For very large \(n\) (which could in theory even be infinite, in which case the sum needs to be replaced 
 % by an expectation or equivalenty an integral), computing \(\nabla E\) is prohebitive.  
-% It is possible instead to use a stochastic gradient descent scheme
+% It is possible instead to use a stochastic gradient descent (SGD) scheme
 %   \[ w_{\ell+1} = w_\ell - \tau_\ell \nabla E_{i(\ell)}(w_\ell) \]
 % where, for each iteration index \(\ell\), \(i(\ell)\)
 % is drawn uniformly at random in \(  \{1,\ldots,n\} \). 
@@ -414,13 +444,21 @@ exo1;
 nablaEi = @(w,i)-y(i) .* X(i,:)' * theta( -y(i) * (X(i,:)*w)  );
 
 %%
+% Note that each step of a batch gradient descent has complexity \(O(np)\),
+% while a step of SGD only has complexity \(O(p)\). SGD is thus
+% advantageous when \(n\) is very large, and one cannot afford to do
+% several passes through the data. In some situation, SGD can provide
+% accurate results even with \(\ell \ll n\), exploiting redundancy between
+% the samples.  
+
+%%
 % A crucial question is the choice of step size schedule \(\tau_\ell\). It
 % must tends to 0 in order to cancel the noise induced on the gradient by
-% the stochastic sampling. But it should not goes too fast to zero in order
+% the stochastic sampling. But it should not go too fast to zero in order
 % for the method to keep converging. 
 
 %%
-% A typical schedule that ensures both property is to have asymptically \(\tau_\ell \sim \ell^{-1}\) for
+% A typical schedule that ensures both properties is to have asymptically \(\tau_\ell \sim \ell^{-1}\) for
 % \(\ell\rightarrow +\infty\). We thus propose to use 
 % \[ \tau_\ell \eqdef \frac{\tau_0}{1 + \ell/\ell_0} \]
 % where \(\ell_0\) indicates roughly the number of iterations serving as a
@@ -428,7 +466,9 @@ nablaEi = @(w,i)-y(i) .* X(i,:)' * theta( -y(i) * (X(i,:)*w)  );
 
 %%
 % One can prove the following convergence result
-%  \[ \EE( E(w_\ell) - E(w^\star) ) \sim \frac{1}{\sqrt{\ell}}. \]
+%  \[ \EE( E(w_\ell) ) - E(w^\star) = O\pa{ \frac{1}{\sqrt{\ell}} }, \]
+% where \(\EE\) indicates an expectation with respect to the i.i.d.
+% sampling performed at each iteration.
 
 %%
 % Select default values for \( (\ell_0,\tau_0) \).
@@ -439,27 +479,31 @@ tau0 = .05;
 %%
 % _Exercice 2:_ (<../missing-exo/ check the solution>)
 % Perform the Stochastic gradient descent.
-% Display the evolution of the energy \(E(w_\ell)\).
+% Display the evolution of the energy \(E(w_\ell)\). 
+% One can overlay on top (black dashed curve) the convergence of the batch gradient descent, with a carefull scaling of the 
+% number of iteration to account for the fact that the complexity of a batch iteration is \(n\) times larger. 
 % Perform several runs to illustrate the probabilistic nature of the method.
 % Explore different values for \( (\ell_0,\tau_0) \).
 
 exo2;
 
-%% Stochastic Gradient Gescent with Averaging
-% Stochastic gradient descent is very slow because of the fast decay of
+%% Stochastic Gradient Descent with Averaging (SGA)
+% Stochastic gradient descent is slow because of the fast decay of
 % \(\tau_\ell\) toward zero.
 
 %%
-% To improve the convergence rate, it is possible to average the past
+% To improve somehow the convergence speed, it is possible to average the past
 % iterate, i.e. run a "classical" SGD on auxiliary variables \( (\tilde w_\ell)_\ell\)
 %   \[ \tilde w_{\ell+1} = \tilde w_\ell - \tau_\ell \nabla E_{i(\ell)}(\tilde w_\ell) \]
 % and output as estimated weight vector the average
 % \[ w_\ell \eqdef \frac{1}{\ell} \sum_{k=1}^\ell \tilde w_\ell. \]
+% This defines the Stochastic Gradient Descent with Averaging (SGA)
+% algorithm.
 
 %%
 % Note that it is possible to avoid explicitely storing all the iterates by simply
 % updating a running average as follow
-% \[ w_{\ell+1} = \frac{1}{\ell} \tilde w +  \frac{\ell-1}{\ell} w_\ell.  \]
+% \[ w_{\ell+1} = \frac{1}{\ell} \tilde w_\ell +  \frac{\ell-1}{\ell} w_\ell.  \]
 
 %%
 % In this case, a typical choice of decay is rather of the form 
@@ -471,10 +515,10 @@ exo2;
 % \((\ell_0,\tau_0)\) is less important than for SGD. 
 
 %%
-% One can prove that it leads to a faster convergence rate than SGD, since 
-%  \[ \EE( E(w_\ell) - E(w^\star) ) \sim \frac{1}{\ell}. \]
-% Furthermore, for strongly convex energies \(E\) (which is the case here
-% when \(X\) is injective), then one obtains linear convergence rate. 
+% <https://arxiv.org/pdf/1303.6149.pdf Bach proves that> for logistic classification, 
+% it leads to a faster convergence (the constant involved are
+% smaller) than SGD, since 
+% on contrast to SGD, SGA is adaptive to the local strong convexity of \(E\).
 
 %%
 % _Exercice 3:_ (<../missing-exo/ check the solution>)
@@ -482,6 +526,54 @@ exo2;
 % Display the evolution of the energy \(E(w_\ell)\).
 
 exo3;
+
+
+%% Stochastic Averaged Gradient Descent (SAG)
+% For problem size \(n\) where the dataset (of size \(n \times p\)) can
+% fully fit into memory, it is possible to further improve the SGA method
+% by bookeeping the previous gradient. This gives rise to the 
+% <https://arxiv.org/pdf/1309.2388 Stochastic Averaged Gradient Descent (SAG)> algorithm.
+
+%%
+% We stored all the previously computed gradient in \( (G^i)_{i=1}^n \),
+% which necessitate \(n \times p\) memory. 
+% The iterates are defined by using a proxy \(g\) for the batch gradient,
+% which is progressively enhanced during the iterates.
+
+%%
+% The algorithm reads
+% \[ h \leftarrow \nabla E_{i(\ell)}(\tilde w_\ell), \]
+% \[ g  \leftarrow g - G^{i(\ell)} + h,   \]
+% \[ G^{i(\ell)} \leftarrow h,  \]
+% \[ w_{\ell+1} = w_\ell - \tau g.  \]
+% Note that in contrast to SGD and SGA, this method uses a fixed step
+% size \(\tau\). Similarely to the BGD, in order to ensure convergence, 
+% the step size \(\tau\) should be of the order of \(1/L\)
+% where \(L\) is the Lipschitz constant of \(E\).
+
+%%
+% This algorithm improves over SGA and BGD
+% since it has a convergence rate of \(O(1/\ell\). 
+% Furthermore, in the presence of strong convexity (for instance when \(X\) is
+% injective for logistic classification), it has a linear convergence rate, 
+% i.e. 
+%  \[ \EE( E(w_\ell) ) - E(w^\star) = O\pa{ \rho^\ell }, \]
+% for some \(0 < \rho < 1\). 
+
+%%
+% Note that this improvement over SGD and SGA is made possible only because
+% SAG explictely use the fact that \(n\) is finite (while SGD and SGA can
+% be extended to infinite \(n\) and more general minimization of
+% expectations).
+
+
+%%
+% _Exercice 4:_ (<../missing-exo/ check the solution>)
+% Implement SAG.
+% Display the evolution of the energy \(E(w_\ell)\).
+
+exo4;
+
 
 ##### SOURCE END #####
 -->
