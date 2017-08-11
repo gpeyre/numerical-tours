@@ -15,11 +15,18 @@
 perform_toolbox_installation('general');
 
 %% Dataset Loading
+% We test the method on the
+% <http://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_boston.html
+% Boston house prices dataset>, consisting in \(n=506\) samples with
+% features \(x_i \in \RR^p\) in dimension \(p=13\). The goal is to predict the price value
+% \(y_i \in \RR\). 
 
 %%
 % Helpers.
 
 SetAR = @(ar)set(gca, 'PlotBoxAspectRatio', [1 ar 1], 'FontSize', 20);
+Xm = @(X)X-repmat(mean(X,1), [size(X,1) 1]);
+Cov = @(X)Xm(X)'*Xm(X);
 
 %%
 % Load the dataset.
@@ -39,57 +46,53 @@ X = A(:,1:end-1);
 y = A(:,end);
 
 %%
-% \(p\) is the number of samples, \(n\) is the dimensionality of the features,
+% \(n\) is the number of samples, \(p\) is the dimensionality of the features,
 
-[p,n] = size(X);
+[n,p] = size(X);
 
 %% Dimenionality Reduction and PCA
-% In order to display in 2D or 3D the data, dimensionality is needed.
+% In order to display in 2-D or 3-D the data, dimensionality is needed.
 % The simplest method is the principal component analysis, which perform an
 % orthogonal linear projection on the principal axsis (eigenvector) of the
 % covariance matrix.
 
 %%
-% Compute empirical mean \(m \in \RR^n\) and covariance \(C \in \RR^{n \times n}\).
-
-m = mean(X,1);
-Xm = X-repmat(m, [p 1]);
-C = Xm'*Xm;
-
-%%
 % Display the covariance matrix.
 
 clf;
-imagesc(C);
+imagesc(Cov(X));
 
 %%
-% Compute PCA ortho-basis.
+% Compute PCA ortho-basis and 
+% the feature in the PCA basis.
 
-[U,D] = eig(C); 
-[d,I] = sort(diag(D), 'descend');
-U = U(:,I);
+[U,D,V] = svd(Xm(X),'econ');
+Z = Xm(X) * V;
 
-%%
-% Compute the feature in the PCA basis.
-
-z = (U'*Xm')';
 
 %%
 % Plot sqrt of the eigenvalues.
 
 clf; 
-plot(sqrt(d), '.-', 'LineWidth', 2, 'MarkerSize', 30);
+plot(diag(D), '.-', 'LineWidth', 2, 'MarkerSize', 30);
 axis tight;
 SetAR(1/2);
+
+%%
+% Display the points cloud of feature vectors in 3-D PCA space.
+
+options.disp_dim = 3;
+clf; plot_multiclasses(X,ones(n,1),options);
+SetAR(1);
 
 %%
 % 1D plot of the function to regress along the main eigenvector axes.
 
 col = {'b' 'g' 'r' 'c' 'm' 'y' 'k'};
 clf;
-for i=1:min(n,3)
+for i=1:min(p,3)
     subplot(3,1,i);
-    plot(z(:,i), y, '.', 'Color', col{i}, 'MarkerSize', 20);
+    plot(Z(:,i), y, '.', 'Color', col{i}, 'MarkerSize', 20);
     axis tight;
 end
 
@@ -97,26 +100,23 @@ end
 % We look for a linear relationship 
 %   \( y_i = \dotp{w}{x_i} \)
 % written in matrix format 
-%   \( y= x w \)
-% where the rows of \(x\) stores the features \(x_i\).
+%   \( y= X w \)
+% where the rows of \(X \in \RR^{n \times p}\) stores the features \(x_i \in \RR^p\).
 
 %%
-% Since here \( p > n \), this is an over-determined system, which can
+% Since here \( n > p \), this is an over-determined system, which can
 % solved in the least square sense
-%   \[ \umin{ w }  \norm{xw-y}^2 \]
+%   \[ \umin{ w }  \norm{Xw-y}^2 \]
 % whose solution is given using the Moore-Penrose pseudo-inverse
-%   \[ w = (x^\top x)^{-1} x^\top y \]
+%   \[ w = (X^\top X)^{-1} X^\top y \]
 
 
 %%
 % Split into training and testing.
 
-p0 = round(.5*p);
-p1 = p-p0;
-
-X0 = X(1:p0,:);     y0 = y(1:p0);
-X1 = X(p0+1:end,:); y1 = y(p0+1:end);
-
+n0 = round(.5*n); n1 = n-n0;
+X0 = X(1:n0,:);     y0 = y(1:n0);
+X1 = X(n0+1:end,:); y1 = y(n0+1:end);
 
 %%
 % Least square solution.
@@ -126,43 +126,42 @@ w = (X0'*X0) \ (X0'*y0);
 %%
 % Mean-square error on testing set.
 
-E = sqrt( sum( (X1*w-y1).^2 ) / p1 );
-
+E = sqrt( sum( (X1*w-y1).^2 ) / n1 );
 
 %%
 % Regularization is obtained by introducing a penalty. It is often called
 % ridge regression, and is defined as 
-%   \[ \umin{ w }  \norm{xw-y}^2 + \lambda*\norm{w}^2 \]
+%   \[ \umin{ w }  \norm{Xw-y}^2 + \lambda \norm{w}^2 \]
 % where \(\lambda>0\) is the regularization parameter.
 
 %%
 % The solution is given using the following equivalent formula
-%   \[ w = (x^\top x + \lambda \text{Id}_n )^{-1} x^\top y \]
-%   \[ w = x^\top ( x x^\top + \lambda \text{Id}_p )^{-1} y \]
-% When \(n<p\) (which is the case here), the first formula should be
+%   \[ w = (X^\top X + \lambda \text{Id}_p )^{-1} X^\top y, \]
+%   \[ w = X^\top ( XX^\top + \lambda \text{Id}_n)^{-1} y, \]
+% When \(p<n\) (which is the case here), the first formula should be
 % prefered. 
 
 %%
-% In contrast, when the dimensionality \(n\) of the feature is very
+% In contrast, when the dimensionality \(p\) of the feature is very
 % large and there is little data, the second is faster. Furthermore, this
 % second expression is generalizable to Kernel Hilbert space setting,
-% corresponding possibly to \(n=+\infty\) for some kernels. 
+% corresponding possibly to \(p=+\infty\) for some kernels. 
 
 lambda = .1;
-w = (X0'*X0+lambda*eye(n)) \ (X0'*y0);
-w1 = X0'*( (X0*X0'+lambda*eye(p0)) \ y0 );
+w = (X0'*X0+lambda*eye(p)) \ (X0'*y0);
+w1 = X0'*( (X0*X0'+lambda*eye(n0)) \ y0 );
 fprintf('Error (should be 0): %.4f\n', norm(w-w1)/norm(w));
 
 %EXO
 %% Display the evolution of the error \(E\) as a function of \(\lambda\).
 q = 50;
-lambda_list = linspace(0,5,q);
+lambda_list = linspace(0,20,q);
 W = []; E = [];
 for i=1:q
     lambda = lambda_list(i);
-    w = (X0'*X0+lambda*eye(n)) \ (X0'*y0);
+    w = (X0'*X0+lambda*eye(p)) \ (X0'*y0);
     W(:,i) = w; % bookkeeping
-    E(i) = sqrt( sum( (X1*w-y1).^2 ) / p1 );
+    E(i) = sqrt( sum( (X1*w-y1).^2 ) / n1 );
 end
 % Display error evolution.
 clf;
@@ -184,29 +183,44 @@ xlabel('\lambda'); ylabel('w_i');
 %EXO
 
 %EXO
-%% Perform feature selection using \(\ell^1\) regularization (aka the Lasso)
-%%   \[ \umin{ w }  \norm{xw-y}^2 + \lambda*\norm{w}_1 \]
+%% Perform feature selection using \(\ell^1\) regularization (aka the Lasso), 
+%%   \[ \umin{ w }  \frac{1}{2}\norm{Xw-y}^2 + \lambda \norm{w}_1. \]
 %EXO
 
 
 %% Kernelized Ridge Regression
+% In order to perform non-linear and non-parametric regression, it is
+% possible to use  kernelization. It is non-parametric in the sense that the number of
+% parameter grows with the number \(n\) of samples (while for the initial
+% linear  method, the number of parameter is \(p\)). This allows in particular to
+% generate estimator of arbitrary complexity. 
 
+%%
+% Given a kernel \( \kappa(x,z) \in \RR \) defined for \((x,z) \in \RR^p \times \RR^p\),
+% the kernelized method replace the linear approximation functional \(f(x) =
+% \dotp{x}{w}\) by a sum of kernel centered on the samples 
+% \[ f_h(x) = \sum_{i=1}^n h_i k(x_i,x) \]
+% where \(h \in \RR^n\) is the unknown vector of weight to find. 
+
+%%
+% When using the linear kernel \(\kappa(x,y)=\dotp{x}{y}\), one retrieves
+% the previously studied linear method. 
 
 %%
 % Generate synthetic data in 2D.
 % Add noise to a deterministic map.
 
 B = 3;
-p = 500; n = 2;
-X = 2*B*rand(p,2)-B;
+n = 500; p = 2;
+X = 2*B*rand(n,2)-B;
 rho = .5; % noise level
-y = peaks(X(:,1), X(:,2)) + randn(p,1)*rho;
+y = peaks(X(:,1), X(:,2)) + randn(n,1)*rho;
 
 %%
 % Display as scattered plot.
 
 clf;
-scatter(X(:,1), X(:,2), ones(p,1)*20, y, 'filled');
+scatter(X(:,1), X(:,2), ones(n,1)*20, y, 'filled');
 colormap jet(256); 
 axis equal; axis([-B B -B B]); box on;
 
@@ -215,22 +229,36 @@ axis equal; axis([-B B -B B]); box on;
 
 distmat = @(X,Z)bsxfun(@plus,dot(X',X',1)',dot(Z',Z',1))-2*(X*Z');
 
+
 %%
-% Gaussian kernel.
+% The gaussian kernel is the most well known and used kernel
+% \[ \kappa(x,y) \eqdef e^{-\frac{\norm{x-y}^2}{2\sigma^2}} . \]
+% The bandwidth parameter \(\si>0\) is crucial and controls the locality of
+% the model. It is typically tuned through cross validation.  
 
 sigma = .3;
-K = @(X,Z)exp( -distmat(X,Z)/(2*sigma^2) );
+kappa = @(X,Z)exp( -distmat(X,Z)/(2*sigma^2) );
+
 
 %%
-% Weights.
+% Once avaluated on grid points, the kernel define a matrix
+% \[ K = (\kappa(x_i,x_j))_{i,j=1}^n \in \RR^{n \times n}.  \]
+
+K = kappa(X,X);
+
+%%
+% The weights \(h \in \RR^n \) are solutions of
+%   \[ \umin{h} \norm{Kh-y}^2 + \la \dotp{Kh}{h}  \]
+% and hence can be computed by solving a linear system
+%   \[ h = (K+\la \text{Id}_n)^{-1} y  \]
 
 lambda = 0.01;
-r = (K(X,X)+lambda*eye(p))\y;
+h = (K+lambda*eye(n))\y;
 
 %%
 % Regressor.
 
-Y = @(x)K(x,X)*r;
+Y = @(x)kappa(x,X)*h;
 
 %%
 % Evaluation on a 2D grid.
@@ -255,10 +283,10 @@ sigma_list = [.05 .1 .5 1 5 10];
 clf;
 for i=1:length(sigma_list)
     sigma = sigma_list(i);
-    K = @(X,Z)exp( -distmat(X,Z)/(2*sigma^2) );
+    kappa = @(X,Z)exp( -distmat(X,Z)/(2*sigma^2) );
     % Regressor.
-    r = (K(X,X)+lambda*eye(p))\y;
-    Y = @(x)K(x,X)*r;
+    h = (kappa(X,X)+lambda*eye(n))\y;
+    Y = @(x)kappa(x,X)*h;
     % Eval on the grid
     yn = reshape(Y(Xn),[q,q]);
     %

@@ -1,19 +1,22 @@
 D = distmat(X0,X1);
 [Ds,I] = sort(D,1);
-Y = y(I);
+ys = y(I);
 Rmax = 50;
+S = [];
 for R=1:Rmax
     if R==1
-        C = Y(1,:); 
+        C = ys(1,:); 
     else
-        h = hist(Y(1:R,:), 1:k);
+        h = hist(ys(1:R,:), 1:k);
         [~,C] = max(h);
     end
     % correct classification 
-    S(R) = sum(C(:)==y1)/p1;
+    S(R) = sum(C(:)==y1)/n1;
 end
 clf;
-plot(1:Rmax, S, '.-', 'MarkerSize', ms);
+% plot(1:Rmax, S, '.-', 'MarkerSize', ms);
+bar(1:Rmax, S);
 axis tight;
+axis([1 Rmax min(S)*.99 1]);
 SetAR(1/2);
 xlabel('R'); ylabel('S');
