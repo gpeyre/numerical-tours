@@ -176,6 +176,9 @@
   - name: Logistic Classification
     rep: ml_3_classification
     format: html
+  - name: Stochastic Gradient descent
+    rep: ml_4_sgd
+    format: html
 
 - name: Sparsity and Redundant Representations
   short: sparsity
