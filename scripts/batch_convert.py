@@ -1,7 +1,6 @@
 import os
 import m2nb_converter
 
-
 def convert_all(matlabdir="../matlab/m_files/", ntype='python',
                 out_dir='../python'):
     """

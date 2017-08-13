@@ -13,14 +13,14 @@ for is=1:nsamples
         w = w - tau * nablaEi(w,i);
     end
 end
-clf; 
+clf;
 subplot(2,1,1);
 %
 hold on;
 plot(1:err_rate:niter, ElistS, 'b');
 plot(1+(0:length(Elist)-1)*n, Elist, 'k--');
 axis([1 niter min(ElistS(:)) max(ElistS(:))]); box on;
-title('E(w_l)'); set(gca, 'FontSize', 20);
+title('E(w_l)'); set(gca, 'FontSize', fs);
 %
 subplot(2,1,2);
 hold on;
@@ -29,4 +29,4 @@ v = log10(Elist -min(Elist));
 plot(1:err_rate:niter, u, 'b');
 plot(1+(0:length(Elist)-1)*n, v, 'k--');
 axis([1 niter min(u(:)) max(u(:))]); box on;
-title('log(E(w_l) - min E)'); set(gca, 'FontSize', 20);
+title('log(E(w_l) - min E)'); set(gca, 'FontSize', fs);

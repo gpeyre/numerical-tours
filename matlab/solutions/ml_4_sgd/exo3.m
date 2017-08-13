@@ -15,12 +15,12 @@ for is=1:nsamples
         w = 1/it*w1 + (1-1/it)*w;
     end
 end
-clf; 
+clf;
 hold on;
 plot(1,Inf, 'b'); plot(1,Inf, 'r');
 plot(1:err_rate:niter, log10(ElistS-min(Elist)), 'b');
 plot(1:err_rate:niter, log10(ElistA-min(Elist)), 'r');
 axis tight; box on;
 SetAR(1/2);
-title('log(E(w_l) - min E)'); set(gca, 'FontSize', 20);
+title('log(E(w_l) - min E)'); set(gca, 'FontSize', fs);
 legend('SGD', 'SGA');
