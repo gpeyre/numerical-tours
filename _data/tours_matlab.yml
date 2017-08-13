@@ -169,16 +169,12 @@
   list:
   - name: PCA, Nearest-Neighbors and Clustering
     rep: ml_1_pca_nn
-    format: html
   - name: Linear Regression and Kernel Methods
     rep: ml_2_regression
-    format: html
   - name: Logistic Classification
     rep: ml_3_classification
-    format: html
   - name: Stochastic Gradient descent
     rep: ml_4_sgd
-    format: html
 
 - name: Sparsity and Redundant Representations
   short: sparsity
@@ -284,7 +280,7 @@
     rep: shapes_4_shape_matching
   - name: Shape Retrieval with Geodesic Descriptors
     rep: shapes_5_geodesic_descriptors
-  - name: Geodesic Medial Axsis
+  - name: Geodesic Medial Axis
     rep: shapes_6_medialaxis
   - name: Manifold Learning with Isomap
     rep: shapes_7_isomap
