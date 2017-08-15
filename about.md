@@ -5,7 +5,9 @@ description: "The Numerical Tours"
 header-img: "img/hokusai-3.jpg"
 ---
 
-The *Numerical Tours of Signal Processing*, by [Gabriel Peyré](contact/), gather [Matlab](https://au.mathworks.com/products/matlab.html), [Python](https://www.python.org/) and [Julia](https://julialang.org/) experiments to explore modern signal and image processing.
+The *Numerical Tours of Data Science*, by [Gabriel Peyré](contact/), gather [Matlab](https://au.mathworks.com/products/matlab.html), [Python](https://www.python.org/) and [Julia](https://julialang.org/) experiments to explore modern data science.
+They cover data science in a broad since, including imaging, machine learning, computer vision and computer graphics.
+It showcases application of numerical and mathematical methods such as convex optimization, PDEs, optimal transport, inverse problems, sparsity, etc. 
 The tours are complemented by slides of courses that concentrate on the theory of  signal and image processing.
 
 How to use these tours?

@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Book"
-description: "Advanced Signal and Image Processing"
+description: "Numerical Data Science"
 header-img: "img/hokusai-1.jpg"
 ---
 

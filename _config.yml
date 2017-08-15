@@ -1,9 +1,9 @@
 # Usign the Clean Blog theme
 
-title: A Numerical Tour of Signal Processing
+title: A Numerical Tour of Data Science
 email: gabriel.peyre@ceremade.dauphine.fr
 description: > # this means to ignore newlines until "baseurl:"
-  The Numerical Tours of Signal Processing, by Gabriel Peyré, gather Matlab, Python and Scilab experiments to explore modern signal and image processing.
+  The Numerical Tours of Data Sciences, by Gabriel Peyré, gather Matlab, Python and Julia experiments to explore modern data science.
 baseurl: ""
 url: "www.numerical-tours.com"
 github_username:  gpeyre
