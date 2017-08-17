@@ -15,15 +15,16 @@ Each tour makes use some of a toolbox package, that needs to be [downloaded as a
 You will also need:
 
 * [PyPlot](https://github.com/stevengj/PyPlot.jl) package to be able to call [Matplotlib](http://matplotlib.org/) for displaying plots.
-* [Autoreload](https://github.com/malmaud/Autoreload.jl) package to ease developpement (automatic reloading of modified external files).
+* [Images](https://github.com/JuliaImages/Images.jl) An image library for Julia
+* [WAV](https://github.com/dancasimiro/WAV.jl) package to read and write the WAV audio file format.
+* [Interpolations](https://github.com/JuliaMath/Interpolations.jl) Fast, continuous interpolation of discrete datasets in Julia.
 
 You can install these package using the
 
 > Pkg.add("PyPlot")
-
-and
-
-> Pkg.add("Autoreload")
+> Pkg.add("Images")
+> Pkg.add("WAV")
+> Pkg.add("Interpolations")
 
 from the Julia command line.
 
