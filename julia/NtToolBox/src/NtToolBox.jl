@@ -3,7 +3,7 @@ module NtToolBox
 
 # package code goes here
 
-export load_image, imageplot, rescale, clamP, snr, perform_wavelet_transf, plot_wavelet, compute_wavelet_filter, perform_wavortho_transf, grad, div, plot_levelset, gaussian_blur, bilinear_interpolate, Grad, Div, perform_haar_transf, load_sound, perform_stft, plot_spectrogram, compute_max, perform_blurring, plot_vf, meshgrid, read_mesh, compute_boundary, plot_mesh, compute_normal, perform_linprog, plot_hufftree, perform_conjugate_gradient, perform_dijkstra_fm, cconvol, subsampling, upsampling, trim_dim
+export load_image, imageplot, rescale, clamP, snr, perform_wavelet_transf, plot_wavelet, compute_wavelet_filter, perform_wavortho_transf, grad, div, plot_levelset, gaussian_blur, bilinear_interpolate, Grad, Div, perform_haar_transf, load_sound, perform_stft, plot_spectrogram, compute_max, perform_blurring, plot_vf, meshgrid, read_mesh, compute_boundary, plot_mesh, compute_normal, perform_linprog, plot_hufftree, perform_conjugate_gradient, perform_dijkstra_fm, cconvol, subsampling, upsampling, trim_dim, rand_discr
 
 ## m must be of type Array{Float32, 3} or Array{Float64, 3}, it makes products between the vectors of the 3rd dimension and v
 
@@ -175,7 +175,7 @@ include("perform_conjugate_gradient.jl")
 include("graph.jl")
 include("perform_haar_transf.jl")
 #include("perform_fast_marching.jl")
-
+include("rand_discr.jl")
 
 
 end # module
