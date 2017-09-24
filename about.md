@@ -5,9 +5,9 @@ description: "The Numerical Tours"
 header-img: "img/hokusai-3.jpg"
 ---
 
-The *Numerical Tours of Data Science*, by [Gabriel Peyré](contact/), gather [Matlab](https://au.mathworks.com/products/matlab.html), [Python](https://www.python.org/) and [Julia](https://julialang.org/) experiments to explore modern data science.
+The *Numerical Tours of Data Sciences*, by [Gabriel Peyré](contact/), gather [Matlab](https://au.mathworks.com/products/matlab.html), [Python](https://www.python.org/) and [Julia](https://julialang.org/) experiments to explore modern data science.
 They cover data science in a broad since, including imaging, machine learning, computer vision and computer graphics.
-It showcases application of numerical and mathematical methods such as convex optimization, PDEs, optimal transport, inverse problems, sparsity, etc. 
+It showcases application of numerical and mathematical methods such as convex optimization, PDEs, optimal transport, inverse problems, sparsity, etc.
 The tours are complemented by slides of courses that concentrate on the theory of  signal and image processing.
 
 How to use these tours?
@@ -35,3 +35,14 @@ For the Matlab tours, each Numerical Tour is a HTML web page automatically gener
 You can download the [Numerical Tour Publishing Toolbox](tours/toolbox_publishing.zip), and use the same tools to create your own Numerical Tours. This can be very useful to generate numerical exercises for your students, or to present your research in a more attracting way.
 
 The Python and Julia tours are [Jupyter notebooks](http://jupyter.org/).
+
+
+Mathematical Tours
+-------------------
+
+The [Mathematical Tours of Data Sciences] is a companion website which presents the mathematical concepts underlying the Numerical Tours.
+
+Contact
+-------------------
+
+If you have any question regarding the Numerical Tours, feel free to [contact me](mailto:gabriel.peyre at ens.fr).
