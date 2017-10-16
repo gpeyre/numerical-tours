@@ -44,15 +44,15 @@ subsampling <- function(x, d){
   ####
   p <- 2
   if (d==1){
-    y <- x[ ((1:dim(x)[1])%%p == p-1 ) , ]
+    y <- x[ ((1:dim(x)[1])%%p == 1 ) , , drop=F]
   }
   else if (d==2){
-    y <- x[ , ((1:dim(x)[2])%%p == p-1 ) ]
+    y <- x[ , ((1:dim(x)[2])%%p == 1 ) , drop=F]
   }
   else{
     warning('Not implemented')
   }
-  return(as.matrix(y))
+  return(y)
 }
 
 
@@ -65,16 +65,16 @@ upsampling <- function(x, d){
   s <- dim(x)
   if (d==1){
     y <- matrix(0, p*s[1], s[2])
-    y[ ((1:dim(x)[1])%%p == p-1 ) , ] <- x
+    y[ ((1:dim(y)[1])%%p == 1 ) , ] <- x
   }
   else if (d==2){
     y <- matrix(0, s[1], p*s[2])
-    y[ , ((1:dim(x)[2])%%p == p-1 ) ] <- x
+    y[ , ((1:dim(y)[2])%%p == 1 ) ] <- x
   }
   else{
     warning('Not implemented')
   }
-  return(as.matrix(y))
+  return(y)
 }
 
 
@@ -123,6 +123,158 @@ imageplot <- function(f, str='', sbpt=c()){
   }
   plot(f, interpolate = TRUE, colorscale = gray, axes = FALSE, main = str)
 }
+
+
+
+
+
+plot_wavelet <- function(fW, Jmin=0){
+  ####
+  # plot_wavelet - plot wavelets coefficients.
+  
+  # U = plot_wavelet(fW, Jmin):
+    
+  # Copyright (c) 2014 Gabriel Peyre
+  ####
+  
+  rescaleWav <-function(A){
+    v <- abs(max(A))
+    B <- A
+    if (v>0){
+      B <- 0.5 + 0.5*(A/v)
+    }
+    return(B)
+  }
+  
+  ##
+  
+  n <- dim(fW)[2]
+  Jmax <- as.integer(log(n,2) - 1)
+  U <- fW
+  for ( j in Jmax:Jmin ){
+    U[1:2**j, (2**j + 1):2**(j + 1)] <- rescaleWav(U[1:2**j, (2**j + 1):2**(j + 1)])
+    U[(2 ** j + 1):2 ** (j + 1), 1:2**j] <- rescaleWav(U[(2 ** j + 1):2 ** (j + 1), 1:2**j])
+    U[(2**j + 1):2**(j + 1), (2**j + 1):2**(j + 1)] <- (rescaleWav(U[(2**j + 1):2**(j + 1), (2**j + 1):2**(j + 1)]))
+  }
+  # coarse scale
+  U[1:2**j, 1:2**j] <- rescale(U[1:2**j, 1:2**j])
+  # plot underlying image
+  imageplot(U)
+  # display crosses
+  for ( j in Jmax:Jmin ){
+    points(c(1, 2**(j + 1)), c(2**j + 1, 2**j + 1), 'l', col="red")
+    points(c(2**j, 2**j), c(0, 2**(j + 1)), 'l', col="red")
+  }
+  # display box
+  points(c(1, n), c(1, 1), 'l', col="red")
+  points(c(1, n), c(n, n), 'l', col="red")
+  points(c(1, 1), c(1, n), 'l', col="red")
+  points(c(n, n), c(1, n ), 'l', col="red")
+  # return(U)
+}
+
+
+
+
+
+perform_wavortho_transf <- function(f, Jmin, dir, h){
+  ####
+  # perform_wavortho_transf - compute orthogonal wavelet transform
+  
+  # fw = perform_wavortho_transf(f,Jmin,dir,options);
+  
+  # You can give the filter in options.h.
+  
+  # Works in 2D only.
+  
+  # Copyright (c) 2014 Gabriel Peyre
+  ####
+  
+  
+  n <- dim(f)[2]
+  Jmax <- as.integer(log(n, 2) - 1)
+  # compute g filter
+  u <- (- rep(1, length(h) - 1)) ** (1:(length(h)-1))
+  # alternate +1/-1
+  g <- c(0, rev(h[2:length(h)]) * u)
+  
+  if (dir == 1){
+    ### FORWARD ###
+    fW <- as.matrix(f)
+    for (j in Jmax:Jmin){
+      A <- fW[1:2**(j+1), 1:2**(j+1)]
+      for (d in (1:2)){
+        Coarse <- subsampling(cconv(A, h, d), d)
+        Detail <- subsampling(cconv(A, g, d), d)
+        if (d==1){
+          A <- rbind(Coarse, Detail)
+        }
+        else{
+          A <- cbind(Coarse, Detail)
+        }
+      }
+      fW[1:2 ** (j + 1), 1:2 ** (j + 1)] <- A
+    }
+    return(fW)
+  }
+  else{
+    ### BACKWARD ###
+    fW <- f
+    f1 <- fW
+    for (j in Jmin:Jmax){
+      A <- f1[1:2 ** (j + 1), 1:2 ** (j + 1)] ###
+      for (d in (1:2)){
+        if (d==1){
+          Coarse <- A[1:2**j, , drop=F]
+          Detail <- A[(2**j + 1): 2**(j + 1), , drop=F]
+        }
+        else{
+          Coarse <- A[ , 1:2 ** j, drop=F]
+          Detail <- A[ , (2 ** j + 1):2 ** (j + 1), drop=F]
+        }
+        Coarse <- cconv(upsampling(Coarse, d), reverse(h), d)
+        Detail <- cconv(upsampling(Detail, d), reverse(g), d)
+        A <- Coarse + Detail
+      }
+      f1[1:2 ** (j + 1), 1:2 ** (j + 1)] <- A
+    }
+    return(f1)
+  }
+}
+
+
+
+
+
+
+snr <- function(x, y){
+  ####
+  # snr - signal to noise ratio
+  # 
+  #     v = snr(x,y);
+  # 
+  # v = 20*log10( norm(x(:)) / norm(x(:)-y(:)) )
+  # 
+  #     x is the original clean signal (reference).
+  #     y is the denoised signal.
+  # 
+  # Copyright (c) 2014 Gabriel Peyre
+  ####
+  x <- as.matrix(x)
+  y <- as.matrix(y)
+  return(20 * log( norm(x) / norm(x-y), 10) )
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
