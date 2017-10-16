@@ -67,6 +67,17 @@ rescale <- function(f, a=0, b=1){
   return(a + g*(b-a))
 }
 
+clamp = function(x, a=0, b=1)
+{
+    
+    "clamp - clamp a value
+
+       y = clamp(x,a,b);
+
+     Default is [a,b]=[0,1].
+    "
+    return (pmin(pmax(x,a),b))
+}
 
 
 
