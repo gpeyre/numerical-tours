@@ -81,26 +81,6 @@ clamp = function(x, a=0, b=1)
 
 
 
-clamp <- function(x, a=c(), b=c()){
-  ####
-  # clamp - clamp a value
-  # 
-  # y = clamp(x,a,b);
-  # 
-  # Default is [a,b]=[0,1].
-  # 
-  # Copyright (c) 2004 Gabriel Peyre
-  ####
-  if (length(a)==0){
-    a <- 0.0
-  }
-  if (length(b)==0){
-    b <- 1.0
-  }
-  return( pmin( pmax(x,a), b) )
-}
-
-
 
 
 ravel <- function(M){
