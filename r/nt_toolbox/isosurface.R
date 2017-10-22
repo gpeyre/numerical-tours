@@ -43,7 +43,8 @@ isosurface <- function(M,v,step,title=""){
   }
   
   
-  drawScene(makeTriangles(triangles, col.mesh = "black", color = color_function), R.mat = R_mat)
-
+  drawScene(makeTriangles(triangles, col.mesh = "black", color = color_function),
+            R.mat = R_mat)
+  
   
 }
