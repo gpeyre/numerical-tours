@@ -96,7 +96,7 @@ load_image <- function(name, n=-1, flatten=1, resc=1, grayscale=1){
     f <- rescale(f)
   }
   # change the size of the image
-  if (n>0){
+  if (n > 0){
     if (dim(f)[3]==1){
       f <- resize(f, size_x = n, size_y = n, interpolation_type = 5)
     }
@@ -284,7 +284,21 @@ snr_2 <- function(x, y){
 
 
 
+div = function(x)
+{ 
+    # Divergence operator
+    n = dim(x)[1]
+    hdiff1 = x[c(2:n, 1), , 1]
+    hdiff2 = x[, c(2:n, 1), 2]
+    return(hdiff1 - x[,,1] + hdiff2 - x[,,2])
+}
 
+grad = function(x){
+    n = dim(x)[1]
+    hdiff = x[,] - x[c(n, 1:n-1),]
+    vdiff = x[,] - x[,c(n, 1:n-1)]
+    return (array(c(hdiff, vdiff), dim=c(n, n, 2)))
+}
 
 
 
