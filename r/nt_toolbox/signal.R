@@ -121,7 +121,7 @@ imageplot <- function(f, str='', sbpt=c()){
       par(mfrow=sbpt[1:2]) 
     }
   }
-  plot(f, interpolate = TRUE, colorscale = gray, axes = FALSE, main = str)
+  plot(f, interpolate = FALSE, colorscale = gray, axes = FALSE, main = str)
 }
 
 
