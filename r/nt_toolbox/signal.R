@@ -96,6 +96,7 @@ load_image <- function(name, n=-1, flatten=1, resc=1, grayscale=1){
     f <- rescale(f)
   }
   # change the size of the image
+  if (n == -1){n = 512}
   if (n > 0){
     if (dim(f)[3]==1){
       f <- resize(f, size_x = n, size_y = n, interpolation_type = 5)
@@ -106,6 +107,7 @@ load_image <- function(name, n=-1, flatten=1, resc=1, grayscale=1){
     f <- t( f[1:n,1:n] )
     return(as.cimg(f))
   }
+
 }
 
 
@@ -121,7 +123,7 @@ imageplot <- function(f, str='', sbpt=c()){
       par(mfrow=sbpt[1:2]) 
     }
   }
-  plot(f, interpolate = TRUE, colorscale = gray, axes = FALSE, main = str)
+  plot(f, interpolate = FALSE, colorscale = gray, axes = FALSE, main = str)
 }
 
 
@@ -137,7 +139,8 @@ plot_wavelet <- function(fW, Jmin=0){
   # Copyright (c) 2014 Gabriel Peyre
   ####
   
-  rescaleWav <-function(A){
+  
+    leWav <-function(A){
     v <- abs(max(A))
     B <- A
     if (v>0){
