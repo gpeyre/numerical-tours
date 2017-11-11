@@ -1,6 +1,24 @@
 
 
 
+
+
+
+meshgrid_2d <- function(x, y) {
+  
+  x <- c(x); y <- c(y)
+  n <- length(x)
+  m <- length(y)
+  
+  X <- array(rep(x, each = m),  c(m, n))
+  Y <- array(rep(y, times = n),  c(m, n))
+  
+  return(list(X = X, Y = Y))
+}
+
+
+
+
 meshgrid_3d <- function(x, y, z) {
   
   x <- c(x); y <- c(y); z <- c(z)
