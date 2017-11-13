@@ -98,11 +98,12 @@ load_image <- function(name, n=-1, flatten=1, resc=1, grayscale=1){
   # change the size of the image
   if (n == -1){n = 512}
   if (n > 0){
-    if (dim(f)[3]==1){
+    if (dim(f)[4]==1){
       f <- resize(f, size_x = n, size_y = n, interpolation_type = 5)
     }
-    else if (dim(f)[3]>1){
-      f <- resize(f, size_x = n, size_y = n, size_z = dim(f)[3], interpolation_type = 5)
+    else if (dim(f)[4]>1){
+      f = resize(f, size_x = n, size_y = n, size_z = dim(f)[3], interpolation_type = 5)
+      return(f)
     }
     f <- t( f[1:n,1:n] )
     return(as.cimg(f))
@@ -117,6 +118,13 @@ imageplot <- function(f, str='', sbpt=c()){
   # Use nearest neighbor interpolation for the display.
   ####
   #f <- t( f[1:n,f:n] )
+  
+  if ((length(dim(f)) > 3) && (dim(f)[4] > 1))
+  {
+        plot(f, main=str, axes=FALSE)
+  }
+  else
+  {
   f <- as.cimg( t(as.matrix(f)) )
   if (length(sbpt) >0){
     if (sbpt[3]==1){
@@ -124,6 +132,7 @@ imageplot <- function(f, str='', sbpt=c()){
     }
   }
   plot(f, interpolate = FALSE, colorscale = gray, axes = FALSE, main = str)
+  }
 }
 
 
