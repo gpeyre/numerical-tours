@@ -77,31 +77,31 @@ circshift <- function(x, p){
 
   if (p[1] > 1){
 
-      y <- rbind( y[p[1]:dim(y)[1],,drop=F], y[1:(p[1]-1),,drop=F] )
+          y <- rbind( y[p[1]:dim(y)[1],,drop=F], y[1:(p[1]-1),,drop=F] )
 
-      if (dim(x)[2]>0 & length(p)>1){
+        if (dim(x)[2]>0 & length(p)>1){
 
-        y <- cbind( y[, p[1]:dim(y)[2],drop=F], y[, 1:(p[1]-1),drop=F] )
+          y <- cbind( y[, p[1]:dim(y)[2],drop=F], y[, 1:(p[1]-1),drop=F] )
 
-      }
+        }
 
-  }
+  }
 
-  else if (p[1] < -1){
+  else if (p[1] < -1){
 
-    p[1] <- dim(y)[1] + p[1] + 2
+      p[1] <- dim(y)[1] + p[1] + 2
 
-    y <- rbind( y[p[1]:dim(y)[1],,drop=F], y[1:(p[1]-1),,drop=F] )
+      y <- rbind( y[p[1]:dim(y)[1],,drop=F], y[1:(p[1]-1),,drop=F] )
 
-    if (dim(x)[2]>0 & length(p)>1){
+      if (dim(x)[2]>0 & length(p)>1){
 
-      y <- cbind( y[, p[1]:dim(y)[2],drop=F], y[, 1:(p[1]-1),drop=F] )
+        y <- cbind( y[, p[1]:dim(y)[2],drop=F], y[, 1:(p[1]-1),drop=F] )
 
-    }
+      }
 
-  }
+    }
 
-  return(y)
+  return(y)
 
 }
 
