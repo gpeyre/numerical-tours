@@ -149,7 +149,7 @@ plot_wavelet <- function(fW, Jmin=0){
   ####
   
   
-    leWav <-function(A){
+  rescaleWav <-function(A){
     v <- abs(max(A))
     B <- A
     if (v>0){
