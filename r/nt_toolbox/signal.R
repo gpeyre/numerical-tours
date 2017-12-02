@@ -96,18 +96,19 @@ load_image <- function(name, n=-1, flatten=1, resc=1, grayscale=1){
     f <- rescale(f)
   }
   # change the size of the image
-  if (n == -1){n = 512}
+  # if (n == -1){n = 512}
   if (n > 0){
     if (dim(f)[3]==1){
       f <- resize(f, size_x = n, size_y = n, interpolation_type = 5)
     }
     else if (dim(f)[4]>1){
-      f = resize(f, size_x = n, size_y = n, size_z = dim(f)[3], interpolation_type = 5)
+      f <- resize(f, size_x = n, size_y = n, size_z = dim(f)[3], interpolation_type = 5)
       return(f)
     }
     f <- t(f[1:n,1:n])
     return(as.cimg(f))
   }
+  return(as.cimg(f))
 
 }
 
