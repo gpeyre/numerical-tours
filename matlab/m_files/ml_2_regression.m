@@ -2,6 +2,14 @@
 % This tour studies linear regression method, and its non-linear variant
 % using kernlization.
 
+
+%CMT
+rep = 'results/ml/regression/';
+if not(exist(rep))
+    mkdir(rep);
+end
+%CMT
+
 %%
 % We recommend that after doing this Numerical Tours, you apply it to your
 % own data, for instance using a dataset from <https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/ LibSVM>.
@@ -224,6 +232,10 @@ scatter(X(:,1), X(:,2), ones(n,1)*20, y, 'filled');
 colormap jet(256); 
 axis equal; axis([-B B -B B]); box on;
 
+%CMT
+saveas(gcf,[rep 'scatter-2d.png']);
+%CMT
+
 %% 
 % Macro to compute pairwise squared Euclidean distance matrix.
 
@@ -296,6 +308,11 @@ for i=1:length(sigma_list)
     title(['\sigma=' num2str(sigma)]);
 end
 %EXO
+
+
+%CMT
+saveas(gcf,[rep 'regul-evol.png']);
+%CMT
 
 %EXO
 %% Apply the kernelize regression to a real life dataset. Study the influence of \(\la\) and \(\si\).

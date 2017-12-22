@@ -2,6 +2,14 @@
 % This tour details <https://en.wikipedia.org/wiki/Principal_component_analysis Principal Component Analysis> (dimentionality reduction), supervised classification using nearest neighbors
 % and unsupervised <https://en.wikipedia.org/wiki/Unsupervised_learning clustering> using <https://en.wikipedia.org/wiki/K-means_clustering \(k\)-means>.
 
+
+%CMT
+rep = 'results/ml/pca-nn/';
+if not(exist(rep))
+    mkdir(rep);
+end
+%CMT
+
 %%
 % We recommend that after doing this Numerical Tours, you apply it to your
 % own data, for instance using a dataset from <https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/ LibSVM>.
@@ -79,6 +87,12 @@ Cov = @(X)Xm(X)'*Xm(X);
 clf;
 imagesc(Cov(X));
 colormap jet(256);
+set(gca, 'FontSize', 20);
+axis image; 
+
+%CMT
+saveas(gcf,[rep 'cov.png']);
+%CMT
 
 %%
 % Compute PCA ortho-basis using the
@@ -106,6 +120,10 @@ plot(diag(D), '.-', 'LineWidth', 2, 'MarkerSize', 30);
 axis tight;
 SetAR(1/2);
 
+%CMT
+saveas(gcf,[rep 'svd.png']);
+%CMT
+
 
 %%
 % The first dimensions of the \(z_i\) are the optimal way to linearly
@@ -126,6 +144,10 @@ axis tight; axis equal; box on;
 legend(lgd, 'Location', 'EastOutside');
 SetAR(1);
 
+%CMT
+saveas(gcf,[rep 'points-2d.png']);
+%CMT
+
 
 %%
 % Similar display in 3-D.
@@ -138,6 +160,11 @@ end
 view(3); axis tight; axis equal; box on;
 legend(lgd, 'Location', 'EastOutside');
 SetAR(1);
+
+
+%CMT
+saveas(gcf,[rep 'points-3d.png']);
+%CMT
 
 %% Supervised Learning: Nearest Neighbor Classification
 % Probably the simplest method for supervised classification is <https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm Nearest
@@ -204,6 +231,11 @@ for i=1:length(Rlist)
     set(gca, 'FontSize', 15);
 end
 
+
+%CMT
+saveas(gcf,[rep 'hist-classif.eps'], 'epsc');
+%CMT
+
 %EXO
 %% Perform the NN classification for all the points in the test set, and for varying \(R\).
 %% Show how the classification score \(S\) (number of correctly classified points)
@@ -231,6 +263,11 @@ axis([1 Rmax min(S)*.99 1]);
 SetAR(1/2);
 xlabel('R'); ylabel('S');
 %EXO
+
+
+%CMT
+saveas(gcf,[rep 'hist-classif-score.eps'], 'epsc');
+%CMT
 
 %EXO
 %% Display, as a function of the position in 2-D PCA space, the class output by 
@@ -280,6 +317,11 @@ for ir=1:length(Rlist)
 end
 colormap jet(256);
 %EXO
+
+
+%CMT
+saveas(gcf,[rep 'classif-vizu.eps'], 'epsc');
+%CMT
 
 %% Unsupervised Learning: \(k\)-means
 % In an <https://en.wikipedia.org/wiki/Unsupervised_learning un-supervised setting>, the class information \(y\) is not
@@ -391,6 +433,11 @@ for it=1:niter
 end
 %EXO
 
+
+%CMT
+saveas(gcf,[rep 'kmeans-iter.eps'], 'epsc');
+%CMT
+
 %%
 % Display the histogram of (true, i.e. according to \(y\)) class  inside
 % each estimated class (i.e. according to \(\bar y\)).
@@ -404,6 +451,11 @@ for l=1:k
     axis([0.5 k+.5 0 1]);
     set(gca, 'FontSize', 20);
 end
+
+
+%CMT
+saveas(gcf,[rep 'kmeans-classif-scores.eps'], 'epsc');
+%CMT
 
 %EXO
 %% Implement better initialization strategies such as farthest point sampling or 
