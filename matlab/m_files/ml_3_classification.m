@@ -2,6 +2,14 @@
 % This tour details the logistic classification method (for 2 classes and
 % multi-classes).
 
+
+%CMT
+rep = 'results/ml/classif/';
+if not(exist(rep))
+    mkdir(rep);
+end
+%CMT
+
 %%
 % _Warning:_ Logisitic classification is actually called <https://en.wikipedia.org/wiki/Logistic_regression "logistic
 % regression"> in the literature, but it is in fact a classification method.
@@ -51,6 +59,10 @@ y = [ones(n/2,1);-ones(n/2,1)];
 options.disp_dim = 2;
 clf; plot_multiclasses(X,y,options);
 
+%CMT
+saveas(gcf,[rep 'classes-2.eps'], 'epsc');
+%CMT
+
 %%
 % Logistic classification minimize a logistic loss in place of the usual
 % \(\ell^2\) loss for regression
@@ -71,6 +83,11 @@ plot(t, [t>0, log(1+exp(t)), max(t,0)], 'LineWidth', 2 );
 axis tight;
 legend('Binary', 'Logistic', 'Hinge', 'Location', 'NorthWest');
 SetAR(1/2);
+
+
+%CMT
+saveas(gcf,[rep 'losses.eps'], 'epsc');
+%CMT
 
 %%
 % This can be interpreted as a <https://en.wikipedia.org/wiki/Maximum_likelihood_estimation maximum likelihood estimator> when one
@@ -172,6 +189,8 @@ imagesc(tx,ty, Theta');
 options.disp_legend = 1;
 plot_multiclasses(X,y,options);
 
+
+
 %EXO
 %% Test the influence of the separation offset \(\omega\) on the result.
 %
@@ -204,6 +223,11 @@ for io=1:length(offs)
     axis off;
 end
 %EXO
+
+
+%CMT
+saveas(gcf,[rep 'classes-2-separation-influ.png']);
+%CMT
 
 %EXO
 %% Test logistic classification on a real life dataset. You can look at the Numerical Tour on stochastic gradient descent
@@ -277,6 +301,11 @@ options.disp_legend = 1;
 clf; plot_multiclasses(X,y,options);
 axis off;
 
+
+%CMT
+saveas(gcf,[rep 'classes-kernel.eps'], 'epsc');
+%CMT
+
 %%
 % Once avaluated on grid points, the kernel define a matrix
 % \[ K = (\kappa(x_i,x_j))_{i,j=1}^n \in \RR^{n \times n}.  \]
@@ -347,6 +376,10 @@ plot_multiclasses(X,y,options);
 colormap jet(256); caxis([0 1]);
 axis off;
 
+%CMT
+saveas(gcf,[rep 'classes-kernel-result.png'], 'png');
+%CMT
+
 %EXO
 %% Display evolution of the classification probability with \(\sigma\)
 sigma_list = [.1 .5 1 4];
@@ -377,6 +410,8 @@ for is=1:length(sigma_list)
     title(['\sigma=' num2str(sigma)]);
 end
 %EXO
+
+
 
 %EXO
 %% Separate the dataset into a training set and a testing set. Evaluate the classification performance
@@ -482,6 +517,10 @@ for i=1:k
 end
 colormap gray(256);
 
+%CMT
+saveas(gcf,[rep 'digits.png'], 'png');
+%CMT
+
 %%
 % Display in 2D.
 
@@ -490,11 +529,19 @@ options.ms = 8;
 options.disp_legend = 1;
 clf; plot_multiclasses(X,y,options);
 
+%CMT
+saveas(gcf,[rep 'digits-2d.png'], 'png');
+%CMT
+
 %%
 % Display in 3D.
 
 options.disp_dim = 3;
 clf; plot_multiclasses(X,y,options);
+
+%CMT
+saveas(gcf,[rep 'digits-3d.png'], 'png');
+%CMT
 
 %%
 % Compute the \(D\) matrix.
@@ -561,6 +608,11 @@ for i=1:k
     colormap jet(256);
 end
 
+
+%CMT
+saveas(gcf,[rep 'digits-classes-all.png'], 'png');
+%CMT
+
 %%
 % Build a single color image of this map.
 
@@ -586,6 +638,9 @@ plot_multiclasses(X,y,options);
 axis off;
 
 
+%CMT
+saveas(gcf,[rep 'digits-classes-single.png'], 'png');
+%CMT
 
 %EXO
 %% Separate the dataset into a training set and a testing set. Evaluate the classification performance

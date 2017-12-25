@@ -1,6 +1,13 @@
 %% Stochastic Gradient descent
 % This tour details Stochastic Gradient Descent, applied to the binary logistic classification problem.
 
+%CMT
+rep = 'results/ml/sgd/';
+if not(exist(rep))
+    mkdir(rep);
+end
+%CMT
+
 %%
 % We recommend that after doing this Numerical Tours, you apply it to your
 % own data, for instance using a dataset from <https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/ LibSVM>.
@@ -26,7 +33,6 @@ Cov = @(X)Xm(X)'*Xm(X);
 % We load a subset of the <http://osmot.cs.cornell.edu/kddcup/datasets.html
 % dataset Quantum Physics Dataset>
 % of \(n=10000\) features in dimension \(78\). The goal in this task is to learn a classification rule that differentiates between two types of particles generated in high energy collider experiments.
-
 
 %%
 % Load the dataset.
@@ -110,6 +116,10 @@ subplot(2,1,2);
 plot(1:ndisp, log10(Elist(1:ndisp)-min(Elist)), 'LineWidth', 2); axis tight;
 title('log(E(w_l) - min E)');
 %EXO
+
+%CMT
+saveas(gcf,[rep 'error-bgd.eps'], 'epsc');
+%CMT
 
 %% Stochastic Gradient Descent (SGD)
 % As any empirical risk minimization procedure, the 
@@ -205,6 +215,10 @@ axis([1 niter min(u(:)) max(u(:))]); box on;
 title('log(E(w_l) - min E)'); set(gca, 'FontSize', 20);
 %EXO
 
+%CMT
+saveas(gcf,[rep 'error-sgd.eps'], 'epsc');
+%CMT
+
 %% Stochastic Gradient Descent with Averaging (SGA)
 % Stochastic gradient descent is slow because of the fast decay of
 % \(\tau_\ell\) toward zero.
@@ -269,6 +283,10 @@ title('log(E(w_l) - min E)'); set(gca, 'FontSize', 20);
 legend('SGD', 'SGA');
 %EXO
 
+
+%CMT
+saveas(gcf,[rep 'error-sga.eps'], 'epsc');
+%CMT
 
 %% Stochastic Averaged Gradient Descent (SAG)
 % For problem size \(n\) where the dataset (of size \(n \times p\)) can
@@ -345,3 +363,6 @@ title('log(E(w_l) - min E)'); set(gca, 'FontSize', 20);
 legend('SGD', 'SGA', 'SAG');
 %EXO
 
+%CMT
+saveas(gcf,[rep 'error-sag.eps'], 'epsc');
+%CMT
