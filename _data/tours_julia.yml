@@ -65,6 +65,18 @@
   - name: Chambolle-Pock Primal-Dual Splitting Algorithm
     rep: optim_5_primal_dual
 
+- name: Machine Learning
+  short: ml
+  list:
+  - name: PCA, Nearest-Neighbors and Clustering
+    rep: ml_1_pca_nn
+  - name: Linear Regression and Kernel Methods
+    rep: ml_2_regression
+  - name: Logistic Classification
+    rep: ml_3_classification
+  - name: Stochastic Gradient descent
+    rep: ml_4_sgd
+
 - name: Shapes
   short: shapes
   list:
