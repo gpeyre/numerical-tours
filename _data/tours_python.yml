@@ -116,3 +116,10 @@
     rep: optimaltransp_1_linprog
   - name: Entropic Regularization of Optimal Transport
     rep: optimaltransp_5_entropic
+
+
+- name: Machine Learning
+  short: ml
+  list:
+  - name: Logistic Classification
+    rep: ml_3_classification
