@@ -3,8 +3,8 @@ import pylab
 import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
 from scipy import ndimage
-# TODO: try to not make use of transform.resize
-from skimage import transform
+# graph.py: TODO: try to not make use of transform.resize
+# from skimage import transform ### commented
 
 def perform_dijstra_fm(W, pstart, niter=np.inf, method='dijstr', bound='sym', svg_rate=10):
     """
@@ -15,11 +15,11 @@ def perform_dijstra_fm(W, pstart, niter=np.inf, method='dijstr', bound='sym', sv
     %   W is an (n,n) metric matrix.
     %   pstart is a (2,k) starting points.
     %   options.method is either 'fm' or 'dijstra'
-    %   
+    %
     %   D is the final distance map to pstart
     %   options.svg_rate gives the rate at wich Dsvg and Ssvg is filled.
-    %   options.niter can be used to limit the total number of steps (partial propagation). 
-    %   
+    %   options.niter can be used to limit the total number of steps (partial propagation).
+    %
     %   Copyright (c) 2014 Gabriel Peyre
     """
     ##
@@ -48,11 +48,11 @@ def perform_dijstra_fm(W, pstart, niter=np.inf, method='dijstr', bound='sym', sv
         boundary = lambda x: np.mod(x,n)
     else:
         boundary = lambda x: [symmetrize(x[0],n), symmetrize(x[1],n)] # todo
-    
+
     ##
-    # For a given grid index |k|, and a given neighboring index k in \({1,2,3,4}\), 
+    # For a given grid index |k|, and a given neighboring index k in \({1,2,3,4}\),
     # |Neigh(k,i)| gives the corresponding grid neigboring index.
-    
+
     ind2sub1 = lambda k: [int( (k-np.fmod(k,n))/n ), np.fmod(k,n)]
     sub2ind1 = lambda u: int( u[0]*n + u[1] )
     Neigh = lambda k,i: sub2ind1(boundary(ind2sub1(k) + neigh[:,i]))
@@ -91,7 +91,7 @@ def perform_dijstra_fm(W, pstart, niter=np.inf, method='dijstr', bound='sym', sv
     Dsvg = np.zeros( (n,n,q) )
     Ssvg = np.zeros( (n,n,q) )
     while ( not(I==[]) & (iter<=niter) ):
-        # print(not(I==[]) & (iter<=niter))      
+        # print(not(I==[]) & (iter<=niter))
         iter = iter+1;
         # print(len(I))
         if iter==niter:
@@ -101,18 +101,18 @@ def perform_dijstra_fm(W, pstart, niter=np.inf, method='dijstr', bound='sym', sv
         if np.ndim(j)==0:
             j = [j]
         j = j[0]
-        i = I[j]         
+        i = I[j]
         a = I.pop(j)
         # declare dead
         u = ind2sub1(i);
         S[u[0],u[1]] = -1
         # Make a list of neighbors that are not dead
-        J = [] 
+        J = []
         for k in np.arange(0,4):
             j = Neigh(i,k)
             if extract1d(S,j)!=-1:
                 # add to the list of point to update
-                J.append(j)           
+                J.append(j)
                 if extract1d(S,j)==0:
                     # add to the front
                     u = ind2sub1(j)
@@ -141,4 +141,4 @@ def perform_dijstra_fm(W, pstart, niter=np.inf, method='dijstr', bound='sym', sv
 
     Dsvg = Dsvg[:,:,:t-1]
     Ssvg = Ssvg[:,:,:t-1]
-    return (D,Dsvg,Ssvg); 
+    return (D,Dsvg,Ssvg);

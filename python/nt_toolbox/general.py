@@ -3,8 +3,8 @@ import pylab
 import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
 from scipy import ndimage
-# TODO: try to not make use of transform.resize
-from skimage import transform
+# general.py TODO: try to not make use of transform.resize
+from skimage import transform ## commented
 
 
 def crop(M, n=None):
@@ -37,7 +37,7 @@ def circshift(x, p):
     return y
 
 def circshift1d(x, k):
-    """ 
+    """
         Circularly shift a 1D vector
     """
     return np.roll(x, -k, axis=0)
@@ -71,6 +71,6 @@ def rescale(f,a=0,b=1):
 
 def reverse(x):
     """
-        Reverse a vector. 
+        Reverse a vector.
     """
     return x[::-1]
