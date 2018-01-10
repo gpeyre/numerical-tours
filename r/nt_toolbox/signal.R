@@ -7,6 +7,7 @@
 dir_0 <- getwd()
 setwd(dirname(parent.frame(2)$ofile))
 source("general.R")
+source("meshgrid.R")
 
 library(imager)
 
@@ -308,8 +309,8 @@ div = function(x)
 
 grad = function(x){
     n = dim(x)[1]
-    hdiff = x[,] - x[c(n, 1:n-1),]
-    vdiff = x[,] - x[,c(n, 1:n-1)]
+    hdiff = x[c((2:n),1),] - x[,]
+    vdiff = x[,c((2:n),1)] - x[,]
     return (array(c(hdiff, vdiff), dim=c(n, n, 2)))
 }
 
@@ -449,6 +450,66 @@ clip <- function(arr, arr_min, arr_max){
   arr <- array(arr, d)
   return(arr)
 }
+
+
+
+gaussian_blur <- function(f, sigma){
+  ####
+  # gaussian_blur - gaussian blurs an image
+  #
+  # M = perform_blurring(M, sigma, options);
+  #
+  # M is the original data
+  # sigma is the std of the Gaussian blur (in pixels)
+  # 
+  # Copyright (c) 2007 Gabriel Peyre
+  ####
+  if (sigma<=0){ return() }
+  n <- max(dim(f))
+  t <- c(0:(n/2),(-n/2):(-2))
+  Y <- meshgrid_2d(t,t)$X ; X <- meshgrid_2d(t,t)$Y
+  h <- exp(-(X**2 + Y**2)/(2.0*sigma**2))
+  h <- h/sum(h)
+  fft_prod <- fft(f)*fft(h)
+  return( Re( fft(fft_prod, inverse=T)/length(fft_prod) ) )
+  
+}
+
+
+
+bilinear_interpolate <- function(im, x, y){
+  
+  x0 <- round(x)
+  x1 <- x0 + 1
+  y0 <- round(y)
+  y1 <- y0 + 1
+  
+  x0[x0<1] <- 1 ; x0[x0>dim(im)[2]] <- dim(im)[2]
+  x1[x1<1] <- 1 ; x1[x1>dim(im)[2]] <- dim(im)[2]
+  y0[y0<1] <- 1 ; y0[y0>dim(im)[1]] <- dim(im)[1]
+  y1[y1<1] <- 1 ; y1[y1>dim(im)[1]] <- dim(im)[1]
+  
+  Ia <- c() ; Ib <- c() ; Ic <- c() ; Id <- c()
+  for (i in 1:length(x0)){
+    Ia <- c(Ia, im[ y0[i], x0[i] ])
+    Ib <- c(Ib, im[ y1[i], x0[i] ])
+    Ic <- c(Ic, im[ y0[i], x1[i] ])
+    Id <- c(Id, im[ y1[i], x1[i] ])
+  }
+  
+  wa <- (x1-x) * (y1-y)
+  wb <- (x1-x) * (y-y0)
+  wc <- (x-x0) * (y1-y)
+  wd <- (x-x0) * (y-y0)
+  
+  return(wa*Ia + wb*Ib + wc*Ic + wd*Id)
+  
+}
+
+
+
+
+
 
 
 
