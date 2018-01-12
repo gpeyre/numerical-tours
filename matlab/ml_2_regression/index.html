@@ -139,7 +139,7 @@ To make changes, update the M-file and republish this document.
          \]
          
       </p>
-      <title>Sparse Model Selection with the Lasso</title>
+      <title>Linear Regression and Kernel Methods</title>
       <NOSCRIPT>
          <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A>
                	requires JavaScript to process the mathematics on this page.<BR>
@@ -153,9 +153,11 @@ To make changes, update the M-file and republish this document.
    </head>
    <body>
       <div class="content">
-         <h1>Sparse Model Selection with the Lasso</h1>
+         <h1>Linear Regression and Kernel Methods</h1>
          <introduction>
-            <p>This tour studies linear regression method in conjunction with regularization. It contrasts ridge regression and the Lasso.</p>
+            <p>This tour studies linear regression method in conjunction with regularization. It contrasts ridge regression and the Lasso.
+               It also presents its non-linear variant using kernlization.
+            </p>
          </introduction>
          <h2>Contents</h2>
          <div>
@@ -362,10 +364,11 @@ colormap <span class="string">jet(256)</span>;
       </div>
       <!--
 ##### SOURCE BEGIN #####
-%% Sparse Model Selection with the Lasso
-% This tour studies linear regression method in conjunction with regularization.
+%% Linear Regression and Kernel Methods
+% This tour studies linear regression method in conjunction with
+% regularization.
 % It contrasts ridge regression and the Lasso.
-
+% It also presents its non-linear variant using kernlization.
 
 
 %%
