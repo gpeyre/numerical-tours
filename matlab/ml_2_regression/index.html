@@ -282,7 +282,7 @@ w = (X0'*X0+lambda*eye(p)) \ (X0'*y0);
 w1 = X0'*( (X0*X0'+lambda*eye(n0)) \ y0 );
 fprintf(<span class="string">'Error (should be 0): %.4f\n'</span>, norm(w-w1)/norm(w));
 </pre><pre class="codeoutput">Error (should be 0): 0.0000
-</pre><p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Display the evolution of the error \(E\) as a function of \(\lambda\).
+</pre><p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Display the evolution of the test error \(E\) as a function of \(\lambda\).
          </p><pre class="codeinput">exo1;
 </pre><img vspace="5" hspace="5" src="index_07.png"> <p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Display the regularization path, i.e. the evolution of \(w\) as a function of \(\lambda\).
          </p><pre class="codeinput">exo2;
@@ -312,8 +312,8 @@ SetAR(1/2);
 </pre><p>A single ISTA step.</p><pre class="codeinput">w = Soft( w-tau*X0'*(X0*w-y0), lambda*tau );
 </pre><p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) Implement the ISTA algorithm, display the convergence of the energy.
          </p><pre class="codeinput">exo3;
-</pre><img vspace="5" hspace="5" src="index_10.png"> <p><i>Exercice 4:</i> (<a href="../missing-exo/">check the solution</a>) Display the full regularization path. You can start by large \(\lambda\) and use a warm restart procedure to reduce the
-            computation time. Compute the classification error.
+</pre><img vspace="5" hspace="5" src="index_10.png"> <p><i>Exercice 4:</i> (<a href="../missing-exo/">check the solution</a>) Compute the test error along the full regularization path. You can start by large \(\lambda\) and use a warm restart procedure
+            to reduce the computation time. Compute the classification error.
          </p><pre class="codeinput">exo4;
 </pre><img vspace="5" hspace="5" src="index_11.png"> <p><i>Exercice 5:</i> (<a href="../missing-exo/">check the solution</a>) Display the regularization path, i.e. the evolution of \(w\) as a function of \(\lambda\).
          </p><pre class="codeinput">exo5;
@@ -597,7 +597,7 @@ fprintf('Error (should be 0): %.4f\n', norm(w-w1)/norm(w));
 
 %%
 % _Exercice 1:_ (<../missing-exo/ check the solution>)
-% Display the evolution of the error \(E\) as a function of \(\lambda\).
+% Display the evolution of the test error \(E\) as a function of \(\lambda\).
 
 exo1;
 
@@ -677,7 +677,7 @@ exo3;
 
 %%
 % _Exercice 4:_ (<../missing-exo/ check the solution>)
-% Display the full regularization path. You can start by large \(\lambda\) and use a warm restart procedure
+% Compute the test error along the full regularization path. You can start by large \(\lambda\) and use a warm restart procedure
 % to reduce the computation time. Compute the classification error.
 
 exo4;
