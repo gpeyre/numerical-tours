@@ -1,6 +1,6 @@
-%% Linear Regression and Kernel Methods
-% This tour studies linear regression method, and its non-linear variant
-% using kernlization.
+%% Sparse Model Selection with the Lasso
+% This tour studies linear regression method in conjunction with regularization.
+% It contrasts ridge regression and the Lasso.
 
 
 %CMT
@@ -23,10 +23,8 @@ end
 perform_toolbox_installation('general');
 
 %% Dataset Loading
-% We test the method on the
-% <http://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_boston.html
-% Boston house prices dataset>, consisting in \(n=506\) samples with
-% features \(x_i \in \RR^p\) in dimension \(p=13\). The goal is to predict the price value
+% We test the method on the prostate dataset in \(n=97\) samples with
+% features \(x_i \in \RR^p\) in dimension \(p=8\). The goal is to predict the price value
 % \(y_i \in \RR\). 
 
 %%
@@ -39,7 +37,7 @@ Cov = @(X)Xm(X)'*Xm(X);
 %%
 % Load the dataset.
 
-name = 'boston_house_prices';
+name = 'prostate';
 load(['ml-' name]);
 
 %%
@@ -50,13 +48,20 @@ A = A(randperm(size(A,1)),:);
 %%
 % Separate the features \(X\) from the data \(y\) to predict information.
 
-X = A(:,1:end-1);
-y = A(:,end);
+X = A(:,1:end-2);
+y = A(:,end-1);
+c = A(:,end);
 
 %%
 % \(n\) is the number of samples, \(p\) is the dimensionality of the features,
 
 [n,p] = size(X);
+
+%%
+% Normalize the features.
+
+X = Xm(X);
+X = X ./ repmat( sqrt(sum(X.^2,1)), [n 1] );
 
 %% Dimenionality Reduction and PCA
 % In order to display in 2-D or 3-D the data, dimensionality is needed.
@@ -86,6 +91,30 @@ plot(diag(D), '.-', 'LineWidth', 2, 'MarkerSize', 30);
 axis tight;
 SetAR(1/2);
 
+%%
+% Display the features.
+
+k = 0;
+clf;
+for i=1:p
+    for j=1:p
+        k = k+1;
+        subplot(p,p,k);
+        if i==j
+            hist(X(:,i),6);
+            axis tight;
+        else
+            plot(X(:,j),X(:,i), '.');
+            axis tight;
+        end
+        set(gca, 'XTick', [], 'YTick', [] );
+        axis tight;
+        if i==1
+            title(class_names{j});
+        end
+    end
+end
+    
 %%
 % Display the points cloud of feature vectors in 3-D PCA space.
 
@@ -118,23 +147,40 @@ end
 % whose solution is given using the Moore-Penrose pseudo-inverse
 %   \[ w = (X^\top X)^{-1} X^\top y \]
 
-
 %%
 % Split into training and testing.
 
-n0 = round(.5*n); n1 = n-n0;
-X0 = X(1:n0,:);     y0 = y(1:n0);
-X1 = X(n0+1:end,:); y1 = y(n0+1:end);
+I0 = find(c==1); % train
+I1 = find(c==0); % test
+n0 = length(I0); n1 = n-n0;
+X0 = X(I0,:); y0 = y(I0);
+X1 = X(I1,:); y1 = y(I1);
+
+%% 
+% Remove the mean to avoid introducing a bias term.
+
+m0 = mean(y0);
+y0 = y0-m0;
+y1 = y1-m0;
 
 %%
 % Least square solution.
 
 w = (X0'*X0) \ (X0'*y0);
 
+%% 
+% Prediction (along 1st eigenvector).
+
+clf;
+plot( [y1 X1*w], '.-', 'MarkerSize', 20);
+axis tight;
+legend('y', 'X_1 w');
+
 %%
 % Mean-square error on testing set.
 
 E = sqrt( sum( (X1*w-y1).^2 ) / n1 );
+fprintf('Relative prediction error: %.3f\n', E/mean(y1.^2));
 
 %%
 % Regularization is obtained by introducing a penalty. It is often called
@@ -163,36 +209,174 @@ fprintf('Error (should be 0): %.4f\n', norm(w-w1)/norm(w));
 %EXO
 %% Display the evolution of the error \(E\) as a function of \(\lambda\).
 q = 50;
-lambda_list = linspace(0,20,q);
+lambda_list = linspace(0,.8,q);
 W = []; E = [];
 for i=1:q
     lambda = lambda_list(i);
     w = (X0'*X0+lambda*eye(p)) \ (X0'*y0);
     W(:,i) = w; % bookkeeping
-    E(i) = sqrt( sum( (X1*w-y1).^2 ) / n1 );
+    E(i) = sqrt( sum( (X1*w-y1).^2 ) / n1 ) / mean(y1.^2);
 end
+% find optimal lambda
+[~,i] = min(E);
+lambda0 = lambda_list(i);
 % Display error evolution.
-clf;
+clf; hold on;
 plot(lambda_list, E, 'LineWidth', 2);
+plot( lambda0*[1 1], [min(E) max(E)], 'r--', 'LineWidth', 2);
 axis tight;
 SetAR(1/2);
 xlabel('\lambda');
-ylabel('E');
+ylabel('E'); 
+box on;
 %EXO
 
 %EXO
 %% Display the regularization path, i.e. the evolution of \(w\) as a function 
 %% of \(\lambda\).
-clf;
+clf; hold on;
 plot(lambda_list, W', 'LineWidth', 2);
+plot( lambda0*[1 1], [min(W(:)) max(W(:))], 'r--', 'LineWidth', 2);
+axis tight;
+set(gca, 'FontSize', 15);
+xlabel('\lambda'); ylabel('w_i');
+for i=1:p
+    lgd{i} = class_names{i};
+end
+legend(lgd); box on;
+%EXO
+
+
+%% Sparse Regularization
+% In order to perform feature selection (i.e. select a subsect of the
+% features which are the most predictive), one needs to replace the
+% \(\ell^2\) regularization penalty by a sparsity inducing regularizer. The
+% most well known if the \(\ell^1\) norm \(\norm{w}_1 \eqdef \sum_i
+% |w_i|\). 
+
+%%
+% The energy to minimize is
+% \[ \umin{w} J(w) \eqdef \frac{1}{2}\norm{X w-y}^2 + \lambda \norm{w}_1. \]
+
+J = @(w,lambda)1/2*norm(X0*w-y0)^2 + lambda*norm(w,1);
+
+%%
+% The simplest iterative algorithm to perform the minimization is the
+% so-called iterative soft thresholding (ISTA), aka proximal gradient aka
+% forward-backward. 
+
+%%
+% It performs first a gradient step (forward) of the smooth part \(\frac{1}{2}\norm{X w-y}^2\) of the
+% functional and then a proximal step (backward) step which account for the
+% \(\ell^1\) penalty and induce sparsity. This proximal step is the soft-thresholding operator
+% \[ \Ss_s(x) \eqdef \max( |x|-\lambda,0 ) \sign(x).  \]
+
+Soft = @(x,s)max(abs(x)-s,0).*sign(x);
+
+%%
+% The ISTA algorithm reads
+% \[ w_{k+1} \eqdef \Ss_{\la\tau}( w_k - \tau X^* ( X w_k - y )  ), \]
+% where, to ensure convergence, the step size should verify \( 0 < \tau <
+% 2/\norm{X}^2  \) where \(\norm{X}\) is the operator norm. 
+
+%%
+% Display the soft thresholding operator.
+
+t = linspace(-5,5,201);
+clf; plot(t,Soft(t,2), 'LineWidth', 2); 
 axis tight;
 SetAR(1/2);
-xlabel('\lambda'); ylabel('w_i');
+
+%%
+% Descent step size.
+
+tau = 1.5/norm(X0)^2;
+
+%%
+% Choose a regularization parameter \(\la\).
+
+lambda = .2;
+
+%%
+% Initialization \(w_0\).
+
+w = zeros(p,1);
+
+%%
+% A single ISTA step.
+
+w = Soft( w-tau*X0'*(X0*w-y0), lambda*tau );
+
+%EXO
+%% Implement the ISTA algorithm, display the convergence of the energy.
+Jlist = [];
+niter = 500;
+w = zeros(p,1);
+for i=1:niter
+    Jlist(end+1) = J(w,lambda);
+    w = Soft( w-tau*X0'*(X0*w-y0), lambda*tau );
+end
+ndisp = niter/4;
+clf;
+subplot(2,1,1);
+plot(1:ndisp,Jlist(1:ndisp), 'LineWidth', 2);
+axis tight; 
+title('J(w_k)');
+subplot(2,1,2);
+e = log10(Jlist(1:ndisp)-min(Jlist));
+plot(1:ndisp,e-e(1), 'LineWidth', 2); 
+axis tight;
+title('log(J(w_k)-min J)');
 %EXO
 
 %EXO
-%% Perform feature selection using \(\ell^1\) regularization (aka the Lasso), 
-%%   \[ \umin{ w }  \frac{1}{2}\norm{Xw-y}^2 + \lambda \norm{w}_1. \]
+%% Display the full regularization path. You can start by large \(\lambda\) and use a warm restart procedure
+%% to reduce the computation time. Compute the classification error.
+q = 200;
+lmax = max(X0'*y0);
+lmax = 3.5;
+lambda_list = linspace(lmax,1e-3,q);
+W = []; E = [];
+w = zeros(p,1);
+niter = 1000;
+for iq=1:q
+    lambda = lambda_list(iq);
+    % ISTA %
+    for i=1:niter
+        w = Soft( w-tau*X0'*(X0*w-y0), lambda*tau );
+    end
+    W(:,iq) = w; % bookkeeping
+    E(iq) = sqrt( sum( (X1*w-y1).^2 ) / n1 ) / mean(y1.^2);
+end
+% find optimal lambda
+[~,i] = min(E);
+lambda0 = lambda_list(i);
+% Display error evolution.
+Il = find(lambda_list<2);
+clf; hold on;
+plot(lambda_list(Il), E(Il), 'LineWidth', 2);
+plot( lambda0*[1 1], [min(E(Il)) max(E(Il))], 'r--', 'LineWidth', 2);
+axis tight;
+SetAR(1/2);
+xlabel('\lambda');
+ylabel('E'); box on;
+%EXO
+
+
+%EXO
+%% Display the regularization path, i.e. the evolution of \(w\) as a function 
+%% of \(\lambda\).
+clf; hold on;
+plot( lambda0*[1 1], [min(W(:)) max(W(:))], 'r--', 'LineWidth', 2);
+axis tight;
+set(gca, 'FontSize', 15);
+xlabel('\lambda'); ylabel('w_i');
+for i=1:p
+    lgd{i} = class_names{i};
+end
+plot(lambda_list, W', 'LineWidth', 2);
+legend(lgd);
+box on;
 %EXO
 
 

@@ -1,31 +1,26 @@
-ElistG = [];
-tau = .002/n;
+ElistA = [];
+tau0 = .05;
+ell0 = 100;
 nsamples = 10;
 err_rate = 50;
 for is=1:nsamples
-    w = zeros(p,1);
-    G = zeros(p,n); % keep track of gradients
-    g = zeros(p,1);
+    w = zeros(p,1); w1 = w;
     for it=1:niter
         if mod(it,err_rate)==1
-            ElistG( 1+(it-1)/err_rate,is) = E(w,X,y);
+            ElistA( 1+(it-1)/err_rate,is) = E(w,X,y);
         end
+        tau = tau0 / (1+sqrt(it/ell0));
         i = 1+floor(rand*n); % draw uniformly
-        g1 = nablaEi(w,i);
-        % update grad
-        g = g - G(:,i) + g1;
-        G(:,i) = g1;
-        %
-        w = w - tau * g;
+        w1 = w1 - tau * nablaEi(w1,i);
+        w = 1/it*w1 + (1-1/it)*w;
     end
 end
-clf;
+clf; 
 hold on;
-plot(1,Inf, 'b'); plot(1,Inf, 'r'); plot(1,Inf, 'g');
+plot(1,Inf, 'b'); plot(1,Inf, 'r');
 plot(1:err_rate:niter, log10(ElistS-min(Elist)), 'b');
 plot(1:err_rate:niter, log10(ElistA-min(Elist)), 'r');
-plot(1:err_rate:niter, log10(ElistG-min(Elist)), 'g');
 axis tight; box on;
 SetAR(1/2);
-title('log(E(w_l) - min E)'); set(gca, 'FontSize', fs);
-legend('SGD', 'SGA', 'SAG');
+title('log(E(w_l) - min E)'); set(gca, 'FontSize', 20);
+legend('SGD', 'SGA');

@@ -21,18 +21,58 @@ end
 
 perform_toolbox_installation('general');
 
+%% Simple Example
+% We first illustrate the concept of stochastic gradient descent on a
+% simple example
+% \[ \umin{x \in \RR} f(x) \eqdef f_1(x) + f_2(x) \]
+% where \(f_1(x) \eqdef (x-1)^2\) and 
+% \(f_2(x) \eqdef (x+1)^2\).
+
+%%
+% Functions and their derivatives.
+
+f = {@(x)1/2*(x-1).^2, @(x)1/2*(x+1).^2};
+F = @(x)f{1}(x)+f{2}(x);
+df = {@(x)(x-1), @(x)(x+1)};
+
+%%
+% Each iteration of SGD reads
+% \[ x_{\ell+1} = x_\ell - \tau_\ell \nabla f_{i(\ell)}(x_\ell) \]
+% where \( i(\ell) \in \{1,2\} \) is drawn uniformly.
+
+%EXO
+%% Implement the SGD, with a random initial condition \(x_0\).
+%% Display several path (i.e. run several time the algorithm)
+%% to vizualize the evolution of the density of the random variable
+%% \(x_\ell\).
+q=50;  % Number of paths computed in parallel.
+x = rand(q,1)-1/2; % Initial conditions.
+niter = 1000;
+E = [];
+for i=1:niter-1
+    u = rand(q,1)>.5;
+    E(:,i) = F(x(:,end));
+    tau = 1/(10+i);
+    x(:,end+1) = x(:,end) - tau * ( u.*df{1}(x(:,end)) + (1-u).*df{2}(x(:,end)) );
+end
+%
+clf;
+plot(x', 'r');
+axis tight;
+set(gca, 'FontSize', 20);
+%EXO
+
+%% Dataset Loading
+% We load a subset of the <http://osmot.cs.cornell.edu/kddcup/datasets.html
+% dataset Quantum Physics Dataset>
+% of \(n=10000\) features in dimension \(78\). The goal in this task is to learn a classification rule that differentiates between two types of particles generated in high energy collider experiments.
+
 %%
 % First define a few helpers.
 
 SetAR = @(ar)set(gca, 'PlotBoxAspectRatio', [1 ar 1], 'FontSize', 20);
 Xm = @(X)X-repmat(mean(X,1), [size(X,1) 1]);
 Cov = @(X)Xm(X)'*Xm(X);
-
-
-%% Dataset Loading
-% We load a subset of the <http://osmot.cs.cornell.edu/kddcup/datasets.html
-% dataset Quantum Physics Dataset>
-% of \(n=10000\) features in dimension \(78\). The goal in this task is to learn a classification rule that differentiates between two types of particles generated in high energy collider experiments.
 
 %%
 % Load the dataset.

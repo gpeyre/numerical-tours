@@ -1,1 +1,1 @@
-python m2nb_converter.py ../matlab/m_files/optimaltransp_5_entropic.m ../matlab/
+python m2nb_converter.py ../matlab/m_files/ml_2_regression.m ../matlab/
