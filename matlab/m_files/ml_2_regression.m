@@ -1,7 +1,8 @@
-%% Sparse Model Selection with the Lasso
-% This tour studies linear regression method in conjunction with regularization.
+%% Linear Regression and Kernel Methods
+% This tour studies linear regression method in conjunction with
+% regularization.
 % It contrasts ridge regression and the Lasso.
-
+% It also presents its non-linear variant using kernlization.
 
 %CMT
 rep = 'results/ml/regression/';
