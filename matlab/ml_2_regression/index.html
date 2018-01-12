@@ -288,8 +288,8 @@ fprintf(<span class="string">'Error (should be 0): %.4f\n'</span>, norm(w-w1)/no
          </p><pre class="codeinput">exo2;
 </pre><img vspace="5" hspace="5" src="index_08.png"> <h2>Sparse Regularization<a name="36"></a></h2>
          <p>In order to perform feature selection (i.e. select a subsect of the features which are the most predictive), one needs to
-            replace the \(\ell^2\) regularization penalty by a sparsity inducing regularizer. The most well known if the \(\ell^1\) norm
-            \(\norm{w}_1 \eqdef \sum_i <tt>w_i</tt>\).
+            replace the \(\ell^2\) regularization penalty by a sparsity inducing regularizer. The most well known is the \(\ell^1\) norm
+            \[ \norm{w}_1 \eqdef \sum_i \abs{w_i} . \]
          </p>
          <p>The energy to minimize is \[ \umin{w} J(w) \eqdef \frac{1}{2}\norm{X w-y}^2 + \lambda \norm{w}_1. \]</p><pre class="codeinput">J = @(w,lambda)1/2*norm(X0*w-y0)^2 + lambda*norm(w,1);
 </pre><p>The simplest iterative algorithm to perform the minimization is the so-called iterative soft thresholding (ISTA), aka proximal
@@ -297,9 +297,9 @@ fprintf(<span class="string">'Error (should be 0): %.4f\n'</span>, norm(w-w1)/no
          </p>
          <p>It performs first a gradient step (forward) of the smooth part \(\frac{1}{2}\norm{X w-y}^2\) of the functional and then a
             proximal step (backward) step which account for the \(\ell^1\) penalty and induce sparsity. This proximal step is the soft-thresholding
-            operator \[ \Ss_s(x) \eqdef \max( <tt>x</tt>-\lambda,0 ) \sign(x).  \]
+            operator \[ \Ss_s(x) \eqdef \max( \abs{x}-\lambda,0 ) \sign(x).  \]
          </p><pre class="codeinput">Soft = @(x,s)max(abs(x)-s,0).*sign(x);
-</pre><p>The ISTA algorithm reads \[ w_{k+1} \eqdef \Ss_{\la\tau}( w_k - \tau X^* ( X w_k - y )  ), \] where, to ensure convergence,
+</pre><p>The ISTA algorithm reads \[ w_{k+1} \eqdef \Ss_{\la\tau}( w_k - \tau X^\top ( X w_k - y )  ), \] where, to ensure convergence,
             the step size should verify \( 0 &lt; \tau &lt; 2/\norm{X}^2  \) where \(\norm{X}\) is the operator norm.
          </p>
          <p>Display the soft thresholding operator.</p><pre class="codeinput">t = linspace(-5,5,201);
@@ -613,8 +613,8 @@ exo2;
 % In order to perform feature selection (i.e. select a subsect of the
 % features which are the most predictive), one needs to replace the
 % \(\ell^2\) regularization penalty by a sparsity inducing regularizer. The
-% most well known if the \(\ell^1\) norm \(\norm{w}_1 \eqdef \sum_i
-% |w_i|\). 
+% most well known is the \(\ell^1\) norm 
+% \[ \norm{w}_1 \eqdef \sum_i \abs{w_i} . \] 
 
 %%
 % The energy to minimize is
@@ -631,13 +631,13 @@ J = @(w,lambda)1/2*norm(X0*w-y0)^2 + lambda*norm(w,1);
 % It performs first a gradient step (forward) of the smooth part \(\frac{1}{2}\norm{X w-y}^2\) of the
 % functional and then a proximal step (backward) step which account for the
 % \(\ell^1\) penalty and induce sparsity. This proximal step is the soft-thresholding operator
-% \[ \Ss_s(x) \eqdef \max( |x|-\lambda,0 ) \sign(x).  \]
+% \[ \Ss_s(x) \eqdef \max( \abs{x}-\lambda,0 ) \sign(x).  \]
 
 Soft = @(x,s)max(abs(x)-s,0).*sign(x);
 
 %%
 % The ISTA algorithm reads
-% \[ w_{k+1} \eqdef \Ss_{\la\tau}( w_k - \tau X^* ( X w_k - y )  ), \]
+% \[ w_{k+1} \eqdef \Ss_{\la\tau}( w_k - \tau X^\top ( X w_k - y )  ), \]
 % where, to ensure convergence, the step size should verify \( 0 < \tau <
 % 2/\norm{X}^2  \) where \(\norm{X}\) is the operator norm. 
 
