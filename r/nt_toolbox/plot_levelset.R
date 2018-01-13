@@ -2,7 +2,7 @@
 
 
 
-plot_levelset <- function(Z, f=c(), title="", sbpt=c()){
+plot_levelset <- function(Z, f=c(), title="", lw=1.5, sbpt=c()){
   ####
   # f is supposed to be of the same shape as Z
   ####
@@ -10,7 +10,7 @@ plot_levelset <- function(Z, f=c(), title="", sbpt=c()){
     f <- Z }
 
   Z <- as.cimg(t(Z))
-  ct <- contours(Z, nlevels=2)
+  ct <- contours(Z, nlevels=1)
   imageplot(f, title, sbpt)
-  purrr::walk(ct,function(v) lines(v$x,v$y,col="red",lw=1.5))
+  purrr::walk(ct,function(v) lines(v$x,v$y,col="red",lw=lw))
 }
