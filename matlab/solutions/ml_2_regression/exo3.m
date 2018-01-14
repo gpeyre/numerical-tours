@@ -1,9 +1,9 @@
 Jlist = [];
-niter = 500;
+niter = 400;
 w = zeros(p,1);
 for i=1:niter
     Jlist(end+1) = J(w,lambda);
-    w = Soft( w-tau*X0'*(X0*w-y0), lambda*tau );
+    w = ISTA(w,lambda,tau);
 end
 ndisp = niter/4;
 clf;

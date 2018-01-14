@@ -57,12 +57,35 @@ c = A(:,end);
 % \(n\) is the number of samples, \(p\) is the dimensionality of the features,
 
 [n,p] = size(X);
+fprintf('n=%d, p=%d\n', n,p);
 
 %%
-% Normalize the features.
+% Split into training and testing.
 
-X = Xm(X);
-X = X ./ repmat( sqrt(sum(X.^2,1)), [n 1] );
+I0 = find(c==1); % train
+I1 = find(c==0); % test
+n0 = length(I0); n1 = n-n0;
+X0 = X(I0,:); y0 = y(I0);
+X1 = X(I1,:); y1 = y(I1);
+
+%%
+% Normalize the features by the mean and std of the *training* set.
+% This is optional.
+
+RepSub = @(X,u)X-repmat(u, [size(X,1) 1]);
+RepDiv = @(X,u)X./repmat(u, [size(X,1) 1]);
+mX0 = mean(X0); sX0 = std(X0);
+X0 = RepSub(X0,mX0);  X1 = RepSub(X1,mX0);
+X0 = RepDiv(X0,sX0);  X1 = RepDiv(X1,sX0);
+
+%% 
+% Remove the mean (computed from the *test* set) to avoid introducing a bias term and a constant regressor.
+% This is optional.
+
+m0 = mean(y0);
+y0 = y0-m0;
+y1 = y1-m0;
+
 
 %% Dimenionality Reduction and PCA
 % In order to display in 2-D or 3-D the data, dimensionality is needed.
@@ -71,18 +94,17 @@ X = X ./ repmat( sqrt(sum(X.^2,1)), [n 1] );
 % covariance matrix.
 
 %%
-% Display the covariance matrix.
+% Display the covariance matrix of the training set.
 
 clf;
-imagesc(Cov(X));
+imagesc(Cov(X0));
 
 %%
 % Compute PCA ortho-basis and 
 % the feature in the PCA basis.
 
-[U,D,V] = svd(Xm(X),'econ');
-Z = Xm(X) * V;
-
+[U,D,V] = svd(Xm(X0),'econ');
+Z = Xm(X0) * V;
 
 %%
 % Plot sqrt of the eigenvalues.
@@ -95,17 +117,18 @@ SetAR(1/2);
 %%
 % Display the features.
 
+pmax = min(p,8);
 k = 0;
 clf;
-for i=1:p
-    for j=1:p
+for i=1:pmax
+    for j=1:pmax
         k = k+1;
-        subplot(p,p,k);
+        subplot(pmax,pmax,k);
         if i==j
-            hist(X(:,i),6);
+            hist(X0(:,i),6);
             axis tight;
         else
-            plot(X(:,j),X(:,i), '.');
+            plot(X0(:,j),X0(:,i), '.');
             axis tight;
         end
         set(gca, 'XTick', [], 'YTick', [] );
@@ -130,7 +153,7 @@ col = {'b' 'g' 'r' 'c' 'm' 'y' 'k'};
 clf;
 for i=1:min(p,3)
     subplot(3,1,i);
-    plot(Z(:,i), y, '.', 'Color', col{i}, 'MarkerSize', 20);
+    plot(Z(:,i), y0, '.', 'Color', col{i}, 'MarkerSize', 20);
     axis tight;
 end
 
@@ -149,22 +172,6 @@ end
 %   \[ w = (X^\top X)^{-1} X^\top y \]
 
 %%
-% Split into training and testing.
-
-I0 = find(c==1); % train
-I1 = find(c==0); % test
-n0 = length(I0); n1 = n-n0;
-X0 = X(I0,:); y0 = y(I0);
-X1 = X(I1,:); y1 = y(I1);
-
-%% 
-% Remove the mean to avoid introducing a bias term.
-
-m0 = mean(y0);
-y0 = y0-m0;
-y1 = y1-m0;
-
-%%
 % Least square solution.
 
 w = (X0'*X0) \ (X0'*y0);
@@ -180,8 +187,8 @@ legend('y', 'X_1 w');
 %%
 % Mean-square error on testing set.
 
-E = sqrt( sum( (X1*w-y1).^2 ) / n1 );
-fprintf('Relative prediction error: %.3f\n', E/mean(y1.^2));
+E = norm(X1*w-y1) / norm(y1);
+fprintf('Relative prediction error: %.3f\n', E);
 
 %%
 % Regularization is obtained by introducing a penalty. It is often called
@@ -202,32 +209,33 @@ fprintf('Relative prediction error: %.3f\n', E/mean(y1.^2));
 % second expression is generalizable to Kernel Hilbert space setting,
 % corresponding possibly to \(p=+\infty\) for some kernels. 
 
-lambda = .1;
+lambda = .2*norm(X0)^2;
 w = (X0'*X0+lambda*eye(p)) \ (X0'*y0);
 w1 = X0'*( (X0*X0'+lambda*eye(n0)) \ y0 );
 fprintf('Error (should be 0): %.4f\n', norm(w-w1)/norm(w));
 
 %EXO
-%% Display the evolution of the error \(E\) as a function of \(\lambda\).
+%% Display the evolution of the test error \(E\) as a function of \(\lambda\).
 q = 50;
-lambda_list = linspace(0,.8,q);
+lmax = norm(X0)^2;
+lambda_list = lmax*linspace(.3,1e-3,q);
 W = []; E = [];
 for i=1:q
     lambda = lambda_list(i);
     w = (X0'*X0+lambda*eye(p)) \ (X0'*y0);
     W(:,i) = w; % bookkeeping
-    E(i) = sqrt( sum( (X1*w-y1).^2 ) / n1 ) / mean(y1.^2);
+    E(i) = norm(X1*w-y1) / norm(y1);
 end
 % find optimal lambda
 [~,i] = min(E);
 lambda0 = lambda_list(i);
 % Display error evolution.
 clf; hold on;
-plot(lambda_list, E, 'LineWidth', 2);
-plot( lambda0*[1 1], [min(E) max(E)], 'r--', 'LineWidth', 2);
+plot(lambda_list/lmax, E, 'LineWidth', 2);
+plot( lambda0/lmax*[1 1], [min(E) max(E)], 'r--', 'LineWidth', 2);
 axis tight;
 SetAR(1/2);
-xlabel('\lambda');
+xlabel('\lambda/|X|^2');
 ylabel('E'); 
 box on;
 %EXO
@@ -236,11 +244,11 @@ box on;
 %% Display the regularization path, i.e. the evolution of \(w\) as a function 
 %% of \(\lambda\).
 clf; hold on;
-plot(lambda_list, W', 'LineWidth', 2);
-plot( lambda0*[1 1], [min(W(:)) max(W(:))], 'r--', 'LineWidth', 2);
+plot(lambda_list/lmax, W', 'LineWidth', 2);
+plot( lambda0/lmax*[1 1], [min(W(:)) max(W(:))], 'r--', 'LineWidth', 2);
 axis tight;
 set(gca, 'FontSize', 15);
-xlabel('\lambda'); ylabel('w_i');
+xlabel('\lambda/|X|^2'); ylabel('w_i');
 for i=1:p
     lgd{i} = class_names{i};
 end
@@ -252,8 +260,8 @@ legend(lgd); box on;
 % In order to perform feature selection (i.e. select a subsect of the
 % features which are the most predictive), one needs to replace the
 % \(\ell^2\) regularization penalty by a sparsity inducing regularizer. The
-% most well known if the \(\ell^1\) norm \(\norm{w}_1 \eqdef \sum_i
-% |w_i|\). 
+% most well known is the \(\ell^1\) norm 
+% \[ \norm{w}_1 \eqdef \sum_i \abs{w_i} . \] 
 
 %%
 % The energy to minimize is
@@ -270,13 +278,13 @@ J = @(w,lambda)1/2*norm(X0*w-y0)^2 + lambda*norm(w,1);
 % It performs first a gradient step (forward) of the smooth part \(\frac{1}{2}\norm{X w-y}^2\) of the
 % functional and then a proximal step (backward) step which account for the
 % \(\ell^1\) penalty and induce sparsity. This proximal step is the soft-thresholding operator
-% \[ \Ss_s(x) \eqdef \max( |x|-\lambda,0 ) \sign(x).  \]
+% \[ \Ss_s(x) \eqdef \max( \abs{x}-\lambda,0 ) \text{sign}(x).  \]
 
 Soft = @(x,s)max(abs(x)-s,0).*sign(x);
 
 %%
 % The ISTA algorithm reads
-% \[ w_{k+1} \eqdef \Ss_{\la\tau}( w_k - \tau X^* ( X w_k - y )  ), \]
+% \[ w_{k+1} \eqdef \Ss_{\la\tau}( w_k - \tau X^\top ( X w_k - y )  ), \]
 % where, to ensure convergence, the step size should verify \( 0 < \tau <
 % 2/\norm{X}^2  \) where \(\norm{X}\) is the operator norm. 
 
@@ -296,7 +304,7 @@ tau = 1.5/norm(X0)^2;
 %%
 % Choose a regularization parameter \(\la\).
 
-lambda = .2;
+lambda = max(abs(X0'*y0))/10;
 
 %%
 % Initialization \(w_0\).
@@ -306,16 +314,19 @@ w = zeros(p,1);
 %%
 % A single ISTA step.
 
-w = Soft( w-tau*X0'*(X0*w-y0), lambda*tau );
+C = X0'*X0;
+u = X0'*y0;
+ISTA = @(w,lambda,tau)Soft( w-tau*( C*w-u ), lambda*tau );
+w = ISTA(w,lambda,tau);
 
 %EXO
 %% Implement the ISTA algorithm, display the convergence of the energy.
 Jlist = [];
-niter = 500;
+niter = 400;
 w = zeros(p,1);
 for i=1:niter
     Jlist(end+1) = J(w,lambda);
-    w = Soft( w-tau*X0'*(X0*w-y0), lambda*tau );
+    w = ISTA(w,lambda,tau);
 end
 ndisp = niter/4;
 clf;
@@ -331,35 +342,34 @@ title('log(J(w_k)-min J)');
 %EXO
 
 %EXO
-%% Display the full regularization path. You can start by large \(\lambda\) and use a warm restart procedure
+%% Compute the test error along the full regularization path. You can start by large \(\lambda\) and use a warm restart procedure
 %% to reduce the computation time. Compute the classification error.
 q = 200;
-lmax = max(X0'*y0);
-lmax = 3.5;
-lambda_list = linspace(lmax,1e-3,q);
+lmax = max(abs(X0'*y0));
+lambda_list = lmax*linspace(.6,1e-3,q);
 W = []; E = [];
 w = zeros(p,1);
-niter = 1000;
+niter = 500;
 for iq=1:q
     lambda = lambda_list(iq);
     % ISTA %
     for i=1:niter
-        w = Soft( w-tau*X0'*(X0*w-y0), lambda*tau );
+        w = ISTA(w,lambda,tau);
     end
     W(:,iq) = w; % bookkeeping
-    E(iq) = sqrt( sum( (X1*w-y1).^2 ) / n1 ) / mean(y1.^2);
+    E(iq) = norm(X1*w-y1) / norm(y1);
 end
 % find optimal lambda
 [~,i] = min(E);
 lambda0 = lambda_list(i);
 % Display error evolution.
-Il = find(lambda_list<2);
+Il = find(lambda_list<=lmax);
 clf; hold on;
-plot(lambda_list(Il), E(Il), 'LineWidth', 2);
-plot( lambda0*[1 1], [min(E(Il)) max(E(Il))], 'r--', 'LineWidth', 2);
+plot(lambda_list(Il)/lmax, E(Il), 'LineWidth', 2);
+plot( lambda0/lmax*[1 1], [min(E(Il)) max(E(Il))], 'r--', 'LineWidth', 2);
 axis tight;
 SetAR(1/2);
-xlabel('\lambda');
+xlabel('\lambda/|X^* y|_\infty');
 ylabel('E'); box on;
 %EXO
 
@@ -367,18 +377,22 @@ ylabel('E'); box on;
 %EXO
 %% Display the regularization path, i.e. the evolution of \(w\) as a function 
 %% of \(\lambda\).
+lmax =  max(X0'*y0); % rescaling factor
 clf; hold on;
-plot( lambda0*[1 1], [min(W(:)) max(W(:))], 'r--', 'LineWidth', 2);
 axis tight;
 set(gca, 'FontSize', 15);
-xlabel('\lambda'); ylabel('w_i');
+xlabel('\lambda/|X^* y|_\infty'); ylabel('w_i');
 for i=1:p
     lgd{i} = class_names{i};
 end
-plot(lambda_list, W', 'LineWidth', 2);
+% plot(lambda_list, W', 'LineWidth', 2);
+plot(lambda_list/lmax, W', 'LineWidth', 2);
+plot( lambda0/lmax*[1 1], [min(W(:)) max(W(:))], 'r--', 'LineWidth', 2);
 legend(lgd);
 box on;
 %EXO
+
+return;
 
 
 %% Kernelized Ridge Regression
