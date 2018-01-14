@@ -147,7 +147,7 @@ To make changes, update the M-file and republish this document.
          <HR>
       </NOSCRIPT>
       <meta name="generator" content="MATLAB 9.0">
-      <meta name="date" content="2018-01-12">
+      <meta name="date" content="2018-01-14">
       <meta name="m-file" content="index">
       <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
    </head>
@@ -164,8 +164,8 @@ To make changes, update the M-file and republish this document.
             <ul>
                <li><a href="#3">Installing toolboxes and setting up the path.</a></li>
                <li><a href="#10">Dataset Loading</a></li>
-               <li><a href="#17">Dimenionality Reduction and PCA</a></li>
-               <li><a href="#24">Linear Regression</a></li>
+               <li><a href="#19">Dimenionality Reduction and PCA</a></li>
+               <li><a href="#26">Linear Regression</a></li>
                <li><a href="#36">Sparse Regularization</a></li>
                <li><a href="#49">Kernelized Ridge Regression</a></li>
             </ul>
@@ -200,31 +200,47 @@ load([<span class="string">'ml-'</span> name]);
 y = A(:,end-1);
 c = A(:,end);
 </pre><p>\(n\) is the number of samples, \(p\) is the dimensionality of the features,</p><pre class="codeinput">[n,p] = size(X);
-</pre><p>Normalize the features.</p><pre class="codeinput">X = Xm(X);
-X = X ./ repmat( sqrt(sum(X.^2,1)), [n 1] );
-</pre><h2>Dimenionality Reduction and PCA<a name="17"></a></h2>
+fprintf(<span class="string">'n=%d, p=%d\n'</span>, n,p);
+</pre><pre class="codeoutput">n=97, p=8
+</pre><p>Split into training and testing.</p><pre class="codeinput">I0 = find(c==1); <span class="comment">% train</span>
+I1 = find(c==0); <span class="comment">% test</span>
+n0 = length(I0); n1 = n-n0;
+X0 = X(I0,:); y0 = y(I0);
+X1 = X(I1,:); y1 = y(I1);
+</pre><p>Normalize the features by the mean and std of the <b>training</b> set. This is optional.
+         </p><pre class="codeinput">RepSub = @(X,u)X-repmat(u, [size(X,1) 1]);
+RepDiv = @(X,u)X./repmat(u, [size(X,1) 1]);
+mX0 = mean(X0); sX0 = std(X0);
+X0 = RepSub(X0,mX0);  X1 = RepSub(X1,mX0);
+X0 = RepDiv(X0,sX0);  X1 = RepDiv(X1,sX0);
+</pre><p>Remove the mean (computed from the <b>test</b> set) to avoid introducing a bias term and a constant regressor. This is optional.
+         </p><pre class="codeinput">m0 = mean(y0);
+y0 = y0-m0;
+y1 = y1-m0;
+</pre><h2>Dimenionality Reduction and PCA<a name="19"></a></h2>
          <p>In order to display in 2-D or 3-D the data, dimensionality is needed. The simplest method is the principal component analysis,
             which perform an orthogonal linear projection on the principal axsis (eigenvector) of the covariance matrix.
          </p>
-         <p>Display the covariance matrix.</p><pre class="codeinput">clf;
-imagesc(Cov(X));
-</pre><img vspace="5" hspace="5" src="index_01.png"> <p>Compute PCA ortho-basis and the feature in the PCA basis.</p><pre class="codeinput">[U,D,V] = svd(Xm(X),<span class="string">'econ'</span>);
-Z = Xm(X) * V;
+         <p>Display the covariance matrix of the training set.</p><pre class="codeinput">clf;
+imagesc(Cov(X0));
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p>Compute PCA ortho-basis and the feature in the PCA basis.</p><pre class="codeinput">[U,D,V] = svd(Xm(X0),<span class="string">'econ'</span>);
+Z = Xm(X0) * V;
 </pre><p>Plot sqrt of the eigenvalues.</p><pre class="codeinput">clf;
 plot(diag(D), <span class="string">'.-'</span>, <span class="string">'LineWidth'</span>, 2, <span class="string">'MarkerSize'</span>, 30);
 axis <span class="string">tight</span>;
 SetAR(1/2);
-</pre><img vspace="5" hspace="5" src="index_02.png"> <p>Display the features.</p><pre class="codeinput">k = 0;
+</pre><img vspace="5" hspace="5" src="index_02.png"> <p>Display the features.</p><pre class="codeinput">pmax = min(p,8);
+k = 0;
 clf;
-<span class="keyword">for</span> i=1:p
-    <span class="keyword">for</span> j=1:p
+<span class="keyword">for</span> i=1:pmax
+    <span class="keyword">for</span> j=1:pmax
         k = k+1;
-        subplot(p,p,k);
+        subplot(pmax,pmax,k);
         <span class="keyword">if</span> i==j
-            hist(X(:,i),6);
+            hist(X0(:,i),6);
             axis <span class="string">tight</span>;
         <span class="keyword">else</span>
-            plot(X(:,j),X(:,i), <span class="string">'.'</span>);
+            plot(X0(:,j),X0(:,i), <span class="string">'.'</span>);
             axis <span class="string">tight</span>;
         <span class="keyword">end</span>
         set(gca, <span class="string">'XTick'</span>, [], <span class="string">'YTick'</span>, [] );
@@ -241,32 +257,24 @@ SetAR(1);
 clf;
 <span class="keyword">for</span> i=1:min(p,3)
     subplot(3,1,i);
-    plot(Z(:,i), y, <span class="string">'.'</span>, <span class="string">'Color'</span>, col{i}, <span class="string">'MarkerSize'</span>, 20);
+    plot(Z(:,i), y0, <span class="string">'.'</span>, <span class="string">'Color'</span>, col{i}, <span class="string">'MarkerSize'</span>, 20);
     axis <span class="string">tight</span>;
 <span class="keyword">end</span>
-</pre><img vspace="5" hspace="5" src="index_05.png"> <h2>Linear Regression<a name="24"></a></h2>
+</pre><img vspace="5" hspace="5" src="index_05.png"> <h2>Linear Regression<a name="26"></a></h2>
          <p>We look for a linear relationship   \( y_i = \dotp{w}{x_i} \) written in matrix format   \( y= X w \) where the rows of \(X
             \in \RR^{n \times p}\) stores the features \(x_i \in \RR^p\).
          </p>
          <p>Since here \( n &gt; p \), this is an over-determined system, which can solved in the least square sense   \[ \umin{ w }  \norm{Xw-y}^2
             \] whose solution is given using the Moore-Penrose pseudo-inverse   \[ w = (X^\top X)^{-1} X^\top y \]
          </p>
-         <p>Split into training and testing.</p><pre class="codeinput">I0 = find(c==1); <span class="comment">% train</span>
-I1 = find(c==0); <span class="comment">% test</span>
-n0 = length(I0); n1 = n-n0;
-X0 = X(I0,:); y0 = y(I0);
-X1 = X(I1,:); y1 = y(I1);
-</pre><p>Remove the mean to avoid introducing a bias term.</p><pre class="codeinput">m0 = mean(y0);
-y0 = y0-m0;
-y1 = y1-m0;
-</pre><p>Least square solution.</p><pre class="codeinput">w = (X0'*X0) \ (X0'*y0);
+         <p>Least square solution.</p><pre class="codeinput">w = (X0'*X0) \ (X0'*y0);
 </pre><p>Prediction (along 1st eigenvector).</p><pre class="codeinput">clf;
 plot( [y1 X1*w], <span class="string">'.-'</span>, <span class="string">'MarkerSize'</span>, 20);
 axis <span class="string">tight</span>;
 legend(<span class="string">'y'</span>, <span class="string">'X_1 w'</span>);
-</pre><img vspace="5" hspace="5" src="index_06.png"> <p>Mean-square error on testing set.</p><pre class="codeinput">E = sqrt( sum( (X1*w-y1).^2 ) / n1 );
-fprintf(<span class="string">'Relative prediction error: %.3f\n'</span>, E/mean(y1.^2));
-</pre><pre class="codeoutput">Relative prediction error: 0.685
+</pre><img vspace="5" hspace="5" src="index_06.png"> <p>Mean-square error on testing set.</p><pre class="codeinput">E = norm(X1*w-y1) / norm(y1);
+fprintf(<span class="string">'Relative prediction error: %.3f\n'</span>, E);
+</pre><pre class="codeoutput">Relative prediction error: 0.702
 </pre><p>Regularization is obtained by introducing a penalty. It is often called ridge regression, and is defined as   \[ \umin{ w
             }  \norm{Xw-y}^2 + \lambda \norm{w}^2 \] where \(\lambda&gt;0\) is the regularization parameter.
          </p>
@@ -277,7 +285,7 @@ fprintf(<span class="string">'Relative prediction error: %.3f\n'</span>, E/mean(
          <p>In contrast, when the dimensionality \(p\) of the feature is very large and there is little data, the second is faster. Furthermore,
             this second expression is generalizable to Kernel Hilbert space setting, corresponding possibly to \(p=+\infty\) for some
             kernels.
-         </p><pre class="codeinput">lambda = .1;
+         </p><pre class="codeinput">lambda = .2*norm(X0)^2;
 w = (X0'*X0+lambda*eye(p)) \ (X0'*y0);
 w1 = X0'*( (X0*X0'+lambda*eye(n0)) \ y0 );
 fprintf(<span class="string">'Error (should be 0): %.4f\n'</span>, norm(w-w1)/norm(w));
@@ -297,7 +305,7 @@ fprintf(<span class="string">'Error (should be 0): %.4f\n'</span>, norm(w-w1)/no
          </p>
          <p>It performs first a gradient step (forward) of the smooth part \(\frac{1}{2}\norm{X w-y}^2\) of the functional and then a
             proximal step (backward) step which account for the \(\ell^1\) penalty and induce sparsity. This proximal step is the soft-thresholding
-            operator \[ \Ss_s(x) \eqdef \max( \abs{x}-\lambda,0 ) \sign(x).  \]
+            operator \[ \Ss_s(x) \eqdef \max( \abs{x}-\lambda,0 ) \text{sign}(x).  \]
          </p><pre class="codeinput">Soft = @(x,s)max(abs(x)-s,0).*sign(x);
 </pre><p>The ISTA algorithm reads \[ w_{k+1} \eqdef \Ss_{\la\tau}( w_k - \tau X^\top ( X w_k - y )  ), \] where, to ensure convergence,
             the step size should verify \( 0 &lt; \tau &lt; 2/\norm{X}^2  \) where \(\norm{X}\) is the operator norm.
@@ -307,9 +315,12 @@ clf; plot(t,Soft(t,2), <span class="string">'LineWidth'</span>, 2);
 axis <span class="string">tight</span>;
 SetAR(1/2);
 </pre><img vspace="5" hspace="5" src="index_09.png"> <p>Descent step size.</p><pre class="codeinput">tau = 1.5/norm(X0)^2;
-</pre><p>Choose a regularization parameter \(\la\).</p><pre class="codeinput">lambda = .2;
+</pre><p>Choose a regularization parameter \(\la\).</p><pre class="codeinput">lambda = max(X0'*y0)/10;
 </pre><p>Initialization \(w_0\).</p><pre class="codeinput">w = zeros(p,1);
-</pre><p>A single ISTA step.</p><pre class="codeinput">w = Soft( w-tau*X0'*(X0*w-y0), lambda*tau );
+</pre><p>A single ISTA step.</p><pre class="codeinput">C = X0'*X0;
+u = X0'*y0;
+ISTA = @(w,lambda,tau)Soft( w-tau*( C*w-u ), lambda*tau );
+w = ISTA(w,lambda,tau);
 </pre><p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) Implement the ISTA algorithm, display the convergence of the energy.
          </p><pre class="codeinput">exo3;
 </pre><img vspace="5" hspace="5" src="index_10.png"> <p><i>Exercice 4:</i> (<a href="../missing-exo/">check the solution</a>) Compute the test error along the full regularization path. You can start by large \(\lambda\) and use a warm restart procedure
@@ -445,12 +456,35 @@ c = A(:,end);
 % \(n\) is the number of samples, \(p\) is the dimensionality of the features,
 
 [n,p] = size(X);
+fprintf('n=%d, p=%d\n', n,p);
 
 %%
-% Normalize the features.
+% Split into training and testing.
 
-X = Xm(X);
-X = X ./ repmat( sqrt(sum(X.^2,1)), [n 1] );
+I0 = find(c==1); % train
+I1 = find(c==0); % test
+n0 = length(I0); n1 = n-n0;
+X0 = X(I0,:); y0 = y(I0);
+X1 = X(I1,:); y1 = y(I1);
+
+%%
+% Normalize the features by the mean and std of the *training* set.
+% This is optional.
+
+RepSub = @(X,u)X-repmat(u, [size(X,1) 1]);
+RepDiv = @(X,u)X./repmat(u, [size(X,1) 1]);
+mX0 = mean(X0); sX0 = std(X0);
+X0 = RepSub(X0,mX0);  X1 = RepSub(X1,mX0);
+X0 = RepDiv(X0,sX0);  X1 = RepDiv(X1,sX0);
+
+%% 
+% Remove the mean (computed from the *test* set) to avoid introducing a bias term and a constant regressor.
+% This is optional.
+
+m0 = mean(y0);
+y0 = y0-m0;
+y1 = y1-m0;
+
 
 %% Dimenionality Reduction and PCA
 % In order to display in 2-D or 3-D the data, dimensionality is needed.
@@ -459,18 +493,17 @@ X = X ./ repmat( sqrt(sum(X.^2,1)), [n 1] );
 % covariance matrix.
 
 %%
-% Display the covariance matrix.
+% Display the covariance matrix of the training set.
 
 clf;
-imagesc(Cov(X));
+imagesc(Cov(X0));
 
 %%
 % Compute PCA ortho-basis and 
 % the feature in the PCA basis.
 
-[U,D,V] = svd(Xm(X),'econ');
-Z = Xm(X) * V;
-
+[U,D,V] = svd(Xm(X0),'econ');
+Z = Xm(X0) * V;
 
 %%
 % Plot sqrt of the eigenvalues.
@@ -483,17 +516,18 @@ SetAR(1/2);
 %%
 % Display the features.
 
+pmax = min(p,8);
 k = 0;
 clf;
-for i=1:p
-    for j=1:p
+for i=1:pmax
+    for j=1:pmax
         k = k+1;
-        subplot(p,p,k);
+        subplot(pmax,pmax,k);
         if i==j
-            hist(X(:,i),6);
+            hist(X0(:,i),6);
             axis tight;
         else
-            plot(X(:,j),X(:,i), '.');
+            plot(X0(:,j),X0(:,i), '.');
             axis tight;
         end
         set(gca, 'XTick', [], 'YTick', [] );
@@ -518,7 +552,7 @@ col = {'b' 'g' 'r' 'c' 'm' 'y' 'k'};
 clf;
 for i=1:min(p,3)
     subplot(3,1,i);
-    plot(Z(:,i), y, '.', 'Color', col{i}, 'MarkerSize', 20);
+    plot(Z(:,i), y0, '.', 'Color', col{i}, 'MarkerSize', 20);
     axis tight;
 end
 
@@ -537,22 +571,6 @@ end
 %   \[ w = (X^\top X)^{-1} X^\top y \]
 
 %%
-% Split into training and testing.
-
-I0 = find(c==1); % train
-I1 = find(c==0); % test
-n0 = length(I0); n1 = n-n0;
-X0 = X(I0,:); y0 = y(I0);
-X1 = X(I1,:); y1 = y(I1);
-
-%% 
-% Remove the mean to avoid introducing a bias term.
-
-m0 = mean(y0);
-y0 = y0-m0;
-y1 = y1-m0;
-
-%%
 % Least square solution.
 
 w = (X0'*X0) \ (X0'*y0);
@@ -568,8 +586,8 @@ legend('y', 'X_1 w');
 %%
 % Mean-square error on testing set.
 
-E = sqrt( sum( (X1*w-y1).^2 ) / n1 );
-fprintf('Relative prediction error: %.3f\n', E/mean(y1.^2));
+E = norm(X1*w-y1) / norm(y1);
+fprintf('Relative prediction error: %.3f\n', E);
 
 %%
 % Regularization is obtained by introducing a penalty. It is often called
@@ -590,7 +608,7 @@ fprintf('Relative prediction error: %.3f\n', E/mean(y1.^2));
 % second expression is generalizable to Kernel Hilbert space setting,
 % corresponding possibly to \(p=+\infty\) for some kernels. 
 
-lambda = .1;
+lambda = .2*norm(X0)^2;
 w = (X0'*X0+lambda*eye(p)) \ (X0'*y0);
 w1 = X0'*( (X0*X0'+lambda*eye(n0)) \ y0 );
 fprintf('Error (should be 0): %.4f\n', norm(w-w1)/norm(w));
@@ -631,7 +649,7 @@ J = @(w,lambda)1/2*norm(X0*w-y0)^2 + lambda*norm(w,1);
 % It performs first a gradient step (forward) of the smooth part \(\frac{1}{2}\norm{X w-y}^2\) of the
 % functional and then a proximal step (backward) step which account for the
 % \(\ell^1\) penalty and induce sparsity. This proximal step is the soft-thresholding operator
-% \[ \Ss_s(x) \eqdef \max( \abs{x}-\lambda,0 ) \sign(x).  \]
+% \[ \Ss_s(x) \eqdef \max( \abs{x}-\lambda,0 ) \text{sign}(x).  \]
 
 Soft = @(x,s)max(abs(x)-s,0).*sign(x);
 
@@ -657,7 +675,7 @@ tau = 1.5/norm(X0)^2;
 %%
 % Choose a regularization parameter \(\la\).
 
-lambda = .2;
+lambda = max(X0'*y0)/10;
 
 %%
 % Initialization \(w_0\).
@@ -667,7 +685,10 @@ w = zeros(p,1);
 %%
 % A single ISTA step.
 
-w = Soft( w-tau*X0'*(X0*w-y0), lambda*tau );
+C = X0'*X0;
+u = X0'*y0;
+ISTA = @(w,lambda,tau)Soft( w-tau*( C*w-u ), lambda*tau );
+w = ISTA(w,lambda,tau);
 
 %%
 % _Exercice 3:_ (<../missing-exo/ check the solution>)
