@@ -147,7 +147,7 @@ To make changes, update the M-file and republish this document.
          <HR>
       </NOSCRIPT>
       <meta name="generator" content="MATLAB 9.0">
-      <meta name="date" content="2018-01-14">
+      <meta name="date" content="2018-01-15">
       <meta name="m-file" content="index">
       <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
    </head>
@@ -165,9 +165,9 @@ To make changes, update the M-file and republish this document.
                <li><a href="#3">Installing toolboxes and setting up the path.</a></li>
                <li><a href="#10">Dataset Loading</a></li>
                <li><a href="#19">Dimenionality Reduction and PCA</a></li>
-               <li><a href="#26">Linear Regression</a></li>
-               <li><a href="#36">Sparse Regularization</a></li>
-               <li><a href="#49">Kernelized Ridge Regression</a></li>
+               <li><a href="#27">Linear Regression</a></li>
+               <li><a href="#37">Sparse Regularization</a></li>
+               <li><a href="#51">Kernelized Ridge Regression</a></li>
             </ul>
          </div>
          <p>We recommend that after doing this Numerical Tours, you apply it to your own data, for instance using a dataset from <a href="https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/">LibSVM</a>.
@@ -223,13 +223,17 @@ y1 = y1-m0;
          </p>
          <p>Display the covariance matrix of the training set.</p><pre class="codeinput">clf;
 imagesc(Cov(X0));
-</pre><img vspace="5" hspace="5" src="index_01.png"> <p>Compute PCA ortho-basis and the feature in the PCA basis.</p><pre class="codeinput">[U,D,V] = svd(Xm(X0),<span class="string">'econ'</span>);
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p>Display the covariance between the data and the regressors.</p><pre class="codeinput">clf;
+bar(X0'*y0);
+axis <span class="string">tight</span>;
+SetAR(1/2);
+</pre><img vspace="5" hspace="5" src="index_02.png"> <p>Compute PCA ortho-basis and the feature in the PCA basis.</p><pre class="codeinput">[U,D,V] = svd(Xm(X0),<span class="string">'econ'</span>);
 Z = Xm(X0) * V;
 </pre><p>Plot sqrt of the eigenvalues.</p><pre class="codeinput">clf;
 plot(diag(D), <span class="string">'.-'</span>, <span class="string">'LineWidth'</span>, 2, <span class="string">'MarkerSize'</span>, 30);
 axis <span class="string">tight</span>;
 SetAR(1/2);
-</pre><img vspace="5" hspace="5" src="index_02.png"> <p>Display the features.</p><pre class="codeinput">pmax = min(p,8);
+</pre><img vspace="5" hspace="5" src="index_03.png"> <p>Display the features.</p><pre class="codeinput">pmax = min(p,8);
 k = 0;
 clf;
 <span class="keyword">for</span> i=1:pmax
@@ -250,17 +254,17 @@ clf;
         <span class="keyword">end</span>
     <span class="keyword">end</span>
 <span class="keyword">end</span>
-</pre><img vspace="5" hspace="5" src="index_03.png"> <p>Display the points cloud of feature vectors in 3-D PCA space.</p><pre class="codeinput">options.disp_dim = 3;
+</pre><img vspace="5" hspace="5" src="index_04.png"> <p>Display the points cloud of feature vectors in 3-D PCA space.</p><pre class="codeinput">options.disp_dim = 3;
 clf; plot_multiclasses(X,ones(n,1),options);
 SetAR(1);
-</pre><img vspace="5" hspace="5" src="index_04.png"> <p>1D plot of the function to regress along the main eigenvector axes.</p><pre class="codeinput">col = {<span class="string">'b'</span> <span class="string">'g'</span> <span class="string">'r'</span> <span class="string">'c'</span> <span class="string">'m'</span> <span class="string">'y'</span> <span class="string">'k'</span>};
+</pre><img vspace="5" hspace="5" src="index_05.png"> <p>1D plot of the function to regress along the main eigenvector axes.</p><pre class="codeinput">col = {<span class="string">'b'</span> <span class="string">'g'</span> <span class="string">'r'</span> <span class="string">'c'</span> <span class="string">'m'</span> <span class="string">'y'</span> <span class="string">'k'</span>};
 clf;
 <span class="keyword">for</span> i=1:min(p,3)
     subplot(3,1,i);
     plot(Z(:,i), y0, <span class="string">'.'</span>, <span class="string">'Color'</span>, col{i}, <span class="string">'MarkerSize'</span>, 20);
     axis <span class="string">tight</span>;
 <span class="keyword">end</span>
-</pre><img vspace="5" hspace="5" src="index_05.png"> <h2>Linear Regression<a name="26"></a></h2>
+</pre><img vspace="5" hspace="5" src="index_06.png"> <h2>Linear Regression<a name="27"></a></h2>
          <p>We look for a linear relationship   \( y_i = \dotp{w}{x_i} \) written in matrix format   \( y= X w \) where the rows of \(X
             \in \RR^{n \times p}\) stores the features \(x_i \in \RR^p\).
          </p>
@@ -272,7 +276,7 @@ clf;
 plot( [y1 X1*w], <span class="string">'.-'</span>, <span class="string">'MarkerSize'</span>, 20);
 axis <span class="string">tight</span>;
 legend(<span class="string">'y'</span>, <span class="string">'X_1 w'</span>);
-</pre><img vspace="5" hspace="5" src="index_06.png"> <p>Mean-square error on testing set.</p><pre class="codeinput">E = norm(X1*w-y1) / norm(y1);
+</pre><img vspace="5" hspace="5" src="index_07.png"> <p>Mean-square error on testing set.</p><pre class="codeinput">E = norm(X1*w-y1) / norm(y1);
 fprintf(<span class="string">'Relative prediction error: %.3f\n'</span>, E);
 </pre><pre class="codeoutput">Relative prediction error: 0.702
 </pre><p>Regularization is obtained by introducing a penalty. It is often called ridge regression, and is defined as   \[ \umin{ w
@@ -292,9 +296,10 @@ fprintf(<span class="string">'Error (should be 0): %.4f\n'</span>, norm(w-w1)/no
 </pre><pre class="codeoutput">Error (should be 0): 0.0000
 </pre><p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Display the evolution of the test error \(E\) as a function of \(\lambda\).
          </p><pre class="codeinput">exo1;
-</pre><img vspace="5" hspace="5" src="index_07.png"> <p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Display the regularization path, i.e. the evolution of \(w\) as a function of \(\lambda\).
+</pre><pre class="codeoutput">Ridge: 67.91%
+</pre><img vspace="5" hspace="5" src="index_08.png"> <p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Display the regularization path, i.e. the evolution of \(w\) as a function of \(\lambda\).
          </p><pre class="codeinput">exo2;
-</pre><img vspace="5" hspace="5" src="index_08.png"> <h2>Sparse Regularization<a name="36"></a></h2>
+</pre><img vspace="5" hspace="5" src="index_09.png"> <h2>Sparse Regularization<a name="37"></a></h2>
          <p>In order to perform feature selection (i.e. select a subsect of the features which are the most predictive), one needs to
             replace the \(\ell^2\) regularization penalty by a sparsity inducing regularizer. The most well known is the \(\ell^1\) norm
             \[ \norm{w}_1 \eqdef \sum_i \abs{w_i} . \]
@@ -314,8 +319,8 @@ fprintf(<span class="string">'Error (should be 0): %.4f\n'</span>, norm(w-w1)/no
 clf; plot(t,Soft(t,2), <span class="string">'LineWidth'</span>, 2);
 axis <span class="string">tight</span>;
 SetAR(1/2);
-</pre><img vspace="5" hspace="5" src="index_09.png"> <p>Descent step size.</p><pre class="codeinput">tau = 1.5/norm(X0)^2;
-</pre><p>Choose a regularization parameter \(\la\).</p><pre class="codeinput">lambda = max(X0'*y0)/10;
+</pre><img vspace="5" hspace="5" src="index_10.png"> <p>Descent step size.</p><pre class="codeinput">tau = 1.5/norm(X0)^2;
+</pre><p>Choose a regularization parameter \(\la\).</p><pre class="codeinput">lambda = max(abs(X0'*y0))/10;
 </pre><p>Initialization \(w_0\).</p><pre class="codeinput">w = zeros(p,1);
 </pre><p>A single ISTA step.</p><pre class="codeinput">C = X0'*X0;
 u = X0'*y0;
@@ -323,12 +328,15 @@ ISTA = @(w,lambda,tau)Soft( w-tau*( C*w-u ), lambda*tau );
 w = ISTA(w,lambda,tau);
 </pre><p><i>Exercice 3:</i> (<a href="../missing-exo/">check the solution</a>) Implement the ISTA algorithm, display the convergence of the energy.
          </p><pre class="codeinput">exo3;
-</pre><img vspace="5" hspace="5" src="index_10.png"> <p><i>Exercice 4:</i> (<a href="../missing-exo/">check the solution</a>) Compute the test error along the full regularization path. You can start by large \(\lambda\) and use a warm restart procedure
+</pre><img vspace="5" hspace="5" src="index_11.png"> <p><i>Exercice 4:</i> (<a href="../missing-exo/">check the solution</a>) Compute the test error along the full regularization path. You can start by large \(\lambda\) and use a warm restart procedure
             to reduce the computation time. Compute the classification error.
          </p><pre class="codeinput">exo4;
-</pre><img vspace="5" hspace="5" src="index_11.png"> <p><i>Exercice 5:</i> (<a href="../missing-exo/">check the solution</a>) Display the regularization path, i.e. the evolution of \(w\) as a function of \(\lambda\).
+</pre><pre class="codeoutput">Lasso: 65.42%
+</pre><img vspace="5" hspace="5" src="index_12.png"> <p><i>Exercice 5:</i> (<a href="../missing-exo/">check the solution</a>) Display the regularization path, i.e. the evolution of \(w\) as a function of \(\lambda\).
          </p><pre class="codeinput">exo5;
-</pre><img vspace="5" hspace="5" src="index_12.png"> <h2>Kernelized Ridge Regression<a name="49"></a></h2>
+</pre><img vspace="5" hspace="5" src="index_13.png"> <p><i>Exercice 6:</i> (<a href="../missing-exo/">check the solution</a>) Compare the optimal weights for ridge and lasso.
+         </p><pre class="codeinput">exo6;
+</pre><img vspace="5" hspace="5" src="index_14.png"> <h2>Kernelized Ridge Regression<a name="51"></a></h2>
          <p>In order to perform non-linear and non-parametric regression, it is possible to use  kernelization. It is non-parametric in
             the sense that the number of parameter grows with the number \(n\) of samples (while for the initial linear  method, the number
             of parameter is \(p\)). This allows in particular to generate estimator of arbitrary complexity.
@@ -347,7 +355,7 @@ y = peaks(X(:,1), X(:,2)) + randn(n,1)*rho;
 scatter(X(:,1), X(:,2), ones(n,1)*20, y, <span class="string">'filled'</span>);
 colormap <span class="string">jet(256)</span>;
 axis <span class="string">equal</span>; axis([-B B -B B]); box <span class="string">on</span>;
-</pre><img vspace="5" hspace="5" src="index_13.png"> <p>Macro to compute pairwise squared Euclidean distance matrix.</p><pre class="codeinput">distmat = @(X,Z)bsxfun(@plus,dot(X',X',1)',dot(Z',Z',1))-2*(X*Z');
+</pre><img vspace="5" hspace="5" src="index_15.png"> <p>Macro to compute pairwise squared Euclidean distance matrix.</p><pre class="codeinput">distmat = @(X,Z)bsxfun(@plus,dot(X',X',1)',dot(Z',Z',1))-2*(X*Z');
 </pre><p>The gaussian kernel is the most well known and used kernel \[ \kappa(x,y) \eqdef e^{-\frac{\norm{x-y}^2}{2\sigma^2}} . \]
             The bandwidth parameter \(\si&gt;0\) is crucial and controls the locality of the model. It is typically tuned through cross validation.
          </p><pre class="codeinput">sigma = .3;
@@ -366,10 +374,10 @@ Xn = [u(:), v(:)];
 clf;
 imagesc(t,t,yn); axis <span class="string">image</span>; axis <span class="string">off</span>;
 colormap <span class="string">jet(256)</span>;
-</pre><img vspace="5" hspace="5" src="index_14.png"> <p><i>Exercice 6:</i> (<a href="../missing-exo/">check the solution</a>) Display the evolution of the regression as a function of \(\sigma\).
-         </p><pre class="codeinput">exo6;
-</pre><img vspace="5" hspace="5" src="index_15.png"> <p><i>Exercice 7:</i> (<a href="../missing-exo/">check the solution</a>) Apply the kernelize regression to a real life dataset. Study the influence of \(\la\) and \(\si\).
+</pre><img vspace="5" hspace="5" src="index_16.png"> <p><i>Exercice 7:</i> (<a href="../missing-exo/">check the solution</a>) Display the evolution of the regression as a function of \(\sigma\).
          </p><pre class="codeinput">exo7;
+</pre><img vspace="5" hspace="5" src="index_17.png"> <p><i>Exercice 8:</i> (<a href="../missing-exo/">check the solution</a>) Apply the kernelize regression to a real life dataset. Study the influence of \(\la\) and \(\si\).
+         </p><pre class="codeinput">exo8;
 </pre><p class="footer"><br>
             Copyright  (c) 2010 Gabriel Peyre<br></p>
       </div>
@@ -497,6 +505,15 @@ y1 = y1-m0;
 
 clf;
 imagesc(Cov(X0));
+
+
+%%
+% Display the covariance between the data and the regressors. 
+
+clf;
+bar(X0'*y0);
+axis tight;
+SetAR(1/2);
 
 %%
 % Compute PCA ortho-basis and 
@@ -675,7 +692,7 @@ tau = 1.5/norm(X0)^2;
 %%
 % Choose a regularization parameter \(\la\).
 
-lambda = max(X0'*y0)/10;
+lambda = max(abs(X0'*y0))/10;
 
 %%
 % Initialization \(w_0\).
@@ -703,7 +720,6 @@ exo3;
 
 exo4;
 
-
 %%
 % _Exercice 5:_ (<../missing-exo/ check the solution>)
 % Display the regularization path, i.e. the evolution of \(w\) as a function 
@@ -711,6 +727,11 @@ exo4;
 
 exo5;
 
+%%
+% _Exercice 6:_ (<../missing-exo/ check the solution>)
+% Compare the optimal weights for ridge and lasso.
+
+exo6;
 
 %% Kernelized Ridge Regression
 % In order to perform non-linear and non-parametric regression, it is
@@ -802,18 +823,18 @@ imagesc(t,t,yn); axis image; axis off;
 colormap jet(256);
     
 %%
-% _Exercice 6:_ (<../missing-exo/ check the solution>)
+% _Exercice 7:_ (<../missing-exo/ check the solution>)
 % Display the evolution of the regression as a function of \(\sigma\).
 
-exo6;
+exo7;
 
 
 
 %%
-% _Exercice 7:_ (<../missing-exo/ check the solution>)
+% _Exercice 8:_ (<../missing-exo/ check the solution>)
 % Apply the kernelize regression to a real life dataset. Study the influence of \(\la\) and \(\si\).
 
-exo7;
+exo8;
 
 ##### SOURCE END #####
 -->

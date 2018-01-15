@@ -1,0 +1,572 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+         \[
+         \newcommand{\NN}{\mathbb{N}}
+         \newcommand{\CC}{\mathbb{C}}
+         \newcommand{\GG}{\mathbb{G}}
+         \newcommand{\LL}{\mathbb{L}}
+         \newcommand{\PP}{\mathbb{P}}
+         \newcommand{\QQ}{\mathbb{Q}}
+         \newcommand{\RR}{\mathbb{R}}
+         \newcommand{\VV}{\mathbb{V}}
+         \newcommand{\ZZ}{\mathbb{Z}}
+         \newcommand{\FF}{\mathbb{F}}
+         \newcommand{\KK}{\mathbb{K}}
+         \newcommand{\UU}{\mathbb{U}}
+         \newcommand{\EE}{\mathbb{E}}
+         
+         \newcommand{\Aa}{\mathcal{A}}
+         \newcommand{\Bb}{\mathcal{B}}
+         \newcommand{\Cc}{\mathcal{C}}
+         \newcommand{\Dd}{\mathcal{D}}
+         \newcommand{\Ee}{\mathcal{E}}
+         \newcommand{\Ff}{\mathcal{F}}
+         \newcommand{\Gg}{\mathcal{G}}
+         \newcommand{\Hh}{\mathcal{H}}
+         \newcommand{\Ii}{\mathcal{I}}
+         \newcommand{\Jj}{\mathcal{J}}
+         \newcommand{\Kk}{\mathcal{K}}
+         \newcommand{\Ll}{\mathcal{L}}
+         \newcommand{\Mm}{\mathcal{M}}
+         \newcommand{\Nn}{\mathcal{N}}
+         \newcommand{\Oo}{\mathcal{O}}
+         \newcommand{\Pp}{\mathcal{P}}
+         \newcommand{\Qq}{\mathcal{Q}}
+         \newcommand{\Rr}{\mathcal{R}}
+         \newcommand{\Ss}{\mathcal{S}}
+         \newcommand{\Tt}{\mathcal{T}}
+         \newcommand{\Uu}{\mathcal{U}}
+         \newcommand{\Vv}{\mathcal{V}}
+         \newcommand{\Ww}{\mathcal{W}}
+         \newcommand{\Xx}{\mathcal{X}}
+         \newcommand{\Yy}{\mathcal{Y}}
+         \newcommand{\Zz}{\mathcal{Z}}
+         
+         \newcommand{\al}{\alpha}
+         \newcommand{\la}{\lambda}
+         \newcommand{\ga}{\gamma}
+         \newcommand{\Ga}{\Gamma}
+         \newcommand{\La}{\Lambda}
+         \newcommand{\Si}{\Sigma}
+         \newcommand{\si}{\sigma}
+         \newcommand{\be}{\beta}
+         \newcommand{\de}{\delta}
+         \newcommand{\De}{\Delta}
+         \renewcommand{\phi}{\varphi}
+         \renewcommand{\th}{\theta}
+         \newcommand{\om}{\omega}
+         \newcommand{\Om}{\Omega}
+         \renewcommand{\epsilon}{\varepsilon}
+         
+         \newcommand{\Calpha}{\mathrm{C}^\al}
+         \newcommand{\Cbeta}{\mathrm{C}^\be}
+         \newcommand{\Cal}{\text{C}^\al}
+         \newcommand{\Cdeux}{\text{C}^{2}}
+         \newcommand{\Cun}{\text{C}^{1}}
+         \newcommand{\Calt}[1]{\text{C}^{#1}}
+         
+         \newcommand{\lun}{\ell^1}
+         \newcommand{\ldeux}{\ell^2}
+         \newcommand{\linf}{\ell^\infty}
+         \newcommand{\ldeuxj}{{\ldeux_j}}
+         \newcommand{\Lun}{\text{\upshape L}^1}
+         \newcommand{\Ldeux}{\text{\upshape L}^2}
+         \newcommand{\Lp}{\text{\upshape L}^p}
+         \newcommand{\Lq}{\text{\upshape L}^q}
+         \newcommand{\Linf}{\text{\upshape L}^\infty}
+         \newcommand{\lzero}{\ell^0}
+         \newcommand{\lp}{\ell^p}
+         
+         
+         \renewcommand{\d}{\ins{d}}
+         
+         \newcommand{\Grad}{\text{Grad}}
+         \newcommand{\grad}{\text{grad}}
+         \renewcommand{\div}{\text{div}}
+         \newcommand{\diag}{\text{diag}}
+         
+         \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
+         \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
+         
+         \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
+         \newcommand{\norm}[1]{|\!| #1 |\!|}
+         \newcommand{\normi}[1]{\norm{#1}_{\infty}}
+         \newcommand{\normu}[1]{\norm{#1}_{1}}
+         \newcommand{\normz}[1]{\norm{#1}_{0}}
+         \newcommand{\abs}[1]{\vert #1 \vert}
+         
+         \newcommand{\argmin}{\text{argmin}}
+         \newcommand{\argmax}{\text{argmax}}
+         \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
+         \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
+         \newcommand{\umin}[1]{\underset{#1}{\min}\;}
+         \newcommand{\umax}[1]{\underset{#1}{\max}\;}
+         
+         \newcommand{\pa}[1]{\left( #1 \right)}
+         \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
+         
+         \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
+         
+         \newcommand{\qandq}{ \quad \text{and} \quad }
+         \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
+         \newcommand{\qifq}{ \quad \text{if} \quad }
+         \newcommand{\qqifqq}{ \qquad \text{if} \qquad }
+         \newcommand{\qwhereq}{ \quad \text{where} \quad }
+         \newcommand{\qqwhereqq}{ \qquad \text{where} \qquad }
+         \newcommand{\qwithq}{ \quad \text{with} \quad }
+         \newcommand{\qqwithqq}{ \qquad \text{with} \qquad }
+         \newcommand{\qforq}{ \quad \text{for} \quad }
+         \newcommand{\qqforqq}{ \qquad \text{for} \qquad }
+         \newcommand{\qqsinceqq}{ \qquad \text{since} \qquad }
+         \newcommand{\qsinceq}{ \quad \text{since} \quad }
+         \newcommand{\qarrq}{\quad\Longrightarrow\quad}
+         \newcommand{\qqarrqq}{\quad\Longrightarrow\quad}
+         \newcommand{\qiffq}{\quad\Longleftrightarrow\quad}
+         \newcommand{\qqiffqq}{\qquad\Longleftrightarrow\qquad}
+         \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
+         \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
+         
+         \newcommand{\eqdef}{\equiv}
+         \]
+         
+      </p>
+      <title>Neural Networks</title>
+      <NOSCRIPT>
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A>
+               	requires JavaScript to process the mathematics on this page.<BR>
+               	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
+         <HR>
+      </NOSCRIPT>
+      <meta name="generator" content="MATLAB 9.0">
+      <meta name="date" content="2018-01-15">
+      <meta name="m-file" content="index">
+      <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
+   </head>
+   <body>
+      <div class="content">
+         <h1>Neural Networks</h1>
+         <introduction>
+            <p>This tour details fully connected multi-layers neural netorks.</p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#3">Installing toolboxes and setting up the path.</a></li>
+               <li><a href="#11">Dataset Generation</a></li>
+               <li><a href="#15">Building the Network</a></li>
+               <li><a href="#25">Network Optimization</a></li>
+            </ul>
+         </div>
+         <p>We recommend that after doing this Numerical Tours, you apply it to your own data, for instance using a dataset from <a href="https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/">LibSVM</a>.
+         </p>
+         <p><i>Disclaimer:</i> these machine learning tours are intended to be overly-simplistic implementations and applications of baseline machine learning
+            methods. For more advanced uses and implementations, we recommend to use a state-of-the-art library, the most well known being
+            <a href="http://scikit-learn.org/">Scikit-Learn</a></p>
+         <h2>Installing toolboxes and setting up the path.<a name="3"></a></h2>
+         <p>You need to download the following files: <a href="../toolbox_general.zip">general toolbox</a>.
+         </p>
+         <p>You need to unzip these toolboxes in your working directory, so that you have <tt>toolbox_general</tt> in your directory.
+         </p>
+         <p><b>For Scilab user:</b> you must replace the Matlab comment '%' by its Scilab counterpart '//'.
+         </p>
+         <p><b>Recommandation:</b> You should create a text file named for instance <tt>numericaltour.sce</tt> (in Scilab) or <tt>numericaltour.m</tt> (in Matlab) to write all the Scilab/Matlab command you want to execute. Then, simply run <tt>exec('numericaltour.sce');</tt> (in Scilab) or <tt>numericaltour;</tt> (in Matlab) to run the commands.
+         </p>
+         <p>Execute this line only if you are using Matlab.</p><pre class="codeinput">getd = @(p)path(p,path); <span class="comment">% scilab users must *not* execute this</span>
+</pre><p>Then you can add the toolboxes to the path.</p><pre class="codeinput">getd(<span class="string">'toolbox_general/'</span>);
+</pre><p>Some useful helpers.</p><pre class="codeinput">dotp = @(x,y)sum(x(:).*y(:));
+max2 = @(S)repmat(max(S,[],2), [1 size(S,2)]);
+SM = @(S)exp(S) ./ repmat( sum(exp(S),2), [1 size(S,2)]);
+SM = @(S)SM(S-max2(S));
+</pre><h2>Dataset Generation<a name="11"></a></h2>
+         <p>Build a synthetic data set for classification</p>
+         <p>Generate Data</p><pre class="codeinput">n0 = 100; <span class="comment">% number of points per class</span>
+p = 2;   <span class="comment">% dimensionality</span>
+k = 3;   <span class="comment">% number of classes</span>
+n = n0*k; <span class="comment">% Total number of points</span>
+x = zeros(p,n);
+y = zeros(1,n);
+<span class="keyword">for</span> j=1:k
+    I = n0*(j-1)+1:n0*j;
+    r = linspace(0.0,1,n0); <span class="comment">% radius</span>
+    t = linspace(j*4,(j+1)*4,n0) + randn(1,n0)*0.2; <span class="comment">% angle</span>
+    x(:,I) = [r.*sin(t); r.*cos(t)];
+    y(1,I) = j;
+<span class="keyword">end</span>
+</pre><p>Display.</p><pre class="codeinput">col = {<span class="string">'r'</span> <span class="string">'g'</span> <span class="string">'b'</span>};
+clf;  hold <span class="string">on</span>;
+<span class="keyword">for</span> j=1:k
+    I = find(y==j);
+    plot(x(1,I), x(2,I), <span class="string">'.'</span>, <span class="string">'color'</span>, col{j}, <span class="string">'MarkerSize'</span>, 20);
+<span class="keyword">end</span>
+axis <span class="string">equal</span>; axis <span class="string">off</span>;
+</pre><img vspace="5" hspace="5" src="index_01.png"> <p>Class probability matrix.</p><pre class="codeinput">Y = double( repmat((1:k)', [1,n]) == repmat(y, [k,1]) );
+</pre><h2>Building the Network<a name="15"></a></h2>
+         <p>We setup the network. It is parameterized by the dimensions of the layers.</p>
+         <p>The network is composed of \(R\) layers, and operate by initialyzing \(x_0=x\) and then iterating \[ \forall r=0,\ldots,R,
+            \quad x_{r+1} \eqdef \rho(A_r x_r + b_r).  \] Here \(\rho : \RR \mapsto \RR\) is a non-linear activation function which operate
+            coordinate by coordinate. The intermediate variables are \(x_r \in \RR^{d_r}\) with \((d_0,d_{L+1})=(p,k)\). The matrices
+            have size \(A_r \in \RR^{d_{r+1} \times d_r}\) while the biases have size \(b_r \in \RR^{d_{r+1}}\).
+         </p>
+         <p>The final value is obtained by comparing the predicted value \(x_{R+1}\) to the data \(y\) using some loss function \[ \ell
+            \eqdef \Ll(x_{R+1},y). \]
+         </p>
+         <p>Load the loss and its gradient. Here we use a multi-class logistic loss \[ \Ll(z,y) \eqdef \log \sum_{i=1}^k e^{z_i} - \dotp{z}{y}.
+             \]
+         </p>
+         <p>Note that in practice the computation is done in parallel over an array \(x\) of size \((p,n)\) of \(n\) points in \(\RR^p\),
+            where the class probability to predict is an array \(y\) of size \(k,n\) where \(k\) is the number of classes.
+         </p><pre class="codeinput">dotp = @(x,y)sum(x(:).*y(:));
+max2 = @(S)repmat(max(S,[],2), [1 size(S,2)]);
+<span class="comment">% stabilized log-sum-exp</span>
+LSE = @(S)log( sum(exp(S), 2) );
+LSE = @(S)LSE( S-max2(S) ) + max(S,[],2);
+<span class="comment">% stabilized soft-max</span>
+SM = @(S)exp(S) ./ repmat( sum(exp(S),2), [1 size(S,2)]);
+SM = @(S)SM(S-max2(S));
+<span class="comment">% energy, y being a target probability distribution</span>
+loss.F = @(z,y)sum(LSE(z')) - dotp(z,y);
+<span class="comment">% gradient</span>
+loss.G = @(z,y)SM(z')' -  y;
+</pre><p>Load the activation function. Here we use an atan sigmoid function.</p><pre class="codeinput">rho.F  = @(u)atan(u);
+rho.G = @(u)1./(1+u.^2);
+</pre><p>Display the activation.</p><pre class="codeinput">t = linspace(-5,5,201);
+clf;
+plot(t, rho.F(t), <span class="string">'LineWidth'</span>, 2);
+axis <span class="string">tight</span>;
+</pre><img vspace="5" hspace="5" src="index_02.png"> <p>Dimensions \(d_r\) of the layers.</p><pre class="codeinput">D = [p 15 k]; <span class="comment">% here a single hidden layer</span>
+</pre><p>Initialize the layers randomly.</p><pre class="codeinput">R = length(D)-1;
+A = {}; b = {};
+<span class="keyword">for</span> r=1:R
+    A{r} = randn(D(r+1),D(r));
+    b{r} = randn(D(r+1),1);
+<span class="keyword">end</span>
+</pre><p>Evaluate the network. Bookkeep the intermediate results: this is crucial for the computation of the gradient.</p><pre class="codeinput">X = {};
+X{1} = x;
+<span class="keyword">for</span> r=1:R
+    X{r+1} = rho.F( A{r}*X{r}+repmat(b{r},[1 n]) );
+<span class="keyword">end</span>
+L = loss.F(X{R+1},Y);
+</pre><h2>Network Optimization<a name="25"></a></h2>
+         <p>The network parameters are optimized by minimizing the non-convex empirical loss minimization through gradient descent.</p>
+         <p>Initialize the gradient as \[ \nabla_{x_{R+1}} \ell = \nabla \Ll(x_{R+1},y) \]</p><pre class="codeinput">gx = loss.G(X{R+1},Y);
+</pre><p>The successive gradient with respect to the intermediate variables \(x_r\) are solutions of a backward recursion, which corresponds
+            to the celebrated backpropagation algorithm. \[ \forall r=R,\ldots,1, \quad       \nabla_{x_{r}} \ell = A_r^\top M_r \] where
+            we denoted \[ M_r \eqdef \rho'(A_r x_r + b_r ) \odot \nabla_{x_{r+1}} \ell, \] where \(\odot\) is entry-wise multiplications.
+         </p>
+         <p>From these gradients with respect to the intermediate layers variables, the gradient with respect to the network  paramters
+            are retrieved as \[ \nabla_{A_r} \ell = M_r x_r^\top, \qandq     \nabla_{b_r} \ell = M_r 1_n.  \]
+         </p>
+         <p>Perform the back-propagation.</p><pre class="codeinput">gA = {}; gb = {};
+<span class="keyword">for</span> r=R:-1:1
+    M = rho.G(A{r}*X{r}+repmat(b{r},[1 n])) .* gx;
+    <span class="comment">% nabla_X{r}</span>
+    gx = A{r}' * M;
+    <span class="comment">% nabla_A{r}</span>
+    gA{r} =  M * X{r}';
+    <span class="comment">% nabla_b{r}</span>
+    gb{r} =  sum(M,2);
+<span class="keyword">end</span>
+</pre><p><i>Exercice 1:</i> (<a href="../missing-exo/">check the solution</a>) Implement the gradient descent.
+         </p><pre class="codeinput">exo1;
+</pre><img vspace="5" hspace="5" src="index_03.png"> <p>Grid for evaluation.</p><pre class="codeinput">q = 100;
+t = linspace(-1,1,q);
+[Yg,Xg] = meshgrid(t,t);
+Z = [Xg(:)';Yg(:)'];
+</pre><p>Classification maps</p><pre class="codeinput">V = EvalNN(Z,[], A,b,loss,rho);
+U = reshape(SM(V{end}'), [q q k]);
+</pre><p>Turn it into color.</p><pre class="codeinput">col = [ [1 0 0]; [0 1 0]; [0 0 1]; [0 0 0]; [0 1 1]; [1 0 1]; [1 1 0]; <span class="keyword">...</span>
+    [1 .5 .5]; [.5 1 .5]; [.5 .5 1]  ]';
+R = zeros(q,q,3);
+<span class="keyword">for</span> i=1:k
+    <span class="keyword">for</span> a=1:3
+        R(:,:,a) = R(:,:,a) + U(:,:,i) .* col(a,i);
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+</pre><p>Final display of points and class probability.</p><pre class="codeinput">clf;  hold <span class="string">on</span>;
+imagesc(t,t,permute(R, [2 1 3]));
+<span class="keyword">for</span> j=1:k
+    I = find(y==j);
+    plot(x(1,I), x(2,I), <span class="string">'.'</span>, <span class="string">'color'</span>, col(:,j)*.8, <span class="string">'MarkerSize'</span>, 20);
+<span class="keyword">end</span>
+axis <span class="string">equal</span>; axis <span class="string">off</span>;
+</pre><img vspace="5" hspace="5" src="index_04.png"> <p><i>Exercice 2:</i> (<a href="../missing-exo/">check the solution</a>) Check the influence of the number of layers
+         </p><pre class="codeinput">exo2;
+</pre><img vspace="5" hspace="5" src="index_05.png"> <p class="footer"><br>
+            Copyright  (c) 2010 Gabriel Peyre<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Neural Networks
+% This tour details fully connected multi-layers neural netorks.
+
+
+%%
+% We recommend that after doing this Numerical Tours, you apply it to your
+% own data, for instance using a dataset from <https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/ LibSVM>.
+
+%%
+% _Disclaimer:_ these machine learning tours are intended to be
+% overly-simplistic implementations and applications of baseline machine learning methods. 
+% For more advanced uses and implementations, we recommend
+% to use a state-of-the-art library, the most well known being
+% <http://scikit-learn.org/ Scikit-Learn>
+
+%% Installing toolboxes and setting up the path.
+
+%%
+% You need to download the following files: 
+% <../toolbox_general.zip general toolbox>.
+
+%%
+% You need to unzip these toolboxes in your working directory, so
+% that you have 
+% |toolbox_general|
+% in your directory.
+
+%%
+% *For Scilab user:* you must replace the Matlab comment '%' by its Scilab
+% counterpart '//'.
+
+%%
+% *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+
+%%
+% Execute this line only if you are using Matlab.
+
+getd = @(p)path(p,path); % scilab users must *not* execute this
+
+%%
+% Then you can add the toolboxes to the path.
+
+getd('toolbox_general/');
+
+
+%%
+% Some useful helpers.
+
+dotp = @(x,y)sum(x(:).*y(:));
+max2 = @(S)repmat(max(S,[],2), [1 size(S,2)]);
+SM = @(S)exp(S) ./ repmat( sum(exp(S),2), [1 size(S,2)]);
+SM = @(S)SM(S-max2(S));
+
+%% Dataset Generation
+% Build a synthetic data set for classification
+
+%% 
+% Generate Data
+
+n0 = 100; % number of points per class
+p = 2;   % dimensionality
+k = 3;   % number of classes
+n = n0*k; % Total number of points
+x = zeros(p,n);
+y = zeros(1,n);
+for j=1:k
+    I = n0*(j-1)+1:n0*j;
+    r = linspace(0.0,1,n0); % radius
+    t = linspace(j*4,(j+1)*4,n0) + randn(1,n0)*0.2; % angle
+    x(:,I) = [r.*sin(t); r.*cos(t)];
+    y(1,I) = j;
+end
+
+%%
+% Display.
+
+col = {'r' 'g' 'b'};
+clf;  hold on;
+for j=1:k
+    I = find(y==j);
+    plot(x(1,I), x(2,I), '.', 'color', col{j}, 'MarkerSize', 20);
+end
+axis equal; axis off;
+
+%% 
+% Class probability matrix.
+
+Y = double( repmat((1:k)', [1,n]) == repmat(y, [k,1]) );
+
+%% Building the Network
+% We setup the network. It is parameterized by the dimensions of the layers.
+
+%%
+% The network is composed of \(R\) layers, and operate by initialyzing \(x_0=x\) and then iterating
+% \[ \forall r=0,\ldots,R, \quad x_{r+1} \eqdef \rho(A_r x_r + b_r).  \]
+% Here \(\rho : \RR \mapsto \RR\) is a non-linear activation function which
+% operate coordinate by coordinate. The intermediate variables are \(x_r \in \RR^{d_r}\)
+% with \((d_0,d_{L+1})=(p,k)\). The matrices have size \(A_r \in \RR^{d_{r+1} \times d_r}\)
+% while the biases have size \(b_r \in \RR^{d_{r+1}}\).
+
+%%
+% The final value is obtained by comparing the predicted value \(x_{R+1}\)
+% to the data \(y\) using some loss function 
+% \[ \ell \eqdef \Ll(x_{R+1},y). \]
+
+%%
+% Load the loss and its gradient.
+% Here we use a multi-class logistic loss
+% \[ \Ll(z,y) \eqdef \log \sum_{i=1}^k e^{z_i} - \dotp{z}{y}.  \]
+
+%%
+% Note that in practice the computation is done in parallel over an array
+% \(x\) of size \((p,n)\) of \(n\) points in \(\RR^p\), where the class
+% probability to predict is an array \(y\) of size \(k,n\) where \(k\) is
+% the number of classes. 
+
+dotp = @(x,y)sum(x(:).*y(:));
+max2 = @(S)repmat(max(S,[],2), [1 size(S,2)]);
+% stabilized log-sum-exp
+LSE = @(S)log( sum(exp(S), 2) );
+LSE = @(S)LSE( S-max2(S) ) + max(S,[],2);
+% stabilized soft-max
+SM = @(S)exp(S) ./ repmat( sum(exp(S),2), [1 size(S,2)]);
+SM = @(S)SM(S-max2(S));
+% energy, y being a target probability distribution
+loss.F = @(z,y)sum(LSE(z')) - dotp(z,y);
+% gradient
+loss.G = @(z,y)SM(z')' -  y;
+        
+%%
+% Load the activation function. Here we use an atan sigmoid function.
+
+rho.F  = @(u)atan(u);
+rho.G = @(u)1./(1+u.^2);
+
+%%
+% Display the activation.
+
+t = linspace(-5,5,201);
+clf;
+plot(t, rho.F(t), 'LineWidth', 2);
+axis tight;
+
+%%
+% Dimensions \(d_r\) of the layers.
+
+D = [p 15 k]; % here a single hidden layer
+
+%%
+% Initialize the layers randomly.
+
+R = length(D)-1; 
+A = {}; b = {}; 
+for r=1:R
+    A{r} = randn(D(r+1),D(r));
+    b{r} = randn(D(r+1),1);
+end
+
+%%
+% Evaluate the network.
+% Bookkeep the intermediate results: this is crucial for the computation of
+% the gradient.
+
+X = {};
+X{1} = x;
+for r=1:R
+    X{r+1} = rho.F( A{r}*X{r}+repmat(b{r},[1 n]) );
+end
+L = loss.F(X{R+1},Y);
+
+
+%% Network Optimization
+% The network parameters are optimized by minimizing the non-convex
+% empirical loss minimization through gradient descent. 
+
+%%
+% Initialize the gradient as
+% \[ \nabla_{x_{R+1}} \ell = \nabla \Ll(x_{R+1},y) \]
+
+gx = loss.G(X{R+1},Y);
+
+%%
+% The successive gradient with respect to the intermediate variables \(x_r\)
+% are solutions of a backward recursion, which
+% corresponds to the celebrated backpropagation algorithm.
+% \[ \forall r=R,\ldots,1, \quad
+%       \nabla_{x_{r}} \ell = A_r^\top M_r \]
+% where we denoted
+% \[ M_r \eqdef \rho'(A_r x_r + b_r ) \odot \nabla_{x_{r+1}} \ell, \]
+% where \(\odot\) is entry-wise multiplications.
+
+%%
+% From these gradients with respect to the intermediate layers variables, the 
+% gradient with respect to the network  paramters are retrieved as
+% \[ \nabla_{A_r} \ell = M_r x_r^\top, \qandq
+%     \nabla_{b_r} \ell = M_r 1_n.  \]
+
+%%
+% Perform the back-propagation.
+
+gA = {}; gb = {};
+for r=R:-1:1
+    M = rho.G(A{r}*X{r}+repmat(b{r},[1 n])) .* gx;
+    % nabla_X{r} 
+    gx = A{r}' * M;
+    % nabla_A{r}
+    gA{r} =  M * X{r}';
+    % nabla_b{r}
+    gb{r} =  sum(M,2);
+end
+
+%%
+% _Exercice 1:_ (<../missing-exo/ check the solution>)
+% Implement the gradient descent.
+
+exo1;
+
+%% 
+% Grid for evaluation.
+
+q = 100;
+t = linspace(-1,1,q);
+[Yg,Xg] = meshgrid(t,t);
+Z = [Xg(:)';Yg(:)'];
+
+%% 
+% Classification maps
+
+V = EvalNN(Z,[], A,b,loss,rho); 
+U = reshape(SM(V{end}'), [q q k]);
+
+%%
+% Turn it into color.
+
+col = [ [1 0 0]; [0 1 0]; [0 0 1]; [0 0 0]; [0 1 1]; [1 0 1]; [1 1 0]; ...
+    [1 .5 .5]; [.5 1 .5]; [.5 .5 1]  ]';
+R = zeros(q,q,3);
+for i=1:k
+    for a=1:3
+        R(:,:,a) = R(:,:,a) + U(:,:,i) .* col(a,i);
+    end
+end
+
+%%
+% Final display of points and class probability.
+
+clf;  hold on;
+imagesc(t,t,permute(R, [2 1 3]));
+for j=1:k
+    I = find(y==j);
+    plot(x(1,I), x(2,I), '.', 'color', col(:,j)*.8, 'MarkerSize', 20);
+end
+axis equal; axis off;
+
+%%
+% _Exercice 2:_ (<../missing-exo/ check the solution>)
+% Check the influence of the number of layers
+
+exo2;
+
+##### SOURCE END #####
+-->
+   </body>
+</html>
