@@ -11,6 +11,8 @@ for i in arange(0,q):
 # find optimal lambda
 i = E.argmin()
 lambda0 = lambda_list[i]
+wRidge = W[:,i]
+print( 'Ridge: ' + str(E.min()*100) + '%' )
 # Display error evolution.
 clf
 plot(lambda_list/lmax, E)

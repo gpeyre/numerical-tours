@@ -11,6 +11,7 @@ end
 % find optimal lambda
 [~,i] = min(E);
 lambda0 = lambda_list(i);
+wRidge = W(:,i);
 % Display error evolution.
 clf; hold on;
 plot(lambda_list/lmax, E, 'LineWidth', 2);
@@ -20,3 +21,4 @@ SetAR(1/2);
 xlabel('\lambda/|X|^2');
 ylabel('E'); 
 box on;
+fprintf('Ridge: %.2f%%\n', 100*min(E));

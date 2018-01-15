@@ -99,6 +99,15 @@ y1 = y1-m0;
 clf;
 imagesc(Cov(X0));
 
+
+%%
+% Display the covariance between the data and the regressors. 
+
+clf;
+bar(X0'*y0);
+axis tight;
+SetAR(1/2);
+
 %%
 % Compute PCA ortho-basis and 
 % the feature in the PCA basis.
@@ -229,6 +238,7 @@ end
 % find optimal lambda
 [~,i] = min(E);
 lambda0 = lambda_list(i);
+wRidge = W(:,i);
 % Display error evolution.
 clf; hold on;
 plot(lambda_list/lmax, E, 'LineWidth', 2);
@@ -238,6 +248,7 @@ SetAR(1/2);
 xlabel('\lambda/|X|^2');
 ylabel('E'); 
 box on;
+fprintf('Ridge: %.2f%%\n', 100*min(E));
 %EXO
 
 %EXO
@@ -362,17 +373,18 @@ end
 % find optimal lambda
 [~,i] = min(E);
 lambda0 = lambda_list(i);
+wSparse = W(:,i);
+fprintf('Lasso: %.2f%%\n', 100*min(E));
 % Display error evolution.
-Il = find(lambda_list<=lmax);
+Il = find(lambda_list);
 clf; hold on;
-plot(lambda_list(Il)/lmax, E(Il), 'LineWidth', 2);
-plot( lambda0/lmax*[1 1], [min(E(Il)) max(E(Il))], 'r--', 'LineWidth', 2);
+plot(lambda_list/lmax, E, 'LineWidth', 2);
+plot( lambda0/lmax*[1 1], [min(E) max(E)], 'r--', 'LineWidth', 2);
 axis tight;
 SetAR(1/2);
 xlabel('\lambda/|X^* y|_\infty');
 ylabel('E'); box on;
 %EXO
-
 
 %EXO
 %% Display the regularization path, i.e. the evolution of \(w\) as a function 
@@ -392,8 +404,15 @@ legend(lgd);
 box on;
 %EXO
 
-return;
-
+%EXO
+%% Compare the optimal weights for ridge and lasso.
+clf; hold on;
+bar(1:p, abs(wSparse), 'b');
+bar(1:p, -abs(wRidge), 'r');
+legend('Sparse', 'Ridge');
+axis tight; box on;
+SetAR(1/2);
+%EXO
 
 %% Kernelized Ridge Regression
 % In order to perform non-linear and non-parametric regression, it is

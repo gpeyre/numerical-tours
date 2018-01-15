@@ -1,5 +1,5 @@
 q = 200;
-lmax = max(X0'*y0);
+lmax = max(abs(X0'*y0));
 lambda_list = lmax*linspace(.6,1e-3,q);
 W = []; E = [];
 w = zeros(p,1);
@@ -16,11 +16,13 @@ end
 % find optimal lambda
 [~,i] = min(E);
 lambda0 = lambda_list(i);
+wSparse = W(:,i);
+fprintf('Lasso: %.2f%%\n', 100*min(E));
 % Display error evolution.
-Il = find(lambda_list<=lmax);
+Il = find(lambda_list);
 clf; hold on;
-plot(lambda_list(Il)/lmax, E(Il), 'LineWidth', 2);
-plot( lambda0/lmax*[1 1], [min(E(Il)) max(E(Il))], 'r--', 'LineWidth', 2);
+plot(lambda_list/lmax, E, 'LineWidth', 2);
+plot( lambda0/lmax*[1 1], [min(E) max(E)], 'r--', 'LineWidth', 2);
 axis tight;
 SetAR(1/2);
 xlabel('\lambda/|X^* y|_\infty');

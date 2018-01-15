@@ -14,6 +14,8 @@ for iq in arange(0,q):
 # find optimal Lambda
 i = E.argmin()
 lambda0 = lambda_list[i]
+wSparse = W[:,i]
+print( 'Lasso: ' + str(E.min()*100) + '%' )
 # Display error evolution.
 clf
 plot(lambda_list/lmax, E)
