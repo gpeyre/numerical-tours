@@ -129,3 +129,5 @@
     rep: ml_3_classification
   - name: Stochastic Gradient descent
     rep: ml_4_sgd
+  - name: Neural Networks
+    rep: ml_5_nn
