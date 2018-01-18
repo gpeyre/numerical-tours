@@ -12,14 +12,14 @@ if R==5:
 if R==3:
     tau = .01/80
 niter = 8000
-L = zeros((niter,1))
-for it in arange(0,niter):
+L = np.zeros((niter,1))
+for it in np.arange(0,niter):
     [L[it],gA,gb] = ForwardBackwardNN(A,b)
-    for r in arange(0,R):
+    for r in np.arange(0,R):
         A[r] = A[r] - tau*gA[r]
         b[r] = b[r] - tau*gb[r]
-clf
-plot(L)
-xlabel('iter')
-ylabel('$L$')
-axis('tight')
+plt.clf
+plt.plot(L)
+plt.xlabel('iter')
+plt.ylabel('$L$')
+plt.axis('tight')
