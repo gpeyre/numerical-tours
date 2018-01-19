@@ -1,8 +1,8 @@
 def ForwardBackwardNN(A,b):
     ## forward pass
-    X = ForwardNN(A,b,x)
+    X = ForwardNN(A,b,x,R)
     L = lossF(X[R],Y)
-    [gA,gb] = BackwardNN(A,b,X)
+    [gA,gb] = BackwardNN(A,b,X,R)
     return [L,gA,gb]
 
 tau = .01/5

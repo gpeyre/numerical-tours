@@ -25,7 +25,7 @@ for il in np.arange(0,np.size(Layers)):
 	        A[r] = A[r] - tau*gA[r]
 	        b[r] = b[r] - tau*gb[r]
     # probability
-	V = ForwardNN(A,b,Z)
+	V = ForwardNN(A,b,Z,R)
 	U = np.reshape(SM(V[R].transpose()), [q,q,k] )
 	# same color
 	R = np.zeros((q,q,3))
