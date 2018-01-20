@@ -109,8 +109,8 @@ load_image <- function(name, n=-1, flatten=1, resc=1, grayscale=1){
       f <- resize(f, size_x = n, size_y = n, interpolation_type = 5)
     }
     
-    print(dim(f))
-    f <- t(f[1:n,1:n])
+    #f <- t(f[1:n_size,1:n_size])
+    f <- t(as.matrix(f))
     return(as.cimg(f))
   }
   return(as.cimg(f))
