@@ -70,9 +70,10 @@ def perform_dijstra_fm(W, pstart, niter=np.inf, method='dijstr', bound='sym', sv
     ##
     # Initialize the distance to \(+\infty\), excepted for the boundary conditions.
 
+
     D = np.zeros( (n,n) ) + np.inf # current distance
     for i in np.arange(0, nstart):
-        D[pstart[0,i],pstart[1,i]] = 0
+        D[int(pstart[0,int(i)]),int(pstart[1,int(i)])] = 0
 
 
     ##
@@ -81,7 +82,7 @@ def perform_dijstra_fm(W, pstart, niter=np.inf, method='dijstr', bound='sym', sv
 
     S = np.zeros( (n,n) )
     for i in np.arange(0, nstart):
-        S[pstart[0,i],pstart[1,i]] = 1 # open
+        S[int(pstart[0,int(i)]),int(pstart[1,int(i)])] = 1 # open
 
     ##
     # Run!
@@ -136,9 +137,9 @@ def perform_dijstra_fm(W, pstart, niter=np.inf, method='dijstr', bound='sym', sv
         # svd
         t = iter/svg_rate
         if (np.mod(iter,svg_rate)==0) & (t<q):
-            Dsvg[:,:,t-1] = D
-            Ssvg[:,:,t-1] = S
+            Dsvg[:,:,int(t-1)] = D
+            Ssvg[:,:,int(t-1)] = S
 
-    Dsvg = Dsvg[:,:,:t-1]
-    Ssvg = Ssvg[:,:,:t-1]
+    Dsvg = Dsvg[:,:,:int(t-1)]
+    Ssvg = Ssvg[:,:,:int(t-1)]
     return (D,Dsvg,Ssvg); 
