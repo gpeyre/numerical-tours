@@ -62,6 +62,7 @@ def perform_linprog(A,b,c,maxit=-1,tol=1e-10):
                                                 # no freedom for minimization
             r = s[N] - np.dot(np.transpose(A[:,N]),yb)          # reduced costs
             rmin = np.min(r)                                    # determine new basic variable
+            print(rmin)
             q = np.argmin(r)
             if rmin >= -tol*(linalg.norm(s[N],float("inf")) + 1):
                 break # optimal!
@@ -97,7 +98,7 @@ def perform_linprog(A,b,c,maxit=-1,tol=1e-10):
             B[p] = N[q]
 
             if t >= n:
-                N = np.hstack((N[:q],N[(q+1):]))
+                N = np.hstack((N[:int(q)],N[int(q+1):]))
             else:
                 N[q] = t
                 
@@ -108,6 +109,8 @@ def perform_linprog(A,b,c,maxit=-1,tol=1e-10):
         if phase == 2 or it < 0:
             break                                # B, xb,n,m,res=A(:,B)*xb-b
 
+        # print(it)
+        # print(np.dot(np.transpose(xb),s[B]))
         if np.dot(np.transpose(xb),s[B]) > tol:
             it=-it
             print("No feasible solution")
