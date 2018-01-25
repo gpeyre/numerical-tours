@@ -271,7 +271,7 @@ perform_convolution <- function(x,h,bound="sym"){
       temp[,(1+dim(left)[2]):(1+dim(left)[2]+dim(xx)[2])] <- xx
       temp[,(1+dim(left)[2]+dim(xx)[2]):dim(temp)[2]] <- right
       
-      y <- convolove(xx, h)
+      y <- convolve(xx, h)
       y <- y[(2*d1[1]+1):(2*d1[1]+n[1]+1), (2*d1[2]+1):(2*d1[2]+n[2]+1)]  
     }
   }
