@@ -55,20 +55,22 @@ perform_wavelet_transf <- function(f, Jmin, dir, filter = "9-7",separable = 0, t
     }
     
     # perform a separable wavelet transform
+    n <- dim(x)[1]
+
     if (dir==1){
       for (i in 1:n){
-        x[,i, drop=F] <- perform_wavelet_transf(x[,i, drop=F], Jmin, dir, filter, separable, ti)
-        }
+        x[,i] <- perform_wavelet_transf(x[,i], Jmin, dir, filter, separable, ti)
+      }
       for (i in 1:n){
-        x[i,, drop=F] <- t(perform_wavelet_transf(t(x[i,, drop=F]), Jmin, dir, filter, separable, ti))
+        x[i,] <- t(perform_wavelet_transf(t(x[i,]), Jmin, dir, filter, separable, ti))
       }
     }
     else{
       for (i in 1:n){
-        x[i,, drop=F] <- t(perform_wavelet_transf(t(x[i,, drop=F]), Jmin, dir, filter, separable, ti))
+        x[i,] <- t(perform_wavelet_transf(t(x[i,]), Jmin, dir, filter, separable, ti))
       }
       for (i in 1:n){
-        x[,i, drop=F] <- perform_wavelet_transf(x[,i, drop=F], Jmin, dir, filter, separable, ti)
+        x[,i] <- perform_wavelet_transf(x[,i], Jmin, dir, filter, separable, ti)
       }
     }
   }
@@ -94,11 +96,11 @@ perform_wavelet_transf <- function(f, Jmin, dir, filter = "9-7",separable = 0, t
     # subsampled
     for (j in jlist){
       if (d==1){
-        x[1:2**(j+1)] <- lifting_step(x[1:2**(j+1), drop=F], h, dir)
+        x[1:(2**(j+1))] <- lifting_step(x[1:2**(j+1), drop=F], h, dir)
       }
       else{
-        x[1:2**(j+1),1:2**(j+1)] <- lifting_step(x[1:2**(j+1),1:2**(j+1), drop=F], h, dir)
-        x[1:2**(j+1),1:2**(j+1)] <- t(lifting_step(t(x[1:2**(j+1),1:2**(j+1), drop=F]), h, dir))
+        x[1:(2**(j+1)),1:(2**(j+1))] <- lifting_step(x[1:(2**(j+1)),1:(2**(j+1))], h, dir) 
+        x[1:(2**(j+1)),1:(2**(j+1))] <- t(lifting_step(t(x[1:(2**(j+1)),1:(2**(j+1))]), h, dir)) 
         
       }
     }
@@ -108,10 +110,10 @@ perform_wavelet_transf <- function(f, Jmin, dir, filter = "9-7",separable = 0, t
     # TI
     nJ <- Jmax - Jmin + 1
     if (dir==1 & d==1){
-      x <- array(rep(x, each=nJ + 1), c(nJ + 1, 1, length(x)))
+      x <- array(rep(x, each=(nJ + 1)), c((nJ + 1), 1, length(x)))
     }
     else if (dir==1 & d==2){
-      x <- array(rep(x, each=3*nJ+1), c(3*nJ + 1, dim(x)[1], dim(x)[2]))
+      x <- array(rep(x, each=(3*nJ+1)), c((3*nJ + 1), dim(x)[1], dim(x)[2]))
     }
     
     for (j in jlist){
@@ -119,10 +121,10 @@ perform_wavelet_transf <- function(f, Jmin, dir, filter = "9-7",separable = 0, t
       
       if (d==1){
         if (dir==1){
-          x[1:(j-Jmin+2)] <- lifting_step_ti(x[1, drop=F], h, dir, dist)
+          x[1:(j-Jmin+2)] <- lifting_step_ti(x[1], h, dir, dist)
           }
         else{
-          x[1] <- lifting_step_ti(x[1:(j-Jmin+2), drop=F], h, dir, dist)
+          x[1] <- lifting_step_ti(x[1:(j-Jmin+2)], h, dir, dist)
           }
       }
       
@@ -131,34 +133,44 @@ perform_wavelet_transf <- function(f, Jmin, dir, filter = "9-7",separable = 0, t
         
         if (dir==1){
           if (length(dim(x))==2){
-            x[c(1,dj+2),] <- lifting_step_ti(x[1,], h, dir, dist) ######## PB #####
+            x[c(1,(dj+2)),] <- lifting_step_ti(x[1,], h, dir, dist)
 
+            x[c(1,(dj+3)),] <- lifting_step_ti(t(x[1,]), h, dir, dist)
+            x[1,] <- t(x[1,])
+            x[(dj+3),] <- t(x[(dj+3),])
+            
+            x[c((2+dj),(4+dj)),] <- lifting_step_ti(t(x[(dj+2),]), h, dir, dist)
+            x[(dj+2),] <- t(x[(dj+2),])
+            x[(dj+4),] <- t(x[(dj+4),])
+            
             }
           else if (length(dim(x))==3){
-            x[c(1,dj+2),,] <- lifting_step_ti(x[1,,], h, dir, dist) ######## PB #####
+            x[c(1,(dj+2)),,] <- lifting_step_ti(x[1,,], h, dir, dist)
+            
+            x[c(1,(dj+3)),,] <- lifting_step_ti(t(x[1,,]), h, dir, dist)
+            x[1,,] <- t(x[1,,]) 
+            x[(dj+3),,] <- t(x[(dj+3),,]) 
+            
+            x[c((2+dj),(4+dj)),,] <- lifting_step_ti(t(x[(dj+2),,]), h, dir, dist)
+            x[(dj+2),,] <- t(x[(dj+2),,])
+            x[(dj+4),,] <- t(x[(dj+4),,])
+            
             }
-          
-
-          x[c(1,dj+3),,] <- lifting_step_ti(t(x[1,,]), h, dir, dist)
-          x[1,,] <- t(x[1,,]) # t(x[1,, drop=F])
-          x[dj+3,,] <- t(x[dj+3,,]) # t(x[dj+3,, drop=F])
-          
-          x[c(2+dj,4+dj),,] <- lifting_step_ti(t(x[dj+2,,]), h, dir, dist)
-          x[dj+2,,] <- t(x[dj+2,,])
-          x[dj+4,,] <- t(x[dj+4,,]) # t(x[dj+4,, drop=F])
+      
         }
         
         else{
-
-          x[dj+2,,] <- t(x[dj+2,,]) # t(x[dj+2,, drop=F])
-          x[dj+4,,] <- t(x[dj+4,,]) # t(x[dj+4,, drop=F])
+     
+          x[dj+2,,] <- t(x[dj+2,,])
+          x[dj+4,,] <- t(x[dj+4,,])
           
-          x[dj+2,,] <- t(as.matrix(lifting_step_ti(x[c(2+dj, 4+dj),,,drop=FALSE], h, dir, dist)))
-
-          x[1,,] <- t(x[1,,]) # t(x[1,, drop=F])
-          x[dj+3,,] <- t(x[dj+3,,]) # t(x[dj+3,, drop=F)
-          x[1,,] <- t(as.matrix(lifting_step_ti(x[c(1,dj+3),,,drop=FALSE], h, dir, dist)))
-          x[1,,] <- lifting_step_ti(x[c(1,dj+2),,,drop=FALSE], h, dir, dist)
+          x[dj+2,,] <- t((lifting_step_ti(x[c(2+dj, 4+dj),,], h, dir, dist)))
+          
+          x[1,,] <- t(x[1,,])
+          x[dj+3,,] <- t(x[dj+3,,])
+          x[1,,] <- t((lifting_step_ti(x[c(1,dj+3),,], h, dir, dist)))
+          
+          x[1,,] <- lifting_step_ti(x[c(1,dj+2),,], h, dir, dist) 
           
         }
         
@@ -167,9 +179,9 @@ perform_wavelet_transf <- function(f, Jmin, dir, filter = "9-7",separable = 0, t
     }
   
     if (dir==-1){
-      if (length(dim(x))==3){x <- x[1,,]}#, drop=F]}
-      else if (length(dim(x))==2){x <- x[1,]}#, drop=F]}
-      else if (length(dim(x))==1){x <- x[1]}#, drop=F]}
+      if (length(dim(x))==3){x <- x[1,,]}
+      else if (length(dim(x))==2){x <- x[1,]}
+      else if (length(dim(x))==1){x <- x[1]}
     }
     
   }
@@ -188,7 +200,7 @@ perform_wavelet_transf <- function(f, Jmin, dir, filter = "9-7",separable = 0, t
 lifting_step <- function(x0, h, dir){
   
   #copy x
-  x <- x0[,, drop=F]
+  x <- x0
   
   # number of lifting steps
   m <- (length(h) - 1)%/%2
@@ -207,6 +219,7 @@ lifting_step <- function(x0, h, dir){
   else{
     # retrieve detail coefs
     end <- dim(x)[1]
+    if (max(end,0)==0){end <- length(x)}
     d <- x[(as.integer(end/2) + 1):dim(x)[1],, drop=F]*h[length(h)]
     x <- x[1:as.integer(end/2),, drop=F]/h[length(h)]
     for (i in (m:1)){
@@ -235,21 +248,21 @@ lifting_step <- function(x0, h, dir){
 lifting_step_ti <- function(x0, h, dir, dist){
   
   #copy x
-  if (length(dim(x0))==2){
-    x <- x0[,, drop=F]
-  }
-  else if (length(dim(x0))==3){
-    x <- x0[,,, drop=F]
-  }
-  
+  #if (length(dim(x0))==2){
+  #  x <- x0[,, drop=F]
+  #}
+  #else if (length(dim(x0))==3){
+  #  x <- x0[,,, drop=F]
+  #}
+  x <- x0
 
   # number of lifting steps
   m <- (length(h) - 1)%/%2
   if (length(dim(x))==2){
-    n <- dim(x[1,,drop=F])[2] # length(x[1,]) # length(x[1,, drop=F])
+    n <- dim(x[1,,drop=F])[2]
   }
   else if (length(dim(x))==3){
-    n <- dim(x[1,,,drop=F])[3] # length(x[1,,]) # length(x[1,,, drop=F])
+    n <- dim(x[1,,,drop=F])[2]
     }
   else{
     warning("Not implemented")
@@ -269,25 +282,25 @@ lifting_step_ti <- function(x0, h, dir, dist){
   if (dir == 1){
     # split
     if (length(dim(x)) == 2){
-      d <- array(t(x), c(1, dim(x)[1], dim(x)[2]))
+      d <- array(x, c(1, dim(x)[1], dim(x)[2]))
     }
     else{ d <- x }
     for (i in 0:(m-1)){
       if (length(dim(x)) == 2){
-        x <- array(t(x), c(1, dim(x)[1], dim(x)[2]))
+        x <- array(x, c(1, dim(x)[1], dim(x)[2]))
       }
 
-      d <- d - h[2*i+1] * (x[,s1,,drop=F ] + x[,s2,,drop=F ]) # (x[,s1, ] + x[,s2, ])
-      x <- x + h[2*i+2] * (d[,s1,,drop=F ] + d[,s2,,drop=F ]) # (d[,s1, ] + d[,s2, ]) 
+      d <- d - h[2*i+1] * (x[,s1,,drop=F ] + x[,s2,,drop=F ])
+      x <- x + h[2*i+2] * (d[,s1,,drop=F ] + d[,s2,,drop=F ])
 
     }
 
     #merge
-    if (length(dim(x))==2){ x <- rbind(x*h[length(h)], d/h[length(h)])}
+    if (length(dim(x))==2){ x <- rbind((x*h[length(h)]), (d/h[length(h)]))}
     else if (length(dim(x))==3){
-      temp <- array( rep(0, length(x[1,,])+length(d[1,,])), c(2, dim(x)[2], dim(x)[3]))
-      temp[1,,] <- x*h[length(h)]
-      temp[2,,] <- d/h[length(h)]
+      temp <- array( rep(0, length(x[1,,])+length(d[1,,])), c(dim(x)[1]+dim(d)[1], dim(x)[2], dim(x)[3]))
+      temp[1:dim(x)[1],,] <- x*h[length(h)]
+      temp[(dim(x)[1]+1):(dim(x)[1]+dim(d)[1]),,] <- d/h[length(h)]
       x <- temp
      }
   }
@@ -295,30 +308,18 @@ lifting_step_ti <- function(x0, h, dir, dist){
   else{
     # retrieve detail coefs
     if (length(dim(x))==2){
-      d <- x[2,]*h[length(h)] # x[2,, drop=F]*h[length(h)]
-      x <- x[1,]/h[length(h)] # x[1,, drop=F]/h[length(h)]
+      d <- x[2,]*h[length(h)]
+      x <- x[1,]/h[length(h)]
     }
     else if (length(dim(x))==3){
-      d <- x[2,,]*h[length(h)] # x[2,,, drop=F]*h[length(h)]
-      x <- x[1,,]/h[length(h)] # x[1,,, drop=F]/h[length(h)]
+      d <- x[2,,]*h[length(h)]
+      x <- x[1,,]/h[length(h)]
     }
     
     
     for (i in m:1){
-      if (length(dim(x)==1)){
-        x <- x - h[2*i] * (d[s1, drop=F] + d[s2, drop=F]) # (d[s1] + d[s2]) 
-        d <- d + h[2*i-1] * (x[s1, drop=F] + x[s2, drop=F]) # (x[s1] + x[s2])
-      }
-      else if (length(dim(x)==2)){
-        x <- x - h[2*i] * (d[s1,, drop=F] + d[s2,, drop=F]) # (d[s1] + d[s2]) 
-        d <- d + h[2*i-1] * (x[s1,, drop=F] + x[s2,, drop=F]) # (x[s1] + x[s2])
-      }
-      else if (length(dim(x)==3)){
-        x <- x - h[2*i] * (d[s1,,, drop=F] + d[s2,,, drop=F]) # (d[s1] + d[s2]) 
-        d <- d + h[2*i-1] * (x[s1,,, drop=F] + x[s2,,, drop=F]) # (x[s1] + x[s2])
-      }
-      # x <- x - h[2*i]*(d[s1] + d[s2]) 
-      # d <- d + h[2*i-1]*(x[s1] + x[s2])
+      x <- x - h[2*i]*(d[s1,] + d[s2,]) 
+      d <- d + h[2*i-1]*(x[s1,] + x[s2,])
       
     }
     # merge

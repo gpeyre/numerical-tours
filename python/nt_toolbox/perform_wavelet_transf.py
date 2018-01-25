@@ -152,8 +152,8 @@ def lifting_step(x0, h, dir):
     else:
         # retrieve detail coefs
         end = len(x)
-        d = x[end/2:,]*h[-1]
-        x = x[:end/2,]/h[-1]
+        d = x[int(end/2):,]*h[-1]
+        x = x[:int(end/2),]/h[-1]
         for i in range(m,0,-1):
             x = x - h[2*i-1] * (d + np.vstack((d[0,],d[:-1,])))
             d = d + h[2*i-2] * (x + np.vstack((x[1:,],x[-1,])))
