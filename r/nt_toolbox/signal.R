@@ -39,6 +39,8 @@ cconv <- function(x, h, d){
 
 
 
+
+
 subsampling <- function(x, d){
   ####
   # subsampling along dimension d by factor p=2
@@ -55,6 +57,8 @@ subsampling <- function(x, d){
   }
   return(y)
 }
+
+
 
 
 
@@ -77,6 +81,9 @@ upsampling <- function(x, d){
   }
   return(y)
 }
+
+
+
 
 
 
@@ -119,6 +126,9 @@ load_image <- function(name, n=-1, flatten=1, resc=1, grayscale=1){
 
 
 
+
+
+
 imageplot <- function(f, str='', sbpt=c()){
   ####
   # Use nearest neighbor interpolation for the display.
@@ -140,6 +150,7 @@ imageplot <- function(f, str='', sbpt=c()){
   plot(f, interpolate = FALSE, colorscale = gray, axes = FALSE, main = str)
   }
 }
+
 
 
 
@@ -190,6 +201,7 @@ plot_wavelet <- function(fW, Jmin=0){
   points(c(n, n), c(1, n ), 'l', col="red")
   # return(U)
 }
+
 
 
 
@@ -284,6 +296,8 @@ snr <- function(x, y){
 }
 
 
+
+
 snr_2 <- function(x, y){
   ####
   # snr - signal to noise ratio
@@ -302,7 +316,9 @@ snr_2 <- function(x, y){
 
 
 
-div = function(x)
+
+
+div <- function(x)
 { 
     # Divergence operator
     n = dim(x)[1]
@@ -311,12 +327,18 @@ div = function(x)
     return(hdiff1 - x[,,1] + hdiff2 - x[,,2])
 }
 
-grad = function(x){
+
+
+
+grad <- function(x){
     n = dim(x)[1]
     hdiff = x[c((2:n),1),] - x[,]
     vdiff = x[,c((2:n),1)] - x[,]
     return (array(c(hdiff, vdiff), dim=c(n, n, 2)))
 }
+
+
+
 
 
 fftshift <- function(input_matrix, dim = -1) {
@@ -348,6 +370,9 @@ fftshift <- function(input_matrix, dim = -1) {
         stop("Invalid dimension parameter")
     }
 }
+
+
+
 
 
 
@@ -391,6 +416,8 @@ fftshift_4d <- function(input_matrix, dim = -1) {
 
 
 
+
+
 ifftshift <- function(input_matrix, dim = -1) {
 
     rows <- dim(input_matrix)[1]    
@@ -422,7 +449,11 @@ ifftshift <- function(input_matrix, dim = -1) {
 }
 
 
-diag = function(X)
+
+
+
+
+diag <- function(X)
 {
     ####
     # Extract the diagonal of a matrix and returns a vector
@@ -435,8 +466,6 @@ diag = function(X)
     return(out)
     
 }
-
-
 
 
 
@@ -475,6 +504,7 @@ dct <- function (x, inverted=FALSE)
 
 
 
+
 dct_2d <- function(x, inverted=FALSE){
 
   return(t(apply(x, 1, dct, inverted=inverted)))
@@ -499,6 +529,9 @@ clip <- function(arr, arr_min, arr_max){
 
 
 
+
+
+
 gaussian_blur <- function(f, sigma){
   ####
   # gaussian_blur - gaussian blurs an image
@@ -520,6 +553,8 @@ gaussian_blur <- function(f, sigma){
   return( Re( fft(fft_prod, inverse=T)/length(fft_prod) ) )
   
 }
+
+
 
 
 
@@ -551,7 +586,6 @@ bilinear_interpolate <- function(im, x, y){
   return(wa*Ia + wb*Ib + wc*Ic + wd*Id)
   
 }
-
 
 
 

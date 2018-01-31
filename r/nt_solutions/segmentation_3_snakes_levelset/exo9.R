@@ -14,9 +14,9 @@ for (i in 1:niter){
   g <- gD/array(rep(d,2), c(dim(d),2))
   G <- d*div(g[,,1], g[,,2], order=2) - lambd*(f0-c1)**2 + lambd*(f0-c2)**2
   phi <- phi + tau*G
-  if (mod(i,30)==0){
-    phi <- perform_redistancing(phi)
-  }
+  # if (mod(i,30)==0){
+  #   phi <- perform_redistancing(phi)
+  # }
   if (mod(i, as.integer(niter/4))==0){
     k <- k+1
     plot_levelset(phi, f0, lw=2)

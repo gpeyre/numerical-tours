@@ -14,6 +14,9 @@ norm <- function(v){
 
 
 
+
+
+
 roll <- function(x, n, axis=1){
   ####
   # Roll of a vector or matrix (column roll in case of matrix)
@@ -96,6 +99,9 @@ roll <- function(x, n, axis=1){
 }
 
 
+
+
+
 circshift <- function(x, p){
 
   ####
@@ -139,6 +145,8 @@ circshift <- function(x, p){
 
 
 
+
+
 circshift <- function(x, p){
   ####
   # Circular shift of an array.
@@ -164,6 +172,7 @@ circshift <- function(x, p){
 
 
 
+
 circshift1d <- function(x, k){
   ####
   # Circularly shift a 1D vector
@@ -173,12 +182,18 @@ circshift1d <- function(x, k){
 
 
 
+
+
+
 reverse <- function(x){
   ####
   # Reverse a vector
   ####
   return(rev(x))
 }
+
+
+
 
 
 
@@ -194,17 +209,22 @@ rescale <- function(f, a=0, b=1){
   return(a + g*(b-a))
 }
 
-clamp = function(x, a=0, b=1)
-{
-    
-    "clamp - clamp a value
 
-       y = clamp(x,a,b);
 
-     Default is [a,b]=[0,1].
-    "
-    return (pmin(pmax(x,a),b))
+
+
+
+clamp <- function(x, a=0, b=1){
+    ####
+    # clamp - clamp a value
+    #
+    #   y = clamp(x,a,b);
+    #
+    # Default is [a,b]=[0,1].
+    ####
+    return ( pmin(pmax(x,a),b) )
 }
+
 
 
 
@@ -217,10 +237,15 @@ ravel <- function(M){
   return( as.vector(t(M)) )
 }
 
-crop = function(x, n0){
-    " crop - crop an image to reduce its size
-    Only crops square black and white images for now.
-    "
+
+
+
+
+crop <- function(x, n0){
+    ####
+    # crop - crop an image to reduce its size
+    # Only crops square black and white images for now.
+    ####
 
     
     n = dim(x)[1]
@@ -231,7 +256,7 @@ crop = function(x, n0){
 
     return (x[c(start_ind:end_ind), c(start_ind:end_ind),,])
     
-    }
+  }
 
 
 
