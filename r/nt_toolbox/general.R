@@ -215,14 +215,16 @@ rescale <- function(f, a=0, b=1){
 
 
 clamp <- function(x, a=0, b=1){
-    ####
-    # clamp - clamp a value
-    #
-    #   y = clamp(x,a,b);
-    #
-    # Default is [a,b]=[0,1].
-    ####
-    return ( pmin(pmax(x,a),b) )
+  ####
+  # clamp - clamp a value
+  #
+  #   y = clamp(x,a,b);
+  #
+  # Default is [a,b]=[0,1].
+  ####
+  x[ x>b ] <- b
+  x[ x<a ] <- a
+  return(x)
 }
 
 
@@ -232,7 +234,7 @@ clamp <- function(x, a=0, b=1){
 
 ravel <- function(M){
   ####
-  # return the 1D-array correponding to matrix M (row-wise)
+  # Returns the 1D-array correponding to matrix M (row-wise)
   ####
   return( as.vector(t(M)) )
 }
