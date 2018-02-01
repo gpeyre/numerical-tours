@@ -137,3 +137,24 @@ div <- function(Px,Py, bound="sym", order=1){
   return(fd)
   
 }
+
+
+
+
+
+
+
+
+
+
+div_2 <- function(x)
+{ 
+  # Divergence operator
+  n = dim(x)[1]
+  hdiff1 = x[c(2:n, 1), , 1]
+  hdiff2 = x[, c(2:n, 1), 2]
+  return(hdiff1 - x[,,1] + hdiff2 - x[,,2])
+}
+
+
+

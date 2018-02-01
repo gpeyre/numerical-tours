@@ -110,3 +110,18 @@ grad <- function(M, bound="sym", order=1){
   return(out)
 
 }
+
+
+
+
+
+
+
+grad_2 <- function(x){
+  n = dim(x)[1]
+  hdiff = x[c((2:n),1),] - x[,]
+  vdiff = x[,c((2:n),1)] - x[,]
+  return (array(c(hdiff, vdiff), dim=c(n, n, 2)))
+}
+
+
