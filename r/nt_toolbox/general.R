@@ -5,12 +5,12 @@
 # Functions
 
 
-norm <- function(v){
+#norm <- function(v){
   ####
   # Euclidian norm of a vector
   ####
-  return(sqrt(sum(v**2)))
-}
+#  return(sqrt(sum(v**2)))
+#}
 
 
 

@@ -421,7 +421,7 @@ ifftshift <- function(input_matrix, dim = -1) {
     }
 }
 
-
+"
 diag = function(X)
 {
     ####
@@ -435,13 +435,7 @@ diag = function(X)
     return(out)
     
 }
-
-
-
-
-
-
-
+"
 
 dct <- function (x, inverted=FALSE) 
 {
