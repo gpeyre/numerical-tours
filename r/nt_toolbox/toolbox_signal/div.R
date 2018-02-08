@@ -139,14 +139,6 @@ div <- function(Px,Py, bound="sym", order=1){
 }
 
 
-
-
-
-
-
-
-
-
 div_2 <- function(x)
 { 
   # Divergence operator
