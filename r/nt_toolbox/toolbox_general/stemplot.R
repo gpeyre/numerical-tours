@@ -1,3 +1,5 @@
+
+
 # Defining a stemplot function
 
 stemplot = function(x, y, pch=16, linecol=1, clinecol=1,...)

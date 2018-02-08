@@ -13,7 +13,3 @@ plot(tlist/sigma, snr_stein, 'l', col='blue', xlab='T/sigma', ylab='SNR')
 Tmax <- max(snr_stein)
 fBlock <- ThreshWav(f, T)
 
-
-
-
-

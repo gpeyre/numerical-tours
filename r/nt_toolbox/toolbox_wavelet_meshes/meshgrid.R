@@ -65,7 +65,6 @@ meshgrid_5d <- function(x, y, z, s, u) {
   Y <- array(rep(y, times=l_x*l_z*l_s*l_u),  c(l_y, l_x, l_z, l_s, l_u))
   Z <- array(rep(rep(rep(z, times=l_s*l_u), each=l_x), each=l_y),  c(l_y, l_x, l_z, l_s, l_u))
   S <- array(rep(s, each=l_z*l_y*l_x, times=l_u),  c(l_y, l_x, l_z, l_s, l_u))
-  #S <- array(rep(rep(s, each=l_u*l_z), times=l_y*l_x),  c(l_y, l_x, l_z, l_s, l_u))
   U <- array(rep(rep(u, times=1), each=l_x*l_y*l_z*l_s),  c(l_y, l_x, l_z, l_s, l_u))
   
   return(list(X = X, Y = Y, Z = Z, S = S, U = U))

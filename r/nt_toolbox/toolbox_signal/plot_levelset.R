@@ -6,6 +6,13 @@ plot_levelset <- function(Z, f=c(), title="", lw=1.5, sbpt=c()){
   ####
   # f is supposed to be of the same shape as Z
   ####
+  
+  if (length(sbpt) >0){
+    if (sbpt[3]==1){
+      par(mfrow=sbpt[1:2]) 
+    }
+  }
+  
   if (length(f)==0){
     f <- Z }
 
