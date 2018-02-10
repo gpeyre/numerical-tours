@@ -1,25 +1,28 @@
 N = 600
 P = N/2
 Phi = PhiRand(P, N)
-klist = np.round(np.linspace(1, P/7., 20))
+klist = round(seq(1, P/7., length=20))
 ntrials = 60
-proba = np.zeros([len(klist),3])
+proba = matrix(0, length(klist), 3)
 
-for i in range(len(klist)):
-    proba[i,:3] = 0
+for (i in 1:length(klist))
+{
+    proba[i,] = 0
     k = klist[i]
-    for j in range(ntrials):
-        s = np.zeros(N)
-        I = random.permutation(N)
-        I = I[:k]
-        s[I] = np.sign(random.randn(k, 1))
-        proba[i, 0] = proba[i, 0] + (F(Phi, s) < 1)
-        proba[i, 1] = proba[i, 1] + (erc(Phi, I) < 1)
-        proba[i, 2] = proba[i, 2] + (werc(Phi, I) > 0)*(werc(Phi, I) < 1)
-        
-plt.figure(figsize = (8,5))
-plt.plot(klist, proba/ntrials, linewidth=2)
-plt.xlabel("k")
-plt.legend(['F <1', 'ERC <1', 'w-ERC <1'])
-plt.title("N = %d, P = %d" %(N,P))
-plt.show()
+
+    for (j in 1 : ntrials)
+    {
+        s = rep(0, N)
+        I = sample(N)
+        I = I[1:k]
+        s[I] = sign(randn(n=k, m=1))
+        proba[i, 1] = proba[i, 1] + (F(Phi, s) < 1)
+        proba[i, 2] = proba[i, 2] + (erc(Phi, I) < 1)
+        proba[i, 3] = proba[i, 3] + (werc(Phi, I) > 0) * (werc(Phi, I) < 1)
+    }
+}   
+
+options(repr.plot.width=7, repr.plot.height=5)
+matplot(klist, proba/ntrials, xlab="k", type="l", col=c(4, 3, 2), lty=1)
+legend("right", legend=c('F <1', 'ERC <1', 'w-ERC <1'), 
+       col=c(4, 3, 2), pch="-")

@@ -1,31 +1,25 @@
-eta_list = np.linspace(.1, 1, 10)
+eta_list = seq(.1, 1, length=10)
 ntrials = 20
-mu_mean = []
-mu_std = []
+mu_mean = c()
+mu_std = c()
 N = 500
-for i in range(len(eta_list)):
+
+for (i in 1:10)
+{
     eta = eta_list[i]
-    P = np.round(eta*N)
-    c = []
+    P = round(eta * N)
+    c = c()
     
-    for k in range(ntrials):
-        c = c + [mu(PhiRand(P, N))]
-        
-    mu_mean = mu_mean + [np.mean(c)]
-    mu_std = mu_std + [np.std(c)]
-    
-k_mean = 1/2*(1 + 1/np.asarray(mu_mean))
+    for (k in 1:ntrials)
+    {
+        c = c(c, mu(PhiRand(P, N)))
+    }    
+    mu_mean = c(mu_mean, mean(c))
+    mu_std = c(mu_std, std(c))
+}
 
-plt.figure(figsize = (10,7))
+k_mean = 0.5 * (1 + 1./mu_mean)
 
-plt.subplot(2,1,1)
-plt.plot(eta_list, mu_mean, linewidth=2)
-plt.xlabel("$\eta$")
-plt.ylabel("$mu$")
-
-plt.subplot(2,1,2)
-plt.plot(np.log10(eta_list), np.log10(k_mean), linewidth=2)
-plt.xlabel("$\log_{10}(\eta)$")
-plt.ylabel("$\log_{10}(1/ 2(1 + 1/ \mu))$")
-
-plt.show()
+options(repr.plot.width=5, repr.plot.height=3.5)
+plot(eta_list, mu_mean, col=4, type="l", xlab="eta", ylab="mu")
+plot(log10(eta_list), log10(k_mean), col=4, type="l", xlab="eta", ylab="std")

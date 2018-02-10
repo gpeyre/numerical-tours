@@ -1,13 +1,13 @@
 N = 2000
-P = N-10
+P = N - 10
 Phi = PhiRand(N, P)
-s = np.zeros(N)
-s[:6] = 1
+s = rep(0, N)
+s[1:6] = 1
 I = supp(s)
-k = len(I)
+k = length(I)
 
-print("N = %d, P = %d, |I| = %d" %(N,P,k))
-print("F(s)     = %.2f"  %F(Phi, s))
-print("ERC(I)   = %.2f"  %erc(Phi, I))
-print("w-ERC(s) = %.2f" %werc(Phi, I))
-print("Coh(|s|) = %.2f" %Coh(Phi, k))
+print(paste("N =", N, ", P =", P, ", |I| =", k))
+print(paste("F(s) =", round(F(Phi, s), 2)))
+print(paste("ERC(I) =", round(erc(Phi, I), 2)))
+print(paste("w-ERC(s) =", round(werc(Phi, I), 2)))
+print(paste("Coh(|s|) =", round(Coh(Phi, k), 2)))
