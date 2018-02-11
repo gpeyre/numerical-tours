@@ -9,4 +9,4 @@ end
 clf;
 plot(1:niter, Elist, 'LineWidth', 2);
 axis tight;
-SetAR(1/2); 
+SetAR(1/2);

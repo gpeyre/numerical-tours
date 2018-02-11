@@ -1,0 +1,1 @@
+grad_f = function(x){Phi(Phi(x) - y)}

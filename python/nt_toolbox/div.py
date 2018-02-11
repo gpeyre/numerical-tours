@@ -72,8 +72,8 @@ def div(Px,Py, bound="sym", order=1):
                 fz = (Pz[:,:,np.hstack((np.arange(1,nz),[nz-1]))] - Pz[:,:,np.hstack(([0],np.arange(0,nz-1)))])/2.
                 fz[:,:,0] = + Pz[:,:,1]/2. + Pz[:,:,0] # boundary
                 fz[:,:,1] = + Pz[:,:,2]/2. - Pz[:,:,0]
-                fz[:,:,nz-1] = - Pz[:,:,nz-1]-Pz[:,:,nz-2]/2.
-                fz[:,:,nz-2] = + Pz[:,:,nz-1]-Pz[:,:,nz-3]/2.
+                fz[:,:,ny-1] = - Pz[:,:,nz-1]-Pz[:,:,nz-2]/2.
+                fz[:,:,ny-2] = + Pz[:,:,nz-1]-Pz[:,:,nz-3]/2.
     else:
         if order == 1:
             nx = np.shape(Px)[0]

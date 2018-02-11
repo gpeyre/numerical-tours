@@ -4,7 +4,7 @@ cR = np.sort(np.ravel(abs(fC)))[::-1]
 err_dct = [max(e,1e-10) for e in linalg.norm(f)**2 - np.cumsum(cR**2)]
 
 plt.plot(np.log10(err_fft/linalg.norm(f)**2),linewidth=2, color = "red", label = "Fourier")
-plt.plot(np.log10(err_dct/linalg.norm(f)**2),linewidth=2, color = "green", label = "DCT")
+plt.plot(np.log10(err_wav/linalg.norm(f)**2),linewidth=2, color = "green", label = "DCT")
 
 plt.title("$\log_{10}(\epsilon^2[M]/ ||f||^2)$")
 plt.xlim(1,n**2/50)

@@ -1,16 +1,17 @@
-tau = .5;
-niter = 5000;
-w = zeros(p,1);
-Elist = [];
-for i=1:niter
-    w = w - tau * nablaE(w,X,y);
-    Elist(i) = E(w,X,y);
+% Number of paths computed in parallel.
+q=50; 
+% Initial conditions.
+x = rand(q,1)-1/2;
+niter = 1000;
+E = [];
+for i=1:niter-1
+    u = rand(q,1)>.5;
+    E(:,i) = F(x(:,end));
+    tau = 1/(10+i);
+    x(:,end+1) = x(:,end) - tau * ( u.*df{1}(x(:,end)) + (1-u).*df{2}(x(:,end)) );
 end
-ndisp = niter/4;
+%
 clf;
-subplot(2,1,1);
-plot(1:ndisp, Elist(1:ndisp), 'LineWidth', 2); axis tight;
-title('E(w_l)');  set(gca, 'FontSize', fs);
-subplot(2,1,2);
-plot(1:ndisp, log10(Elist(1:ndisp)-min(Elist)), 'LineWidth', 2); axis tight;
-title('log(E(w_l) - min E)'); set(gca, 'FontSize', fs);
+plot(x', 'r');
+axis tight;
+set(gca, 'FontSize', 20);

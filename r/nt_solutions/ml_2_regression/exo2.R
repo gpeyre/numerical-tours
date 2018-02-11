@@ -1,0 +1,1 @@
+matplot(lambda_list, W, type="l", xlab="lambda")

@@ -2,7 +2,6 @@ plt.figure(figsize = (10,10))
 V = normalize(ProjI(V))
 g = np.copy(f)
 k=0
-niter=12*4
 
 for i in range(1,niter+1):
     # advect

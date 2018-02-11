@@ -1,6 +1,13 @@
 %% Stochastic Gradient descent
 % This tour details Stochastic Gradient Descent, applied to the binary logistic classification problem.
 
+%CMT
+rep = 'results/ml/sgd/';
+if not(exist(rep))
+    mkdir(rep);
+end
+%CMT
+
 %%
 % We recommend that after doing this Numerical Tours, you apply it to your
 % own data, for instance using a dataset from <https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/ LibSVM>.
@@ -14,19 +21,58 @@
 
 perform_toolbox_installation('general');
 
+%% Simple Example
+% We first illustrate the concept of stochastic gradient descent on a
+% simple example
+% \[ \umin{x \in \RR} f(x) \eqdef f_1(x) + f_2(x) \]
+% where \(f_1(x) \eqdef (x-1)^2\) and 
+% \(f_2(x) \eqdef (x+1)^2\).
+
 %%
-% First define a few helpers.
+% Functions and their derivatives.
 
-SetAR = @(ar)set(gca, 'PlotBoxAspectRatio', [1 ar 1], 'FontSize', 20);
-Xm = @(X)X-repmat(mean(X,1), [size(X,1) 1]);
-Cov = @(X)Xm(X)'*Xm(X);
+f = {@(x)1/2*(x-1).^2, @(x)1/2*(x+1).^2};
+F = @(x)f{1}(x)+f{2}(x);
+df = {@(x)(x-1), @(x)(x+1)};
 
+%%
+% Each iteration of SGD reads
+% \[ x_{\ell+1} = x_\ell - \tau_\ell \nabla f_{i(\ell)}(x_\ell) \]
+% where \( i(\ell) \in \{1,2\} \) is drawn uniformly.
+
+%EXO
+%% Implement the SGD, with a random initial condition \(x_0\).
+%% Display several path (i.e. run several time the algorithm)
+%% to vizualize the evolution of the density of the random variable
+%% \(x_\ell\).
+q=50;  % Number of paths computed in parallel.
+x = rand(q,1)-1/2; % Initial conditions.
+niter = 1000;
+E = [];
+for i=1:niter-1
+    u = rand(q,1)>.5;
+    E(:,i) = F(x(:,end));
+    tau = 1/(10+i);
+    x(:,end+1) = x(:,end) - tau * ( u.*df{1}(x(:,end)) + (1-u).*df{2}(x(:,end)) );
+end
+%
+clf;
+plot(x', 'r');
+axis tight;
+set(gca, 'FontSize', 20);
+%EXO
 
 %% Dataset Loading
 % We load a subset of the <http://osmot.cs.cornell.edu/kddcup/datasets.html
 % dataset Quantum Physics Dataset>
 % of \(n=10000\) features in dimension \(78\). The goal in this task is to learn a classification rule that differentiates between two types of particles generated in high energy collider experiments.
 
+%%
+% First define a few helpers.
+
+SetAR = @(ar)set(gca, 'PlotBoxAspectRatio', [1 ar 1], 'FontSize', 20);
+Xm = @(X)X-repmat(mean(X,1), [size(X,1) 1]);
+Cov = @(X)Xm(X)'*Xm(X);
 
 %%
 % Load the dataset.
@@ -110,6 +156,10 @@ subplot(2,1,2);
 plot(1:ndisp, log10(Elist(1:ndisp)-min(Elist)), 'LineWidth', 2); axis tight;
 title('log(E(w_l) - min E)');
 %EXO
+
+%CMT
+saveas(gcf,[rep 'error-bgd.eps'], 'epsc');
+%CMT
 
 %% Stochastic Gradient Descent (SGD)
 % As any empirical risk minimization procedure, the 
@@ -205,6 +255,10 @@ axis([1 niter min(u(:)) max(u(:))]); box on;
 title('log(E(w_l) - min E)'); set(gca, 'FontSize', 20);
 %EXO
 
+%CMT
+saveas(gcf,[rep 'error-sgd.eps'], 'epsc');
+%CMT
+
 %% Stochastic Gradient Descent with Averaging (SGA)
 % Stochastic gradient descent is slow because of the fast decay of
 % \(\tau_\ell\) toward zero.
@@ -269,6 +323,10 @@ title('log(E(w_l) - min E)'); set(gca, 'FontSize', 20);
 legend('SGD', 'SGA');
 %EXO
 
+
+%CMT
+saveas(gcf,[rep 'error-sga.eps'], 'epsc');
+%CMT
 
 %% Stochastic Averaged Gradient Descent (SAG)
 % For problem size \(n\) where the dataset (of size \(n \times p\)) can
@@ -345,3 +403,6 @@ title('log(E(w_l) - min E)'); set(gca, 'FontSize', 20);
 legend('SGD', 'SGA', 'SAG');
 %EXO
 
+%CMT
+saveas(gcf,[rep 'error-sag.eps'], 'epsc');
+%CMT

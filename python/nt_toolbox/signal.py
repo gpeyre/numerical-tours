@@ -3,8 +3,9 @@ import pylab
 import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
 from scipy import ndimage
-# TODO: try to not make use of transform.resize
+# signal.py: TODO: try to not make use of transform.resize
 from skimage import transform
+
 from . import general as nt
 
 #from nt_toolbox.general import *
@@ -137,7 +138,7 @@ def perform_wavortho_transf(f, Jmin, dir, h):
     """
 
     n = f.shape[1]
-    Jmax = int(np.log2(n) - 1)
+    Jmax = np.log2(n) - 1
     # compute g filter
     u = np.power(-np.ones(len(h) - 1), range(1, len(h)))
     # alternate +1/-1
@@ -190,7 +191,7 @@ def plot_wavelet(fW, Jmin=0):
         return B
     ##
     n = fW.shape[1]
-    Jmax = int(np.log2(n) - 1)
+    Jmax = np.log2(n) - 1
     U = fW.copy()
     for j in np.arange(Jmax, Jmin - 1, -1):
         U[:2 ** j:,    2 ** j:2 **

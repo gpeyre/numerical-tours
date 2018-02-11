@@ -21,7 +21,7 @@ for is=1:length(sigma_list)
     subplot(2,2,is);
     hold on; imagesc(t,t, Theta');
     options.ms = 5;
-    plot_multiclasses(X,y,options); axis off; SetAR(1);
+    plot_multiclasses(X,y,options); axis off;
     colormap parula(256); caxis([0 1]);
     title(['\sigma=' num2str(sigma)]);
 end
