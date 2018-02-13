@@ -13,22 +13,20 @@ read_mesh <- function(name){
   warning('Wrong type of file, only reads OFF files')
   }
   
-  n_verts = as.numeric(unlist(strsplit(readLines(name)[2],split=" "))[[1]])
-  n_faces = as.numeric(unlist(strsplit(readLines(name)[2],split=" "))[[2]])
-  n_edges = as.numeric(unlist(strsplit(readLines(name)[2],split=" "))[[3]])
+  K = lapply(strsplit(readLines(name)," "), as.double)
   
-  X=c()
-  for (i in (3:(n_verts+2))){
-    X <- rbind(X, c(as.numeric(unlist(strsplit(readLines(name)[i],split=" "))[[1]]), 
-                       as.numeric(unlist(strsplit(readLines(name)[i],split=" "))[[2]]),
-                as.numeric(unlist(strsplit(readLines(name)[i],split=" "))[[3]])))
+  n_verts = K[[2]][1]
+  n_faces = K[[2]][2]
+  n_edges = K[[2]][3]
+  
+  X=matrix(0, nrow=n_verts,ncol=3)
+  for (i in (1:n_verts)){
+    X[i,]= K[[i+2]]
   }
     
-  F=c()
-  for (j in (n_verts+3):(n_verts+n_faces+2)){
-    F <- rbind(F, c(as.numeric(unlist(strsplit(readLines(name)[j],split=" "))[[2]]), 
-                    as.numeric(unlist(strsplit(readLines(name)[j],split=" "))[[3]]),
-                    as.numeric(unlist(strsplit(readLines(name)[j],split=" "))[[4]])))
+  F=matrix(0, nrow=n_faces, ncol=3)
+  for (j in (1:n_faces)){
+    F[j,] <- K[[j+n_verts+2]][2:4]
   }
   
   return (list(X0=t(X),F0=t(F)))
