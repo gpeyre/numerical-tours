@@ -38,7 +38,7 @@ for (i_q in 1:length(q_list)){
     
     #PCA
     resh <- function(P){ t(array(P, c(n*n,w1*w1))) }
-    remove_mean <- function(Q){ Q - array(rep(apply(Q, 2, mean), each=w1*w1), c(w1*w1, n*n)) }
+    remove_mean <- function(Q){ Q - array(rep(apply(Q, 2, mean), each=(w1*w1)), c(w1*w1, n*n)) }
     
     P1 <- remove_mean(resh(P))
     C <- P1 %*% t(P1)
@@ -60,7 +60,7 @@ for (i_q in 1:length(q_list)){
     distance_0 <- function(i, sel){
       H1 <- H[sel[1,]+1,,]
       H2 <- H1[,sel[2,]+1,]
-      return(apply((H2 - array( rep(H[i[1]+1,i[2]+1,], each=length(sel[1,])*length(sel[2,])), dim(H2) ))**2, c(1,2), sum)/w1*w1)
+      return(apply((H2 - array( rep(H[i[1]+1,i[2]+1,], each=(length(sel[1,])*length(sel[2,]))), dim(H2) ))**2, c(1,2), sum)/(w1*w1))
     }
     
     distance <- function(i){ distance_0(i, selection(i)) }
