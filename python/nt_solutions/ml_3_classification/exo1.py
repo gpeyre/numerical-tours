@@ -13,6 +13,6 @@ plt.plot(np.arange(0,ndisp), Elist[0:ndisp])
 plt.axis('tight')
 plt.title('$E(w_l)$')
 plt.subplot(2,1,2);
-plt.plot(np.arange(1,ndisp), np.log10(Elist[1:ndisp]-np.min(Elist))  )
+plt.plot(np.arange(10,ndisp), np.log10(Elist[10:ndisp]-np.min(Elist))  )
 plt.axis('tight')
 plt.title('$log(E(w_l) - min E)$');
