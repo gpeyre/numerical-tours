@@ -1,5 +1,6 @@
 q = 50
-lambda_list = seq(0, 20, length=q)
+lmax = base::norm(X0, "2")**2
+lambda_list = seq(0.001, 0.3, length=q) * lmax
 E = c()
 W = matrix(0, q, p)
 
@@ -12,4 +13,8 @@ for (i in 1:q)
 }
 
 # Display error evolution.
-plot(lambda_list, E, type="l", col=4, xlab="lambda", ylab="E")
+plot(lambda_list /lmax, E, type="l", col=4, xlab="lambda / |X|2", ylab="E")
+i = which.min(E)
+wRidge = W[i,]
+
+lines(c(lambda_list[i] / lmax, lambda_list[i] / lmax), c(min(E), max(E)), type="l", lty=2, col="red")
