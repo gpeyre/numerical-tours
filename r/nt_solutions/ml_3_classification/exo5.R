@@ -27,7 +27,7 @@ for (is in 1:length(sigma_list))
     Theta = theta(kappa(G,X,sigma) %*% h)
     dim(Theta) = c(q, q)
     # Display the classification probability.
-    image(t,t, Theta, xlab="", ylab="", col=cm.colors(10), xaxt="n", yaxt="n")
+    image(t,t, Theta, xlab="", ylab="", col=color(10), xaxt="n", yaxt="n")
     par(new=TRUE)
     for (i in c(-1, 1))
     {

@@ -1,5 +1,5 @@
-a = 5
-b = 3.5
+a = 10
+b = 10
 tx = seq(-a, a, length=q)
 ty = seq(-b, b, length=q)
 B = as.vector(meshgrid(ty, tx)$X)
@@ -28,14 +28,16 @@ for (io in 1:length(offs))
     Theta = theta(AddBias(G) %*% w)
     dim(Theta) = c(q, q)
 
-    image(tx,ty, Theta, xlab="", ylab="", col=cm.colors(10), xaxt="n", yaxt="n")
+    image(tx,ty, Theta, xlab="", ylab="", col=color(5), xaxt="n", yaxt="n")
+    
     par(new=TRUE)
     for (i in c(-1, 1))
     {
         I = (y==i)
-        plot(X[I,1], X[I,2], col=(i + 3), xlim=c(min(X[,1]), max(X[,1])),  
-         ylim=c(min(X[,2]), max(X[,2])), xlab="", ylab="", pch=16)
+        plot(X[I,1], X[I,2], col=(i + 3), xlim=c(min(X[,1]), max(X[,1])), 
+           ylim=c(min(X[,2]), max(X[,2])), xlab="", ylab="", pch=16, xaxt="n", yaxt="n")  
         par(new=TRUE)
     }
     par(new=FALSE)
+    
 }
