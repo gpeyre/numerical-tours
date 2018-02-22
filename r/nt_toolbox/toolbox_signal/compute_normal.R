@@ -1,6 +1,3 @@
-library(Matrix)
-
-
 crossp <- function(x,y){
   # x and y are (m,3) dimensional
   z <- x
@@ -21,7 +18,7 @@ compute_normal <- function(X0, F){
   eps <- .Machine$double.eps
   nface <- dim(F)[2]
   nvert <- dim(X0)[2]
-  normal <- Matrix(0, nrow=3, ncol = nvert)
+  normal <- matrix(0, nrow=3, ncol = nvert)
   
   # unit normals to the faces
   normalf <- crossp(X0[,(F+1)[2,]] - X0[,(F+1)[1,]],X0[,(F+1)[3,]] - X0[,(F+1)[1,]])
