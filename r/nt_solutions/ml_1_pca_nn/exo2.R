@@ -5,10 +5,10 @@ options(repr.plot.width=5, repr.plot.height=5)
 B = max(max(abs(Z[,1:2])))
 q = 200
 r = linspace(-B, B, q)
-V = meshgrid(r)$X
-U = meshgrid(r,r)$Y
+V1 = meshgrid(r)$X
+U1 = meshgrid(r,r)$Y
 
-z1 = cbind(c(U), c(V))
+z1 = cbind(c(U1), c(V1))
 # test for different R
 Rlist = c(1, 5, 10, 40)
 col = c(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, .5, .5, .5, 1, .5, .5, .5, 1)
