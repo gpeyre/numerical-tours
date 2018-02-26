@@ -1,7 +1,7 @@
 W = matrix(0, nrow=p, ncol=k)
 Elist = c()
 tau = 0.01
-niter = 500
+niter = 1000
 for (i in 1:niter)
 {
     W = W - tau * nablaE(W)
