@@ -1,4 +1,4 @@
-epsilon = 1
+epsilon = 0.5
 
 tau = 1.8 / ( 8/epsilon )
 tau = tau * 100

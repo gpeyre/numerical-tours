@@ -15,7 +15,7 @@ for (k in 1:nbiter){
     }
 
 
-plot(c(1: (nbiter + 1)), E, xlab="Iterations", ylab="Energy (f)",
+plot(c(1: (nbiter + 1)), log10(E), xlab="Iterations", ylab="log10(E)",
      main="Decay of the energy", col="blue", pch=15, type="l")
 
 options(repr.plot.width=7, repr.plot.height=3.5)

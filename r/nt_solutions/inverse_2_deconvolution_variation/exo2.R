@@ -7,8 +7,8 @@ for (i in 1:length(Lambda_list))
 {
     Lambda = Lambda_list[i]
     fSob = Re(fft(yF * hF / (abs(hF)**2 + Lambda*S), inverse=TRUE)) / length(yF * hF / (abs(hF)**2 + Lambda*S))
-    fSob = (fSob - min(fSob)) / (max(fSob) - min(fSob))
-    err[i] = snr(fSob, fL2)
+    err[i] = snr(f0, fSob)
+    
 }
 
 plot(Lambda_list, err, type="l", col=4, ylab="SNR", xlab="lambda")
@@ -16,7 +16,6 @@ plot(Lambda_list, err, type="l", col=4, ylab="SNR", xlab="lambda")
 i = which.max(err)
 Lambda = Lambda_list[i]
 
-fSob = Re(fft(yF * hF / (abs(hF)**2 + Lambda*S), inverse=TRUE))
-fSob = (fSob - min(fSob)) / (max(fSob) - min(fSob))
+fSob = Re(fft(yF * hF / (abs(hF)**2 + Lambda*S), inverse=TRUE)) / length(yF * hF / (abs(hF)**2 + Lambda*S))
 
 imageplot(fSob, paste('Sobolev deconvolution, SNR = ', round(snr(f0, fSob),2), 'dB'))
