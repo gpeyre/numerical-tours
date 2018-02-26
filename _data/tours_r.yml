@@ -1,0 +1,127 @@
+- name: Basics
+  short: basics
+  list:
+  - name: Introduction to Image Processing
+    rep: introduction_3_image
+  - name: Le traitement numérique des images
+    rep: introduction_6_elementary_fr
+  - name: Image Approximation with Fourier and Wavelets
+    rep: introduction_4_fourier_wavelets
+
+- name: Wavelets
+  short: wavelets
+  list:
+  - name: 2-D Daubechies Wavelets
+    rep: wavelet_4_daubechies2d
+  - name: Volumetric wavelet Data Processing
+    rep: multidim_2_volumetric
+
+- name: Approximation, Coding and Compression
+  short: coding
+  list:
+  - name: Image Approximation with Orthogonal Bases
+    rep: coding_1_approximation
+  - name: Entropic Coding and Compression
+    rep: coding_2_entropic
+
+- name: Denoising
+  short: denoising
+  list:
+  - name: Linear Image Denoising
+    rep: denoisingsimp_2b_linear_image
+  - name: Wavelet Denoising
+    rep: denoisingwav_2_wavelet_2d
+  - name: Wavelet Block Thresholding
+    rep: denoisingwav_4_block
+  - name: Non Local Means
+    rep: denoisingadv_6_nl_means
+  - name: Rank Filters for Image Processing
+    rep: denoisingadv_7_rankfilters
+
+- name: Inverse Problems
+  short: inverse
+  list:
+  - name: Image Deconvolution using Variational Method
+    rep: inverse_2_deconvolution_variational
+  - name: Inpainting using Sparse Regularization
+    rep: inverse_5_inpainting_sparsity
+  - name: Performance of Sparse Recovery Using L1 Minimization
+    rep: sparsity_6_l1_recovery
+
+
+- name: Optimization
+  short: optim
+  list:
+  - name: Gradient Descent Methods
+    rep: optim_1_gradient_descent.ipynb
+  - name: Gradient Descent (by Laurent Condat)
+    rep: optim_1bis_gradient_descent
+  - name: Forward-Backward Splitting (by Laurent Condat)
+    rep: optim_2_condat_fb
+  - name: Forward-Backward method on the dual problem
+    rep: optim_7_duality
+  - name: Douglas Rachford Proximal Splitting
+    rep: optim_4b_dr
+  - name: Chambolle-Pock Primal-Dual Splitting Algorithm
+    rep: optim_5_primal_dual
+
+- name: Machine Learning
+  short: ml
+  list:
+  - name: PCA, Nearest-Neighbors and Clustering
+    rep: ml_1_pca_nn
+  - name: Linear Regression and Kernel Methods
+    rep: ml_2_regression
+  - name: Logistic Classification
+    rep: ml_3_classification
+  - name: Stochastic Gradient descent
+    rep: ml_4_sgd
+
+- name: Shapes
+  short: shapes
+  list:
+  - name: Edge Detection
+    rep: segmentation_1_edge_detection
+  - name: Active Contours using Parameteric Curves
+    rep: segmentation_2_snakes_param
+  - name: Active Contours using Level Sets
+    rep: segmentation_3_snakes_levelset
+  - name: Manifold Learning with Isomap
+    rep: shapes_7_isomap
+
+- name: Audio Processing
+  short: audio
+  list:
+  - name: Source Separation with Sparsity
+    rep: audio_2_separation
+
+- name: Computer Graphics
+  short: graphics
+  list:
+  - name: Gaussian Models for Texture Synthesis
+    rep: graphics_1_synthesis_gaussian
+  - name: Fluid Dynamics
+    rep: graphics_5_fluids
+
+- name: Mesh Parameterization and Deformation
+  short: meshdeform
+  list:
+  - name: Mesh Parameterization
+    rep: meshdeform_1_parameterization
+  - name: Mesh Denoising
+    rep: meshproc_3_denoising
+
+- name: Geodesic Processing
+  short: fastmarching
+  list:
+  - name: Dijkstra and Fast Marching Algorithms
+    rep: fastmarching_0_implementing
+
+
+- name: Optimal Transport
+  short: optimaltransp
+  list:
+  - name: Optimal Transport with Linear Programming
+    rep: optimaltransp_1_linprog
+  - name: Entropic Regularization of Optimal Transport
+    rep: optimaltransp_5_entropic
