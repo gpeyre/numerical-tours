@@ -2,6 +2,7 @@
 layout: page
 title: "Installation"
 description: "for R"
+header-img: "img/hokusai-5.jpg"
 ---
 
 Installation of IRkernel
