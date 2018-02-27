@@ -7,7 +7,7 @@ for (i in (1:ntests)){
   A <- .sparseDiagonal(x=1, n) + mu*L
   
   for (k in (1:3)){
-    Xmu[k,] <- t(pcg(X[k,], max_iter))
+    Xmu[k,] <- t(as.matrix(pcg(as.matrix(X[k,]), max_iter)))
     
   errR <- c(errR,snr(X0,Xmu))
   }

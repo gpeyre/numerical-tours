@@ -6,7 +6,7 @@ for (i in (1:12)){
   err <- c(err, snr(X0,X1))
   
   if (i%%2 == 0){
-    plot_mesh(data.matrix(X1), F)
+    plot_mesh(data.matrix(X1), F, "grey")
   }
   if (err[length(err)] > max(err[-length(err)])){
     Xbest <- X1
