@@ -10,6 +10,6 @@ for (i in (1:niter)){
   err <- c(err, snr(X0,Xt))
   if (i%%floor(niter/4)==0){
     k <- k+1
-    trimesh(t(F+1),data.matrix(t(Xt)),main=paste('T=',Tmax*k/4))
+    trimesh(t(F+1),data.matrix(t(Xt)),main=paste('T=',Tmax*k/4), col="grey")
   }
 }
