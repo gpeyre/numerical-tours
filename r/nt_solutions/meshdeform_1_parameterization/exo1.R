@@ -1,3 +1,5 @@
+options(repr.plot.width=5, repr.plot.height=5)
+
 q=floor(p/4)
 t = seq(from=0,to=q-1,by=1)/q
 t1 = seq(from=0, to=(p-3*q)-1)/(p-3*q)
