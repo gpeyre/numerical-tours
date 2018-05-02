@@ -1,18 +1,18 @@
 from numpy import linalg
 
-niter = 800
+niter = 1600
 b = np.ones([N,N,K])
 a = np.copy(b)
 Err_q = np.zeros(niter)
 
 for i in range(niter):
-    
+
     for k in range(K):
         Err_q[i] = Err_q[i] + linalg.norm(a[:,:,k]*xi(b[:,:,k]) - P[:,:,k])/linalg.norm(P[:,:,k])
         a[:,:,k] = P[:,:,k]/xi(b[:,:,k])
-        
+
     q = np.zeros(N)
-    
+
     for k in range(K):
         q = q + lambd[k] * np.log(np.maximum(1e-19*np.ones(len(b[:,:,k])), b[:,:,k]*xi(a[:,:,k])))
 
