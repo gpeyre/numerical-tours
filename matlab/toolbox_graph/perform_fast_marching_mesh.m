@@ -63,7 +63,7 @@ if exist('perform_front_propagation_mesh')~=0
     [D,S,Q] = perform_front_propagation_mesh(vertex, faces-1, W,start_points-1,end_points-1, nb_iter_max, H, L, values, dmax);
     Q = Q+1;
 else
-    error('You have to run compiler_mex before.');
+    error('You have to run compile_mex before.');
 end
 
 % replace C 'Inf' value (1e9) by Matlab Inf value.
