@@ -1,11 +1,14 @@
-% compile mex file
-mex mex/perform_front_propagation_2d.cpp mex/perform_front_propagation_2d_mex.cpp mex/fheap/fib.cpp 
-mex mex/perform_front_propagation_3d.cpp mex/perform_front_propagation_3d_mex.cpp  mex/fheap/fib.cpp 
-mex mex/perform_circular_front_propagation_2d.cpp mex/perform_front_propagation_2d.cpp mex/fheap/fib.cpp 
-mex mex/fm2dAniso.cpp
+mfileFolder = fileparts(mfilename('fullpath'));
+mexPath=fullfile(mfileFolder,'mex');
+cd(mexPath);
 
-disp('Compiling perform_front_propagation_mesh, might time some time.');
-rep = 'mex/';
+mex -DMX_COMPAT_32 perform_front_propagation_2d.cpp perform_front_propagation_2d_mex.cpp fheap/fib.cpp 
+mex -DMX_COMPAT_32 perform_front_propagation_3d.cpp perform_front_propagation_3d_mex.cpp  fheap/fib.cpp 
+mex -DMX_COMPAT_32 perform_circular_front_propagation_2d.cpp perform_front_propagation_2d.cpp fheap/fib.cpp 
+mex -DMX_COMPAT_32 fm2dAniso.cpp
+
+disp('Compiling perform_front_propagation_mesh, might take some time.');
+
 files =  { ...
     'perform_front_propagation_mesh.cpp', ...
     'gw/gw_core/GW_Config.cpp',           ...
@@ -24,9 +27,12 @@ files =  { ...
     'gw/gw_geodesic/GW_TriangularInterpolation_Linear.cpp',      ...
     'gw/gw_geodesic/GW_TriangularInterpolation_Quadratic.cpp',  ...
 };
-str = 'mex ';
+
+% Compose large mex compile string statement
+str = 'mex '; %Initialize string statement with mex ....
 for i=1:length(files)
-    str = [str rep files{i} ' '];
+    str = [str files{i} ' ']; %Append file name
 end
-eval(str);
+
+eval(str); %Evaluate string statement
 
