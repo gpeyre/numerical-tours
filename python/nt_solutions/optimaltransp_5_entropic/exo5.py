@@ -11,25 +11,20 @@ for j in range(m**2):
     # weights
     lambd = np.hstack((S[j]*T[j], (1-S[j])*T[j], S[j]*(1-T[j]), (1-S[j])*(1-T[j])))
     # computation
-    b = np.ones([N,N,K])
-    a = np.copy(b)
+    v = np.ones([N,N,R])
+    u = np.copy(v)
 
     for i in range(niter):
-
-        for k in range(K):
-            a[:,:,k] = P[:,:,k]/xi(b[:,:,k])
-
-        q = np.zeros(N)
-
-        for k in range(K):
-            q = q + lambd[k] * np.log(np.maximum(1e-19*np.ones(len(b[:,:,k])), b[:,:,k]*xi(a[:,:,k])))
-
-        q = np.exp(q)
-
-        for k in range(K):
-            b[:,:,k] = q/xi(a[:,:,k])
+        for k in range(R):
+            u[:,:,k] = A[:,:,k]/K(v[:,:,k])
+        b = np.zeros(N)
+        for k in range(R):
+            b = b + lambd[k] * np.log(np.maximum(1e-19*np.ones(len(v[:,:,k])), v[:,:,k]*K(u[:,:,k])))
+        b = np.exp(b)
+        for k in range(R):
+            v[:,:,k] = b/K(u[:,:,k])
 
     # display
     plt.subplot(m,m,j+1)
-    plt.imshow(q)
+    plt.imshow(b)
     plt.axis('off')

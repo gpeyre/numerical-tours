@@ -1,25 +1,23 @@
 from numpy import linalg
 
 niter = 1600
-b = np.ones([N,N,K])
-a = np.copy(b)
+v = np.ones([N,N,R])
+u = np.copy(v)
 Err_q = np.zeros(niter)
 
 for i in range(niter):
 
-    for k in range(K):
-        Err_q[i] = Err_q[i] + linalg.norm(a[:,:,k]*xi(b[:,:,k]) - P[:,:,k])/linalg.norm(P[:,:,k])
-        a[:,:,k] = P[:,:,k]/xi(b[:,:,k])
+    for k in range(R):
+        Err_q[i] = Err_q[i] + linalg.norm(u[:,:,k]*K(v[:,:,k]) - A[:,:,k], 1)
+        u[:,:,k] = A[:,:,k]/K(v[:,:,k])
 
-    q = np.zeros(N)
+    b = np.zeros(N)
+    for k in range(R):
+        b = b + lambd[k] * np.log(np.maximum(1e-19*np.ones(len(v[:,:,k])), v[:,:,k]*K(u[:,:,k])))
+    b = np.exp(b)
 
-    for k in range(K):
-        q = q + lambd[k] * np.log(np.maximum(1e-19*np.ones(len(b[:,:,k])), b[:,:,k]*xi(a[:,:,k])))
-
-    q = np.exp(q)
-
-    for k in range(K):
-        b[:,:,k] = q/xi(a[:,:,k])
+    for k in range(R):
+        v[:,:,k] = b/K(u[:,:,k])
 
 plt.figure(figsize=(7,5))
 plt.plot(np.log(Err_q),linewidth = 2)
