@@ -52,8 +52,6 @@
 - name: Optimization
   short: optim
   list:
-  - name: Gradient Descent Methods
-    rep: optim_1_gradient_descent.ipynb
   - name: Gradient Descent (by Laurent Condat)
     rep: optim_1bis_gradient_descent
   - name: Forward-Backward Splitting (by Laurent Condat)
