@@ -96,11 +96,11 @@ def perform_linprog(A,b,c,maxit=-1,tol=1e-10):
             t = B[p]
             B[p] = N[q]
 
+            q = int(q); # modified by GP: bug.
             if t >= n:
                 N = np.hstack((N[:q],N[(q+1):]))
             else:
                 N[q] = t
-                
         xb = xb + np.dot(D,b-np.dot(A[:,B],xb))  # iterative refinement
         I = np.where(xb < 0)[0]                  # must be due to rounding error
         if len(I) > 0:
