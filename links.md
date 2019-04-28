@@ -11,7 +11,6 @@ Links Related to Wavelet Processing
 
 * [Wavelet Tour of Signal Processing](www.wavelet-tour.com): The home page of the book.
 * [Wavelet digest](http://www.wavelet.org): A newsletter about wavelets.
-* [Amara's wavelet pages](http://www.amara.com/current/wavelet.html): Materials and links about wavelets.
 
 Compressed Sensing Ressources
 --------------------
