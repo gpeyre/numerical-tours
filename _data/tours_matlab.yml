@@ -163,6 +163,8 @@
     rep: optimaltransp_4_matching_sliced
   - name: Entropic Regularization of Optimal Transport
     rep: optimaltransp_5_entropic
+  - name: Advanced Topics on Sinkhorn Algorithm
+    rep: optimaltransp_6_entropic_adv
 
 - name: Machine Learning
   short: ml
