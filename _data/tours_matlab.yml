@@ -165,6 +165,8 @@
     rep: optimaltransp_5_entropic
   - name: Advanced Topics on Sinkhorn Algorithm
     rep: optimaltransp_6_entropic_adv
+  - name: Semi-discrete Optimal Transport
+    rep: optimaltransp_7_semidiscrete
 
 - name: Machine Learning
   short: ml
