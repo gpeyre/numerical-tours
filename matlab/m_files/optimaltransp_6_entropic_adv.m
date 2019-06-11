@@ -1,17 +1,7 @@
 %% Advanced Topics on Sinkhorn Algorithm
 % This numerical tour explore several extensions of the basic Sinkhorn
 % method. 
-
-perform_toolbox_installation('signal', 'general');
-
-%% Log-domain Sinkhorn 
-% For simplicity, we consider uniform distributions on point clouds, so
-% that the associated histograms are \( (a,b) \in \RR^n \times \RR^m\)
-% being constant \(1/n\) and \(1/m\). 
-
-n = 100;
-m = 200; 
-d = 2; % Dimension of the clouds.
+cd on of the clouds.
 a = ones(n,1)/n; 
 b = ones(1,m)/m;
 
