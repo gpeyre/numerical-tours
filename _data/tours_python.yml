@@ -127,7 +127,7 @@
   list:
   - name: PCA, Nearest-Neighbors and Clustering
     rep: ml_1_pca_nn
-  - name: Linear Regression and Kernel Methods
+  - name: Linear Regression, Lasso and Kernel Methods
     rep: ml_2_regression
   - name: Logistic Classification
     rep: ml_3_classification
@@ -137,3 +137,5 @@
     rep: ml_5_mlp
   - name: Deep Neural Networks
     rep: ml_6_nn
+  - name: Simplex Regression with Trend Filtering
+    rep: ml_7_trend_filtering
