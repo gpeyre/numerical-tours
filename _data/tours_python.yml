@@ -129,7 +129,7 @@
   list:
   - name: PCA, Nearest-Neighbors and Clustering
     rep: ml_1_pca_nn
-  - name: Linear Regression: Ridge and Lasso
+  - name: Linear Regression, Ridge and Lasso
     rep: ml_2_regression
   - name: Logistic Classification
     rep: ml_3_classification
