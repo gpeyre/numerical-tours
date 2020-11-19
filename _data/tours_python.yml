@@ -67,8 +67,8 @@
     rep: optim_3_condat_fb_duality
   - name: Douglas Rachford Proximal Splitting (by Laurent Condat)
     rep: optim_4_condat_dr
-  - name: Chambolle-Pock Primal-Dual Splitting Algorithm (by Laurent Condat)
-    rep: optim_5_condat_primal_dual
+  - name: Interior Point Methods
+    rep: optim_6_interior_points
 
 - name: Shapes
   short: shapes
