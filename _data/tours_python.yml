@@ -135,9 +135,11 @@
     rep: ml_3_classification
   - name: Stochastic Gradient descent
     rep: ml_4_sgd
+  - name: Simplex Regression with Trend Filtering
+    rep: ml_7_trend_filtering
   - name: Multi-layer Perceptron
     rep: ml_5_mlp
   - name: Deep Neural Networks
     rep: ml_6_nn
-  - name: Simplex Regression with Trend Filtering
-    rep: ml_7_trend_filtering
+  - name: Texture synthesis using deep convolutional network
+    rep: ml_8_deep_texture_synthesis.ipynb
