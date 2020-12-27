@@ -142,4 +142,4 @@
   - name: Deep Neural Networks
     rep: ml_6_nn
   - name: Texture synthesis using deep convolutional network
-    rep: ml_8_deep_texture_synthesis.ipynb
+    rep: ml_8_deep_texture_synthesis
