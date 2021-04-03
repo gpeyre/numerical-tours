@@ -122,6 +122,8 @@
     rep: optimaltransp_6_entropic_adv
   - name: Semi-discrete Optimal Transport
     rep: optimaltransp_7_semidiscrete
+  - name: Unbalanced Optimal Transport
+    rep: optimaltransp_8_unbalanced
 
 
 - name: Machine Learning
