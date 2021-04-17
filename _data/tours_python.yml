@@ -8,6 +8,8 @@
     rep: introduction_6_elementary_fr
   - name: Image Approximation with Fourier and Wavelets
     rep: introduction_4_fourier_wavelets
+  - name: Interactive Exploration of Image Approximation
+    rep: introduction_4_fourier_wavelets_interactive
   - name: Wavelet and DCT image compression
     rep: introduction_5_image_approx
 
