@@ -144,7 +144,7 @@
   - name: Multi-layer Perceptron
     rep: ml_5_mlp
   - name: Approximation using Multi-layers Perceptrons
-    rep: ml_5bis_mlp_approx.ipynb
+    rep: ml_5bis_mlp_approx
   - name: Deep Neural Networks
     rep: ml_6_nn
   - name: Texture Synthesis using Deep Neural Networks
