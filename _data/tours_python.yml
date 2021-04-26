@@ -142,9 +142,7 @@
   - name: Simplex Regression with Trend Filtering
     rep: ml_7_trend_filtering
   - name: Multi-layer Perceptron
-    rep: ml_5_mlp
-  - name: Approximation using Multi-layers Perceptrons
-    rep: ml_5bis_mlp_approx
+    rep: ml_5_mlp 
   - name: Deep Neural Networks
     rep: ml_6_nn
   - name: Texture Synthesis using Deep Neural Networks
