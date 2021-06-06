@@ -71,6 +71,8 @@
     rep: optim_4_condat_dr
   - name: Interior Point Methods
     rep: optim_6_interior_points
+  - name: Smooth Bilevel Programming for Sparse Regularization
+    rep: optim_7_noncvx_pro
 
 - name: Shapes
   short: shapes
@@ -148,4 +150,4 @@
   - name: Texture Synthesis using Deep Neural Networks
     rep: ml_8_deep_texture_synthesis
   - name: Particle Systems Evolutions
-    rep: ml_10_particle_system.ipynb
+    rep: ml_10_particle_system
