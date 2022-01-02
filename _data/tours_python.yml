@@ -54,6 +54,8 @@
     rep: inverse_5_inpainting_sparsity
   - name: Performance of Sparse Recovery Using L1 Minimization
     rep: sparsity_6_l1_recovery
+  - name: Matrix completion using trace norm regularization
+    rep: inverse_6_trace_norm_dr
 
 
 - name: Optimization
