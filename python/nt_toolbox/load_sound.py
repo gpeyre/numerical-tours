@@ -5,7 +5,7 @@ def load_sound(file, n0):
     
     x_raw = wv.open(file)
     n = x_raw.getnframes()
-    x = np.fromstring(x_raw.readframes(-1), 'Int16')
+    x = np.fromstring(x_raw.readframes(-1), 'int16')
     x_raw.close()
     
     if file[::-1][:8][::-1] == "bird.wav":
