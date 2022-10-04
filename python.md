@@ -18,7 +18,7 @@ These are the [Python](https://www.python.org/) tours, that can be browsed as HT
 	{% if tour.format == "html" %}
 		<li> <a href="{{ tour.rep }}"> {{ tour.name }} </a> </li>
 	{% else %}
-		<li> <a href="http://nbviewer.ipython.org/github/gpeyre/numerical-tours/blob/master/python/{{ tour.rep }}.ipynb"> {{ tour.name }} </a> </li>
+		<li> <a href="http://nbviewer.org/github/gpeyre/numerical-tours/blob/master/python/{{ tour.rep }}.ipynb"> {{ tour.name }} </a> </li>
 	{% endif %}
 {% endfor %}
 </ul>

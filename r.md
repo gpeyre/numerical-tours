@@ -18,7 +18,7 @@ These are the [R](https://www.r-project.org/) tours, that can be browsed as HTML
 	{% if tour.format == "html" %}
 		<li> <a href="{{ tour.rep }}"> {{ tour.name }} </a> </li>
 	{% else %}
-		<li> <a href="http://nbviewer.ipython.org/github/gpeyre/numerical-tours/blob/master/r/{{ tour.rep }}.ipynb"> {{ tour.name }} </a> </li>
+		<li> <a href="http://nbviewer.org/github/gpeyre/numerical-tours/blob/master/r/{{ tour.rep }}.ipynb"> {{ tour.name }} </a> </li>
 	{% endif %}
 {% endfor %}
 </ul>

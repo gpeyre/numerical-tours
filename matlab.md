@@ -31,9 +31,9 @@ These are the [Matlab](http://www.mathworks.fr/products/matlab/) tours, that can
 		&nbsp;&nbsp;
 		(<a href="{{ tour.rep }}">web</a>)
 	{% else %}
-		<a href="http://nbviewer.ipython.org/github/gpeyre/numerical-tours/blob/master/matlab/{{ tour.rep }}.ipynb"> {{ tour.name }} </a>
+		<a href="http://nbviewer.org/github/gpeyre/numerical-tours/blob/master/matlab/{{ tour.rep }}.ipynb"> {{ tour.name }} </a>
 		&nbsp;&nbsp;
-		(<a href="http://nbviewer.ipython.org/github/gpeyre/numerical-tours/blob/master/matlab/{{ tour.rep }}.ipynb">ipynb</a>|<a href="{{ tour.rep }}">web</a>)
+		(<a href="http://nbviewer.org/github/gpeyre/numerical-tours/blob/master/matlab/{{ tour.rep }}.ipynb">ipynb</a>|<a href="{{ tour.rep }}">web</a>)
 	{% endif %}
 	</li>
 {% endfor %}
