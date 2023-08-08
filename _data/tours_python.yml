@@ -155,3 +155,5 @@
     rep: ml_10_particle_system
   - name: Conformal Prediction
     rep: ml_11_conformal_prediction
+  - name: Denoising Diffusion Models
+    rep: ml_12_diffusion_models
