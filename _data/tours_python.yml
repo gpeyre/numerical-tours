@@ -123,7 +123,7 @@
   - name: Optimal Transport with Linear Programming
     rep: optimaltransp_1_linprog
   - name: Entropic Regularization of Optimal Transport
-    rep: optimaltransp_5_entropic
+    rep: optimaltransp_5_entropic_full
   - name: Advanced Topics on Sinkhorn Algorithm
     rep: optimaltransp_6_entropic_adv
   - name: Semi-discrete Optimal Transport
