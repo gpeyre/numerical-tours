@@ -35,10 +35,19 @@ for tour in tours:
     assert (root / tour['image'].lstrip('/')).stat().st_size > 1000
     assert (root / 'downloads' / (tour['slug']+'.ipynb')).is_file()
     text = page.read_text()
+    parsed = Elements(); parsed.feed(text)
+    headings = [(tag, attrs['id']) for tag, attrs in parsed.tags if tag in ['h1', 'h2', 'h3']]
+    assert sum(tag == 'h1' for tag, _ in headings) == 1, tour['slug']
+    heading_ids = [anchor for _, anchor in headings]
+    assert len(heading_ids) == len(set(heading_ids)), tour['slug']
+    contents = Elements(); contents.feed(text.split('<aside class="notebook-sidebar"', 1)[1].split('</aside>', 1)[0])
+    targets = [unquote(attrs['href'][1:]) for tag, attrs in contents.tags if tag == 'a']
+    assert targets == heading_ids, (tour['slug'], 'Contents must link to every heading in order')
+    assert '/assets/css/notebook.css' in text and '/assets/js/notebook.js' in text
     assert 'Open in Colab' in text and tour['colab'] in text
     assert 'References' in text
     assert 'http://cdn.mathjax.org/' not in text
     notebook = json.loads((root / 'downloads' / (tour['slug']+'.ipynb')).read_text())
     assert not any(o.get('output_type') == 'error' for c in notebook['cells'] for o in c.get('outputs', []))
     assert all(c['execution_count'] is not None for c in notebook['cells'] if c['cell_type'] == 'code')
-print(f'Passed: {len(tours)} reading pages, previews, downloads, Colab links, and primary navigation routes.')
+print(f'Passed: {len(tours)} reading pages, section navigation, previews, downloads, Colab links, and primary navigation routes.')

@@ -13087,8 +13087,8 @@ div#notebook {
     </script>
 <!-- End of mathjax configuration --><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/assets/css/tours.css"><style>
 body{background:#fff;padding:0;font-family:system-ui,-apple-system,sans-serif;font-size:16px;color:#192d43}#notebook{padding:25px 20px 70px}#notebook-container{max-width:1000px;width:100%;padding:20px 35px;box-shadow:none}div.text_cell_render{font-family:inherit;font-size:16px;line-height:1.75}div.text_cell_render h1{font-family:Georgia,serif;font-size:2.7rem;font-weight:400;line-height:1.18;color:#12243a;margin-top:10px}div.text_cell_render h2{font-family:Georgia,serif;font-size:1.85rem;font-weight:400;border-top:1px solid #dce4ec;padding-top:25px;margin-top:30px}div.text_cell_render h3{font-size:1.25rem}div.input_area{border:1px solid #dce4ec;background:#f5f8fb;border-radius:5px;padding:10px}div.input_area pre{font-size:13px;line-height:1.55}div.output_area pre{font-size:13px}div.output_subarea{max-width:100%}div.output_png img{max-width:100%;height:auto}a{color:#185bce}div.cell{padding:8px 0}div.output_stderr{background:#fff6e0;border-left:3px solid #bc8100}.celltoolbar{display:none}@media(max-width:650px){#notebook{padding:15px 8px}#notebook-container{padding:10px 8px}div.text_cell_render h1{font-size:2rem}div.text_cell_render{padding:8px 5px}div.input_area pre{font-size:12px}.rendered_html table{display:block;overflow-x:auto}}
-</style></head>
-<body><a class="skip-link" href="#main">Skip to notebook</a><header class="site-header"><div class="header-inner"><a class="brand" href="/"><span class="brand-mark" aria-hidden="true">∿</span>Numerical Tours</a><nav aria-label="Main navigation"><a href="/python/">Python tours</a><a href="/installation_python/">Getting started</a><a href="/archive/">Other languages</a></nav></div></header><div class="notebook-toolbar"><a href="/python/">← All Python tours</a><div class="notebook-actions"><a href="/downloads/ml_4_sgd.ipynb" download>Download notebook</a><a class="colab-link" href="https://colab.research.google.com/github/gpeyre/numerical-tours/blob/master/python/ml_4_sgd.ipynb"><span class="colab-icon" aria-hidden="true">co</span> Open in Colab</a></div></div><main id="main" aria-label="Stochastic Gradient Descent">
+</style><link rel="stylesheet" href="/assets/css/notebook.css?v=2"><script src="/assets/js/notebook.js?v=2" defer></script></head>
+<body><a class="skip-link" href="#main">Skip to notebook</a><header class="site-header"><div class="header-inner"><a class="brand" href="/"><span class="brand-mark" aria-hidden="true">∿</span>Numerical Tours</a><nav aria-label="Main navigation"><a href="/python/">Python tours</a><a href="/installation_python/">Getting started</a><a href="/archive/">Other languages</a></nav></div></header><div class="notebook-toolbar"><a href="/python/">← All Python tours</a><div class="notebook-actions"><a href="/downloads/ml_4_sgd.ipynb" download>Download notebook</a><a class="colab-link" href="https://colab.research.google.com/github/gpeyre/numerical-tours/blob/master/python/ml_4_sgd.ipynb"><span class="colab-icon" aria-hidden="true">co</span> Open in Colab</a></div></div><div class="notebook-layout"><main id="main" aria-label="Stochastic Gradient Descent">
 <main>
 <div class="border-box-sizing" id="notebook" tabindex="-1">
 <div class="container" id="notebook-container">
@@ -13586,7 +13586,7 @@ Separate the features $X$ from the data $y$ to predict information.</p>
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=cell-025"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Batch-Gradient-Descent-(BGD)">Batch Gradient Descent (BGD)<a class="anchor-link" href="#Batch-Gradient-Descent-(BGD)">¶</a></h2><p>We first test the usual (batch) gradient descent (BGD) on the problem of
+<h2 id="Batch-Gradient-Descent-(BGD)">Batch Gradient Descent (BGD)<a class="anchor-link" href="#Batch-Gradient-Descent-%28BGD%29">¶</a></h2><p>We first test the usual (batch) gradient descent (BGD) on the problem of
 supervised logistic classification.</p>
 <p>We refer to the dedicated numerical tour on logistic classification for
 background and more details about the derivations of the energy and its
@@ -13676,7 +13676,7 @@ plot in log domain to illustrate the linear rate).</p>
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=cell-030"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Stochastic-Gradient-Descent-(SGD)">Stochastic Gradient Descent (SGD)<a class="anchor-link" href="#Stochastic-Gradient-Descent-(SGD)">¶</a></h2><p>As any empirical risk minimization procedure, the
+<h2 id="Stochastic-Gradient-Descent-(SGD)">Stochastic Gradient Descent (SGD)<a class="anchor-link" href="#Stochastic-Gradient-Descent-%28SGD%29">¶</a></h2><p>As any empirical risk minimization procedure, the
 logistic classification minimization problem can be written as
 $$ \umin{w} E(w) = \frac{1}{n} \sum_i E_i(w) \qwhereq E_i(w) = L(\dotp{x_i}{w},y_i). $$</p>
 <p>For very large $n$ (which could in theory even be infinite, in which case the sum needs to be replaced
@@ -13804,7 +13804,7 @@ Explore different values for $ (\ell_0,\tau_0) $.</p>
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=cell-037"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Stochastic-Gradient-Descent-with-Averaging-(SGA)">Stochastic Gradient Descent with Averaging (SGA)<a class="anchor-link" href="#Stochastic-Gradient-Descent-with-Averaging-(SGA)">¶</a></h2><p>Stochastic gradient descent is slow because of the fast decay of
+<h2 id="Stochastic-Gradient-Descent-with-Averaging-(SGA)">Stochastic Gradient Descent with Averaging (SGA)<a class="anchor-link" href="#Stochastic-Gradient-Descent-with-Averaging-%28SGA%29">¶</a></h2><p>Stochastic gradient descent is slow because of the fast decay of
 $\tau_\ell$ toward zero.</p>
 <p>To improve somehow the convergence speed, it is possible to average the past
 iterate, i.e. run a "classical" SGD on auxiliary variables $ (\tilde w_\ell)_\ell$
@@ -13888,7 +13888,7 @@ Display the evolution of the energy $E(w_\ell)$.</p>
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=cell-041"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Stochastic-Averaged-Gradient-Descent-(SAG)">Stochastic Averaged Gradient Descent (SAG)<a class="anchor-link" href="#Stochastic-Averaged-Gradient-Descent-(SAG)">¶</a></h2><p>For problem size $n$ where the dataset (of size $n \times p$) can
+<h2 id="Stochastic-Averaged-Gradient-Descent-(SAG)">Stochastic Averaged Gradient Descent (SAG)<a class="anchor-link" href="#Stochastic-Averaged-Gradient-Descent-%28SAG%29">¶</a></h2><p>For problem size $n$ where the dataset (of size $n \times p$) can
 fully fit into memory, it is possible to further improve the SGA method
 by bookeeping the previous gradient. This gives rise to the
 <a href="https://arxiv.org/pdf/1309.2388">Stochastic Averaged Gradient Descent (SAG)</a> algorithm.</p>
@@ -14010,5 +14010,5 @@ Display the evolution of the energy $E(w_\ell)$.</p>
 </div>
 </div>
 </main>
-</main><footer class="site-footer"><a href="/python/">Explore another tour →</a><a href="/about/">Gabriel Peyré and contributors</a></footer></body>
+</main><aside class="notebook-sidebar" aria-label="Tour contents"><details class="notebook-contents" open><summary>On this page</summary><nav aria-label="Sections in this tour"><ol><li class="toc-level-1"><a href="#Stochastic-Gradient-Descent">Overview</a></li><li class="toc-level-2"><a href="#Run-this-tour">Run this tour</a></li><li class="toc-level-2"><a href="#Simple-Example">Simple Example</a></li><li class="toc-level-2"><a href="#Dataset-Loading">Dataset Loading</a></li><li class="toc-level-2"><a href="#Batch-Gradient-Descent-%28BGD%29">Batch Gradient Descent (BGD)</a></li><li class="toc-level-2"><a href="#Stochastic-Gradient-Descent-%28SGD%29">Stochastic Gradient Descent (SGD)</a></li><li class="toc-level-2"><a href="#Stochastic-Gradient-Descent-with-Averaging-%28SGA%29">Stochastic Gradient Descent with Averaging (SGA)</a></li><li class="toc-level-2"><a href="#Stochastic-Averaged-Gradient-Descent-%28SAG%29">Stochastic Averaged Gradient Descent (SAG)</a></li><li class="toc-level-2"><a href="#References-and-further-reading">References and further reading</a></li></ol></nav></details></aside></div><footer class="site-footer"><a href="/python/">Explore another tour →</a><a href="/about/">Gabriel Peyré and contributors</a></footer></body>
 </html>

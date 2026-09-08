@@ -13087,8 +13087,8 @@ div#notebook {
     </script>
 <!-- End of mathjax configuration --><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/assets/css/tours.css"><style>
 body{background:#fff;padding:0;font-family:system-ui,-apple-system,sans-serif;font-size:16px;color:#192d43}#notebook{padding:25px 20px 70px}#notebook-container{max-width:1000px;width:100%;padding:20px 35px;box-shadow:none}div.text_cell_render{font-family:inherit;font-size:16px;line-height:1.75}div.text_cell_render h1{font-family:Georgia,serif;font-size:2.7rem;font-weight:400;line-height:1.18;color:#12243a;margin-top:10px}div.text_cell_render h2{font-family:Georgia,serif;font-size:1.85rem;font-weight:400;border-top:1px solid #dce4ec;padding-top:25px;margin-top:30px}div.text_cell_render h3{font-size:1.25rem}div.input_area{border:1px solid #dce4ec;background:#f5f8fb;border-radius:5px;padding:10px}div.input_area pre{font-size:13px;line-height:1.55}div.output_area pre{font-size:13px}div.output_subarea{max-width:100%}div.output_png img{max-width:100%;height:auto}a{color:#185bce}div.cell{padding:8px 0}div.output_stderr{background:#fff6e0;border-left:3px solid #bc8100}.celltoolbar{display:none}@media(max-width:650px){#notebook{padding:15px 8px}#notebook-container{padding:10px 8px}div.text_cell_render h1{font-size:2rem}div.text_cell_render{padding:8px 5px}div.input_area pre{font-size:12px}.rendered_html table{display:block;overflow-x:auto}}
-</style></head>
-<body><a class="skip-link" href="#main">Skip to notebook</a><header class="site-header"><div class="header-inner"><a class="brand" href="/"><span class="brand-mark" aria-hidden="true">∿</span>Numerical Tours</a><nav aria-label="Main navigation"><a href="/python/">Python tours</a><a href="/installation_python/">Getting started</a><a href="/archive/">Other languages</a></nav></div></header><div class="notebook-toolbar"><a href="/python/">← All Python tours</a><div class="notebook-actions"><a href="/downloads/sparsity_4_dictionary_learning.ipynb" download>Download notebook</a><a class="colab-link" href="https://colab.research.google.com/github/gpeyre/numerical-tours/blob/master/python/sparsity_4_dictionary_learning.ipynb"><span class="colab-icon" aria-hidden="true">co</span> Open in Colab</a></div></div><main id="main" aria-label="Learning Sparse Dictionaries">
+</style><link rel="stylesheet" href="/assets/css/notebook.css?v=2"><script src="/assets/js/notebook.js?v=2" defer></script></head>
+<body><a class="skip-link" href="#main">Skip to notebook</a><header class="site-header"><div class="header-inner"><a class="brand" href="/"><span class="brand-mark" aria-hidden="true">∿</span>Numerical Tours</a><nav aria-label="Main navigation"><a href="/python/">Python tours</a><a href="/installation_python/">Getting started</a><a href="/archive/">Other languages</a></nav></div></header><div class="notebook-toolbar"><a href="/python/">← All Python tours</a><div class="notebook-actions"><a href="/downloads/sparsity_4_dictionary_learning.ipynb" download>Download notebook</a><a class="colab-link" href="https://colab.research.google.com/github/gpeyre/numerical-tours/blob/master/python/sparsity_4_dictionary_learning.ipynb"><span class="colab-icon" aria-hidden="true">co</span> Open in Colab</a></div></div><div class="notebook-layout"><main id="main" aria-label="Learning Sparse Dictionaries">
 <main>
 <div class="border-box-sizing" id="notebook" tabindex="-1">
 <div class="container" id="notebook-container">
@@ -13557,7 +13557,7 @@ The initial dictionary $D$ is computed by a random selection of patches, and we 
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=cell-029"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Update-of-the-Coefficients-$X$">Update of the Coefficients $X$<a class="anchor-link" href="#Update-of-the-Coefficients-$X$">¶</a></h2><p>The optimization on the coefficients $X$ requires, for each $y_j =
+<h2 id="Update-of-the-Coefficients-$X$">Update of the Coefficients $X$<a class="anchor-link" href="#Update-of-the-Coefficients-%24X%24">¶</a></h2><p>The optimization on the coefficients $X$ requires, for each $y_j =
 Y_{\cdot,j}$ to compute $x_j = X_{\cdot,j}$ that solves
 $$ \umin{ \norm{x_j}_0 \leq k } \frac{1}{2} \norm{y-D x_j}^2. $$</p>
 <p>This is a non-smooth and non-convex minimization, that can be shown to be
@@ -13639,7 +13639,7 @@ $x_j$.</p>
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=cell-034"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Update-the-Dictionary-$D$">Update the Dictionary $D$<a class="anchor-link" href="#Update-the-Dictionary-$D$">¶</a></h2><p>Once the sparse coefficients $X$ have been computed, one
+<h2 id="Update-the-Dictionary-$D$">Update the Dictionary $D$<a class="anchor-link" href="#Update-the-Dictionary-%24D%24">¶</a></h2><p>Once the sparse coefficients $X$ have been computed, one
 can udpate the dictionary. This is achieve by performing the minimization
 $$ \umin{D \in \Dd} \frac{1}{2}\norm{Y-D X}^2. $$</p>
 <p>One can perform this minimization with a projected gradient descent
@@ -13803,5 +13803,5 @@ dictionary update.</p>
 </div>
 </div>
 </main>
-</main><footer class="site-footer"><a href="/python/">Explore another tour →</a><a href="/about/">Gabriel Peyré and contributors</a></footer></body>
+</main><aside class="notebook-sidebar" aria-label="Tour contents"><details class="notebook-contents" open><summary>On this page</summary><nav aria-label="Sections in this tour"><ol><li class="toc-level-1"><a href="#Learning-Sparse-Dictionaries">Overview</a></li><li class="toc-level-2"><a href="#Run-this-tour">Run this tour</a></li><li class="toc-level-2"><a href="#Dictionary-Learning-as-a-Non-convex-Optimization-Problem">Dictionary Learning as a Non-convex Optimization Problem</a></li><li class="toc-level-2"><a href="#Patch-Extraction">Patch Extraction</a></li><li class="toc-level-2"><a href="#Update-of-the-Coefficients-%24X%24">Update of the Coefficients $X$</a></li><li class="toc-level-2"><a href="#Update-the-Dictionary-%24D%24">Update the Dictionary $D$</a></li><li class="toc-level-2"><a href="#References-and-further-reading">References and further reading</a></li></ol></nav></details></aside></div><footer class="site-footer"><a href="/python/">Explore another tour →</a><a href="/about/">Gabriel Peyré and contributors</a></footer></body>
 </html>

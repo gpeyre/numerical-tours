@@ -20,6 +20,8 @@ The home page and `/python/` render the same catalogue from `_data/python_catalo
 
 The `python/<tour>/index.html` pages are generated static reading versions. Do not edit their code or prose directly; update and execute the source notebook, then export it again. The first notebook cell supports local and Colab execution. Colab buttons point to `master`, so deploy the tested content before deploying this branch.
 
+Notebook headings and the responsive section navigation use `assets/css/notebook.css` and `assets/js/notebook.js`. The exporter generates permanent heading anchors and a static contents list; JavaScript highlights the current section and collapses the contents menu on smaller screens. The navigation links also work without JavaScript.
+
 The main catalogue presents 58 distinct Python tours. Four historical notebook variants remain in the content branch. Unfinished conversions in `python/todo/` are not advertised as working tours.
 
 ## Other languages
@@ -30,6 +32,7 @@ The main catalogue presents 58 distinct Python tours. Four historical notebook v
 
 ```sh
 node maintenance/test-search.cjs
+node maintenance/test-notebook-navigation.cjs
 python maintenance/check_site.py _site
 ```
 

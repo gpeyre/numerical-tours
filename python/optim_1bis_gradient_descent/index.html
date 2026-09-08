@@ -13087,8 +13087,8 @@ div#notebook {
     </script>
 <!-- End of mathjax configuration --><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/assets/css/tours.css"><style>
 body{background:#fff;padding:0;font-family:system-ui,-apple-system,sans-serif;font-size:16px;color:#192d43}#notebook{padding:25px 20px 70px}#notebook-container{max-width:1000px;width:100%;padding:20px 35px;box-shadow:none}div.text_cell_render{font-family:inherit;font-size:16px;line-height:1.75}div.text_cell_render h1{font-family:Georgia,serif;font-size:2.7rem;font-weight:400;line-height:1.18;color:#12243a;margin-top:10px}div.text_cell_render h2{font-family:Georgia,serif;font-size:1.85rem;font-weight:400;border-top:1px solid #dce4ec;padding-top:25px;margin-top:30px}div.text_cell_render h3{font-size:1.25rem}div.input_area{border:1px solid #dce4ec;background:#f5f8fb;border-radius:5px;padding:10px}div.input_area pre{font-size:13px;line-height:1.55}div.output_area pre{font-size:13px}div.output_subarea{max-width:100%}div.output_png img{max-width:100%;height:auto}a{color:#185bce}div.cell{padding:8px 0}div.output_stderr{background:#fff6e0;border-left:3px solid #bc8100}.celltoolbar{display:none}@media(max-width:650px){#notebook{padding:15px 8px}#notebook-container{padding:10px 8px}div.text_cell_render h1{font-size:2rem}div.text_cell_render{padding:8px 5px}div.input_area pre{font-size:12px}.rendered_html table{display:block;overflow-x:auto}}
-</style></head>
-<body><a class="skip-link" href="#main">Skip to notebook</a><header class="site-header"><div class="header-inner"><a class="brand" href="/"><span class="brand-mark" aria-hidden="true">∿</span>Numerical Tours</a><nav aria-label="Main navigation"><a href="/python/">Python tours</a><a href="/installation_python/">Getting started</a><a href="/archive/">Other languages</a></nav></div></header><div class="notebook-toolbar"><a href="/python/">← All Python tours</a><div class="notebook-actions"><a href="/downloads/optim_1bis_gradient_descent.ipynb" download>Download notebook</a><a class="colab-link" href="https://colab.research.google.com/github/gpeyre/numerical-tours/blob/master/python/optim_1bis_gradient_descent.ipynb"><span class="colab-icon" aria-hidden="true">co</span> Open in Colab</a></div></div><main id="main" aria-label="Gradient and Projected Gradient Methods">
+</style><link rel="stylesheet" href="/assets/css/notebook.css?v=2"><script src="/assets/js/notebook.js?v=2" defer></script></head>
+<body><a class="skip-link" href="#main">Skip to notebook</a><header class="site-header"><div class="header-inner"><a class="brand" href="/"><span class="brand-mark" aria-hidden="true">∿</span>Numerical Tours</a><nav aria-label="Main navigation"><a href="/python/">Python tours</a><a href="/installation_python/">Getting started</a><a href="/archive/">Other languages</a></nav></div></header><div class="notebook-toolbar"><a href="/python/">← All Python tours</a><div class="notebook-actions"><a href="/downloads/optim_1bis_gradient_descent.ipynb" download>Download notebook</a><a class="colab-link" href="https://colab.research.google.com/github/gpeyre/numerical-tours/blob/master/python/optim_1bis_gradient_descent.ipynb"><span class="colab-icon" aria-hidden="true">co</span> Open in Colab</a></div></div><div class="notebook-layout"><main id="main" aria-label="Gradient and Projected Gradient Methods">
 <main>
 <div class="border-box-sizing" id="notebook" tabindex="-1">
 <div class="container" id="notebook-container">
@@ -13751,19 +13751,19 @@ in Matlab, this would be <code>f=@(x)(x(1)^2+eta*x(2)^2)/2;</code></font></p>
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=cell-041"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3>
+<h3 id="__Worked-example-re-run-the-previous-cells-with-different-values-of-tau-try-0-25-0-225-0-2-0-125-0-05-__">
 <font color="magenta">
 __Worked example: re-run the previous cells with different values of tau
 (try 0.25,0.225,0.2,0.125,0.05).__</font></h3>
-<h3><font color="magenta">__Also try different initial estimates.__</font></h3>
-<h3><font color="magenta">__Also try different values of the anisotropy eta__.
+<h3 id="__Also-try-different-initial-estimates-__"><font color="magenta">__Also try different initial estimates.__</font></h3>
+<h3 id="__Also-try-different-values-of-the-anisotropy-eta__"><font color="magenta">__Also try different values of the anisotropy eta__.
 </font></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=cell-042"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Gradient-descent-in-large-dimension:-image-restoration">Gradient descent in large dimension: image restoration<a class="anchor-link" href="#Gradient-descent-in-large-dimension:-image-restoration">¶</a></h2>
+<h2 id="Gradient-descent-in-large-dimension:-image-restoration">Gradient descent in large dimension: image restoration<a class="anchor-link" href="#Gradient-descent-in-large-dimension%3A-image-restoration">¶</a></h2>
 </div>
 </div>
 </div>
@@ -14108,7 +14108,7 @@ Note we are now looking for an unknown $x$ which lives in a Hilbert space of dim
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=cell-069"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3>
+<h3 id="__Worked-example-write-the-code-of-the-function-Grad_f-__">
 <font color="magenta">
 __Worked example: write the code of the function Grad_f.__</font></h3>
 </div>
@@ -14133,7 +14133,7 @@ __Worked example: write the code of the function Grad_f.__</font></h3>
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=cell-072"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3>
+<h3 id="__Worked-example-write-the-code-of-the-function-GradDescent-__">
 <font color="magenta">
 __Worked example: write the code of the function GradDescent.__</font></h3>
 </div>
@@ -14299,7 +14299,7 @@ $$ x^{(k+1)} = P_\Omega\big(x^{(k)} - \tau \nabla f(x^{(k)})\big), $$</p>
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=cell-087"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3>
+<h3 id="__Worked-example-write-the-code-of-the-function-Grad_f-__-2">
 <font color="magenta">
 __Worked example: write the code of the function Grad_f.__</font></h3>
 </div>
@@ -14338,7 +14338,7 @@ __Worked example: write the code of the function Grad_f.__</font></h3>
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=cell-091"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3>
+<h3 id="__Worked-example-write-the-code-of-the-function-Grad_f-__-3">
 <font color="magenta">
 __Worked example: write the code of the function Grad_f.__</font></h3>
 </div>
@@ -14425,5 +14425,6 @@ __Worked example: write the code of the function Grad_f.__</font></h3>
 </div>
 </div>
 </main>
-</main><footer class="site-footer"><a href="/python/">Explore another tour →</a><a href="/about/">Gabriel Peyré and contributors</a></footer></body>
+</main><aside class="notebook-sidebar" aria-label="Tour contents"><details class="notebook-contents" open><summary>On this page</summary><nav aria-label="Sections in this tour"><ol><li class="toc-level-1"><a href="#Gradient-and-Projected-Gradient-Methods">Overview</a></li><li class="toc-level-2"><a href="#Run-this-tour">Run this tour</a></li><li class="toc-level-2"><a href="#Gradient-descent-in-2-D">Gradient descent in 2-D</a></li><li class="toc-level-3"><a href="#__Worked-example-re-run-the-previous-cells-with-different-values-of-tau-try-0-25-0-225-0-2-0-125-0-05-__">__Worked example: re-run the previous cells with different values of tau
+(try 0.25,0.225,0.2,0.125,0.05).__</a></li><li class="toc-level-3"><a href="#__Also-try-different-initial-estimates-__">__Also try different initial estimates.__</a></li><li class="toc-level-3"><a href="#__Also-try-different-values-of-the-anisotropy-eta__">__Also try different values of the anisotropy eta__.</a></li><li class="toc-level-2"><a href="#Gradient-descent-in-large-dimension%3A-image-restoration">Gradient descent in large dimension: image restoration</a></li><li class="toc-level-2"><a href="#Image-Denoising">Image Denoising</a></li><li class="toc-level-3"><a href="#__Worked-example-write-the-code-of-the-function-Grad_f-__">__Worked example: write the code of the function Grad_f.__</a></li><li class="toc-level-3"><a href="#__Worked-example-write-the-code-of-the-function-GradDescent-__">__Worked example: write the code of the function GradDescent.__</a></li><li class="toc-level-2"><a href="#Projected-Gradient-Descent">Projected Gradient Descent</a></li><li class="toc-level-2"><a href="#Image-Inpainting-by-Projected-Gradient-Descent">Image Inpainting by Projected Gradient Descent</a></li><li class="toc-level-3"><a href="#__Worked-example-write-the-code-of-the-function-Grad_f-__-2">__Worked example: write the code of the function Grad_f.__</a></li><li class="toc-level-3"><a href="#__Worked-example-write-the-code-of-the-function-Grad_f-__-3">__Worked example: write the code of the function Grad_f.__</a></li><li class="toc-level-2"><a href="#References-and-further-reading">References and further reading</a></li></ol></nav></details></aside></div><footer class="site-footer"><a href="/python/">Explore another tour →</a><a href="/about/">Gabriel Peyré and contributors</a></footer></body>
 </html>

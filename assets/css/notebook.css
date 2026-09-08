@@ -1,0 +1,93 @@
+/* Restore readable rem sizing after the classic notebook template's 10px root. */
+html { font-size: 100%; }
+.notebook-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 240px;
+  gap: 32px;
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 0 28px;
+  align-items: start;
+}
+.notebook-layout > main { min-width: 0; }
+.notebook-layout #notebook { padding: 25px 0 70px; overflow: visible; }
+.notebook-layout #notebook-container { padding: 20px 12px; }
+#notebook-container div.text_cell_render h1 {
+  color: #12243a;
+  font-size: clamp(2.2rem, 3.5vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+#notebook-container div.text_cell_render h2 {
+  color: #12243a;
+  font-family: var(--sans);
+  font-size: 1.75rem;
+  font-weight: 750;
+  line-height: 1.3;
+  letter-spacing: -.025em;
+  background: #edf3fc;
+  border: 0;
+  border-left: 5px solid #185bce;
+  border-radius: 0 5px 5px 0;
+  padding: 16px 20px;
+  margin: 42px 0 22px;
+}
+#notebook-container div.text_cell_render h3 {
+  color: #164a91;
+  font-family: var(--sans);
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.4;
+  border-bottom: 2px solid #dce4ec;
+  padding-bottom: 10px;
+  margin: 30px 0 18px;
+}
+#notebook-container :is(h1, h2, h3) { scroll-margin-top: 28px; }
+#notebook-container :is(h1, h2, h3):target { outline: 2px solid #185bce; outline-offset: 6px; }
+.notebook-sidebar { position: sticky; top: 24px; margin: 46px 0 32px; }
+.notebook-contents { border-left: 1px solid #dce4ec; padding-left: 18px; }
+.notebook-contents summary {
+  color: #12243a;
+  font-size: .875rem;
+  font-weight: 750;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 8px 0 12px;
+}
+.notebook-contents summary:focus-visible { outline: 3px solid #e29618; outline-offset: 4px; }
+.notebook-contents nav { max-height: calc(100vh - 140px); overflow-y: auto; overscroll-behavior: contain; }
+.notebook-contents ol { margin: 0; padding: 0; list-style: none; }
+.notebook-contents li { margin: 3px 0; padding: 0; }
+.notebook-contents a {
+  display: block;
+  border-left: 3px solid transparent;
+  border-radius: 0 4px 4px 0;
+  padding: 8px 10px;
+  font-size: .875rem;
+  line-height: 1.45;
+  color: #40566d;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.notebook-contents .toc-level-3 a { padding-left: 23px; }
+.notebook-contents a:hover { color: #124cad; background: #f0f5fc; }
+.notebook-contents a[aria-current="location"] { color: #124cad; background: #e8f0ff; border-left-color: #185bce; font-weight: 700; }
+@media (max-width: 1050px) {
+  .notebook-layout { display: flex; flex-direction: column; gap: 0; padding: 0 20px; }
+  .notebook-layout > main { width: 100%; }
+  .notebook-sidebar { order: -1; position: static; width: 100%; margin: 20px 0 0; }
+  .notebook-contents { background: #f5f8fb; border: 1px solid #dce4ec; border-radius: 6px; padding: 4px 16px; }
+  .notebook-contents nav { max-height: 45vh; padding-bottom: 10px; }
+}
+@media (max-width: 650px) {
+  .notebook-layout { padding: 0 12px; }
+  .notebook-layout #notebook-container { padding: 10px 0; }
+  #notebook-container div.text_cell_render h2 { font-size: 1.5rem; padding: 13px 15px; }
+  #notebook-container :is(h1, h2, h3) { overflow-wrap: anywhere; }
+}
+@media print {
+  .notebook-layout { display: block; padding: 0; }
+  .notebook-sidebar { display: none; }
+  #notebook-container div.text_cell_render h2 { break-after: avoid; background: none; }
+}
