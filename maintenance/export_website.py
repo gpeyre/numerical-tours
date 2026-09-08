@@ -113,7 +113,9 @@ body{background:#fff;padding:0;font-family:system-ui,-apple-system,sans-serif;fo
         )
         destination = site / "python" / slug
         destination.mkdir(parents=True, exist_ok=True)
-        (destination / "index.html").write_text(body)
+        (destination / "index.html").write_text(
+            "\n".join(line.rstrip() for line in body.splitlines()) + "\n"
+        )
         (site / "downloads").mkdir(exist_ok=True)
         shutil.copy2(executed, site / "downloads" / source.name)
         data.append(
