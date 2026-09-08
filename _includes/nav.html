@@ -1,55 +1,12 @@
-<!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{ site.baseurl }}/">Home</a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-
-
-                <li>
-                    <a href="{{ site.baseurl }}/python">Python</a>
-                </li>
-                  <li>
-                        <a href="{{ site.baseurl }}/matlab">Matlab</a>
-                  </li>
-                <li>
-                    <a href="{{ site.baseurl }}/julia">Julia</a>
-                </li>
-                <li>
-                    <a href="{{ site.baseurl }}/r">R</a>
-                </li>
-                <li>
-                    <a href="https://github.com/gpeyre/numerical-tours">GitHub</a>
-                </li>
-                <li>
-                    <a href="{{ site.baseurl }}/about">About</a>
-                </li>
-                <li>
-                    <a href="http://mathematical-tours.github.io">Mathematical Tours</a>
-                </li>
-
-                <!--
-
-                {% for page in site.pages %}
-                <li>
-                    {% if page.title %}<a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>{% endif %}
-                </li>
-                {% endfor %}
-                -->
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
-</nav>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="{{ '/' | relative_url }}" aria-label="Numerical Tours home"><span class="brand-mark" aria-hidden="true">∿</span><span>Numerical<span class="brand-light"> Tours</span></span></a>
+    <nav aria-label="Main navigation">
+      <a href="{{ '/python/' | relative_url }}" {% if page.catalog %}aria-current="page"{% endif %}>Python tours</a>
+      <a href="{{ '/installation_python/' | relative_url }}">Getting started</a>
+      <a href="{{ '/archive/' | relative_url }}">Other languages</a>
+      <a href="{{ '/about/' | relative_url }}">About</a>
+      <a class="nav-source" href="https://github.com/gpeyre/numerical-tours">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </div>
+</header>

@@ -1,9 +1,12 @@
 ---
 layout: page
-title: "Matlab's tours"
+title: "MATLAB archive"
 description: "Numerical Tours in Matlab"
 header-img: "img/hokusai-6.jpg"
 ---
+
+<div class="archive-notice">This is the MATLAB collection. For complete Python walkthroughs, visit the <a href="{{ '/python/' | relative_url }}">Python tours</a>. <a href="{{ '/archive/' | relative_url }}">All language archives →</a></div>
+
 
 These are the [Matlab](http://www.mathworks.fr/products/matlab/) tours, that can be browsed as HTML pages, but can also be downloaded as iPython notebooks. Please read the [installation page](../installation_matlab/) for more information about how to run these tours. A lot of Matlab tours are also compatible with [Scilab](http://www.scilab.org/) and with [GNU Octave](https://www.gnu.org/software/octave/).
 
@@ -31,9 +34,9 @@ These are the [Matlab](http://www.mathworks.fr/products/matlab/) tours, that can
 		&nbsp;&nbsp;
 		(<a href="{{ tour.rep }}">web</a>)
 	{% else %}
-		<a href="http://nbviewer.org/github/gpeyre/numerical-tours/blob/master/matlab/{{ tour.rep }}.ipynb"> {{ tour.name }} </a>
+		<a href="https://nbviewer.org/github/gpeyre/numerical-tours/blob/master/matlab/{{ tour.rep }}.ipynb"> {{ tour.name }} </a>
 		&nbsp;&nbsp;
-		(<a href="http://nbviewer.org/github/gpeyre/numerical-tours/blob/master/matlab/{{ tour.rep }}.ipynb">ipynb</a>|<a href="{{ tour.rep }}">web</a>)
+		(<a href="https://nbviewer.org/github/gpeyre/numerical-tours/blob/master/matlab/{{ tour.rep }}.ipynb">ipynb</a>|<a href="{{ tour.rep }}">web</a>)
 	{% endif %}
 	</li>
 {% endfor %}

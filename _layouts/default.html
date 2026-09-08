@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<!doctype html>
+<html lang="{{ page.lang | default: 'en' }}">
 {% include head.html %}
-
 <body>
-
-    {% include nav.html %}
-
-    {{ content }}
-
-    {% include footer.html %}
-
+<a class="skip-link" href="#main">Skip to content</a>
+{% include nav.html %}
+{{ content }}
+{% include footer.html %}
 </body>
-
 </html>

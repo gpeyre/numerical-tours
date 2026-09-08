@@ -1,17 +1,17 @@
 # Usign the Clean Blog theme
 
-title: A Numerical Tour of Data Science
+title: Numerical Tours
 email: gabriel.peyre@ceremade.dauphine.fr
 description: > # this means to ignore newlines until "baseurl:"
-  The Numerical Tours of Data Sciences, by Gabriel Peyré, gather Matlab, Python and Julia experiments to explore modern data science.
+  Complete Python experiments in mathematical data science, imaging, optimization, learning, and geometry, by Gabriel Peyré and contributors.
 baseurl: ""
-url: "www.numerical-tours.com"
+url: "https://www.numerical-tours.com"
 github_username:  gpeyre
 
-gems: [jekyll-paginate]
+plugins: [jekyll-paginate]
 
 # Build settings
 markdown: kramdown
 permalink: pretty
 paginate: 5
-exclude: ["node_modules"]
+exclude: ["node_modules", "maintenance", "Gemfile", "Gemfile.lock", "README.md", "reports", "vendor"]

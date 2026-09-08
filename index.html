@@ -1,51 +1,7 @@
 ---
-layout: page
-title: "Numerical Tours"
-description: "of Data Sciences"
-header-img: "img/hokusai-0.jpg"
+layout: default
+title: Numerical Tours
+description: Explore mathematical data science through complete Python notebooks on imaging, optimization, optimal transport, machine learning, and geometry.
+catalog: true
 ---
-
-<h1>Welcome to the <i>Numerical Tours of Data Sciences</i></h1>
-
-<p>
-The <i>Numerical Tours of Data Sciences</i>, by <a href="contact/">Gabriel Peyré</a>, gather
-<a href="https://www.mathworks.com/products/matlab.html">Matlab</a>,
-<a href="https://www.python.org">Python</a>,
-<a href="https://julialang.org/">Julia</a> and <a href="https://www.r-project.org/">R</a> experiments to explore modern mathematical data sciences. They cover data sciences in a broad sense, including imaging, machine learning, computer vision and computer graphics.
-It showcases application of numerical and mathematical methods such as convex optimization, PDEs, optimal transport, inverse problems, sparsity, etc.
-The tours are complemented by slides of courses detailing the theory and the algorithms.
-</p>
-
-
-{% for post in paginator.posts %}
-<div class="post-preview">
-    <a href="{{ post.url | prepend: site.baseurl }}">
-        <h2 class="post-title">
-            {{ post.title }}
-        </h2>
-        {% if post.subtitle %}
-        <h3 class="post-subtitle">
-            {{ post.subtitle }}
-        </h3>
-        {% endif %}
-    </a>
-    <p class="post-meta">Posted by {{ post.author }} on {{ post.date | date: "%B %-d, %Y" }}</p>
-</div>
-<hr>
-{% endfor %}
-
-<!-- Pager -->
-{% if paginator.total_pages > 1 %}
-<ul class="pager">
-    {% if paginator.previous_page %}
-    <li class="previous">
-        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
-    </li>
-    {% endif %}
-    {% if paginator.next_page %}
-    <li class="next">
-        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
-    </li>
-    {% endif %}
-</ul>
-{% endif %}
+{% include catalog.html %}

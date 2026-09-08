@@ -4,11 +4,11 @@
 <html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-   
+
       <!--
 This HTML is auto-generated from an M-file.
 To make changes, update the M-file and republish this document.
-      --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
+      --><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-AMS_HTML"></script><p style="font-size:0px">
          \[
          \newcommand{\NN}{\mathbb{N}}
          \newcommand{\CC}{\mathbb{C}}
@@ -23,7 +23,7 @@ To make changes, update the M-file and republish this document.
          \newcommand{\KK}{\mathbb{K}}
          \newcommand{\UU}{\mathbb{U}}
          \newcommand{\EE}{\mathbb{E}}
-         
+
          \newcommand{\Aa}{\mathcal{A}}
          \newcommand{\Bb}{\mathcal{B}}
          \newcommand{\Cc}{\mathcal{C}}
@@ -50,7 +50,7 @@ To make changes, update the M-file and republish this document.
          \newcommand{\Xx}{\mathcal{X}}
          \newcommand{\Yy}{\mathcal{Y}}
          \newcommand{\Zz}{\mathcal{Z}}
-         
+
          \newcommand{\al}{\alpha}
          \newcommand{\la}{\lambda}
          \newcommand{\ga}{\gamma}
@@ -66,14 +66,14 @@ To make changes, update the M-file and republish this document.
          \newcommand{\om}{\omega}
          \newcommand{\Om}{\Omega}
          \renewcommand{\epsilon}{\varepsilon}
-         
+
          \newcommand{\Calpha}{\mathrm{C}^\al}
          \newcommand{\Cbeta}{\mathrm{C}^\be}
          \newcommand{\Cal}{\text{C}^\al}
          \newcommand{\Cdeux}{\text{C}^{2}}
          \newcommand{\Cun}{\text{C}^{1}}
          \newcommand{\Calt}[1]{\text{C}^{#1}}
-         
+
          \newcommand{\lun}{\ell^1}
          \newcommand{\ldeux}{\ell^2}
          \newcommand{\linf}{\ell^\infty}
@@ -85,38 +85,38 @@ To make changes, update the M-file and republish this document.
          \newcommand{\Linf}{\text{\upshape L}^\infty}
          \newcommand{\lzero}{\ell^0}
          \newcommand{\lp}{\ell^p}
-         
-         
+
+
          \renewcommand{\d}{\ins{d}}
-         
+
          \newcommand{\Grad}{\text{Grad}}
          \newcommand{\grad}{\text{grad}}
          \renewcommand{\div}{\text{div}}
          \newcommand{\diag}{\text{diag}}
-         
+
          \newcommand{\pd}[2]{ \frac{ \partial #1}{\partial #2} }
          \newcommand{\pdd}[2]{ \frac{ \partial^2 #1}{\partial #2^2} }
-         
+
          \newcommand{\dotp}[2]{\langle #1,\,#2\rangle}
          \newcommand{\norm}[1]{|\!| #1 |\!|}
          \newcommand{\normi}[1]{\norm{#1}_{\infty}}
          \newcommand{\normu}[1]{\norm{#1}_{1}}
          \newcommand{\normz}[1]{\norm{#1}_{0}}
          \newcommand{\abs}[1]{\vert #1 \vert}
-         
-         
+
+
          \newcommand{\argmin}{\text{argmin}}
          \newcommand{\argmax}{\text{argmax}}
          \newcommand{\uargmin}[1]{\underset{#1}{\argmin}\;}
          \newcommand{\uargmax}[1]{\underset{#1}{\argmax}\;}
          \newcommand{\umin}[1]{\underset{#1}{\min}\;}
          \newcommand{\umax}[1]{\underset{#1}{\max}\;}
-         
+
          \newcommand{\pa}[1]{\left( #1 \right)}
          \newcommand{\choice}[1]{ \left\{  \begin{array}{l} #1 \end{array} \right. }
-         
+
          \newcommand{\enscond}[2]{ \left\{ #1 \;:\; #2 \right\} }
-         
+
          \newcommand{\qandq}{ \quad \text{and} \quad }
          \newcommand{\qqandqq}{ \qquad \text{and} \qquad }
          \newcommand{\qifq}{ \quad \text{if} \quad }
@@ -136,12 +136,12 @@ To make changes, update the M-file and republish this document.
          \newcommand{\qsubjq}{ \quad \text{subject to} \quad }
          \newcommand{\qqsubjqq}{ \qquad \text{subject to} \qquad }
          \]
-         
+
       </p>
       <title>1-D Daubechies Wavelets</title>
       <NOSCRIPT>
-         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A> 
-               	requires JavaScript to process the mathematics on this page.<BR> 
+         <DIV STYLE="color:#CC0000; text-align:center"><B>Warning: <A HREF="http://www.math.union.edu/locate/jsMath">jsMath</A>
+                requires JavaScript to process the mathematics on this page.<BR>
                	If your browser supports JavaScript, be sure it is enabled.</B></DIV>
          <HR>
       </NOSCRIPT>
@@ -149,8 +149,8 @@ To make changes, update the M-file and republish this document.
       <meta name="date" content="2014-10-20">
       <meta name="m-file" content="index">
       <LINK REL="stylesheet" HREF="../style.css" TYPE="text/css">
-   </head>
-   <body>
+   <meta name="viewport" content="width=device-width, initial-scale=1"><style>body{max-width:1100px;margin:auto}img{max-width:100%;height:auto}pre{overflow:auto}p,li{line-height:1.65}</style></head>
+   <body><nav class="legacy-tour-navigation" aria-label="Tour navigation" style="padding:16px 24px;background:#12243a;color:#fff;font:16px system-ui;line-height:1.6"><a href="/python/" style="color:#fff">Python tours</a> &nbsp; / &nbsp; <a href="/archive/" style="color:#fff">Other languages</a> &nbsp; / &nbsp; <a href="/matlab/" style="color:#fff">MATLAB archive</a></nav>
       <div class="content">
          <h1>1-D Daubechies Wavelets</h1>
          <introduction>
@@ -292,7 +292,7 @@ plot_wavelet(fw);
 axis([1 N -1 1]);
 </pre><img vspace="5" hspace="5" src="index_05.png"> <h2>Backward Wavelet Transform<a name="45"></a></h2>
          <p>The backward wavelet transform reconstructs a signal \( f \) from a set of wavelet coeffcients \( \{ d_j[n] \}_{j,n} \). For
-            continuous functions, it corresponds to the following reconstruction formula: \[ f(x) = \sum_{j,n} d_j[n] \psi_{j,n}(x). 
+            continuous functions, it corresponds to the following reconstruction formula: \[ f(x) = \sum_{j,n} d_j[n] \psi_{j,n}(x).
             \]
          </p>
          <p>For discrete signal, it reconstructs a signal \( f \in \RR^N \) by inverting the wavelet filtering/sub-sampling steps.</p>
@@ -343,21 +343,21 @@ plot_wavelet(fwT); axis([1 N -1 1]); title(<span class="string">'Thresholded coe
       <!--
 ##### SOURCE BEGIN #####
 %% 1-D Daubechies Wavelets
-% This numerical tour explores 1-D multiresolution analysis 
+% This numerical tour explores 1-D multiresolution analysis
 % with Daubechies wavelets with a varying number of vanishing moments
 % (varying order).
 
 %% Installing toolboxes and setting up the path.
 
 %%
-% You need to download the following files: 
-% <../toolbox_signal.zip signal toolbox> and 
+% You need to download the following files:
+% <../toolbox_signal.zip signal toolbox> and
 % <../toolbox_general.zip general toolbox>.
 
 %%
 % You need to unzip these toolboxes in your working directory, so
-% that you have 
-% |toolbox_signal| and 
+% that you have
+% |toolbox_signal| and
 % |toolbox_general|
 % in your directory.
 
@@ -367,7 +367,7 @@ plot_wavelet(fwT); axis([1 N -1 1]); title(<span class="string">'Thresholded coe
 
 %%
 % *Recommandation:* You should create a text file named for instance |numericaltour.sce| (in Scilab) or |numericaltour.m| (in Matlab) to write all the
-% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands. 
+% Scilab/Matlab command you want to execute. Then, simply run |exec('numericaltour.sce');| (in Scilab) or |numericaltour;| (in Matlab) to run the commands.
 
 %%
 % Execute this line only if you are using Matlab.
@@ -382,8 +382,8 @@ getd('toolbox_general/');
 
 %% Wavelets Filters
 % The 2-D wavelet transform of a continuous signal \(f(x)\) computes the set
-% of inner products 
-% \[ d_j[n] = \dotp{f}{\psi_{j,n}} \] 
+% of inner products
+% \[ d_j[n] = \dotp{f}{\psi_{j,n}} \]
 % for scales \( j \in \ZZ
 % \) and position \( n \in \ZZ \).
 
@@ -392,14 +392,14 @@ getd('toolbox_general/');
 % atom \( \psi(x) \):
 % \[ \psi_{j,n}(x) = \frac{1}{2^j}\psi\pa{\frac{x-2^j n}{2^j}}.  \]
 
-%% 
+%%
 % Associated to this oscillating (high pass) wavelet function \(\psi\)
 % is a non-oscillating (low pass) scaling function \(\phi\).
 
 %%
 % The fast wavelet transform algorithm does not make use of the wavelet and scaling functions,
 % but of the filters \(h\) and \(g\) that caracterize their interaction:
-% \[ g[n] = \frac{1}{\sqrt{2}}\dotp{\psi(x/2)}{\phi(x-n)} 
+% \[ g[n] = \frac{1}{\sqrt{2}}\dotp{\psi(x/2)}{\phi(x-n)}
 % \qandq h[n] = \frac{1}{\sqrt{2}}\dotp{\phi(x/2)}{\phi(x-n)}. \]
 
 %%
@@ -410,9 +410,9 @@ getd('toolbox_general/');
 % Daubechies wavelets extends the haar wavelets by using longer
 % filters, that produce smoother scaling functions and wavelets.
 % Furthermore, the larger the size \(p=2k\) of the filter, the higher is the number
-% \(k\) of vanishing moment. 
+% \(k\) of vanishing moment.
 
-%% 
+%%
 % A high number of vanishing moments allows to better compress regular
 % parts of the signal. However, increasing the number of vanishing moments
 % also inceases the size of the support of the wavelets, wich can be
@@ -421,7 +421,7 @@ getd('toolbox_general/');
 
 %%
 % Choosing the _best_ wavelet, and thus choosing \(k\), that is adapted to a
-% given class of signals, thus corresponds to 
+% given class of signals, thus corresponds to
 % a tradeoff between efficiency in regular and singular parts.
 
 %%
@@ -433,7 +433,7 @@ getd('toolbox_general/');
 % Set the support size.
 % To begin, we select the D4 filter.
 
-p = 4; 
+p = 4;
 
 %%
 % Create the low pass filter \(h\) and the high pass \(g\). We add a zero to ensure that it has a odd
@@ -455,15 +455,15 @@ disp(['g filter = [' num2str(g) ']']);
 
 %% Up and Down Filtering
 % The basic wavelet operation is low/high filtering, followed by down
-% sampling. 
+% sampling.
 
 %%
 % Starting from some 1-D signal \(f \in \RR^N\), one thus computes the
-% low pass signal \(a \in \RR^{N/2}\) and the high pass 
+% low pass signal \(a \in \RR^{N/2}\) and the high pass
 % signal \(d \in \RR^{N/2}\) as
-% \[ a = (f \star h) \downarrow 2 \qandq 
+% \[ a = (f \star h) \downarrow 2 \qandq
 % d = (f \star g) \downarrow 2\]
-% where the sub-sampling is defined as 
+% where the sub-sampling is defined as
 % \[ (u \downarrow 2)[k] = u[2k]. \]
 
 %%
@@ -483,7 +483,7 @@ d = subsampling( cconv(f,g) );
 % (aka its transpose), which is upsampling followed by low/high pass
 % filtering with the reversed filters and summing:
 % \[ (a \uparrow h) \star \tilde h + (d \uparrow g) \star \tilde g = f \]
-% where \(\tilde h[n]=h[-n]\) (computed modulo \(N\)) and 
+% where \(\tilde h[n]=h[-n]\) (computed modulo \(N\)) and
 % \( (u \uparrow 2)[2n]=u[n] \) and  \( (u \uparrow 2)[2n+1]=0 \).
 
 %%
@@ -499,7 +499,7 @@ disp(strcat((['Error |f-f1|/|f| = ' num2str(norm(f-f1)/norm(f))])));
 
 %% Forward Wavelet Transform
 % The set of wavelet coefficients are computed with a fast algorithm that
-% exploit the embedding of the approximation spaces \(V_j\) spanned by the 
+% exploit the embedding of the approximation spaces \(V_j\) spanned by the
 % scaling function \( \{ \phi_{j,n} \}_n \).
 
 %%
@@ -518,7 +518,7 @@ axis('tight');
 
 %%
 % We will store all the transformed coefficients \(d_j\) in a single vector
-% |fw|. This vector is initialized as |f| and the left sub-part 
+% |fw|. This vector is initialized as |f| and the left sub-part
 % |fw(1:1^j)| of |fw| will be retransformed at each iteration for a decreasing scale
 % index |j|.
 
@@ -527,7 +527,7 @@ axis('tight');
 
 fw = f;
 
-%% 
+%%
 % Initialize the scale index \(j\) as \( j = J = \log_2(N)-1 \).
 
 j = log2(N)-1;
@@ -540,7 +540,7 @@ j = log2(N)-1;
 %%
 % The algorithm processes by moving from scale \(j\) to the coarser scale
 % \(j-1\) using the filtering+sub-sampling:
-% \[ a_{j-1} = (a_j \star h) \downarrow 2 \qandq 
+% \[ a_{j-1} = (a_j \star h) \downarrow 2 \qandq
 % d_{j-1} = (a_j \star g) \downarrow 2\]
 
 %%
@@ -576,7 +576,7 @@ plot(fw); axis('tight'); title('Transformed');
 %%
 % Display the signal and its coarse coefficients.
 
-s = 400; t = 40; 
+s = 400; t = 40;
 clf;
 subplot(2,1,1);
 plot(f,'.-'); axis([s-t s+t 0 1]); title('Signal (zoom)');
@@ -591,7 +591,7 @@ plot(a,'.-'); axis([(s-t)/2 (s+t)/2 min(a) max(a)]); title('Averages (zoom)');
 
 exo1;
 
-%% 
+%%
 % Check that the transform is
 % orthogonal, which means that the energy of the coefficient is the same
 % as the energy of the signal.
@@ -605,7 +605,7 @@ disp(strcat(['Energy of the coefficients = ' num2str(norm(fw).^2,3)]));
 % Can you recognize where are the low frequencies and the high frequencies
 % ? You can use the function |plot_wavelet| to help you.
 
-clf; 
+clf;
 plot_wavelet(fw);
 axis([1 N -1 1]);
 
@@ -636,7 +636,7 @@ axis([1 N -1 1]);
 f1 = fw;
 j = 0;
 
-%% 
+%%
 % Retrieve coarse and detail coefficients in the vertical direction.
 
 a = f1(1:2^j);
@@ -659,7 +659,7 @@ f1(1:2^(j+1)) = a;
 
 exo2;
 
-%% 
+%%
 % Check that we have correctly recovered the signal.
 
 disp(strcat((['Error |f-f1|/|f| = ' num2str(norm(f-f1)/norm(f))])));
@@ -695,7 +695,7 @@ plot_wavelet(fwT); axis([1 N -1 1]); title('Thresholded coefficients');
 
 %%
 % _Exercice 3:_ (<../missing-exo/ check the solution>)
-% Find the threshold \(T\) to obtained a given number \(M\) of 
+% Find the threshold \(T\) to obtained a given number \(M\) of
 % non thresholded coefficients.
 % Try for an increasing number \(M\) of coeffiients.
 
@@ -703,7 +703,7 @@ exo3;
 
 %%
 % _Exercice 4:_ (<../missing-exo/ check the solution>)
-% Try with 
+% Try with
 % Different kind of wavelets, with an increasing number of vanishing
 % moments.
 
@@ -714,9 +714,9 @@ exo4;
 % \( d_j[n] = \dotp{f}{\psi_{j,n}} \) with a wavelet atom \(\psi_{j,n}\).
 
 %%
-% A wavelet atom \(\psi_{j_0,n_0}\) can be computed by 
+% A wavelet atom \(\psi_{j_0,n_0}\) can be computed by
 % applying the inverse wavele transform to coefficients \( \{d_j[n]\}_{j,n} \)
-% such that 
+% such that
 % \[ d_{j}[n]=\choice{ 1 \qifq j=j_0 \qandq n=n_0, \\ 0 \quad\text{otherwise.} } \]
 
 %%

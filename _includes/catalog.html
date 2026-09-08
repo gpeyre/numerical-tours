@@ -1,0 +1,27 @@
+<main id="main" class="catalog-page">
+  <section class="catalog-intro" aria-labelledby="catalog-title">
+    <div><p class="eyebrow">Open notebooks · Mathematical data science</p><h1 id="catalog-title">Learn by <em>computing.</em></h1><p class="catalog-description">Explore the mathematics of images, learning, and geometry.<br class="desktop-break"> Read an experiment, run the code, and follow the ideas.</p></div>
+    <div class="collection-note"><strong>{{ site.data.python_catalog.size }}</strong><span>Python tours<br>from foundations to research</span></div>
+  </section>
+  <section class="catalog-browser" aria-label="Browse Python tours" data-catalog>
+    <form class="search-form" role="search">
+      <label for="tour-search">Find your next tour</label>
+      <div class="search-field"><span aria-hidden="true">⌕</span><input id="tour-search" name="q" type="search" autocomplete="off" placeholder="Try ‘Sinkhorn’, ‘wavelets’, or ‘neural networks’" aria-describedby="search-help"><button type="submit">Search <span aria-hidden="true">→</span></button></div>
+      <p id="search-help">Search titles, methods, applications, and keywords.</p>
+    </form>
+    <div class="filter-row"><span class="filter-label">Explore by topic</span><div class="category-filters" role="group" aria-label="Filter by topic"><button type="button" data-category="all" aria-pressed="true">All tours</button>{% assign categories = site.data.python_catalog | map: 'category' | uniq %}{% for category in categories %}<button type="button" data-category="{{ category | escape }}" aria-pressed="false">{{ category }}</button>{% endfor %}</div></div>
+    <div class="results-heading"><h2>The Python collection</h2><p id="result-count" aria-live="polite" aria-atomic="true">{{ site.data.python_catalog.size }} tours</p></div>
+    <noscript><p>All tours are listed below. Enable JavaScript to filter the collection, or use your browser’s Find command.</p></noscript>
+    <div class="tour-grid">
+      {% for tour in site.data.python_catalog %}
+      <article class="tour-card" data-tour data-category="{{ tour.category | escape }}" data-search="{{ tour.search | escape }}">
+        <a class="tour-image" href="{{ tour.url | relative_url }}" aria-label="Read {{ tour.title | escape }}"><img src="{{ tour.image | relative_url }}" alt="{{ tour.image_alt | escape }}" width="720" height="420" loading="lazy" decoding="async"><span class="image-arrow" aria-hidden="true">↗</span></a>
+        <div class="tour-card-body"><p class="tour-category">{{ tour.category }}</p><h3><a href="{{ tour.url | relative_url }}">{{ tour.title }}</a></h3><p class="tour-summary">{{ tour.summary }}</p><div class="tour-actions"><a class="read-link" href="{{ tour.url | relative_url }}">Read tour <span aria-hidden="true">→</span></a><a class="colab-link" href="{{ tour.colab }}" aria-label="Open {{ tour.title | escape }} in Colab"><span class="colab-icon" aria-hidden="true">co</span> Open in Colab</a></div></div>
+      </article>
+      {% endfor %}
+    </div>
+    <div id="empty-results" class="empty-results" hidden><h3>No tours match this search.</h3><p>Try a broader term such as “image”, “optimization”, or “transport”.</p><button type="button" id="reset-search">Clear search and filters</button></div>
+  </section>
+  <aside class="archive-callout"><div><p class="eyebrow">Continue exploring</p><h2>The other language collections</h2><p>The MATLAB, Julia, and R tours remain available in a dedicated archive.</p></div><a href="{{ '/archive/' | relative_url }}">Browse other languages <span aria-hidden="true">→</span></a></aside>
+</main>
+<script src="{{ '/assets/js/catalog.js' | relative_url }}" defer></script>

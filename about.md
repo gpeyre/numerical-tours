@@ -1,48 +1,29 @@
 ---
 layout: page
-title: "About"
-description: "The Numerical Tours"
-header-img: "img/hokusai-3.jpg"
+title: About the Numerical Tours
+description: Mathematical ideas explored through complete computational experiments.
 ---
 
-The *Numerical Tours of Data Sciences*, by [Gabriel Peyré](contact/), gather [Matlab](https://au.mathworks.com/products/matlab.html), [Python](https://www.python.org/) and [Julia](https://julialang.org/) experiments to explore modern data science.
-They cover data science in a broad since, including imaging, machine learning, computer vision and computer graphics.
-It showcases application of numerical and mathematical methods such as convex optimization, PDEs, optimal transport, inverse problems, sparsity, etc.
-The tours are complemented by slides of courses that concentrate on the theory of  signal and image processing.
+The **Numerical Tours**, by [Gabriel Peyré]({{ '/contact/' | relative_url }}) and contributors, connect mathematical methods with experiments in imaging, machine learning, computer vision, and geometry. Topics include optimization, partial differential equations, optimal transport, inverse problems, and sparse representations.
 
-How to use these tours?
--------------------
+The main [Python collection]({{ '/python/' | relative_url }}) consists of Jupyter notebooks with explanations, complete implementations, figures, and further reading. Read a tour on the website or open it in Colab to experiment. The [MATLAB, Julia, and R collections]({{ '/archive/' | relative_url }}) remain available separately.
 
-Each tour is a set of experiments that can be performed using
-either [Matlab](https://au.mathworks.com/products/matlab.html), [Python](https://www.python.org/) or [Julia](https://julialang.org/).
-At the beginning of each tour,
-you are asked to download and install the required toolboxes, that contain many useful helper functions. Each tour alternates between code you can copy/paste and exercises you need to solve on your own.
+## How to use a tour
 
-How to cite the Numerical Tours
--------------------
+Read the introduction, run the setup, and follow the cells in order. Each worked example shows its solution directly. Modify the data or parameters to test your understanding, and use the references at the end to explore the theory in more depth. See [Getting started]({{ '/installation_python/' | relative_url }}) for local installation instructions.
 
-If you are using codes from these Numerical Tours for your own research, you should cite the Numerical Tours as:
+The [course slides]({{ '/slides/' | relative_url }}) and [companion notes]({{ '/book/' | relative_url }}) develop the underlying mathematical ideas.
 
-> G. Peyré, *The Numerical Tours of Signal Processing - Advanced Computational Signal and Image Processing*
-> IEEE Computing in Science and Engineering, vol. 13(4), pp. 94-97, 2011.
+## Cite the Numerical Tours
 
+If you use these experiments in research or teaching, please cite:
 
-How to make your own tours?
--------------------
+> Gabriel Peyré. *The Numerical Tours of Signal Processing—Advanced Computational Signal and Image Processing.* Computing in Science & Engineering, 13(4), 94–97, 2011.
 
-For the Matlab tours, each Numerical Tour is a HTML web page automatically generated using a Matlab .m script, that both executes the instructions of the tour, and generates the web page. These .m files are then also translated into a [Jupyter notebook](http://jupyter.org/).
+Please also cite the relevant original methods listed in each tour’s bibliography.
 
-You can download the [Numerical Tour Publishing Toolbox](tours/toolbox_publishing.zip), and use the same tools to create your own Numerical Tours. This can be very useful to generate numerical exercises for your students, or to present your research in a more attracting way.
+## Contribute
 
-The Python and Julia tours are [Jupyter notebooks](http://jupyter.org/).
+The notebooks and website are maintained in the [Numerical Tours repository](https://github.com/gpeyre/numerical-tours). Contributions that improve mathematical explanations, numerical reliability, accessibility, or reproducibility are welcome. Include an end-to-end execution when changing a Python tour.
 
-
-Mathematical Tours
--------------------
-
-The [Mathematical Tours of Data Sciences] is a companion website which presents the mathematical concepts underlying the Numerical Tours.
-
-Contact
--------------------
-
-If you have any question regarding the Numerical Tours, feel free to [contact me](mailto:gabriel.peyre at ens.fr).
+For a complementary collection of mathematical essays, visit the [Mathematical Tours](https://mathematical-tours.github.io/).
