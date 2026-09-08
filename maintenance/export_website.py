@@ -10,12 +10,65 @@ import json
 from pathlib import Path
 import re
 import shutil
+from urllib.parse import quote
 import nbformat
 from nbconvert import HTMLExporter
 from PIL import Image, ImageOps
 from catalog_data import catalog
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def section_navigation(body):
+    """Keep stable section anchors and emit a contents menu that works without JS."""
+    entries = []
+    used_ids = set()
+    seen_title = False
+
+    def heading(match):
+        nonlocal seen_title
+        level, attrs, content = int(match[1]), match[2] or "", match[3]
+        label = html.unescape(re.sub(r"<[^>]+>", "", content)).replace("¶", "").strip()
+        anchor = re.search(r'\bid="([^"]+)"', attrs)
+        original_id = (
+            html.unescape(anchor[1])
+            if anchor
+            else (re.sub(r"[^\w-]+", "-", label).strip("-") or "section")
+        )
+        heading_id = original_id
+        suffix = 2
+        while heading_id in used_ids:
+            heading_id = f"{original_id}-{suffix}"
+            suffix += 1
+        used_ids.add(heading_id)
+        id_attr = f'id="{html.escape(heading_id, quote=True)}"'
+        if anchor:
+            attrs = attrs.replace(anchor[0], id_attr)
+            content = content.replace(
+                f'href="#{anchor[1]}"', f'href="#{quote(heading_id, safe="")}"'
+            )
+        else:
+            attrs += " " + id_attr
+        if level == 1 and not seen_title:
+            seen_title = True
+            label = "Overview"
+        elif level == 1:
+            level = 2
+        entries.append((heading_id, label, level))
+        return f"<h{level}{attrs}>{content}</h{level}>"
+
+    body = re.sub(r"<h([123])(\s[^>]*)?>(.*?)</h\1>", heading, body, flags=re.S)
+    links = "".join(
+        f'<li class="toc-level-{level}"><a href="#{quote(anchor, safe="")}">{html.escape(label)}</a></li>'
+        for anchor, label, level in entries
+    )
+    sidebar = (
+        '<aside class="notebook-sidebar" aria-label="Tour contents">'
+        '<details class="notebook-contents" open><summary>On this page</summary>'
+        f'<nav aria-label="Sections in this tour"><ol>{links}</ol></nav>'
+        "</details></aside>"
+    )
+    return body, sidebar
 
 
 def main():
@@ -94,11 +147,12 @@ def main():
         preview.save(image_path, "WEBP", quality=88)
         notebook.metadata["title"] = info["title"]
         body, _ = exporter.from_notebook_node(notebook)
+        body, sidebar = section_navigation(body)
         title = html.escape(info["title"])
         colab = f"https://colab.research.google.com/github/gpeyre/numerical-tours/blob/master/python/{slug}.ipynb"
         css = """<link rel="stylesheet" href="/assets/css/tours.css"><style>
 body{background:#fff;padding:0;font-family:system-ui,-apple-system,sans-serif;font-size:16px;color:#192d43}#notebook{padding:25px 20px 70px}#notebook-container{max-width:1000px;width:100%;padding:20px 35px;box-shadow:none}div.text_cell_render{font-family:inherit;font-size:16px;line-height:1.75}div.text_cell_render h1{font-family:Georgia,serif;font-size:2.7rem;font-weight:400;line-height:1.18;color:#12243a;margin-top:10px}div.text_cell_render h2{font-family:Georgia,serif;font-size:1.85rem;font-weight:400;border-top:1px solid #dce4ec;padding-top:25px;margin-top:30px}div.text_cell_render h3{font-size:1.25rem}div.input_area{border:1px solid #dce4ec;background:#f5f8fb;border-radius:5px;padding:10px}div.input_area pre{font-size:13px;line-height:1.55}div.output_area pre{font-size:13px}div.output_subarea{max-width:100%}div.output_png img{max-width:100%;height:auto}a{color:#185bce}div.cell{padding:8px 0}div.output_stderr{background:#fff6e0;border-left:3px solid #bc8100}.celltoolbar{display:none}@media(max-width:650px){#notebook{padding:15px 8px}#notebook-container{padding:10px 8px}div.text_cell_render h1{font-size:2rem}div.text_cell_render{padding:8px 5px}div.input_area pre{font-size:12px}.rendered_html table{display:block;overflow-x:auto}}
-</style>"""
+</style><link rel="stylesheet" href="/assets/css/notebook.css?v=2"><script src="/assets/js/notebook.js?v=2" defer></script>"""
         body = body.replace(
             "</head>",
             '<meta name="viewport" content="width=device-width, initial-scale=1">'
@@ -106,10 +160,15 @@ body{background:#fff;padding:0;font-family:system-ui,-apple-system,sans-serif;fo
             + "</head>",
         )
         toolbar = f'''<a class="skip-link" href="#main">Skip to notebook</a><header class="site-header"><div class="header-inner"><a class="brand" href="/"><span class="brand-mark" aria-hidden="true">∿</span>Numerical Tours</a><nav aria-label="Main navigation"><a href="/python/">Python tours</a><a href="/installation_python/">Getting started</a><a href="/archive/">Other languages</a></nav></div></header><div class="notebook-toolbar"><a href="/python/">← All Python tours</a><div class="notebook-actions"><a href="/downloads/{slug}.ipynb" download>Download notebook</a><a class="colab-link" href="{colab}"><span class="colab-icon" aria-hidden="true">co</span> Open in Colab</a></div></div><main id="main" aria-label="{title}">'''
+        toolbar = toolbar.replace(
+            '<main id="main"', '<div class="notebook-layout"><main id="main"'
+        )
         body = re.sub(r"(<body[^>]*>)", lambda m: m[1] + toolbar, body, count=1)
         body = body.replace(
             "</body>",
-            '</main><footer class="site-footer"><a href="/python/">Explore another tour →</a><a href="/about/">Gabriel Peyré and contributors</a></footer></body>',
+            "</main>"
+            + sidebar
+            + '</div><footer class="site-footer"><a href="/python/">Explore another tour →</a><a href="/about/">Gabriel Peyré and contributors</a></footer></body>',
         )
         destination = site / "python" / slug
         destination.mkdir(parents=True, exist_ok=True)
