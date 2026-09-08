@@ -1,0 +1,13 @@
+# Python 3.12. Base dependencies for the Numerical Tours.
+numpy>=2.0,<3
+scipy>=1.14,<2
+matplotlib>=3.9,<4
+scikit-image>=0.24,<1
+scikit-learn>=1.5,<2
+PyWavelets>=1.7,<2
+ipywidgets>=8.1,<9
+cvxpy>=1.6,<2
+scikit-fmm>=2024.5.29
+progressbar2>=4.5,<5
+autograd>=1.7,<2
+celer>=0.7,<1

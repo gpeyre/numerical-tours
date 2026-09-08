@@ -1,3 +1,14 @@
 *.pyc
 
 .ipynb_checkpoints/
+
+# Local execution and editing artifacts
+.DS_Store
+__pycache__/
+.venv/
+.ipynb_checkpoints/
+.pytest_cache/
+.ruff_cache/
+reports/executed/
+python/numerical-tours-support/
+python/*.mp4

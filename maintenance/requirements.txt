@@ -1,0 +1,9 @@
+-r ../python/requirements-torch.txt
+-r ../python/requirements-jax.txt
+nbformat>=5.10,<6
+nbclient>=0.10,<1
+nbconvert>=7.16,<8
+ipykernel>=6.29,<8
+PyYAML>=6,<7
+pytest>=8,<10
+ruff>=0.9

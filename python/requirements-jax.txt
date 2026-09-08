@@ -1,0 +1,4 @@
+-r requirements.txt
+jax>=0.4.35,<1
+flax>=0.10,<1
+optax>=0.2.3,<1

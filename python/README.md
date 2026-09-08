@@ -1,22 +1,30 @@
-About 
-======
+# Python Numerical Tours
 
-This directory stores the iPython notebook (.ipynb) of the "Numerical Tours" (www.numerical-tours.com). 
+The main collection contains **62 notebooks**, including four historical variants retained for existing links. The website presents **58 distinct tours** with introductions, complete worked examples, figures, and topic-specific references.
 
-Usage
-======
+## Start in Colab
 
-By clicking on a .ipynb file, you will access a static, compiled, version of the tour. You can download the file in order to run dynamically the notebook (using "ipython notebook --pylab inline" to start ipython notebooks), and modify its content. For this to work, you will also need to download the nt_toolbox.py file. 
+Open a tour on [the website](https://www.numerical-tours.com/python/) and select **Open in Colab**. Run the setup cell, then run all cells in order. The setup locates or downloads the companion toolbox and data and installs missing dependencies. There are no separate solution files to run.
 
-How to contribute
-======
+## Run locally
 
-This is a work in progress to port all the Numerical Tours to Python. All the un-ported tours are in the directory "todo/". These consist in raw .ipynb files that have been exported from the corresponding .m file using the tool nb_converter.py provided by Steven Silvester.
+Use Python 3.12 and a separate environment:
 
-In order to help in this porting task, you need to select your favorite un-ported tour, edit it so that the notebook works correctly, and then move the corrected .ipynb file from python/todo/ to python/.
+```sh
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r python/requirements.txt jupyterlab
+jupyter lab python
+```
 
-This might require porting some functions from the matlab toolboxes (toolbox_signal/, toolbox_general/, toolbox_graph/) to python. The newly created functions should be added to the file nt_toolbox.py.
+On Windows, activate with `.venv\Scripts\activate`. Install `python/requirements-torch.txt` for PyTorch tours or `python/requirements-jax.txt` for the JAX/Flax tour. The setup cells also check for these dependencies.
 
-======
+Default examples use bundled or simulated data. The deep-texture tour downloads pretrained VGG-19 ImageNet weights once (about 550 MB). Its default image size runs on a CPU; larger experiments benefit from a GPU. Diffusion examples use modest particle counts and networks to remain practical on a laptop.
 
-Copyright (c) 2014 Gabriel Peyre
+Random seeds are set in the notebooks. Restart the kernel before running a tour from beginning to end. Floating-point and GPU differences can produce small variations across platforms.
+
+## Collection boundaries
+
+Only notebooks immediately inside `python/` form the maintained collection. The `todo/` directory contains 128 historical, unfinished conversions, including MATLAB-like code; these are **not runnable Python tours** and are not included in the catalogue or the passing execution count. Checkpoint copies are editor backups. The `nt_solutions/` directory remains only for compatibility with historical drafts; the maintained notebooks do not import or execute it.
+
+See [the maintenance guide](../maintenance/README.md) for repeatable validation and website export.

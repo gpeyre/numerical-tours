@@ -1,0 +1,498 @@
+[
+  {
+    "notebook": "python/audio_2_separation.ipynb",
+    "sha256": "31874b7ee64c9fb2b9ac9d88d3579595c7d2ae28a819987560be6b4e543be9a5",
+    "status": "passed",
+    "seconds": 4.85,
+    "code_cells": 29,
+    "executed_cells": 29
+  },
+  {
+    "notebook": "python/coding_1_approximation.ipynb",
+    "sha256": "34e426ace39a6f4481498c8780584e8d95bf386a0e7ea2eaf2605fd5f973f98c",
+    "status": "passed",
+    "seconds": 6.61,
+    "code_cells": 34,
+    "executed_cells": 34
+  },
+  {
+    "notebook": "python/coding_2_entropic.ipynb",
+    "sha256": "2b7d2beb7dbe1c9182a08f276302959e935108acd89690924ac778e03f44dc6b",
+    "status": "passed",
+    "seconds": 3.83,
+    "code_cells": 32,
+    "executed_cells": 32
+  },
+  {
+    "notebook": "python/denoisingadv_6_nl_means.ipynb",
+    "sha256": "1b44e16be40137fec56ff33cd51e8cec4f86f2970ced1403e00269dcbf882cec",
+    "status": "passed",
+    "seconds": 29.16,
+    "code_cells": 38,
+    "executed_cells": 38
+  },
+  {
+    "notebook": "python/denoisingadv_7_rankfilters.ipynb",
+    "sha256": "6281a0f919334b8e38e6c8b3fb5e268485d8d2c37f0e89eb4012205bd7b3c20b",
+    "status": "passed",
+    "seconds": 5.32,
+    "code_cells": 29,
+    "executed_cells": 29
+  },
+  {
+    "notebook": "python/denoisingadv_9_sure.ipynb",
+    "sha256": "bcdec087f82e22d3412bfc0cceca4bf682e3704f000a5959800b53fe5fc438be",
+    "status": "passed",
+    "seconds": 13.02,
+    "code_cells": 35,
+    "executed_cells": 35
+  },
+  {
+    "notebook": "python/denoisingsimp_2b_linear_image.ipynb",
+    "sha256": "ca983c0ef2ac2abdf3dcf4e3e59f8194bc10399f23829fef19429b7ed589c79b",
+    "status": "passed",
+    "seconds": 5.45,
+    "code_cells": 21,
+    "executed_cells": 21
+  },
+  {
+    "notebook": "python/denoisingwav_2_wavelet_2d.ipynb",
+    "sha256": "d5e6eba89e7190ca6865e6547cb0b6419d22597d304e0d98cf6fdc6a34ea1fb6",
+    "status": "passed",
+    "seconds": 4.66,
+    "code_cells": 26,
+    "executed_cells": 26
+  },
+  {
+    "notebook": "python/denoisingwav_4_block.ipynb",
+    "sha256": "d066a515350bc1c07087635efa152722e4dd6c1bd8112917da92c5771c67dae9",
+    "status": "passed",
+    "seconds": 11.51,
+    "code_cells": 40,
+    "executed_cells": 40
+  },
+  {
+    "notebook": "python/fastmarching_0_implementing.ipynb",
+    "sha256": "0232723329d554248cc27cad79e19a2e169d232f1dd77262b24bd29fd0911fdc",
+    "status": "passed",
+    "seconds": 4.08,
+    "code_cells": 37,
+    "executed_cells": 37
+  },
+  {
+    "notebook": "python/graphics_1_synthesis_gaussian.ipynb",
+    "sha256": "e3a1c3172a6f3ca99cf1b44f8f0608bdc92054fae12470ad5850e62084b7a0a8",
+    "status": "passed",
+    "seconds": 6.3,
+    "code_cells": 26,
+    "executed_cells": 26
+  },
+  {
+    "notebook": "python/graphics_5_fluids.ipynb",
+    "sha256": "7cf766003a5f67cafb31cd03c0676ee2dc910be0011450407a6449e36bc2bcac",
+    "status": "passed",
+    "seconds": 15.84,
+    "code_cells": 34,
+    "executed_cells": 34
+  },
+  {
+    "notebook": "python/introduction_3_image.ipynb",
+    "sha256": "c4cbce43ac0427b30ce16bcdd587e3475b08742201f4deab5acd1d8d27f53a85",
+    "status": "passed",
+    "seconds": 2.88,
+    "code_cells": 12,
+    "executed_cells": 12
+  },
+  {
+    "notebook": "python/introduction_4_fourier_wavelets.ipynb",
+    "sha256": "4a65423190b9eaf4446aed588a1105b9a2578f028033ba40e6aa60c556721d68",
+    "status": "passed",
+    "seconds": 4.9,
+    "code_cells": 35,
+    "executed_cells": 35
+  },
+  {
+    "notebook": "python/introduction_4_fourier_wavelets_interactive.ipynb",
+    "sha256": "beef2e3e09df5262360fbfd819a72d97b67181b23caf64655ceae0353f64a1bc",
+    "status": "passed",
+    "seconds": 4.52,
+    "code_cells": 11,
+    "executed_cells": 11
+  },
+  {
+    "notebook": "python/introduction_5_image_approx.ipynb",
+    "sha256": "529860f89bd29c3a216620a9de43d5227b228cf4ff610126be8841c4f1971656",
+    "status": "passed",
+    "seconds": 3.8,
+    "code_cells": 14,
+    "executed_cells": 14
+  },
+  {
+    "notebook": "python/introduction_6_elementary_fr.ipynb",
+    "sha256": "7642768474d9df04d19e17b01ba95cdd01ba1b726a6a547843c38e329adcb438",
+    "status": "passed",
+    "seconds": 6.38,
+    "code_cells": 34,
+    "executed_cells": 34
+  },
+  {
+    "notebook": "python/inverse_2_deconvolution_variational.ipynb",
+    "sha256": "d3ca78068f2da75a98b081c06ef9ea72b1394c66a7670875fa28d9d9d5e5676f",
+    "status": "passed",
+    "seconds": 32.07,
+    "code_cells": 40,
+    "executed_cells": 40
+  },
+  {
+    "notebook": "python/inverse_5_inpainting_sparsity.ipynb",
+    "sha256": "2a3ef4ee6069134130186ce1f3ebfeda6c802dd30f28050f68dbc389238aa90c",
+    "status": "passed",
+    "seconds": 29.24,
+    "code_cells": 42,
+    "executed_cells": 42
+  },
+  {
+    "notebook": "python/inverse_6_trace_norm_dr.ipynb",
+    "sha256": "23c7e20dbf57c26dcbd33adde59684fefda57d88ac77ae5aa4fc1844236b4ed2",
+    "status": "passed",
+    "seconds": 10.22,
+    "code_cells": 21,
+    "executed_cells": 21
+  },
+  {
+    "notebook": "python/meshdeform_1_parameterization.ipynb",
+    "sha256": "cf13c5b9fc99607e4db6e1e3a1ea9049897b17d411e0c74045c99eafe73ba893",
+    "status": "passed",
+    "seconds": 20.03,
+    "code_cells": 26,
+    "executed_cells": 26
+  },
+  {
+    "notebook": "python/meshproc_3_denoising.ipynb",
+    "sha256": "4977800892480425362f15e647be23078f2b8481b9db483e867d1e106fa63b7a",
+    "status": "passed",
+    "seconds": 12.2,
+    "code_cells": 46,
+    "executed_cells": 46
+  },
+  {
+    "notebook": "python/ml_10_particle_system.ipynb",
+    "sha256": "286c568a3e18e5495be76d207e09da85d32040b008747734da6df908bdb3229a",
+    "status": "passed",
+    "seconds": 18.0,
+    "code_cells": 21,
+    "executed_cells": 21
+  },
+  {
+    "notebook": "python/ml_11_conformal_prediction.ipynb",
+    "sha256": "4494590cc6c5a8459d1965998bfcfc0720d8ba16bcdc1c81a2272b2bbf3fe288",
+    "status": "passed",
+    "seconds": 3.77,
+    "code_cells": 12,
+    "executed_cells": 12
+  },
+  {
+    "notebook": "python/ml_12_diffusion_model_jax.ipynb",
+    "sha256": "d78e341df71ae63d2105000b7a93141d5f2a8a2b86aa4b11c1e08ca02d10593f",
+    "status": "passed",
+    "seconds": 28.04,
+    "code_cells": 31,
+    "executed_cells": 31
+  },
+  {
+    "notebook": "python/ml_12_diffusion_models.ipynb",
+    "sha256": "f19db597c5f653570859a1cff6e71bee867cc7bdbefbf9f6bbaeea8982ecf29d",
+    "status": "passed",
+    "seconds": 21.31,
+    "code_cells": 32,
+    "executed_cells": 32
+  },
+  {
+    "notebook": "python/ml_1_pca_nn.ipynb",
+    "sha256": "edcd1cba700f50127ac112dbc0c9a05a91f88dca7cb3d6d17e4d3e3dad45087d",
+    "status": "passed",
+    "seconds": 9.29,
+    "code_cells": 30,
+    "executed_cells": 30
+  },
+  {
+    "notebook": "python/ml_2_regression-BAD.ipynb",
+    "sha256": "46384f8466da1f5c93f8790fe5229dffa005f107bfcfed734d3149f9d96acc17",
+    "status": "passed",
+    "seconds": 7.74,
+    "code_cells": 51,
+    "executed_cells": 51
+  },
+  {
+    "notebook": "python/ml_2_regression-SVG.ipynb",
+    "sha256": "6c2e2afcd909f963f562da9eab23e6e107382b211ea253bd57598976f3508734",
+    "status": "passed",
+    "seconds": 8.14,
+    "code_cells": 50,
+    "executed_cells": 50
+  },
+  {
+    "notebook": "python/ml_2_regression.ipynb",
+    "sha256": "b8478fe5d15b7a84148679a954d01bada2d969cda7d5099089e5330118b80504",
+    "status": "passed",
+    "seconds": 6.94,
+    "code_cells": 51,
+    "executed_cells": 51
+  },
+  {
+    "notebook": "python/ml_3_classification.ipynb",
+    "sha256": "31f8b7e5a5db691ff65515fd8fa2056eb50b7839382b4aa5a61d0f2c63a3d4fd",
+    "status": "passed",
+    "seconds": 17.15,
+    "code_cells": 52,
+    "executed_cells": 52
+  },
+  {
+    "notebook": "python/ml_4_sgd.ipynb",
+    "sha256": "b285c16afeacf5b725f502a1bb1ff2cec77fe24b4a7c99951baf9f8d86f27769",
+    "status": "passed",
+    "seconds": 29.38,
+    "code_cells": 20,
+    "executed_cells": 20
+  },
+  {
+    "notebook": "python/ml_5_mlp.ipynb",
+    "sha256": "e5a731a36eb253ff5039810c713ca3d2bd7c53ceeb4a4e7b99b0a740e9a68474",
+    "status": "passed",
+    "seconds": 5.79,
+    "code_cells": 21,
+    "executed_cells": 21
+  },
+  {
+    "notebook": "python/ml_5bis_mlp_approx.ipynb",
+    "sha256": "5e08aa78b6e69f3f54e22e45a6a12770e57d76dbf0324bb30501deb165bfea4f",
+    "status": "passed",
+    "seconds": 57.65,
+    "code_cells": 17,
+    "executed_cells": 17
+  },
+  {
+    "notebook": "python/ml_6_nn.ipynb",
+    "sha256": "661228fad03f1706cdefbb1a7a74b4e5ffbd721be8097fdc51e930ff49cdc578",
+    "status": "passed",
+    "seconds": 24.6,
+    "code_cells": 41,
+    "executed_cells": 41
+  },
+  {
+    "notebook": "python/ml_6_nn_OLD.ipynb",
+    "sha256": "f6a6a462b25b1b7c758076c9bcb61cc60829ffa6c0eae2c3bbad1edac1670f64",
+    "status": "passed",
+    "seconds": 12.59,
+    "code_cells": 31,
+    "executed_cells": 31
+  },
+  {
+    "notebook": "python/ml_7_trend_filtering.ipynb",
+    "sha256": "0b63b54df3d68121e052189ba8a5a2371dc4fd70b605b078821cf5961170a93b",
+    "status": "passed",
+    "seconds": 12.67,
+    "code_cells": 12,
+    "executed_cells": 12
+  },
+  {
+    "notebook": "python/ml_8_deep_texture_synthesis.ipynb",
+    "sha256": "a4544db95b387394304d76e763ace560833adb7bd0f3897824ed9e22eeaacdcc",
+    "status": "passed",
+    "seconds": 18.17,
+    "code_cells": 28,
+    "executed_cells": 28
+  },
+  {
+    "notebook": "python/ml_9_graphical_lasso.ipynb",
+    "sha256": "c8fc4c11804bd9f1081aa310cdcb3399b4cd6ec328d4e1f52e87b3d8f7dbc880",
+    "status": "passed",
+    "seconds": 7.58,
+    "code_cells": 4,
+    "executed_cells": 4
+  },
+  {
+    "notebook": "python/multidim_2_volumetric.ipynb",
+    "sha256": "142f0adafaae74f8cae340b46cda1b527c76e1cefcd333b34728d5d467534538",
+    "status": "passed",
+    "seconds": 23.43,
+    "code_cells": 34,
+    "executed_cells": 34
+  },
+  {
+    "notebook": "python/optim_1_gradient_descent.ipynb",
+    "sha256": "e3b47d63b2c40cdcba723da73131787f4d114de74326ea2bf58d9ddea6a40e3a",
+    "status": "passed",
+    "seconds": 3.63,
+    "code_cells": 40,
+    "executed_cells": 40
+  },
+  {
+    "notebook": "python/optim_1bis_gradient_descent.ipynb",
+    "sha256": "8cedcf1a5dc0e73fe4c4fc99cd18c79410bc4e8c57e31cf06e913937331d4fb5",
+    "status": "passed",
+    "seconds": 5.18,
+    "code_cells": 44,
+    "executed_cells": 44
+  },
+  {
+    "notebook": "python/optim_2_condat_fb.ipynb",
+    "sha256": "f9410a85a28ad0465d86ed60b4edcc8ff42acf175a7524f2fe65dc24262e76fb",
+    "status": "passed",
+    "seconds": 3.72,
+    "code_cells": 26,
+    "executed_cells": 26
+  },
+  {
+    "notebook": "python/optim_3_condat_fb_duality.ipynb",
+    "sha256": "cde6f48918245cc6612165bcd892466d14cb902d8324a1d9286b772b48b8f8f4",
+    "status": "passed",
+    "seconds": 5.92,
+    "code_cells": 16,
+    "executed_cells": 16
+  },
+  {
+    "notebook": "python/optim_4_condat_dr.ipynb",
+    "sha256": "f741c1c15b9629da2acff9afc106a912121c472d92d57b5356f661a260e3a7ef",
+    "status": "passed",
+    "seconds": 2.98,
+    "code_cells": 20,
+    "executed_cells": 20
+  },
+  {
+    "notebook": "python/optim_5_condat_primal_dual.ipynb",
+    "sha256": "4643c85919d12f9160679818acb1ce1bf771c180a84cefd4f0c87061cd95fe33",
+    "status": "passed",
+    "seconds": 6.03,
+    "code_cells": 4,
+    "executed_cells": 4
+  },
+  {
+    "notebook": "python/optim_6_interior_points.ipynb",
+    "sha256": "cd347f46a7ce659ff13799468fb3d1e290ea204d3b29c9e3e1c638b5e8b8818b",
+    "status": "passed",
+    "seconds": 3.97,
+    "code_cells": 35,
+    "executed_cells": 35
+  },
+  {
+    "notebook": "python/optim_7_noncvx_pro.ipynb",
+    "sha256": "ec0cec626e5333466f57a12d238d661ef58bdfa21f09dbc82cbcbe1b6e00c7f0",
+    "status": "passed",
+    "seconds": 7.37,
+    "code_cells": 26,
+    "executed_cells": 26
+  },
+  {
+    "notebook": "python/optimaltransp_1_linprog-OLD.ipynb",
+    "sha256": "d5eb6e9766970bb85cccc2a496b668ab492f91745da09fae9e46414287ca2668",
+    "status": "passed",
+    "seconds": 5.67,
+    "code_cells": 24,
+    "executed_cells": 24
+  },
+  {
+    "notebook": "python/optimaltransp_1_linprog.ipynb",
+    "sha256": "5377784a8096b579891a22336b15f399a6452a0bfc599cc35182e2bea6aa5a4f",
+    "status": "passed",
+    "seconds": 13.56,
+    "code_cells": 24,
+    "executed_cells": 24
+  },
+  {
+    "notebook": "python/optimaltransp_5_entropic.ipynb",
+    "sha256": "0519eeba04abbb66798c7597a9e308b58dcca66e59d2042a2981ca2f6f320d56",
+    "status": "passed",
+    "seconds": 22.71,
+    "code_cells": 53,
+    "executed_cells": 53
+  },
+  {
+    "notebook": "python/optimaltransp_5_entropic_full.ipynb",
+    "sha256": "78b20d08ea61d4ce9a61c551fb3b88c5502d0525340b65f5d77d0066217ba644",
+    "status": "passed",
+    "seconds": 28.82,
+    "code_cells": 53,
+    "executed_cells": 53
+  },
+  {
+    "notebook": "python/optimaltransp_6_entropic_adv.ipynb",
+    "sha256": "2c2d39016457d28a0ef62d15e21a7a07b5ee633438e4559abbdeece9e99fca67",
+    "status": "passed",
+    "seconds": 12.81,
+    "code_cells": 25,
+    "executed_cells": 25
+  },
+  {
+    "notebook": "python/optimaltransp_7_semidiscrete.ipynb",
+    "sha256": "ada45874e35c7d9ce12ae251bbf4b58da3a338cb4ce25de3e429408fb3af4a65",
+    "status": "passed",
+    "seconds": 11.48,
+    "code_cells": 23,
+    "executed_cells": 23
+  },
+  {
+    "notebook": "python/optimaltransp_8_unbalanced.ipynb",
+    "sha256": "09e239885946911b1f610ade3987e5634ea89809a5cdd1c87e8fc7b5b07030d1",
+    "status": "passed",
+    "seconds": 20.37,
+    "code_cells": 22,
+    "executed_cells": 22
+  },
+  {
+    "notebook": "python/segmentation_1_edge_detection.ipynb",
+    "sha256": "31cfd78523c5226a84296206866d6e83ca1383ee213f3da1e9a72625f46c1edf",
+    "status": "passed",
+    "seconds": 6.35,
+    "code_cells": 30,
+    "executed_cells": 30
+  },
+  {
+    "notebook": "python/segmentation_2_snakes_param.ipynb",
+    "sha256": "ad7d0183c860f886e2aeebdd564c1e730479173679d3de9ca046aa9d348d711b",
+    "status": "passed",
+    "seconds": 6.14,
+    "code_cells": 56,
+    "executed_cells": 56
+  },
+  {
+    "notebook": "python/segmentation_3_snakes_levelset.ipynb",
+    "sha256": "08ffe1599d6e00f6e455c7649376a62e4faeac6040a48ec41336e3b3621e77b4",
+    "status": "passed",
+    "seconds": 12.94,
+    "code_cells": 49,
+    "executed_cells": 49
+  },
+  {
+    "notebook": "python/shapes_7_isomap.ipynb",
+    "sha256": "e25c47e3efc58a3d35878b52a4ccf49e7f66e35eb2af265e0ab544508bf2ca4c",
+    "status": "passed",
+    "seconds": 29.17,
+    "code_cells": 31,
+    "executed_cells": 31
+  },
+  {
+    "notebook": "python/sparsity_4_dictionary_learning.ipynb",
+    "sha256": "2e6589980a393b8c6c2aa57fa036070e6128ee8393b3d757436965cdb445070d",
+    "status": "passed",
+    "seconds": 27.3,
+    "code_cells": 20,
+    "executed_cells": 20
+  },
+  {
+    "notebook": "python/sparsity_6_l1_recovery.ipynb",
+    "sha256": "80e610b6902e3f9b28c12b92dff320befb7f061efb822e0217e876c883b89ec9",
+    "status": "passed",
+    "seconds": 16.11,
+    "code_cells": 27,
+    "executed_cells": 27
+  },
+  {
+    "notebook": "python/wavelet_4_daubechies2d.ipynb",
+    "sha256": "5726a5db79d2e4ea2174b461a41bae50d5b497237cbe46ce3d3198cfb6b8d906",
+    "status": "passed",
+    "seconds": 5.06,
+    "code_cells": 44,
+    "executed_cells": 44
+  }
+]
