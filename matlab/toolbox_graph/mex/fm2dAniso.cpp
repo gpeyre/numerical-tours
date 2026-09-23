@@ -1,5 +1,38 @@
 #include "fm2dAniso.h"
 
+// PBR - MKR 20220503
+// old prototype in /Applications/MATLAB_R2021b.app/extern/include/matrix.h
+// LIBMMWMATRIX_PUBLISHED_API_EXTERN_C mxArray *mxCreateNumericArray(mwSize ndim, const mwSize *dims, mxClassID classid, mxComplexity flag);
+// type of param 2 not correct: old = const mwSize *dims   new = const int dims[3]
+#undef mxCreateNumericArray
+LIBMMWMATRIX_PUBLISHED_API_EXTERN_C mxArray * mxCreateNumericArray(mwSize ndim, const int dims[3], mxClassID classid, mxComplexity flag);
+LIBMMWMATRIX_PUBLISHED_API_EXTERN_C mxArray * mxCreateNumericArray(mwSize ndim, const int dims[3], mxClassID classid, mxComplexity flag){
+    return mxCreateNumericArray_730(ndim,(const mwSize *)dims,classid,flag);
+}
+ 
+
+// PBR - MKR 20220503
+// old prototype in /Applications/MATLAB_R2021b.app/extern/include/matrix.h
+// LIBMMWMATRIX_PUBLISHED_API_EXTERN_C const mwSize *mxGetDimensions(const mxArray *pa);
+// type of return not correct: old = const mwSize *   new = const int*
+#undef mxGetDimensions
+LIBMMWMATRIX_PUBLISHED_API_EXTERN_C const int *mxGetDimensions(const mxArray *pa);
+LIBMMWMATRIX_PUBLISHED_API_EXTERN_C const int *mxGetDimensions(const mxArray *pa) {
+    return (const int*)mxGetDimensions_730(pa);
+}
+
+// PBR - MKR 20220503
+// old prototype in /Applications/MATLAB_R2021b.app/extern/include/matrix.h
+// LIBMMWMATRIX_PUBLISHED_API_EXTERN_C int mxSetDimensions(mxArray *pa, const mwSize *pdims, mwSize ndims);
+// type of param 2 not correct: old = const mwSize *dims   new = const int *dims
+#undef mxSetDimensions
+LIBMMWMATRIX_PUBLISHED_API_EXTERN_C int mxSetDimensions(mxArray *pa, const int *pdims, mwSize ndims);
+LIBMMWMATRIX_PUBLISHED_API_EXTERN_C int mxSetDimensions(mxArray *pa, const int *pdims, mwSize ndims) {
+    return mxSetDimensions_730(pa, (const mwSize *)pdims, ndims);
+}
+
+
+
 void mexFunction(	int nlhs, mxArray *plhs[], 
 					int nrhs, const mxArray*prhs[] ) 
 {
